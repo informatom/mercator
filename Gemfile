@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 
-gem 'pg'
+gem 'pg', '~> 0.17.0'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
 
 gem "hobo", "= 2.0.1"
 gem "quiet_assets", :group => :development
@@ -21,6 +21,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development  do
-  gem 'debugger'
+group :development, :test  do
+  gem 'debugger', '~> 1.6.2'
+  gem 'rspec-rails', '~> 2.14.0'
+  gem 'factory_girl_rails', '~> 4.2.1'
+end
+
+group :test do
+  gem 'faker', '~> 1.2.0'
+  gem 'capybara', '~> 2.1.0'
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'launchy', '~> 2.3.0'
+  gem 'selenium-webdriver', '~> 2.35.1'
 end
