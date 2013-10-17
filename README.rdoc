@@ -1,21 +1,19 @@
 == Welcome to Mercator
 
-Mercator is a guided selling web application written in the Hobo web application framework which
-is heavily dependent on the Ruby On Rails framework which itself is written in the dynamic
-scripting langauge ruby.
+Mercator is a guided selling web application written using the Hobo web application framework.
 
 == Dependencies
 
 First of: There are lots of dependencies as we aim to write as little code as possible
 
-* Hobo
-* Ruby on Rails
-* Ruby
+* Hobo. Find more about Hobo including a full book on Hobo at http://www.hobocentral.net/
+* Ruby on Rails. See http://rubyonrails.org/ for more.
+* Ruby. https://www.ruby-lang.org/de/about/
 * PostgresQL (The application should run on MySQL as well, but that is not supported in nay way)
 *
 
 FIXME! Links, all below me
-FIXME! Whar is guided selling
+FIXME! What is guided selling
 
 == Getting Started
 
