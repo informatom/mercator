@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
     administrator :boolean, :default => false
     timestamps
   end
-  attr_accessible :name, :email_address, :password, :password_confirmation, :current_password
+  attr_accessible :name, :email_address, :password, :password_confirmation,
+                  :current_password
+
+  has_many :addresses
+  children :addresses
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
@@ -37,14 +41,13 @@ class User < ActiveRecord::Base
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,
                :params => [ :password, :password_confirmation ]
-
   end
 
   # --- Permissions --- #
 
   def create_permitted?
     # Only the initial admin user can be created
-    self.class.count == 0
+    self.class.count == 0 || acting_user.administrator?
   end
 
   def update_permitted?

@@ -13,4 +13,5 @@
 //= require hobo_bootstrap
 //= require hobo_jquery_ui
 //= require hobo_bootstrap_ui
+//= require hobo_data_tables
 //= require_tree ./front

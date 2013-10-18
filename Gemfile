@@ -13,6 +13,8 @@ gem "hobo_bootstrap", "2.0.1"
 gem "hobo_jquery_ui", "2.0.1"
 gem "hobo_bootstrap_ui", "2.0.1"
 gem "jquery-ui-themes", "~> 0.0.4"
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

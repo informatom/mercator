@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015071245) do
+ActiveRecord::Schema.define(:version => 20131018095332) do
+
+  create_table "addresses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "detail"
+    t.string   "street"
+    t.string   "postalcode"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["user_id"], :name => "index_addresses_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

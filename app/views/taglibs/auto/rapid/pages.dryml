@@ -6,8 +6,123 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Address Pages ====== -->
+
+<def tag="index-page" for="Address">
+  <page merge title="#{ht 'address.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page address" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="address.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="address.actions.new">New Address</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Address">
+  <page merge title="#{ht 'address.new.title', :default=>[' New Address'] }">
+    <body: class="new-page address" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.new.heading">
+          New Address
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'address.actions.create', :default=>['Create Address']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Address">
+  <page merge title="#{ht 'address.show.title', :default=>['Address'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page address" param/>
+
+    <content-header: param>
+      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <h2 param="heading">
+        <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
+          Address <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="address.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Address
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="detail, street, postalcode, city" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Address">
+  <page merge title="#{ht 'address.edit.title', :default=>['Edit Address'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page address" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Address
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'address.actions.delete', :default=>['Remove This Address']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 
@@ -33,6 +148,9 @@
     </content-header:>
 
     <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="user.actions.new">New User</ht>
+      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -40,13 +158,6 @@
 
       <page-nav param="bottom-page-nav"/>
 
-
-      <div param="new-form">
-        <h3 param="new-form-heading">
-          <ht key="user.form.new.heading">New User</ht>
-        </h3>
-        <form with="&@invalid_record || new_for_current_user(User)" param/>
-      </div>
 
     </content-body:>
   </page>
@@ -97,6 +208,15 @@
 
     <content-body: param>
       <field-list fields="email_address, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="address.collection.heading" count="&this.addresses.count" >
+            <human-collection-name collection="addresses" your/>
+          </ht>
+        </h3>
+
+        <collection:addresses param/>
+      </section>
     </content-body:>
 
   </page>

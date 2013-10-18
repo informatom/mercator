@@ -6,7 +6,7 @@ Mercator::Application.routes.draw do
 
 
   # Resource routes for controller users
-  resources :users, :only => [:edit, :show, :create, :update, :destroy] do
+  resources :users do
     collection do
       post 'signup', :action => 'do_signup'
       get 'signup'
@@ -22,5 +22,9 @@ Mercator::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+
+
+  # Resource routes for controller addresses
+  resources :addresses
 
 end
