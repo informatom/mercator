@@ -32,3 +32,15 @@ you can place common code in this file. -->
     </collection>
   </old-index-page:>
 </extend>
+
+<extend tag="page">
+  <old-page merge>
+    <stylesheets: param>
+      <param-content/>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,latin-ext'
+        rel='stylesheet' type='text/css'></link>
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,latin-ext'
+        rel='stylesheet' type='text/css'></link>
+    </stylesheets:>
+  </old-page>
+</extend>
