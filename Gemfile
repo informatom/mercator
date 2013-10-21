@@ -17,6 +17,8 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 gem "less-rails"
 
+gem "paper_trail"
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

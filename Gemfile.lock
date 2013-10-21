@@ -149,6 +149,9 @@ GEM
     multi_xml (0.5.5)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    paper_trail (2.7.2)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pg (0.17.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -244,6 +247,7 @@ DEPENDENCIES
   jquery-ui-themes (~> 0.0.4)
   launchy (~> 2.3.0)
   less-rails
+  paper_trail
   pg (~> 0.17.0)
   quiet_assets
   rails (= 3.2.14)

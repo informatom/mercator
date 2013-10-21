@@ -15,6 +15,8 @@ class Address < ActiveRecord::Base
   belongs_to :user
   # --- Permissions --- #
 
+  has_paper_trail
+
   def create_permitted?
     acting_user.administrator?
   end
@@ -28,7 +30,7 @@ class Address < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    ( acting_user == self.user ) || acting_user.administrator?
   end
 
 end
