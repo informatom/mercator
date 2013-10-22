@@ -44,3 +44,14 @@ you can place common code in this file. -->
     </stylesheets:>
   </old-page>
 </extend>
+
+<def tag="treeview">
+  <li repeat data-id="#{h this.id}" class="dd-item">
+    <div class="dd-handle"><%= h this.name %></div>
+    <if test="&this.children">
+      <ol class="dd-list">
+        <treeview with="&this.children" />
+      </ol>
+    </if>
+  </li>
+</def>

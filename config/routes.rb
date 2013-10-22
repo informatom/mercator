@@ -11,6 +11,8 @@ Mercator::Application.routes.draw do
 
   match 'search' => 'front#search', :as => 'site_search'
 
+  post 'categories/sort' => 'categories#sort'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

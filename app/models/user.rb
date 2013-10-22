@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :addresses
   children :addresses
 
+  has_paper_trail
+
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
   before_create do |user|

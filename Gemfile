@@ -18,6 +18,7 @@ gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 gem "less-rails"
 
 gem "paper_trail"
+gem "ancestry"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

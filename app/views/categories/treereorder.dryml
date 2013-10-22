@@ -1,0 +1,10 @@
+<index-page>
+  <collection: replace>
+    <div class="dd">
+      <ol class="dd-list">
+        <treeview with="&this" />
+      </ol>
+    </div>
+  </collection:>
+</index-page>
+<script> $('.dd').nestable({ /* config options */ });</script>

@@ -11,3 +11,5 @@
 //= require_tree ./application
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+//= require application/jquery.nestable
+

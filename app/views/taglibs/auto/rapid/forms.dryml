@@ -13,6 +13,18 @@
 
 
 
+<def tag="form" for="Category">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, ancestry, position, active" param/>
+    <div param="actions">
+      <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>

@@ -1,22 +1,21 @@
-class Address < ActiveRecord::Base
+class Category < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    name       :string
-    detail     :string
-    street     :string
-    postalcode :string
-    city       :string
+    name     :string
+    ancestry :string, :index => true
+    position :integer
+    active   :boolean
     timestamps
   end
-  attr_accessible :user_id, :name, :detail, :street, :postalcode, :city, :user
+  attr_accessible :name, :ancestry, :position, :active
 
-  belongs_to :user
-
+  has_ancestry
   has_paper_trail
 
   # --- Permissions --- #
+
   def create_permitted?
     acting_user.administrator?
   end
@@ -30,7 +29,7 @@ class Address < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    ( acting_user == self.user ) || acting_user.administrator?
+    true
   end
 
 end
