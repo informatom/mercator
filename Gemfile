@@ -27,6 +27,7 @@ group :assets do
 end
 
 group :development, :test  do
+  gem 'thin' #replacement for webrick
   gem 'debugger', '~> 1.6.2'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 4.2.1'

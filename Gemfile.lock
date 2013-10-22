@@ -73,6 +73,7 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     commonjs (0.2.7)
+    daemons (1.1.9)
     database_cleaner (1.2.0)
     debugger (1.6.2)
       columnize (>= 0.3.1)
@@ -85,6 +86,7 @@ GEM
       actionpack (~> 3.2.0)
       hobo_support (= 2.0.1)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -212,6 +214,10 @@ GEM
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
     treetop (1.4.15)
@@ -255,5 +261,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   selenium-webdriver (~> 2.35.1)
   therubyracer
+  thin
   uglifier (>= 1.0.3)
   will_paginate!

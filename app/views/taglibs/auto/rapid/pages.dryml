@@ -78,7 +78,6 @@
     <body: class="show-page address" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
           Address <name/>
@@ -95,7 +94,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="detail, street, postalcode, city" param/>
+      <field-list fields="detail, street, postalcode, city, user" param/>
     </content-body:>
 
   </page>
