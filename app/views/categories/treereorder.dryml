@@ -7,4 +7,17 @@
     </div>
   </collection:>
 </index-page>
-<script> $('.dd').nestable({ /* config options */ });</script>
+
+<script>
+  $('.dd').nestable({ /* config options */ });
+  $('.dd').on('change', function() {
+    $.ajax({
+        url:"/categories/do_treereorder",
+        data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),
+        dataType: 'script',
+        complete: function(returnvalue) {
+          eval(returnvalue);
+        }
+    });
+  });
+</script>

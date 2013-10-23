@@ -9,7 +9,7 @@ class Category < ActiveRecord::Base
     active   :boolean
     timestamps
   end
-  attr_accessible :name, :ancestry, :position, :active
+  attr_accessible :name, :ancestry, :position, :active, :parent_id
 
   has_ancestry
   has_paper_trail

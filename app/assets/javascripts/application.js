@@ -12,4 +12,5 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require application/jquery.nestable
-
+//= require messenger
+//= require messenger-theme-future

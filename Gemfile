@@ -19,6 +19,7 @@ gem "less-rails"
 
 gem "paper_trail"
 gem "ancestry"
+gem "messengerjs-rails"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

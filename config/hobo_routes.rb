@@ -9,6 +9,7 @@ Mercator::Application.routes.draw do
   resources :categories do
     collection do
       get 'treereorder'
+      get 'do_treereorder'
     end
   end
 
