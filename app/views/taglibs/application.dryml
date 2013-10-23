@@ -19,7 +19,7 @@ you can place common code in this file. -->
           field_names = field_names.join(', ')
         end
       %>
-      <data-table class="table table-striped table-bordered" without-header
+      <data-table class="table table-striped table-bordered" without-header bPaginate sPaginationType="bootstrap"
         fields="&field_names" param="collection">
         <actions-label:>
           <t key="hobo.messages.actions">Actions</t>

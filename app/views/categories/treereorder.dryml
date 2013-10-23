@@ -9,7 +9,7 @@
 </index-page>
 
 <script>
-  $('.dd').nestable({ /* config options */ });
+  $('.dd').nestable({ maxDepth: 99 });
   $('.dd').on('change', function() {
     $.ajax({
         url:"/categories/do_treereorder",

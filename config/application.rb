@@ -73,5 +73,7 @@ module Mercator
       request_specs: false
       generator.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    WillPaginate.per_page = 9999
   end
 end
