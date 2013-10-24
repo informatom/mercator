@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022151248) do
+ActiveRecord::Schema.define(:version => 20131024132102) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -30,12 +30,33 @@ ActiveRecord::Schema.define(:version => 20131022151248) do
     t.string   "name"
     t.string   "ancestry"
     t.integer  "position"
-    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",         :default => "new"
+    t.datetime "key_timestamp"
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
+  add_index "categories", ["state"], :name => "index_categories_on_state"
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.string   "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state",                 :default => "new"
+    t.datetime "key_timestamp"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+  end
+
+  add_index "products", ["state"], :name => "index_products_on_state"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

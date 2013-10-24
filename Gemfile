@@ -15,6 +15,9 @@ gem "hobo_bootstrap_ui", "2.0.1"
 gem "jquery-ui-themes", "~> 0.0.4"
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
+gem "paperclip"
+gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
+
 gem "less-rails"
 
 gem "paper_trail"

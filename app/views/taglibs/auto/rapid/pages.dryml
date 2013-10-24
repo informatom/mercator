@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -198,7 +199,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="active" param/>
+      <record-flags fields="" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="category.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -208,7 +209,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="ancestry, position" param/>
+      <field-list fields="ancestry, position, state" param/>
     </content-body:>
 
   </page>
@@ -237,6 +238,286 @@
 </def>
 
 
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="Category">
+  <page title="#{ht 'category.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="Category">
+  <page title="#{ht 'category.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.deactivate.heading">
+          Deactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reactivate-page" polymorphic/>
+<def tag="reactivate-page" for="Category">
+  <page title="#{ht 'category.reactivate.title', :default=>['Reactivate']}" merge>
+
+    <body: class="lifecycle-transition-page reactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.reactivate.heading">
+          Reactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<!-- ====== Product Pages ====== -->
+
+<def tag="index-page" for="Product">
+  <page merge title="#{ht 'product.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="product.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="product.actions.new">New Product</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Product">
+  <page merge title="#{ht 'product.new.title', :default=>[' New Product'] }">
+    <body: class="new-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.new.heading">
+          New Product
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'product.actions.create', :default=>['Create Product']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Product">
+  <page merge title="#{ht 'product.show.title', :default=>['Product'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.show.heading" name="#{name(:no_wrapper => true)}">
+          Product <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="product.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Product
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="number, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, document_file_name, document_content_type, document_file_size, document_updated_at, state" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Product">
+  <page merge title="#{ht 'product.edit.title', :default=>['Edit Product'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Product
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'product.actions.delete', :default=>['Remove This Product']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="Product">
+  <page title="#{ht 'product.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="announce-page" polymorphic/>
+<def tag="announce-page" for="Product">
+  <page title="#{ht 'product.announce.title', :default=>['Announce']}" merge>
+
+    <body: class="lifecycle-transition-page announce-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.announce.heading">
+          Announce
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <announce-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="release-page" polymorphic/>
+<def tag="release-page" for="Product">
+  <page title="#{ht 'product.release.title', :default=>['Release']}" merge>
+
+    <body: class="lifecycle-transition-page release-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.release.heading">
+          Release
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <release-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="Product">
+  <page title="#{ht 'product.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.deactivate.heading">
+          Deactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reactivate-page" polymorphic/>
+<def tag="reactivate-page" for="Product">
+  <page title="#{ht 'product.reactivate.title', :default=>['Reactivate']}" merge>
+
+    <body: class="lifecycle-transition-page reactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.reactivate.heading">
+          Reactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 
 
