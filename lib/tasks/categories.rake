@@ -2,8 +2,8 @@
 require 'faker'
 
 namespace :categories do
-  # starten als: 'bundle exec rake categories:fake'
-  # in Produktivumgebungen: 'bundle exec rake categories:fake RAILS_ENV=production'
+  # starten als: 'bundle exec rake categories:fake[42]'
+  # in Produktivumgebungen: 'bundle exec rake categories:fake[42] RAILS_ENV=production'
   desc "Create fake Categories"
   task :fake, [:count] => :environment do |t, args|
 
