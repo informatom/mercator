@@ -5,11 +5,36 @@
 Mercator::Application.routes.draw do
 
 
+  # Resource routes for controller products
+  resources :products do
+    member do
+      put 'activate', :action => 'do_activate'
+      get 'activate'
+      put 'announce', :action => 'do_announce'
+      get 'announce'
+      put 'release', :action => 'do_release'
+      get 'release'
+      put 'deactivate', :action => 'do_deactivate'
+      get 'deactivate'
+      put 'reactivate', :action => 'do_reactivate'
+      get 'reactivate'
+    end
+  end
+
+
   # Resource routes for controller categories
   resources :categories do
     collection do
       get 'treereorder'
       get 'do_treereorder'
+    end
+    member do
+      put 'activate', :action => 'do_activate'
+      get 'activate'
+      put 'deactivate', :action => 'do_deactivate'
+      get 'deactivate'
+      put 'reactivate', :action => 'do_reactivate'
+      get 'reactivate'
     end
   end
 

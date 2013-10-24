@@ -55,3 +55,29 @@ you can place common code in this file. -->
     </if>
   </li>
 </def>
+
+<extend tag="show-page">
+  <old-show-page>
+      <after-content-header:>
+        <transition-buttons />
+      </after-content-header:>
+  </old-show-page>
+</extend>
+
+<extend tag="form" for="Product">
+  <old-form merge multipart>
+    <field-list: fields="name, number, document, photo"/>
+  </old-form>
+</extend>
+
+<extend tag="show-page" for="Product">
+  <old-show-page>
+    <append-content-body: >
+    <%= t("Original version") %>: <%= image_tag this.photo.url %><br/>
+    <%= t("Thumbnail version") %>: <%= image_tag this.photo.url(:thumb) %><br/>
+    <%= t("Small version") %>: <%= image_tag this.photo.url(:small) %><br/>
+    <%= t("Medium version") %>: <%= image_tag this.photo.url(:medium) %><br/>
+    <%= t("Large version") %>: <%= image_tag this.photo.url(:large) %><br/>
+    </append-content-body: >
+  </old-show-page>
+</extend>

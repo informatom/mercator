@@ -7,6 +7,15 @@ GIT
       jquery-datatables-rails
 
 GIT
+  remote: git://github.com/Hobo/hobo_paperclip.git
+  revision: 58e0daabdce95c1a8a0c06daf086a8ee0820842b
+  branch: master
+  specs:
+    hobo_paperclip (0.0.4)
+      hobo
+      paperclip
+
+GIT
   remote: git://github.com/Hobo/will_paginate.git
   revision: cc7ef01551b94fe4f607e38929037234dc70bb62
   specs:
@@ -66,6 +75,10 @@ GEM
       xpath (~> 2.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -157,6 +170,11 @@ GEM
     paper_trail (2.7.2)
       activerecord (~> 3.0)
       railties (~> 3.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -252,6 +270,7 @@ DEPENDENCIES
   hobo_bootstrap_ui (= 2.0.1)
   hobo_data_tables!
   hobo_jquery_ui (= 2.0.1)
+  hobo_paperclip!
   jquery-datatables-rails!
   jquery-rails (~> 2.3.0)
   jquery-ui-themes (~> 0.0.4)
@@ -259,6 +278,7 @@ DEPENDENCIES
   less-rails
   messengerjs-rails
   paper_trail
+  paperclip
   pg (~> 0.17.0)
   quiet_assets
   rails (= 3.2.14)

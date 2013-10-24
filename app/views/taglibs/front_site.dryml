@@ -12,6 +12,8 @@
 
 <include gem='hobo_data_tables'/>
 
+<include gem='hobo_paperclip'/>
+
 <include src="taglibs/auto/rapid/cards"/>
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
