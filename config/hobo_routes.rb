@@ -4,6 +4,13 @@
 
 Mercator::Application.routes.draw do
 
+  # Resource routes for controller categories
+  resources :categories do
+    collection do
+      get 'treereorder'
+      get 'do_treereorder'
+    end
+  end
 
   # Resource routes for controller users
   resources :users do
@@ -26,14 +33,5 @@ Mercator::Application.routes.draw do
 
   # Resource routes for controller addresses
   resources :addresses
-
-
-  # Resource routes for controller categories
-  resources :categories do
-    collection do
-      get 'treereorder'
-      get 'do_treereorder'
-    end
-  end
 
 end

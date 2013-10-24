@@ -11,13 +11,14 @@
 <script>
   $('.dd').nestable({ maxDepth: 99 });
   $('.dd').on('change', function() {
-    $.ajax({
-        url:"/categories/do_treereorder",
-        data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),
-        dataType: 'script',
-        complete: function(returnvalue) {
-          eval(returnvalue);
-        }
+    Messenger().run({
+      progressMessage: 'Categories updating ...',
+      successMessage: 'Catgories reordered.',
+      errorMessage: 'Could not reorder categories!'
+    },{
+      url:"/categories/do_treereorder",
+      data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),
+      dataType: 'script',
     });
   });
 </script>
