@@ -209,7 +209,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="ancestry, position, state" param/>
+      <field-list fields="name_de, name_en, ancestry, position, state" param/>
     </content-body:>
 
   </page>
@@ -384,7 +384,8 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="number, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, document_file_name, document_content_type, document_file_size, document_updated_at, state" param/>
+      <view:description param="description" />
+      <field-list fields="name_de, name_en, number, description_de, description_en, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, document_file_name, document_content_type, document_file_size, document_updated_at, state" param/>
     </content-body:>
 
   </page>

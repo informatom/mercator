@@ -1,0 +1,55 @@
+de:
+  attributes:
+    created_at: Erzeugt
+    updated_at: Aktualisiert
+
+  activerecord:
+    models:
+      address:
+        one: Adresse
+        other: Adressen
+      category:
+        one: Kategorie
+        other: Kategorien
+      product:
+        one: Artikel
+        other: Artikel
+      user:
+        one: Benutzer
+        other: Benutzer
+    attributes:
+      address:
+        name: Empfänger
+        detail: Details
+        street: Straße
+        postalcode: Postleitzahl
+        city: Ort
+      categorie:
+        name: Name
+        ancestry: Ancestry-String
+        position: Reihung
+      product:
+        name: Artikelbezeichnung
+        number: Artikelnummer
+        description: Beschreibung
+        document: Dokument
+        photo: Foto
+      user:
+        name: Name
+        password: Passwort
+        current_password: Aktuelles Passwort
+        password_confirmation: Passwortbestätigung
+        email_address: E-Mail Adresse
+        administator: Administrator
+    attribute_help:
+      address:
+        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        detail: "geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
+        street: Straße und Hausneummer
+      category:
+        updated: Kagegorien erfolgreich aktualisiert!
+        updating: Kategorien werden aktualisiert
+        update_failed: Kategorien konnten nicht aktualisiert werden!
+      user:
+        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        email_address: Ihre E-Mail Adresse wird niemals weitergegeben.

@@ -12,9 +12,9 @@
   $('.dd').nestable({ maxDepth: 99 });
   $('.dd').on('change', function() {
     Messenger().run({
-      progressMessage: 'Categories updating ...',
-      successMessage: 'Catgories reordered.',
-      errorMessage: 'Could not reorder categories!'
+      progressMessage: '<%= t "activerecord.attribute_help.category.updating" %> ...',
+      successMessage: '<%= t "activerecord.attribute_help.category.updated" %>',
+      errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>'
     },{
       url:"/categories/do_treereorder",
       data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),

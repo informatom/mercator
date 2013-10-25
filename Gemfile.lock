@@ -241,6 +241,8 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
+    traco (1.2.4)
+      activerecord (>= 3.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -287,5 +289,6 @@ DEPENDENCIES
   selenium-webdriver (~> 2.35.1)
   therubyracer
   thin
+  traco
   uglifier (>= 1.0.3)
   will_paginate!

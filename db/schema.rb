@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024132102) do
+ActiveRecord::Schema.define(:version => 20131025122818) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -27,20 +27,21 @@ ActiveRecord::Schema.define(:version => 20131024132102) do
   add_index "addresses", ["user_id"], :name => "index_addresses_on_user_id"
 
   create_table "categories", :force => true do |t|
-    t.string   "name"
+    t.string   "name_de"
     t.string   "ancestry"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",         :default => "new"
     t.datetime "key_timestamp"
+    t.string   "name_en"
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
   add_index "categories", ["state"], :name => "index_categories_on_state"
 
   create_table "products", :force => true do |t|
-    t.string   "name"
+    t.string   "name_de"
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,6 +55,9 @@ ActiveRecord::Schema.define(:version => 20131024132102) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.text     "description_de"
+    t.text     "description_en"
+    t.string   "name_en"
   end
 
   add_index "products", ["state"], :name => "index_products_on_state"

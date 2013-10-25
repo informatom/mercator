@@ -3,13 +3,15 @@ class Category < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name     :string
+    name_de     :string
+    name_en     :string
     ancestry :string, :index => true
     position :integer
     timestamps
   end
-  attr_accessible :name, :ancestry, :position, :active, :parent_id
+  attr_accessible :name_de, :name_en, :ancestry, :position, :active, :parent_id
 
+  translates :name
   has_ancestry
   has_paper_trail
 

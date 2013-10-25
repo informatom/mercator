@@ -1,47 +1,49 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.14'                               # Web applitation framework
+gem 'pg', '~> 0.17.0'                               # Postgres data base
 
-gem 'pg', '~> 0.17.0'
+gem 'jquery-rails', '~> 2.3.0'                      # JQuery asset handling
 
-gem 'jquery-rails', '~> 2.3.0'
-
-gem "hobo", "= 2.0.1"
-gem "quiet_assets", :group => :development
+gem "hobo", "= 2.0.1"                               # web application meta framework
 gem "will_paginate", :git => "git://github.com/Hobo/will_paginate.git"
-gem "hobo_bootstrap", "2.0.1"
-gem "hobo_jquery_ui", "2.0.1"
-gem "hobo_bootstrap_ui", "2.0.1"
-gem "jquery-ui-themes", "~> 0.0.4"
+                                                    # pagination support
+gem "hobo_bootstrap", "2.0.1"                       # Twitter Bootstrap asset handling
+gem "hobo_jquery_ui", "2.0.1"                       # JQuery UI asser handling
+gem "hobo_bootstrap_ui", "2.0.1"                    # additional Bootstrap features
+gem "jquery-ui-themes", "~> 0.0.4"                  # JQury Ui theming
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+                                                    # Data Tables asset handling
 gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
-gem "paperclip"
+                                                    # Data Tables integradtion
+gem "paperclip"                                     # attachment handling
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
-
-gem "less-rails"
-
-gem "paper_trail"
-gem "ancestry"
-gem "messengerjs-rails"
+                                                    # Paperclip Hobo integration
+gem "paper_trail"                                   # historization on object level
+gem "ancestry"                                      # hierarchical data structures
+gem "messengerjs-rails"                             # Messenger Javascript Framework assets
+gem 'traco'                                         # model attribute translations
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'therubyracer', :platforms => :ruby
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails',   '~> 3.2.3'                    # Sass support
+  gem "less-rails"                                  # Less support
+  gem 'coffee-rails', '~> 3.2.1'                    # Coffeescript support
+  gem 'therubyracer'                                # Javascript engine
+  gem 'uglifier', '>= 1.0.3'                        # Code minimizer
 end
 
 group :development, :test  do
-  gem 'thin' #replacement for webrick
-  gem 'debugger', '~> 1.6.2'
-  gem 'rspec-rails', '~> 2.14.0'
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'thin'                                        # web server, replacement for webrick
+  gem 'debugger', '~> 1.6.2'                        # Command line debugger
+  gem "quiet_assets"                                # leaner log output
 end
 
 group :test do
-  gem 'faker', '~> 1.2.0'
-  gem 'capybara', '~> 2.1.0'
-  gem 'database_cleaner', '~> 1.2.0'
-  gem 'launchy', '~> 2.3.0'
-  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'rspec-rails', '~> 2.14.0'                    # unit testing framework
+  gem 'factory_girl_rails', '~> 4.2.1'              # factories
+  gem 'faker', '~> 1.2.0'                           # data faker
+  gem 'capybara', '~> 2.1.0'                        # behaviour testing framework
+  gem 'database_cleaner', '~> 1.2.0'                # database cleaner
+  gem 'launchy', '~> 2.3.0'                         # browser launcher
+  gem 'selenium-webdriver', '~> 2.35.1'             # front end testing framework
 end
