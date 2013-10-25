@@ -39,6 +39,10 @@ Mercator::Application.routes.draw do
   end
 
 
+  # Resource routes for controller content_elements
+  resources :content_elements
+
+
   # Resource routes for controller users
   resources :users do
     collection do

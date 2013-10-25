@@ -19,6 +19,8 @@ gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 gem "paperclip"                                     # attachment handling
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
                                                     # Paperclip Hobo integration
+gem "ckeditor", :git => "git://github.com/galetahub/ckeditor.git"
+gem "hobo_ckeditor"                                 # CKEditor integration
 gem "paper_trail"                                   # historization on object level
 gem "ancestry"                                      # hierarchical data structures
 gem "messengerjs-rails"                             # Messenger Javascript Framework assets

@@ -75,5 +75,6 @@ module Mercator
     end
 
     WillPaginate.per_page = 9999
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

@@ -11,6 +11,9 @@ de:
       category:
         one: Kategorie
         other: Kategorien
+      content_element:
+        one: Textbaustein
+        other: Textbausteine
       product:
         one: Artikel
         other: Artikel
@@ -28,6 +31,12 @@ de:
         name: Name
         ancestry: Ancestry-String
         position: Reihung
+      content_element:
+        name: Name
+        content: Inhalt
+        content_de: Inhalt (DE)
+        content_en: Inhalt (EN)
+        markup: Markup Format
       product:
         name: Artikelbezeichnung
         number: Artikelnummer

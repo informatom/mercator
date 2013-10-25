@@ -14,4 +14,6 @@
 //= require hobo_jquery_ui
 //= require hobo_bootstrap_ui
 //= require hobo_data_tables
+//= require ckeditor/init
+//= require hobo_ckeditor
 //= require_tree ./front

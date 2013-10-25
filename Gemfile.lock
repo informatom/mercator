@@ -22,6 +22,14 @@ GIT
     will_paginate (3.0.4.hobo)
 
 GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: e8dcbbe646cd5cc526acdbfa688c8017ee0b9f5f
+  specs:
+    ckeditor (4.0.6)
+      mime-types
+      orm_adapter
+
+GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 494f752b8eb8350f33841c822a67d014c869219f
   specs:
@@ -125,6 +133,10 @@ GEM
     hobo_bootstrap_ui (2.0.1)
       bootstrap-datepicker-rails
       hobo_bootstrap (~> 2.0.0.pre1)
+    hobo_ckeditor (0.0.13)
+      ckeditor
+      hobo (>= 2.0.0)
+      rails
     hobo_fields (2.0.1)
       hobo_support (= 2.0.1)
     hobo_jquery (2.0.1)
@@ -167,6 +179,7 @@ GEM
     multi_xml (0.5.5)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    orm_adapter (0.4.0)
     paper_trail (2.7.2)
       activerecord (~> 3.0)
       railties (~> 3.0)
@@ -262,6 +275,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   capybara (~> 2.1.0)
+  ckeditor!
   coffee-rails (~> 3.2.1)
   database_cleaner (~> 1.2.0)
   debugger (~> 1.6.2)
@@ -270,6 +284,7 @@ DEPENDENCIES
   hobo (= 2.0.1)
   hobo_bootstrap (= 2.0.1)
   hobo_bootstrap_ui (= 2.0.1)
+  hobo_ckeditor
   hobo_data_tables!
   hobo_jquery_ui (= 2.0.1)
   hobo_paperclip!
