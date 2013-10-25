@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -80,7 +81,7 @@
     <body: class="show-page address" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
           Address <name/>
@@ -301,6 +302,118 @@
 
   </page>
 </def>
+
+
+
+<!-- ====== ContentElement Pages ====== -->
+
+<def tag="index-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="content_element.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="content_element.actions.new">New Content element</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.new.title', :default=>[' New Content element'] }">
+    <body: class="new-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.new.heading">
+          New Content element
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'content_element.actions.create', :default=>['Create Content element']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.show.title', :default=>['Content element'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.show.heading" name="#{name(:no_wrapper => true)}">
+          Content element <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="content_element.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Content element
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="name_de, content_de, markup, name_en, content_en" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.edit.title', :default=>['Edit Content element'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Content element
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'content_element.actions.delete', :default=>['Remove This Content element']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
 
 
 

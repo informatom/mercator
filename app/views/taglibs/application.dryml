@@ -1,6 +1,10 @@
 <!-- this file is included by front_site.dryml, admin_site.dryml et al, so
 you can place common code in this file. -->
 
+
+<def tag="index-page" for="Class">
+</def>
+
 <extend tag="index-page">
   <old-index-page: without-count without-top-page-nav merge>
     <collection: replace>
@@ -65,7 +69,7 @@ you can place common code in this file. -->
 <extend tag="show-page">
   <old-show-page>
       <after-content-header:>
-        <transition-buttons />
+      <!--  <transition-buttons /> -->
       </after-content-header:>
   </old-show-page>
 </extend>
