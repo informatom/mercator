@@ -3,13 +3,16 @@ class Product < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name       :string
-    number     :string
-    dasriction :text
+    name_de        :string
+    name_en        :string
+    number         :string
+    description_de :text
+    description_en :text
     timestamps
   end
-  attr_accessible :name, :number, :photo, :document
+  attr_accessible :name_de, :name_en, :number, :description_de, :description_en, :photo, :document
 
+  translates :name, :description
   has_paper_trail
   has_attached_file :photo,
     :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",

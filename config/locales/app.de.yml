@@ -31,7 +31,9 @@ de:
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
-        desription: Beschreibung
+        description: Beschreibung
+        document: Dokument
+        photo: Foto
       user:
         name: Name
         password: Passwort

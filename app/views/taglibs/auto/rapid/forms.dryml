@@ -16,7 +16,7 @@
 <def tag="form" for="Category">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, ancestry, position, state" param/>
+    <field-list fields="name_de, name_en, ancestry, position, state" param/>
     <div param="actions">
       <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -61,7 +61,7 @@
 <def tag="form" for="Product">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, number, dasriction, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, document_file_name, document_content_type, document_file_size, document_updated_at, state" param/>
+    <field-list fields="name_de, name_en, number, description_de, description_en, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, document_file_name, document_content_type, document_file_size, document_updated_at, state" param/>
     <div param="actions">
       <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
