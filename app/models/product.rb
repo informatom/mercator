@@ -3,8 +3,9 @@ class Product < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name   :string
-    number :string
+    name       :string
+    number     :string
+    dasriction :text
     timestamps
   end
   attr_accessible :name, :number, :photo, :document
