@@ -4,21 +4,8 @@
 
 Mercator::Application.routes.draw do
 
-  # Resource routes for controller products
-  resources :products do
-    member do
-      put 'activate', :action => 'do_activate'
-      get 'activate'
-      put 'announce', :action => 'do_announce'
-      get 'announce'
-      put 'release', :action => 'do_release'
-      get 'release'
-      put 'deactivate', :action => 'do_deactivate'
-      get 'deactivate'
-      put 'reactivate', :action => 'do_reactivate'
-      get 'reactivate'
-    end
-  end
+  # Resource routes for controller addresses
+  resources :addresses
 
 
   # Resource routes for controller categories
@@ -38,8 +25,21 @@ Mercator::Application.routes.draw do
   end
 
 
-  # Resource routes for controller content_elements
-  resources :content_elements
+  # Resource routes for controller products
+  resources :products do
+    member do
+      put 'activate', :action => 'do_activate'
+      get 'activate'
+      put 'announce', :action => 'do_announce'
+      get 'announce'
+      put 'release', :action => 'do_release'
+      get 'release'
+      put 'deactivate', :action => 'do_deactivate'
+      get 'deactivate'
+      put 'reactivate', :action => 'do_reactivate'
+      get 'reactivate'
+    end
+  end
 
 
   # Resource routes for controller users
@@ -61,7 +61,11 @@ Mercator::Application.routes.draw do
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
-  # Resource routes for controller addresses
-  resources :addresses
+  # Resource routes for controller content_elements
+  resources :content_elements
+
+  namespace :ckeditor do
+
+  end
 
 end

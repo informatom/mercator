@@ -74,7 +74,6 @@ module Mercator
       generator.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
-    WillPaginate.per_page = 9999
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end
