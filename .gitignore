@@ -15,3 +15,7 @@
 /tmp
 
 /config/hobo_routes.rb
+
+log/*
+public/assets/*
+public/ckeditor_assets/*
