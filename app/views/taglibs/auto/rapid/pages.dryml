@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Constant"><ht key="constant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -81,7 +82,7 @@
     <body: class="show-page address" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
           Address <name/>
@@ -302,6 +303,118 @@
 
   </page>
 </def>
+
+
+
+<!-- ====== Constant Pages ====== -->
+
+<def tag="index-page" for="Constant">
+  <page merge title="#{ht 'constant.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page constant" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="constant.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="constant.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="constant.actions.new">New Constant</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Constant">
+  <page merge title="#{ht 'constant.new.title', :default=>[' New Constant'] }">
+    <body: class="new-page constant" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="constant.new.heading">
+          New Constant
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'constant.actions.create', :default=>['Create Constant']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Constant">
+  <page merge title="#{ht 'constant.show.title', :default=>['Constant'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page constant" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="constant.show.heading" name="#{name(:no_wrapper => true)}">
+          Constant <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="constant.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Constant
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="key, value" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Constant">
+  <page merge title="#{ht 'constant.edit.title', :default=>['Edit Constant'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page constant" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="constant.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Constant
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'constant.actions.delete', :default=>['Remove This Constant']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
 
 
 

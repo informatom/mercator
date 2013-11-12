@@ -1,0 +1,201 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"shipping_",
+				"shipping_name2"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Ruby/Ruby.sublime-build",
+	"command_palette":
+	{
+		"height": 117.0,
+		"selected_items":
+		[
+			[
+				"xiki",
+				"Create Xiki Buffer"
+			],
+			[
+				"Package Control: up",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"X",
+				"Create Xiki Buffer"
+			],
+			[
+				"x",
+				"Set Syntax: Xiki"
+			],
+			[
+				"XI",
+				"Preferences: SublimeXiki Settings – User"
+			],
+			[
+				"c",
+				"Create Xiki Buffer"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/stefan/sshfs/mercator/app/controllers/application_controller.rb",
+		"/home/stefan/daten/rails/mercator/app/controllers/application_controller.rb",
+		"/home/stefan/.config/sublime-text-2/Packages/Rails File Switcher/Default (Linux).sublime-keymap",
+		"/home/stefan/.config/sublime-text-2/Packages/Rails File Switcher/README.md",
+		"/home/stefan/daten/rails/mercator/app/controllers/categories_controller.rb",
+		"/home/stefan/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/stefan/daten/rails/mercator/app/controllers/addresses_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/controllers/orders_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic/app/models/mesonic/order_initializer.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/db/migrate/20131105171400_add_filiale_to_order.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/models/ivellio_vellin/order.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/lib/development_direct_connection_test.rb",
+		"/home/stefan/.config/sublime-text-2/Packages/SublimeXiki/SublimeXiki.sublime-settings",
+		"/home/stefan/.config/sublime-text-2/Packages/User/SublimeXiki.sublime-settings",
+		"/home/stefan/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/stefan/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/stefan/sshfs/miranda-weissenfeld"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"def",
+			"initialize_mesonic_order",
+			"place",
+			"main.rb"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"appco",
+				"mercator/app/controllers/application_controller.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 185.0,
+	"status_bar_visible": true
+}

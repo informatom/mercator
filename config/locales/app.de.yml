@@ -11,6 +11,9 @@ de:
       category:
         one: Kategorie
         other: Kategorien
+      constant:
+        one: Konstante
+        other: Konstanten
       content_element:
         one: Textbaustein
         other: Textbausteine
@@ -31,6 +34,9 @@ de:
         name: Name
         ancestry: Ancestry-String
         position: Reihung
+      constant:
+        key: Schlüssel
+        value: Wert
       content_element:
         name: Name
         content: Inhalt

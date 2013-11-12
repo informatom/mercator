@@ -4,6 +4,11 @@
 
 Mercator::Application.routes.draw do
 
+
+  # Resource routes for controller constants
+  resources :constants
+
+
   # Resource routes for controller addresses
   resources :addresses
 

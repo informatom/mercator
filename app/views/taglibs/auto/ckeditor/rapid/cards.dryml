@@ -17,6 +17,14 @@
   </card>
 </def>
 
+<def tag="card" for="Constant">
+  <card class="constant" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="ContentElement">
   <card class="content-element" param="default" merge>
     <header: param>
