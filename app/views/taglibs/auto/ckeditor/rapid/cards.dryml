@@ -33,6 +33,14 @@
   </card>
 </def>
 
+<def tag="card" for="Lineitem">
+  <card class="lineitem" param="default" merge>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Product">
   <card class="product" param="default" merge>
     <header: param>

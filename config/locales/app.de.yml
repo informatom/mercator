@@ -17,6 +17,9 @@ de:
       content_element:
         one: Textbaustein
         other: Textbausteine
+      lineitem:
+        one: Bestellposition
+        other: Bestellpositionen
       product:
         one: Artikel
         other: Artikel
@@ -49,6 +52,14 @@ de:
         content_de: Inhalt (DE)
         content_en: Inhalt (EN)
         markup: Markup Format
+      lineitem:
+        product_number: Artikelnummer
+        description: Beschreibung
+        amount: Menge
+        product_price: Stückpreis
+        vat: MwSt.
+        value: Positionswert
+        position: Positionsnummer
       product:
         name: Artikelbezeichnung
         number: Artikelnummer

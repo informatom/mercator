@@ -10,6 +10,7 @@
     <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Constant"><ht key="constant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Lineitem"><ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Property"><ht key="property.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PropertyGroup"><ht key="property_group.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -519,6 +520,119 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'content_element.actions.delete', :default=>['Remove This Content element']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Lineitem Pages ====== -->
+
+<def tag="index-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="lineitem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="lineitem.actions.new">New Lineitem</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.new.title', :default=>[' New Lineitem'] }">
+    <body: class="new-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.new.heading">
+          New Lineitem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'lineitem.actions.create', :default=>['Create Lineitem']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.show.title', :default=>['Lineitem'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.show.heading" name="#{name(:no_wrapper => true)}">
+          Lineitem <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="lineitem.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Lineitem
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="position, product_number, description_de, description_en, amount, product_price, vat, value" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.edit.title', :default=>['Edit Lineitem'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Lineitem
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'lineitem.actions.delete', :default=>['Remove This Lineitem']}" param/>
     </content-header:>
 
     <content-body: param>

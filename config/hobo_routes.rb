@@ -5,6 +5,10 @@
 Mercator::Application.routes.draw do
 
 
+  # Resource routes for controller lineitems
+  resources :lineitems
+
+
   # Resource routes for controller constants
   resources :constants
 
