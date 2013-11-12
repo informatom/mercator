@@ -66,6 +66,14 @@ Mercator::Application.routes.draw do
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
+  # Resource routes for controller property_groups
+  resources :property_groups
+
+
+  # Resource routes for controller properties
+  resources :properties
+
+
   # Resource routes for controller content_elements
   resources :content_elements
 

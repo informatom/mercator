@@ -20,6 +20,12 @@ de:
       product:
         one: Artikel
         other: Artikel
+      property:
+        one: Eigenschaft
+        other: Eigenschaften
+      property_group:
+        one: Eigenschaftsgruppe
+        other: Eigenschaftsgruppen
       user:
         one: Benutzer
         other: Benutzer
@@ -49,6 +55,13 @@ de:
         description: Beschreibung
         document: Dokument
         photo: Foto
+      property:
+        name: Name
+        description: Beschreibung
+        value: Wert
+        unit: Einheit
+      property_group:
+        name: Name
       user:
         name: Name
         password: Passwort

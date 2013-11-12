@@ -11,6 +11,8 @@
     <nav-item with="&Constant"><ht key="constant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Property"><ht key="property.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&PropertyGroup"><ht key="property_group.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -589,7 +591,7 @@
 
 
 <def tag="show-page" for="Product">
-  <page merge title="#{ht 'product.show.title', :default=>['Product'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'product.show.title', :default=>['Product'], :name => name(:no_wrapper => true) }" >
 
     <body: class="show-page product" param/>
 
@@ -612,7 +614,27 @@
     <content-body: param>
       <view:description param="description" />
       <field-list fields="name_de, name_en, number, description_de, description_en, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, document_file_name, document_content_type, document_file_size, document_updated_at, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="property_group.collection.heading" count="&this.property_groups.count" >
+            <human-collection-name collection="property_groups" your/>
+          </ht>
+        </h3>
+
+        <collection:property_groups param/>
+      </section>
     </content-body:>
+
+    <aside: param>
+      <section param="properties-collection-section">
+        <h3 param="properties-collection-heading">
+          <ht key="property.collection.heading" count="&this.properties.count" >
+            <human-collection-name collection="properties" your/>
+          </ht>
+        </h3>
+        <collection:properties  param="properties-collection"/>
+      </section>
+    </aside:>
 
   </page>
 </def>
@@ -745,6 +767,242 @@
 
   </page>
 </def>
+
+
+
+<!-- ====== Property Pages ====== -->
+
+<def tag="index-page" for="Property">
+  <page merge title="#{ht 'property.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page property" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="property.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="property.actions.new">New Property</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Property">
+  <page merge title="#{ht 'property.new.title', :default=>[' New Property'] }">
+    <body: class="new-page property" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property.new.heading">
+          New Property
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'property.actions.create', :default=>['Create Property']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Property">
+  <page merge title="#{ht 'property.show.title', :default=>['Property'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page property" param/>
+
+    <content-header: param>
+      <a:property_group param="parent-link">&laquo; <ht key="property.actions.back_to_parent" parent="Eigenschaftsgruppe" name="&this">Back to <name/></ht></a:property_group>
+      <h2 param="heading">
+        <ht key="property.show.heading" name="#{name(:no_wrapper => true)}">
+          Property <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="property.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Property
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Property">
+  <page merge title="#{ht 'property.edit.title', :default=>['Edit Property'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page property" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Property
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'property.actions.delete', :default=>['Remove This Property']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== PropertyGroup Pages ====== -->
+
+<def tag="index-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="property_group.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="property_group.actions.new">New Property group</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.new.title', :default=>[' New Property group'] }">
+    <body: class="new-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.new.heading">
+          New Property group
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'property_group.actions.create', :default=>['Create Property group']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.show.title', :default=>['Property group'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page property-group" param/>
+
+    <content-header: param>
+      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <h2 param="heading">
+        <ht key="property_group.show.heading" name="#{name(:no_wrapper => true)}">
+          Property group <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="property_group.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Property group
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="name_de, name_en, position" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="property.collection.heading" count="&this.properties.count" >
+            <human-collection-name collection="properties" your/>
+          </ht>
+        </h3>
+
+        <collection:properties param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.edit.title', :default=>['Edit Property group'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Property group
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'property_group.actions.delete', :default=>['Remove This Property group']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
 
 
 

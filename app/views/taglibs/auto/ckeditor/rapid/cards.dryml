@@ -40,6 +40,33 @@
     </header:>
     <body: param>
       <view:description param="description"/>
+      <ht key="property_group.collection.count" count="&this.property_groups.size">
+         <count:property_groups param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Property">
+  <card class="property" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="PropertyGroup">
+  <card class="property-group" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <ht key="property.collection.count" count="&this.properties.size">
+         <count:properties param/>
+      </ht>
     </body:>
   </card>
 </def>

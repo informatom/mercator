@@ -19,6 +19,11 @@ class Product < ActiveRecord::Base
                  :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   has_attached_file :document, :default_url => "/images/:style/missing.png"
 
+  has_many :property_groups
+  has_many :properties
+  children :property_groups, :properties
+
+
   lifecycle do
     state :new, :default => true
     state :announced, :active, :deprecated

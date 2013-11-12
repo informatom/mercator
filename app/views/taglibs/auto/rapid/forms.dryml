@@ -149,6 +149,30 @@
   </form>
 </def>
 
+<def tag="form" for="Property">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product, property_group" param/>
+    <div param="actions">
+      <submit label="#{ht 'property.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="PropertyGroup">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name_de, name_en, position, product" param/>
+    <div param="actions">
+      <submit label="#{ht 'property_group.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>

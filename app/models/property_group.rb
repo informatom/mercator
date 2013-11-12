@@ -1,15 +1,21 @@
-class Constant < ActiveRecord::Base
+class PropertyGroup < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    key   :string
-    value :string
+    name_de  :string
+    name_en  :string
+    position :integer
     timestamps
   end
-  attr_accessible :key, :value
+  attr_accessible :name_de, :name_en, :position, :product, :product_id
 
+  translates :name
   has_paper_trail
+
+  belongs_to :product
+  has_many :properties
+  children :properties
 
   # --- Permissions --- #
 

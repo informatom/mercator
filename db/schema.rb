@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112080742) do
+ActiveRecord::Schema.define(:version => 20131112112952) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -94,6 +94,35 @@ ActiveRecord::Schema.define(:version => 20131112080742) do
   end
 
   add_index "products", ["state"], :name => "index_products_on_state"
+
+  create_table "properties", :force => true do |t|
+    t.string   "name_de"
+    t.string   "name_en"
+    t.decimal  "value"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.integer  "property_group_id"
+    t.string   "description_de"
+    t.string   "description_en"
+    t.string   "unit_de"
+    t.string   "unit_en"
+  end
+
+  add_index "properties", ["product_id"], :name => "index_properties_on_product_id"
+  add_index "properties", ["property_group_id"], :name => "index_properties_on_property_group_id"
+
+  create_table "property_groups", :force => true do |t|
+    t.string   "name_de"
+    t.string   "name_en"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+  end
+
+  add_index "property_groups", ["product_id"], :name => "index_property_groups_on_product_id"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
