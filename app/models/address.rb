@@ -3,16 +3,17 @@ class Address < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name       :string
+    name       :string, :required
     detail     :string
-    street     :string
-    postalcode :string
-    city       :string
+    street     :string, :required
+    postalcode :string, :required
+    city       :string, :required
     timestamps
   end
   attr_accessible :user_id, :name, :detail, :street, :postalcode, :city, :user
 
   belongs_to :user
+  validates_presence_of :user
 
   has_paper_trail
 

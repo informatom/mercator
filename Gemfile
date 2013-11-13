@@ -49,4 +49,5 @@ group :test do
   gem 'database_cleaner', '~> 1.2.0'                # database cleaner
   gem 'launchy', '~> 2.3.0'                         # browser launcher
   gem 'selenium-webdriver', '~> 2.35.1'             # front end testing framework
+  gem 'shoulda'                                     # additional matchers
 end

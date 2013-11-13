@@ -5,11 +5,15 @@ describe User do
     expect(build(:user)).to be_valid
   end
 
+  it {should validate_presence_of(:name)}
+  it {should validate_uniqueness_of(:name)}
+  it {should have_many(:addresses)}
+
   it "is valid with a name, email_address and administrator" do
     expect(build(:admin)).to be_valid
   end
 
-  it "is invalid without a name" do
-    expect(build(:user, name: nil)).to have(1).errors_on(:name)
+  it "is versioned" do
+    should respond_to(:versions)
   end
 end

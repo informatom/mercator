@@ -3,10 +3,10 @@ class Product < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string
+    name_de        :string, :required
     name_en        :string
-    number         :string
-    description_de :text
+    number         :string, :required, :unique
+    description_de :text, :required
     description_en :text
     timestamps
   end

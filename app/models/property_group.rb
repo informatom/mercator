@@ -3,9 +3,9 @@ class PropertyGroup < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string
+    name_de  :string, :required
     name_en  :string
-    position :integer
+    position :integer, :required
     timestamps
   end
   attr_accessible :name_de, :name_en, :position, :product, :product_id

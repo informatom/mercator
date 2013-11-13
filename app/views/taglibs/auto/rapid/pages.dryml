@@ -85,7 +85,7 @@
     <body: class="show-page address" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
           Address <name/>
@@ -948,7 +948,7 @@
     <body: class="show-page property" param/>
 
     <content-header: param>
-      <a:property_group param="parent-link">&laquo; <ht key="property.actions.back_to_parent" parent="Eigenschaftsgruppe" name="&this">Back to <name/></ht></a:property_group>
+      <a:property_group param="parent-link">&laquo; <ht key="property.actions.back_to_parent" parent="Property group" name="&this">Back to <name/></ht></a:property_group>
       <h2 param="heading">
         <ht key="property.show.heading" name="#{name(:no_wrapper => true)}">
           Property <name/>
@@ -1062,7 +1062,7 @@
     <body: class="show-page property-group" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="property_group.show.heading" name="#{name(:no_wrapper => true)}">
           Property group <name/>

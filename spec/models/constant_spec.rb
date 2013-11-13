@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Constant do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is valid with key and value" do
+    expect(build(:constant)).to be_valid
+  end
+
+  it {should validate_presence_of(:key)}
+  it {should validate_uniqueness_of(:key)}
+
+  it "is versioned" do
+    should respond_to(:versions)
+  end
 end
