@@ -12,10 +12,10 @@
 	"buffers":
 	[
 		{
-			"file": "/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
+			"file": "/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
 			"settings":
 			{
-				"buffer_size": 1689,
+				"buffer_size": 433,
 				"line_ending": "Unix"
 			}
 		}
@@ -80,27 +80,39 @@
 	},
 	"file_history":
 	[
-		"/home/stefan/sshfs/mercator/.gitignore",
+		"/home/stefan/sshfs/mercator/app/models/ckeditor/picture.rb",
+		"/home/stefan/sshfs/mercator/app/models/content_element.rb",
+		"/home/stefan/sshfs/mercator/app/models/guest.rb",
+		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
+		"/home/stefan/sshfs/mercator/app/models/product.rb",
+		"/home/stefan/sshfs/mercator/app/models/property.rb",
+		"/home/stefan/sshfs/mercator/app/models/property_group.rb",
+		"/home/stefan/sshfs/mercator/app/models/user.rb",
+		"/home/stefan/sshfs/mercator/app/models/constant.rb",
+		"/home/stefan/sshfs/mercator/spec/models/property_spec.rb",
+		"/home/stefan/sshfs/mercator/spec/factories/properties.rb",
+		"/home/stefan/sshfs/mercator/spec/factories/property_groups.rb",
+		"/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
+		"/home/stefan/sshfs/mercator/spec/factories/products.rb",
 		"/home/stefan/sshfs/mercator/Gemfile",
+		"/home/stefan/sshfs/mercator/spec/support/database_cleaner.rb",
+		"/home/stefan/sshfs/mercator/spec/spec_helper.rb",
+		"/home/stefan/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/stefan/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/stefan/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
+		"/home/stefan/sshfs/mercator/.gitignore",
 		"/home/stefan/sshfs/mercator/app/views/layouts/application.html.erb",
 		"/home/stefan/sshfs/mercator/app/assets/stylesheets/front.scss",
 		"/home/stefan/sshfs/mercator/app/assets/stylesheets/overrides.scss",
 		"/home/stefan/sshfs/mercator/config/locales/app.de.yml",
-		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
-		"/home/stefan/sshfs/mercator/app/models/user.rb",
-		"/home/stefan/sshfs/mercator/app/models/property.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131112112108_hobo_migration_16.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131112104258_hobo_migration_13.rb",
-		"/home/stefan/sshfs/mercator/app/models/product.rb",
-		"/home/stefan/sshfs/mercator/app/models/property_group.rb",
-		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
-		"/home/stefan/sshfs/mercator/app/models/constant.rb",
 		"/home/stefan/sshfs/mercator/app/controllers/application_controller.rb",
 		"/home/stefan/daten/rails/mercator/app/controllers/application_controller.rb",
 		"/home/stefan/.config/sublime-text-2/Packages/Rails File Switcher/Default (Linux).sublime-keymap",
 		"/home/stefan/.config/sublime-text-2/Packages/Rails File Switcher/README.md",
 		"/home/stefan/daten/rails/mercator/app/controllers/categories_controller.rb",
-		"/home/stefan/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/stefan/daten/rails/mercator/app/controllers/addresses_controller.rb",
 		"/home/stefan/sshfs/miranda-weissenfeld/app/controllers/orders_controller.rb",
 		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic/app/models/mesonic/order_initializer.rb",
@@ -118,7 +130,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/home/stefan/sshfs/mercator/app/views/taglibs",
@@ -152,33 +164,32 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
+					"file": "/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
 					"settings":
 					{
-						"buffer_size": 1689,
+						"buffer_size": 433,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1689,
-								1689
+								433,
+								433
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -247,9 +258,9 @@
 		"width": 0.0
 	},
 	"show_minimap": true,
-	"show_open_files": true,
+	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 483.0,
+	"side_bar_width": 255.0,
 	"status_bar_visible": true
 }

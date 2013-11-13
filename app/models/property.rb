@@ -20,11 +20,19 @@ class Property < ActiveRecord::Base
   validates :name_de, :presence => true, :uniqueness => {:scope => :product_id}
   validates :product_id, :presence => true
 
+  validate :textual_or_numerical
+
   translates :name, :description, :unit
   belongs_to :product
   belongs_to :property_group
 
   has_paper_trail
+
+  def textual_or_numerical
+    unless (self.value.blank? && self.unit_de.blank?) ^ self.description_de.blank?
+      errors.add(:base, I18n.translate("errors.messages.textual_or_numerical"))
+    end
+  end
 
   # --- Permissions --- #
 

@@ -116,6 +116,7 @@ de:
       odd: muss ungerade sein
       record_invalid: ! 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
       taken: ist bereits vergeben
+      textual_or_numerical: Füllen Sie entweder die Beschreibung oder Wert und Einheit aus!
       too_long: ist zu lang (mehr als %{count} Zeichen)
       too_short: ist zu kurz (weniger als %{count} Zeichen)
       wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
