@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"unit",
+				"unit_en"
+			],
+			[
+				"description",
+				"description_en"
+			],
+			[
 				"shipping_",
 				"shipping_name2"
 			]
@@ -11,14 +19,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
-			"settings":
-			{
-				"buffer_size": 433,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
@@ -80,22 +80,23 @@
 	},
 	"file_history":
 	[
+		"/home/stefan/sshfs/mercator/spec/models/property_spec.rb",
+		"/home/stefan/sshfs/mercator/app/models/property.rb",
+		"/home/stefan/sshfs/mercator/spec/support/database_cleaner.rb",
+		"/home/stefan/sshfs/mercator/config/locales/de.yml",
+		"/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
 		"/home/stefan/sshfs/mercator/app/models/ckeditor/picture.rb",
 		"/home/stefan/sshfs/mercator/app/models/content_element.rb",
 		"/home/stefan/sshfs/mercator/app/models/guest.rb",
 		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
 		"/home/stefan/sshfs/mercator/app/models/product.rb",
-		"/home/stefan/sshfs/mercator/app/models/property.rb",
 		"/home/stefan/sshfs/mercator/app/models/property_group.rb",
 		"/home/stefan/sshfs/mercator/app/models/user.rb",
 		"/home/stefan/sshfs/mercator/app/models/constant.rb",
-		"/home/stefan/sshfs/mercator/spec/models/property_spec.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/properties.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/property_groups.rb",
-		"/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/products.rb",
 		"/home/stefan/sshfs/mercator/Gemfile",
-		"/home/stefan/sshfs/mercator/spec/support/database_cleaner.rb",
 		"/home/stefan/sshfs/mercator/spec/spec_helper.rb",
 		"/home/stefan/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/stefan/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
@@ -166,34 +167,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
-					"settings":
-					{
-						"buffer_size": 433,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								433,
-								433
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

@@ -9,7 +9,7 @@ describe Property do
   it "is underspecified with name_de, unit_de" do
     expect(build(:property, description_de: nil, value: nil)).not_to be_valid
   end
-  it "is overspecified  with name_de, name_en, description_de, value, unit_de" do
+  it "is overspecified with name_de, name_en, description_de, value, unit_de" do
     expect(build(:property)).not_to be_valid
   end
   it "is valid with name_de, name_en, value, unit_de" do
