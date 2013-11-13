@@ -29,7 +29,8 @@ class Property < ActiveRecord::Base
   has_paper_trail
 
   def textual_or_numerical
-    unless (self.value.blank? && self.unit_de.blank?) ^ self.description_de.blank?
+    unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||
+           (self.value.blank? && self.unit_de.blank? && self.description_de.present?)
       errors.add(:base, I18n.translate("errors.messages.textual_or_numerical"))
     end
   end
