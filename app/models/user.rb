@@ -65,6 +65,6 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user == self.id
+    acting_user == self
   end
 end
