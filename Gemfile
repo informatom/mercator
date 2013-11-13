@@ -32,6 +32,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'                    # Coffeescript support
   gem 'therubyracer'                                # Javascript engine
   gem 'uglifier', '>= 1.0.3'                        # Code minimizer
+  gem 'turbo-sprockets-rails3'                      # Only compile assets that have changed
 end
 
 group :development, :test  do
