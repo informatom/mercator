@@ -14,7 +14,7 @@ class PropertyGroup < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :product
-  validates :product_id, :presence => true
+  validates :product, :presence => true
   has_many :properties
   children :properties
 

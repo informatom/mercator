@@ -18,7 +18,7 @@ class Property < ActiveRecord::Base
                   :position, :product, :property_group, :product_id, :property_group_id
 
   validates :name_de, :presence => true, :uniqueness => {:scope => :product_id}
-  validates :product_id, :presence => true
+  validates :product, :presence => true
 
   validate :textual_or_numerical
 

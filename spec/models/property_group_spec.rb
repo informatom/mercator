@@ -8,7 +8,7 @@ describe PropertyGroup do
   it {should validate_presence_of(:name_de)}
   it {should validate_presence_of(:position)}
   it {should belong_to(:product)}
-  it {should validate_presence_of(:product_id)}
+  it {should validate_presence_of(:product)}
   it {should have_many(:properties)}
 
   it "is versioned" do

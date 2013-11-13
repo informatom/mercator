@@ -21,7 +21,7 @@ describe Property do
 
   it {should validate_presence_of(:name_de)}
   it {should belong_to(:product)}
-  it {should validate_presence_of(:product_id)}
+  it {should validate_presence_of(:product)}
   it {should belong_to(:property_group)}
   it {should validate_uniqueness_of(:name_de)}
 
