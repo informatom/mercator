@@ -40,5 +40,4 @@ class Lineitem < ActiveRecord::Base
   def view_permitted?(field)
     ( acting_user == self.user ) || acting_user.administrator?
   end
-
 end
