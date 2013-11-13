@@ -3,8 +3,8 @@ class ContentElement < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de    :string
-    content_de :cktext
+    name_de    :string, :required, :unique
+    content_de :cktext, :required
     markup     :string
     name_en    :string
     content_en :cktext
