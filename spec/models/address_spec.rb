@@ -12,7 +12,7 @@ describe Address do
   it {should validate_presence_of(:city)}
   it {should belong_to(:user)}
 
-  it "should be versioned" do
+  it "is versioned" do
     should respond_to(:versions)
   end
 end

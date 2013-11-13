@@ -17,6 +17,8 @@ class Property < ActiveRecord::Base
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
                   :position, :product, :property_group, :product_id, :property_group_id
 
+  validates :name_de, :uniqueness => {:scope => :product}
+
   translates :name, :description, :unit
   belongs_to :product
   belongs_to :property_group

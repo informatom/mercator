@@ -7,11 +7,11 @@ describe Category do
 
   it {should validate_presence_of(:name_de)}
 
-  it "should be versioned" do
+  it "is versioned" do
     should respond_to(:versions)
   end
 
-  it "should be hierarchical" do
+  it "is in a tree structure" do
     should respond_to(:parent)
     should respond_to(:children)
   end

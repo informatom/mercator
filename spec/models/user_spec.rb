@@ -13,7 +13,7 @@ describe User do
     expect(build(:admin)).to be_valid
   end
 
-  it "should be versioned" do
+  it "is versioned" do
     should respond_to(:versions)
   end
 end

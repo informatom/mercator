@@ -1,5 +1,16 @@
 require 'spec_helper'
 
 describe PropertyGroup do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is valid with name_de, name_en and position" do
+    expect(build(:property_group)).to be_valid
+  end
+
+  it {should validate_presence_of(:name_de)}
+  it {should validate_presence_of(:position)}
+  it {should belong_to(:product)}
+  it {should have_many(:properties)}
+
+  it "is versioned" do
+    should respond_to(:versions)
+  end
 end

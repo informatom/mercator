@@ -13,10 +13,10 @@ describe Lineitem do
   it {should validate_presence_of(:product_price)}
   it {should validate_presence_of(:vat)}
   it {should validate_presence_of(:value)}
-#  it {should validate_uniqueness_of(:position)}
-  it {should validate_uniqueness_of(:product_number)}
+  pending "it {should validate_uniqueness_of(:position)}"
+  pending "it {should validate_uniqueness_of(:product_number)}"
 
-  it "should be versioned" do
+  it "is versioned" do
     should respond_to(:versions)
   end
 end

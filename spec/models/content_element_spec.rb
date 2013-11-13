@@ -9,7 +9,7 @@ describe ContentElement do
   it {should validate_uniqueness_of :name_de}
   it {should validate_presence_of :content_de}
 
-  it "should be versioned" do
+  it "is versioned" do
     should respond_to(:versions)
   end
 end
