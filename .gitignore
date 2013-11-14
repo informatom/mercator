@@ -20,3 +20,4 @@ log/*
 public/assets/*
 public/ckeditor_assets/*
 config/hobo_routes.rb
+app/views/taglibs/auto/*
