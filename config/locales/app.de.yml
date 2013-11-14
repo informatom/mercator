@@ -46,6 +46,8 @@ de:
     related_products: verwandte Produkte
     state: Status
     street: Straße
+    supply: Zubehör
+    supplies: Zubehör
     unit: Einheit
     User: Benutzer
     updated_at: Aktualisiert
@@ -84,6 +86,9 @@ de:
       property_group:
         one: Eigenschaftsgruppe
         other: Eigenschaftsgruppen
+      supplyrelation:
+        one: Zubehörzuordnung
+        other: Zubehörzuordnungen
       user:
         one: Benutzer
         other: Benutzer

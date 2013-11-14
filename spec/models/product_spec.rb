@@ -19,6 +19,9 @@ describe Product do
   it {should have_many(:related_products)}
   it {should have_many(:productrelations)}
 
+  it {should have_many(:supplies)}
+  it {should have_many(:supplyrelations)}
+
   it "is versioned" do
     should respond_to(:versions)
   end

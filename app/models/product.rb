@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
                   :photo, :document, :categorizations, :categories, :related_products,
-                  :productrelations
+                  :productrelations, :supplies, :supplyrelations
   translates :name, :description
   has_paper_trail
   has_attached_file :photo,
@@ -29,7 +29,10 @@ class Product < ActiveRecord::Base
   has_many :related_products, :through => :productrelations, :accessible => true
   has_many :productrelations, :inverse_of => :product
 
-  children :property_groups, :properties, :categories, :related_products
+  has_many :supplies, :through => :supplyrelations, :accessible => true
+  has_many :supplyrelations, :inverse_of => :product
+
+  children :property_groups, :properties, :categories, :related_products, :supplies
 
   lifecycle do
     state :new, :default => true
