@@ -623,6 +623,7 @@
     </content-header:>
 
     <content-body: param>
+      <view:content param="description" />
       <field-list fields="name_de, content_de, markup, name_en, content_en" param/>
     </content-body:>
 

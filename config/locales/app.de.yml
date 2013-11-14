@@ -1,7 +1,54 @@
 de:
   attributes:
+    actions: Aktionen
+    administator: Administrator
+    Address: Adresse
+    addresses: Adressen
+    amount: Menge
+    ancestry: Ancestry-String
+    Category: Kategorie
+    categories: Kategorien
+    Categorization: Kategorisierung
+    category: Kategorie
+    city: Ort
+    Constant: Konstante
+    content: Inhalt
     created_at: Erzeugt
+    current_password: Aktuelles Passwort
+    description: Beschreibung
+    document: Dokument
+    document_file_name: Dateiname Dokument
+    document_content_type: Dateityp Dokument
+    document_file_size: Dateigröße Dokument
+    document_updated_at: Aktualisiert Dokument
+    email_address: E-Mail Adresse
+    key: Schlüssel
+    Lineitem: Bestellposition
+    markup: Markup Format
+    name: Name
+    password_confirmation: Passwortbestätigung
+    photo: Foto
+    photo_file_name: Dateiname Foto
+    photo_content_type: Dateityp Foto
+    photo_file_size: Dateigröße Foto
+    photo_updated_at: Aktualisiert Foto
+    position: Reihung
+    postalcode: Postleitzahl
+    Product: Artikel
+    product: Artikel
+    product_number: Artikelnummer
+    products: Artikel
+    Property: Eigenschaft
+    properties: Eigenschaften
+    PropertyGroup: Eigenschaftsgruppe
+    property_groups: Eigenschaftsgruppen
+    state: Status
+    street: Straße
+    unit: Einheit
+    User: Benutzer
     updated_at: Aktualisiert
+    value: Wert
+    vat: MwSt.
 
   activerecord:
     models:
@@ -39,53 +86,13 @@ de:
       address:
         name: Empfänger
         detail: Details
-        street: Straße
-        postalcode: Postleitzahl
-        city: Ort
-      categorization:
-        category: Kategorie
-        product: Produkt
-      category:
-        name: Name
-        ancestry: Ancestry-String
-        position: Reihung
-      constant:
-        key: Schlüssel
-        value: Wert
-      content_element:
-        name: Name
-        content: Inhalt
-        content_de: Inhalt (DE)
-        content_en: Inhalt (EN)
-        markup: Markup Format
       lineitem:
-        product_number: Artikelnummer
-        description: Beschreibung
-        amount: Menge
         product_price: Stückpreis
-        vat: MwSt.
         value: Positionswert
         position: Positionsnummer
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
-        description: Beschreibung
-        document: Dokument
-        photo: Foto
-      property:
-        name: Name
-        description: Beschreibung
-        value: Wert
-        unit: Einheit
-      property_group:
-        name: Name
-      user:
-        name: Name
-        password: Passwort
-        current_password: Aktuelles Passwort
-        password_confirmation: Passwortbestätigung
-        email_address: E-Mail Adresse
-        administator: Administrator
     attribute_help:
       address:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
@@ -98,3 +105,8 @@ de:
       user:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
+  "Original version": Originalversion
+  "Thumbnail version": Thumbnail Version
+  "Small version": Kleine Version
+  "Medium version": Mittelgroße Version
+  "Large version": Große Version

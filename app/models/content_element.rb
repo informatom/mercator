@@ -12,7 +12,7 @@ class ContentElement < ActiveRecord::Base
   end
   attr_accessible :name_de, :name_en, :content_de, :content_en, :markup
 
-  translates :name
+  translates :name, :content
   has_paper_trail
 
   # --- Permissions --- #
