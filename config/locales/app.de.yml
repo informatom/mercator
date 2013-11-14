@@ -8,6 +8,9 @@ de:
       address:
         one: Adresse
         other: Adressen
+      categorization:
+        one: Kategorisierung
+        other: Kategorisierungen
       category:
         one: Kategorie
         other: Kategorien
@@ -39,7 +42,10 @@ de:
         street: Straße
         postalcode: Postleitzahl
         city: Ort
-      categorie:
+      categorization:
+        category: Kategorie
+        product: Produkt
+      category:
         name: Name
         ancestry: Ancestry-String
         position: Reihung

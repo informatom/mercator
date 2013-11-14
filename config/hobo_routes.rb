@@ -13,6 +13,10 @@ Mercator::Application.routes.draw do
   resources :constants
 
 
+  # Resource routes for controller categorizations
+  resources :categorizations
+
+
   # Resource routes for controller addresses
   resources :addresses
 

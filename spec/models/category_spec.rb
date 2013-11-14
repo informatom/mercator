@@ -15,4 +15,7 @@ describe Category do
     should respond_to(:parent)
     should respond_to(:children)
   end
+
+  it {should have_many(:products)}
+  it {should have_many(:categorizations)}
 end

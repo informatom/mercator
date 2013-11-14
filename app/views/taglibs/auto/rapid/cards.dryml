@@ -9,11 +9,24 @@
   </card>
 </def>
 
+<def tag="card" for="Categorization">
+  <card class="categorization" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Category">
   <card class="category" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="product.collection.count" count="&this.products.size">
+         <count:products param/>
+      </ht>
+    </body:>
   </card>
 </def>
 

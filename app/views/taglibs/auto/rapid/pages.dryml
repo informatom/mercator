@@ -7,6 +7,7 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Categorization"><ht key="categorization.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Constant"><ht key="constant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -85,6 +86,7 @@
     <body: class="show-page address" param/>
 
     <content-header: param>
+      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
           Address <name/>
@@ -101,7 +103,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="detail, street, postalcode, city, user" param/>
+      <field-list fields="detail, street, postalcode, city" param/>
     </content-body:>
 
   </page>
@@ -214,6 +216,15 @@
 
     <content-body: param>
       <field-list fields="name_de, name_en, ancestry, position, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="product.collection.heading" count="&this.products.count" >
+            <human-collection-name collection="products" your/>
+          </ht>
+        </h3>
+
+        <collection:products param/>
+      </section>
     </content-body:>
 
   </page>
@@ -305,6 +316,118 @@
 
   </page>
 </def>
+
+
+
+<!-- ====== Categorization Pages ====== -->
+
+<def tag="index-page" for="Categorization">
+  <page merge title="#{ht 'categorization.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="categorization.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="categorization.actions.new">New Categorization</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Categorization">
+  <page merge title="#{ht 'categorization.new.title', :default=>[' New Categorization'] }">
+    <body: class="new-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.new.heading">
+          New Categorization
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'categorization.actions.create', :default=>['Create Categorization']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Categorization">
+  <page merge title="#{ht 'categorization.show.title', :default=>['Categorization'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.show.heading" name="#{name(:no_wrapper => true)}">
+          Categorization <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="categorization.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Categorization
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="category, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Categorization">
+  <page merge title="#{ht 'categorization.edit.title', :default=>['Edit Categorization'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Categorization
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'categorization.actions.delete', :default=>['Remove This Categorization']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
 
 
 
@@ -709,6 +832,7 @@
     <body: class="show-page product" param/>
 
     <content-header: param>
+      <a:categories param="parent-link">&laquo; <ht key="product.actions.back_to_parent" parent="Kategorie" name="&this">Back to <name/></ht></a:categories>
       <h2 param="heading">
         <ht key="product.show.heading" name="#{name(:no_wrapper => true)}">
           Product <name/>
@@ -746,6 +870,14 @@
           </ht>
         </h3>
         <collection:properties  param="properties-collection"/>
+      </section>
+      <section param="categories-collection-section">
+        <h3 param="categories-collection-heading">
+          <ht key="category.collection.heading" count="&this.categories.count" >
+            <human-collection-name collection="categories" your/>
+          </ht>
+        </h3>
+        <collection:categories  param="categories-collection"/>
       </section>
     </aside:>
 
@@ -947,6 +1079,7 @@
     <body: class="show-page property" param/>
 
     <content-header: param>
+      <a:property_group param="parent-link">&laquo; <ht key="property.actions.back_to_parent" parent="Eigenschaftsgruppe" name="&this">Back to <name/></ht></a:property_group>
       <h2 param="heading">
         <ht key="property.show.heading" name="#{name(:no_wrapper => true)}">
           Property <name/>
@@ -964,7 +1097,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product, property_group" param/>
+      <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product" param/>
     </content-body:>
 
   </page>
@@ -1060,7 +1193,7 @@
     <body: class="show-page property-group" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="property_group.show.heading" name="#{name(:no_wrapper => true)}">
           Property group <name/>

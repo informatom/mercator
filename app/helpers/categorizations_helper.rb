@@ -1,0 +1,2 @@
+module CategorizationsHelper
+end
