@@ -42,6 +42,8 @@ de:
     properties: Eigenschaften
     PropertyGroup: Eigenschaftsgruppe
     property_groups: Eigenschaftsgruppen
+    related_product: verwandtes Produkt
+    related_products: verwandte Produkte
     state: Status
     street: Straße
     unit: Einheit
@@ -73,6 +75,9 @@ de:
       product:
         one: Artikel
         other: Artikel
+      productrelation:
+        one: Artikelzuordnung
+        other: Artikelzuordnungen
       property:
         one: Eigenschaft
         other: Eigenschaften

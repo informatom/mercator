@@ -85,6 +85,10 @@ Mercator::Application.routes.draw do
   # Resource routes for controller content_elements
   resources :content_elements
 
+
+  # Resource routes for controller productrelations
+  resources :productrelations
+
   namespace :ckeditor do
 
   end

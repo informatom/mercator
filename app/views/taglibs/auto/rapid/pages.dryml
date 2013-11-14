@@ -13,6 +13,7 @@
     <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Lineitem"><ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Productrelation"><ht key="productrelation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Property"><ht key="property.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PropertyGroup"><ht key="property_group.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -86,7 +87,6 @@
     <body: class="show-page address" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
           Address <name/>
@@ -103,7 +103,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="detail, street, postalcode, city" param/>
+      <field-list fields="detail, street, postalcode, city, user" param/>
     </content-body:>
 
   </page>
@@ -769,6 +769,118 @@
 
 
 
+<!-- ====== Productrelation Pages ====== -->
+
+<def tag="index-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="productrelation.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="productrelation.actions.new">New Productrelation</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.new.title', :default=>[' New Productrelation'] }">
+    <body: class="new-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.new.heading">
+          New Productrelation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'productrelation.actions.create', :default=>['Create Productrelation']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.show.title', :default=>['Productrelation'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.show.heading" name="#{name(:no_wrapper => true)}">
+          Productrelation <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="productrelation.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Productrelation
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="product, related_product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.edit.title', :default=>['Edit Productrelation'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Productrelation
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'productrelation.actions.delete', :default=>['Remove This Productrelation']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Product Pages ====== -->
 
 <def tag="index-page" for="Product">
@@ -833,7 +945,7 @@
     <body: class="show-page product" param/>
 
     <content-header: param>
-      <a:categories param="parent-link">&laquo; <ht key="product.actions.back_to_parent" parent="Kategorie" name="&this">Back to <name/></ht></a:categories>
+      <a:categories param="parent-link">&laquo; <ht key="product.actions.back_to_parent" parent="Category" name="&this">Back to <name/></ht></a:categories>
       <h2 param="heading">
         <ht key="product.show.heading" name="#{name(:no_wrapper => true)}">
           Product <name/>
@@ -879,6 +991,14 @@
           </ht>
         </h3>
         <collection:categories  param="categories-collection"/>
+      </section>
+      <section param="related_products-collection-section">
+        <h3 param="related_products-collection-heading">
+          <ht key="product.collection.heading" count="&this.related_products.count" >
+            <human-collection-name collection="related_products" your/>
+          </ht>
+        </h3>
+        <collection:related_products  param="related_products-collection"/>
       </section>
     </aside:>
 
@@ -1080,7 +1200,6 @@
     <body: class="show-page property" param/>
 
     <content-header: param>
-      <a:property_group param="parent-link">&laquo; <ht key="property.actions.back_to_parent" parent="Eigenschaftsgruppe" name="&this">Back to <name/></ht></a:property_group>
       <h2 param="heading">
         <ht key="property.show.heading" name="#{name(:no_wrapper => true)}">
           Property <name/>
@@ -1098,7 +1217,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product" param/>
+      <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product, property_group" param/>
     </content-body:>
 
   </page>
@@ -1194,7 +1313,7 @@
     <body: class="show-page property-group" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="property_group.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="property_group.show.heading" name="#{name(:no_wrapper => true)}">
           Property group <name/>

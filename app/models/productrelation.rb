@@ -1,17 +1,17 @@
-class Categorization < ActiveRecord::Base
+class Productrelation < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
     timestamps
   end
-  attr_accessible :product, :product_id, :category, :category_id
+  attr_accessible :product, :product_id, :related_product, :related_product_id
 
-  belongs_to :category
   belongs_to :product
+  belongs_to :related_product, :class_name => 'Product', :foreign_key => 'related_product_id'
 
   validates :product, :presence => true
-  validates :category_id, :presence => true, :uniqueness => {:scope => :product_id}
+  validates :related_product_id, :presence => true, :uniqueness => {:scope => :product_id}
 
   # --- Permissions --- #
 

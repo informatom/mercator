@@ -1,0 +1,2 @@
+module ProductrelationsHelper
+end

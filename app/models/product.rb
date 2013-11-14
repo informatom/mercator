@@ -10,7 +10,9 @@ class Product < ActiveRecord::Base
     description_en :text
     timestamps
   end
-  attr_accessible :name_de, :name_en, :number, :description_de, :description_en, :photo, :document, :categorizations, :categories
+  attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
+                  :photo, :document, :categorizations, :categories, :related_products,
+                  :productrelations
   translates :name, :description
   has_paper_trail
   has_attached_file :photo,
@@ -20,10 +22,14 @@ class Product < ActiveRecord::Base
 
   has_many :property_groups
   has_many :properties
-  children :property_groups, :properties, :categories
 
   has_many :categorizations
   has_many :categories, :through => :categorizations, :accessible => true
+
+  has_many :related_products, :through => :productrelations, :accessible => true
+  has_many :productrelations, :inverse_of => :product
+
+  children :property_groups, :properties, :categories, :related_products
 
   lifecycle do
     state :new, :default => true

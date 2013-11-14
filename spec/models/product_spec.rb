@@ -16,6 +16,9 @@ describe Product do
   it {should have_many(:categories)}
   it {should have_many(:categorizations)}
 
+  it {should have_many(:related_products)}
+  it {should have_many(:productrelations)}
+
   it "is versioned" do
     should respond_to(:versions)
   end
