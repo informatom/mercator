@@ -26,6 +26,8 @@ de:
     Lineitem: Bestellposition
     markup: Markup Format
     name: Name
+    order: Rechnung
+    orders: Rechnungen
     password_confirmation: Passwortbestätigung
     photo: Foto
     photo_file_name: Dateiname Foto
@@ -74,6 +76,9 @@ de:
       lineitem:
         one: Bestellposition
         other: Bestellpositionen
+      order:
+        one: Bestellung
+        other: Bestellungen
       product:
         one: Artikel
         other: Artikel
@@ -100,6 +105,21 @@ de:
         product_price: Stückpreis
         value: Positionswert
         position: Positionsnummer
+      order:
+        billing_method: Rechnungsart
+        billing_name: Name (Rechnung)
+        billing_detail: Details (Rechnung)
+        billing_street: Straße (Rechnung)
+        billing_postalcode: Postleitzahl (Rechnung)
+        billing_city: Stadt (Rechnung)
+        billing_country: Land (Rechnung)
+        shipping_method: Lieferart
+        shipping_name: Name (Lieferung)
+        shipping_detail: Details (Lieferung)
+        shipping_street: Straße (Lieferung)
+        shipping_postalcode: Postleitzahl (Lieferung)
+        shipping_city: Stadt (Lieferung)
+        shipping_country: Land (Lieferung)
       product:
         name: Artikelbezeichnung
         number: Artikelnummer

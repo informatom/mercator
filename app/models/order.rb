@@ -22,10 +22,11 @@ class Order < ActiveRecord::Base
 
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
-                  :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country, :lineitems
+                  :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
+                  :lineitems, :user, :uset_id
   has_paper_trail
 
-  belongs_to :user
+  belongs_to :user, :accessible => true
   has_many :lineitems
   children :lineitems
 
