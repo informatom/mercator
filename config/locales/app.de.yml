@@ -11,8 +11,10 @@ de:
     Categorization: Kategorisierung
     category: Kategorie
     city: Ort
+    code: Code
     Constant: Konstante
     content: Inhalt
+    Country: Land
     created_at: Erzeugt
     current_password: Aktuelles Passwort
     description: Beschreibung
@@ -74,6 +76,9 @@ de:
       content_element:
         one: Textbaustein
         other: Textbausteine
+      country:
+        one: Land
+        other: Länder
       lineitem:
         one: Bestellposition
         other: Bestellpositionen
