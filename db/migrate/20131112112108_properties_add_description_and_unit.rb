@@ -1,4 +1,4 @@
-class HoboMigration16 < ActiveRecord::Migration
+class PropertiesAddDescriptionAndUnit < ActiveRecord::Migration
   def self.up
     add_column :properties, :description_de, :string
     add_column :properties, :description_en, :string

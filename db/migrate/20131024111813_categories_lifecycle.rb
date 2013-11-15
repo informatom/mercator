@@ -1,4 +1,4 @@
-class CategoryLifecycle < ActiveRecord::Migration
+class CategoriesLifecycle < ActiveRecord::Migration
   def self.up
     add_column :categories, :state, :string
     add_column :categories, :key_timestamp, :datetime

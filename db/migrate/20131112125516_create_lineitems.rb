@@ -1,4 +1,4 @@
-class HoboMigration18 < ActiveRecord::Migration
+class CreateLineitems < ActiveRecord::Migration
   def self.up
     create_table :lineitems do |t|
       t.string   :product_number

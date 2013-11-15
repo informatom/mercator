@@ -1,4 +1,4 @@
-class HoboMigration17 < ActiveRecord::Migration
+class PropertiesAddValue < ActiveRecord::Migration
   def self.up
     rename_column :properties, :value_de, :value
     remove_column :properties, :value_en

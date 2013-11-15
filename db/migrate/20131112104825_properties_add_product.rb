@@ -1,4 +1,4 @@
-class HoboMigration14 < ActiveRecord::Migration
+class PropertiesAddProduct < ActiveRecord::Migration
   def self.up
     add_column :properties, :product_id, :integer
 

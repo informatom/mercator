@@ -1,4 +1,4 @@
-class HoboMigration19 < ActiveRecord::Migration
+class CreateCategorizations < ActiveRecord::Migration
   def self.up
     create_table :categorizations do |t|
       t.datetime :created_at

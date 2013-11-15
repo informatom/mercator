@@ -1,4 +1,4 @@
-class HoboMigration21 < ActiveRecord::Migration
+class CreateProductRelations < ActiveRecord::Migration
   def self.up
     create_table :productrelations do |t|
       t.datetime :created_at

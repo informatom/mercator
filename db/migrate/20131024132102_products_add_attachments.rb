@@ -1,4 +1,4 @@
-class ProductAttachments < ActiveRecord::Migration
+class ProductsAddAttachments < ActiveRecord::Migration
   def self.up
     add_column :products, :photo_file_name, :string
     add_column :products, :photo_content_type, :string

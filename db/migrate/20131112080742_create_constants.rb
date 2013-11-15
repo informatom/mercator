@@ -1,4 +1,4 @@
-class HoboMigration12 < ActiveRecord::Migration
+class CreateConstants < ActiveRecord::Migration
   def self.up
     create_table :constants do |t|
       t.string   :key

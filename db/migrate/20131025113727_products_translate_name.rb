@@ -1,4 +1,4 @@
-class HoboMigration8 < ActiveRecord::Migration
+class ProductsTranslateName < ActiveRecord::Migration
   def self.up
     rename_column :products, :name, :name_de
     rename_column :products, :dasriction, :description_de

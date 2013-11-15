@@ -1,4 +1,4 @@
-class HoboMigration20 < ActiveRecord::Migration
+class CategorizationsAddCategoryAndProduct < ActiveRecord::Migration
   def self.up
     add_column :categorizations, :category_id, :integer
     add_column :categorizations, :product_id, :integer

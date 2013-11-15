@@ -1,4 +1,4 @@
-class HoboMigration4 < ActiveRecord::Migration
+class CategoriesRemoveActive < ActiveRecord::Migration
   def self.up
     remove_column :categories, :active
   end

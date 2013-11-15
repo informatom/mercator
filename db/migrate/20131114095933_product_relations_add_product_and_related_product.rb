@@ -1,4 +1,4 @@
-class M < ActiveRecord::Migration
+class ProductRelationsAddProductAndRelatedProduct < ActiveRecord::Migration
   def self.up
     add_column :productrelations, :product_id, :integer
     add_column :productrelations, :related_product_id, :integer

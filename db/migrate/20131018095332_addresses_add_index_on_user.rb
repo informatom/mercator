@@ -1,4 +1,4 @@
-class HoboMigration1 < ActiveRecord::Migration
+class AddressesAddIndexOnUser < ActiveRecord::Migration
   def self.up
     add_index :addresses, [:user_id]
   end

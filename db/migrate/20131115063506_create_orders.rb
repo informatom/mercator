@@ -1,4 +1,4 @@
-class HoboMigration23 < ActiveRecord::Migration
+class CreateOrders < ActiveRecord::Migration
   def self.up
     create_table :orders do |t|
       t.string   :billing_method

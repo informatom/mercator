@@ -1,4 +1,4 @@
-class HoboMigration6 < ActiveRecord::Migration
+class CreateProducts < ActiveRecord::Migration
   def self.up
     create_table :products do |t|
       t.string   :name

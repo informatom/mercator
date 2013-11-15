@@ -1,4 +1,4 @@
-class HoboMigration13 < ActiveRecord::Migration
+class CreateProperties < ActiveRecord::Migration
   def self.up
     create_table :properties do |t|
       t.string   :name_de

@@ -1,4 +1,4 @@
-class HoboMigration11 < ActiveRecord::Migration
+class CreateContentElements < ActiveRecord::Migration
   def self.up
     create_table :content_elements do |t|
       t.string   :name_de

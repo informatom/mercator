@@ -1,4 +1,4 @@
-class HoboMigration3 < ActiveRecord::Migration
+class CategoriesAddAncestry < ActiveRecord::Migration
   def self.up
     add_index :categories, [:ancestry]
   end

@@ -1,4 +1,4 @@
-class HoboMigration5 < ActiveRecord::Migration
+class CategoriesChangeState < ActiveRecord::Migration
   def self.up
     change_column :categories, :state, :string, :limit => 255, :default => "new"
   end

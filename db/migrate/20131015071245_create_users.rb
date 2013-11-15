@@ -1,4 +1,4 @@
-class InitialMigration < ActiveRecord::Migration
+class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.string   :crypted_password, :limit => 40

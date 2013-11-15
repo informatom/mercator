@@ -1,4 +1,4 @@
-class HoboMigration24 < ActiveRecord::Migration
+class OrdersLifecycle < ActiveRecord::Migration
   def self.up
     add_column :orders, :state, :string, :default => "basket"
     add_column :orders, :key_timestamp, :datetime
