@@ -24,6 +24,7 @@ de:
     email_address: E-Mail Adresse
     key: Schlüssel
     Lineitem: Bestellposition
+    lineitems: Bestellpositionen
     markup: Markup Format
     name: Name
     order: Rechnung
