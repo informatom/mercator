@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115111950) do
+ActiveRecord::Schema.define(:version => 20131115144457) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -84,10 +84,11 @@ ActiveRecord::Schema.define(:version => 20131115111950) do
   end
 
   create_table "countries", :force => true do |t|
-    t.string   "name"
+    t.string   "name_de"
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_en"
   end
 
   create_table "inventories", :force => true do |t|
@@ -104,6 +105,10 @@ ActiveRecord::Schema.define(:version => 20131115111950) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "inventories", ["product_id"], :name => "index_inventories_on_product_id"
@@ -112,7 +117,7 @@ ActiveRecord::Schema.define(:version => 20131115111950) do
     t.string   "product_number"
     t.decimal  "amount"
     t.decimal  "product_price",  :precision => 10, :scale => 2
-    t.integer  "vat"
+    t.decimal  "vat"
     t.decimal  "value",          :precision => 10, :scale => 2
     t.integer  "position"
     t.string   "description_de"
@@ -149,6 +154,20 @@ ActiveRecord::Schema.define(:version => 20131115111950) do
 
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "prices", :force => true do |t|
+    t.decimal  "value"
+    t.decimal  "vat"
+    t.date     "valid_from"
+    t.date     "valid_to"
+    t.decimal  "scale_from"
+    t.decimal  "scale_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "inventory_id"
+  end
+
+  add_index "prices", ["inventory_id"], :name => "index_prices_on_inventory_id"
 
   create_table "productrelations", :force => true do |t|
     t.datetime "created_at"

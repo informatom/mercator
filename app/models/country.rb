@@ -3,11 +3,13 @@ class Country < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name :string, :required, :unique
+    name_de :string, :required, :unique
+    name_en :string, :required, :unique
     code :string, :required, :unique
     timestamps
   end
   attr_accessible :name, :code
+  translates :name
   has_paper_trail
 
   # --- Permissions --- #

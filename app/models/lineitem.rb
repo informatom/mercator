@@ -10,7 +10,7 @@ class Lineitem < ActiveRecord::Base
     amount         :decimal, :required
     unit           :string, :required
     product_price  :decimal, :required, :scale => 2, :precision => 10
-    vat            :integer, :required
+    vat            :decimal, :required
     value          :decimal, :required, :scale => 2, :precision => 10
     timestamps
   end

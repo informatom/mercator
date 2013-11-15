@@ -12,9 +12,15 @@ describe Inventory do
   it {should validate_presence_of(:unit)}
   it {should validate_uniqueness_of(:number)}
 
+  it {should belong_to(:product)}
   it {should validate_presence_of(:product)}
+  it {should have_many(:prices)}
 
   it "is versioned" do
     should respond_to(:versions)
+  end
+
+  it "has a photo attached" do
+    should respond_to(:photo)
   end
 end

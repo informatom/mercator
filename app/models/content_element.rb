@@ -4,9 +4,9 @@ class ContentElement < ActiveRecord::Base
 
   fields do
     name_de    :string, :required, :unique
-    content_de :cktext, :required
-    markup     :string
     name_en    :string
+    markup     :string
+    content_de :cktext, :required
     content_en :cktext
     timestamps
   end

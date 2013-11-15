@@ -38,6 +38,12 @@ you can place common code in this file. -->
   </old-form>
 </extend>
 
+<extend tag="form" for="Inventory">
+  <old-form merge multipart>
+    <field-list: fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, photo"/>
+  </old-form>
+</extend>
+
 <extend tag="show-page" for="Product">
   <old-show-page>
     <append-content-body: >

@@ -17,12 +17,19 @@ class Inventory < ActiveRecord::Base
   end
   attr_accessible :name_de, :name_en, :number, :amount, :unit,
                   :comment_de, :comment_en, :weight, :charge, :storage,
-                  :product, :product_id
-  translates :name, :description
+                  :product, :product_id, :photo
+  translates :name, :comment
   has_paper_trail
+
+  has_attached_file :photo,
+    :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
+                 :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   belongs_to :product
   validates :product, :presence => true
+
+  has_many :prices
+  children :prices
 
   # --- Permissions --- #
 

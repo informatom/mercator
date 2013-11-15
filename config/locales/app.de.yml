@@ -43,6 +43,8 @@ de:
     photo_updated_at: Aktualisiert Foto
     position: Reihung
     postalcode: Postleitzahl
+    Price: Preis
+    prices: Preise
     Product: Artikel
     product: Artikel
     product_number: Artikelnummer
@@ -53,6 +55,8 @@ de:
     property_groups: Eigenschaftsgruppen
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
+    scale_from: Staffel ab
+    scale_to: Staffel bis
     state: Status
     street: Straße
     supply: Zubehör
@@ -60,6 +64,8 @@ de:
     unit: Einheit
     User: Benutzer
     updated_at: Aktualisiert
+    valid_from: Gültig ab
+    valid_to: Gültig bis
     value: Wert
     vat: MwSt.
     weight: Gewicht
@@ -93,6 +99,9 @@ de:
       order:
         one: Bestellung
         other: Bestellungen
+      price:
+        one: Preis
+        other: Preise
       product:
         one: Artikel
         other: Artikel

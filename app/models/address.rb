@@ -15,7 +15,7 @@ class Address < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :user
-  validates_presence_of :user
+  validates :user, :presence => true
 
   # --- Permissions --- #
   def create_permitted?
