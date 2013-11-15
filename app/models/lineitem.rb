@@ -7,7 +7,8 @@ class Lineitem < ActiveRecord::Base
     product_number :string, :required
     description_de :string, :required
     description_en :string
-    amount         :integer, :required
+    amount         :decimal, :required
+    unit           :string, :required
     product_price  :decimal, :required, :scale => 2, :precision => 10
     vat            :integer, :required
     value          :decimal, :required, :scale => 2, :precision => 10

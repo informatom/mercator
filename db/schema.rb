@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115075152) do
+ActiveRecord::Schema.define(:version => 20131115111950) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -90,9 +90,27 @@ ActiveRecord::Schema.define(:version => 20131115075152) do
     t.datetime "updated_at"
   end
 
+  create_table "inventories", :force => true do |t|
+    t.string   "name_de"
+    t.string   "name_en"
+    t.string   "number"
+    t.decimal  "amount"
+    t.string   "unit"
+    t.string   "comment_de"
+    t.string   "comment_en"
+    t.decimal  "weight"
+    t.string   "charge"
+    t.string   "storage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+  end
+
+  add_index "inventories", ["product_id"], :name => "index_inventories_on_product_id"
+
   create_table "lineitems", :force => true do |t|
     t.string   "product_number"
-    t.integer  "amount"
+    t.decimal  "amount"
     t.decimal  "product_price",  :precision => 10, :scale => 2
     t.integer  "vat"
     t.decimal  "value",          :precision => 10, :scale => 2
@@ -102,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20131115075152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_id"
+    t.string   "unit"
   end
 
   add_index "lineitems", ["order_id"], :name => "index_lineitems_on_order_id"

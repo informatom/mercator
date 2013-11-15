@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Lineitem do
   it "is valid with position, product_number, description_de,
-     description_en, amount, product_price, vat and value" do
+     description_en, amount, unit, product_price, vat and value" do
     expect(build(:lineitem)).to be_valid
   end
 
@@ -11,6 +11,7 @@ describe Lineitem do
   it {should validate_presence_of(:product_number)}
   it {should validate_presence_of(:description_de)}
   it {should validate_presence_of(:amount)}
+  it {should validate_presence_of(:unit)}
   it {should validate_presence_of(:product_price)}
   it {should validate_presence_of(:vat)}
   it {should validate_presence_of(:value)}

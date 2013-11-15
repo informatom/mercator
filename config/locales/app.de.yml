@@ -10,8 +10,10 @@ de:
     categories: Kategorien
     Categorization: Kategorisierung
     category: Kategorie
+    charge: Charge
     city: Ort
     code: Code
+    comment: Kommentar
     Constant: Konstante
     content: Inhalt
     Country: Land
@@ -24,6 +26,8 @@ de:
     document_file_size: Dateigröße Dokument
     document_updated_at: Aktualisiert Dokument
     email_address: E-Mail Adresse
+    inventories: Bestände
+    Inventory: Bestand
     key: Schlüssel
     Lineitem: Bestellposition
     lineitems: Bestellpositionen
@@ -58,6 +62,7 @@ de:
     updated_at: Aktualisiert
     value: Wert
     vat: MwSt.
+    weight: Gewicht
 
   activerecord:
     models:
@@ -79,6 +84,9 @@ de:
       country:
         one: Land
         other: Länder
+      inventory:
+        one: Bestand
+        other: Bestände
       lineitem:
         one: Bestellposition
         other: Bestellpositionen
@@ -107,6 +115,9 @@ de:
       address:
         name: Empfänger
         detail: Details
+      inventory:
+        number: Artikelnummer
+        storage: Lagerort / Filiale
       lineitem:
         product_price: Stückpreis
         value: Positionswert
