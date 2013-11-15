@@ -32,6 +32,14 @@ class Order < ActiveRecord::Base
 
   validates :user, :presence => true
 
+  lifecycle do
+    state :basket, :default => true
+    state :ordered, :paid, :shipped
+    transition :order, {:basket => :ordered}
+    transition :payment, {:ordered => :paid}
+    transition :shippment, {:paid => :shipped}, :available_to => "User.administrator"
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
