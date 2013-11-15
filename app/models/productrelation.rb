@@ -5,7 +5,9 @@ class Productrelation < ActiveRecord::Base
   fields do
     timestamps
   end
+
   attr_accessible :product, :product_id, :related_product, :related_product_id
+  has_paper_trail
 
   belongs_to :product
   belongs_to :related_product, :class_name => 'Product', :foreign_key => 'related_product_id'

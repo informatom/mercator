@@ -1,6 +1,5 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+
   factory :user do
     name "John Doe"
     email_address "john.doe@informatom.com"
@@ -14,4 +13,5 @@ FactoryGirl.define do
     administrator true
     password "secret123"
   end
+
 end

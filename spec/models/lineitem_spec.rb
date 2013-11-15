@@ -6,6 +6,7 @@ describe Lineitem do
     expect(build(:lineitem)).to be_valid
   end
 
+  it {should validate_presence_of(:product_number)}
   it {should validate_presence_of(:position)}
   it {should validate_presence_of(:product_number)}
   it {should validate_presence_of(:description_de)}
@@ -13,8 +14,9 @@ describe Lineitem do
   it {should validate_presence_of(:product_price)}
   it {should validate_presence_of(:vat)}
   it {should validate_presence_of(:value)}
-  pending "it {should validate_uniqueness_of(:position)}"
-  pending "it {should validate_uniqueness_of(:product_number)}"
+  it {should validate_uniqueness_of(:position)}
+  it {should validate_uniqueness_of(:product_number)}
+  it {should validate_presence_of(:order)}
 
   it "is versioned" do
     should respond_to(:versions)

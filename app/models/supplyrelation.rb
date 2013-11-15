@@ -5,7 +5,9 @@ class Supplyrelation < ActiveRecord::Base
   fields do
     timestamps
   end
+
   attr_accessible :product, :product_id, :supply, :supply_id
+  has_paper_trail
 
   belongs_to :product
   belongs_to :supply, :class_name => 'Product', :foreign_key => 'supply_id'

@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :property do
     property_group
     product {property_group.product}
@@ -10,4 +11,5 @@ FactoryGirl.define do
     unit_de "kg"
     unit_en "kg"
   end
+
 end

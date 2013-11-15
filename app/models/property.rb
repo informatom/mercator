@@ -14,19 +14,19 @@ class Property < ActiveRecord::Base
     position :integer
     timestamps
   end
+
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
                   :position, :product, :property_group, :product_id, :property_group_id
-
-  validates :name_de, :presence => true, :uniqueness => {:scope => :product_id}
-  validates :product, :presence => true
-
-  validate :textual_or_numerical
-
+  has_paper_trail
   translates :name, :description, :unit
+
   belongs_to :product
   belongs_to :property_group
 
-  has_paper_trail
+  validate :textual_or_numerical
+
+  validates :name_de, :presence => true, :uniqueness => {:scope => :product_id}
+  validates :product, :presence => true
 
   def textual_or_numerical
     unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||

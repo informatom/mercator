@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Eg",
+				"Eigenschaftsgruppen"
+			],
+			[
 				"unit",
 				"unit_en"
 			],
@@ -80,6 +84,22 @@
 	},
 	"file_history":
 	[
+		"/home/stefan/sshfs/mercator/app/models/supplyrelation.rb",
+		"/home/stefan/sshfs/mercator/spec/models/productrelation_spec.rb",
+		"/home/stefan/sshfs/mercator/app/models/product.rb",
+		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
+		"/home/stefan/sshfs/mercator/spec/models/product_spec.rb",
+		"/home/stefan/sshfs/mercator/config/locales/app.de.yml",
+		"/home/stefan/sshfs/mercator/spec/models/supplyrelation_spec.rb",
+		"/home/stefan/sshfs/mercator/.gitignore",
+		"/home/stefan/sshfs/mercator/spec/models/categorization_spec.rb",
+		"/home/stefan/sshfs/mercator/app/models/categorization.rb",
+		"/home/stefan/sshfs/mercator/app/models/productrelation.rb",
+		"/home/stefan/sshfs/mercator/app/models/related_product.rb",
+		"/home/stefan/sshfs/mercator/spec/models/category_spec.rb",
+		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
+		"/home/stefan/sshfs/mercator/app/models/content_element.rb",
+		"/home/stefan/sshfs/mercator/app/models/category.rb",
 		"/home/stefan/sshfs/mercator/app/controllers/addresses_controller.rb",
 		"/home/stefan/sshfs/mercator/app/models/address.rb",
 		"/home/stefan/sshfs/mercator/spec/models/address_spec.rb",
@@ -91,8 +111,6 @@
 		"/home/stefan/sshfs/mercator/app/models/property.rb",
 		"/home/stefan/sshfs/mercator/app/models/property_group.rb",
 		"/home/stefan/sshfs/mercator/spec/models/property_group_spec.rb",
-		"/home/stefan/sshfs/mercator/spec/models/product_spec.rb",
-		"/home/stefan/sshfs/mercator/app/models/product.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/products.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/constants.rb",
 		"/home/stefan/sshfs/mercator/spec/models/constant_spec.rb",
@@ -100,9 +118,7 @@
 		"/home/stefan/sshfs/mercator/spec/support/database_cleaner.rb",
 		"/home/stefan/sshfs/mercator/config/locales/de.yml",
 		"/home/stefan/sshfs/mercator/app/models/ckeditor/picture.rb",
-		"/home/stefan/sshfs/mercator/app/models/content_element.rb",
 		"/home/stefan/sshfs/mercator/app/models/guest.rb",
-		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
 		"/home/stefan/sshfs/mercator/app/models/constant.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/property_groups.rb",
 		"/home/stefan/sshfs/mercator/Gemfile",
@@ -110,12 +126,9 @@
 		"/home/stefan/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/stefan/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/stefan/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
-		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
-		"/home/stefan/sshfs/mercator/.gitignore",
 		"/home/stefan/sshfs/mercator/app/views/layouts/application.html.erb",
 		"/home/stefan/sshfs/mercator/app/assets/stylesheets/front.scss",
 		"/home/stefan/sshfs/mercator/app/assets/stylesheets/overrides.scss",
-		"/home/stefan/sshfs/mercator/config/locales/app.de.yml",
 		"/home/stefan/sshfs/mercator/db/migrate/20131112112108_hobo_migration_16.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131112104258_hobo_migration_13.rb",
 		"/home/stefan/sshfs/mercator/app/controllers/application_controller.rb",
@@ -143,6 +156,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/home/stefan/sshfs/mercator",
 			"/home/stefan/sshfs/mercator/app/views/taglibs",
 			"/home/stefan/sshfs/miranda-weissenfeld"
 		]
@@ -152,6 +166,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"relation",
 			"front",
 			"def",
 			"initialize_mesonic_order",

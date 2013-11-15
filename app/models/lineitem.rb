@@ -14,14 +14,16 @@ class Lineitem < ActiveRecord::Base
     timestamps
   end
 
-  # validates :product_number, :uniqueness => {:scope => :order}
-
   attr_accessible :position, :product_number, :description_de, :description_en,
-                  :amount, :product_price, :product_price, :vat, :value, :value
-
+                  :amount, :product_price, :product_price, :vat, :value, :value, :order_id, :order
   translates :description
-
   has_paper_trail
+
+  belongs_to :order
+
+  validates :order, :presence => true
+  validates :product_number, :uniqueness => {:scope => :order_id}
+  validates :position, :uniqueness => {:scope => :order_id}
 
   # --- Permissions --- #
 

@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :address do
   	user
   	name "John Dde"
@@ -7,4 +8,5 @@ FactoryGirl.define do
   	postalcode "1234"
   	city "Vienna"
   end
+
 end

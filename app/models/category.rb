@@ -9,8 +9,8 @@ class Category < ActiveRecord::Base
     position :integer
     timestamps
   end
-  attr_accessible :name_de, :name_en, :ancestry, :position, :active, :parent_id, :categorizations, :products
 
+  attr_accessible :name_de, :name_en, :ancestry, :position, :active, :parent_id, :categorizations, :products
   translates :name
   has_ancestry
   has_paper_trail

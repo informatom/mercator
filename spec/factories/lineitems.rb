@@ -1,7 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+
   factory :lineitem do
+    order
     position       123
     product_number "nr123"
     description_de "Artikel Eins Zwei Drei"
@@ -11,4 +11,5 @@ FactoryGirl.define do
     vat            20
     value          5184.90
   end
+
 end

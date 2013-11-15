@@ -15,10 +15,11 @@ class Product < ActiveRecord::Base
                   :productrelations, :supplies, :supplyrelations
   translates :name, :description
   has_paper_trail
+
+  has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
     :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
                  :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-  has_attached_file :document, :default_url => "/images/:style/missing.png"
 
   has_many :property_groups
   has_many :properties

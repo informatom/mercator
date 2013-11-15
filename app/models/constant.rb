@@ -7,8 +7,8 @@ class Constant < ActiveRecord::Base
     value :string
     timestamps
   end
-  attr_accessible :key, :value
 
+  attr_accessible :key, :value
   has_paper_trail
 
   # --- Permissions --- #

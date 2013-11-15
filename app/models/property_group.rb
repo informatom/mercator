@@ -8,8 +8,8 @@ class PropertyGroup < ActiveRecord::Base
     position :integer, :required
     timestamps
   end
-  attr_accessible :name_de, :name_en, :position, :product, :product_id
 
+  attr_accessible :name_de, :name_en, :position, :product, :product_id
   translates :name
   has_paper_trail
 

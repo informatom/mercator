@@ -10,12 +10,12 @@ class Address < ActiveRecord::Base
     city       :string, :required
     timestamps
   end
+
   attr_accessible :user_id, :name, :detail, :street, :postalcode, :city, :user
+  has_paper_trail
 
   belongs_to :user
   validates_presence_of :user
-
-  has_paper_trail
 
   # --- Permissions --- #
   def create_permitted?

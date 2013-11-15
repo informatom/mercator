@@ -5,7 +5,9 @@ class Categorization < ActiveRecord::Base
   fields do
     timestamps
   end
+
   attr_accessible :product, :product_id, :category, :category_id
+  has_paper_trail
 
   belongs_to :category
   belongs_to :product

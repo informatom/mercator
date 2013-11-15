@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :product do
     name_de        "Artikel Eins Zwei Drei"
     name_en        "Article One Two Three"
@@ -6,4 +7,5 @@ FactoryGirl.define do
     description_de "Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid."
     description_en "English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!"
   end
+
 end
