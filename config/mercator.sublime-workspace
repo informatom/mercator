@@ -31,14 +31,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/home/stefan/sshfs/mercator/app/models/inventory.rb",
-			"settings":
-			{
-				"buffer_size": 950,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
@@ -100,16 +92,25 @@
 	},
 	"file_history":
 	[
+		"/home/stefan/sshfs/mercator/app/models/inventory.rb",
+		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
+		"/home/stefan/sshfs/mercator/config/locales/app.de.yml",
+		"/home/stefan/sshfs/mercator/app/models/price.rb",
+		"/home/stefan/sshfs/mercator/spec/models/inventory_spec.rb",
+		"/home/stefan/sshfs/mercator/spec/models/price_spec.rb",
+		"/home/stefan/sshfs/mercator/spec/models/order_spec.rb",
+		"/home/stefan/sshfs/mercator/spec/models/country_spec.rb",
+		"/home/stefan/sshfs/mercator/spec/factories/prices.rb",
+		"/home/stefan/sshfs/mercator/app/models/content_element.rb",
+		"/home/stefan/sshfs/mercator/app/models/country.rb",
+		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
+		"/home/stefan/sshfs/mercator/app/models/address.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131115075152_create_countries.rb",
 		"/home/stefan/sshfs/mercator/app/models/product.rb",
 		"/home/stefan/sshfs/mercator/spec/models/product_spec.rb",
-		"/home/stefan/sshfs/mercator/app/models/inventory.rb",
-		"/home/stefan/sshfs/mercator/spec/models/inventory_spec.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/inventories.rb",
 		"/home/stefan/sshfs/mercator/spec/models/lineitem_spec.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/lineitems.rb",
-		"/home/stefan/sshfs/mercator/config/locales/app.de.yml",
-		"/home/stefan/sshfs/mercator/app/models/lineitem.rb",
 		"/home/stefan/sshfs/mercator/db/schema.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131114095933_product_relations_add_product_and_related_product.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131112125516_create_lineitems.rb",
@@ -141,22 +142,17 @@
 		"/home/stefan/sshfs/mercator/db/migrate/20131018095332_addresses_add_index_on_user.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131015071245_create_users.rb",
 		"/home/stefan/sshfs/mercator/db/migrate/20131018094601_create_addresses.rb",
-		"/home/stefan/sshfs/mercator/spec/models/country_spec.rb",
-		"/home/stefan/sshfs/mercator/app/models/country.rb",
 		"/home/stefan/sshfs/mercator/app/models/order.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/countries.rb",
 		"/home/stefan/sshfs/mercator/spec/models/categorization_spec.rb",
-		"/home/stefan/sshfs/mercator/spec/models/order_spec.rb",
 		"/home/stefan/sshfs/mercator/spec/models/productrelation_spec.rb",
 		"/home/stefan/sshfs/mercator/spec/models/supplyrelation_spec.rb",
 		"/home/stefan/sshfs/mercator/app/models/user.rb",
 		"/home/stefan/sshfs/mercator/app/models/supplyrelation.rb",
 		"/home/stefan/sshfs/mercator/app/models/property_group.rb",
 		"/home/stefan/sshfs/mercator/app/models/property.rb",
-		"/home/stefan/sshfs/mercator/app/models/content_element.rb",
 		"/home/stefan/sshfs/mercator/app/models/constant.rb",
 		"/home/stefan/sshfs/mercator/app/models/category.rb",
-		"/home/stefan/sshfs/mercator/app/models/address.rb",
 		"/home/stefan/sshfs/mercator/app/models/productrelation.rb",
 		"/home/stefan/sshfs/mercator/app/models/categorization.rb",
 		"/home/stefan/sshfs/mercator/spec/factories/users.rb",
@@ -173,7 +169,6 @@
 		"/home/stefan/sshfs/mercator/spec/factories/categories.rb",
 		"/home/stefan/sshfs/mercator/spec/models/user_spec.rb",
 		"/home/stefan/sshfs/mercator/config/mercator.sublime-project",
-		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
 		"/home/stefan/sshfs/mercator/.gitignore",
 		"/home/stefan/sshfs/mercator/app/models/related_product.rb",
 		"/home/stefan/sshfs/mercator/spec/models/category_spec.rb",
@@ -234,6 +229,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"price:d",
 			"HoboMigration15",
 			"HoboMigration13",
 			"HoboMigration12",
@@ -267,34 +263,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/home/stefan/sshfs/mercator/app/models/inventory.rb",
-					"settings":
-					{
-						"buffer_size": 950,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								713,
-								713
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

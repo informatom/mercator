@@ -53,6 +53,9 @@ de:
     properties: Eigenschaften
     PropertyGroup: Eigenschaftsgruppe
     property_groups: Eigenschaftsgruppen
+    recommended_product: empfohlenes Produkt
+    recommended_products: empfohlene Produkte
+    reason: Grund
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
     scale_from: Staffel ab
@@ -114,6 +117,9 @@ de:
       property_group:
         one: Eigenschaftsgruppe
         other: Eigenschaftsgruppen
+      recommendation:
+        one: Empfehlung
+        other: Empfehlungen
       supplyrelation:
         one: Zubehörzuordnung
         other: Zubehörzuordnungen

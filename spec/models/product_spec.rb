@@ -19,6 +19,9 @@ describe Product do
   it {should have_many(:related_products)}
   it {should have_many(:productrelations)}
 
+  it {should have_many(:recommended_products)}
+  it {should have_many(:recommendations)}
+
   it {should have_many(:supplies)}
   it {should have_many(:supplyrelations)}
 
