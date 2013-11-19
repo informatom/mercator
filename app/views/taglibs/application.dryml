@@ -13,6 +13,10 @@ you can place common code in this file. -->
   </old-page>
 </extend>
 
+<extend tag="page">
+  <old-page merge nav-location="sub"/>
+</extend>
+
 <def tag="treeview">
   <li repeat data-id="#{h this.id}" class="dd-item">
     <div class="dd-handle"><%= h this.name %></div>
@@ -45,13 +49,44 @@ you can place common code in this file. -->
 </extend>
 
 <extend tag="show-page" for="Product">
-  <old-show-page>
+  <old-show-page merge>
     <append-content-body: >
-    <%= t("Original version") %>: <%= image_tag this.photo.url %><br/>
-    <%= t("Thumbnail version") %>: <%= image_tag this.photo.url(:thumb) %><br/>
-    <%= t("Small version") %>: <%= image_tag this.photo.url(:small) %><br/>
-    <%= t("Medium version") %>: <%= image_tag this.photo.url(:medium) %><br/>
-    <%= t("Large version") %>: <%= image_tag this.photo.url(:large) %><br/>
+      <div class="form-horizontal">
+        <div class="control-group   photo-url-field">
+          <label class="control-label photo-url-label"><%= t("Original version") %></label>
+          <div class="controls">
+            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url %></span>
+          </div>
+        </div>
+
+        <div class="control-group   photo-url-field">
+          <label class="control-label photo-url-label"><%= t("Thumbnail version") %></label>
+          <div class="controls">
+            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:thumb) %></span>
+          </div>
+        </div>
+
+        <div class="control-group   photo-url-field">
+          <label class="control-label photo-url-label"><%= t("Small version") %></label>
+          <div class="controls">
+            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:small) %></span>
+          </div>
+        </div>
+
+        <div class="control-group   photo-url-field">
+          <label class="control-label photo-url-label"><%= t("Medium version") %></label>
+          <div class="controls">
+            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:medium) %></span>
+          </div>
+        </div>
+
+        <div class="control-group   photo-url-field">
+          <label class="control-label photo-url-label"><%= t("Large version") %></label>
+          <div class="controls">
+            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:large) %></span>
+          </div>
+        </div>
+      </div>
     </append-content-body: >
   </old-show-page>
 </extend>
