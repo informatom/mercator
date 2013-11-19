@@ -15,6 +15,11 @@ class Price < ActiveRecord::Base
                   :scale_to, :inventory, :inventory_id
   has_paper_trail
 
+  validates :value, numericality: true, allow_nil: true
+  validates :vat, numericality: true, allow_nil: true
+  validates :scale_from, numericality: true, allow_nil: true
+  validates :scale_to, numericality: true, allow_nil: true
+
   belongs_to :inventory
   validates :inventory, :presence => true
 

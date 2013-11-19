@@ -3,8 +3,8 @@ class Category < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de     :string, :required
-    name_en     :string
+    name_de  :string, :required
+    name_en  :string
     ancestry :string, :index => true
     position :integer
     timestamps
@@ -14,6 +14,8 @@ class Category < ActiveRecord::Base
   translates :name
   has_ancestry
   has_paper_trail
+
+  validates :position, numericality: true
 
   has_many :categorizations
   has_many :products, :through => :categorizations, :accessible => true, :inverse_of => :categories

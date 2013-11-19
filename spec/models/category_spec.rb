@@ -6,6 +6,7 @@ describe Category do
   end
 
   it {should validate_presence_of(:name_de)}
+  it {should validate_numericality_of(:position)}
 
   it "is versioned" do
     should respond_to(:versions)

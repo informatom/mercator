@@ -13,6 +13,8 @@ class PropertyGroup < ActiveRecord::Base
   translates :name
   has_paper_trail
 
+  validates :position, numericality: true
+
   belongs_to :product
   validates :product, :presence => true
   has_many :properties

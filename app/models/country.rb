@@ -5,7 +5,7 @@ class Country < ActiveRecord::Base
   fields do
     name_de :string, :required, :unique
     name_en :string, :required, :unique
-    code :string, :required, :unique
+    code    :string, :required, :unique
     timestamps
   end
   attr_accessible :name, :code

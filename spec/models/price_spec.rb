@@ -6,7 +6,11 @@ describe Price do
   end
 
   it {should validate_presence_of(:value)}
+  it {should validate_numericality_of(:value)}
   it {should validate_presence_of(:vat)}
+  it {should validate_numericality_of(:vat)}
+  it {should validate_numericality_of(:scale_from)}
+  it {should validate_numericality_of(:scale_to)}
 
   it {should belong_to(:inventory)}
   it {should validate_presence_of(:inventory)}

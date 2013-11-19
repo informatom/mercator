@@ -21,6 +21,9 @@ class Inventory < ActiveRecord::Base
   translates :name, :comment
   has_paper_trail
 
+  validates :amount, numericality: true
+  validates :weight, numericality: true, allow_nil: true
+
   has_attached_file :photo,
     :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
                  :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

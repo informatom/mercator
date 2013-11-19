@@ -20,6 +20,12 @@ class Lineitem < ActiveRecord::Base
   translates :description
   has_paper_trail
 
+  validates :position, numericality: true
+  validates :amount, numericality: true
+  validates :product_price, numericality: true
+  validates :vat, numericality: true
+  validates :value, numericality: true
+
   belongs_to :order
 
   validates :order, :presence => true

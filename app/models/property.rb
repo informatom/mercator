@@ -20,6 +20,8 @@ class Property < ActiveRecord::Base
   has_paper_trail
   translates :name, :description, :unit
 
+  validates :value, numericality: true, allow_nil: true
+
   belongs_to :product
   belongs_to :property_group
 
