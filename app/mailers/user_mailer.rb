@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "no-reply@mittenin.at"
+  default :from => "no-reply@mercator.informatom.com"
 
   def forgot_password(user, key)
     @user, @key = user, key
