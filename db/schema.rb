@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118153405) do
+ActiveRecord::Schema.define(:version => 20131119090801) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -262,7 +262,7 @@ ActiveRecord::Schema.define(:version => 20131118153405) do
     t.boolean  "administrator",                           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                   :default => "active"
+    t.string   "state",                                   :default => "inactive"
     t.datetime "key_timestamp"
   end
 

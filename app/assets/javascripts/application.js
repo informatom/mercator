@@ -8,9 +8,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require_tree ./application
-//= require dataTables/jquery.dataTables
+//= request_password_reset
 //= require dataTables/jquery.dataTables.bootstrap
-//= require application/jquery.nestable
 //= require messenger
 //= require messenger-theme-future
+//= require_tree ./application

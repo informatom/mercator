@@ -31,11 +31,19 @@ class User < ActiveRecord::Base
 
   lifecycle do
 
-    state :active, :default => true
+    state :inactive, :default => true
+    state :active
 
     create :signup, :available_to => "Guest",
-           :params => [:name, :email_address, :password, :password_confirmation],
-           :become => :active do
+      :params => [:name, :email_address, :password, :password_confirmation],
+      :become => :inactive, :new_key => true  do
+      UserMailer.activation(self, lifecycle.key).deliver
+    end
+
+    transition :activate, { :inactive => :active }, :available_to => :key_holder
+
+    transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
+      UserMailer.activation(self, lifecycle.key).deliver
     end
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
@@ -44,6 +52,10 @@ class User < ActiveRecord::Base
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,
                :params => [ :password, :password_confirmation ]
+  end
+
+  def signed_up?
+    state=="active"
   end
 
   # --- Permissions --- #
