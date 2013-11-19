@@ -5,8 +5,6 @@ require File.expand_path('../application', __FILE__)
 Mercator::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :address => "localhost",
-  :port => 25,
   :enable_starttlls_auto => false,
   :domain => "mercator.mittenin.at"
 }
