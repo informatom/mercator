@@ -168,6 +168,9 @@ de:
       user:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
+  markups:
+    html: HTML
+    markdown: Markdown
   "Original version": Originalversion
   "Thumbnail version": Thumbnail Version
   "Small version": Kleine Version

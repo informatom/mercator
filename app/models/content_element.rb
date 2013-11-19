@@ -5,7 +5,7 @@ class ContentElement < ActiveRecord::Base
   fields do
     name_de    :string, :required, :unique
     name_en    :string
-    markup     :string
+    markup     enum_string(:html, :markdown, :name => "markup")
     content_de :cktext, :required
     content_en :cktext
     timestamps
