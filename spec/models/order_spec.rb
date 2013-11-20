@@ -7,7 +7,7 @@ describe Order do
     expect(build(:order)).to be_valid
   end
 
-  it {should validate_presence_of(:user)}
+ # it {should validate_presence_of(:user)}
 
   it {should validate_presence_of(:billing_method)}
   it {should validate_presence_of(:billing_name)}

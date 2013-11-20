@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
   has_many :lineitems, dependent: :destroy
   children :lineitems
 
-  validates :user, :presence => true
+#  validates :user, :presence => true
 
   lifecycle do
     state :basket, :default => true

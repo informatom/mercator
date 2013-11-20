@@ -34,8 +34,8 @@ de:
     lineitems: Bestellpositionen
     markup: Markup Format
     name: Name
-    order: Rechnung
-    orders: Rechnungen
+    order: Bestellung
+    orders: Bestellungen
     password_confirmation: Passwortbestätigung
     photo: Foto
     photo_file_name: Dateiname Foto
