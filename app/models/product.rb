@@ -38,8 +38,8 @@ class Product < ActiveRecord::Base
 
   has_many :inventories
 
-  children :property_groups, :properties, :categories, :related_products, :supplies,
-           :inventories, :recommended_products
+  children :inventories, :property_groups, :properties, :categories, :related_products, :supplies,
+           :recommended_products
 
   lifecycle do
     state :new, :default => true

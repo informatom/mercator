@@ -1,0 +1,5 @@
+<extend tag="form" for="Inventory">
+  <old-form merge multipart>
+    <field-list: fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, product, photo"/>
+  </old-form>
+</extend>

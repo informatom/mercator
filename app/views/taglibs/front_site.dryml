@@ -12,3 +12,5 @@
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
 <include src="application"/>
+<include src="taglibs/application/product"/>
+<include src="taglibs/application/inventory"/>
