@@ -78,6 +78,6 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    self.new_record? || self == acting_user || acting_user.administrator?
   end
 end
