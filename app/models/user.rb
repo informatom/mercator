@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
                   :current_password
   has_paper_trail
 
-  has_many :addresses
-  has_many :orders
+  has_many :addresses, dependent: :destroy
+  has_many :orders, dependent: :restrict
   children :addresses, :orders
 
   # This gives admin rights and an :active state to the first sign-up.

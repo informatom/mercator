@@ -17,7 +17,7 @@ class Category < ActiveRecord::Base
 
   validates :position, numericality: true
 
-  has_many :categorizations
+  has_many :categorizations, dependent: :destroy
   has_many :products, :through => :categorizations, :accessible => true, :inverse_of => :categories
 
   children :products

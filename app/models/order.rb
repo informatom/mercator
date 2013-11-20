@@ -27,7 +27,7 @@ class Order < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :user, :accessible => true
-  has_many :lineitems
+  has_many :lineitems, dependent: :destroy
   children :lineitems
 
   validates :user, :presence => true

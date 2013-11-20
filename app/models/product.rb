@@ -21,22 +21,22 @@ class Product < ActiveRecord::Base
     :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
                  :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
-  has_many :property_groups
-  has_many :properties
+  has_many :property_groups, dependent: :destroy
+  has_many :properties, dependent: :destroy
 
-  has_many :categorizations
+  has_many :categorizations, dependent: :destroy
   has_many :categories, :through => :categorizations, :accessible => true
 
   has_many :related_products, :through => :productrelations, :accessible => true
-  has_many :productrelations, :inverse_of => :product
+  has_many :productrelations, :inverse_of => :product, dependent: :destroy
 
   has_many :recommended_products, :through => :recommendations, :accessible => true
-  has_many :recommendations, :inverse_of => :product
+  has_many :recommendations, :inverse_of => :product, dependent: :destroy
 
   has_many :supplies, :through => :supplyrelations, :accessible => true
-  has_many :supplyrelations, :inverse_of => :product
+  has_many :supplyrelations, :inverse_of => :product, dependent: :destroy
 
-  has_many :inventories
+  has_many :inventories, dependent: :restrict
 
   children :inventories, :property_groups, :properties, :categories, :related_products, :supplies,
            :recommended_products

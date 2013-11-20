@@ -31,7 +31,7 @@ class Inventory < ActiveRecord::Base
   belongs_to :product
   validates :product, :presence => true
 
-  has_many :prices
+  has_many :prices, dependent: :destroy
   children :prices
 
   # --- Permissions --- #
