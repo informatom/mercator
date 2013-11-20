@@ -43,19 +43,19 @@ class Order < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?
-    acting_user.administrator?
+    user == acting_user || acting_user.administrator?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    user == acting_user || acting_user.administrator?
   end
 
   def view_permitted?(field)
-    true
+    self.new_record? || user == acting_user || acting_user.administrator?
   end
 
 end

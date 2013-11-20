@@ -35,18 +35,18 @@ class Lineitem < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?
-    acting_user.administrator?
+    order.user == acting_user || acting_user.administrator?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    order.user == acting_user || acting_user.administrator?
   end
 
   def view_permitted?(field)
-    acting_user.administrator?
+    self.new_record? || order.user == acting_user || acting_user.administrator?
   end
 end
