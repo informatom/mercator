@@ -23,6 +23,8 @@ describe Order do
   it {should validate_presence_of(:shipping_city)}
   it {should validate_presence_of(:shipping_country)}
 
+  it {should belong_to(:user)}
+  it {should validate_presence_of(:user)}
   it {should have_many(:lineitems)}
 
   it "is versioned" do

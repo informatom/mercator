@@ -25,13 +25,14 @@ class Lineitem < ActiveRecord::Base
   validates :product_price, numericality: true
   validates :vat, numericality: true
   validates :value, numericality: true
-
-  belongs_to :order
-
-  validates :order, :presence => true
   validates :product_number, :uniqueness => {:scope => :order_id}
   validates :position, :uniqueness => {:scope => :order_id}
 
+  belongs_to :user, :creator => true
+  validates :user, :presence => true
+
+  belongs_to :order
+  validates :order, :presence => true
   # --- Permissions --- #
 
   def create_permitted?

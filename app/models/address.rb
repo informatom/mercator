@@ -14,7 +14,7 @@ class Address < ActiveRecord::Base
   attr_accessible :user_id, :name, :detail, :street, :postalcode, :city, :user
   has_paper_trail
 
-  belongs_to :user
+  belongs_to :user, :creator => true
   validates :user, :presence => true
 
   # --- Permissions --- #

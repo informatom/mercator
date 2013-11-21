@@ -10,7 +10,9 @@ describe Address do
   it {should validate_presence_of(:street)}
   it {should validate_presence_of(:postalcode)}
   it {should validate_presence_of(:city)}
+
   it {should belong_to(:user)}
+  it {should validate_presence_of(:user)}
 
   it "is versioned" do
     should respond_to(:versions)

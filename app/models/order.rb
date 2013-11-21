@@ -23,10 +23,13 @@ class Order < ActiveRecord::Base
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
-                  :lineitems, :user, :uset_id
+                  :lineitems, :user, :user_id
   has_paper_trail
 
-  belongs_to :user, :accessible => true
+  belongs_to :user, :creator => true
+  validates :user, :presence => true
+  view_hints.parent :user
+  
   has_many :lineitems, dependent: :destroy
   children :lineitems
 
@@ -47,15 +50,14 @@ class Order < ActiveRecord::Base
   end
 
   def update_permitted?
-    user == acting_user || acting_user.administrator?
+    acting_user.administrator? || (user_is? acting_user) 
   end
 
   def destroy_permitted?
-    user == acting_user || acting_user.administrator?
+    acting_user.administrator? || (user_is? acting_user) 
   end
 
   def view_permitted?(field)
-    self.new_record? || user == acting_user || acting_user.administrator?
+    acting_user.administrator? || (user_is? acting_user) 
   end
-
 end

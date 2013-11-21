@@ -22,7 +22,12 @@ describe Lineitem do
   it {should validate_numericality_of(:value)}
   it {should validate_uniqueness_of(:position)}
   it {should validate_uniqueness_of(:product_number)}
+
+  it {should belong_to(:order)}
   it {should validate_presence_of(:order)}
+
+  it {should belong_to(:user)}
+  it {should validate_presence_of(:user)}
 
   it "is versioned" do
     should respond_to(:versions)

@@ -2,6 +2,7 @@ FactoryGirl.define do
 
   factory :lineitem do
     order
+    user           {order.user}
     position       123
     product_number "nr123"
     description_de "Artikel Eins Zwei Drei"
