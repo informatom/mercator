@@ -1,4 +1,4 @@
-class Admin::FrontController < ApplicationController
+class Admin::FrontController < Admin::AdminSiteController
 
   hobo_controller
 
