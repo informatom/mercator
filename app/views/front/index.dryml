@@ -4,11 +4,13 @@
 
   <content:>
     <header class="content-header hero-unit">
-      <h1>Welcome to <app-name/></h1>
+      <h1>Willkommen bei <app-name/></h1>
       <section class="welcome-message">
-        <h3>Congratulations! Your Hobo Rails App is up and running</h3>
+        <h3>... hier entsteht das Guided Selling System aus Österreich</h3>
         <ul>
-          <li>To customise this page: edit app/views/front/index.dryml</li>
+          <li>effizient</li>
+          <li>flexibel</li>
+          <li>erweiterbar</li>
         </ul>
 
         <% if User.count == 0 -%>
@@ -18,7 +20,6 @@
             <submit: label="Register Administrator"/>
           </form>
         <% end -%>
-
 
       </section>
     </header>

@@ -1,6 +1,30 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="Address">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, detail, street, postalcode, city, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Categorization">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="category, product" param/>
+    <div param="actions">
+      <submit label="#{ht 'categorization.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Constant">
   <form merge param="default">
     <error-messages param/>
@@ -19,6 +43,30 @@
     <field-list fields="name_de, name_en, code" param/>
     <div param="actions">
       <submit label="#{ht 'country.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Productrelation">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="product, related_product" param/>
+    <div param="actions">
+      <submit label="#{ht 'productrelation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Supplyrelation">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="product, supply" param/>
+    <div param="actions">
+      <submit label="#{ht 'supplyrelation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

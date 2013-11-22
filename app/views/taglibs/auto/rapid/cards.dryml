@@ -4,7 +4,7 @@
 <def tag="card" for="Address">
   <card class="address" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
       <a:user param="creator-link"/>
@@ -15,7 +15,7 @@
 <def tag="card" for="Categorization">
   <card class="categorization" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -119,7 +119,7 @@
 <def tag="card" for="Productrelation">
   <card class="productrelation" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -156,7 +156,7 @@
 <def tag="card" for="Supplyrelation">
   <card class="supplyrelation" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>

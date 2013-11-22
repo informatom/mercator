@@ -54,7 +54,7 @@ class Order < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || (user_is? acting_user) 
+    false
   end
 
   def view_permitted?(field)

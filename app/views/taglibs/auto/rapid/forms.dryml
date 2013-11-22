@@ -1,18 +1,6 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
-<def tag="form" for="Address">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="name, detail, street, postalcode, city, user" param/>
-    <div param="actions">
-      <submit label="#{ht 'address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="Category">
   <form merge param="default">
     <error-messages param/>
@@ -57,18 +45,6 @@
     </div>
   </form>
 </def>
-
-<def tag="form" for="Categorization">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="category, product" param/>
-    <div param="actions">
-      <submit label="#{ht 'categorization.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
 
 <def tag="form" for="ContentElement">
   <form merge param="default">
@@ -135,18 +111,6 @@
     <field-list fields="value, vat, valid_from, valid_to, scale_from, scale_to, inventory" param/>
     <div param="actions">
       <submit label="#{ht 'price.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="Productrelation">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="product, related_product" param/>
-    <div param="actions">
-      <submit label="#{ht 'productrelation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -250,18 +214,6 @@
     <field-list fields="reason_de, reason_en, product, recommended_product" param/>
     <div param="actions">
       <submit label="#{ht 'recommendation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="Supplyrelation">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="product, supply" param/>
-    <div param="actions">
-      <submit label="#{ht 'supplyrelation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
