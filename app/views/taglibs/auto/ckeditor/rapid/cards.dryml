@@ -1,0 +1,178 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+
+<def tag="card" for="Address">
+  <card class="address" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:user param="creator"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Categorization">
+  <card class="categorization" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Category">
+  <card class="category" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <ht key="product.collection.count" count="&this.products.size">
+         <count:products param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Constant">
+  <card class="constant" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="ContentElement">
+  <card class="content-element" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:content param="description"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Country">
+  <card class="country" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Inventory">
+  <card class="inventory" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <ht key="price.collection.count" count="&this.prices.size">
+         <count:prices param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Lineitem">
+  <card class="lineitem" param="default" merge>
+    <body: param>
+      <view:description param="description"/>
+      <view:user param="creator"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Order">
+  <card class="order" param="default" merge>
+    <body: param>
+      <view:user param="creator"/>
+      <ht key="lineitem.collection.count" count="&this.lineitems.size">
+         <count:lineitems param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Price">
+  <card class="price" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Product">
+  <card class="product" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+      <ht key="inventory.collection.count" count="&this.inventories.size">
+         <count:inventories param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Productrelation">
+  <card class="productrelation" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Property">
+  <card class="property" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="PropertyGroup">
+  <card class="property-group" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <ht key="property.collection.count" count="&this.properties.size">
+         <count:properties param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Recommendation">
+  <card class="recommendation" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Supplyrelation">
+  <card class="supplyrelation" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <ht key="address.collection.count" count="&this.addresses.size">
+         <count:addresses param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+

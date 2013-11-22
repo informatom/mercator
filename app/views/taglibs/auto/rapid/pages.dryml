@@ -1,0 +1,2093 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Category"><ht key="category.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Inventory"><ht key="inventory.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Lineitem"><ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Order"><ht key="order.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Price"><ht key="price.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Product"><ht key="product.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Property"><ht key="property.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&PropertyGroup"><ht key="property_group.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Recommendation"><ht key="recommendation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+  </navigation>
+</def>
+
+
+
+
+<!-- ====== Address Pages ====== -->
+
+<def tag="index-page" for="Address">
+  <page merge title="#{ht 'address.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page address" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="address.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="address.actions.new">New Address</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Address">
+  <page merge title="#{ht 'address.new.title', :default=>[' New Address'] }">
+    <body: class="new-page address" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.new.heading">
+          New Address
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'address.actions.create', :default=>['Create Address']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Address">
+  <page merge title="#{ht 'address.show.title', :default=>['Address'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page address" param/>
+
+    <content-header: param>
+      <a:user param="parent-link">&laquo; <ht key="address.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
+      <h2 param="heading">
+        <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
+          Address <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a:user param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="address.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Address
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="detail, street, postalcode, city" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Address">
+  <page merge title="#{ht 'address.edit.title', :default=>['Edit Address'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page address" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Address
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'address.actions.delete', :default=>['Remove This Address']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Category Pages ====== -->
+
+<def tag="index-page" for="Category">
+  <page merge title="#{ht 'category.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="category.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="category.actions.new">New Category</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Category">
+  <page merge title="#{ht 'category.new.title', :default=>[' New Category'] }">
+    <body: class="new-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.new.heading">
+          New Category
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'category.actions.create', :default=>['Create Category']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Category">
+  <page merge title="#{ht 'category.show.title', :default=>['Category'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.show.heading" name="#{name(:no_wrapper => true)}">
+          Category <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="category.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Category
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="name_de, name_en, ancestry, position, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="product.collection.heading" count="&this.products.count" >
+            <human-collection-name collection="products" your/>
+          </ht>
+        </h3>
+
+        <collection:products param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Category">
+  <page merge title="#{ht 'category.edit.title', :default=>['Edit Category'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page category" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Category
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'category.actions.delete', :default=>['Remove This Category']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="Category">
+  <page title="#{ht 'category.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="Category">
+  <page title="#{ht 'category.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.deactivate.heading">
+          Deactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reactivate-page" polymorphic/>
+<def tag="reactivate-page" for="Category">
+  <page title="#{ht 'category.reactivate.title', :default=>['Reactivate']}" merge>
+
+    <body: class="lifecycle-transition-page reactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="category.reactivate.heading">
+          Reactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<!-- ====== Categorization Pages ====== -->
+
+<def tag="index-page" for="Categorization">
+  <page merge title="#{ht 'categorization.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="categorization.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="categorization.actions.new">New Categorization</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Categorization">
+  <page merge title="#{ht 'categorization.new.title', :default=>[' New Categorization'] }">
+    <body: class="new-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.new.heading">
+          New Categorization
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'categorization.actions.create', :default=>['Create Categorization']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Categorization">
+  <page merge title="#{ht 'categorization.show.title', :default=>['Categorization'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.show.heading" name="#{name(:no_wrapper => true)}">
+          Categorization <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="categorization.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Categorization
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="category, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Categorization">
+  <page merge title="#{ht 'categorization.edit.title', :default=>['Edit Categorization'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page categorization" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="categorization.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Categorization
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'categorization.actions.delete', :default=>['Remove This Categorization']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== ContentElement Pages ====== -->
+
+<def tag="index-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="content_element.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="content_element.actions.new">New Content element</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.new.title', :default=>[' New Content element'] }">
+    <body: class="new-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.new.heading">
+          New Content element
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'content_element.actions.create', :default=>['Create Content element']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.show.title', :default=>['Content element'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.show.heading" name="#{name(:no_wrapper => true)}">
+          Content element <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="content_element.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Content element
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:content param="description" />
+      <field-list fields="name_de, name_en, markup, content_de, content_en" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ContentElement">
+  <page merge title="#{ht 'content_element.edit.title', :default=>['Edit Content element'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page content-element" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="content_element.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Content element
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'content_element.actions.delete', :default=>['Remove This Content element']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Inventory Pages ====== -->
+
+<def tag="index-page" for="Inventory">
+  <page merge title="#{ht 'inventory.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page inventory" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="inventory.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="inventory.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="inventory.actions.new">New Inventory</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Inventory">
+  <page merge title="#{ht 'inventory.new.title', :default=>[' New Inventory'] }">
+    <body: class="new-page inventory" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="inventory.new.heading">
+          New Inventory
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'inventory.actions.create', :default=>['Create Inventory']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Inventory">
+  <page merge title="#{ht 'inventory.show.title', :default=>['Inventory'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page inventory" param/>
+
+    <content-header: param>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <h2 param="heading">
+        <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
+          Inventory <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="inventory.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Inventory
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="price.collection.heading" count="&this.prices.count" >
+            <human-collection-name collection="prices" your/>
+          </ht>
+        </h3>
+
+        <collection:prices param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Inventory">
+  <page merge title="#{ht 'inventory.edit.title', :default=>['Edit Inventory'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page inventory" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="inventory.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Inventory
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'inventory.actions.delete', :default=>['Remove This Inventory']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Lineitem Pages ====== -->
+
+<def tag="index-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="lineitem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="lineitem.actions.new">New Lineitem</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.new.title', :default=>[' New Lineitem'] }">
+    <body: class="new-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.new.heading">
+          New Lineitem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'lineitem.actions.create', :default=>['Create Lineitem']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.show.title', :default=>['Lineitem'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page lineitem" param/>
+
+    <content-header: param>
+      <a:order param="parent-link">&laquo; <ht key="lineitem.actions.back_to_parent" parent="Bestellung" name="&this">Back to <name/></ht></a:order>
+      <h2 param="heading">
+        <ht key="lineitem.show.heading" name="#{name(:no_wrapper => true)}">
+          Lineitem <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a:user param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="lineitem.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Lineitem
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.edit.title', :default=>['Edit Lineitem'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Lineitem
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'lineitem.actions.delete', :default=>['Remove This Lineitem']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Order Pages ====== -->
+
+<def tag="index-page" for="Order">
+  <page merge title="#{ht 'order.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page order" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="order.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="order.actions.new">New Order</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Order">
+  <page merge title="#{ht 'order.new.title', :default=>[' New Order'] }">
+    <body: class="new-page order" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.new.heading">
+          New Order
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'order.actions.create', :default=>['Create Order']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Order">
+  <page merge title="#{ht 'order.show.title', :default=>['Order'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page order" param/>
+
+    <content-header: param>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
+      <h2 param="heading">
+        <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
+          Order <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a:user param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="order.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Order
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="lineitem.collection.heading" count="&this.lineitems.count" >
+            <human-collection-name collection="lineitems" your/>
+          </ht>
+        </h3>
+
+        <collection:lineitems param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Order">
+  <page merge title="#{ht 'order.edit.title', :default=>['Edit Order'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page order" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Order
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'order.actions.delete', :default=>['Remove This Order']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="shippment-page" polymorphic/>
+<def tag="shippment-page" for="Order">
+  <page title="#{ht 'order.shippment.title', :default=>['Shippment']}" merge>
+
+    <body: class="lifecycle-transition-page shippment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.shippment.heading">
+          Shippment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <shippment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<!-- ====== Price Pages ====== -->
+
+<def tag="index-page" for="Price">
+  <page merge title="#{ht 'price.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page price" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="price.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="price.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="price.actions.new">New Price</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Price">
+  <page merge title="#{ht 'price.new.title', :default=>[' New Price'] }">
+    <body: class="new-page price" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="price.new.heading">
+          New Price
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'price.actions.create', :default=>['Create Price']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Price">
+  <page merge title="#{ht 'price.show.title', :default=>['Price'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page price" param/>
+
+    <content-header: param>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
+      <h2 param="heading">
+        <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
+          Price <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="price.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Price
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="value, vat, valid_from, valid_to, scale_from, scale_to" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Price">
+  <page merge title="#{ht 'price.edit.title', :default=>['Edit Price'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page price" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="price.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Price
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'price.actions.delete', :default=>['Remove This Price']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Productrelation Pages ====== -->
+
+<def tag="index-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="productrelation.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="productrelation.actions.new">New Productrelation</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.new.title', :default=>[' New Productrelation'] }">
+    <body: class="new-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.new.heading">
+          New Productrelation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'productrelation.actions.create', :default=>['Create Productrelation']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.show.title', :default=>['Productrelation'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.show.heading" name="#{name(:no_wrapper => true)}">
+          Productrelation <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="productrelation.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Productrelation
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="product, related_product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Productrelation">
+  <page merge title="#{ht 'productrelation.edit.title', :default=>['Edit Productrelation'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page productrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="productrelation.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Productrelation
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'productrelation.actions.delete', :default=>['Remove This Productrelation']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Product Pages ====== -->
+
+<def tag="index-page" for="Product">
+  <page merge title="#{ht 'product.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="product.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="product.actions.new">New Product</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Product">
+  <page merge title="#{ht 'product.new.title', :default=>[' New Product'] }">
+    <body: class="new-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.new.heading">
+          New Product
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'product.actions.create', :default=>['Create Product']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Product">
+  <page merge title="#{ht 'product.show.title', :default=>['Product'], :name => name(:no_wrapper => true) }" >
+
+    <body: class="show-page product" param/>
+
+    <content-header: param>
+      <a:categories param="parent-link">&laquo; <ht key="product.actions.back_to_parent" parent="Kategorie" name="&this">Back to <name/></ht></a:categories>
+      <h2 param="heading">
+        <ht key="product.show.heading" name="#{name(:no_wrapper => true)}">
+          Product <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="product.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Product
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="name_de, name_en, number, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="inventory.collection.heading" count="&this.inventories.count" >
+            <human-collection-name collection="inventories" your/>
+          </ht>
+        </h3>
+
+        <collection:inventories param/>
+      </section>
+    </content-body:>
+
+    <aside: param>
+      <section param="property_groups-collection-section">
+        <h3 param="property_groups-collection-heading">
+          <ht key="property_group.collection.heading" count="&this.property_groups.count" >
+            <human-collection-name collection="property_groups" your/>
+          </ht>
+        </h3>
+        <collection:property_groups  param="property_groups-collection"/>
+      </section>
+      <section param="properties-collection-section">
+        <h3 param="properties-collection-heading">
+          <ht key="property.collection.heading" count="&this.properties.count" >
+            <human-collection-name collection="properties" your/>
+          </ht>
+        </h3>
+        <collection:properties  param="properties-collection"/>
+      </section>
+      <section param="categories-collection-section">
+        <h3 param="categories-collection-heading">
+          <ht key="category.collection.heading" count="&this.categories.count" >
+            <human-collection-name collection="categories" your/>
+          </ht>
+        </h3>
+        <collection:categories  param="categories-collection"/>
+      </section>
+      <section param="related_products-collection-section">
+        <h3 param="related_products-collection-heading">
+          <ht key="product.collection.heading" count="&this.related_products.count" >
+            <human-collection-name collection="related_products" your/>
+          </ht>
+        </h3>
+        <collection:related_products  param="related_products-collection"/>
+      </section>
+      <section param="supplies-collection-section">
+        <h3 param="supplies-collection-heading">
+          <ht key="product.collection.heading" count="&this.supplies.count" >
+            <human-collection-name collection="supplies" your/>
+          </ht>
+        </h3>
+        <collection:supplies  param="supplies-collection"/>
+      </section>
+      <section param="recommended_products-collection-section">
+        <h3 param="recommended_products-collection-heading">
+          <ht key="product.collection.heading" count="&this.recommended_products.count" >
+            <human-collection-name collection="recommended_products" your/>
+          </ht>
+        </h3>
+        <collection:recommended_products  param="recommended_products-collection"/>
+      </section>
+    </aside:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Product">
+  <page merge title="#{ht 'product.edit.title', :default=>['Edit Product'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Product
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'product.actions.delete', :default=>['Remove This Product']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="Product">
+  <page title="#{ht 'product.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="announce-page" polymorphic/>
+<def tag="announce-page" for="Product">
+  <page title="#{ht 'product.announce.title', :default=>['Announce']}" merge>
+
+    <body: class="lifecycle-transition-page announce-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.announce.heading">
+          Announce
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <announce-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="release-page" polymorphic/>
+<def tag="release-page" for="Product">
+  <page title="#{ht 'product.release.title', :default=>['Release']}" merge>
+
+    <body: class="lifecycle-transition-page release-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.release.heading">
+          Release
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <release-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="Product">
+  <page title="#{ht 'product.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.deactivate.heading">
+          Deactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reactivate-page" polymorphic/>
+<def tag="reactivate-page" for="Product">
+  <page title="#{ht 'product.reactivate.title', :default=>['Reactivate']}" merge>
+
+    <body: class="lifecycle-transition-page reactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.reactivate.heading">
+          Reactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<!-- ====== Property Pages ====== -->
+
+<def tag="index-page" for="Property">
+  <page merge title="#{ht 'property.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page property" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="property.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="property.actions.new">New Property</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Property">
+  <page merge title="#{ht 'property.new.title', :default=>[' New Property'] }">
+    <body: class="new-page property" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property.new.heading">
+          New Property
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'property.actions.create', :default=>['Create Property']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Property">
+  <page merge title="#{ht 'property.show.title', :default=>['Property'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page property" param/>
+
+    <content-header: param>
+      <a:property_group param="parent-link">&laquo; <ht key="property.actions.back_to_parent" parent="Eigenschaftsgruppe" name="&this">Back to <name/></ht></a:property_group>
+      <h2 param="heading">
+        <ht key="property.show.heading" name="#{name(:no_wrapper => true)}">
+          Property <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="property.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Property
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, position, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Property">
+  <page merge title="#{ht 'property.edit.title', :default=>['Edit Property'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page property" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Property
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'property.actions.delete', :default=>['Remove This Property']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== PropertyGroup Pages ====== -->
+
+<def tag="index-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="property_group.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="property_group.actions.new">New Property group</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.new.title', :default=>[' New Property group'] }">
+    <body: class="new-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.new.heading">
+          New Property group
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'property_group.actions.create', :default=>['Create Property group']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.show.title', :default=>['Property group'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.show.heading" name="#{name(:no_wrapper => true)}">
+          Property group <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="property_group.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Property group
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="name_de, name_en, position, product" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="property.collection.heading" count="&this.properties.count" >
+            <human-collection-name collection="properties" your/>
+          </ht>
+        </h3>
+
+        <collection:properties param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="PropertyGroup">
+  <page merge title="#{ht 'property_group.edit.title', :default=>['Edit Property group'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page property-group" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="property_group.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Property group
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'property_group.actions.delete', :default=>['Remove This Property group']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Recommendation Pages ====== -->
+
+<def tag="index-page" for="Recommendation">
+  <page merge title="#{ht 'recommendation.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page recommendation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="recommendation.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="recommendation.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="recommendation.actions.new">New Recommendation</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Recommendation">
+  <page merge title="#{ht 'recommendation.new.title', :default=>[' New Recommendation'] }">
+    <body: class="new-page recommendation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="recommendation.new.heading">
+          New Recommendation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'recommendation.actions.create', :default=>['Create Recommendation']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Recommendation">
+  <page merge title="#{ht 'recommendation.show.title', :default=>['Recommendation'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page recommendation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="recommendation.show.heading" name="#{name(:no_wrapper => true)}">
+          Recommendation <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="recommendation.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Recommendation
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="reason_de, reason_en, product, recommended_product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Recommendation">
+  <page merge title="#{ht 'recommendation.edit.title', :default=>['Edit Recommendation'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page recommendation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="recommendation.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Recommendation
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'recommendation.actions.delete', :default=>['Remove This Recommendation']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Supplyrelation Pages ====== -->
+
+<def tag="index-page" for="Supplyrelation">
+  <page merge title="#{ht 'supplyrelation.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page supplyrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="supplyrelation.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="supplyrelation.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="supplyrelation.actions.new">New Supplyrelation</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Supplyrelation">
+  <page merge title="#{ht 'supplyrelation.new.title', :default=>[' New Supplyrelation'] }">
+    <body: class="new-page supplyrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="supplyrelation.new.heading">
+          New Supplyrelation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'supplyrelation.actions.create', :default=>['Create Supplyrelation']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Supplyrelation">
+  <page merge title="#{ht 'supplyrelation.show.title', :default=>['Supplyrelation'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page supplyrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="supplyrelation.show.heading" name="#{name(:no_wrapper => true)}">
+          Supplyrelation <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="supplyrelation.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Supplyrelation
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="product, supply" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Supplyrelation">
+  <page merge title="#{ht 'supplyrelation.edit.title', :default=>['Edit Supplyrelation'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page supplyrelation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="supplyrelation.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Supplyrelation
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'supplyrelation.actions.delete', :default=>['Remove This Supplyrelation']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== User Pages ====== -->
+
+<def tag="index-page" for="User">
+  <page merge title="#{ht 'user.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="user.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="user.form.new.heading">New User</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(User)" param/>
+      </div>
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="User">
+  <page merge title="#{ht 'user.new.title', :default=>[' New User'] }">
+    <body: class="new-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.new.heading">
+          New User
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'user.actions.create', :default=>['Create User']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }" >
+
+    <body: class="show-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+          User <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="administrator" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit User
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="email_address, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="address.collection.heading" count="&this.addresses.count" >
+            <human-collection-name collection="addresses" your/>
+          </ht>
+        </h3>
+
+        <collection:addresses param/>
+      </section>
+    </content-body:>
+
+    <aside: param>
+      <section param="orders-collection-section">
+        <h3 param="orders-collection-heading">
+          <ht key="order.collection.heading" count="&this.orders.count" >
+            <human-collection-name collection="orders" your/>
+          </ht>
+        </h3>
+        <collection:orders  param="orders-collection"/>
+      </section>
+    </aside:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="User">
+  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit User
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'user.actions.delete', :default=>['Remove This User']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="signup-page" polymorphic/>
+<def tag="signup-page" for="User">
+
+  <page title="#{ht 'user.signup.title', :default=>['Signup']}" merge>
+
+    <body: class="lifecycle-start-page signup-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.signup.heading">
+          Signup
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <signup-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="User">
+  <page title="#{ht 'user.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reset-password-page" polymorphic/>
+<def tag="reset-password-page" for="User">
+  <page title="#{ht 'user.reset_password.title', :default=>['Reset Password']}" merge>
+
+    <body: class="lifecycle-transition-page reset-password-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.reset_password.heading">
+          Reset Password
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reset-password-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
