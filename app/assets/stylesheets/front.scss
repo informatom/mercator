@@ -4,15 +4,8 @@
  * or plugins referenced from here or placed in the front/ directory
  * will be included.
  *
+ *= require_self
  *= require application
- *= require hobo_rapid
- *= require hobo_jquery
-
- *= require hobo_bootstrap
- *= require hobo_jquery_ui
- *= require hobo_bootstrap_ui
- *= require jquery-ui/redmond
- *= require hobo_data_tables
- *= require hobo_ckeditor
+ *= require_tree ./front
  *= require overrides
 */

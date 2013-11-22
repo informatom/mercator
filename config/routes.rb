@@ -1,4 +1,8 @@
 Mercator::Application.routes.draw do
+  match 'admin/front' => 'admin/front#index', :as => 'admin_front'
+
+  match 'search' => 'admin/front#search', :as => 'site_search'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   match ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']

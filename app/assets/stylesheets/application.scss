@@ -5,6 +5,14 @@
  * subsites.
  *
  *= require_self
+ *= require hobo_rapid
+ *= require hobo_jquery
+ *= require hobo_bootstrap
+ *= require hobo_jquery_ui
+ *= require hobo_bootstrap_ui
+ *= require jquery-ui/redmond
+ *= require hobo_data_tables
+ *= require hobo_ckeditor
  *= require dataTables/jquery.dataTables.bootstrap
  *= require application/nestable
  *= require messenger
