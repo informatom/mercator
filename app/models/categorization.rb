@@ -11,6 +11,7 @@ class Categorization < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :product
+  acts_as_list scope: :category
 
   validates :product, :presence => true
   validates :category_id, :presence => true, :uniqueness => {:scope => :product_id}

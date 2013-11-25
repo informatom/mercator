@@ -66,6 +66,8 @@ GEM
     activesupport (3.2.14)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    acts_as_list (0.3.0)
+      activerecord (>= 3.0)
     addressable (2.3.5)
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
@@ -282,6 +284,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   ancestry
   capybara (~> 2.1.0)
   ckeditor!

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125081706) do
+ActiveRecord::Schema.define(:version => 20131125114206) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20131125081706) do
     t.datetime "updated_at"
     t.integer  "category_id"
     t.integer  "product_id"
+    t.integer  "position"
   end
 
   add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"

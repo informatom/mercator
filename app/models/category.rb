@@ -10,14 +10,16 @@ class Category < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name_de, :name_en, :ancestry, :position, :active, :parent_id, :categorizations, :products
+  attr_accessible :name_de, :name_en, :ancestry, :position, :active, 
+                  :parent_id, :parent, :categorizations, :products
   translates :name
   has_ancestry
   has_paper_trail
+  never_show :ancestry
 
   validates :position, numericality: true
 
-  has_many :categorizations, dependent: :destroy
+  has_many :categorizations, dependent: :destroy, :order => :position
   has_many :products, :through => :categorizations, :accessible => true, :inverse_of => :categories
 
   children :products

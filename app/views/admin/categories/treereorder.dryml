@@ -16,7 +16,7 @@
       successMessage: '<%= t "activerecord.attribute_help.category.updated" %>',
       errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>'
     },{
-      url:"/categories/do_treereorder",
+      url:"/admin/categories/do_treereorder",
       data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),
       dataType: 'script',
     });

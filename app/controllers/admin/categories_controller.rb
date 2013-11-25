@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::AdminSiteController
 
   hobo_model_controller
 
