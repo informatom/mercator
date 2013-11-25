@@ -4,4 +4,6 @@ class Admin::CountriesController < Admin::AdminSiteController
 
   auto_actions :all
 
+  autocomplete :name_de
+
 end

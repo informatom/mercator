@@ -1,0 +1,9 @@
+<extend tag="form" for="Address">
+  <old-form merge>
+   <field-list:>
+      <country-view:>
+        <name-one complete-target="&Country.new()" completer="name_de_admin"/>
+      </country-view:>
+   </field-list:>
+  </old-form>
+</extend>

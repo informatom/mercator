@@ -8,10 +8,12 @@ class Address < ActiveRecord::Base
     street     :string, :required
     postalcode :string, :required
     city       :string, :required
+    country    :string, :required
     timestamps
   end
 
-  attr_accessible :user_id, :name, :detail, :street, :postalcode, :city, :user
+  attr_accessible :user_id, :name, :detail, :street, :postalcode, 
+                  :city, :user, :country
   has_paper_trail
 
   belongs_to :user, :creator => true
@@ -31,6 +33,6 @@ class Address < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    user == acting_user || acting_user.administrator?
+    acting_user.administrator? || (user_is? acting_user) 
   end
 end

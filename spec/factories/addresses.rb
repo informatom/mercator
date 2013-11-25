@@ -7,6 +7,7 @@ FactoryGirl.define do
   	street "Kärntner Straße 123"
   	postalcode "1234"
   	city "Vienna"
+  	country "Österreich"
   end
 
 end

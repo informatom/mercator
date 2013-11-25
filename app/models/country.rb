@@ -8,7 +8,7 @@ class Country < ActiveRecord::Base
     code    :string, :required, :unique
     timestamps
   end
-  attr_accessible :name, :code
+  attr_accessible :name, :name_de, :name_en, :code
   translates :name
   has_paper_trail
 

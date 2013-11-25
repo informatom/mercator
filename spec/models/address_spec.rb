@@ -10,6 +10,7 @@ describe Address do
   it {should validate_presence_of(:street)}
   it {should validate_presence_of(:postalcode)}
   it {should validate_presence_of(:city)}
+  it {should validate_presence_of(:country)}
 
   it {should belong_to(:user)}
   it {should validate_presence_of(:user)}
