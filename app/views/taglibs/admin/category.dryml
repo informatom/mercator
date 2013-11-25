@@ -11,7 +11,7 @@
 <extend tag="show-page" for="Category">
   <old-show-page merge>
     <content-body: param>
-      <section param="collection-section">
+      <section param="collection-section" merge>
         <h3 param="collection-heading">
           <ht key="product.collection.heading" count="&this.products.count" >
             <human-collection-name collection="products" your/>
