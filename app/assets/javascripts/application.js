@@ -20,4 +20,3 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require messenger
 //= require messenger-theme-future
-//= require_tree ./application

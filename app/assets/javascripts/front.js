@@ -8,4 +8,3 @@
 // the the compiled file.
 //
 //= require application
-//= require_tree ./front
