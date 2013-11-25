@@ -22,7 +22,6 @@ gem "ancestry"                                      # hierarchical data structur
 gem "acts_as_list"                                  # list structures
 gem "messengerjs-rails"                             # Messenger Javascript Framework assets
 gem 'traco'                                         # model attribute translations
-gem 'font-awesome-less'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'                    # Sass support
