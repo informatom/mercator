@@ -12,8 +12,9 @@ you can place common code in this file. -->
 </extend>
 
 <def tag="treeview">
-  <li repeat data-id="#{h this.id}" class="dd-item">
-    <div class="dd-handle"><%= h this.name %></div>
+  <li repeat data-id="#{h this.id}" class="dd-item dd3-item">
+    <div class="dd-handle dd3-handle"></div>
+    <div class="dd3-content"><a><%= h this.name %></a></div>
     <if test="&this.children">
       <ol class="dd-list">
         <treeview with="&this.children" />

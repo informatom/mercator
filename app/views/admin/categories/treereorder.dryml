@@ -9,7 +9,7 @@
 </index-page>
 
 <script>
-  $('.dd').nestable({ maxDepth: 99 });
+  $('.dd').nestable({ maxDepth: 99, distance: 5 });
   $('.dd').nestable('collapseAll');
   $('.dd').on('change', function() {
     Messenger().run({
