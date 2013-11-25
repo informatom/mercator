@@ -12,7 +12,7 @@ you can place common code in this file. -->
 </extend>
 
 <def tag="treeview">
-  <li repeat data-id="#{h this.id}" class="dd-item dd-collapsed">
+  <li repeat data-id="#{h this.id}" class="dd-item">
     <div class="dd-handle"><%= h this.name %></div>
     <if test="&this.children">
       <ol class="dd-list">

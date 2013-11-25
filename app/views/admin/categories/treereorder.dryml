@@ -10,6 +10,7 @@
 
 <script>
   $('.dd').nestable({ maxDepth: 99 });
+  $('.dd').nestable('collapseAll');
   $('.dd').on('change', function() {
     Messenger().run({
       progressMessage: '<%= t "activerecord.attribute_help.category.updating" %> ...',
