@@ -12,10 +12,6 @@ gem "hobo_bootstrap", "2.0.1"                       # Twitter Bootstrap asset ha
 gem "hobo_jquery_ui", "2.0.1"                       # JQuery UI asser handling
 gem "hobo_bootstrap_ui", "2.0.1"                    # additional Bootstrap features
 gem "jquery-ui-themes", "~> 0.0.4"                  # JQury Ui theming
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
-                                                    # Data Tables asset handling
-gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
-                                                    # Data Tables integradtion
 gem "paperclip"                                     # attachment handling
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
                                                     # Paperclip Hobo integration

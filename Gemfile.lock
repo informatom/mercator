@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/Hobo/hobo_data_tables.git
-  revision: f12f35e2d31c67a323a3f01fcbd3b91a2b7195e8
-  specs:
-    hobo_data_tables (0.0.1)
-      hobo (> 1.4.0.pre5)
-      jquery-datatables-rails
-
-GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
   revision: 58e0daabdce95c1a8a0c06daf086a8ee0820842b
   branch: master
@@ -28,13 +20,6 @@ GIT
     ckeditor (4.0.6)
       mime-types
       orm_adapter
-
-GIT
-  remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: 5bbe828e298100b0bb819b35dbf8bd360cc44e76
-  specs:
-    jquery-datatables-rails (1.12.0)
-      jquery-rails
 
 GEM
   remote: https://rubygems.org/
@@ -297,10 +282,8 @@ DEPENDENCIES
   hobo_bootstrap (= 2.0.1)
   hobo_bootstrap_ui (= 2.0.1)
   hobo_ckeditor
-  hobo_data_tables!
   hobo_jquery_ui (= 2.0.1)
   hobo_paperclip!
-  jquery-datatables-rails!
   jquery-rails (~> 2.3.0)
   jquery-ui-themes (~> 0.0.4)
   launchy (~> 2.3.0)

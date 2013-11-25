@@ -2,17 +2,13 @@
 you can place common code in this file. -->
 
 <extend tag="page">
-  <old-page merge>
+  <old-page merge nav-location="sub">
     <stylesheets: param>
       <param-content/>
         <link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,latin-ext'
         rel='stylesheet' type='text/css'></link>
     </stylesheets:>
   </old-page>
-</extend>
-
-<extend tag="page">
-  <old-page merge nav-location="sub"/>
 </extend>
 
 <def tag="treeview">
@@ -25,11 +21,3 @@ you can place common code in this file. -->
     </if>
   </li>
 </def>
-
-<extend tag="show-page">
-  <old-show-page>
-      <after-content-header:>
-      <!--  <transition-buttons /> -->
-      </after-content-header:>
-  </old-show-page>
-</extend>
