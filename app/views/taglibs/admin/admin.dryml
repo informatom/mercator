@@ -13,3 +13,19 @@
     <select: class="span3" />
   </old-select-many>
 </extend>
+
+<extend tag="show-page">
+  <old-show-page merge>
+   <field-list: tag="click-editor" />
+  </old-show-page>
+</extend>
+
+<def tag="input" for="cktext" attribs="name, ckeditor">
+  <%
+  editor_settings = attributes['ckeditor'] || HoboCkeditor.default_editor_settings
+  object_name, method_name = attributes['name'].to_object_name_and_method_name
+  -%>
+  <div class="cktextarea textarea">
+    <%= cktext_area object_name, method_name, :ckeditor => editor_settings, :class => "ckeditor" %>
+  </div>
+</def>
