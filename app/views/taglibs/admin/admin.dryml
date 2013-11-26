@@ -1,0 +1,15 @@
+<extend tag="input"> 
+  <old-input merge class="input-xlarge" rows="7" />
+</extend>
+
+<extend tag="select-one"> 
+  <old-select-one merge >
+    <select: class="span3" />
+  </old-select-one>
+</extend>
+
+<extend tag="select-many"> 
+  <old-select-many merge >
+    <select: class="span3" />
+  </old-select-many>
+</extend>
