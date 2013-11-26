@@ -161,12 +161,42 @@ de:
     attribute_help:
       address:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
-        detail: "geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
-        street: Straße und Hausneummer
+        detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
+        street: Straße und Hausnummer
       category:
-        updated: Kagegorien erfolgreich aktualisiert!
-        updating: Kategorien werden aktualisiert
-        update_failed: Kategorien konnten nicht aktualisiert werden!
+        position: Reihung innerhalb der Überkategorie im Kategorienbaum 
+        updated: Kategoriebaum erfolgreich aktualisiert!
+        updating: Kategoriebaum wird aktualisiert
+        update_failed: Kategoriebaum konnte nicht aktualisiert werden!
+      constant:
+        key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
+        markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
+      country:
+        code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
+      inventory:
+        number: "Geben Sie die Artikelnummer auch dann ein, wenn Sie nicht von der Artikelnummer des Artikels abweicht."
+        unit: "Verwenden Sie einheitliche Einheiten, z.B. Stk., Std., Pau."
+        weight: "Gewicht in Kilogramm, z.B. 5.3"
+      lineitem:
+        position: Position zur Reihung innerhalb der Bestellung
+        price: Netto (ohne Steuern)
+        value: Netto (ohne Steuern)
+        vat: "in Prozent, z.B. 19.5"
+      price:
+        value: Netto (ohne Steuern)
+        vat: "in Prozent, z.B. 19.5"
+        valid_from: "gültig ab 0:00 morgens des angegegbenen Tages"
+        valid_to: "gültig bis 0:00 morgens des angegegbenen Tages"
+        scale_from: "gültig ab inklusive dieser Dezimalzahl, z.B. 0.5"
+        scale_to: "gültig bis exclusive dieser Dezimalzahl, z.B. 9999"
+      property:
+        name: Achten Sie für übersichtliche Ptoduktvergleiche auf einheitliche Bezeichnungen
+        description_de: "Bitte Beschreibung oder (Wert und Einheit) angeben, z.B. grün"
+        value: "Bitte in Kombination mit dem Einheit-Feld befüllen, z.B. 5"
+        unit_de: "Bitte in Kombination mit dem Wert-Feld befüllen, z.B. kg"
+        position: Dient zur Reihung innerhalb der Eigenschaftsgruppe 
+      property_group:
+        position: Dient zur Reihung der Eigenschaftsgruppen eines Produktes
       user:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
