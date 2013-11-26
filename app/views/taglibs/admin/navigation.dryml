@@ -1,0 +1,86 @@
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Frontend  </nav-item>
+    <nav-item href="#{base_url}/admin/">Home</nav-item>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.User") %> ...
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&User">
+          <ht key="user.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Address">
+          <ht key="address.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <li class="divider"></li>
+        <nav-item with="&Country">
+          <ht key="country.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+       </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Product") %> ...
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&Category">
+          <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <li class="divider"></li>
+        <nav-item with="&Product">
+          <ht key="product.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Inventory">
+          <ht key="inventory.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Price">
+          <ht key="price.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <li class="divider"></li>
+        <nav-item with="&PropertyGroup">
+          <ht key="property_group.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Property">
+          <ht key="property.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <li class="divider"></li>
+        <nav-item with="&Recommendation">
+          <ht key="recommendation.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.orders") %> ...
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&Order">
+          <ht key="order.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Lineitem">
+          <ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.CMS") %>
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&ContentElement">
+          <ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.miscellaneous") %>
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&Constant">
+          <ht key="constant.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+      </ul>
+    </li>
+  </navigation>
+</def>

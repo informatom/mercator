@@ -13,6 +13,7 @@ de:
     category: Kategorie
     charge: Charge
     city: Ort
+    CMS: CMS
     code: Code
     comment: Kommentar
     Constant: Konstante
@@ -34,6 +35,7 @@ de:
     Lineitem: Bestellposition
     lineitems: Bestellpositionen
     markup: Markup Format
+    miscellaneous: Diverses
     name: Name
     order: Bestellung
     orders: Bestellungen
