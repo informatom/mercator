@@ -21,10 +21,12 @@ describe Property do
 
   it {should validate_presence_of(:name_de)}
   it {should validate_numericality_of(:value)}
-  it {should belong_to(:product)}
-  it {should validate_presence_of(:product)}
   it {should belong_to(:property_group)}
   it {should validate_uniqueness_of(:name_de)}
+
+  it "acts as a list" do
+    should respond_to(:move_to_top)
+  end
 
   it "is versioned" do
     should respond_to(:versions)

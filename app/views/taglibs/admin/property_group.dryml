@@ -1,0 +1,17 @@
+<extend tag="show-page" for="PropertyGroup">
+  <old-show-page merge>
+    <append-content-body: >
+      <div class="form-horizontal">
+        <section param="collection-section" merge>
+          <h3 param="collection-heading">
+            <ht key="Property.collection.heading" count="&this.properties.count" >
+              <human-collection-name collection="properties" your/>
+            </ht>
+          </h3>
+          <sortable-collection:properties param/>
+        </section>
+      </div>
+    </append-content-body: >
+
+  </old-show-page>
+</extend>

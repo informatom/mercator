@@ -3,6 +3,7 @@ class Categorization < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
+    position :integer, :required
     timestamps
   end
 
@@ -11,7 +12,7 @@ class Categorization < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :product
-  acts_as_list scope: :category
+  acts_as_list :scope => :category
 
   validates :product, :presence => true
   validates :category_id, :presence => true, :uniqueness => {:scope => :product_id}

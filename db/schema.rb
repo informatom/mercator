@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125114206) do
+ActiveRecord::Schema.define(:version => 20131126102325) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -212,7 +212,6 @@ ActiveRecord::Schema.define(:version => 20131125114206) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "product_id"
     t.integer  "property_group_id"
     t.string   "description_de"
     t.string   "description_en"
@@ -220,7 +219,6 @@ ActiveRecord::Schema.define(:version => 20131125114206) do
     t.string   "unit_en"
   end
 
-  add_index "properties", ["product_id"], :name => "index_properties_on_product_id"
   add_index "properties", ["property_group_id"], :name => "index_properties_on_property_group_id"
 
   create_table "property_groups", :force => true do |t|

@@ -1,12 +1,25 @@
 <extend tag="form" for="Product">
   <old-form merge multipart>
-    <field-list: fields="name_de, name_en, number, description_de, description_en, categories, related_products, supplies, document, photo"/>
+    <field-list: fields="name_de, name_en, number, description_de, description_en, categories, property_groups, related_products, 
+    supplies, document, photo"/>
   </old-form>
 </extend>
 
 <extend tag="show-page" for="Product">
   <old-show-page merge>
     <append-content-body: >
+
+      <div class="form-horizontal">
+        <section param="collection-section" merge>
+          <h3 param="collection-heading">
+            <ht key="PropertyGroup.collection.heading" count="&this.property_groups.count" >
+              <human-collection-name collection="property_groups" your/>
+            </ht>
+          </h3>
+          <sortable-collection:property_groups param/>
+        </section>
+      </div>
+
       <div class="form-horizontal">
         <div class="control-group   photo-url-field">
           <label class="control-label photo-url-label"><%= t("Original version") %></label>
@@ -44,5 +57,6 @@
         </div>
       </div>
     </append-content-body: >
+
   </old-show-page>
 </extend>

@@ -12,6 +12,10 @@ describe PropertyGroup do
   it {should validate_presence_of(:product)}
   it {should have_many(:properties)}
 
+  it "acts as a list" do
+    should respond_to(:move_to_top)
+  end
+
   it "is versioned" do
     should respond_to(:versions)
   end

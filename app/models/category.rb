@@ -22,8 +22,6 @@ class Category < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy, :order => :position
   has_many :products, :through => :categorizations, :accessible => true, :inverse_of => :categories
 
-  children :products
-
   lifecycle do
     state :new, :default => true
     state :active, :deprecated

@@ -10,17 +10,19 @@
 
 <extend tag="show-page" for="Category">
   <old-show-page merge>
-    <content-body: param>
-      <section param="collection-section" merge>
-        <h3 param="collection-heading">
-          <ht key="product.collection.heading" count="&this.products.count" >
-            <human-collection-name collection="products" your/>
-          </ht>
-        </h3>
-        <sortable-collection:categorizations param>
-          <card with="&this.product" />
-        </sortable-collection:categorizations>
-      </section>
-   </content-body>
+    <append-content-body:>
+      <div class="form-horizontal">
+        <section param="collection-section" merge>
+          <h3 param="collection-heading">
+            <ht key="product.collection.heading" count="&this.products.count" >
+              <human-collection-name collection="products" your/>
+            </ht>
+          </h3>
+          <sortable-collection:categorizations param>
+            <card with="&this.product" />
+          </sortable-collection:categorizations>
+        </section>
+      </div>
+    </append-content-body:>
   </old-show-page>
 </extend>

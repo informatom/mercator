@@ -9,16 +9,17 @@ class PropertyGroup < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name_de, :name_en, :position, :product, :product_id
+  attr_accessible :name_de, :name_en, :position, :product, :product_id,
+                  :properties
   translates :name
   has_paper_trail
+  acts_as_list :scope => :product
 
   validates :position, numericality: true
 
   belongs_to :product
   validates :product, :presence => true
-  has_many :properties
-  children :properties
+  has_many :properties, :accessible => true
 
   # --- Permissions --- #
 

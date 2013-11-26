@@ -16,19 +16,18 @@ class Property < ActiveRecord::Base
   end
 
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
-                  :position, :product, :property_group, :product_id, :property_group_id
+                  :position, :property_group, :property_group_id
   has_paper_trail
   translates :name, :description, :unit
+  acts_as_list :scope => :property_group
 
   validates :value, numericality: true, allow_nil: true
 
-  belongs_to :product
   belongs_to :property_group
 
   validate :textual_or_numerical
 
-  validates :name_de, :presence => true, :uniqueness => {:scope => :product_id}
-  validates :product, :presence => true
+  validates :name_de, :presence => true, :uniqueness => {:scope => :property_group_id}
 
   def textual_or_numerical
     unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||

@@ -2,7 +2,6 @@ FactoryGirl.define do
 
   factory :property do
     property_group
-    product {property_group.product}
     name_de  "Ich bin der deutsche Titel"
     name_en  "I Am the English Title"
     description_de "Deutsch: Lorem ipsum dolor sit amet."

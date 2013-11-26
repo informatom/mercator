@@ -11,8 +11,9 @@ class Product < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
-                  :photo, :document, :categorizations, :categories, :category, :related_products,
-                  :productrelations, :supplies, :supplyrelations, :inventories, :recommended_products
+                  :photo, :document, :categorizations, :categories, :category, 
+                  :related_products, :productrelations, :supplies, :supplyrelations,
+                  :inventories, :recommended_products, :property_groups, :properties
   translates :name, :description
   has_paper_trail
 
@@ -21,8 +22,8 @@ class Product < ActiveRecord::Base
     :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
                  :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
-  has_many :property_groups, dependent: :destroy
-  has_many :properties, dependent: :destroy
+  has_many :property_groups, dependent: :destroy, :accessible => true
+  has_many :properties, dependent: :destroy, :through => :property_groups
 
   has_many :categorizations, dependent: :destroy
   has_many :categories, :through => :categorizations, :accessible => true
@@ -38,7 +39,7 @@ class Product < ActiveRecord::Base
 
   has_many :inventories, dependent: :restrict
 
-  children :inventories, :property_groups, :properties, :categories, :related_products, :supplies,
+  children :inventories, :properties, :categories, :related_products, :supplies,
            :recommended_products
 
   lifecycle do
