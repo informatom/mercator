@@ -3,20 +3,21 @@ class Property < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string
-    name_en  :string
+    name_de        :string
+    name_en        :string
     description_de :string
     description_en :string
-    value :decimal
-    unit_de :string
-    unit_en :string
+    value          :decimal
+    unit_de        :string
+    unit_en        :string
 
-    position :integer
+    position       :integer
+    legacy_id      :integer
     timestamps
   end
 
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
-                  :position, :property_group, :property_group_id
+                  :position, :property_group, :property_group_id, :legacy_id
   has_paper_trail
   translates :name, :description, :unit
   acts_as_list :scope => :property_group
@@ -27,7 +28,7 @@ class Property < ActiveRecord::Base
 
   validate :textual_or_numerical
 
-  validates :name_de, :presence => true, :uniqueness => {:scope => :property_group_id}
+#  validates :name_de, :presence => true, :uniqueness => {:scope => :property_group_id}
 
   def textual_or_numerical
     unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||

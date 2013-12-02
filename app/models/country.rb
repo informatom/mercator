@@ -6,9 +6,10 @@ class Country < ActiveRecord::Base
     name_de :string, :required, :unique
     name_en :string, :required, :unique
     code    :string, :required, :unique
+    legacy_id :integer
     timestamps
   end
-  attr_accessible :name, :name_de, :name_en, :code
+  attr_accessible :name, :name_de, :name_en, :code, :legacy_id
   translates :name
   has_paper_trail
 

@@ -7,6 +7,7 @@ class Category < ActiveRecord::Base
     name_en  :string
     ancestry :string, :index => true
     position :integer
+    legacy_id      :integer
     timestamps
   end
 

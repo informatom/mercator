@@ -8,30 +8,30 @@ namespace :import do
   desc "Import from legacy webshop"
   task :legacy => :environment do
 
-    puts "Users:"
-    Legacy::User.all.each do |legacy_user|
-      user = User.find_or_initialize_by_name(legacy_user.name)
-       if user.update_attributes(email_address: legacy_user.email,
-                                 legacy_id: legacy_user.id)
-           print "U"
-       else
-         puts "FAILURE: User: " + user.errors.first.to_s
-       end
-    end
+    # puts "\nUsers:"
+    # Legacy::User.all.each do |legacy_user|
+    #   user = User.find_or_initialize_by_name(legacy_user.name)
+    #   if user.update_attributes(email_address: legacy_user.email,
+    #                             legacy_id: legacy_user.id)
+    #       print "U"
+    #   else
+    #     puts "\nFAILURE: User: " + user.errors.first.to_s
+    #   end
+    # end
 
-    puts "Countries:"
-    Legacy::Country.all.each do |legacy_country|
-      country = Country.find_or_initialize_by_name_de(legacy_country.country_name)
-       if country.update_attributes(name_en: legacy_country.country_name, 
-                                    code: legacy_country.country_a2,
-                                    legacy_id: legacy_user.id)
-         print "C"
-       else
-         puts "FAILURE: Country: " + country.errors.first.to_s
-       end
-    end
+    # puts "\n\nCountries:"
+    # Legacy::Country.all.each do |legacy_country|
+    #   country = Country.find_or_initialize_by_name_de(legacy_country.country_name)
+    #    if country.update_attributes(name_en: legacy_country.country_name, 
+    #                                 code: legacy_country.country_a2,
+    #                                 legacy_id: legacy_country.id)
+    #      print "C"
+    #    else
+    #      puts "\nFAILURE: Country: " + country.errors.first.to_s
+    #    end
+    # end
 
-    puts "Product:"
+    puts "\n\nProducts:"
     Legacy::Product.all.each do |legacy_product|
       legacy_product_de = legacy_product.product_translations.german.first
       legacy_product_en = legacy_product.product_translations.english.first
@@ -65,7 +65,7 @@ namespace :import do
                                    number: legacy_product.article_number,
                                    description_de: description_de,
                                    description_en: description_en,
-                                   legacy_id: legacy_user.id)
+                                   legacy_id: legacy_product.id)
         print "P"
 
         legacy_product.properties.each do |legacy_property|
@@ -75,8 +75,7 @@ namespace :import do
           property_group = PropertyGroup.find_or_initialize_by_name_de_and_product_id(legacy_property_de.group, 
                                                                                       product.id)
           if property_group.update_attributes(name_en: legacy_property_en.group,
-                                              position: 1,
-                                              legacy_id: legacy_user.id)
+                                              position: 1)
             print "G"
             property = Property.find_or_initialize_by_name_de_and_property_group_id(legacy_property_de.name,
                                                                                      property_group.id)
@@ -84,10 +83,10 @@ namespace :import do
                                           description_de: legacy_property.presentation_value,
                                           description_en: legacy_property.presentation_value,
                                           position: 1,
-                                          legacy_id: legacy_user.id)
+                                          legacy_id: legacy_property.id)
               print "p"
             else
-              puts "FAILURE: Property: " + property.errors.first.to_s 
+              puts "\nFAILURE: Property: " + property.errors.first.to_s 
             end
           else
             puts "\nFAILURE: PropertyGroup: " + property_group.errors.first.to_s

@@ -8,12 +8,14 @@ class Product < ActiveRecord::Base
     number         :string, :required, :unique
     description_de :text, :required
     description_en :text
+    legacy_id      :integer
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
                   :photo, :document, :categorizations, :categories, :category, 
                   :related_products, :productrelations, :supplies, :supplyrelations,
-                  :inventories, :recommended_products, :property_groups, :properties
+                  :inventories, :recommended_products, :property_groups, :properties,
+                  :legacy_id
   translates :name, :description
   has_paper_trail
 

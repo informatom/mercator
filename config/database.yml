@@ -30,4 +30,4 @@ import_development:
   host: localhost
   database: ivellio_vellin_development
   username: iv
-  pussword: iv123°§ℓ
+  password: iv123°§ℓ

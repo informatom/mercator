@@ -6,11 +6,12 @@ class User < ActiveRecord::Base
     name          :string, :required, :unique
     email_address :email_address, :required, :unique, :login => true
     administrator :boolean, :default => false
+    legacy_id     :integer
     timestamps
   end
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator
+                  :current_password, :administrator, :legacy_id
   has_paper_trail
 
   has_many :addresses, dependent: :destroy
