@@ -24,3 +24,10 @@ production:
   pool: 5
   username: mercator
   password: humunculus
+
+import_development:
+  adapter: mysql2
+  host: localhost
+  database: ivellio_vellin_development
+  username: iv
+  pussword: iv123°§ℓ
