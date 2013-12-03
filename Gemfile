@@ -36,6 +36,7 @@ group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
   gem 'debugger', '~> 1.6.2'                        # Command line debugger
   gem "quiet_assets"                                # leaner log output
+  gem "require_all"
 end
 
 group :test do

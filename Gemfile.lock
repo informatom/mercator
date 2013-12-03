@@ -206,6 +206,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    require_all (1.3.2)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -296,6 +297,7 @@ DEPENDENCIES
   pg (~> 0.17.0)
   quiet_assets
   rails (= 3.2.14)
+  require_all
   rspec-rails (~> 2.14.0)
   sass-rails (~> 3.2.3)
   selenium-webdriver (~> 2.35.1)

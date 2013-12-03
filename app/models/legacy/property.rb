@@ -1,7 +1,10 @@
 class Legacy::Property < ActiveRecord::Base
   establish_connection "import_development"
-# Commented because migration generator gets confused
   self.table_name = 'properties'
+
+  # The following two lines fix the migration issues
+  hobo_model
+  fields
 
   has_many :property_translations
 

@@ -8,5 +8,3 @@ ActionMailer::Base.smtp_settings = {
   :domain => "mercator.informatom.com",
   :enable_starttls_auto => false
 }
-
-Generators::Hobo::Migration::Migrator.ignore_models = ["Legacy::Property","Legacy::Product"]

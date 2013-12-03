@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202164442) do
+ActiveRecord::Schema.define(:version => 20131203100518) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -33,10 +33,14 @@ ActiveRecord::Schema.define(:version => 20131202164442) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",         :default => "new"
+    t.string   "state",               :default => "new"
     t.datetime "key_timestamp"
     t.string   "name_en"
     t.integer  "legacy_id"
+    t.text     "description_de"
+    t.text     "description_en"
+    t.text     "long_description_de"
+    t.text     "long_description_en"
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"

@@ -1,7 +1,10 @@
 class Legacy::Product < ActiveRecord::Base
   establish_connection "import_development"
-# Commented because migration generator gets confused
   self.table_name = 'products'
+
+  # The following two lines fix the migration issues
+  hobo_model
+  fields 
 
   has_many :product_translations
   has_many :product_properties

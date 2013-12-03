@@ -5,13 +5,17 @@ class Category < ActiveRecord::Base
   fields do
     name_de  :string, :required
     name_en  :string
+    description_de :text
+    description_en :text
+    long_description_de :text
+    long_description_en :text
     ancestry :string, :index => true
     position :integer
     legacy_id      :integer
     timestamps
   end
 
-  attr_accessible :name_de, :name_en, :ancestry, :position, :active, 
+  attr_accessible :name_de, :name_en, :ancestry, :position, :active,
                   :parent_id, :parent, :categorizations, :products
   translates :name
   has_ancestry
