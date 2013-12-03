@@ -8,6 +8,7 @@ de:
     ancestry: Ancestry-String
     Category: Kategorie
     category: Kategorie
+    category_tree: Kategorienbaum
     categories: Kategorien
     Categorization: Kategorisierung
     category: Kategorie
@@ -166,7 +167,7 @@ de:
         detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
         street: Straße und Hausnummer
       category:
-        position: Reihung innerhalb der Überkategorie im Kategorienbaum 
+        position: Reihung innerhalb der Überkategorie im Kategorienbaum
         updated: Kategoriebaum erfolgreich aktualisiert!
         updating: Kategoriebaum wird aktualisiert
         update_failed: Kategoriebaum konnte nicht aktualisiert werden!
@@ -196,7 +197,7 @@ de:
         description_de: "Bitte Beschreibung oder (Wert und Einheit) angeben, z.B. grün"
         value: "Bitte in Kombination mit dem Einheit-Feld befüllen, z.B. 5"
         unit_de: "Bitte in Kombination mit dem Wert-Feld befüllen, z.B. kg"
-        position: Dient zur Reihung innerhalb der Eigenschaftsgruppe 
+        position: Dient zur Reihung innerhalb der Eigenschaftsgruppe
       property_group:
         position: Dient zur Reihung der Eigenschaftsgruppen eines Produktes
       user:
