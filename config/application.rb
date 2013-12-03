@@ -2,6 +2,12 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+# HAS: 20131203 Getting all config variables from application.yml
+CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+CONFIG.merge! CONFIG.fetch(Rails.env, {})
+CONFIG.symbolize_keys!
+
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -13,14 +19,14 @@ module Mercator
   class Application < Rails::Application
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js)
-    
+
     config.generators do |g|
       g.test_framework :rspec, :fixtures => true
       g.fallbacks[:rspec] = :test_unit
       g.fixture_replacement = :factory_girl_rails
     end
 
-    
+
     config.generators do |g|
       g.test_framework :rspec, :fixtures => false
       g.fallbacks[:rspec] = :test_unit

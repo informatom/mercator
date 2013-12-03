@@ -4,8 +4,8 @@ development:
   host: localhost
   database: mercator_development
   pool: 5
-  username: mercator
-  password: humunculus
+  username: <%= CONFIG[:development_database_user] %>
+  password: <%= CONFIG[:development_database_password] %>
 
 test:
   adapter: postgresql

@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
-                  :photo, :document, :categorizations, :categories, :category, 
+                  :photo, :document, :categorizations, :categories, :category,
                   :related_products, :productrelations, :supplies, :supplyrelations,
                   :inventories, :recommended_products, :property_groups, :properties,
                   :legacy_id

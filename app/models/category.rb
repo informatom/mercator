@@ -17,7 +17,7 @@ class Category < ActiveRecord::Base
 
   attr_accessible :name_de, :name_en, :ancestry, :position, :active,
                   :parent_id, :parent, :categorizations, :products
-  translates :name
+  translates :name, :description, :long_description
   has_ancestry
   has_paper_trail
   never_show :ancestry

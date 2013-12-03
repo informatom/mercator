@@ -35,6 +35,7 @@ de:
     key: Schlüssel
     Lineitem: Bestellposition
     lineitems: Bestellpositionen
+    long_description: Lange Beschreibung
     markup: Markup Format
     miscellaneous: Diverses
     name: Name

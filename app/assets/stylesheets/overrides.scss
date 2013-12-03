@@ -16,3 +16,7 @@ h4 small { font-size: 11px; }
 
 .form-horizontal .control-label { width: 160px; }
 .form-horizontal .controls { margin-left: 180px; }
+
+// Make stuff smaller
+.card.well {padding: 0px; }
+.form-horizontal .control-group {margin-bottom: 5px;}
