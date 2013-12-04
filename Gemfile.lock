@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
-  revision: 58e0daabdce95c1a8a0c06daf086a8ee0820842b
+  revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
   specs:
     hobo_paperclip (0.0.4)
@@ -15,21 +15,21 @@ GIT
 
 GIT
   remote: git://github.com/galetahub/ckeditor.git
-  revision: 6ac7f1eb21cbf439fabeccc63ea804fd8589d68a
+  revision: 05fdfdb66b9953249a57867e08dc331e321d218e
   specs:
-    ckeditor (4.0.6)
+    ckeditor (4.0.7)
       mime-types
       orm_adapter
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (3.2.14)
-      actionpack (= 3.2.14)
+    actionmailer (3.2.16)
+      actionpack (= 3.2.16)
       mail (~> 2.5.4)
-    actionpack (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
+    actionpack (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -37,18 +37,18 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.14)
-      activesupport (= 3.2.14)
+    activemodel (3.2.16)
+      activesupport (= 3.2.16)
       builder (~> 3.0.0)
-    activerecord (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
+    activerecord (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
-    activesupport (3.2.14)
+    activeresource (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
+    activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     acts_as_list (0.3.0)
@@ -57,7 +57,7 @@ GEM
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
     arel (3.0.3)
-    bootstrap-datepicker-rails (1.1.1.9)
+    bootstrap-datepicker-rails (1.1.1.10)
       railties (>= 3.0)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
@@ -85,12 +85,12 @@ GEM
     commonjs (0.2.7)
     daemons (1.1.9)
     database_cleaner (1.2.0)
-    debugger (1.6.2)
+    debugger (1.6.3)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.3)
+      debugger-ruby_core_source (~> 1.2.4)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
+    debugger-ruby_core_source (1.2.4)
     diff-lcs (1.2.5)
     dryml (2.0.1)
       actionpack (~> 3.2.0)
@@ -140,7 +140,7 @@ GEM
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (0.6.5)
+    i18n (0.6.9)
     journey (1.0.4)
     jquery-rails (2.3.0)
       railties (>= 3.0, < 5.0)
@@ -159,8 +159,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    messengerjs-rails (1.3.6.2)
-    mime-types (1.25)
+    messengerjs-rails (1.4.0)
+    mime-types (1.25.1)
     mini_portile (0.5.2)
     multi_json (1.8.2)
     multi_xml (0.5.5)
@@ -187,17 +187,17 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.14)
-      actionmailer (= 3.2.14)
-      actionpack (= 3.2.14)
-      activerecord (= 3.2.14)
-      activeresource (= 3.2.14)
-      activesupport (= 3.2.14)
+    rails (3.2.16)
+      actionmailer (= 3.2.16)
+      actionpack (= 3.2.16)
+      activerecord (= 3.2.16)
+      activeresource (= 3.2.16)
+      activesupport (= 3.2.16)
       bundler (~> 1.0)
-      railties (= 3.2.14)
-    railties (3.2.14)
-      actionpack (= 3.2.14)
-      activesupport (= 3.2.14)
+      railties (= 3.2.16)
+    railties (3.2.16)
+      actionpack (= 3.2.16)
+      activesupport (= 3.2.16)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -258,7 +258,7 @@ GEM
       railties (> 3.2.8, < 4.0.0)
       sprockets (>= 2.0.0)
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     websocket (1.0.7)
@@ -296,7 +296,7 @@ DEPENDENCIES
   paperclip
   pg (~> 0.17.0)
   quiet_assets
-  rails (= 3.2.14)
+  rails (= 3.2.16)
   require_all
   rspec-rails (~> 2.14.0)
   sass-rails (~> 3.2.3)

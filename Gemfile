@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'                               # Web applitation framework
+gem 'rails', '3.2.16'                               # Web applitation framework
 gem 'pg', '~> 0.17.0'                               # Postgres data base
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'jquery-rails', '~> 2.3.0'                      # JQuery asset handling
