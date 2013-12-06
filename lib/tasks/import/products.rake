@@ -1,5 +1,9 @@
 def import_products
   puts "\n\nProducts:"
+  Product.all.each do |product|
+    product.delete
+  end
+  print "Products deleted."
 
   Legacy::Product.all.each do |legacy_product|
     legacy_product_de = legacy_product.product_translations.german.first
@@ -29,39 +33,13 @@ def import_products
       description_en = "missing"
     end
 
-    product = Product.find_or_initialize_by_name_de(name_de)
-    if product.update_attributes(name_en: name_en,
-                                 number: legacy_product.article_number,
-                                 description_de: description_de,
-                                 description_en: description_en,
-                                 legacy_id: legacy_product.id)
+    if product = Product.create(number: legacy_product.article_number,
+                      name_de: name_de,
+                      name_en: name_en,
+                      description_de: description_de,
+                      description_en: description_en,
+                      legacy_id: legacy_product.id)
       print "P"
-
-      legacy_product.properties.each do |legacy_property|
-        legacy_property_de = legacy_property.property_translations.german.first
-        legacy_property_en = legacy_property.property_translations.english.first
-
-        property_group = PropertyGroup.find_or_initialize_by_name_de_and_product_id(legacy_property_de.group,
-                                                                                    product.id)
-        if property_group.update_attributes(name_en: legacy_property_en.group,
-                                            position: 1)
-          print "G"
-
-          property = Property.find_or_initialize_by_name_de_and_property_group_id(legacy_property_de.name,
-                                                                                   property_group.id)
-          if property.update_attributes(name_en: legacy_property_en.name,
-                                        description_de: legacy_property.presentation_value,
-                                        description_en: legacy_property.presentation_value,
-                                        position: 1,
-                                        legacy_id: legacy_property.id)
-            print "p"
-          else
-            puts "\nFAILURE: Property: " + property.errors.first.to_s
-          end
-        else
-          puts "\nFAILURE: PropertyGroup: " + property_group.errors.first.to_s
-        end
-      end
     else
       puts "\nFAILURE: Product: " + product.errors.first.to_s
     end

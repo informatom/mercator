@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   fields do
     name_de        :string, :required
     name_en        :string
-    number         :string, :required, :unique
+    number         :string, :required #, :unique
     description_de :text, :required
     description_en :text
     legacy_id      :integer
@@ -21,8 +21,8 @@ class Product < ActiveRecord::Base
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
-    :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
-                 :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
+    :default_url => "/images/:style/missing.png"
 
   has_many :property_groups, dependent: :destroy, :accessible => true
   has_many :properties, dependent: :destroy, :through => :property_groups

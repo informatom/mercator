@@ -24,8 +24,8 @@ class Category < ActiveRecord::Base
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
-    :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
-                 :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
+    :default_url => "/images/:style/missing.png"
 
   validates :position, numericality: true
 
