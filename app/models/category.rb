@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
 
   fields do
     name_de  :string, :required
-    name_en  :string
+    name_en  :string, :tequired
     description_de :text
     description_en :text
     long_description_de :text
@@ -21,6 +21,11 @@ class Category < ActiveRecord::Base
   has_ancestry
   has_paper_trail
   never_show :ancestry
+
+  has_attached_file :document, :default_url => "/images/:style/missing.png"
+  has_attached_file :photo,
+    :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
+                 :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   validates :position, numericality: true
 

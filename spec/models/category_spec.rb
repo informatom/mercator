@@ -17,6 +17,13 @@ describe Category do
     should respond_to(:children)
   end
 
+  it "has a document attached" do
+    should respond_to(:document)
+  end
+  it "has a photo attached" do
+    should respond_to(:photo)
+  end
+
   it {should have_many(:products)}
   it {should have_many(:categorizations)}
 end
