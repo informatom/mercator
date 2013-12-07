@@ -13,8 +13,8 @@ test:
   host: localhost
   database: mercator_test
   pool: 5
-  username: mercator
-  password: humunculus
+  username: <%= CONFIG[:test_database_user] %>
+  password: <%= CONFIG[:test_database_password] %>
 
 production:
   adapter: postgresql
@@ -22,12 +22,12 @@ production:
   host: localhost
   database: mercator_production
   pool: 5
-  username: mercator
-  password: humunculus
+  username: <%= CONFIG[:production_database_user] %>
+  password: <%= CONFIG[:production_database_password] %>
 
 import_development:
   adapter: mysql2
   host: localhost
   database: ivellio_vellin_development
-  username: iv
-  password: iv123°§ℓ
+  username: <%= CONFIG[:legacy_database_user] %>
+  password: <%= CONFIG[:legacy_database_password] %>

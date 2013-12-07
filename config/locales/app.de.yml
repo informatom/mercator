@@ -41,6 +41,7 @@ de:
     name: Name
     order: Bestellung
     orders: Bestellungen
+    page: Webseite
     password_confirmation: Passwortbestätigung
     photo: Foto
     photo_file_name: Dateiname Foto
@@ -73,6 +74,10 @@ de:
     supplies: Zubehör
     title: Titel
     unit: Einheit
+    usage: Verwendung
+    usage_id: Element
+    used_as: Verwendet als
+    usage_type: Verwendungsart
     User: Benutzer
     updated_at: Aktualisiert
     valid_from: Gültig ab
@@ -113,6 +118,9 @@ de:
       page:
         one: Webseite
         other: Webseiten
+      page_element:
+        one: Element der Webseite
+        other: Elemente der Webseiten
       price:
         one: Preis
         other: Preise
@@ -141,6 +149,9 @@ de:
       address:
         name: Empfänger
         detail: Details
+      contentelement/markup_types:
+        html: HTML
+        markdown: Markdown
       inventory:
         number: Artikelnummer
         storage: Lagerort / Filiale
@@ -163,6 +174,8 @@ de:
         shipping_postalcode: Postleitzahl (Lieferung)
         shipping_city: Stadt (Lieferung)
         shipping_country: Land (Lieferung)
+      pageelement/usage_types:
+        ContentElement: Textbaustein
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
@@ -208,9 +221,6 @@ de:
       user:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
-  markups:
-    html: HTML
-    markdown: Markdown
   "Original version": Originalversion
   "Thumbnail version": Thumbnail Version
   "Small version": Kleine Version

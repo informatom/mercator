@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ContentElement do
   it "is valid with content_de, content_en, name_de, name_en, markup" do
-    expect(build(:address)).to be_valid
+    expect(build(:content_element)).to be_valid
   end
 
   it {should validate_presence_of :name_de}

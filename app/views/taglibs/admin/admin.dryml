@@ -1,14 +1,14 @@
-<extend tag="input"> 
+<extend tag="input">
   <old-input merge class="input-xlarge" rows="7" />
 </extend>
 
-<extend tag="select-one"> 
+<extend tag="select-one">
   <old-select-one merge >
     <select: class="span3" />
   </old-select-one>
 </extend>
 
-<extend tag="select-many"> 
+<extend tag="select-many">
   <old-select-many merge >
     <select: class="span3" />
   </old-select-many>
@@ -22,10 +22,32 @@
 
 <def tag="input" for="cktext" attribs="name, ckeditor">
   <%
-  editor_settings = attributes['ckeditor'] || HoboCkeditor.default_editor_settings
-  object_name, method_name = attributes['name'].to_object_name_and_method_name
+    editor_settings = attributes['ckeditor'] || HoboCkeditor.default_editor_settings
+    object_name, method_name = attributes['name'].to_object_name_and_method_name
   -%>
   <div class="cktextarea textarea">
     <%= cktext_area object_name, method_name, :ckeditor => editor_settings, :class => "ckeditor" %>
   </div>
+</def>
+
+<def tag="input" for="HoboFields::Types::EnumString" attrs="labels, titleize, first-option, first-value">
+  <%
+    labels ||= {}
+    labels = HashWithIndifferentAccess.new(labels)
+    titleize = true if titleize.nil?
+
+    # I18N: First we need to find the column name searching in the content_columns
+    for column in model.content_columns.*.name
+      if model.attr_type(column) == this_type
+        options = this_type.values.map {|v|
+          [I18n.t("activerecord.attributes.#{model.to_s.downcase}/#{column}s.#{v}",
+           :default => titleize ? v.titleize : v), v]}
+      end
+    end
+  %>
+  <select name="#{param_name_for_this}" merge-attrs>
+    <option value="#{first_value}" unless="&first_option.nil?"><first-option/></option>
+    <%= debugger %>
+    <%= options_for_select(options, this) %>
+  </select>
 </def>

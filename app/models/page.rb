@@ -7,11 +7,15 @@ class Page < ActiveRecord::Base
     title_en :string
     timestamps
   end
-  attr_accessible :title_de, :title_en
+  attr_accessible :title_de, :title_en, :page_elements, :content_elements
 
   translates :title
 
   has_paper_trail
+
+  has_many :page_elements, :accessible => true
+  has_many :content_elements, :through => :page_elements,
+           :source => :usage, :source_type => 'ContentElement'
 
   # --- Permissions --- #
 

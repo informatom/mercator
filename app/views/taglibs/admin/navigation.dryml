@@ -76,6 +76,9 @@
         <nav-item with="&Page">
           <ht key="page.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&PageElement">
+          <ht key="page_element.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
         <nav-item with="&ContentElement">
           <ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>

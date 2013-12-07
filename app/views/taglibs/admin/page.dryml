@@ -1,0 +1,9 @@
+<def tag="form" for="PageElement">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="page, used_as, usage_type, usage_id" param/>
+    <div param="actions">
+      <submit label="#{ht 'page_element.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>

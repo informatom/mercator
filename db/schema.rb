@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207083241) do
+ActiveRecord::Schema.define(:version => 20131207090917) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -172,6 +172,18 @@ ActiveRecord::Schema.define(:version => 20131207083241) do
 
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "page_elements", :force => true do |t|
+    t.string   "used_as"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "page_id"
+    t.integer  "usage_id"
+    t.string   "usage_type"
+  end
+
+  add_index "page_elements", ["page_id"], :name => "index_page_elements_on_page_id"
+  add_index "page_elements", ["usage_type", "usage_id"], :name => "index_page_elements_on_usage_type_and_usage_id"
 
   create_table "pages", :force => true do |t|
     t.string   "title_de"

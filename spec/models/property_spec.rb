@@ -31,4 +31,7 @@ describe Property do
   it "is versioned" do
     should respond_to(:versions)
   end
+
+  it {should validate_presence_of(:property_group)}
+
 end

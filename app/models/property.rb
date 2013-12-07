@@ -25,6 +25,7 @@ class Property < ActiveRecord::Base
   validates :value, numericality: true, allow_nil: true
 
   belongs_to :property_group
+  validates :property_group, :presence => true
 
   validate :textual_or_numerical
 
