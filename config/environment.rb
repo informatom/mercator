@@ -5,6 +5,6 @@ require File.expand_path('../application', __FILE__)
 Mercator::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :domain => "mercator.informatom.com",
+  :domain => CONFIG[:smtp_domain],
   :enable_starttls_auto => false
 }
