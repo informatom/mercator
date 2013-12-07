@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   fields do
     name_de        :string, :required
     name_en        :string
-    number         :string, :required #, :unique
+    number         :string, :required, :unique
     description_de :text, :required
     description_en :text
     legacy_id      :integer

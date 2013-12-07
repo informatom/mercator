@@ -3,7 +3,7 @@ class Property < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string#, :required
+    name_de        :string, :required
     name_en        :string
     description_de :string
     description_en :string
@@ -28,7 +28,7 @@ class Property < ActiveRecord::Base
 
   validate :textual_or_numerical
 
-#  validates :name_de, :presence => true, :uniqueness => {:scope => :property_group_id}
+  validates :name_de, :presence => true, :uniqueness => {:scope => :property_group_id}
 
   def textual_or_numerical
     unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||

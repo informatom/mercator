@@ -71,6 +71,7 @@ de:
     street: Straße
     supply: Zubehör
     supplies: Zubehör
+    title: Titel
     unit: Einheit
     User: Benutzer
     updated_at: Aktualisiert
@@ -109,6 +110,9 @@ de:
       order:
         one: Bestellung
         other: Bestellungen
+      page:
+        one: Webseite
+        other: Webseiten
       price:
         one: Preis
         other: Preise

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131206133031) do
+ActiveRecord::Schema.define(:version => 20131207083241) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -172,6 +172,13 @@ ActiveRecord::Schema.define(:version => 20131206133031) do
 
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "title_de"
+    t.string   "title_en"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prices", :force => true do |t|
     t.decimal  "value"

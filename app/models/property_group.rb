@@ -3,7 +3,7 @@ class PropertyGroup < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string #, required
+    name_de  :string, :required
     name_en  :string
     position :integer, :required
     timestamps
