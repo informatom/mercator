@@ -17,14 +17,18 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 $(document).ready(function() {
-  $(document).on('blur', CKEDITOR.instances, function(instance) {
-    CKEDITOR.instances[instance].updateElement();
-    var $formlet = $(this.element.$.parentElement.parentElement);
-    $formlet.prev('.in-place-edit').text('saving...');
-    $formlet.hjq_formlet('submit');
-    var $span = $formlet.siblings('.in-place-edit')
-    var annotations = $span.data('rapid')['click-editor'];
-    $formlet.hjq('hide', annotations.hide);
-    $span.hjq('show', annotations.show);
+  $(document).on('click', function(event){
+    $.each( CKEDITOR.instances, function(instance) {
+      CKEDITOR.instances[instance].on("blur", function() {
+         CKEDITOR.instances[instance].updateElement();
+         var $formlet = $(this.element.$.parentElement.parentElement);
+         $formlet.prev('.in-place-edit').text('saving...');
+         $formlet.hjq_formlet('submit');
+         var $span = $formlet.siblings('.in-place-edit')
+         var annotations = $span.data('rapid')['click-editor'];
+         $formlet.hjq('hide', annotations.hide);
+         $span.hjq('show', annotations.show);
+      });
+    });
   });
 });

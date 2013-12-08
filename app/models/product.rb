@@ -12,8 +12,7 @@ class Product < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
-                  :photo, :document, :categorizations, :categories, :category,
-                  :related_products, :productrelations, :supplies, :supplyrelations,
+                  :photo, :document, :related_products, :productrelations, :supplies, :supplyrelations,
                   :inventories, :recommended_products, :legacy_id
   translates :name, :description
   has_paper_trail
@@ -42,6 +41,10 @@ class Product < ActiveRecord::Base
 
   children :inventories, :properties, :categories, :related_products, :supplies,
            :recommended_products
+
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
 
   lifecycle do
     state :new, :default => true

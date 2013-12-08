@@ -1,7 +1,7 @@
 <extend tag="select-many">
   <old-select-many merge>
     <select: replace>
-      <name-one value="" complete-target="&this_field_reflection.klass.new()" completer="name_de_admin"/>
+      <name-one: value="" complete-target="&this_field_reflection.klass.new()" completer="name_admin"/>
     </select:>
   </old-select-many>
 </extend>

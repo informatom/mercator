@@ -32,6 +32,10 @@ class Category < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy, :order => :position
   has_many :products, :through => :categorizations, :accessible => true, :inverse_of => :categories
 
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
+
   lifecycle do
     state :new, :default => true
     state :active, :deprecated
@@ -58,5 +62,4 @@ class Category < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
-
 end

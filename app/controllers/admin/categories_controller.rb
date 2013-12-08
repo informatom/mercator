@@ -5,7 +5,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
   hobo_model_controller
   auto_actions :all
 
-  autocomplete :name_de
+  autocomplete :name, :query_scope => [:name_de_contains]
 
   index_action :treereorder do
     @this = Category.roots.paginate(:page => 1, :per_page => 999)
