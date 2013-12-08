@@ -1,9 +1,18 @@
+<extend tag="select-many">
+  <old-select-many merge>
+    <select: replace>
+      <name-one value="" complete-target="&this_field_reflection.klass.new()" completer="name_de_admin"/>
+    </select:>
+  </old-select-many>
+</extend>
+
 <extend tag="form" for="Product">
   <old-form merge multipart>
-    <field-list: fields="name_de, name_en, number, description_de, description_en, categories, property_groups, related_products, 
-    supplies, document, photo"/>
+    <field-list: fields="name_de, name_en, number, description_de, description_en, categories,
+                         property_groups, recommended_products, related_products, supplies, document, photo" param />
   </old-form>
 </extend>
+
 
 <extend tag="show-page" for="Product">
   <old-show-page merge>

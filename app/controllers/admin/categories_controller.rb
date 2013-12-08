@@ -3,8 +3,9 @@ require 'will_paginate/array'
 class Admin::CategoriesController < Admin::AdminSiteController
 
   hobo_model_controller
-
   auto_actions :all
+
+  autocomplete :name_de
 
   index_action :treereorder do
     @this = Category.roots.paginate(:page => 1, :per_page => 999)

@@ -2,18 +2,6 @@
   <old-input merge class="input-xlarge" rows="7" />
 </extend>
 
-<extend tag="select-one">
-  <old-select-one merge >
-    <select: class="span3" />
-  </old-select-one>
-</extend>
-
-<extend tag="select-many">
-  <old-select-many merge >
-    <select: class="span3" />
-  </old-select-many>
-</extend>
-
 <extend tag="show-page">
   <old-show-page merge>
    <field-list: tag="click-editor" />
@@ -47,7 +35,6 @@
   %>
   <select name="#{param_name_for_this}" merge-attrs>
     <option value="#{first_value}" unless="&first_option.nil?"><first-option/></option>
-    <%= debugger %>
     <%= options_for_select(options, this) %>
   </select>
 </def>
