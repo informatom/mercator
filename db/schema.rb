@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207090917) do
+ActiveRecord::Schema.define(:version => 20131209135024) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -302,9 +302,12 @@ ActiveRecord::Schema.define(:version => 20131207090917) do
     t.string   "state",                                   :default => "inactive"
     t.datetime "key_timestamp"
     t.integer  "legacy_id"
+    t.string   "type"
+    t.boolean  "sales",                                   :default => false
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"
+  add_index "users", ["type"], :name => "index_users_on_type"
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false

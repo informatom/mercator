@@ -1,0 +1,10 @@
+<!-- Tag definitions for the contracting subsite -->
+
+<include src="common"/>
+
+<include src="taglibs/auto/contracting/rapid/cards"/>
+<include src="taglibs/auto/contracting/rapid/pages"/>
+<include src="taglibs/auto/contracting/rapid/forms"/>
+
+<include src="application"/>
+<include src="contracting/*"/>

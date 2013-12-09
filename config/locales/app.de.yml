@@ -106,6 +106,9 @@ de:
       country:
         one: Land
         other: Länder
+      customer:
+        one: Kunde
+        other: Kunden
       inventory:
         one: Bestand
         other: Bestände

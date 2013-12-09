@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
     name          :string, :required, :unique
     email_address :email_address, :required, :unique, :login => true
     administrator :boolean, :default => false
+    sales         :boolean, :default => false
     legacy_id     :integer
     timestamps
   end

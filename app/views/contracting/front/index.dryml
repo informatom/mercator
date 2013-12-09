@@ -1,12 +1,12 @@
-<page title="Administration">
+<page title="Contracting">
 
   <body: class="front-page"/>
 
   <content:>
     <header class="content-header hero-unit">
-      <h1>Mercator Administration</h1>
+      <h1>Mercator Contracting</h1>
       <section class="welcome-message">
-        <h3>Die Administrationsseite zum Mercator Guided selling System</h3>
+        <h3>Die Seite zur Verwaltung der Verträge im Mercator Guided selling System</h3>
         <ul>
           <li>Verwenden Sie die Links im Menü zur Navigation</li>
         </ul>

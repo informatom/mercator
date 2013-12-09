@@ -17,6 +17,8 @@ end
 
 module Mercator
   class Application < Rails::Application
+    # Hobo: the contracting subsite loads contracting.css & contracting.js
+    config.assets.precompile += %w(contracting.css contracting.js)
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js)
 

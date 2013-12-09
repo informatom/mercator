@@ -1,5 +1,7 @@
 Mercator::Application.routes.draw do
   match 'admin' => 'admin/front#index', :as => 'admin_front'
+  match 'contracting' => 'contracting/front#index', :as => 'contracting_front'
+
   match 'search' => 'admin/front#search', :as => 'site_search'
 
   mount Ckeditor::Engine => '/ckeditor'

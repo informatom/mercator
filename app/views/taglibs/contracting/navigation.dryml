@@ -1,0 +1,11 @@
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Frontend</nav-item>
+    <nav-item href="#{base_url}/admin/">Admin</nav-item>
+    <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
+
+    <nav-item with="&Customer">
+      <ht key="customer.nav_item" count="100"><model-name-human count="100"/></ht>
+    </nav-item>
+  </navigation>
+</def>
