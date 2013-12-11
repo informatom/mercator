@@ -18,7 +18,7 @@
   </div>
 </def>
 
-<!-- def tag="input" for="HoboFields::Types::EnumString" attrs="labels, titleize, first-option, first-value">
+<def tag="input" for="HoboFields::Types::EnumString" attrs="labels, titleize, first-option, first-value">
   <%
     labels ||= {}
     labels = HashWithIndifferentAccess.new(labels)
@@ -37,4 +37,4 @@
     <option value="#{first_value}" unless="&first_option.nil?"><first-option/></option>
     <%= options_for_select(options, this) %>
   </select>
-</def> -->
+</def>

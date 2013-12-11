@@ -154,7 +154,7 @@ de:
         detail: Details
       contentelement/markup_types:
         html: HTML
-        markdown: Markdown
+        markdown: "Markdown 123"
       inventory:
         number: Artikelnummer
         storage: Lagerort / Filiale

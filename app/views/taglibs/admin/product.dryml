@@ -1,7 +1,7 @@
-<extend tag="select-many">
+<extend tag="select-many" attrs="options, remove-label, add-label, prompt, disabled, name">
   <old-select-many merge>
     <select: replace>
-      <name-one: value="" complete-target="&this_field_reflection.klass.new()" completer="name_admin"/>
+      <select-many: value="" complete-target="&this_field_reflection.klass.new()" completer="name_admin"/>
     </select:>
   </old-select-many>
 </extend>
