@@ -1,13 +1,10 @@
-mercator
-========
+# Welcome to Mercator
 
 The Austrian Guided Selling Solution based on Hobo on Ruby on Rails
 
-== Welcome to Mercator
-
 Mercator is a guided selling web application written using the Hobo web application framework.
 
-== Dependencies
+## Dependencies
 
 First of: There are lots of dependencies as we aim to write as little code as possible
 
@@ -20,7 +17,7 @@ First of: There are lots of dependencies as we aim to write as little code as po
 FIXME! Links, all below me
 FIXME! What is guided selling
 
-== Getting Started
+## Getting Started
 
 For ad development scenario or for testing out the applacation a somewhat slower but still
 reasonably fast development instace can be fired up pretty fast
