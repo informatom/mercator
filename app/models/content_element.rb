@@ -1,12 +1,12 @@
 class ContentElement < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
-  Markup = HoboFields::Types::EnumString.for("html", "markdown")
+  MarkupType = HoboFields::Types::EnumString.for("html", "markdown")
 
   fields do
     name_de    :string, :required, :unique
     name_en    :string
-    markup     ContentElement::Markup
+    markup     ContentElement::MarkupType
     content_de :cktext, :required
     content_en :cktext
     timestamps

@@ -152,9 +152,9 @@ de:
       address:
         name: Empfänger
         detail: Details
-      contentelement/markup_types:
-        html: HTML
-        markdown: "Markdown 123"
+      contentelement/markups:
+        html: "HTML-Seite"
+        markdown: "Markdown Seite"
       inventory:
         number: Artikelnummer
         storage: Lagerort / Filiale
@@ -178,7 +178,7 @@ de:
         shipping_city: Stadt (Lieferung)
         shipping_country: Land (Lieferung)
       pageelement/usage_types:
-        ContentElement: Textbaustein
+        ContentElement: Textbausteine
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
