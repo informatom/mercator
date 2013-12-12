@@ -18,7 +18,7 @@
           <field-list fields="related_product" size="5">
             <related-product-label: replace/>
             <related-product-view:>
-              <name-one complete-target="&@related_product" completer="name_admin" />
+              <name-one complete-target="&@related_product" completer="name_admin" autocomplete="off" />
             </related-product-view:>
           </field-list>
         </input-many>
@@ -29,7 +29,7 @@
           <field-list fields="recommended_product" size="5">
             <recommended-product-label: replace/>
             <recommended-product-view:>
-              <name-one complete-target="&@recommended_product" completer="name_admin" />
+              <name-one complete-target="&@recommended_product" completer="name_admin" autocomplete="off"/>
                <input with="&this_parent" field="reason_de" class="span2"/>
             </recommended-product-view:>
           </field-list>
@@ -41,7 +41,7 @@
           <field-list fields="supply" size="5">
             <supply-label: replace/>
             <supply-view:>
-              <name-one complete-target="&@supplied_product" completer="name_admin" />
+              <name-one complete-target="&@supplied_product" completer="name_admin" autocomplete="off"/>
             </supply-view:>
           </field-list>
         </input-many>
