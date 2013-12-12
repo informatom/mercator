@@ -176,7 +176,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    pg (0.17.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -294,7 +293,6 @@ DEPENDENCIES
   mysql2
   paper_trail
   paperclip
-  pg (~> 0.17.0)
   quiet_assets
   rails (= 3.2.16)
   require_all

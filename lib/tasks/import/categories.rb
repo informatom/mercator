@@ -19,8 +19,12 @@ def import_categories
                                  position:  legacy_category.position,
                                  parent: ( parent if parent ) ,
                                  legacy_id: legacy_category.id)
-      category.activate if legacy_category.active == "1"
-      print "C"
+      category.state = "active" if legacy_category.active == true
+      if category.save
+        print "C"
+      else
+        puts "\nFAILURE: Category " + category.errors.first.to_s
+      end
     else
       puts "\nFAILURE: Category " + category.errors.first.to_s
     end

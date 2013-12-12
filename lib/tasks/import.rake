@@ -10,12 +10,12 @@ namespace :import do
   task :legacy => :environment do
 
   require_rel "import"
-# import_users()
-# import_countries()
-# import_categories()
-# import_products()
-# import_properties()
-# import_categorizations()
+#  import_users()
+#  import_countries()
+#  import_categories()
+#  import_products()
+  import_properties()
+  import_categorizations()
   import_product_images()
   puts
   end

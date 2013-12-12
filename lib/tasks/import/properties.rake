@@ -22,13 +22,14 @@ def import_properties
                                           position: 1)
         print "G"
 
-        if property = Property.create(name_de: legacy_property_de.name,
-                                      property_group_id: property_group.id,
-                                      name_en: legacy_property_en.name,
-                                      description_de: legacy_property.presentation_value,
-                                      description_en: legacy_property.presentation_value,
-                                      position: 1,
-                                      legacy_id: legacy_property.id)
+        property = Property.create(name_de: legacy_property_de.name,
+                                   property_group_id: property_group.id,
+                                   name_en: legacy_property_en.name,
+                                   description_de: legacy_property.presentation_value,
+                                   description_en: legacy_property.presentation_value,
+                                   position: 1,
+                                   legacy_id: legacy_property.id)
+        if property.save
           print "p"
         else
           puts "\nFAILURE: Property: " + property.errors.first.to_s

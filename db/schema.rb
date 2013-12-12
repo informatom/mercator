@@ -111,11 +111,11 @@ ActiveRecord::Schema.define(:version => 20131209135024) do
     t.string   "name_de"
     t.string   "name_en"
     t.string   "number"
-    t.decimal  "amount"
+    t.decimal  "amount",             :precision => 10, :scale => 0
     t.string   "unit"
     t.string   "comment_de"
     t.string   "comment_en"
-    t.decimal  "weight"
+    t.decimal  "weight",             :precision => 10, :scale => 0
     t.string   "charge"
     t.string   "storage"
     t.datetime "created_at"
@@ -131,9 +131,9 @@ ActiveRecord::Schema.define(:version => 20131209135024) do
 
   create_table "lineitems", :force => true do |t|
     t.string   "product_number"
-    t.decimal  "amount"
+    t.decimal  "amount",         :precision => 10, :scale => 0
     t.decimal  "product_price",  :precision => 10, :scale => 2
-    t.decimal  "vat"
+    t.decimal  "vat",            :precision => 10, :scale => 0
     t.decimal  "value",          :precision => 10, :scale => 2
     t.integer  "position"
     t.string   "description_de"
@@ -193,12 +193,12 @@ ActiveRecord::Schema.define(:version => 20131209135024) do
   end
 
   create_table "prices", :force => true do |t|
-    t.decimal  "value"
-    t.decimal  "vat"
+    t.decimal  "value",        :precision => 10, :scale => 0
+    t.decimal  "vat",          :precision => 10, :scale => 0
     t.date     "valid_from"
     t.date     "valid_to"
-    t.decimal  "scale_from"
-    t.decimal  "scale_to"
+    t.decimal  "scale_from",   :precision => 10, :scale => 0
+    t.decimal  "scale_to",     :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "inventory_id"
@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(:version => 20131209135024) do
   create_table "properties", :force => true do |t|
     t.string   "name_de"
     t.string   "name_en"
-    t.decimal  "value"
+    t.decimal  "value",             :precision => 10, :scale => 0
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"

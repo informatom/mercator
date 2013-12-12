@@ -33,12 +33,13 @@ def import_products
       description_en = "missing"
     end
 
-    if product = Product.create(number: legacy_product.article_number,
-                      name_de: name_de,
-                      name_en: name_en,
-                      description_de: description_de,
-                      description_en: description_en,
-                      legacy_id: legacy_product.id)
+    product = Product.create(number: legacy_product.article_number,
+                             name_de: name_de,
+                             name_en: name_en,
+                             description_de: description_de,
+                             description_en: description_en,
+                             legacy_id: legacy_product.id)
+    if product.save
       print "P"
     else
       puts "\nFAILURE: Product: " + product.errors.first.to_s

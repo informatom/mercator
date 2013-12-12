@@ -1,6 +1,6 @@
 development:
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: utf8
   host: localhost
   database: mercator_development
   pool: 5
@@ -8,8 +8,8 @@ development:
   password: <%= CONFIG[:development_database_password] %>
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: utf8
   host: localhost
   database: mercator_test
   pool: 5
@@ -17,8 +17,8 @@ test:
   password: <%= CONFIG[:test_database_password] %>
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: utf8
   host: localhost
   database: mercator_production
   pool: 5
