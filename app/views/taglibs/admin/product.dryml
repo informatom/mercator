@@ -1,3 +1,4 @@
+<!--
 <extend tag="select-many" attrs="options, remove-label, add-label, prompt, disabled, name">
   <old-select-many merge>
     <select: replace>
@@ -5,11 +6,47 @@
     </select:>
   </old-select-many>
 </extend>
+-->
 
 <extend tag="form" for="Product">
   <old-form merge multipart>
     <field-list: fields="name_de, name_en, number, description_de, description_en, categories,
-                         property_groups, recommended_products, related_products, supplies, document, photo" param />
+                         property_groups, recommendations, productrelations, supplyrelations,
+                         document, photo" param>
+      <productrelations-view:>
+        <input-many>
+          <field-list fields="related_product" size="5">
+            <related-product-label: replace/>
+            <related-product-view:>
+              <name-one complete-target="&@related_product" completer="name_admin" />
+            </related-product-view:>
+          </field-list>
+        </input-many>
+      </productrelations-view:>
+
+      <recommendations-view:>
+        <input-many>
+          <field-list fields="recommended_product" size="5">
+            <recommended-product-label: replace/>
+            <recommended-product-view:>
+              <name-one complete-target="&@recommended_product" completer="name_admin" />
+               <input with="&this_parent" field="reason_de" class="span2"/>
+            </recommended-product-view:>
+          </field-list>
+        </input-many>
+      </recommendations-view:>
+
+      <supplyrelations-view:>
+        <input-many>
+          <field-list fields="supply" size="5">
+            <supply-label: replace/>
+            <supply-view:>
+              <name-one complete-target="&@supplied_product" completer="name_admin" />
+            </supply-view:>
+          </field-list>
+        </input-many>
+      </supplyrelations-view:>
+    </field-list:>
   </old-form>
 </extend>
 

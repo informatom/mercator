@@ -12,8 +12,8 @@ class Product < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
-                  :photo, :document, :related_products, :productrelations, :supplies, :supplyrelations,
-                  :inventories, :recommended_products, :legacy_id
+                  :photo, :document, :productrelations, :supplyrelations,
+                  :inventories, :recommendations, :legacy_id
   translates :name, :description
   has_paper_trail
 
@@ -28,14 +28,14 @@ class Product < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy, :inverse_of => :product
   has_many :categories, :through => :categorizations, :accessible => true, :inverse_of => :products
 
-  has_many :related_products, :through => :productrelations, :accessible => true
-  has_many :productrelations, :inverse_of => :product, dependent: :destroy
+  has_many :related_products, :through => :productrelations
+  has_many :productrelations, :inverse_of => :product, dependent: :destroy, :accessible => true
 
-  has_many :recommended_products, :through => :recommendations, :accessible => true
-  has_many :recommendations, :inverse_of => :product, dependent: :destroy
+  has_many :recommended_products, :through => :recommendations
+  has_many :recommendations, :inverse_of => :product, dependent: :destroy, :accessible => true
 
-  has_many :supplies, :through => :supplyrelations, :accessible => true
-  has_many :supplyrelations, :inverse_of => :product, dependent: :destroy
+  has_many :supplies, :through => :supplyrelations
+  has_many :supplyrelations, :inverse_of => :product, dependent: :destroy, :accessible => true
 
   has_many :inventories, dependent: :restrict, :inverse_of => :product
 

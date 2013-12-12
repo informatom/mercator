@@ -1,24 +1,27 @@
 def import_properties
-  puts "\n\nProperty Groups and Properties:"
-  Property.all.each do |property|
-    property.delete
-  end
-  print "Properties deleted."
-  PropertyGroup.all.each do |property_group|
-    property_group.delete
-  end
-  print "Property Groups deleted."
+#  puts "\n\nProperty Groups and Properties:"
+#  Property.all.each do |property|
+#    property.delete
+#  end
+#  print "Properties deleted."
+#  PropertyGroup.all.each do |property_group|
+#    property_group.delete
+#  end
+#  print "Property Groups deleted."
 
   Legacy::Product.all.each do |legacy_product|
     product = Product.find_by_legacy_id(legacy_product.id)
-    debugger unless product
     legacy_product.properties.each do |legacy_property|
+      # next if legacy_property.id < 21050
       legacy_property_de = legacy_property.property_translations.german.first
       legacy_property_en = legacy_property.property_translations.english.first
 
-      property_group = PropertyGroup.find_or_initialize_by_name_de_and_product_id(legacy_property_de.group,
-                                                                                  product.id)
-      if property_group.update_attributes(name_en: legacy_property_en.group,
+      property_group =
+        PropertyGroup.find_or_initialize_by_name_de_and_product_id(
+          legacy_property_de.group.presence || legacy_property_de.name,
+                                                                   product.id)
+      if property_group.update_attributes(name_en: legacy_property_en.group.presence ||
+                                                   legacy_property_en.name,
                                           position: 1)
         print "G"
 

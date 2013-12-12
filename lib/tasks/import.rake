@@ -14,8 +14,8 @@ namespace :import do
 #  import_countries()
 #  import_categories()
 #  import_products()
-  import_properties()
-  import_categorizations()
+#  import_properties()
+#  import_categorizations()
   import_product_images()
   puts
   end
