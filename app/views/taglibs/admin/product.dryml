@@ -1,13 +1,3 @@
-<!--
-<extend tag="select-many" attrs="options, remove-label, add-label, prompt, disabled, name">
-  <old-select-many merge>
-    <select: replace>
-      <select-many: value="" complete-target="&this_field_reflection.klass.new()" completer="name_admin"/>
-    </select:>
-  </old-select-many>
-</extend>
--->
-
 <extend tag="form" for="Product">
   <old-form merge multipart>
     <field-list: fields="name_de, name_en, number, description_de, description_en, categories,
