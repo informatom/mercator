@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'                               # Web applitation framework
-# gem 'pg', '~> 0.17.0'                               # Postgres data base
+gem 'rails', '4.0.2'                                # Web applitation framework
+# gem 'pg', '~> 0.17.0'                             # Postgres data base
 gem 'mysql2'                                        # MYSQL Database Adapter
-gem 'jquery-rails', '~> 2.3.0'                      # JQuery asset handling
+gem 'jquery-rails'                                  # JQuery asset handling
 
-gem "hobo", "= 2.0.1"                               # web application meta framework
-gem "will_paginate", :git => "git://github.com/Hobo/will_paginate.git"
-                                                    # pagination support
-gem "hobo_bootstrap", "2.0.1"                       # Twitter Bootstrap asset handling
-gem "hobo_jquery_ui", "2.0.1"                       # JQuery UI asser handling
-gem "hobo_bootstrap_ui", "2.0.1"                    # additional Bootstrap features
+gem "hobo", "= 2.1.0.pre1"                          # web application meta framework
+gem "protected_attributes"
+gem "hobo_will_paginate"                            # pagination support
+gem "hobo_bootstrap", "2.1.0.pre1"                  # Twitter Bootstrap asset handling
+gem "hobo_jquery_ui", "2.1.0.pre1"                  # JQuery UI asser handling
+gem "hobo_bootstrap_ui", "2.1.0.pre1"               # additional Bootstrap features
 gem "jquery-ui-themes", "~> 0.0.4"                  # JQury Ui theming
 gem "paperclip"                                     # attachment handling
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
@@ -22,13 +22,15 @@ gem "ancestry"                                      # hierarchical data structur
 gem "acts_as_list"                                  # list structures
 gem "messengerjs-rails"                             # Messenger Javascript Framework assets
 gem 'traco'                                         # model attribute translations
+gem 'turbolinks'
+gem 'jbuilder', '~> 1.2'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'                    # Sass support
+  gem 'sass-rails', '~> 4.0.0'                      # Sass support
   gem "less-rails"                                  # Less support
-  gem 'coffee-rails', '~> 3.2.1'                    # Coffeescript support
-  gem 'therubyracer'                                # Javascript engine
-  gem 'uglifier', '>= 1.0.3'                        # Code minimizer
+  gem 'coffee-rails', '~> 4.0.0'                    # Coffeescript support
+  gem 'therubyracer', :platforms => :ruby           # Javascript engine
+  gem 'uglifier', '>= 1.3.0'                        # Code minimizer
   gem 'turbo-sprockets-rails3'                      # Only compile assets that have changed
 end
 

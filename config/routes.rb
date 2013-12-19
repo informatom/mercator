@@ -1,8 +1,6 @@
 Mercator::Application.routes.draw do
-  match 'admin' => 'admin/front#index', :as => 'admin_front'
-  match 'contracting' => 'contracting/front#index', :as => 'contracting_front'
-
-  match 'search' => 'admin/front#search', :as => 'site_search'
+  get 'admin' => 'admin/front#index', :as => 'admin_front'
+  get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
 
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -10,11 +8,12 @@ Mercator::Application.routes.draw do
 
   root :to => 'front#index'
 
-  match 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
-  match 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
-  match 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
+  get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
+  get 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
+  get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
 
-  match 'search' => 'front#search', :as => 'site_search'
+  post 'search' => 'front#search', :as => 'site_search_post'
+  get 'search' => 'front#search', :as => 'site_search'
 
   post 'categories/sort' => 'categories#sort'
 end
