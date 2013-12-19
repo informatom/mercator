@@ -8,6 +8,14 @@ GIT
       paperclip
 
 GIT
+  remote: git://github.com/airblade/paper_trail.git
+  revision: c4e188c27040888515866660bac94740b92a262b
+  specs:
+    paper_trail (3.0.0)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
+
+GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: 077827e013901f315a6a1ca9cc7ac2af05acc099
   specs:
@@ -163,9 +171,6 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
-    paper_trail (3.0.0)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -291,7 +296,7 @@ DEPENDENCIES
   less-rails
   messengerjs-rails
   mysql2
-  paper_trail (~> 3.0.0)
+  paper_trail!
   paperclip
   protected_attributes
   quiet_assets
