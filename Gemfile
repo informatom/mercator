@@ -17,7 +17,7 @@ gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branc
                                                     # Paperclip Hobo integration
 gem "ckeditor", :git => "git://github.com/galetahub/ckeditor.git"
 gem "hobo_ckeditor"                                 # CKEditor integration
-gem "paper_trail"                                   # historization on object level
+gem "paper_trail", github: 'airblade/paper_trail'                       # historization on object level
 gem "ancestry"                                      # hierarchical data structures
 gem "acts_as_list"                                  # list structures
 gem "messengerjs-rails"                             # Messenger Javascript Framework assets
@@ -25,14 +25,12 @@ gem 'traco'                                         # model attribute translatio
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
-group :assets do
-  gem 'sass-rails', '~> 4.0.0'                      # Sass support
-  gem "less-rails"                                  # Less support
-  gem 'coffee-rails', '~> 4.0.0'                    # Coffeescript support
-  gem 'therubyracer', :platforms => :ruby           # Javascript engine
-  gem 'uglifier', '>= 1.3.0'                        # Code minimizer
-  gem 'turbo-sprockets-rails3'                      # Only compile assets that have changed
-end
+gem 'sass-rails', '~> 4.0.0'                      # Sass support
+gem "less-rails"                                  # Less support
+gem 'coffee-rails', '~> 4.0.0'                    # Coffeescript support
+gem 'therubyracer', :platforms => :ruby           # Javascript engine
+gem 'uglifier', '>= 1.3.0'                        # Code minimizer
+gem 'turbo-sprockets-rails3'                      # Only compile assets that have changed
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick

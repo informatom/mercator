@@ -291,7 +291,7 @@ DEPENDENCIES
   less-rails
   messengerjs-rails
   mysql2
-  paper_trail
+  paper_trail (~> 3.0.0)
   paperclip
   protected_attributes
   quiet_assets
