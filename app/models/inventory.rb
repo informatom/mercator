@@ -6,11 +6,11 @@ class Inventory < ActiveRecord::Base
     name_de    :string, :required
     name_en    :string
     number     :string, :required, :unique
-    amount     :decimal, :required
+    amount     :decimal, :required, :precision => 10, :scale => 2
     unit       :string, :required
     comment_de :string
     comment_en :string
-    weight     :decimal
+    weight     :decimal, :precision => 10, :scale => 2
     charge     :string
     storage    :string
     timestamps

@@ -1,0 +1,22 @@
+<def tag="upload-page" polymorphic/>
+
+<def tag="upload-page" for="Toner">
+  <page merge title="#{ht 'toner.upload', :default=>[' Upload Tonerfile'] }">
+    <body: class="upload-page toner" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="toner.upload">
+          Upload Tonerfile
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form multipart>
+        <input type="file" name="xls"/>
+        <submit action="do_upload" label="#{ht 'toner.actions.do_upload', :default=>['Upload']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>

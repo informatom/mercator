@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   end
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator, :legacy_id
+                  :current_password, :administrator, :legacy_id, :sales
   has_paper_trail
 
   has_many :addresses, dependent: :destroy

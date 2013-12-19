@@ -7,7 +7,7 @@ class Property < ActiveRecord::Base
     name_en        :string
     description_de :string
     description_en :string
-    value          :decimal
+    value          :decimal, :precision => 10, :scale => 2
     unit_de        :string
     unit_en        :string
 

@@ -3,12 +3,12 @@ class Price < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    value      :decimal, :required
-    vat        :decimal, :required
+    value      :decimal, :required, :precision => 10, :scale => 2
+    vat        :decimal, :required, :precision => 10, :scale => 2
     valid_from :date
     valid_to   :date
-    scale_from :decimal
-    scale_to   :decimal
+    scale_from :decimal, :precision => 10, :scale => 2
+    scale_to   :decimal, :precision => 10, :scale => 2
     timestamps
   end
   attr_accessible :vat, :value, :valid_from, :valid_to, :scale_from,
