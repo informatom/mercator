@@ -1,4 +1,30 @@
 GIT
+  remote: git://github.com/Hobo/hobo.git
+  revision: f025a9fb0cbbff18796af99f30694ccff1a883e0
+  specs:
+    dryml (2.1.0.pre2)
+      actionpack (~> 4.0.2)
+      hobo_support (= 2.1.0.pre2)
+    hobo (2.1.0.pre2)
+      dryml (= 2.1.0.pre2)
+      hobo_fields (= 2.1.0.pre2)
+      hobo_support (= 2.1.0.pre2)
+      hobo_will_paginate
+    hobo_fields (2.1.0.pre2)
+      hobo_support (= 2.1.0.pre2)
+    hobo_jquery (2.1.0.pre2)
+      hobo_rapid (= 2.1.0.pre2)
+      jquery-rails (~> 2.0)
+    hobo_jquery_ui (2.1.0.pre2)
+      hobo (= 2.1.0.pre2)
+      hobo_jquery (= 2.1.0.pre2)
+      jquery-ui-themes (~> 0.0.4)
+    hobo_rapid (2.1.0.pre2)
+      hobo (= 2.1.0.pre2)
+    hobo_support (2.1.0.pre2)
+      rails (~> 4.0.2)
+
+GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
   revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
@@ -6,14 +32,6 @@ GIT
     hobo_paperclip (0.0.4)
       hobo
       paperclip
-
-GIT
-  remote: git://github.com/airblade/paper_trail.git
-  revision: c4e188c27040888515866660bac94740b92a262b
-  specs:
-    paper_trail (3.0.0)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
 
 GIT
   remote: git://github.com/galetahub/ckeditor.git
@@ -92,9 +110,6 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.4)
     diff-lcs (1.2.5)
-    dryml (2.1.0.pre1)
-      actionpack (~> 4.0.2)
-      hobo_support (= 2.1.0.pre1)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
@@ -107,35 +122,17 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.3)
     hike (1.2.3)
-    hobo (2.1.0.pre1)
-      dryml (= 2.1.0.pre1)
-      hobo_fields (= 2.1.0.pre1)
-      hobo_support (= 2.1.0.pre1)
-      hobo_will_paginate
-    hobo_bootstrap (2.1.0.pre1)
+    hobo_bootstrap (2.1.0.pre2)
       bootstrap-sass (~> 2.1)
       hobo_jquery (>= 2.0)
       will_paginate-bootstrap (~> 0.2.1)
-    hobo_bootstrap_ui (2.1.0.pre1)
+    hobo_bootstrap_ui (2.1.0.pre2)
       bootstrap-datepicker-rails
       hobo_bootstrap (>= 2.0)
     hobo_ckeditor (0.0.13)
       ckeditor
       hobo (>= 2.0.0)
       rails
-    hobo_fields (2.1.0.pre1)
-      hobo_support (= 2.1.0.pre1)
-    hobo_jquery (2.1.0.pre1)
-      hobo_rapid (= 2.1.0.pre1)
-      jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.1.0.pre1)
-      hobo (= 2.1.0.pre1)
-      hobo_jquery (= 2.1.0.pre1)
-      jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.1.0.pre1)
-      hobo (= 2.1.0.pre1)
-    hobo_support (2.1.0.pre1)
-      rails (~> 4.0.2)
     hobo_will_paginate (2.1.0)
     httparty (0.12.0)
       json (~> 1.8)
@@ -171,6 +168,9 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    paper_trail (3.0.0)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -282,11 +282,11 @@ DEPENDENCIES
   debugger (~> 1.6.2)
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
-  hobo (= 2.1.0.pre1)
-  hobo_bootstrap (= 2.1.0.pre1)
-  hobo_bootstrap_ui (= 2.1.0.pre1)
+  hobo!
+  hobo_bootstrap (= 2.1.0.pre2)
+  hobo_bootstrap_ui (= 2.1.0.pre2)
   hobo_ckeditor
-  hobo_jquery_ui (= 2.1.0.pre1)
+  hobo_jquery_ui (= 2.1.0.pre2)
   hobo_paperclip!
   hobo_will_paginate
   jbuilder (~> 1.2)
@@ -296,7 +296,7 @@ DEPENDENCIES
   less-rails
   messengerjs-rails
   mysql2
-  paper_trail!
+  paper_trail (~> 3.0.0)
   paperclip
   protected_attributes
   quiet_assets

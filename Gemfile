@@ -5,12 +5,13 @@ gem 'rails', '4.0.2'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'jquery-rails'                                  # JQuery asset handling
 
-gem "hobo", "= 2.1.0.pre1"                          # web application meta framework
+# gem "hobo", "= 2.1.0.pre2"                          # web application meta framework
+gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
 gem "protected_attributes"
 gem "hobo_will_paginate"                            # pagination support
-gem "hobo_bootstrap", "2.1.0.pre1"                  # Twitter Bootstrap asset handling
-gem "hobo_jquery_ui", "2.1.0.pre1"                  # JQuery UI asser handling
-gem "hobo_bootstrap_ui", "2.1.0.pre1"               # additional Bootstrap features
+gem "hobo_bootstrap", "2.1.0.pre2"                  # Twitter Bootstrap asset handling
+gem "hobo_jquery_ui", "2.1.0.pre2"                  # JQuery UI asser handling
+gem "hobo_bootstrap_ui", "2.1.0.pre2"               # additional Bootstrap features
 gem "jquery-ui-themes", "~> 0.0.4"                  # JQury Ui theming
 gem "paperclip"                                     # attachment handling
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
