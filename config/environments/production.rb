@@ -4,6 +4,9 @@ Mercator::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+# HAS: 20131219 according to deprecation warning on update to Rails 4
+  config.eager_load = true
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

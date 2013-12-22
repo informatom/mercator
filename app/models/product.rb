@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   fields do
     name_de        :string, :required
     name_en        :string
-    number         :string, :required#, :unique
+    number         :string, :required, :unique
     description_de :text, :required
     description_en :text
     legacy_id      :integer
@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   has_many :supplies, :through => :supplyrelations
   has_many :supplyrelations, :inverse_of => :product, dependent: :destroy, :accessible => true
 
-  has_many :inventories, dependent: :restrict, :inverse_of => :product
+  has_many :inventories, dependent: :restrict_with_exception, :inverse_of => :product
 
   children :inventories, :properties, :categories, :related_products, :supplies,
            :recommended_products
