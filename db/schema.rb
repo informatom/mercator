@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20131219141435) do
-=======
-ActiveRecord::Schema.define(version: 20131209135024) do
->>>>>>> rails4
+ActiveRecord::Schema.define(version: 20131219141435) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -115,19 +111,11 @@ ActiveRecord::Schema.define(version: 20131209135024) do
     t.string   "name_de"
     t.string   "name_en"
     t.string   "number"
-<<<<<<< HEAD
-    t.decimal  "amount",             :precision => 10, :scale => 2
+    t.decimal  "amount",             precision: 10, scale: 2
     t.string   "unit"
     t.string   "comment_de"
     t.string   "comment_en"
-    t.decimal  "weight",             :precision => 10, :scale => 2
-=======
-    t.decimal  "amount",             precision: 10, scale: 0
-    t.string   "unit"
-    t.string   "comment_de"
-    t.string   "comment_en"
-    t.decimal  "weight",             precision: 10, scale: 0
->>>>>>> rails4
+    t.decimal  "weight",             precision: 10, scale: 2
     t.string   "charge"
     t.string   "storage"
     t.datetime "created_at"
@@ -143,17 +131,10 @@ ActiveRecord::Schema.define(version: 20131209135024) do
 
   create_table "lineitems", force: true do |t|
     t.string   "product_number"
-<<<<<<< HEAD
-    t.decimal  "amount",         :precision => 10, :scale => 2
-    t.decimal  "product_price",  :precision => 10, :scale => 2
-    t.decimal  "vat",            :precision => 10, :scale => 2
-    t.decimal  "value",          :precision => 10, :scale => 2
-=======
-    t.decimal  "amount",         precision: 10, scale: 0
+    t.decimal  "amount",         precision: 10, scale: 2
     t.decimal  "product_price",  precision: 10, scale: 2
-    t.decimal  "vat",            precision: 10, scale: 0
+    t.decimal  "vat",            precision: 10, scale: 2
     t.decimal  "value",          precision: 10, scale: 2
->>>>>>> rails4
     t.integer  "position"
     t.string   "description_de"
     t.string   "description_en"
@@ -211,23 +192,13 @@ ActiveRecord::Schema.define(version: 20131209135024) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-  create_table "prices", :force => true do |t|
-    t.decimal  "value",        :precision => 10, :scale => 2
-    t.decimal  "vat",          :precision => 10, :scale => 2
-    t.date     "valid_from"
-    t.date     "valid_to"
-    t.decimal  "scale_from",   :precision => 10, :scale => 2
-    t.decimal  "scale_to",     :precision => 10, :scale => 2
-=======
   create_table "prices", force: true do |t|
-    t.decimal  "value",        precision: 10, scale: 0
-    t.decimal  "vat",          precision: 10, scale: 0
+    t.decimal  "value",        precision: 10, scale: 2
+    t.decimal  "vat",          precision: 10, scale: 2
     t.date     "valid_from"
     t.date     "valid_to"
-    t.decimal  "scale_from",   precision: 10, scale: 0
-    t.decimal  "scale_to",     precision: 10, scale: 0
->>>>>>> rails4
+    t.decimal  "scale_from",   precision: 10, scale: 2
+    t.decimal  "scale_to",     precision: 10, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "inventory_id"
@@ -271,11 +242,7 @@ ActiveRecord::Schema.define(version: 20131209135024) do
   create_table "properties", force: true do |t|
     t.string   "name_de"
     t.string   "name_en"
-<<<<<<< HEAD
-    t.decimal  "value",             :precision => 10, :scale => 2
-=======
-    t.decimal  "value",             precision: 10, scale: 0
->>>>>>> rails4
+    t.decimal  "value",             precision: 10, scale: 2
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -322,24 +289,18 @@ ActiveRecord::Schema.define(version: 20131209135024) do
   add_index "supplyrelations", ["product_id"], name: "index_supplyrelations_on_product_id", using: :btree
   add_index "supplyrelations", ["supply_id"], name: "index_supplyrelations_on_supply_id", using: :btree
 
-<<<<<<< HEAD
-  create_table "toners", :force => true do |t|
+  create_table "toners", force: true do |t|
     t.string   "article_number"
     t.string   "description"
     t.string   "vendor_number"
-    t.decimal  "price",          :precision => 10, :scale => 2
+    t.decimal  "price",          precision: 10, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
-=======
   create_table "users", force: true do |t|
     t.string   "crypted_password",          limit: 40
     t.string   "salt",                      limit: 40
->>>>>>> rails4
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "name"

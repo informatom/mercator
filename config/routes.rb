@@ -1,18 +1,11 @@
 Mercator::Application.routes.draw do
-<<<<<<< HEAD
-=======
-  get 'admin' => 'admin/front#index', :as => 'admin_front'
-  get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
->>>>>>> rails4
+  match ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  match ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
-
   root :to => 'front#index'
-  match 'admin' => 'admin/front#index', :as => 'admin_front'
-  match 'contracting' => 'contracting/front#index', :as => 'contracting_front'
-  match 'search' => 'admin/front#search', :as => 'site_search'
+  get 'admin' => 'admin/front#index', :as => 'admin_front'
+  get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
 
   namespace :contracting do
     resources :toners do
@@ -23,19 +16,12 @@ Mercator::Application.routes.draw do
     end
   end
 
-<<<<<<< HEAD
-  match 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
-  match 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
-  match 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
-  match 'search' => 'front#search', :as => 'site_search'
-=======
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
   get 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
   get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
 
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
->>>>>>> rails4
 
   post 'categories/sort' => 'categories#sort'
 end
