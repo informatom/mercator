@@ -1,0 +1,472 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"creat",
+				"created"
+			],
+			[
+				"c",
+				"created"
+			],
+			[
+				"org",
+				"organisation"
+			],
+			[
+				"de",
+				"deleted"
+			],
+			[
+				"s",
+				"successfully"
+			],
+			[
+				"blogpost",
+				"blogpost_id"
+			],
+			[
+				"St",
+				"Stellvertreter"
+			],
+			[
+				"o",
+				"one"
+			],
+			[
+				"S",
+				"Stellvertreter"
+			],
+			[
+				"destroy",
+				"destroyed"
+			],
+			[
+				"in",
+				"inventory"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 217.0,
+		"selected_items":
+		[
+			[
+				"Package Control: I",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 433.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/stefan/sshfs/qm/app/views/process_classes/show.html.erb",
+		"/home/stefan/sshfs/qm/app/views/flow_objects/show.html.erb",
+		"/home/stefan/sshfs/qm/app/views/news/show.html.erb",
+		"/home/stefan/sshfs/qm/app/views/roles/show.html.erb",
+		"/home/stefan/sshfs/qm/app/views/shared/_versioning_helper.html.erb",
+		"/home/stefan/sshfs/qm/app/views/admin/users/show.html.erb",
+		"/home/stefan/sshfs/mercator/app/views/taglibs/front_site.dryml",
+		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
+		"/home/stefan/sshfs/mercator/app/controllers/ckeditor/attachment_files_controller.rb",
+		"/home/stefan/sshfs/mercator/app/controllers/ckeditor/pictures_controller.rb",
+		"/home/stefan/sshfs/mercator/config/application.rb",
+		"/home/stefan/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/stefan/sshfs/norway/config/locales/nb.yml",
+		"/home/stefan/sshfs/norway/config/locales/en.yml",
+		"/home/stefan/sshfs/norway/config/locales/de.yml",
+		"/home/stefan/sshfs/norway/config/locales/missing_translations.yml",
+		"/home/stefan/sshfs/norway/app/views/products/assign.html.erb",
+		"/home/stefan/sshfs/norway/config/environments/development.rb",
+		"/home/stefan/sshfs/norway/lib/tasks/yaml.rake",
+		"/home/stefan/sshfs/norway/materials/locales/nb.yml",
+		"/home/stefan/sshfs/norway/materials/locales/nb-export.yml",
+		"/home/stefan/sshfs/norway/config/locales/nb-export.yml",
+		"/home/stefan/sshfs/norway/materials/locales/diffs beim import:",
+		"/home/stefan/sshfs/norway/materials/locales/en1.yml",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/full/index_alt.html",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/_heart_of_the_podcast.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/list.html.erb",
+		"/home/stefan/sshfs/informatom/config/routes.rb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/_form.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/index.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/show.html.erb",
+		"/home/stefan/sshfs/informatom/db/migrate/20130824205751_add_fields_to_podcast.rb",
+		"/home/stefan/sshfs/informatom/app/controllers/podcasts_controller.rb",
+		"/home/stefan/sshfs/informatom/app/models/podcast.rb",
+		"/home/stefan/sshfs/informatom/app/assets/javascripts/admin.js",
+		"/home/stefan/sshfs/informatom/app/assets/javascripts/application.js",
+		"/home/stefan/sshfs/informatom/app/assets/stylesheets/admin.css",
+		"/home/stefan/sshfs/informatom/app/assets/stylesheets/application.css",
+		"/home/stefan/sshfs/informatom/Gemfile",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/single.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/_recent.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/user_mailer/comment.html.erb",
+		"/home/stefan/sshfs/informatom/app/controllers/comments_controller.rb",
+		"/home/stefan/sshfs/informatom/app/views/comments/post_podcast.html.erb",
+		"/home/stefan/sshfs/informatom/app/models/comment.rb",
+		"/home/stefan/sshfs/informatom/app/views/comments/post.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/single.rss.builder",
+		"/home/stefan/sshfs/informatom/app/models/blogpost.rb",
+		"/home/stefan/sshfs/informatom/db/migrate/20130823160000_add_podcast_id_to_comment.rb",
+		"/home/stefan/sshfs/informatom/app/views/comments/_form.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/comments/show.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/comments/index.html.erb",
+		"/home/stefan/sshfs/informatom/app/assets/stylesheets/bootstrap_and_overrides.css.less",
+		"/home/stefan/sshfs/informatom/app/assets/stylesheets/qualifire/style.css",
+		"/home/stefan/sshfs/informatom/app/assets/javascripts/jquery.jplayer.min.js",
+		"/home/stefan/.cache/.fr-2l1GdR/index.html",
+		"/home/stefan/.cache/.fr-4gaVYW/includes/index.css",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/feed.rss.builder",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/_archive.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/edit.html.erb",
+		"/home/stefan/sshfs/informatom/app/views/podcasts/new.html.erb",
+		"/home/stefan/sshfs/informatom/app/models/ability.rb",
+		"/home/stefan/sshfs/informatom/db/migrate/20130823140814_create_podcasts.rb",
+		"/home/stefan/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/application_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/templates_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/baskets_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/statuses_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/helps_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/customers_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/views/customers/change_password.html.erb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/basketlines_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/documents_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/menuitems_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/organisations_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/productclasses_controller.rb",
+		"/home/stefan/sshfs/motorola-shop/app/controllers/products_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/models/ivellio_vellin/cart_item.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/models/catalog/inventory.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/models/order_temp.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/controllers/products_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/controllers/carts_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/products/size.rjs",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/products/show.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/products/_order_button.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/accounts/show.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic/app/models/mesonic/article_base.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views/layouts/ivellio_shop.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/config/routes.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/opensteam_cms/app/views/pages/_navigation.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views/categories/_navigation.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views/layouts/ivellio_shop_start.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/controllers/application_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/opensteam_cms/app/controllers/pages_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/config/routes.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/controllers/categories_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views/categories/show.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/carts/_cart_total.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/carts/index.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/models/ivellio_vellin/cart.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/helpers/ivellio_frontend_helper.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/carts/_cart.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/products/_detailinfo.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/models/catalog/product.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/products/_overview_price.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/views/products/_show_price.html.erb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/helpers/admin_helper.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/helpers/checkout_helper.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/helpers/application_helper.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/helpers/ivellio_order_helper.rb",
+		"/home/stefan/sshfs/motorola-shop/features/step_definitions/creation_helpers.rb",
+		"/home/stefan/sshfs/motorola-shop/features/step_definitions/aus_tickets/37_benutzermodell_steps.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/opensteam_asset/app/models/asset.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/opensteam_asset/app/controllers/admin/system/assets_controller.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/app/helpers/products_helper.rb",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/tasks/ivellio_vellin_tasks.rake",
+		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic/tasks/mesonic_tasks.rake",
+		"/home/stefan/sshfs/motorola-shop/app/views/templates/search.html.erb",
+		"/home/stefan/temp/gd_bundle.crt",
+		"/home/stefan/temp/iv-shop.at.crt",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/tour/help.html",
+		"/home/stefan/temp/SpMsBqH.html",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/bootstrap-tour-master/help.html",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/tour/bootstrap-tour.css",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/tour/bootstrap-tour.js",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/bootstrap-tour-master/docs/page.html",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/help.html",
+		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/bootstrap-tour.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/stefan/sshfs/mercator/app",
+			"/home/stefan/sshfs/norway/app",
+			"/home/stefan/sshfs/norway/config/locales",
+			"/home/stefan/sshfs/norway/app",
+			"/home/stefan/sshfs/norway/app/views",
+			"/home/stefan/sshfs/norway/app",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/models/ivellio_vellin",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views",
+			"/home/stefan/sshfs/miranda-weissenfeld/app/views/products",
+			"/home/stefan/sshfs/miranda-weissenfeld/app",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin",
+			"/home/stefan/sshfs/miranda-weissenfeld/app",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/opensteam_cms",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin",
+			"/home/stefan/sshfs/miranda-weissenfeld/app",
+			"/home/stefan/sshfs/miranda-weissenfeld/app/helpers",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app",
+			"/home/stefan/sshfs/miranda-weissenfeld/app",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views/product_compares",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/controllers",
+			"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/app/views/product_compares",
+			"/home/stefan/sshfs/qm",
+			"/home/stefan/sshfs/miranda-weissenfeld/public/bbshop",
+			"/home/stefan/sshfs/miranda-weissenfeld/app",
+			"/home/stefan/sshfs/miranda-weissenfeld"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"data-table",
+			"data-",
+			"or:",
+			"create:",
+			"Bestellung ",
+			"Keine Bestellungen gefunden!",
+			"Der Artikel wurde erfolgreich zur Bestellung hinzugefügt",
+			"Your order at the \"Motorola Release System\" was released and forwarded to Motorola",
+			"There is an order waiting for approval in „Motorola Release System\".",
+			"The customer \"",
+			"erfolgreich",
+			" created successfully.",
+			"ist nicht erlaubt!",
+			"ist gescheitert",
+			"dürfen nicht editiert werden",
+			"am/um",
+			"Eine E-Mail an den neuen Benutzer wurde versendet",
+			"or ",
+			"or\nor",
+			"must be other than %{count}\nor",
+			"present",
+			"must be blank",
+			"gescheitert",
+			"im anhang die Bestellung",
+			"Verwaltung",
+			"admin",
+			"Superadmin",
+			"Suchen",
+			"Option",
+			"Keine Bestellungen gefunden!\nBestellung",
+			"Keine Bestellungen gefunden!\nBestellungen",
+			"Keine Bestellungen gefunden!\nBestellungen ",
+			"Keine Bestellungen gefunden!\nKeine Bestellungen ",
+			"Keine Bestellungen gefunden!\nKeine Bestellungen gefunden",
+			"luster",
+			"für",
+			"Seite",
+			"entfernen",
+			"dürfen nicht editiert werden",
+			"bis",
+			"am/um",
+			"an den neuen Benutzer",
+			"an den neuen Benutzer wurde versendet.",
+			"Eine E-Mail an den neuen Benutzer wurde versendet.\nEine E-Mail an den neuen ",
+			"Eine E-Mail an den neuen Benutzer wurde versendet.\nEine E-Mail an den neuen Benutzer wurde versendet",
+			"suchvorlage",
+			"region",
+			"county",
+			"Fehler verhinderten die Anlage ",
+			"Fehler verhinderten die Anlage des Menüeintrages",
+			"Eig.Best.Ref.",
+			"Bitte anmelden",
+			"Dieser Warenkorb kann nicht abgeschlossen werden",
+			"ziehe\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\n",
+			"achziehe\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\n",
+			" nachziehe\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\n",
+			" Abrufsystem nachziehen)\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\nBitte in allen Systemen (auch im Abrufsystem nachziehen)\n",
+			"liste",
+			"!?Löschen!?",
+			"!Löschen!",
+			"In den Warenkorb",
+			"über",
+			"überklasse",
+			"parent class",
+			"erfolgreich angelegt",
+			"wurde mit dem passwort",
+			"erfolgreich angelegt",
+			"\" erfolgreich angelegt\"",
+			"\"erfolgreich angelegt\"",
+			"\" erfolgreich angelegt\"",
+			"erfolgreich angelegt",
+			"der kunde",
+			"'Der Kunde '",
+			"\"Der Kunde \"",
+			"\"der kunde \"",
+			"'der kunde '",
+			"der kunde",
+			"hilfeseiten",
+			"hilfeseitens",
+			"blogpost",
+			"Blogpost",
+			"bread",
+			"set_price_information",
+			"nivoslider",
+			"show_price",
+			"globalize",
+			"CategoryTranslation",
+			" />",
+			"render_product_compare_link",
+			"agb_date",
+			"mesonic_default_scope",
+			" class=\"summary_right\"",
+			" class=\"summary_left\"",
+			"order",
+			"mail",
+			"compare",
+			"compare_popup",
+			"\"dv_ajax_inner\"",
+			"Element.update(\"dv_ajax_inner\",",
+			"<%= model_class.human_attribute_name(:company_id) %>",
+			"<th><%= model_class.human_attribute_name(:company_id) %></th>",
+			"in_company",
+			"prozesse",
+			"set_menu",
+			"Instruction_Document_Assignments",
+			"Instruction Document Assignments",
+			"prevtext",
+			"prev",
+			"glyph",
+			"img/glyph",
+			"glyph",
+			"img/",
+			"img",
+			"default_product",
+			"default",
+			":find_user"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"podcast",
+			"Podcast",
+			"",
+			"images/bigbase/",
+			"images/bigbase"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 120.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"navig",
+				"vendor/plugins/ivellio_vellin/app/views/categories/_navigation.html.erb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 371.0,
+	"status_bar_visible": true
+}

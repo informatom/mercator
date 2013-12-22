@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_paper_trail
 
   has_many :addresses, dependent: :destroy
-  has_many :orders, dependent: :restrict
+  has_many :orders, dependent: :restrict_with_exception
   children :addresses, :orders
 
   # This gives admin rights and an :active state to the first sign-up.

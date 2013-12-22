@@ -12,6 +12,10 @@ Bundler.require(:default, Rails.env)
 
 module Mercator
   class Application < Rails::Application
+    # HAS 20131222 deprecation warning in rails 4
+    I18n.enforce_available_locales = true
+    I18n.available_locales = [:en, :de]
+
     # Hobo: the contracting subsite loads contracting.css & contracting.js
     config.assets.precompile += %w(contracting.css contracting.js)
     # Hobo: the admin subsite loads admin.css & admin.js
