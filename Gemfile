@@ -32,7 +32,6 @@ gem "less-rails"                                  # Less support
 gem 'coffee-rails', '~> 4.0.0'                    # Coffeescript support
 gem 'therubyracer', :platforms => :ruby           # Javascript engine
 gem 'uglifier', '>= 1.3.0'                        # Code minimizer
-gem 'turbo-sprockets-rails3'                      # Only compile assets that have changed
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
