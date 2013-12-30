@@ -26,7 +26,7 @@ gem 'traco'                                         # model attribute translatio
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
-gem 'spreadsheet'                                   # more sophisticated Excel spreadsheet generation
+gem 'roo'                                         # more sophisticated Excel spreadsheet generation
 gem 'sass-rails', '~> 4.0.0'                      # Sass support
 gem "less-rails"                                  # Less support
 gem 'coffee-rails', '~> 4.0.0'                    # Coffeescript support

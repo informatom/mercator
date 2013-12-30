@@ -19,7 +19,7 @@ class Lineitem < ActiveRecord::Base
                   :amount, :product_price, :product_price, :vat, :value, :value, :order_id, :order
   translates :description
   has_paper_trail
-  default_scope order('lineitems.position ASC')
+  default_scope { order('lineitems.position ASC') }
 
   validates :position, numericality: true
   validates :amount, numericality: true

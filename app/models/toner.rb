@@ -5,7 +5,7 @@ class Toner < ActiveRecord::Base
   fields do
     article_number :string
     description    :string
-    vendor_number  :string
+    vendor_number  :string, :name => true
     price          :decimal, :precision => 10, :scale => 2
     timestamps
   end

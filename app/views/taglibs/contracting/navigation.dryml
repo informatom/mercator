@@ -7,5 +7,17 @@
     <nav-item with="&Customer">
       <ht key="customer.nav_item" count="100"><model-name-human count="100"/></ht>
     </nav-item>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Product") %> ...
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&Toner">
+          <ht key="customer.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Toner" action="upload">
+          <ht key="customer.nav_item" count="100"><model-name-human count="100"/> <t key="attributes.upload" /></ht>
+        </nav-item>
+      </ul>
+    </li>
   </navigation>
 </def>
