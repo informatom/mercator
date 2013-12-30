@@ -9,6 +9,7 @@ class Categorization < ActiveRecord::Base
 
   attr_accessible :product, :product_id, :category, :category_id
   has_paper_trail
+  default_scope order('position ASC')
 
   belongs_to :category
   belongs_to :product

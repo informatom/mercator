@@ -21,6 +21,7 @@ class Property < ActiveRecord::Base
   has_paper_trail
   translates :name, :description, :unit
   acts_as_list :scope => :property_group
+  default_scope order('position ASC')
 
   validates :value, numericality: true, allow_nil: true
 

@@ -21,6 +21,7 @@ class Category < ActiveRecord::Base
   has_ancestry
   has_paper_trail
   never_show :ancestry
+  default_scope order('position ASC')
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
