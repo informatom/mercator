@@ -38,6 +38,8 @@ group :development, :test  do
   gem 'debugger', '~> 1.6.2'                        # Command line debugger
   gem "quiet_assets"                                # leaner log output
   gem "require_all"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
