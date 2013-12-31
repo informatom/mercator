@@ -1,14 +1,12 @@
-class PageElement < ActiveRecord::Base
+class PageContentElementAssignment < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
-  UsageType = HoboFields::Types::EnumString.for("ContentElement")
 
   fields do
     used_as    :string
-    usage_type PageElement::UsageType
     timestamps
   end
-  attr_accessible :used_as, :page, :usage_type, :usage_id
+  attr_accessible :used_as, :page, :content_element, :page_id, :content_element_id
 
   validates :used_as, :presence => true, :uniqueness => {:scope => :page_id}
 
@@ -17,8 +15,8 @@ class PageElement < ActiveRecord::Base
   belongs_to :page
   validates :page, :presence => true
 
-  belongs_to :usage, :polymorphic => true
-  validates :usage, :presence => true
+  belongs_to :content_element
+  validates :content_element, :presence => true
 
   # --- Permissions --- #
 

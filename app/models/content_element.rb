@@ -13,11 +13,11 @@ class ContentElement < ActiveRecord::Base
   end
 
   attr_accessible :name_de, :name_en, :content_de, :content_en, :markup,
-                  :pages, :page_elements
+                  :pages, :page_content_element_assignments
   translates :name, :content
   has_paper_trail
 
-  has_many :page_elements, as: :usage, :accessible => true
+  has_many :page_content_element_assignments, :accessible => true
   has_many :pages, :through => :page_elements
 
   # --- Permissions --- #

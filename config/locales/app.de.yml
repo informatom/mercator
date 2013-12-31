@@ -122,7 +122,7 @@ de:
       page:
         one: Webseite
         other: Webseiten
-      page_element:
+      page_content_element_assignment:
         one: Element der Webseite
         other: Elemente der Webseiten
       price:

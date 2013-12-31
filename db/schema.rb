@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219141435) do
+ActiveRecord::Schema.define(version: 20131231090724) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20131219141435) do
     t.string   "type",              limit: 30
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
@@ -173,17 +173,16 @@ ActiveRecord::Schema.define(version: 20131219141435) do
   add_index "orders", ["state"], name: "index_orders_on_state", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "page_elements", force: true do |t|
+  create_table "page_content_element_assignments", force: true do |t|
     t.string   "used_as"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "page_id"
-    t.integer  "usage_id"
-    t.string   "usage_type"
+    t.integer  "content_element_id"
   end
 
-  add_index "page_elements", ["page_id"], name: "index_page_elements_on_page_id", using: :btree
-  add_index "page_elements", ["usage_type", "usage_id"], name: "index_page_elements_on_usage_type_and_usage_id", using: :btree
+  add_index "page_content_element_assignments", ["content_element_id"], name: "index_page_content_element_assignments_on_content_element_id", using: :btree
+  add_index "page_content_element_assignments", ["page_id"], name: "index_page_content_element_assignments_on_page_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "title_de"
