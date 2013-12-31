@@ -69,7 +69,7 @@ de:
     runtime: Laufzeit
     scale_from: Staffel ab
     scale_to: Staffel bis
-    start_date: Startdatum
+    startdate: Startdatum
     state: Status
     street: Straße
     supply: Zubehör

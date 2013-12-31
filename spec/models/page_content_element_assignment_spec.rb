@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe PageElement do
-  it "is valid with used_as, page, usage" do
-    expect(build(:page_element)).to be_valid
+describe PageContentElementAssignment do
+  it "is valid with page, content_element" do
+    expect(build(:page_content_element_assignment)).to be_valid
   end
 
   it {should validate_presence_of(:used_as)}
@@ -14,7 +14,7 @@ describe PageElement do
 
   it {should belong_to(:page)}
   it {should validate_presence_of(:page)}
-  it {should belong_to(:usage)}
-  it {should validate_presence_of(:usage)}
+  it {should belong_to(:content_element)}
+  it {should validate_presence_of(:content_element)}
 
 end

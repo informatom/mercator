@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Contract do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is valid with start_date, runtime" do
+    expect(build(:contract)).to be_valid
+  end
+
+  it {should validate_presence_of :startdate}
+  it {should validate_presence_of :runtime}
+
+  it "is versioned" do
+    should respond_to(:versions)
+  end
 end
