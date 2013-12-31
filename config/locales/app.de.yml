@@ -66,8 +66,10 @@ de:
     reason: Grund
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
+    runtime: Laufzeit
     scale_from: Staffel ab
     scale_to: Staffel bis
+    start_date: Startdatum
     state: Status
     street: Straße
     supply: Zubehör
@@ -104,6 +106,9 @@ de:
       content_element:
         one: Textbaustein
         other: Textbausteine
+      contract:
+        one: Vertrag
+        other: Verträge
       country:
         one: Land
         other: Länder

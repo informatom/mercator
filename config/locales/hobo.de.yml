@@ -10,8 +10,8 @@ de:
     index:
       # if you uncomment the following you will loose the automatic selection of dinamically pluralized nav-tabs
       # if you need a different title you should implement a different way to select the tab on your own
-      #title: "%{model} Index"
-      heading: "%{model} Übersicht"
+      # title: "%{model} Index"
+      # heading: "%{model} Übersicht"
 
     new:
       title: "%{model} anlegen"
