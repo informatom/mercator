@@ -2,7 +2,8 @@ class FrontController < ApplicationController
 
   hobo_controller
 
-  def index; end
+  def index
+  end
 
   def summary
     if !current_user.administrator?

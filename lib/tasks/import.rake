@@ -16,7 +16,10 @@ namespace :import do
 #  import_products()
 #  import_properties()
 #  import_categorizations()
-  import_product_images()
+#  import_product_images()
+#  import_product_relations()
+#  import_supply_relations()
+  import_recommendations()
   puts
   end
 end
