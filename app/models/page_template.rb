@@ -4,7 +4,7 @@ class PageTemplate < ActiveRecord::Base
 
   fields do
     name    :string, :required, :unique
-    content :text, :required
+    content :cktext, :required
     legacy_id :integer
     timestamps
   end

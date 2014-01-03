@@ -212,6 +212,10 @@ de:
         price: Netto (ohne Steuern)
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
+      page:
+        updated: Webseitenbaum erfolgreich aktualisiert!
+        updating: Webseitenbaum wird aktualisiert
+        update_failed: Webseitenbaum konnte nicht aktualisiert werden!
       price:
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"

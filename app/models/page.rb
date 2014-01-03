@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title_de   :string, :required
+    title_de   :string, :required, :name => true
     title_en   :string
     url        :string
     ancestry   :string, :index => true
@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
     timestamps
   end
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
-                  :position, :parent_id, :parent, :position
+                  :position, :parent_id, :parent, :position, :state
   translates :title
   has_ancestry
 
@@ -27,9 +27,7 @@ class Page < ActiveRecord::Base
 
   belongs_to :page_template
 
-  def self.find_by_name(param)
-    self.find_by_title_de(param)
-  end
+  alias_attribute :name, :title_de
 
   lifecycle do
     state :draft, :default => true

@@ -20,8 +20,8 @@ namespace :import do
 #  import_product_relations()
 #  import_supply_relations()
 #  import_recommendations()
-import_page_templates
-#  import_cms()
+# import_page_templates
+import_cms()
   puts
   end
 end

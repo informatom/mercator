@@ -11,7 +11,7 @@ you can place common code in this file. -->
   </old-page>
 </extend>
 
-<def tag="treeview">
+<def tag="treeview" attrs="title">
   <li repeat data-id="#{h this.id}" class="dd-item dd3-item">
     <div class="dd-handle dd3-handle"></div>
     <div class="dd3-content"><%= "(" + (h this.state) + ")" unless this.state == "active" %> <a><%= h this.name %></a></div>
