@@ -4,5 +4,7 @@ FactoryGirl.define do
   factory :page do
     title_de "Titel einer Website"
     title_en "Titel of a Webpage"
+    url      "/url/to/page"
+    position 1
   end
 end

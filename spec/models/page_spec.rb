@@ -6,8 +6,18 @@ describe Page do
   end
 
   it {should validate_presence_of(:title_de)}
+  it {should validate_numericality_of(:position)}
 
   it "is versioned" do
     should respond_to(:versions)
   end
+
+  it "is in a tree structure" do
+    should respond_to(:parent)
+    should respond_to(:children)
+  end
+
+  it {should belong_to(:page_template)}
+  it {should have_many(:page_content_element_assignments)}
+  it {should have_many(:content_elements)}
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231102711) do
+ActiveRecord::Schema.define(version: 20140103161205) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20131231102711) do
     t.string   "type",              limit: 30
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
@@ -191,12 +191,31 @@ ActiveRecord::Schema.define(version: 20131231102711) do
   add_index "page_content_element_assignments", ["content_element_id"], name: "index_page_content_element_assignments_on_content_element_id", using: :btree
   add_index "page_content_element_assignments", ["page_id"], name: "index_page_content_element_assignments_on_page_id", using: :btree
 
+  create_table "page_templates", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "legacy_id"
+  end
+
   create_table "pages", force: true do |t|
     t.string   "title_de"
     t.string   "title_en"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
+    t.string   "ancestry"
+    t.integer  "position"
+    t.integer  "legacy_id"
+    t.string   "state",            default: "draft"
+    t.datetime "key_timestamp"
+    t.integer  "page_template_id"
   end
+
+  add_index "pages", ["ancestry"], name: "index_pages_on_ancestry", using: :btree
+  add_index "pages", ["page_template_id"], name: "index_pages_on_page_template_id", using: :btree
+  add_index "pages", ["state"], name: "index_pages_on_state", using: :btree
 
   create_table "prices", force: true do |t|
     t.decimal  "value",        precision: 10, scale: 2

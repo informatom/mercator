@@ -16,5 +16,4 @@ describe PageContentElementAssignment do
   it {should validate_presence_of(:page)}
   it {should belong_to(:content_element)}
   it {should validate_presence_of(:content_element)}
-
 end

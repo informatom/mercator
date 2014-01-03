@@ -3,15 +3,15 @@ class Category < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string, :required
-    name_en  :string, :tequired
-    description_de :text
-    description_en :text
+    name_de             :string, :required
+    name_en             :string, :tequired
+    description_de      :text
+    description_en      :text
     long_description_de :text
     long_description_en :text
-    ancestry :string, :index => true
-    position :integer
-    legacy_id      :integer
+    ancestry            :string, :index => true
+    position            :integer
+    legacy_id           :integer
     timestamps
   end
 
