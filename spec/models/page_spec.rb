@@ -6,6 +6,7 @@ describe Page do
   end
 
   it {should validate_presence_of(:title_de)}
+  it {should validate_presence_of(:position)}
   it {should validate_numericality_of(:position)}
 
   it "is versioned" do
@@ -18,6 +19,8 @@ describe Page do
   end
 
   it {should belong_to(:page_template)}
+  it {should validate_presence_of(:page_template)}
+
   it {should have_many(:page_content_element_assignments)}
   it {should have_many(:content_elements)}
 end

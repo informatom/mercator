@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
     title_en   :string
     url        :string
     ancestry   :string, :index => true
-    position   :integer
+    position   :integer, :required
     legacy_id  :integer
     timestamps
   end
@@ -26,6 +26,7 @@ class Page < ActiveRecord::Base
   has_many :content_elements, :through => :page_content_element_assignments
 
   belongs_to :page_template
+  validates :page_template, :presence => true  
 
   alias_attribute :name, :title_de
 

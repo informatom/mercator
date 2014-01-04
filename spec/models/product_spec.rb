@@ -25,6 +25,8 @@ describe Product do
   it {should have_many(:supplies)}
   it {should have_many(:supplyrelations)}
 
+  it {should have_many(:features)}
+
   it {should have_many(:inventories)}
 
   it "is versioned" do

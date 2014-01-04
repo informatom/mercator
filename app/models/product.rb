@@ -39,8 +39,10 @@ class Product < ActiveRecord::Base
 
   has_many :inventories, dependent: :restrict_with_exception, :inverse_of => :product
 
+  has_many :features, :inverse_of => :product
+
   children :inventories, :properties, :categories, :related_products, :supplies,
-           :recommended_products
+           :recommended_products, :features
 
   def self.find_by_name(param)
     self.find_by_name_de(param)

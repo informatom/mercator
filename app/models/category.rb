@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
     long_description_de :text
     long_description_en :text
     ancestry            :string, :index => true
-    position            :integer
+    position            :integer, :required
     legacy_id           :integer
     timestamps
   end

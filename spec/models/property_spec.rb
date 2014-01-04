@@ -20,9 +20,16 @@ describe Property do
   end
 
   it {should validate_presence_of(:name_de)}
-  it {should validate_numericality_of(:value)}
-  it {should belong_to(:property_group)}
   it {should validate_uniqueness_of(:name_de)}
+
+  it {should validate_numericality_of(:value)}
+
+  it {should validate_presence_of(:position)}
+  it {should validate_numericality_of(:position)}
+  it {should validate_uniqueness_of(:position)}
+
+  it {should belong_to(:property_group)}
+  it {should validate_presence_of(:property_group)}
 
   it "acts as a list" do
     should respond_to(:move_to_top)
@@ -31,7 +38,4 @@ describe Property do
   it "is versioned" do
     should respond_to(:versions)
   end
-
-  it {should validate_presence_of(:property_group)}
-
 end

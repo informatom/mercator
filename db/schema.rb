@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103161205) do
+ActiveRecord::Schema.define(version: 20140104091144) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -113,6 +113,17 @@ ActiveRecord::Schema.define(version: 20140103161205) do
     t.string   "name_en"
     t.integer  "legacy_id"
   end
+
+  create_table "features", force: true do |t|
+    t.integer  "position"
+    t.string   "text_de"
+    t.string   "text_en"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+  end
+
+  add_index "features", ["product_id"], name: "index_features_on_product_id", using: :btree
 
   create_table "inventories", force: true do |t|
     t.string   "name_de"

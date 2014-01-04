@@ -6,5 +6,6 @@ FactoryGirl.define do
     title_en "Titel of a Webpage"
     url      "/url/to/page"
     position 1
+    page_template
   end
 end

@@ -1,27 +1,24 @@
-class PropertyGroup < ActiveRecord::Base
+class Feature < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string, :required
-    name_en  :string
     position :integer, :required
+    text_de  :string, :required
+    text_en  :string
     timestamps
   end
-
-  attr_accessible :name_de, :name_en, :position, :product, :product_id,
-                  :properties
-  translates :name
+  attr_accessible :position, :text_de, :text_en
   has_paper_trail
-  acts_as_list :scope => :product
-  default_scope { order("property_groups.position ASC") }
+  default_scope { order('features.position ASC') }
 
+  translates :text
   validates :position, numericality: true, :uniqueness => {:scope => :product_id}
-  validates :name_de, :uniqueness => {:scope => :product_id}
 
   belongs_to :product
-  validates :product, :presence => true
-  has_many :properties, :accessible => true
+  validates :product, :presence => true  
+
+  acts_as_list :scope => :product
 
   # --- Permissions --- #
 
@@ -40,4 +37,5 @@ class PropertyGroup < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
 end

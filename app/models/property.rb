@@ -11,7 +11,7 @@ class Property < ActiveRecord::Base
     unit_de        :string
     unit_en        :string
 
-    position       :integer
+    position       :integer, :required
     legacy_id      :integer
     timestamps
   end
@@ -24,9 +24,9 @@ class Property < ActiveRecord::Base
   default_scope { order("properties.position ASC") }
 
   validates :value, numericality: true, allow_nil: true
+  validates :position, numericality: true, :uniqueness => {:scope => :property_group_id}
 
   belongs_to :property_group
-
   validates :property_group, :presence => true
 
   validate :textual_or_numerical

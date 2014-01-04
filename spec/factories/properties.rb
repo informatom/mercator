@@ -9,6 +9,7 @@ FactoryGirl.define do
     value 42
     unit_de "kg"
     unit_en "kg"
+    position 1
   end
 
 end
