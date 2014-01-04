@@ -6,9 +6,10 @@ class Feature < ActiveRecord::Base
     position :integer, :required
     text_de  :string, :required
     text_en  :string
+    legacy_id :integer
     timestamps
   end
-  attr_accessible :position, :text_de, :text_en
+  attr_accessible :position, :text_de, :text_en, :legacy_id, :product, :product_id
   has_paper_trail
   default_scope { order('features.position ASC') }
 
