@@ -88,6 +88,17 @@
 	},
 	"file_history":
 	[
+		"/home/stefan/sshfs/mercator/Gemfile",
+		"/home/stefan/sshfs/mercator/config/routes.rb",
+		"/home/stefan/sshfs/mercator/Gemfile.lock",
+		"/home/stefan/sshfs/mercator/config/application.yml",
+		"/home/stefan/sshfs/mercator/config/initializers/secret_token.rb",
+		"/home/stefan/sshfs/mercator/app/models/product.rb",
+		"/home/stefan/sshfs/mercator/app/models/property.rb",
+		"/home/stefan/sshfs/mercator/app/models/category.rb",
+		"/home/stefan/sshfs/mercator/spec/controllers/contracting_site_controller_spec.rb",
+		"/home/stefan/sshfs/mercator/config/application.rb",
+		"/home/stefan/sshfs/mercator/app/models/user.rb",
 		"/home/stefan/sshfs/qm/app/views/process_classes/show.html.erb",
 		"/home/stefan/sshfs/qm/app/views/flow_objects/show.html.erb",
 		"/home/stefan/sshfs/qm/app/views/news/show.html.erb",
@@ -98,7 +109,6 @@
 		"/home/stefan/sshfs/mercator/app/views/taglibs/application.dryml",
 		"/home/stefan/sshfs/mercator/app/controllers/ckeditor/attachment_files_controller.rb",
 		"/home/stefan/sshfs/mercator/app/controllers/ckeditor/pictures_controller.rb",
-		"/home/stefan/sshfs/mercator/config/application.rb",
 		"/home/stefan/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/stefan/sshfs/norway/config/locales/nb.yml",
 		"/home/stefan/sshfs/norway/config/locales/en.yml",
@@ -205,17 +215,7 @@
 		"/home/stefan/sshfs/miranda-weissenfeld/app/helpers/products_helper.rb",
 		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/ivellio_vellin/tasks/ivellio_vellin_tasks.rake",
 		"/home/stefan/sshfs/miranda-weissenfeld/vendor/plugins/mesonic/tasks/mesonic_tasks.rake",
-		"/home/stefan/sshfs/motorola-shop/app/views/templates/search.html.erb",
-		"/home/stefan/temp/gd_bundle.crt",
-		"/home/stefan/temp/iv-shop.at.crt",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/tour/help.html",
-		"/home/stefan/temp/SpMsBqH.html",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/bootstrap-tour-master/help.html",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/tour/bootstrap-tour.css",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/tour/bootstrap-tour.js",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/bootstrap-tour-master/docs/page.html",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/help.html",
-		"/home/stefan/INFORMATOM/Projekte/Humunculus/Mockups/bootstrap-tour.js"
+		"/home/stefan/sshfs/motorola-shop/app/views/templates/search.html.erb"
 	],
 	"find":
 	{
@@ -226,6 +226,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/home/stefan/sshfs/mercator/config",
 			"/home/stefan/sshfs/mercator/app",
 			"/home/stefan/sshfs/norway/app",
 			"/home/stefan/sshfs/norway/config/locales",
@@ -260,6 +261,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".secret_token",
+			"HAS",
 			"data-table",
 			"data-",
 			"or:",

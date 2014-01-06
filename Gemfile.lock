@@ -1,4 +1,30 @@
 GIT
+  remote: git://github.com/Hobo/hobo.git
+  revision: 7789a87d6fbf774b56385864a95eec2a73f5685f
+  specs:
+    dryml (2.1.0.pre4)
+      actionpack (~> 4.0.2)
+      hobo_support (= 2.1.0.pre4)
+    hobo (2.1.0.pre4)
+      dryml (= 2.1.0.pre4)
+      hobo_fields (= 2.1.0.pre4)
+      hobo_support (= 2.1.0.pre4)
+      hobo_will_paginate
+    hobo_fields (2.1.0.pre4)
+      hobo_support (= 2.1.0.pre4)
+    hobo_jquery (2.1.0.pre4)
+      hobo_rapid (= 2.1.0.pre4)
+      jquery-rails (~> 2.0)
+    hobo_jquery_ui (2.1.0.pre4)
+      hobo (= 2.1.0.pre4)
+      hobo_jquery (= 2.1.0.pre4)
+      jquery-ui-themes (~> 0.0.4)
+    hobo_rapid (2.1.0.pre4)
+      hobo (= 2.1.0.pre4)
+    hobo_support (2.1.0.pre4)
+      rails (~> 4.0.2)
+
+GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
   revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
@@ -91,9 +117,6 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.3.0)
     diff-lcs (1.2.5)
-    dryml (2.1.0.pre4)
-      actionpack (~> 4.0.2)
-      hobo_support (= 2.1.0.pre4)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
@@ -106,11 +129,6 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.3)
     hike (1.2.3)
-    hobo (2.1.0.pre4)
-      dryml (= 2.1.0.pre4)
-      hobo_fields (= 2.1.0.pre4)
-      hobo_support (= 2.1.0.pre4)
-      hobo_will_paginate
     hobo_bootstrap (2.1.0.pre4)
       bootstrap-sass (~> 2.1)
       hobo_jquery (>= 2.0)
@@ -122,19 +140,6 @@ GEM
       ckeditor
       hobo (>= 2.0.0)
       rails
-    hobo_fields (2.1.0.pre4)
-      hobo_support (= 2.1.0.pre4)
-    hobo_jquery (2.1.0.pre4)
-      hobo_rapid (= 2.1.0.pre4)
-      jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.1.0.pre4)
-      hobo (= 2.1.0.pre4)
-      hobo_jquery (= 2.1.0.pre4)
-      jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.1.0.pre4)
-      hobo (= 2.1.0.pre4)
-    hobo_support (2.1.0.pre4)
-      rails (~> 4.0.2)
     hobo_will_paginate (2.1.1)
     hobo_will_paginate-bootstrap (1.0.0)
       hobo_will_paginate
@@ -290,7 +295,7 @@ DEPENDENCIES
   debugger (~> 1.6.2)
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
-  hobo (= 2.1.0.pre4)
+  hobo!
   hobo_bootstrap (= 2.1.0.pre4)
   hobo_bootstrap_ui (= 2.1.0.pre4)
   hobo_ckeditor

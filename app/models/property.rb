@@ -3,7 +3,7 @@ class Property < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string, :required
+    name_de        :string#, :required
     name_en        :string
     description_de :string
     description_en :string
@@ -21,17 +21,17 @@ class Property < ActiveRecord::Base
   has_paper_trail
   translates :name, :description, :unit
   acts_as_list :scope => :property_group
-  default_scope { order("properties.position ASC") }
+  # default_scope { order("properties.position ASC") }
 
   validates :value, numericality: true, allow_nil: true
-  validates :position, numericality: true, :uniqueness => {:scope => :property_group_id}
+  # validates :position, numericality: true, :uniqueness => {:scope => :property_group_id}
 
   belongs_to :property_group
   validates :property_group, :presence => true
 
   validate :textual_or_numerical
 
-  validates :name_de, :presence => true, :uniqueness => {:scope => :property_group_id}
+  validates :name_de, :presence => true#, :uniqueness => {:scope => :property_group_id}
 
   def textual_or_numerical
     unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||
