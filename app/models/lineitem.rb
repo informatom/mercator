@@ -27,7 +27,6 @@ class Lineitem < ActiveRecord::Base
   validates :vat, numericality: true
   validates :value, numericality: true
   validates :product_number, :uniqueness => {:scope => :order_id}
-  validates :position, :uniqueness => {:scope => :order_id}
 
   belongs_to :user, :creator => true
   validates :user, :presence => true

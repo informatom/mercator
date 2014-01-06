@@ -19,14 +19,13 @@ describe Property do
     expect(build(:property, value: nil, unit_de: nil)).to be_valid
   end
 
-  it {should validate_presence_of(:name_de)}
-  it {should validate_uniqueness_of(:name_de)}
+#  it {should validate_presence_of(:name_de)}
+#  it {should validate_uniqueness_of(:name_de)}
 
   it {should validate_numericality_of(:value)}
 
   it {should validate_presence_of(:position)}
   it {should validate_numericality_of(:position)}
-  it {should validate_uniqueness_of(:position)}
 
   it {should belong_to(:property_group)}
   it {should validate_presence_of(:property_group)}

@@ -5,8 +5,8 @@ gem 'rails', '4.0.2'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'jquery-rails'                                  # JQuery asset handling
 
-# gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
-gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
+gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
+# gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
 gem "protected_attributes"
 gem "hobo_will_paginate"                            # pagination support
 gem "hobo_bootstrap", "2.1.0.pre4"                  # Twitter Bootstrap asset handling

@@ -9,7 +9,6 @@ describe Feature do
 
   it {should validate_presence_of(:position)}
   it {should validate_numericality_of(:position)}
-  it {should validate_uniqueness_of(:position)}
 
   it {should belong_to(:product)}
   it {should validate_presence_of(:product)}
