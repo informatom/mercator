@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140104094617) do
+ActiveRecord::Schema.define(version: 20140107082825) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20140104094617) do
     t.string   "type",              limit: 30
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
@@ -96,6 +96,10 @@ ActiveRecord::Schema.define(version: 20140104094617) do
     t.string   "markup"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "contracts", force: true do |t|

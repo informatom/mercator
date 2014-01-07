@@ -17,6 +17,10 @@ class ContentElement < ActiveRecord::Base
   translates :name, :content
   has_paper_trail
 
+  has_attached_file :photo,
+    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
+    :default_url => "/images/:style/missing.png"
+
   has_many :page_content_element_assignments, :accessible => true
   has_many :pages, :through => :page_elements
 

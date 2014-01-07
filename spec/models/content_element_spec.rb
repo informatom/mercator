@@ -12,6 +12,11 @@ describe ContentElement do
   it "is versioned" do
     should respond_to(:versions)
   end
+
+  it "has a photo attached" do
+    should respond_to(:photo)
+  end
+
   it {should have_many(:page_content_element_assignments)}
   it {should have_many(:pages)}
 end
