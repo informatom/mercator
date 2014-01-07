@@ -13,6 +13,10 @@ describe ContentElement do
     should respond_to(:versions)
   end
 
+  it "has a document attached" do
+    should respond_to(:document)
+  end
+
   it "has a photo attached" do
     should respond_to(:photo)
   end

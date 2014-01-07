@@ -1,10 +1,10 @@
-def import_cms
+def import_pages
   puts "\n\nPages:"
 
   Legacy::CmsNode.where(typus: "Page").each do |legacy_cms_node|
     legacy_cms_node_de = legacy_cms_node.cms_node_translations.german.first
     legacy_cms_node_en = legacy_cms_node.cms_node_translations.english.first
-    
+
     page_template = PageTemplate.where(legacy_id: legacy_cms_node.page_template_id).first
     parent = Page.where(legacy_id: legacy_cms_node.parent_id).first
 
@@ -16,7 +16,7 @@ def import_cms
                     position: legacy_cms_node.position,
                     parent_id: ( parent.id if parent ),
                     page_template_id: page_template.id,
-                    legacy_id: legacy_cms_node.id) 
+                    legacy_id: legacy_cms_node.id)
     page.state = status
     if page.save
       print "P"
