@@ -23,6 +23,8 @@ module Mercator
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js)
 
+    config.assets.precompile += %w(fts-webrtc-styles.css jquery.fresh-tilled-soil-webrtc.js)
+
     config.generators do |g|
       g.test_framework :rspec, :fixtures => true
       g.fallbacks[:rspec] = :test_unit
