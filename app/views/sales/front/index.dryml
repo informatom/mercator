@@ -1,0 +1,20 @@
+<page title="Sales">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header hero-unit">
+      <h1>Mercator Sales</h1>
+      <section class="welcome-message">
+        <h3>Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System</h3>
+        <ul>
+          <li>Verwenden Sie die Links im Menü zur Navigation</li>
+        </ul>
+      </section>
+    </header>
+
+    <section class="content-body">
+    </section>
+  </content:>
+
+</page>

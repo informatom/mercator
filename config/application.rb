@@ -12,6 +12,8 @@ Bundler.require(:default, Rails.env)
 
 module Mercator
   class Application < Rails::Application
+    # Hobo: the sales subsite loads sales.css & sales.js
+    config.assets.precompile += %w(sales.css sales.js)
     # HAS 20131222 deprecation warning in rails 4
     I18n.enforce_available_locales = true
     I18n.available_locales = [:en, :de]

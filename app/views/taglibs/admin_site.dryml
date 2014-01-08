@@ -1,8 +1,10 @@
 <!-- Tag definitions for the admin subsite -->
 
 <include src="common"/>
+
 <include src="taglibs/auto/admin/rapid/cards"/>
 <include src="taglibs/auto/admin/rapid/pages"/>
 <include src="taglibs/auto/admin/rapid/forms"/>
+
 <include src="application"/>
 <include src="admin/*"/>

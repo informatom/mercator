@@ -1,0 +1,9 @@
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Frontend</nav-item>
+    <nav-item href="#{base_url}/admin/">Admin</nav-item>
+    <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
+    <nav-item href="#{base_url}/sales/">Sales</nav-item>
+
+  </navigation>
+</def>

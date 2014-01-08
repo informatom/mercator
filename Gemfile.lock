@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/galetahub/ckeditor.git
-  revision: 1c25dd6fc3541cc1327358b6b69ce0d51adcc674
+  revision: 1b5e461c2c71e9366f86555618e67d0c0bb66b4e
   specs:
     ckeditor (4.0.7)
       mime-types
@@ -49,7 +49,7 @@ GEM
       activerecord (>= 3.0.0)
     arel (4.0.1)
     atomic (1.1.14)
-    better_errors (1.0.1)
+    better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
@@ -84,12 +84,12 @@ GEM
     daemons (1.1.9)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
-    debugger (1.6.4)
+    debugger (1.6.5)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.0)
+      debugger-ruby_core_source (~> 1.3.1)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.0)
+    debugger-ruby_core_source (1.3.1)
     diff-lcs (1.2.5)
     dryml (2.1.0.pre4)
       actionpack (~> 4.0.2)

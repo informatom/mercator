@@ -3,6 +3,7 @@
     <nav-item href="#{base_url}/">Frontend</nav-item>
     <nav-item href="#{base_url}/admin/">Admin</nav-item>
     <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
+    <nav-item href="#{base_url}/sales/">Sales</nav-item>
 
     <nav-item with="&Customer">
       <ht key="customer.nav_item" count="100"><model-name-human count="100"/></ht>

@@ -1,0 +1,10 @@
+<!-- Tag definitions for the sales subsite -->
+
+<include src="common"/>
+
+<include src="taglibs/auto/sales/rapid/cards"/>
+<include src="taglibs/auto/sales/rapid/pages"/>
+<include src="taglibs/auto/sales/rapid/forms"/>
+
+<include src="application"/>
+<include src="sales/*"/>

@@ -3,6 +3,8 @@
     <nav-item href="#{base_url}/">Frontend</nav-item>
     <nav-item href="#{base_url}/admin/">Admin</nav-item>
     <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
+    <nav-item href="#{base_url}/sales/">Sales</nav-item>
+
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.User") %> ...
       <b class="caret"></b></a>
