@@ -1,0 +1,6 @@
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item href="#{base_url}/chat.html/">Video Chat</nav-item>
+  </navigation>
+</def>
