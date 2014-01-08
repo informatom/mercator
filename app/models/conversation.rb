@@ -3,7 +3,7 @@ class Conversation < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name :text, :required
+    name :string, :required
     timestamps
   end
   attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant
