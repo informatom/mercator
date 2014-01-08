@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107165248) do
+ActiveRecord::Schema.define(version: 20140108151231) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -113,6 +113,17 @@ ActiveRecord::Schema.define(version: 20140107165248) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "conversations", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "customer_id"
+    t.integer  "consultant_id"
+  end
+
+  add_index "conversations", ["consultant_id"], name: "index_conversations_on_consultant_id", using: :btree
+  add_index "conversations", ["customer_id"], name: "index_conversations_on_customer_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name_de"
@@ -357,12 +368,10 @@ ActiveRecord::Schema.define(version: 20140107165248) do
     t.string   "state",                                default: "inactive"
     t.datetime "key_timestamp"
     t.integer  "legacy_id"
-    t.string   "type"
     t.boolean  "sales",                                default: false
   end
 
   add_index "users", ["state"], name: "index_users_on_state", using: :btree
-  add_index "users", ["type"], name: "index_users_on_type", using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false

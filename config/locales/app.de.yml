@@ -18,11 +18,13 @@ de:
     code: Code
     comment: Kommentar
     Constant: Konstante
+    consultant: Berater
     content: Inhalt
     country: Land
     Country: Land
     created_at: Erzeugt
     current_password: Aktuelles Passwort
+    customer: Kunde
     description: Beschreibung
     document: Dokument
     document_file_name: Dateiname Dokument
@@ -109,6 +111,9 @@ de:
       contract:
         one: Vertrag
         other: Verträge
+      conversation: 
+        one: Konversation
+        other: Konversationen
       country:
         one: Land
         other: Länder

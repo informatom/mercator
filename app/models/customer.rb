@@ -1,4 +1,0 @@
-class Customer < User
-
-
-end

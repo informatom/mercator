@@ -5,5 +5,19 @@
     <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
     <nav-item href="#{base_url}/sales/">Sales</nav-item>
 
+    <nav-item with="&User">
+      <ht key="user.nav_item" count="100"><model-name-human count="100"/></ht>
+    </nav-item>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("activerecord.models.conversation.other") %> ...
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&Conversation">
+          <ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+      </ul>
+    </li>
+
+
   </navigation>
 </def>

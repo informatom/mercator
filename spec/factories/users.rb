@@ -14,4 +14,11 @@ FactoryGirl.define do
     password "secret123"
   end
 
+  factory :sales, class: User do
+    name "Sammy Sales Representative"
+    email_address "sammy.sales@informatom.com"
+    administrator true
+    password "secret123"
+  end
+
 end

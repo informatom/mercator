@@ -5,7 +5,6 @@ describe Address do
     expect(build(:address)).to be_valid
   end
 
-  it {should validate_presence_of(:user)}
   it {should validate_presence_of(:name)}
   it {should validate_presence_of(:street)}
   it {should validate_presence_of(:postalcode)}
