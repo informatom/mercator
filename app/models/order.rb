@@ -30,6 +30,8 @@ class Order < ActiveRecord::Base
   validates :user, :presence => true
   view_hints.parent :user
   
+  belongs_to :conversation
+
   has_many :lineitems, dependent: :destroy
   children :lineitems
 
@@ -37,8 +39,8 @@ class Order < ActiveRecord::Base
 
   lifecycle do
     state :basket, :default => true
-    state :ordered, :paid, :shipped
-    transition :order, {:basket => :ordered}
+    state :ordered, :paid, :shipped, :offer
+    transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, :available_to => "User.administrator"
   end

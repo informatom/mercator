@@ -27,6 +27,8 @@ describe Order do
   it {should validate_presence_of(:user)}
   it {should have_many(:lineitems)}
 
+  it {should belong_to(:conversation)}
+
   it "is versioned" do
     should respond_to(:versions)
   end

@@ -3,16 +3,19 @@ class User < ActiveRecord::Base
   hobo_user_model # Don't put anything above this
 
   fields do
-    name          :string, :required, :unique
-    email_address :email_address, :required, :unique, :login => true
-    administrator :boolean, :default => false
-    sales         :boolean, :default => false
-    legacy_id     :integer
+    name             :string, :required, :unique
+    email_address    :email_address, :required, :unique, :login => true
+    administrator    :boolean, :default => false
+    sales            :boolean, :default => false
+    legacy_id        :integer
+    last_login_at    :datetime
+    logged_in        :boolean, :default => false
+    login_count      :integer, :default => 0
     timestamps
   end
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator, :legacy_id, :sales
+                  :current_password, :administrator, :legacy_id, :sales, :login_count,
   has_paper_trail
 
   has_many :addresses, dependent: :destroy

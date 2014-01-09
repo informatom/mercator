@@ -16,4 +16,18 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def login
+    hobo_login
+    unless current_user.class == Guest 
+      #HAS:20140109 WTF! reduce by one, because some other method increases by 2!
+      current_user.update_attributes(logged_in: true)
+    end
+  end
+
+  def logout
+    current_user.update_attributes(logged_in: false)
+    hobo_logout
+  end
+
 end

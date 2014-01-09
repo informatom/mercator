@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109092546) do
+ActiveRecord::Schema.define(version: 20140109144603) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -233,8 +233,10 @@ ActiveRecord::Schema.define(version: 20140109092546) do
     t.integer  "user_id"
     t.string   "state",               default: "basket"
     t.datetime "key_timestamp"
+    t.integer  "conversation_id"
   end
 
+  add_index "orders", ["conversation_id"], name: "index_orders_on_conversation_id", using: :btree
   add_index "orders", ["state"], name: "index_orders_on_state", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
@@ -395,6 +397,9 @@ ActiveRecord::Schema.define(version: 20140109092546) do
     t.datetime "key_timestamp"
     t.integer  "legacy_id"
     t.boolean  "sales",                                default: false
+    t.datetime "last_login_at"
+    t.integer  "login_count",                          default: 0
+    t.boolean  "logged_in",                            default: false
   end
 
   add_index "users", ["state"], name: "index_users_on_state", using: :btree

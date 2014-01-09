@@ -17,9 +17,9 @@ class Conversation < ActiveRecord::Base
 
   has_many :downloads
   has_many :messages
+  has_many :offers, -> {where state: :offer}, :class_name => 'Order'
 
   children :messages, :downloads
-
 
   # --- Permissions --- #
 
