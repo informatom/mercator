@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108153103) do
+ActiveRecord::Schema.define(version: 20140109084455) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -186,6 +186,19 @@ ActiveRecord::Schema.define(version: 20140108153103) do
 
   add_index "lineitems", ["order_id"], name: "index_lineitems_on_order_id", using: :btree
   add_index "lineitems", ["user_id"], name: "index_lineitems_on_user_id", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sender_id"
+    t.integer  "reciever_id"
+    t.integer  "conversation_id"
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["reciever_id"], name: "index_messages_on_reciever_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.string   "billing_method"

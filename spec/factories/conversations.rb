@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :conversation do
-    name "Nette Unterhaltung"
+    name "Freudliche Beratung"
     association :customer, factory: :user
     association :consultant, factory: :sales
   end
