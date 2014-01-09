@@ -103,5 +103,7 @@
         </nav-item>
       </ul>
     </li>
+
+  <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
   </navigation>
 </def>
