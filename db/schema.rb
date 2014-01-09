@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109084455) do
+ActiveRecord::Schema.define(version: 20140109092546) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -133,6 +133,19 @@ ActiveRecord::Schema.define(version: 20140109084455) do
     t.string   "name_en"
     t.integer  "legacy_id"
   end
+
+  create_table "downloads", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.integer  "conversation_id"
+  end
+
+  add_index "downloads", ["conversation_id"], name: "index_downloads_on_conversation_id", using: :btree
 
   create_table "features", force: true do |t|
     t.integer  "position"

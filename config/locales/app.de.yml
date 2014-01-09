@@ -20,6 +20,8 @@ de:
     Constant: Konstante
     consultant: Berater
     content: Inhalt
+    Conversation: Beratung
+    conversation: Beratung
     country: Land
     Country: Land
     created_at: Erzeugt
@@ -114,14 +116,17 @@ de:
         one: Vertrag
         other: Verträge
       conversation: 
-        one: Konversation
-        other: Konversationen
+        one: Beratung
+        other: Beratungen
       country:
         one: Land
         other: Länder
       customer:
         one: Kunde
         other: Kunden
+      download:
+        one: Download
+        other: Downloads
       inventory:
         one: Bestand
         other: Bestände

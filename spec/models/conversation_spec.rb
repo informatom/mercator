@@ -17,4 +17,5 @@ describe Conversation do
     should respond_to(:versions)
   end
 
+  it {should have_many(:downloads)}
 end

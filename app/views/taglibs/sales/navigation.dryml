@@ -18,9 +18,12 @@
         <nav-item with="&Message">
           <ht key="message.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Download">
+          <ht key="download.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
       </ul>
     </li>
 
-
+  <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
   </navigation>
 </def>

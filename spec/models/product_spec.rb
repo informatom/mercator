@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Product do
-  it "is valid with name_de, name_en, number, description_de, description_en" do
+  it "is valid with name_de, name_en, number, description_de, description_en, document, photo" do
     expect(build(:product)).to be_valid
   end
 

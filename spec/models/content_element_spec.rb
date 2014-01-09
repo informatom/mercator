@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ContentElement do
-  it "is valid with content_de, content_en, name_de, name_en, markup" do
+  it "is valid with content_de, content_en, name_de, name_en, markup, document, photo" do
     expect(build(:content_element)).to be_valid
   end
 

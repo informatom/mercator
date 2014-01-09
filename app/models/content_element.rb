@@ -14,7 +14,7 @@ class ContentElement < ActiveRecord::Base
   end
 
   attr_accessible :name_de, :name_en, :content_de, :content_en, :markup,
-                  :pages, :page_content_element_assignments, :legacy_id
+                  :pages, :page_content_element_assignments, :legacy_id, :photo, :document
   translates :name, :content
   has_paper_trail
 

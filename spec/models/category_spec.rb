@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Category do
-  it "is valid with name_de, name_en, position" do
+  it "is valid with name_de, name_en, position, photo, document" do
     expect(build(:category)).to be_valid
   end
 

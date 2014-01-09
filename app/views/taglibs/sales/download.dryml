@@ -1,0 +1,5 @@
+<extend tag="form" for="Download">
+  <old-form merge multipart>
+    <field-list: fields='name, conversation, document'/>
+  </old-form>
+</extend>
