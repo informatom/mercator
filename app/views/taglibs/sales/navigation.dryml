@@ -15,6 +15,9 @@
         <nav-item with="&Conversation">
           <ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Message">
+          <ht key="message.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
       </ul>
     </li>
 

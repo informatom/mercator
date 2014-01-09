@@ -3,12 +3,14 @@ class Message < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    content :string, :required
+    content :string, :required, :name => true
     timestamps
   end
   attr_accessible :content, :sender_id, :sender, :reciever_id, :reciever, 
                   :conversation_id, :conversation
   has_paper_trail
+
+  default_scope { order('messages.created_at DESC') }
 
   belongs_to :sender, :class_name => 'User'
   belongs_to :reciever, :class_name => 'User'

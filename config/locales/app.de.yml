@@ -66,11 +66,13 @@ de:
     recommended_product: empfohlenes Produkt
     recommended_products: empfohlene Produkte
     reason: Grund
+    reciever: Empfänger
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
     runtime: Laufzeit
     scale_from: Staffel ab
     scale_to: Staffel bis
+    sender: Absender
     startdate: Startdatum
     state: Status
     street: Straße
@@ -126,6 +128,9 @@ de:
       lineitem:
         one: Bestellposition
         other: Bestellpositionen
+      message:
+        one: Nachricht
+        other: Nachrichten
       order:
         one: Bestellung
         other: Bestellungen
