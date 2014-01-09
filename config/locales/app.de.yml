@@ -41,6 +41,7 @@ de:
     lineitems: Bestellpositionen
     long_description: Lange Beschreibung
     markup: Markup Format
+    messages: Nachrichten
     miscellaneous: Diverses
     name: Name
     order: Bestellung

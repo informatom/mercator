@@ -6,7 +6,7 @@ class Conversation < ActiveRecord::Base
     name :string, :required
     timestamps
   end
-  attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant, :downloads
+  attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant, :downloads, :messages
   has_paper_trail
 
   belongs_to :customer, :class_name => 'User'
@@ -15,8 +15,11 @@ class Conversation < ActiveRecord::Base
   validates :customer, :presence => true
   validates :consultant, :presence => true
 
-  has_many :downloads, :accessible => true
-  children :downloads
+  has_many :downloads
+  has_many :messages
+
+  children :messages, :downloads
+
 
   # --- Permissions --- #
 

@@ -18,4 +18,5 @@ describe Conversation do
   end
 
   it {should have_many(:downloads)}
+  it {should have_many(:messages)}
 end

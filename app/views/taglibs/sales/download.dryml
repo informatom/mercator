@@ -3,3 +3,19 @@
     <field-list: fields='name, conversation, document'/>
   </old-form>
 </extend>
+
+<def tag="card" for="Download">
+  <card class="download" param="default" merge>
+    <header: param>
+      <h4 param="heading">
+        <a href="#{this.document.url}"><name/></a>
+      </h4>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
+    </header:>
+    <body:>
+      <p>Größe: <this.document-file-size/></p>
+      <p>Datum: <view:document-updated-at/></p>
+    </body:>  </card>
+</def>
