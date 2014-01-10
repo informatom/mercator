@@ -58,6 +58,8 @@ GEM
       railties (>= 3.0)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
+    bootswatch-rails (0.5.0)
+      railties (>= 3.1)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -285,6 +287,7 @@ DEPENDENCIES
   ancestry
   better_errors
   binding_of_caller
+  bootswatch-rails
   capybara (~> 2.1.0)
   ckeditor!
   coffee-rails (~> 4.0.0)

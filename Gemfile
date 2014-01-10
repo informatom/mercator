@@ -10,6 +10,7 @@ gem "hobo", "= 2.1.0.pre4"                          # web application meta frame
 gem "protected_attributes"
 gem "hobo_will_paginate"                            # pagination support
 gem "hobo_bootstrap", "2.1.0.pre4"                  # Twitter Bootstrap asset handling
+gem 'bootswatch-rails'
 gem "hobo_jquery_ui", "2.1.0.pre4"                  # JQuery UI asser handling
 gem "hobo_bootstrap_ui", "2.1.0.pre4"               # additional Bootstrap features
 gem "jquery-ui-themes", "~> 0.0.4"                  # JQury Ui theming

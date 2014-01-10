@@ -1,6 +1,3 @@
-<!-- this file is included by front_site.dryml, admin_site.dryml et al, so
-you can place common code in this file. -->
-
 <extend tag="page">
   <old-page merge nav-location="sub">
     <stylesheets: param>
@@ -40,5 +37,5 @@ you can place common code in this file. -->
   <if test="&this.state == 'published_but_hidden'"><%= fa_icon "eye-slash" %></if>
   <if test="&this.state == 'deprecated'"><%= fa_icon "archive" %></if>
     <%= "(" + (h this.state) + ")" unless
-      ["active","published", "draft", "published_but_hidden", "archived", "new", "  deprecated"].include? this.state %>
+      ["active","published", "draft", "published_but_hidden", "archived", "new", "deprecated"].include? this.state %>
 </def>

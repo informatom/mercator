@@ -1,9 +1,16 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
-    <nav-item href="#{base_url}/">Frontend</nav-item>
-    <nav-item href="#{base_url}/admin/">Admin</nav-item>
-    <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
-    <nav-item href="#{base_url}/sales/">Sales</nav-item>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Sites") %> ...
+      <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item href="#{base_url}/">Frontend</nav-item>
+        <nav-item href="#{base_url}/admin/">Admin</nav-item>
+        <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
+        <nav-item href="#{base_url}/sales/">Sales</nav-item>
+        <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
+      </ul>
+    </li>
 
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.User") %> ...
@@ -104,6 +111,5 @@
       </ul>
     </li>
 
-  <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
   </navigation>
 </def>
