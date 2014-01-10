@@ -47,6 +47,8 @@ de:
     order: Bestellung
     orders: Bestellungen
     page: Webseite
+    PageTemplate: Websitevorlage
+    page_template: Websitevorlage
     page_tree: Sitestruktur
     password_confirmation: Passwortbestätigung
     photo: Foto
@@ -148,6 +150,9 @@ de:
       page_content_element_assignment:
         one: Element der Webseite
         other: Elemente der Webseiten
+      page_template:
+        one: Websitevorlage
+        other: Websitevorlagen
       price:
         one: Preis
         other: Preise

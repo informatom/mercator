@@ -17,6 +17,15 @@ Mercator::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :page_templates do
+      collection do
+        post 'restart'
+      end
+    end
+  end
+
+
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
   get 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
   get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'

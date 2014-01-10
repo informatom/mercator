@@ -6,16 +6,15 @@ class Admin::PageTemplatesController < Admin::AdminSiteController
 
   def update
     hobo_update
-    this.save_to_disk_and_restart
-    restart_app
+    this.save_to_disk
   end
 
   def create
     hobo_create
-    this.save_to_disk_and_restart
+    this.save_to_disk
   end
 
-protected
-
-
+  def restart
+    exec("touch " + Rails.root.to_s + "/tmp/restart.txt &")
+  end
 end

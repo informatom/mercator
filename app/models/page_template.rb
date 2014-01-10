@@ -32,12 +32,11 @@ class PageTemplate < ActiveRecord::Base
     true
   end
 
-  def save_to_disk_and_restart
+  def save_to_disk
     filename = Rails.root.to_s + "/app/views/page_templates/" + self.name + ".html.erb"
     File.open(filename, "w+") do |f|
       f.write(self.content)
     end
-    exec("touch " + Rails.root.to_s + "/tmp/restart.txt &")
   end
 
 end

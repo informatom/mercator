@@ -1,0 +1,7 @@
+<index-page>
+  <prepend-content-body:>
+    <%= button_to "Restart Application", restart_admin_page_templates_path,
+                  method: :post, data: { confirm: 'Sind Sie Sicher?', disable_with: 'Restarting...' },
+                  class: "btn btn-danger" %>
+  </prepend-content-body:>
+</index-page>
