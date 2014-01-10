@@ -9,7 +9,7 @@ class PageTemplate < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :content, :legacy_id
-  
+
   has_paper_trail
 
   has_many :pages
@@ -30,6 +30,14 @@ class PageTemplate < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+  def save_to_disk_and_restart
+    filename = Rails.root.to_s + "/app/views/page_templates/" + self.name + ".html.erb"
+    File.open(filename, "w+") do |f|
+      f.write(self.content)
+    end
+    exec("touch " + Rails.root.to_s + "/tmp/restart.txt &")
   end
 
 end
