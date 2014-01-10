@@ -4,4 +4,8 @@
                   method: :post, data: { confirm: 'Sind Sie Sicher?', disable_with: 'Restarting...' },
                   class: "btn btn-danger" %>
   </prepend-content-body:>
+
+  <collection: fields="this, content, actions">
+  <content-view:> <%= h this.truncate(300) %></content-view>
+</collection:>
 </index-page>

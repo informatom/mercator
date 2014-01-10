@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
     timestamps
   end
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
-                  :position, :parent_id, :parent, :position, :state
+                  :position, :parent_id, :parent, :position, :page_template, :url
   translates :title
   has_ancestry
 
@@ -26,7 +26,7 @@ class Page < ActiveRecord::Base
   has_many :content_elements, :through => :page_content_element_assignments
 
   belongs_to :page_template
-  validates :page_template, :presence => true  
+  validates :page_template, :presence => true
 
   alias_attribute :name, :title_de
 
@@ -34,10 +34,10 @@ class Page < ActiveRecord::Base
     state :draft, :default => true
     state :published, :published_but_hidden, :archived
 
-    transition :publish, { [:draft, :archived] => :published}, :available_to => "User.administrator"
+    transition :publish, { [:draft, :archived] => :published }, :available_to => "User.administrator"
     transition :archive, { [:published, :published_but_hidden] => :archived }, :available_to => "User.administrator"
-    transition :hide_from_menu, { :published => :published_but_hidden }, :available_to => "User.administrator"
-    transition :show_in_menu, { :published_but_hidden => :published}, :available_to => "User.administrator"
+    transition :hide, { :published => :published_but_hidden }, :available_to => "User.administrator"
+    transition :unhide, { :published_but_hidden => :published }, :available_to => "User.administrator"
   end
 
   # --- Permissions --- #

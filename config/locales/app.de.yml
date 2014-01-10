@@ -20,6 +20,7 @@ de:
     Constant: Konstante
     consultant: Berater
     content: Inhalt
+    content_element: Baustein
     Conversation: Beratung
     conversation: Beratung
     country: Land
@@ -48,6 +49,7 @@ de:
     orders: Bestellungen
     page: Webseite
     PageTemplate: Websitevorlage
+    page_content_element_assignments: Webseite-Bausteine
     page_template: Websitevorlage
     page_tree: Sitestruktur
     password_confirmation: Passwortbestätigung
@@ -115,8 +117,8 @@ de:
         one: Konstante
         other: Konstanten
       content_element:
-        one: Textbaustein
-        other: Textbausteine
+        one: Baustein
+        other: Bausteine
       contract:
         one: Vertrag
         other: Verträge

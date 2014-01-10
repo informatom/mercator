@@ -1,0 +1,5 @@
+<show-page>
+  <prepend-content-body:>
+    <transition-buttons/><else>Sorry, no buttons to press.</else>
+  </prepend-content-body:>
+</show-page>
