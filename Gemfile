@@ -26,12 +26,14 @@ gem 'traco'                                         # model attribute translatio
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
-gem 'roo'                                         # more sophisticated Excel spreadsheet generation
-gem 'sass-rails', '~> 4.0.0'                      # Sass support
-gem "less-rails"                                  # Less support
-gem 'coffee-rails', '~> 4.0.0'                    # Coffeescript support
-gem 'therubyracer', :platforms => :ruby           # Javascript engine
-gem 'uglifier', '>= 1.3.0'                        # Code minimizer
+gem 'roo'                                           # more sophisticated Excel spreadsheet generation
+gem 'sass-rails', '~> 4.0.0'                        # Sass support
+gem "less-rails"                                    # Less support
+gem 'coffee-rails', '~> 4.0.0'                      # Coffeescript support
+gem 'therubyracer', :platforms => :ruby             # Javascript engine
+gem 'uglifier', '>= 1.3.0'                          # Code minimizer
+
+gem "font-awesome-rails"                            # Font awesome icon font
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick

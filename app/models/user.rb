@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   end
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator, :legacy_id, :sales, :login_count,
+                  :current_password, :administrator, :legacy_id, :sales,
+                  :logged_in, :last_login_at, :login_count
   has_paper_trail
 
   has_many :addresses, dependent: :destroy

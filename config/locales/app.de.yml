@@ -47,6 +47,7 @@ de:
     order: Bestellung
     orders: Bestellungen
     page: Webseite
+    page_tree: Sitestruktur
     password_confirmation: Passwortbestätigung
     photo: Foto
     photo_file_name: Dateiname Foto
@@ -116,7 +117,7 @@ de:
       contract:
         one: Vertrag
         other: Verträge
-      conversation: 
+      conversation:
         one: Beratung
         other: Beratungen
       country:
