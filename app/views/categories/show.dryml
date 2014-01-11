@@ -15,21 +15,24 @@
       </if>
     </repeat>
 
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><name/> <b class="caret"></b></a>
-      <if test="&this.active_siblings">
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <nav-item repeat="&this.active_siblings" href="#{category_path(this)}/">
-            <name/>
-          </nav-item>
-        </ul>
-      </if>
-      <unless test="&this.active_siblings"><a><name/></a></unless>
-    </li>
+    <if test="&this.active_siblings">
+      <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><name/> <b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <nav-item repeat="&this.active_siblings" href="#{category_path(this)}/">
+              <name/>
+            </nav-item>
+          </ul>
+      </li>
+    </if>
+    <unless test="&this.active_siblings">
+      <li class="active"><a><name/></a></li>
+    </unless>
+
 
     <if test="&this.active_children">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Unterkategorien <b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">...<b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
           <nav-item repeat="&this.active_children" href="#{category_path(this)}/">
             <name/>
