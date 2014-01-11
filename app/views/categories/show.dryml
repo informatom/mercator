@@ -1,7 +1,7 @@
 <show-page>
   <main-nav:>
     <repeat with="&this.ancestors">
-      <if test="&this.active_siblings">
+      <if test="active_siblings">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -14,26 +14,25 @@
       <nav-item href="#{category_path(this)}"><name/></nav-item>
     </repeat>
 
-    <if test="&this.active_siblings">
+    <if test="active_siblings">
       <li class="dropdown active">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><name/> <b class="caret"></b></a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <nav-item repeat="&this.active_siblings" href="#{category_path(this)}/">
+            <nav-item repeat="active_siblings" href="#{category_path(this)}/">
               <name/>
             </nav-item>
           </ul>
       </li>
     </if>
-    <unless test="&this.active_siblings">
+    <unless test="active_siblings">
       <li class="active"><a><name/></a></li>
     </unless>
 
-
-    <if test="&this.active_children">
+    <if test="active_children">
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <nav-item repeat="&this.active_children" href="#{category_path(this)}/">
+          <nav-item repeat="active_children" href="#{category_path(this)}/">
             <name/>
           </nav-item>
         </ul>
@@ -42,19 +41,19 @@
   </main-nav:>
 
   <content-header:>
-    <div class="media">
-      <a class="pull-left" href="#">
-        <%= image_tag this.photo.url(:thumb),  class: "media-object img-polaroid" %>
-      </a>
-      <div class="media-body">
-        <h1 class="media-header"><name/></h1>
-        <view:long-description/>
-      </div>
-    </div>
+    <block>
+      <description:><view:long-description/></description>
+    </block>
   </content-header>
 
   <content-body:>
+    <%= this.children.in_groups_of(3) do |group| %>
+      <div class="row-fluid">
+          <div repeat="&group" class="span4">
+            <if><block/></if>
+          </div>
+      </div>
+    <% end %>
   </content-body:>
-
 
 </show-page>
