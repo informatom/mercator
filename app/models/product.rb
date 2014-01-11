@@ -6,14 +6,14 @@ class Product < ActiveRecord::Base
     name_de        :string, :required
     name_en        :string
     number         :string, :required, :unique
-    description_de :text, :required
-    description_en :text
+    description_de :cktext, :required
+    description_en :cktext
     legacy_id      :integer
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
                   :photo, :document, :productrelations, :supplyrelations,
-                  :inventories, :recommendations, :legacy_id
+                  :inventories, :recommendations, :legacy_id, :categories, :categorizations
   translates :name, :description
   has_paper_trail
 
@@ -25,8 +25,8 @@ class Product < ActiveRecord::Base
   has_many :property_groups, dependent: :destroy, :accessible => true, :inverse_of => :product
   has_many :properties, dependent: :destroy, :through => :property_groups
 
-  has_many :categorizations, dependent: :destroy, :inverse_of => :product
-  has_many :categories, :through => :categorizations, :accessible => true, :inverse_of => :products
+  has_many :categories, :through => :categorizations
+  has_many :categorizations, dependent: :destroy, :inverse_of => :product, :accessible => true
 
   has_many :related_products, :through => :productrelations
   has_many :productrelations, :inverse_of => :product, dependent: :destroy, :accessible => true

@@ -11,6 +11,7 @@ de:
     category_tree: Kategorienbaum
     categories: Kategorien
     Categorization: Kategorisierung
+    categorizations: Kategorisierungen
     category: Kategorie
     charge: Charge
     city: Ort
@@ -52,6 +53,7 @@ de:
     page_content_element_assignments: Webseite-Bausteine
     page_template: Websitevorlage
     page_tree: Sitestruktur
+    parent: Elternelement
     password_confirmation: Passwortbestätigung
     photo: Foto
     photo_file_name: Dateiname Foto
@@ -65,12 +67,14 @@ de:
     Product: Artikel
     product: Artikel
     product_number: Artikelnummer
+    productrelations: Produktzuordnungen
     products: Artikel
     Property: Eigenschaft
     properties: Eigenschaften
     PropertyGroup: Eigenschaftsgruppe
     property_group: Eigenschaftsgruppe
     property_groups: Eigenschaftsgruppen
+    recommendations: Empfehlungen
     recommended_product: empfohlenes Produkt
     recommended_products: empfohlene Produkte
     reason: Grund
@@ -86,6 +90,7 @@ de:
     state: Status
     street: Straße
     supply: Zubehör
+    supplyrelations: Zubehörzuordnungen
     supplies: Zubehör
     title: Titel
     unit: Einheit

@@ -1,10 +1,24 @@
 <extend tag="form" for="Category">
   <old-form merge>
-    <field-list: fields='name_de, name_en, position, parent, products'>
-      <parent-view:> 
+    <field-list: fields='name_de, name_en, description_de, description_en,
+                         long_description_de, long_description_en, position, parent, categorizations'>
+      <parent-view:>
           <select-menu options="&Category.all" first-option="Wurzelkategorie"/>
       </parent-view:>
-    </field-list:>  
+
+      <categorizations-view:>
+        <input-many>
+          <field-list fields="product" size="5">
+            <product-label: replace/>
+            <product-view:>
+              <name-one complete-target="&@product" completer="name_admin" autocomplete="off"/>
+               <input with="&this_parent" field="position" class="span2"/>
+            </product-view:>
+          </field-list>
+        </input-many>
+      </categorizations-view:>
+
+    </field-list:>
   </old-form>
 </extend>
 

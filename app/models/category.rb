@@ -5,10 +5,10 @@ class Category < ActiveRecord::Base
   fields do
     name_de             :string, :required
     name_en             :string, :tequired
-    description_de      :text
-    description_en      :text
-    long_description_de :text
-    long_description_en :text
+    description_de      :cktext
+    description_en      :cktext
+    long_description_de :cktext
+    long_description_en :cktext
     ancestry            :string, :index => true
     position            :integer, :required
     legacy_id           :integer
@@ -16,7 +16,8 @@ class Category < ActiveRecord::Base
   end
 
   attr_accessible :name_de, :name_en, :ancestry, :position, :active,
-                  :parent_id, :parent, :categorizations, :products, :document, :photo
+                  :parent_id, :parent, :categorizations, :products, :document, :photo,
+                  :description_de, :description_en, :long_description_de, :long_description_en
   translates :name, :description, :long_description
   has_ancestry
   has_paper_trail
@@ -30,8 +31,9 @@ class Category < ActiveRecord::Base
 
   validates :position, numericality: true
 
-  has_many :categorizations, -> { order :position }, dependent: :destroy
-  has_many :products, :through => :categorizations, :accessible => true, :inverse_of => :categories
+  has_many :products, :through => :categorizations, :inverse_of => :categories
+  has_many :categorizations, -> { order :position }, :inverse_of => :category, dependent: :destroy, :accessible => true
+
 
   def self.find_by_name(param)
     self.find_by_name_de(param)
@@ -64,6 +66,10 @@ class Category < ActiveRecord::Base
     true
   end
 
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
+
   def ancestors
     self.ancestor_ids.map { |id| Category.find(id) }
   end
@@ -75,6 +81,4 @@ class Category < ActiveRecord::Base
   def active_children
     Category.children_of(self).active
   end
-
-
 end

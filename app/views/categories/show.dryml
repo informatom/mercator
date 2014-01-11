@@ -40,4 +40,21 @@
       </li>
     </if>
   </main-nav:>
+
+  <content-header:>
+    <div class="media">
+      <a class="pull-left" href="#">
+        <%= image_tag this.photo.url(:thumb),  class: "media-object img-polaroid" %>
+      </a>
+      <div class="media-body">
+        <h1 class="media-header"><name/></h1>
+        <view:long-description/>
+      </div>
+    </div>
+  </content-header>
+
+  <content-body:>
+  </content-body:>
+
+
 </show-page>
