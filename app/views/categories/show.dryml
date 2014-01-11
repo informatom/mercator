@@ -31,7 +31,7 @@
 
     <if test="&this.active_children">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">...<b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
           <nav-item repeat="&this.active_children" href="#{category_path(this)}/">
             <name/>
