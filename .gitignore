@@ -12,5 +12,6 @@ public/system/*
 public/ckeditor_assets/*
 config/hobo_routes.rb
 app/views/taglibs/auto/*
+app/views/page_templates/*
 
 materials/ivellio-vellin/*
