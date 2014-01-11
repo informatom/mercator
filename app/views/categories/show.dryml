@@ -1,8 +1,6 @@
 <show-page>
   <main-nav:>
     <repeat with="&this.ancestors">
-      <nav-item href="#{category_path(this)}"><name/></nav-item>
-
       <if test="&this.active_siblings">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
@@ -13,6 +11,7 @@
           </ul>
         </li>
       </if>
+      <nav-item href="#{category_path(this)}"><name/></nav-item>
     </repeat>
 
     <if test="&this.active_siblings">
