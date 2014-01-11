@@ -63,4 +63,18 @@ class Category < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+  def ancestors
+    self.ancestor_ids.map { |id| Category.find(id) }
+  end
+
+  def active_siblings
+    Category.siblings_of(self).active - [self]
+  end
+
+  def active_children
+    Category.children_of(self).active
+  end
+
+
 end
