@@ -35,5 +35,9 @@ Mercator::Application.routes.draw do
   post 'categories/sort' => 'categories#sort'
 
 #HAS 20140112 very friendly urls ...
-  get ':id', to: 'pages#show'
+  get 'ivellio', to: '/pages/ivellio'
+  get 'team', to: '/pages/team'
+  get 'services', to: '/pages/ivellio'
+  get 'contact', to: '/pages/contact'
+
 end
