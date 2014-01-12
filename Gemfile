@@ -35,6 +35,7 @@ gem 'therubyracer', :platforms => :ruby             # Javascript engine
 gem 'uglifier', '>= 1.3.0'                          # Code minimizer
 
 gem "font-awesome-rails"                            # Font awesome icon font
+gem "friendly_id"
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick

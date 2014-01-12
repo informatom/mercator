@@ -4,9 +4,7 @@ class PagesController < ApplicationController
   auto_actions :show
 
   def show
-    hobo_show do
-      render "page_templates/" + @this.page_template.name
-    end
+    @this = @page = Page.friendly.find(params[:id])
+    render "page_templates/" + @this.page_template.name
   end
-
 end

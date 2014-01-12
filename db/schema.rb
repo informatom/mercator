@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112155306) do
+ActiveRecord::Schema.define(version: 20140112182226) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -290,6 +290,7 @@ ActiveRecord::Schema.define(version: 20140112155306) do
   add_index "pages", ["ancestry"], name: "index_pages_on_ancestry", using: :btree
   add_index "pages", ["page_template_id"], name: "index_pages_on_page_template_id", using: :btree
   add_index "pages", ["state"], name: "index_pages_on_state", using: :btree
+  add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
 
   create_table "prices", force: true do |t|
     t.decimal  "value",        precision: 10, scale: 2

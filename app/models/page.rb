@@ -1,16 +1,19 @@
 class Page < ActiveRecord::Base
-
   hobo_model # Don't put anything above this
 
   fields do
     title_de   :string, :required, :name => true
     title_en   :string
-    url        :string
+    url        :string, :index => true
     ancestry   :string, :index => true
     position   :integer, :required
     legacy_id  :integer
     timestamps
   end
+
+  extend FriendlyId
+  friendly_id :url
+
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
                   :position, :parent_id, :parent, :position, :page_template, :url
   translates :title
