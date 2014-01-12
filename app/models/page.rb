@@ -11,9 +11,6 @@ class Page < ActiveRecord::Base
     timestamps
   end
 
-  extend FriendlyId
-  friendly_id :url
-
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
                   :position, :parent_id, :parent, :position, :page_template, :url
   translates :title
