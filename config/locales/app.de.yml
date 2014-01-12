@@ -6,6 +6,8 @@ de:
     addresses: Adressen
     amount: Menge
     ancestry: Ancestry-String
+    BillingAddress: Rechnungsadresse
+    billing_address: Rechnungsadresse
     Category: Kategorie
     category: Kategorie
     category_tree: Kategorienbaum
@@ -112,6 +114,9 @@ de:
       address:
         one: Adresse
         other: Adressen
+      billing_address:
+        one: Rechnungsadresse
+        other: Rechnungsadressen
       categorization:
         one: Kategorisierung
         other: Kategorisierungen
@@ -188,6 +193,9 @@ de:
       address:
         name: Empfänger
         detail: Details
+      billing_address:
+        name: Empfänger
+        detail: Details
       contentelement/markups:
         html: "HTML-Seite"
         markdown: "Markdown Seite"
@@ -220,6 +228,10 @@ de:
         number: Artikelnummer
     attribute_help:
       address:
+        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
+        street: Straße und Hausnummer
+      billing_address:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
         street: Straße und Hausnummer

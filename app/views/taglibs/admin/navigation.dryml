@@ -19,6 +19,9 @@
         <nav-item with="&User">
           <ht key="user.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&BillingAddress">
+          <ht key="billing_address.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
         <nav-item with="&Address">
           <ht key="address.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109144603) do
+ActiveRecord::Schema.define(version: 20140112155306) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 20140109144603) do
   end
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
+
+  create_table "billing_addresses", force: true do |t|
+    t.string   "name"
+    t.string   "detail"
+    t.string   "street"
+    t.string   "postalcode"
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "billing_addresses", ["user_id"], name: "index_billing_addresses_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name_de"

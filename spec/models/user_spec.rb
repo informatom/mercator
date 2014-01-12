@@ -8,6 +8,7 @@ describe User do
   it {should validate_presence_of(:name)}
   it {should validate_uniqueness_of(:name)}
   it {should have_many(:addresses)}
+  it {should have_one(:billing_address)}
   it {should have_many(:orders)}
 
   it "is valid with a name, email_address and administrator" do

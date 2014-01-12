@@ -16,7 +16,7 @@ class Categorization < ActiveRecord::Base
   acts_as_list :scope => :category
 
   validates :product, :presence => true
-  validates :category_id, :presence => true
+  validates :category_id, :presence => true, :uniqueness => {:scope => :product_id}
 
   # --- Permissions --- #
 
