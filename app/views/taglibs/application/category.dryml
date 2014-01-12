@@ -1,4 +1,4 @@
-<def tag="block">
+<def tag="card" for="Category">
   <div class="category media" param="default" merge>
     <if test="&this.photo.exists?">
       <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ),
@@ -11,4 +11,45 @@
       </div>
     </div>
   </div>
+</def>
+
+<def tag="category-nav">
+  <repeat with="&this.ancestors">
+    <if test="active_siblings">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <nav-item repeat="&this.active_siblings" href="#{category_path(this)}/">
+            <name/>
+          </nav-item>
+        </ul>
+      </li>
+    </if>
+    <nav-item href="#{category_path(this)}"><name/></nav-item>
+  </repeat>
+
+  <if test="&this.active_siblings">
+    <li class="dropdown active">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><name/> <b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <nav-item repeat="active_siblings" href="#{category_path(this)}/">
+            <name/>
+          </nav-item>
+        </ul>
+    </li>
+  </if>
+  <unless test="active_siblings">
+    <li class="active"><a><name/></a></li>
+  </unless>
+
+  <if test="&this.active_children">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item repeat="active_children" href="#{category_path(this)}/">
+          <name/>
+        </nav-item>
+      </ul>
+    </li>
+  </if>
 </def>

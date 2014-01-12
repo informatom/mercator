@@ -1,0 +1,25 @@
+<def tag="card" for="Product">
+  <div class="product media" param="default" merge>
+    <if test="&this.photo.exists?">
+      <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ),
+                   product_path(this), class: "pull-left") %>
+    </if>
+    <div class="media-body">
+      <h1 class="media-header"><%= link_to( this.name, product_path(this)) %></h1>
+      <div param="description">
+        <view:description/>
+      </div>
+
+      <if test="&this.document.exists?">
+        <%= link_to( this.document.filename, this.document) %>
+      </if>
+
+      <if test="&this.features">
+        <ul>
+          <li repeat="&this.features"><view:text/></li>
+        </ul>
+      </if>
+
+    </div>
+  </div>
+</def>

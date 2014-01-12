@@ -1,0 +1,81 @@
+<show-page content-size="12">
+  <main-nav:>
+    <category-nav with="&this.categories.first" />
+  </main-nav:>
+
+  <content-header:>
+    <card/>
+  </content-header:>
+
+  <content-body:>
+    <ul class="nav nav-tabs" id="products-tabs">
+      <li class="active"><a href="#related" data-toggle="tab"><t key="attributes.related_products"/></a></li>
+      <li><a href="#recommended" data-toggle="tab"><t key="attributes.recommended_products"/></a> </li>
+      <li><a href="#supplies" data-toggle="tab"><t key="attributes.supplies"/></a> </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="related">
+        <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs" id="related-tabs">
+            <li repeat="related_products" class="#{'active' if first_item?}">
+              <a href="#related#{this.id}" data-toggle="tab">
+                <view:name/>
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div repeat="related_products"
+                 class="tab-pane #{'active' if first_item?}"
+                 id="related#{this.id}">
+              <if><card/></if>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="recommended">
+        <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs" id="recommended-tabs">
+            <li repeat="recommended_products" class="#{'active' if first_item?}">
+              <a href="#recommended#{this.id}" data-toggle="tab">
+                <view:name/>
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div repeat="recommended_products"
+                 class="tab-pane #{'active' if first_item?}"
+                 id="recommended#{this.id}">
+              <if><card/></if>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="supplies">
+        <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs" id="supplies-tabs">
+            <li repeat="supplies" class="#{'active' if first_item?}">
+              <a href="#supplies#{this.id}" data-toggle="tab">
+                <view:name/>
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div repeat="supplies"
+                 class="tab-pane #{'active' if first_item?}"
+                  id="supplies#{this.id}">
+              <if><card/></if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </content-body:>
+
+<aside-column:></aside-column:>
+</show-page>
