@@ -9,13 +9,31 @@
 
   <content-body:>
     <ul class="nav nav-tabs" id="products-tabs">
-      <li class="active"><a href="#related" data-toggle="tab"><t key="attributes.related_products"/></a></li>
+      <li class="active"><a href="#properties" data-toggle="tab"><t key="attributes.properties"/></a></li>
+      <li><a href="#related" data-toggle="tab"><t key="attributes.related_products"/></a></li>
       <li><a href="#recommended" data-toggle="tab"><t key="attributes.recommended_products"/></a> </li>
       <li><a href="#supplies" data-toggle="tab"><t key="attributes.supplies"/></a> </li>
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active" id="related">
+      <div class="tab-pane active" id="properties">
+        <repeat  with="&this.property_groups">
+          <h3><view:name/></h3>
+          <dl class="dl-horizontal">
+            <repeat  with="&this.properties">
+              <dt><view:name/></dt>
+              <if test="&this.description">
+                <dd><view:description/></dd>
+              </if>
+              <if test="&this.value">
+                <dd><view:value/> <view:unit/></dd>
+              </if>
+            </repeat>
+          </dl>
+        </repeat>
+      </div>
+
+      <div class="tab-pane" id="related">
         <div class="tabbable tabs-left">
           <ul class="nav nav-tabs" id="related-tabs">
             <li repeat="related_products" class="#{'active' if first_item?}">
@@ -34,6 +52,7 @@
           </div>
         </div>
       </div>
+
 
       <div class="tab-pane" id="recommended">
         <div class="tabbable tabs-left">
