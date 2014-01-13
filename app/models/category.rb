@@ -32,7 +32,8 @@ class Category < ActiveRecord::Base
   validates :position, numericality: true
 
   has_many :products, :through => :categorizations, :inverse_of => :categories
-  has_many :categorizations, -> { order :position }, :inverse_of => :category, dependent: :destroy, :accessible => true
+  has_many :categorizations, -> { order :position }, :inverse_of => :category,
+            dependent: :destroy, :accessible => true
 
 
   def self.find_by_name(param)
@@ -43,9 +44,11 @@ class Category < ActiveRecord::Base
     state :new, :default => true
     state :active, :deprecated
 
-    transition :activate, {:new => :active}, :available_to => "User.administrator"
-    transition :deactivate, { :active => :deprecated }, :available_to => "User.administrator"
-    transition :reactivate, { :deprecated => :active }, :available_to => "User.administrator"
+    transition :activate, {:new => :active}, :available_to => "User.administrator", :subsite => "admin"
+    transition :deactivate, { :active => :deprecated },
+               :available_to => "User.administrator", :subsite => "admin"
+    transition :reactivate, { :deprecated => :active },
+               :available_to => "User.administrator", :subsite => "admin"
   end
 
   # --- Permissions --- #

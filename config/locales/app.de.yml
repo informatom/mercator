@@ -43,6 +43,7 @@ de:
     key: Schlüssel
     Lineitem: Bestellposition
     lineitems: Bestellpositionen
+    login_count: Anzahl Anmeldungen
     long_description: Lange Beschreibung
     markup: Markup Format
     messages: Nachrichten

@@ -1,0 +1,15 @@
+<extend tag="show-page" for="User">
+  <old-show-page merge>
+    <content-body: param>
+      <field-list fields="email_address, last_login_at, login_count, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="order.collection.heading" count="&this.orders.count" >
+            <human-collection-name collection="orders" your/>
+          </ht>
+        </h3>
+        <collection:orders param/>
+      </section>
+    </content-body:>
+  </old-show-page>
+</extend>
