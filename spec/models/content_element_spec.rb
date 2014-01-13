@@ -22,5 +22,5 @@ describe ContentElement do
   end
 
   it {should have_many(:page_content_element_assignments)}
-  it {should have_many(:pages)}
+  it {should have_many(:webpages)}
 end

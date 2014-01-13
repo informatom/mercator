@@ -1,7 +1,7 @@
-<def tag="form" for="PageElement">
+<def tag="form" for="PageContentElementAssignment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="page, used_as, usage_type, usage_id" param/>
+    <field-list fields="page, used_as, content_element" param/>
     <div param="actions">
       <submit label="#{ht 'page_element.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

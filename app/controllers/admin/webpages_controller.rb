@@ -1,4 +1,4 @@
-class Admin::PagesController < Admin::AdminSiteController
+class Admin::WebpagesController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all

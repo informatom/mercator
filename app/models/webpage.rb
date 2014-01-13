@@ -1,4 +1,4 @@
-class Page < ActiveRecord::Base
+class Webpage < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
@@ -18,7 +18,7 @@ class Page < ActiveRecord::Base
 
   has_paper_trail
   never_show :ancestry
-  default_scope { order('pages.position ASC') }
+  default_scope { order('webpages.position ASC') }
 
   validates :position, numericality: true
 
@@ -34,10 +34,15 @@ class Page < ActiveRecord::Base
     state :draft, :default => true
     state :published, :published_but_hidden, :archived
 
-    transition :publish, { [:draft, :archived] => :published }, :available_to => "User.administrator"
-    transition :archive, { [:published, :published_but_hidden] => :archived }, :available_to => "User.administrator"
-    transition :hide, { :published => :published_but_hidden }, :available_to => "User.administrator"
-    transition :unhide, { :published_but_hidden => :published }, :available_to => "User.administrator"
+    transition :publish, { [:draft, :archived] => :published },
+               :available_to => "User.administrator", :subsite => "admin"
+    transition :archive, { [:published, :published_but_hidden] => :archived },
+               :available_to => "User.administrator", :subsite => "admin"
+    transition :hide, { :published => :published_but_hidden },
+               :available_to => "User.administrator", :subsite => "admin"
+    transition :unhide, { :published_but_hidden => :published },
+               :available_to => "User.administrator", :subsite => "admin"
+
   end
 
   # --- Permissions --- #

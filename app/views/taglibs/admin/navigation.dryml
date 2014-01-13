@@ -86,11 +86,11 @@
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.CMS") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item with="&Page">
-          <ht key="page.nav_item" count="100"><model-name-human count="100"/></ht>
+        <nav-item with="&Webpage">
+          <ht key="webpage.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
-        <nav-item with="&Page" action="treereorder">
-          <ht key="page.nav_item" count="100"><t key="attributes.page_tree" /></ht>
+        <nav-item with="&Webpage" action="treereorder">
+          <ht key="webpage.nav_item" count="100"><t key="attributes.page_tree" /></ht>
         </nav-item>
         <nav-item with="&ContentElement">
           <ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht>

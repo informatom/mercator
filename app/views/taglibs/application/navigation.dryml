@@ -2,14 +2,14 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
 
-    <repeat with="&Page.roots.published">
+    <repeat with="&Webpage.roots.published">
       <if test="url">
         <nav-item href="#{this.url}">
           <view:title/>
         </nav-item>
       </if>
       <unless test="url">
-        <nav-item href="#{page_path(this)}">
+        <nav-item href="#{webpage_path(this)}">
           <view:title/>
         </nav-item>
       </unless>

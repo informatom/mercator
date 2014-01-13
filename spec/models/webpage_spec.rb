@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Page do
+describe Webpage do
   it "is valid with name_de, name_en" do
-    expect(build(:page)).to be_valid
+    expect(build(:webpage)).to be_valid
   end
 
   it {should validate_presence_of(:title_de)}

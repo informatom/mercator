@@ -14,7 +14,7 @@ class ContentElement < ActiveRecord::Base
   end
 
   attr_accessible :name_de, :name_en, :content_de, :content_en, :markup,
-                  :pages, :page_content_element_assignments, :legacy_id, :photo, :document
+                  :webpages, :page_content_element_assignments, :legacy_id, :photo, :document
   translates :name, :content
   has_paper_trail
 
@@ -24,7 +24,7 @@ class ContentElement < ActiveRecord::Base
     :default_url => "/images/:style/missing.png"
 
   has_many :page_content_element_assignments, :accessible => true
-  has_many :pages, :through => :page_elements
+  has_many :webpages, :through => :page_content_element_assignments
 
   # --- Permissions --- #
 

@@ -50,7 +50,7 @@ de:
     name: Name
     order: Bestellung
     orders: Bestellungen
-    page: Webseite
+    webpage: Webseite
     PageTemplate: Websitevorlage
     page_content_element_assignments: Webseite-Bausteine
     page_template: Websitevorlage
@@ -156,9 +156,6 @@ de:
       order:
         one: Bestellung
         other: Bestellungen
-      page:
-        one: Webseite
-        other: Webseiten
       page_content_element_assignment:
         one: Element der Webseite
         other: Elemente der Webseiten
@@ -189,6 +186,9 @@ de:
       user:
         one: Benutzer
         other: Benutzer
+      webpage:
+        one: Webseite
+        other: Webseiten
     attributes:
       address:
         name: Empfänger
@@ -254,10 +254,6 @@ de:
         price: Netto (ohne Steuern)
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
-      page:
-        updated: Webseitenbaum erfolgreich aktualisiert!
-        updating: Webseitenbaum wird aktualisiert
-        update_failed: Webseitenbaum konnte nicht aktualisiert werden!
       price:
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
@@ -276,6 +272,10 @@ de:
       user:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
+      webpage:
+        updated: Webseitenbaum erfolgreich aktualisiert!
+        updating: Webseitenbaum wird aktualisiert
+        update_failed: Webseitenbaum konnte nicht aktualisiert werden!
   "Original version": Originalversion
   "Thumbnail version": Thumbnail Version
   "Small version": Kleine Version
