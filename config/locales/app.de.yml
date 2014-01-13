@@ -226,6 +226,13 @@ de:
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
+      webpage:
+        lifecycle:
+          transitions:
+            archive: Archivieren
+            hide: Verstecken
+            publish: Veröffentlichen
+            unhide: Zeigen
     attribute_help:
       address:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
@@ -276,6 +283,11 @@ de:
         updated: Webseitenbaum erfolgreich aktualisiert!
         updating: Webseitenbaum wird aktualisiert
         update_failed: Webseitenbaum konnte nicht aktualisiert werden!
+        lifecycle:
+          transitions:
+            archive: Kann jederzeit wieder aktiviert werden
+            hide: Seite wird aus dem Menü ausgeblendet
+            unhide: Webseite wird wieder im menü dargestellt
   "Original version": Originalversion
   "Thumbnail version": Thumbnail Version
   "Small version": Kleine Version

@@ -8,7 +8,6 @@
   </old-page>
 </extend>
 
-
 <def tag="dev-user-changer">
   <set user="&Hobo::Model::UserBase.default_user_model"/>
   <select-menu if="&user && Rails.env.development?"
@@ -18,3 +17,4 @@
                class="dev-user-changer"
                merge-attrs/>
 </def>
+

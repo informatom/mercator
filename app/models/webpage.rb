@@ -42,7 +42,6 @@ class Webpage < ActiveRecord::Base
                :available_to => "User.administrator", :subsite => "admin"
     transition :unhide, { :published_but_hidden => :published },
                :available_to => "User.administrator", :subsite => "admin"
-
   end
 
   # --- Permissions --- #
