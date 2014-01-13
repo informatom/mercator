@@ -4,6 +4,9 @@
       <country-view:>
         <name-one complete-target="&Country.new()" completer="name_de_admin"/>
       </country-view:>
+      <user-view:>
+        <name-one complete-target="&User.new()" completer="name_admin"/>
+      </user-view:>
    </field-list:>
   </old-form>
 </extend>

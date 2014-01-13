@@ -16,14 +16,13 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales,
-                  :logged_in, :last_login_at, :login_count
+                  :logged_in, :last_login_at, :login_count, :addresses
   has_paper_trail
 
-  has_many :addresses, dependent: :destroy
-  has_one :billing_address, dependent: :destroy
+  has_many :addresses, dependent: :destroy, :inverse_of => :user
+  has_one :billing_address, dependent: :destroy, :inverse_of => :user
 
-  has_many :orders, dependent: :restrict_with_exception
-  children :orders, :addresses
+  has_many :orders, dependent: :restrict_with_exception, :inverse_of => :user
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
@@ -86,6 +85,6 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? || self == acting_user || acting_user.sales? || lifecycle.provided_key || id == nil
   end
 end

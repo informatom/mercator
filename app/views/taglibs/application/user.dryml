@@ -10,14 +10,13 @@
         </h3>
         <collection:orders param/>
       </section>
-
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="address.collection.heading" count="&this.addresses.count" >
             <human-collection-name collection="addresses" your/>
           </ht>
         </h3>
-        <collection:addresses param/>
+        <collection:orders param/>
       </section>
     </content-body:>
   </old-show-page>

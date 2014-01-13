@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
   belongs_to :user, :creator => true
   validates :user, :presence => true
   view_hints.parent :user
-  
+
   belongs_to :conversation
 
   has_many :lineitems, dependent: :destroy
@@ -52,7 +52,7 @@ class Order < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || (user_is? acting_user) 
+    acting_user.administrator? || (user_is? acting_user)
   end
 
   def destroy_permitted?
@@ -60,6 +60,6 @@ class Order < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || (user_is? acting_user) 
+    acting_user.administrator? || acting_user.sales? || (user_is? acting_user)
   end
 end

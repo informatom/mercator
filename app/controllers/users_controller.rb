@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   auto_actions :all, :except => [ :index, :new, :create ]
 
+  autocomplete :name
+
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on
   #  first run.  This method creates the initial user.
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
 
   def login
     hobo_login
-    unless current_user.class == Guest 
+    unless current_user.class == Guest
       #HAS:20140109 WTF! reduce by one, because some other method increases by 2!
       current_user.update_attributes(logged_in: true)
     end

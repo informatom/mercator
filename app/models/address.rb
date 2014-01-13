@@ -12,7 +12,7 @@ class Address < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :user_id, :name, :detail, :street, :postalcode, 
+  attr_accessible :user_id, :name, :detail, :street, :postalcode,
                   :city, :user, :country
   has_paper_trail
 
@@ -25,14 +25,14 @@ class Address < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || (user_is? acting_user) 
+    acting_user.administrator? || (user_is? acting_user)
   end
 
   def destroy_permitted?
-    acting_user.administrator? || (user_is? acting_user) 
+    acting_user.administrator? || (user_is? acting_user)
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || (user_is? acting_user) 
+    acting_user.administrator? || acting_user.sales? || user_is?(acting_user)
   end
 end

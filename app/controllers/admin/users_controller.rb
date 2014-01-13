@@ -4,4 +4,5 @@ class Admin::UsersController < Admin::AdminSiteController
 
   auto_actions :all
 
+  autocomplete :name
 end
