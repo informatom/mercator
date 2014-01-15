@@ -3,20 +3,20 @@ class Order < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    billing_method      :string, :required
-    billing_name        :string, :required
+    billing_method      :string
+    billing_name        :string
     billing_detail      :string
-    billing_street      :string, :required
-    billing_postalcode  :string, :required
-    billing_city        :string, :required
-    billing_country     :string, :required
-    shipping_method     :string, :required
-    shipping_name       :string, :required
+    billing_street      :string
+    billing_postalcode  :string
+    billing_city        :string
+    billing_country     :string
+    shipping_method     :string
+    shipping_name       :string
     shipping_detail     :string
-    shipping_street     :string, :required
-    shipping_postalcode :string, :required
-    shipping_city       :string, :required
-    shipping_country    :string, :required
+    shipping_street     :string
+    shipping_postalcode :string
+    shipping_city       :string
+    shipping_country    :string
     timestamps
   end
 
@@ -27,7 +27,6 @@ class Order < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :user, :creator => true
-  validates :user, :presence => true
   view_hints.parent :user
 
   belongs_to :conversation
@@ -40,6 +39,9 @@ class Order < ActiveRecord::Base
   lifecycle do
     state :basket, :default => true
     state :ordered, :paid, :shipped, :offer
+
+    transition :create_key, {:basket => :basket}, :available_to => :all, :new_key => true
+
     transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, :available_to => "User.administrator"
@@ -61,5 +63,9 @@ class Order < ActiveRecord::Base
 
   def view_permitted?(field)
     acting_user.administrator? || acting_user.sales? || (user_is? acting_user)
+  end
+
+  def name
+    "Bestellung vom " + I18n.l(created_at).to_s
   end
 end

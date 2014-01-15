@@ -9,24 +9,8 @@ describe Order do
 
  # it {should validate_presence_of(:user)}
 
-  it {should validate_presence_of(:billing_method)}
-  it {should validate_presence_of(:billing_name)}
-  it {should validate_presence_of(:billing_street)}
-  it {should validate_presence_of(:billing_postalcode)}
-  it {should validate_presence_of(:billing_city)}
-  it {should validate_presence_of(:billing_country)}
-
-  it {should validate_presence_of(:shipping_method)}
-  it {should validate_presence_of(:shipping_name)}
-  it {should validate_presence_of(:shipping_street)}
-  it {should validate_presence_of(:shipping_postalcode)}
-  it {should validate_presence_of(:shipping_city)}
-  it {should validate_presence_of(:shipping_country)}
-
   it {should belong_to(:user)}
-  it {should validate_presence_of(:user)}
   it {should have_many(:lineitems)}
-
   it {should belong_to(:conversation)}
 
   it "is versioned" do

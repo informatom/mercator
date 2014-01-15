@@ -91,4 +91,8 @@ class User < ActiveRecord::Base
   def view_permitted?(field)
     acting_user.administrator? || self == acting_user || acting_user.sales? || lifecycle.provided_key || new_record?
   end
+
+  def basket
+    Order.user_is(self).basket
+  end
 end
