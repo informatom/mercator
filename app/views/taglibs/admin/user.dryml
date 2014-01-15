@@ -19,6 +19,16 @@
         </h3>
         <collection:addresses param/>
       </section>
+
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="billing_address.collection.heading" count="&this.billing_addresses.count" >
+            <human-collection-name collection="billing_addresses" your/>
+          </ht>
+        </h3>
+        <collection:billing_addresses param/>
+      </section>
     </content-body:>
+
   </old-show-page>
 </extend>

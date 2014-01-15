@@ -108,6 +108,7 @@ de:
       logged_in_as: "Angemeldet als %{name}"
       account: "Benutzerkonto"
       save_account: "Daten abspeichern"
+      password: "Passwort ändern"
 
     # default hobo message translation
     messages:

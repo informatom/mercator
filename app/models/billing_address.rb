@@ -11,12 +11,13 @@ class BillingAddress < ActiveRecord::Base
     country    :string, :required
     timestamps
   end
+
   attr_accessible :user_id, :name, :detail, :street, :postalcode,
                   :city, :user, :country
   has_paper_trail
 
   belongs_to :user, :creator => true
-  validates :user, :presence => true
+  validates :user_id, :presence => true, :uniqueness => true
 
   # --- Permissions --- #
 
@@ -25,15 +26,14 @@ class BillingAddress < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || acting_user.sales?
+    acting_user.administrator? || acting_user.sales? || user_is?(acting_user)
   end
 
   def destroy_permitted?
-    acting_user.administrator? || acting_user.sales?
+    acting_user.administrator? || acting_user.sales? || user_is?(acting_user)
   end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? || acting_user.sales? || user_is?(acting_user)
   end
-
 end

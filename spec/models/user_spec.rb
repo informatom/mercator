@@ -6,7 +6,6 @@ describe User do
   end
 
   it {should validate_presence_of(:name)}
-  it {should validate_uniqueness_of(:name)}
   it {should have_many(:addresses)}
   it {should have_one(:billing_address)}
   it {should have_many(:orders)}

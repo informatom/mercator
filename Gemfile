@@ -4,9 +4,12 @@ gem 'rails', '4.0.2'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'jquery-rails'                                  # JQuery asset handling
 
+gem "protected_attributes"
+
+# gem 'hobo', :path => '../hobo'
 gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
 # gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
-gem "protected_attributes"
+
 gem "hobo_will_paginate"                            # pagination support
 gem "hobo_bootstrap", "2.1.0.pre4"                  # Twitter Bootstrap asset handling
 gem 'bootswatch-rails'                              # Bootstrap Bootswatch themes
@@ -55,3 +58,4 @@ group :test do
   gem 'selenium-webdriver', '~> 2.35.1'             # front end testing framework
   gem 'shoulda'                                     # additional matchers
 end
+

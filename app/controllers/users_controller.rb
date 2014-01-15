@@ -32,4 +32,10 @@ class UsersController < ApplicationController
     hobo_logout
   end
 
+  def do_activate
+    do_transition_action :activate do
+      redirect_to :user_login
+    end
+  end
+
 end

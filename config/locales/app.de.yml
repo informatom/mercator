@@ -7,7 +7,7 @@ de:
     amount: Menge
     ancestry: Ancestry-String
     BillingAddress: Rechnungsadresse
-    billing_address: Rechnungsadresse
+    billing_addresses: Rechnungsadresse
     Category: Kategorie
     category: Kategorie
     category_tree: Kategorienbaum
@@ -117,7 +117,9 @@ de:
         other: Adressen
       billing_address:
         one: Rechnungsadresse
-        other: Rechnungsadressen
+        other: Rechnungsadresse
+        actions:
+          index: Rechnungsadresse bearbeiten
       categorization:
         one: Kategorisierung
         other: Kategorisierungen
@@ -227,6 +229,10 @@ de:
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
+      user:
+        lifecycle:
+          transitions:
+            activate: Account aktivieren
       webpage:
         lifecycle:
           transitions:

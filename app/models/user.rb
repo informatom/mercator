@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   hobo_user_model # Don't put anything above this
 
   fields do
-    name             :string, :required, :unique
+    name             :string, :required
     email_address    :email_address, :required, :unique, :login => true
     administrator    :boolean, :default => false
     sales            :boolean, :default => false
@@ -16,11 +16,11 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales,
-                  :logged_in, :last_login_at, :login_count, :addresses
+                  :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses, :billing_address
   has_paper_trail
 
-  has_many :addresses, dependent: :destroy, :inverse_of => :user
-  has_one :billing_address, dependent: :destroy, :inverse_of => :user
+  has_many :addresses, dependent: :destroy, :inverse_of => :user, :accessible => true
+  has_many :billing_addresses, dependent: :destroy, :inverse_of => :user, :accessible => true
 
   has_many :orders, dependent: :restrict_with_exception, :inverse_of => :user
 
@@ -49,6 +49,9 @@ class User < ActiveRecord::Base
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder
 
+    transition :deactivate, { :active => :inactive }, :available_to => "User.administrator", :subsite => "admin"
+
+
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
       UserMailer.activation(self, lifecycle.key).deliver
     end
@@ -74,8 +77,9 @@ class User < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator? ||
-      (acting_user == self && only_changed?(:email_address, :crypted_password,
-                                            :current_password, :password, :password_confirmation))
+      (acting_user == self &&
+       only_changed?(:name, :email_address, :crypted_password, :current_password, :password,
+                     :password_confirmation, :addresses, :billing_addresses))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
@@ -85,6 +89,6 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || self == acting_user || acting_user.sales? || lifecycle.provided_key || id == nil
+    acting_user.administrator? || self == acting_user || acting_user.sales? || lifecycle.provided_key || new_record?
   end
 end
