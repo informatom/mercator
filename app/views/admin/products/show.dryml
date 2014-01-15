@@ -1,0 +1,7 @@
+<show-page>
+  <prepend-content-body:>
+    <transition-button class="btn btn-warning" transition="activate"/>
+    <transition-button class="btn btn-warning" transition="reactivate"/>
+    <transition-button class="btn btn-warning" transition="deactivate"/>
+  </prepend-content-body:>
+</show-page>

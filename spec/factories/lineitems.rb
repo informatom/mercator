@@ -4,6 +4,7 @@ FactoryGirl.define do
     order
     user           {order.user}
     position       123
+    product
     product_number "nr123"
     description_de "Artikel Eins Zwei Drei"
     description_en "Article One Two Three"

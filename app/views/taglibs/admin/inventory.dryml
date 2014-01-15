@@ -1,5 +1,9 @@
 <extend tag="form" for="Inventory">
   <old-form merge multipart>
-    <field-list: fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, product, photo"/>
+    <field-list: fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, product, photo">
+      <product-view:>
+        <name-one complete-target="&Product.new()" completer="name_admin" autocomplete="off"/>
+      </product-view:>
+    </field-list>
   </old-form>
 </extend>

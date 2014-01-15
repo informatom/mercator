@@ -4,8 +4,11 @@
       <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ),
                    product_path(this), class: "pull-left") %>
     </if>
+
     <div class="media-body">
+      <transition-button transition="add_to_basket" class="btn btn-success pull-right" />
       <h1 class="media-header"><%= link_to( this.name, product_path(this)) %></h1>
+
       <div param="description">
         <view:description/>
       </div>
@@ -21,5 +24,6 @@
       </if>
 
     </div>
+
   </div>
 </def>

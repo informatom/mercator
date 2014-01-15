@@ -93,6 +93,6 @@ class User < ActiveRecord::Base
   end
 
   def basket
-    Order.user_is(self).basket
+    Order.user_is(self).basket.first
   end
 end

@@ -13,5 +13,5 @@ describe PageTemplate do
     should respond_to(:versions)
   end
 
-  it {should have_many(:pages)}
+  it {should have_many(:webpages)}
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Lineitem do
-  it "is valid with position, product_number, description_de,
+  it "is valid with position, product_number, product, description_de,
      description_en, amount, unit, product_price, vat and value" do
     expect(build(:lineitem)).to be_valid
   end
@@ -31,6 +31,9 @@ describe Lineitem do
 
   it {should belong_to(:user)}
   it {should validate_presence_of(:user)}
+
+  it {should belong_to(:product)}
+
 
   it "acts as a list" do
     should respond_to(:move_to_top)

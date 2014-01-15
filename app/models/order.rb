@@ -65,7 +65,18 @@ class Order < ActiveRecord::Base
     acting_user.administrator? || acting_user.sales? || (user_is? acting_user)
   end
 
+  # --- Instacnce Methods --- #
+
   def name
     "Bestellung vom " + I18n.l(created_at).to_s
+  end
+
+  def add_product(product, amount: 1)
+    if lineitem = Lineitem.where(product_number: product.number).first
+      lineitem.increase_amount(amount)
+    else
+      Lineitem.create_from_product(order_id: self.id, product: product.id, amount: amount,
+                                   position: self.lineitems.count + 1, user_id: self.user_id)
+    end
   end
 end

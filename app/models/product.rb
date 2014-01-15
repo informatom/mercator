@@ -51,11 +51,16 @@ class Product < ActiveRecord::Base
   lifecycle do
     state :new, :default => true
     state :announced, :active, :deprecated
-    transition :activate, {:new => :active}, :available_to => "User.administrator"
-    transition :announce, {:new => :announced}, :available_to => "User.administrator"
-    transition :release, {:announced => :active}, :available_to => "User.administrator"
-    transition :deactivate, { :active => :deprecated }, :available_to => "User.administrator"
-    transition :reactivate, { :deprecated => :active }, :available_to => "User.administrator"
+
+    transition :add_to_basket, {:active => :active}, :available_to => :all do
+      product = Product.where(id: self).first
+      acting_user.basket.add_product(product)
+    end
+
+    transition :activate, {:new => :active}, :available_to => "User.administrator", :subsite => "admin"
+    transition :deactivate, { :active => :deprecated }, :available_to => "User.administrator", :subsite => "admin"
+    transition :reactivate, { :deprecated => :active }, :available_to => "User.administrator", :subsite => "admin"
+
   end
 
   # --- Permissions --- #
@@ -74,5 +79,14 @@ class Product < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+  # --- Instance Methods --- #
+
+  def price (amount: 1, date: Time.now())
+    inventory = self.inventories.first
+    price = inventory.prices.where{(valid_to >= date) & (valid_from <= date) &
+                                   (scale_from <= amount) & (scale_to >= amount)}.first.value
+    return price
   end
 end

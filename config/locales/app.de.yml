@@ -229,6 +229,12 @@ de:
       product:
         name: Artikelbezeichnung
         number: Artikelnummer
+        lifecycle:
+          transitions:
+            add_to_basket: In den Warenkorb
+            activate: Aktivieren
+            deactivate: Deaktivieren
+            reactivate: Reaktivieren
       user:
         lifecycle:
           transitions:

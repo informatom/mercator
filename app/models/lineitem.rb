@@ -15,8 +15,9 @@ class Lineitem < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :position, :product_number, :description_de, :description_en,
-                  :amount, :product_price, :product_price, :vat, :value, :value, :order_id, :order
+  attr_accessible :position, :product_number, :description_de, :description_en, :unit,
+                  :amount, :product_price, :product_price, :vat, :value,
+                  :value, :order_id, :order, :user_id
   translates :description
   has_paper_trail
   default_scope { order('lineitems.position ASC') }
@@ -35,6 +36,9 @@ class Lineitem < ActiveRecord::Base
   validates :order, :presence => true
   acts_as_list :scope => :order
 
+  belongs_to :product
+
+
   # --- Permissions --- #
 
   def create_permitted?
@@ -51,5 +55,33 @@ class Lineitem < ActiveRecord::Base
 
   def view_permitted?(field)
     self.new_record? || order.user == acting_user || acting_user.administrator?
+  end
+
+  def increase_amount(amount)
+    self.amount += amount
+
+    product = Product.find(self.product_id)
+    self.value = self.amount * product.price(amount: amount)
+
+    raise unless self.save
+  end
+
+  def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
+    price = product.price(amount: amount)
+
+    lineitem = Lineitem.new(user_id:        user_id,
+                            order_id:       order_id,
+                            position:       position,
+                            product_id:     product.id,
+                            product_number: product.number,
+                            description_de: product.name_de,
+                            description_en: product.name_en,
+                            amount:         amount,
+                            unit:           product.inventories.first.unit,
+                            product_price:  price,
+                            vat:            product.inventories.first.prices.first.vat,
+                            value:          amount * price )
+
+    raise unless lineitem.save
   end
 end

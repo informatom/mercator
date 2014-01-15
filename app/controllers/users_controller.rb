@@ -24,6 +24,9 @@ class UsersController < ApplicationController
     unless current_user.class == Guest
       #HAS:20140109 WTF! reduce by one, because some other method increases by 2!
       current_user.update_attributes(logged_in: true)
+
+      # The basket is assigned to the user after login
+      current_user.orders << Order.where(id:session[:basket])
     end
   end
 

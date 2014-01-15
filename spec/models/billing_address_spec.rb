@@ -12,7 +12,7 @@ describe BillingAddress do
   it {should validate_presence_of(:country)}
 
   it {should belong_to(:user)}
-  it {should validate_presence_of(:user)}
+  it {should validate_presence_of(:user_id)}
 
   it "is versioned" do
     should respond_to(:versions)
