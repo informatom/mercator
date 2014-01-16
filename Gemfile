@@ -6,8 +6,8 @@ gem 'jquery-rails'                                  # JQuery asset handling
 
 gem "protected_attributes"
 
-gem 'hobo', :path => '../hobo'
-# gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
+#gem 'hobo', :path => '../hobo'
+ gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
 # gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
 
 gem "hobo_will_paginate"                            # pagination support
