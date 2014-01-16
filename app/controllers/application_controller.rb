@@ -45,4 +45,8 @@ class ApplicationController < ActionController::Base
   def user_for_paper_trail
     logged_in? ? current_user : 'Guest'
   end
+
+  def current_basket
+    current_user.basket if current_user
+  end
 end

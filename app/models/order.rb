@@ -65,18 +65,35 @@ class Order < ActiveRecord::Base
     acting_user.administrator? || acting_user.sales? || (user_is? acting_user)
   end
 
-  # --- Instacnce Methods --- #
+  # --- Instance Methods --- #
 
   def name
     "Bestellung vom " + I18n.l(created_at).to_s
   end
 
-  def add_product(product, amount: 1)
+  def add_product(product: nil, amount: 1)
     if lineitem = self.lineitems.where(product_number: product.number).first
-      lineitem.increase_amount(amount)
+      lineitem.increase_amount(amount: amount)
     else
       Lineitem.create_from_product(order_id: self.id, product: product, amount: amount,
                                    position: self.lineitems.count + 1, user_id: self.user_id)
+    end
+  end
+
+  def merge(basket: nil)
+    if basket.id !=id #first run or second run?
+      positions_merged = "merged" if lineitems.present? && basket.lineitems.present?
+      basket.lineitems.each do |lineitem|
+        duplicate = self.lineitems.where(product_number: lineitem.product_number).first
+        if duplicate.present?
+          duplicate.merge(lineitem: lineitem)
+        else
+          lineitem.update_attributes(order_id: id)
+        end
+      end
+
+      basket.delete
+      return positions_merged
     end
   end
 end

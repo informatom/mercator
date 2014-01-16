@@ -8,12 +8,5 @@ class Guest < Hobo::Model::Guest
     false
   end
 
-# Attr accessors for the basket
-  def basket
-     @basket
-  end
-
-  def basket=(basket)
-    @basket = basket
-  end
+  attr_accessor :basket
 end

@@ -53,8 +53,7 @@ class Product < ActiveRecord::Base
     state :announced, :active, :deprecated
 
     transition :add_to_basket, {:active => :active}, :available_to => :all do
-      product = Product.where(id: self).first
-      acting_user.basket.add_product(product)
+      acting_user.basket.add_product(product: self)
     end
 
     transition :activate, {:new => :active}, :available_to => "User.administrator", :subsite => "admin"

@@ -56,7 +56,9 @@ class Lineitem < ActiveRecord::Base
     self.new_record? || order.user == acting_user || acting_user.administrator?
   end
 
-  def increase_amount(amount)
+#--- Instace methods ---#
+
+  def increase_amount(amount: 1)
     self.amount += amount
 
     product = Product.find(self.product_id)
@@ -81,5 +83,10 @@ class Lineitem < ActiveRecord::Base
                             value:          amount * price )
 
     raise unless lineitem.save
+  end
+
+  def merge(lineitem: nil)
+    increase_amount(amount: lineitem.amount)
+    lineitem.delete
   end
 end
