@@ -26,8 +26,11 @@
       <li param='search' if='&include_search'><live-search param if='&defined_route? :site_search'/></li>
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
 
-      <li param='basket'><a href="#"><%= current_user.basket.lineitems.first.amount %></a></li>
-
+      <li param='basket'>
+        <a href="#">
+          <%= fa_icon "shopping-cart" %> <%= current_user.basket.lineitems.count %> Pos.
+          <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %></a>
+      </li>
 
       <if test='&logged_in?'>
         <li class="dropdown">

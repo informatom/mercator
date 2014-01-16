@@ -7,4 +7,13 @@ class Guest < Hobo::Model::Guest
   def sales?
     false
   end
+
+# Attr accessors for the basket
+  def basket
+     @basket
+  end
+
+  def basket=(basket)
+    @basket = basket
+  end
 end

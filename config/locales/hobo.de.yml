@@ -149,7 +149,7 @@ de:
     collection:
       count: &collection_count
         zero: &no_model "Kein %{model}-Objekt"
-        one: "Es gibt derzeit nur ein %{model}-Objekt"
+        one: "Es gibt derzeit ein %{model}-Objekt"
         other: "Es gibt bereits %{count} %{model}-Objekte"
       # you can use the following to completely override the collection heading
       # be aware that you will loose the automatic Your <collection> / Jom's <collection>

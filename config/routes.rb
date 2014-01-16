@@ -34,10 +34,7 @@ Mercator::Application.routes.draw do
 
   post 'categories/sort' => 'categories#sort'
 
-#HAS 20140112 very friendly urls ...
-  get 'ivellio', to: 'pages/ivellio'
-  get 'team', to: 'pages/team'
-  get 'services', to: 'pages/ivellio'
-  get 'contact', to: 'pages/contact'
-
+  get 'users/:user_id/billing_addresses/new' => 'billing_addresses#new_for_user', :as => 'new_user_billing_address'
+  get 'users/:user_id/billing_addresses' => 'billing_addresses#index_for_user', :as => 'user_billing_addresses'
+  post 'users/:user_id/billing_addresses' => 'billing_addresses#create_for_user'
 end

@@ -22,7 +22,7 @@ class BillingAddress < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    true
+    acting_user.billing_addresses.count == 0
   end
 
   def update_permitted?

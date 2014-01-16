@@ -12,12 +12,14 @@ class ApplicationController < ActionController::Base
       @basket.save
       session[:basketkey] = @basket.lifecycle.key
       session[:basket] = @basket.id
+      current_user.basket = @basket unless logged_in?
     end
   end
 
   def my_basket
     @basket = Order.where(id: session[:basket]).first
     if @basket && @basket.lifecycle.key == session[:basketkey]
+      current_user.basket = @basket unless logged_in?
       return @basket
     else
       return nil
@@ -38,5 +40,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options={})
     { :locale => I18n.locale }
+  end
+
+  def user_for_paper_trail
+    logged_in? ? current_user : 'Guest'
   end
 end
