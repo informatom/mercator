@@ -1,0 +1,273 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+
+<def tag="form" for="Address">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, detail, street, postalcode, city, country, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="BillingAddress">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, detail, street, postalcode, city, country, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'billing_address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Category">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name_de, name_en, description_de, description_en, long_description_de, long_description_en, position, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations" param/>
+    <div param="actions">
+      <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="activate-form" polymorphic/>
+<def tag="activate-form" for="Category">
+  <form lifecycle="activate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.category.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="deactivate-form" polymorphic/>
+<def tag="deactivate-form" for="Category">
+  <form lifecycle="deactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.category.lifecycle.transitions.deactivate', :default=>['Deactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reactivate-form" polymorphic/>
+<def tag="reactivate-form" for="Category">
+  <form lifecycle="reactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.category.lifecycle.transitions.reactivate', :default=>['Reactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Order">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, state, conversation, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'order.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="create-key-form" polymorphic/>
+<def tag="create-key-form" for="Order">
+  <form lifecycle="create_key" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.create_key', :default=>['Create Key']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="shippment-form" polymorphic/>
+<def tag="shippment-form" for="Order">
+  <form lifecycle="shippment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.shippment', :default=>['Shippment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Product">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name_de, name_en, number, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, property_groups, recommendations, supplyrelations" param/>
+    <div param="actions">
+      <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="add-to-basket-form" polymorphic/>
+<def tag="add-to-basket-form" for="Product">
+  <form lifecycle="add_to_basket" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.add_to_basket', :default=>['Add To Basket']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="activate-form" polymorphic/>
+<def tag="activate-form" for="Product">
+  <form lifecycle="activate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="deactivate-form" polymorphic/>
+<def tag="deactivate-form" for="Product">
+  <form lifecycle="deactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.deactivate', :default=>['Deactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reactivate-form" polymorphic/>
+<def tag="reactivate-form" for="Product">
+  <form lifecycle="reactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.reactivate', :default=>['Reactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="User">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, administrator, sales, last_login_at, logged_in, state, addresses, billing_addresses" param/>
+    <div param="actions">
+      <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="signup-form" polymorphic/>
+<def tag="signup-form" for="User">
+  <form lifecycle="signup" merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{ht 'user.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="activate-form" polymorphic/>
+<def tag="activate-form" for="User">
+  <form lifecycle="activate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="deactivate-form" polymorphic/>
+<def tag="deactivate-form" for="User">
+  <form lifecycle="deactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.deactivate', :default=>['Deactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reset-password-form" polymorphic/>
+<def tag="reset-password-form" for="User">
+  <form lifecycle="reset_password" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.reset_password', :default=>['Reset Password']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Webpage">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title_de, title_en, url, position, state, page_content_element_assignments, page_template" param/>
+    <div param="actions">
+      <submit label="#{ht 'webpage.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="publish-form" polymorphic/>
+<def tag="publish-form" for="Webpage">
+  <form lifecycle="publish" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.webpage.lifecycle.transitions.publish', :default=>['Publish']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="archive-form" polymorphic/>
+<def tag="archive-form" for="Webpage">
+  <form lifecycle="archive" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.webpage.lifecycle.transitions.archive', :default=>['Archive']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="hide-form" polymorphic/>
+<def tag="hide-form" for="Webpage">
+  <form lifecycle="hide" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.webpage.lifecycle.transitions.hide', :default=>['Hide']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="unhide-form" polymorphic/>
+<def tag="unhide-form" for="Webpage">
+  <form lifecycle="unhide" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.webpage.lifecycle.transitions.unhide', :default=>['Unhide']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+

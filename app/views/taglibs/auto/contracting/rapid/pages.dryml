@@ -1,0 +1,437 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Contract"><ht key="contract.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Toner"><ht key="toner.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+  </navigation>
+</def>
+
+
+
+
+<!-- ====== Contract Pages ====== -->
+
+<def tag="index-page" for="Contract">
+  <page merge title="#{ht 'contract.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page contract" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contract.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="contract.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="contract.actions.new">New Contract</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Contract">
+  <page merge title="#{ht 'contract.new.title', :default=>[' New Contract'] }">
+    <body: class="new-page contract" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contract.new.heading">
+          New Contract
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'contract.actions.create', :default=>['Create Contract']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Contract">
+  <page merge title="#{ht 'contract.show.title', :default=>['Contract'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page contract" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contract.show.heading" name="#{name(:no_wrapper => true)}">
+          Contract <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="contract.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Contract
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="runtime, startdate" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Contract">
+  <page merge title="#{ht 'contract.edit.title', :default=>['Edit Contract'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page contract" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contract.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Contract
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'contract.actions.delete', :default=>['Remove This Contract']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Toner Pages ====== -->
+
+<def tag="index-page" for="Toner">
+  <page merge title="#{ht 'toner.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page toner" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="toner.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="toner.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="toner.actions.new">New Toner</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Toner">
+  <page merge title="#{ht 'toner.new.title', :default=>[' New Toner'] }">
+    <body: class="new-page toner" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="toner.new.heading">
+          New Toner
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'toner.actions.create', :default=>['Create Toner']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Toner">
+  <page merge title="#{ht 'toner.show.title', :default=>['Toner'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page toner" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="toner.show.heading" name="#{name(:no_wrapper => true)}">
+          Toner <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="toner.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Toner
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="article_number, price" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Toner">
+  <page merge title="#{ht 'toner.edit.title', :default=>['Edit Toner'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page toner" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="toner.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Toner
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'toner.actions.delete', :default=>['Remove This Toner']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== User Pages ====== -->
+
+<def tag="index-page" for="User">
+  <page merge title="#{ht 'user.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="user.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="user.actions.new">New User</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="User">
+  <page merge title="#{ht 'user.new.title', :default=>[' New User'] }">
+    <body: class="new-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.new.heading">
+          New User
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'user.actions.create', :default=>['Create User']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+          User <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="administrator, sales, logged_in" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit User
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="email_address, last_login_at, state" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="User">
+  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit User
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'user.actions.delete', :default=>['Remove This User']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="signup-page" polymorphic/>
+<def tag="signup-page" for="User">
+
+  <page title="#{ht 'user.signup.title', :default=>['Signup']}" merge>
+
+    <body: class="lifecycle-start-page signup-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.signup.heading">
+          Signup
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <signup-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="User">
+  <page title="#{ht 'user.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="User">
+  <page title="#{ht 'user.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.deactivate.heading">
+          Deactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reset-password-page" polymorphic/>
+<def tag="reset-password-page" for="User">
+  <page title="#{ht 'user.reset_password.title', :default=>['Reset Password']}" merge>
+
+    <body: class="lifecycle-transition-page reset-password-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.reset_password.heading">
+          Reset Password
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reset-password-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
