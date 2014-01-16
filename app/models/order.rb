@@ -75,7 +75,7 @@ class Order < ActiveRecord::Base
     if lineitem = Lineitem.where(product_number: product.number).first
       lineitem.increase_amount(amount)
     else
-      Lineitem.create_from_product(order_id: self.id, product: product.id, amount: amount,
+      Lineitem.create_from_product(order_id: self.id, product: product, amount: amount,
                                    position: self.lineitems.count + 1, user_id: self.user_id)
     end
   end
