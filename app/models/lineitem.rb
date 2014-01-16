@@ -17,7 +17,7 @@ class Lineitem < ActiveRecord::Base
 
   attr_accessible :position, :product_number, :description_de, :description_en, :unit,
                   :amount, :product_price, :product_price, :vat, :value,
-                  :value, :order_id, :order, :user_id
+                  :value, :order_id, :order, :user_id, :product_id
   translates :description
   has_paper_trail
   default_scope { order('lineitems.position ASC') }
@@ -68,7 +68,6 @@ class Lineitem < ActiveRecord::Base
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
     price = product.price(amount: amount)
-
     lineitem = Lineitem.new(user_id:        user_id,
                             order_id:       order_id,
                             position:       position,
