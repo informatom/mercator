@@ -24,9 +24,27 @@ class UsersController < ApplicationController
     unless current_user.class == Guest
       #HAS:20140109 WTF! reduce by one, because some other method increases by 2!
       current_user.update_attributes(logged_in: true)
+      @new_basket = Order.where(id:session[:basket]).first
+      # The basket is assigned to the user after login, positions are merged, user is warned
+      if current_user.basket.present?
+        if @new_basket.id != current_user.basket.id #first rum or second run?
+          if current_user.basket.lineitems.present? && @new_basket.lineitems.any?
+            flash[:notice] = t("hobo.messages.old_basket_items_merged",
+                               :default=>"Old basket items have been merged")
 
-      # The basket is assigned to the user after login
-      current_user.orders << Order.where(id:session[:basket])
+          end
+          @new_basket.lineitems.each do |lineitem|
+            lineitem.update_attributes(order_id: current_user.basket.id)
+            debugger
+            lineitem.save
+          end
+          @new_basket.delete
+          session[:basketkey] = current_user.basket.lifecycle.key
+          session[:basket] = current_user.basket.id
+        end
+      else
+        current_user.orders << @new_basket
+      end
     end
   end
 

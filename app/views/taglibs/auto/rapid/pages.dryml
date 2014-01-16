@@ -115,7 +115,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Address">
-  <page merge title="#{ht 'address.index_for_owner.title', :count=>100, :default=>['Addresses for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'address.index_for_owner.title', :count=>100, :default=>['Address for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user address" param/>
     <content-header: param>
       <div param="back-to">
@@ -284,7 +284,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="BillingAddress">
-  <page merge title="#{ht 'billing_address.index_for_owner.title', :count=>100, :default=>['Billing addresses for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'billing_address.index_for_owner.title', :count=>100, :default=>['Billing address for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user billing-address" param/>
     <content-header: param>
       <div param="back-to">
@@ -578,7 +578,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -630,7 +630,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Order">
-  <page merge title="#{ht 'order.index_for_owner.title', :count=>100, :default=>['Orders for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'order.index_for_owner.title', :count=>100, :default=>['Order for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user order" param/>
     <content-header: param>
       <div param="back-to">
@@ -649,10 +649,6 @@
     </content-header:>
 
     <content-body: param>
-      <a action="new" to="&@user.orders" param="new-link">
-        <ht key="order.actions.new" >New Order</ht>
-      </a>
-
 
       <page-nav param="top-page-nav"/>
 
@@ -664,33 +660,6 @@
 </def>
 
 
-<def tag="new-for-user-page" polymorphic/>
-<def tag="new-for-user-page" for="Order">
-  <page merge title="#{ht 'order.new_for_owner.title', :default=>['New Order for']} #{name :with => @user}">
-    <body: class="new-for-owner-page  order" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="order.new_for_owner.heading">
-          New Order
-        </ht>
-      </h2>
-      <h3 param="subheading">
-        <ht key="order.new_for_owner.subheading">
-          For:
-        </ht>
-        <a with="&@user"/>
-      </h3>
-    </content-header:>
-
-    <content-body: param>
-      <form owner="user" method="post" param>
-        <field-list: skip="user"/>
-        <submit: label="#{ht 'order.actions.create', :default=>['Create Order']}"/>
-      </form>
-    </content-body:>
-  </page>
-</def>
 
 
 

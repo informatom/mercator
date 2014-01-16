@@ -58,7 +58,7 @@ class Order < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    false
+    acting_user.administrator?
   end
 
   def view_permitted?(field)
@@ -72,7 +72,7 @@ class Order < ActiveRecord::Base
   end
 
   def add_product(product, amount: 1)
-    if lineitem = Lineitem.where(product_number: product.number).first
+    if lineitem = self.lineitems.where(product_number: product.number).first
       lineitem.increase_amount(amount)
     else
       Lineitem.create_from_product(order_id: self.id, product: product, amount: amount,

@@ -112,6 +112,7 @@ de:
 
     # default hobo message translation
     messages:
+      old_basket_items_merged: "Sie hatten bereits Positionen im Warenkorb. Diese wurden übernommen. Bitte kontrollieren Sie Ihren Warenkorb!"
       create:
         success: "%{model} erfolgreich angelegt"
         error: "%{model} konnte nicht angelegt werden.\n%{errors}"

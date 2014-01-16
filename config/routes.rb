@@ -37,4 +37,5 @@ Mercator::Application.routes.draw do
   get 'users/:user_id/billing_addresses/new' => 'billing_addresses#new_for_user', :as => 'new_user_billing_address'
   get 'users/:user_id/billing_addresses' => 'billing_addresses#index_for_user', :as => 'user_billing_addresses'
   post 'users/:user_id/billing_addresses' => 'billing_addresses#create_for_user'
+  get 'users/:user_id/orders' => 'orders#index_for_user', :as => 'user_orders'
 end
