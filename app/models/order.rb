@@ -97,7 +97,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.cleanup_delayed
+  def self.cleanup_deprcated
     Basket.each do |basket|
       if basket.lineitems.count + basket.conversations.count == 0 && Time.now - basket.created_at > 5.hours
         basket.delete
