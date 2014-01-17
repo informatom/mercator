@@ -33,12 +33,25 @@
       </li>
 
       <if test='&logged_in?'>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <li class='nav-item dropdown' param='conversation'>
+          <a class="dropdown-toggle" id="drop2" data-toggle="dropdown" href="#">
+            <t name='&name' key='hobo.actions.get_help'>Get Help</t>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+            <nav-item with="&Conversation" action="new"> Konversation starten </nav-item>
+            <nav-item with="&Conversation" />
+          </ul>
+        </li>
+      </if>
+
+      <if test='&logged_in?'>
+        <li class="nav-item dropdown">
+          <a class="dropdown-toggle" id="drop1" data-toggle="dropdown" href="#">
             <t name='&name' key='hobo.actions.logged_in_as'>Logged in as <name/> ...</t>
             <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
             <li class='nav-item' param='logged-in-as'>
               <a to='&current_user'><t key='hobo.actions.account'>Account</t></a>
             </li>

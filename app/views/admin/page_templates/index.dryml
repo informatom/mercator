@@ -6,6 +6,6 @@
   </prepend-content-body:>
 
   <collection: fields="this, content, actions">
-  <content-view:> <%= h this.truncate(300) %></content-view>
-</collection:>
+    <content-view:> <%= h this.truncate(300) %></content-view>
+  </collection:>
 </index-page>

@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
     content :string, :required, :name => true
     timestamps
   end
-  attr_accessible :content, :sender_id, :sender, :reciever_id, :reciever, 
+  attr_accessible :content, :sender_id, :sender, :reciever_id, :reciever,
                   :conversation_id, :conversation
   has_paper_trail
 
@@ -22,11 +22,12 @@ class Message < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    this.sender_id == acting_user
   end
 
   def destroy_permitted?
@@ -34,7 +35,10 @@ class Message < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? ||
+    acting_user.sales ||
+    this.reciever_id == acting_user.id ||
+    this.sender_id == acting_user
   end
 
 end

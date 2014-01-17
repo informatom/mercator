@@ -6,6 +6,8 @@ de:
     addresses: Adressen
     amount: Menge
     ancestry: Ancestry-String
+    basket: Warenkorb
+    baskets: Warenkörbe
     BillingAddress: Rechnungsadresse
     billing_addresses: Rechnungsadresse
     Category: Kategorie
@@ -24,8 +26,8 @@ de:
     consultant: Berater
     content: Inhalt
     content_element: Baustein
-    Conversation: Beratung
-    conversation: Beratung
+    Conversation: Konversation
+    conversation: Konversation
     country: Land
     Country: Land
     created_at: Erzeugt
@@ -37,6 +39,7 @@ de:
     document_content_type: Dateityp Dokument
     document_file_size: Dateigröße Dokument
     document_updated_at: Aktualisiert Dokument
+    downloads: Downloads
     email_address: E-Mail Adresse
     inventories: Bestände
     Inventory: Bestand
@@ -136,8 +139,8 @@ de:
         one: Vertrag
         other: Verträge
       conversation:
-        one: Beratung
-        other: Beratungen
+        one: Konversation
+        other: Konversationen
       country:
         one: Land
         other: Länder
@@ -202,6 +205,8 @@ de:
       contentelement/markups:
         html: "HTML-Seite"
         markdown: "Markdown Seite"
+      conversation:
+        name: "Thema oder Titel"
       inventory:
         number: Artikelnummer
         storage: Lagerort / Filiale
@@ -263,6 +268,8 @@ de:
       constant:
         key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
         markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
+      conversation:
+        name: "Dient dazu, dass sie später diese Kenversation wiederfinden können."
       country:
         code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
       inventory:

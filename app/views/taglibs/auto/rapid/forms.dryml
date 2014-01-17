@@ -70,6 +70,30 @@
   </form>
 </def>
 
+<def tag="form" for="Conversation">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, consultant, customer" param/>
+    <div param="actions">
+      <submit label="#{ht 'conversation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Message">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="content, conversation, reciever, sender" param/>
+    <div param="actions">
+      <submit label="#{ht 'message.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Order">
   <form merge param="default">
     <error-messages param/>

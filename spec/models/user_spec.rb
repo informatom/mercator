@@ -9,6 +9,7 @@ describe User do
   it {should have_many(:addresses)}
   it {should have_many(:billing_addresses)}
   it {should have_many(:orders)}
+  it {should have_many(:conversations)}
 
   it "is valid with a name, email_address and administrator" do
     expect(build(:admin)).to be_valid

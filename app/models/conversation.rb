@@ -6,10 +6,11 @@ class Conversation < ActiveRecord::Base
     name :string, :required
     timestamps
   end
-  attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant, :downloads, :messages
+  attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant,
+                  :downloads, :messages, :offers, :baskets
   has_paper_trail
 
-  belongs_to :customer, :class_name => 'User'
+  belongs_to :customer, class_name: 'User', inverse_of: :conversations
   belongs_to :consultant, :class_name => 'User'
 
   validates :customer, :presence => true
@@ -18,13 +19,12 @@ class Conversation < ActiveRecord::Base
   has_many :downloads
   has_many :messages
   has_many :offers, -> {where state: :offer}, :class_name => 'Order'
-
-  children :messages, :downloads
+  has_many :baskets, -> {where state: "basket"}, :class_name => 'Order'
 
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?

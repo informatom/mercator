@@ -68,11 +68,6 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
-    <body: param>
-      <ht key="message.collection.count" count="&this.messages.size">
-         <count:messages param/>
-      </ht>
-    </body:>
   </card>
 </def>
 

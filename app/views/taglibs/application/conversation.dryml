@@ -1,0 +1,43 @@
+<extend tag="form" for="Conversation">
+  <old-form merge>
+   <field-list: fields='name'/>
+  </old-form>
+</extend>
+
+<extend tag="show-page" for="Conversation">
+  <old-show-page merge>
+     <append-content-body:>
+       <set consultant="&this.consultant_id" conversation="&this.id"/>
+
+      <form with="&Message.new">
+        <div> Neue Nachricht: <input:content/> </div>
+        <hidden-field:reciever-id value="&consultant" />
+        <hidden-field:conversation-id value="&conversation" />
+      </form>
+
+      <div class="form-horizontal">
+        <section param="collection-section" merge>
+          <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
+          <collection:messages param/>
+        </section>
+      </div>
+
+
+      <div class="form-horizontal">
+        <section param="collection-section" merge>
+          <h3 param="collection-heading"> <%= t("attributes.baskets") %> </h3>
+          <collection:baskets param/>
+        </section>
+      </div>
+
+      <div class="form-horizontal">
+        <section param="collection-section" merge>
+          <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
+          <collection:downloads param/>
+        </section>
+      </div>
+
+   </append-content-body:>
+
+  </old-show-page>
+</extend>

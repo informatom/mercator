@@ -75,7 +75,7 @@
 
 
 <def tag="show-page" for="Conversation">
-  <page merge title="#{ht 'conversation.show.title', :default=>['Conversation'], :name => name(:no_wrapper => true) }" >
+  <page merge title="#{ht 'conversation.show.title', :default=>['Conversation'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page conversation" param/>
 
@@ -97,27 +97,7 @@
 
     <content-body: param>
       <field-list fields="consultant, customer" param/>
-      <section param="collection-section">
-        <h3 param="collection-heading">
-          <ht key="message.collection.heading" count="&this.messages.count" >
-            <human-collection-name collection="messages" your/>
-          </ht>
-        </h3>
-
-        <collection:messages param/>
-      </section>
     </content-body:>
-
-    <aside: param>
-      <section param="downloads-collection-section">
-        <h3 param="downloads-collection-heading">
-          <ht key="download.collection.heading" count="&this.downloads.count" >
-            <human-collection-name collection="downloads" your/>
-          </ht>
-        </h3>
-        <collection:downloads  param="downloads-collection"/>
-      </section>
-    </aside:>
 
   </page>
 </def>
@@ -324,7 +304,6 @@
     <body: class="show-page message" param/>
 
     <content-header: param>
-      <a:conversation param="parent-link">&laquo; <ht key="message.actions.back_to_parent" parent="Conversation" name="&this">Back to <name/></ht></a:conversation>
       <h2 param="heading">
         <ht key="message.show.heading" name="#{name(:no_wrapper => true)}">
           Message <name/>
@@ -342,7 +321,7 @@
 
     <content-body: param>
       <view:content param="description" />
-      <field-list fields="reciever, sender" param/>
+      <field-list fields="conversation, reciever, sender" param/>
     </content-body:>
 
   </page>

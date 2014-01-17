@@ -6,6 +6,8 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Conversation"><ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -115,7 +117,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Address">
-  <page merge title="#{ht 'address.index_for_owner.title', :count=>100, :default=>['Addresses for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'address.index_for_owner.title', :count=>100, :default=>['Address for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user address" param/>
     <content-header: param>
       <div param="back-to">
@@ -284,7 +286,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="BillingAddress">
-  <page merge title="#{ht 'billing_address.index_for_owner.title', :count=>100, :default=>['Billing addresses for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'billing_address.index_for_owner.title', :count=>100, :default=>['Billing address for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user billing-address" param/>
     <content-header: param>
       <div param="back-to">
@@ -517,6 +519,223 @@
 
 
 
+<!-- ====== Conversation Pages ====== -->
+
+<def tag="index-page" for="Conversation">
+  <page merge title="#{ht 'conversation.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page conversation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="conversation.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="conversation.actions.new">New Conversation</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Conversation">
+  <page merge title="#{ht 'conversation.new.title', :default=>[' New Conversation'] }">
+    <body: class="new-page conversation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.new.heading">
+          New Conversation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'conversation.actions.create', :default=>['Create Conversation']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Conversation">
+  <page merge title="#{ht 'conversation.show.title', :default=>['Conversation'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page conversation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.show.heading" name="#{name(:no_wrapper => true)}">
+          Conversation <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="consultant, customer" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Conversation">
+  <page merge title="#{ht 'conversation.edit.title', :default=>['Edit Conversation'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page conversation" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Conversation
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'conversation.actions.delete', :default=>['Remove This Conversation']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Message Pages ====== -->
+
+<def tag="index-page" for="Message">
+  <page merge title="#{ht 'message.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page message" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="message.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="message.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="message.form.new.heading">New Message</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(Message)" param/>
+      </div>
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Message">
+  <page merge title="#{ht 'message.new.title', :default=>[' New Message'] }">
+    <body: class="new-page message" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="message.new.heading">
+          New Message
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'message.actions.create', :default=>['Create Message']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Message">
+  <page merge title="#{ht 'message.show.title', :default=>['Message'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page message" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="message.show.heading" name="#{name(:no_wrapper => true)}">
+          Message <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:content param="description" />
+      <field-list fields="conversation, reciever, sender" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Message">
+  <page merge title="#{ht 'message.edit.title', :default=>['Edit Message'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page message" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="message.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Message
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'message.actions.delete', :default=>['Remove This Message']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Order Pages ====== -->
 
 <def tag="index-page" for="Order">
@@ -578,7 +797,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -630,7 +849,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Order">
-  <page merge title="#{ht 'order.index_for_owner.title', :count=>100, :default=>['Orders for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'order.index_for_owner.title', :count=>100, :default=>['Order for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user order" param/>
     <content-header: param>
       <div param="back-to">

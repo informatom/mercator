@@ -69,13 +69,8 @@
 <def tag="card" for="Conversation">
   <card class="conversation" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <ht key="message.collection.count" count="&this.messages.size">
-         <count:messages param/>
-      </ht>
-    </body:>
   </card>
 </def>
 
@@ -128,11 +123,8 @@
 <def tag="card" for="Message">
   <card class="message" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <view:content param="description"/>
-    </body:>
   </card>
 </def>
 
