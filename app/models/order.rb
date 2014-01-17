@@ -105,7 +105,6 @@ class Order < ActiveRecord::Base
         basket.delete
       end
       puts I18n.l(Time.now).to_s + " Finished Job cleanup orders"
-
     end
   end
 end
