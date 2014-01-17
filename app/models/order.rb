@@ -96,4 +96,12 @@ class Order < ActiveRecord::Base
       return positions_merged
     end
   end
+
+  def self.cleanup_delayed
+    Basket.each do |basket|
+      if basket.lineitems.count + basket.conversations.count == 0 && Time.now - basket.created_at > 5.hours
+        basket.delete
+      end
+    end
+  end
 end

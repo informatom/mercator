@@ -21,7 +21,8 @@ PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
+# HAS 20140117: no package here ...
+#[ -x "$DAEMON" ] || exit 0
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
@@ -149,6 +150,3 @@ case "$1" in
   exit 3
   ;;
 esac
-
-:
-stefan@oberwart:/etc/init.d$
