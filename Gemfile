@@ -39,7 +39,7 @@ gem 'uglifier', '>= 1.3.0'                          # Code minimizer
 
 gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
-
+gem 'delayed_job_active_record'                     # Job queue system
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
