@@ -5,11 +5,8 @@
 
 set :output, "/var/rails/mercator/log/cron.log"
 
-  every 5.minutes do
+  every 15.minutes do
    runner "Order.cleanup_deprecated"
  end
-#
-# every 4.days do
-# end
 
 # Learn more: http://github.com/javan/whenever
