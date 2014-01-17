@@ -98,13 +98,13 @@ class Order < ActiveRecord::Base
   end
 
   def self.cleanup_deprecated
+    puts "\n" + I18n.l(Time.now).to_s + " Starting Job cleanup orders"
     Order.basket.all.each do |basket|
-      puts "\n" + I18n.l(Time.now).to_s + " Starting Job cleanup orders"
       if basket.lineitems.count == 0 && basket.conversation.nil? && Time.now - basket.created_at > 5.hours
         puts "  deleting order " + basket.id.to_s
         basket.delete
       end
-      puts I18n.l(Time.now).to_s + " Finished Job cleanup orders"
     end
+    puts I18n.l(Time.now).to_s + " Finished Job cleanup orders"
   end
 end
