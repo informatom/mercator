@@ -37,8 +37,6 @@ class UsersController < ApplicationController
         current_user.orders << guest_basket
       end
     end
-
-    Order.dalayed.cleanup_deprecated #CHECKME: HAS20140117 Maybe this is not the best place ...
   end
 
   def logout
