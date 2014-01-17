@@ -25,6 +25,8 @@ reasonably fast development instace can be fired up pretty fast
 1. Install Ruby. In Linux environments we recommend rvm for doing this. See https://rvm.io/rvm/install for details
 2. Install all gems needed by running <tt>bundle install</tt>
 3. Create a database mercator_production using <tt>rake db:create</tt>
+4  Installation of delayed_job: A startup script template for Ubuntu can be found in matarials/mercator_delayed_job.
+   It assumes, that app is located at /var/rails/mercator. Should be copied to /etc/init.d
 4. Start up your Server <tt>rails s</tt>
 
 Your Mercator is now running and fully functional!
@@ -35,3 +37,4 @@ Your Mercator is now running and fully functional!
 8. The third and any further users registered will have customer priviliges assigned
 
 FIXME! Second user should be sales guy
+

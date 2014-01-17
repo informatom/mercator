@@ -324,7 +324,7 @@
     <body: class="show-page message" param/>
 
     <content-header: param>
-      <a:conversation param="parent-link">&laquo; <ht key="message.actions.back_to_parent" parent="Beratung" name="&this">Back to <name/></ht></a:conversation>
+      <a:conversation param="parent-link">&laquo; <ht key="message.actions.back_to_parent" parent="Conversation" name="&this">Back to <name/></ht></a:conversation>
       <h2 param="heading">
         <ht key="message.show.heading" name="#{name(:no_wrapper => true)}">
           Message <name/>
