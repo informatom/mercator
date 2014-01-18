@@ -12,13 +12,13 @@
       </form>
 
       <form id="refresh-form" style="display:none;" action="refresh" update="mymessages">
-        <input name="id" value="<%= this.id %>" type="hidden"/>
+        <input name="id" value="#{this.id}" type="hidden"/>
       </form>
       <script>
         function update() {
           $("form#refresh-form").submit();
           setTimeout(update, 5000);
-        }
+        };
 
         $(document).ready(function() {
           setTimeout(update, 2000);
