@@ -17,11 +17,11 @@
       <script>
         function update() {
           $("form#refresh-form").submit();
-          setTimeout(update, 1000);
+          setTimeout(update, 2500);
         };
 
         $(document).ready(function() {
-          setTimeout(update, 1000);
+          setTimeout(update, 2500);
         });
       </script>
 
