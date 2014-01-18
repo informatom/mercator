@@ -8,7 +8,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
   autocomplete :name, :query_scope => [:name_de_contains]
 
   index_action :treereorder do
-    @this = Category.roots.paginate(:page => 1, :per_page => 999)
+    @this = Category.roots.paginate(:page => 1, :per_page => Category.count)
   end
 
   index_action :do_treereorder do

@@ -28,14 +28,15 @@
 
       <li param='basket'>
         <a href="#">
-          <%= fa_icon "shopping-cart" %> <%= current_user.basket.lineitems.count %> Pos.
+          <%= fa_icon "shopping-cart", class:"fa-2x" %> <%= current_user.basket.lineitems.count %> Pos.
           <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %></a>
       </li>
 
       <li param='compare'>
-        <a href="#">
-          <%= fa_icon "gift" %> <%= fa_icon "arrows-h" %> <%= fa_icon "gift" %>
-          <%= session[:compared].count %> Art. </a>
+        <nav-item with="&Product" action="comparison">
+          <%= fa_icon "gift", class: "fa-2x" %> <%= fa_icon "arrows-h", class: "fa-2x" %>
+          <%= fa_icon "gift", class: "fa-2x" %> <%= session[:compared].count %> Art.
+        </nav-item>
       </li>
 
 

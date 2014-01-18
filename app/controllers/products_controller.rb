@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   hobo_model_controller
   auto_actions :show, :lifecycle
+  index_action :comparison
 
   def do_add_to_basket
     do_transition_action :add_to_basket do
@@ -28,4 +29,10 @@ class ProductsController < ApplicationController
       redirect_to session[:return_to]
     end
   end
+
+  def comparison
+    self.this = Product.where(id: session[:compared]).paginate(:page => 1, :per_page => Product.count)
+    hobo_index
+  end
+
 end
