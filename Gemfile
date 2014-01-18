@@ -50,6 +50,8 @@ group :development, :test  do
   gem "require_all"                                 # requiring a full directory
   gem "better_errors"                               # Debug messages im Browser
   gem "binding_of_caller"                           # Repl for better_errors
+  gem 'dryml-firemarker', :require => 'dryml13-firemarker'
+
 end
 
 group :test do
