@@ -7,8 +7,8 @@ gem 'jquery-rails'                                  # JQuery asset handling
 gem "protected_attributes"
 
 #gem 'hobo', :path => '../hobo'
- gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
-# gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
+# gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
+gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
 
 gem "hobo_will_paginate"                            # pagination support
 gem "hobo_bootstrap", "2.1.0.pre4"                  # Twitter Bootstrap asset handling
@@ -40,6 +40,8 @@ gem 'uglifier', '>= 1.3.0'                          # Code minimizer
 gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
 gem 'whenever', :require => false                   # cronjob management
+gem 'private_pub'                                   # Private Pub Sub System
+
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick

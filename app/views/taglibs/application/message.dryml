@@ -1,0 +1,30 @@
+<def tag="card" for="Message">
+  <div class="message" param="default" merge>
+    <if test="sender_id == current_user.id">
+      <div class="alert alert-success">
+        <b><view:sender.name/>:</b> <view:content/> (<view:created-at/> an: <view:reciever.name/>)
+      </div>
+    </if>
+    <else>
+      <div class="alert alert-info">
+        <b><view:sender.name/>:</b> <view:content/> (<view:created-at/> an: <view:reciever.name/>)
+      </div>
+    </else>
+  </div>
+</def>
+
+<extend tag="index-page" for="Message">
+  <old-index-page merge>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+      <collection param/>
+      <page-nav param="bottom-page-nav"/>
+      <div param="new-form">
+        <form with="&new_for_current_user(Message)" update="messagecollection" param/>
+      </div>
+
+    </content-body:>
+  </old-index-page>
+</extend>

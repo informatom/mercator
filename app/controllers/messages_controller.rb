@@ -10,5 +10,4 @@ class MessagesController < ApplicationController
       this.save
     end
   end
-
 end

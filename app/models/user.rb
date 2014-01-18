@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   has_many :orders, dependent: :restrict_with_exception, inverse_of: :user
 
-  has_many :conversations, dependent: :destroy, inverse_of: :customer
+  has_many :conversations, dependent: :destroy, inverse_of: :customer, foreign_key: :customer_id
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that

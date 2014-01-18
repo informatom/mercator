@@ -1,4 +1,30 @@
 GIT
+  remote: git://github.com/Hobo/hobo.git
+  revision: 0a688a388efba9160b9c933ae8acbaa0dcb2b93d
+  specs:
+    dryml (2.1.0.pre4)
+      actionpack (~> 4.0.2)
+      hobo_support (= 2.1.0.pre4)
+    hobo (2.1.0.pre4)
+      dryml (= 2.1.0.pre4)
+      hobo_fields (= 2.1.0.pre4)
+      hobo_support (= 2.1.0.pre4)
+      hobo_will_paginate
+    hobo_fields (2.1.0.pre4)
+      hobo_support (= 2.1.0.pre4)
+    hobo_jquery (2.1.0.pre4)
+      hobo_rapid (= 2.1.0.pre4)
+      jquery-rails (~> 2.0)
+    hobo_jquery_ui (2.1.0.pre4)
+      hobo (= 2.1.0.pre4)
+      hobo_jquery (= 2.1.0.pre4)
+      jquery-ui-themes (~> 0.0.4)
+    hobo_rapid (2.1.0.pre4)
+      hobo (= 2.1.0.pre4)
+    hobo_support (2.1.0.pre4)
+      rails (~> 4.0.2)
+
+GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
   revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
@@ -9,11 +35,11 @@ GIT
 
 GIT
   remote: git://github.com/galetahub/ckeditor.git
-  revision: fcbc354928baeccbac98089c4b2fb0221b088955
+  revision: 5d09c7f59c62e41a70a4abf2c191c5b0f8cf5b60
   specs:
     ckeditor (4.0.8)
       mime-types
-      orm_adapter
+      orm_adapter (~> 0.5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -84,6 +110,7 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     commonjs (0.2.7)
+    cookiejar (0.3.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
@@ -94,9 +121,14 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.3.1)
     diff-lcs (1.2.5)
-    dryml (2.1.0.pre4)
-      actionpack (~> 4.0.2)
-      hobo_support (= 2.1.0.pre4)
+    em-http-request (1.1.2)
+      addressable (>= 2.3.4)
+      cookiejar
+      em-socksify (>= 0.3)
+      eventmachine (>= 1.0.3)
+      http_parser.rb (>= 0.6.0)
+    em-socksify (0.3.0)
+      eventmachine (>= 1.0.0.beta.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
@@ -107,15 +139,21 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    faye (1.0.1)
+      cookiejar (>= 0.3.0)
+      em-http-request (>= 0.3.0)
+      eventmachine (>= 0.12.0)
+      faye-websocket (>= 0.7.0)
+      multi_json (>= 1.0.0)
+      rack (>= 1.0.0)
+      websocket-driver (>= 0.3.0)
+    faye-websocket (0.7.2)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.3.1)
     ffi (1.9.3)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     hike (1.2.3)
-    hobo (2.1.0.pre4)
-      dryml (= 2.1.0.pre4)
-      hobo_fields (= 2.1.0.pre4)
-      hobo_support (= 2.1.0.pre4)
-      hobo_will_paginate
     hobo_bootstrap (2.1.0.pre4)
       bootstrap-sass (~> 2.1)
       hobo_jquery (>= 2.0)
@@ -127,22 +165,10 @@ GEM
       ckeditor
       hobo (>= 2.0.0)
       rails
-    hobo_fields (2.1.0.pre4)
-      hobo_support (= 2.1.0.pre4)
-    hobo_jquery (2.1.0.pre4)
-      hobo_rapid (= 2.1.0.pre4)
-      jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.1.0.pre4)
-      hobo (= 2.1.0.pre4)
-      hobo_jquery (= 2.1.0.pre4)
-      jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.1.0.pre4)
-      hobo (= 2.1.0.pre4)
-    hobo_support (2.1.0.pre4)
-      rails (~> 4.0.2)
     hobo_will_paginate (2.1.1)
     hobo_will_paginate-bootstrap (1.0.0)
       hobo_will_paginate
+    http_parser.rb (0.6.0)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -188,6 +214,8 @@ GEM
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
+    private_pub (1.0.3)
+      faye
     protected_attributes (1.0.5)
       activemodel (>= 4.0.1, < 5.0)
     quiet_assets (1.0.2)
@@ -283,6 +311,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     websocket (1.0.7)
+    websocket-driver (0.3.2)
     whenever (0.9.0)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
@@ -306,7 +335,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
   font-awesome-rails
-  hobo (= 2.1.0.pre4)
+  hobo!
   hobo_bootstrap (= 2.1.0.pre4)
   hobo_bootstrap_ui (= 2.1.0.pre4)
   hobo_ckeditor
@@ -322,6 +351,7 @@ DEPENDENCIES
   mysql2
   paper_trail (~> 3.0.0)
   paperclip
+  private_pub
   protected_attributes
   quiet_assets
   rails (= 4.0.2)

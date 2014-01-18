@@ -7,18 +7,16 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
      <append-content-body:>
-       <set consultant="&this.consultant_id" conversation="&this.id"/>
-
-      <form with="&Message.new">
+      <form with="&@message" update="messagecollection">
         <div> Neue Nachricht: <input:content/> </div>
-        <hidden-field:reciever-id value="&consultant" />
-        <hidden-field:conversation-id value="&conversation" />
       </form>
+
+      <%= subscribe_to "/messages/new" %>
 
       <div class="form-horizontal">
         <section param="collection-section" merge>
           <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
-          <collection:messages param/>
+          <collection:messages part="messagecollection" param/>
         </section>
       </div>
 

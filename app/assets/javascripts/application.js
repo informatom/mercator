@@ -19,3 +19,4 @@
 //= require hobo_ckeditor
 //= require messenger
 //= require messenger-theme-future
+//= require private_pub
