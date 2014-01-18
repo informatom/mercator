@@ -33,4 +33,5 @@ Mercator::Application.routes.draw do
   get 'search' => 'front#search', :as => 'site_search'
 
   post 'categories/sort' => 'categories#sort'
+  post 'conversations/refresh' => 'conversations#refresh'
 end

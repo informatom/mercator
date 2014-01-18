@@ -7,19 +7,30 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
      <append-content-body:>
-      <form with="&@message" update="messagecollection">
+      <form with="&@message" update="mymessages">
         <div> Neue Nachricht: <input:content/> </div>
       </form>
 
-      <%= subscribe_to "/messages/new" %>
+      <form id="refresh-form" style="display:none;" action="refresh" update="mymessages">
+        <input name="id" value="<%= this.id %>" type="hidden"/>
+      </form>
+      <script>
+        function update() {
+          $("form#refresh-form").submit();
+          setTimeout(update, 5000);
+        }
+
+        $(document).ready(function() {
+          setTimeout(update, 2000);
+        });
+      </script>
 
       <div class="form-horizontal">
         <section param="collection-section" merge>
           <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
-          <collection:messages part="messagecollection" param/>
+          <collection:messages part="mymessages" />
         </section>
       </div>
-
 
       <div class="form-horizontal">
         <section param="collection-section" merge>

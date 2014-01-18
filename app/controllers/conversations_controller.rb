@@ -4,6 +4,11 @@ class ConversationsController < ApplicationController
 
   auto_actions :new, :create, :show, :index
 
+  def refresh
+    self.this = Conversation.find(params[:id])
+    hobo_show
+  end
+
   def show
     hobo_show do
       @message = Message.new(reciever_id: this.consultant_id, conversation_id: this.id)
