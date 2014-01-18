@@ -20,7 +20,7 @@ class Property < ActiveRecord::Base
                   :position, :property_group, :property_group_id, :legacy_id
   has_paper_trail
   translates :name, :description, :unit
-  acts_as_list :scope => :property_group
+#  acts_as_list :scope => :property_group
   default_scope { order("properties.position ASC") }
 
   validates :value, numericality: true, allow_nil: true

@@ -32,6 +32,13 @@
           <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %></a>
       </li>
 
+      <li param='compare'>
+        <a href="#">
+          <%= fa_icon "gift" %> <%= fa_icon "arrows-h" %> <%= fa_icon "gift" %>
+          <%= session[:compared].count %> Art. </a>
+      </li>
+
+
       <if test='&logged_in?'>
         <li class='nav-item dropdown' param='conversation'>
           <a class="dropdown-toggle" id="drop2" data-toggle="dropdown" href="#">

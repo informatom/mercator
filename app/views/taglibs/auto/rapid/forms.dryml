@@ -150,6 +150,28 @@
     </div>
   </form>
 </def>
+<def tag="compare-form" polymorphic/>
+<def tag="compare-form" for="Product">
+  <form lifecycle="compare" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.compare', :default=>['Compare']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="dont-compare-form" polymorphic/>
+<def tag="dont-compare-form" for="Product">
+  <form lifecycle="dont_compare" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.dont_compare', :default=>['Dont Compare']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="activate-form" polymorphic/>
 <def tag="activate-form" for="Product">
   <form lifecycle="activate" merge param="default">

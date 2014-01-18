@@ -1109,6 +1109,48 @@
   </page>
 </def>
 
+<def tag="compare-page" polymorphic/>
+<def tag="compare-page" for="Product">
+  <page title="#{ht 'product.compare.title', :default=>['Compare']}" merge>
+
+    <body: class="lifecycle-transition-page compare-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.compare.heading">
+          Compare
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <compare-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="dont-compare-page" polymorphic/>
+<def tag="dont-compare-page" for="Product">
+  <page title="#{ht 'product.dont_compare.title', :default=>['Dont Compare']}" merge>
+
+    <body: class="lifecycle-transition-page dont-compare-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.dont_compare.heading">
+          Dont Compare
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <dont-compare-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="activate-page" polymorphic/>
 <def tag="activate-page" for="Product">
   <page title="#{ht 'product.activate.title', :default=>['Activate']}" merge>

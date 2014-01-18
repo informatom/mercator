@@ -237,6 +237,8 @@ de:
         lifecycle:
           transitions:
             add_to_basket: In den Warenkorb
+            compare: Produkt vergleichen
+            dont_compare: Produkt entfernen
             activate: Aktivieren
             deactivate: Deaktivieren
             reactivate: Reaktivieren

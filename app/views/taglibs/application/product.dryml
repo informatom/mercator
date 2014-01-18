@@ -6,7 +6,16 @@
     </if>
 
     <div class="media-body">
-      <transition-button transition="add_to_basket" class="btn btn-success pull-right" />
+    <div class="pull-right">
+      <transition-button transition="add_to_basket" class="btn btn-success" />
+      <if test="&session[:compared].include?(this.id)">
+        <transition-button transition="dont_compare" class="btn btn-info" />
+      </if>
+      <else>
+        <transition-button transition="compare" class="btn btn-info" />
+      </else>
+    </div>
+
       <h1 class="media-header"><%= link_to( this.name, product_path(this)) %></h1>
 
       <div param="description">
