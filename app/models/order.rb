@@ -36,6 +36,8 @@ class Order < ActiveRecord::Base
 
 #  validates :user, :presence => true
 
+  # --- Lifecycles --- #
+
   lifecycle do
     state :basket, :default => true
     state :ordered, :paid, :shipped, :offer

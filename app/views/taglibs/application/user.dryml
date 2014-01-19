@@ -18,7 +18,7 @@
             <human-collection-name collection="addresses" your/>
           </ht>
         </h3>
-        <collection:orders param/>
+        <collection:addresses param/>
       </section>
 
       <section param="collection-section">

@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   lifecycle do
 
     state :inactive, default: true
-    state :active
+    state :active, :consulted
 
     create :signup, :available_to => "Guest",
       params: [:name, :email_address, :password, :password_confirmation],
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :activate, { inactive: :active }, :available_to => :key_holder
+    transition :activate, { [:inactive, :consulted] => :active }, :available_to => :key_holder
 
     transition :deactivate, { active: :inactive }, :available_to => "User.administrator",
                :subsite => "admin"

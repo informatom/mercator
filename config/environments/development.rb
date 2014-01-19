@@ -16,5 +16,6 @@ Mercator::Application.configure do
 
   config.assets.compress = false
   config.assets.debug = true
+
 #  config.hobo.show_translation_keys = true
 end

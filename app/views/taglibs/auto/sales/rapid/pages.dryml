@@ -96,7 +96,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="consultant, customer" param/>
+      <field-list fields="state, consultant, customer" param/>
     </content-body:>
 
   </page>
@@ -125,6 +125,27 @@
 </def>
 
 
+<def tag="initiate-page" polymorphic/>
+<def tag="initiate-page" for="Conversation">
+
+  <page title="#{ht 'conversation.initiate.title', :default=>['Initiate']}" merge>
+
+    <body: class="lifecycle-start-page initiate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.initiate.heading">
+          Initiate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <initiate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 
 

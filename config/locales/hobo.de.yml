@@ -109,6 +109,7 @@ de:
       account: "Benutzerkonto"
       save_account: "Daten abspeichern"
       password: "Passwort ändern"
+      get_help: "Hilfe"
 
     # default hobo message translation
     messages:

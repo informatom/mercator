@@ -315,3 +315,9 @@ de:
   "Small version": Kleine Version
   "Medium version": Mittelgroße Version
   "Large version": Große Version
+
+  conversation:
+    initiate:
+      heading: Konversation starten
+    actions:
+      initiate: Konversation starten

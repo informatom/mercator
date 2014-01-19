@@ -4,13 +4,23 @@
 <def tag="form" for="Conversation">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, consultant, customer" param/>
+    <field-list fields="name, state, consultant, customer" param/>
     <div param="actions">
       <submit label="#{ht 'conversation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
 
+<def tag="initiate-form" polymorphic/>
+<def tag="initiate-form" for="Conversation">
+  <form lifecycle="initiate" merge param="default">
+    <error-messages param/>
+    <field-list fields="name" param/>
+    <div param="actions">
+      <submit label="#{ht 'conversation.actions.initiate', :default=>['Initiate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 
 <def tag="form" for="Download">

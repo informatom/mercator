@@ -28,30 +28,30 @@
 
       <li param='basket'>
         <a href="#">
-          <%= fa_icon "shopping-cart", class:"fa-2x" %> <%= current_user.basket.lineitems.count %> Pos.
+          <%= fa_icon "shopping-cart", class:"fa-lg" %> <%= current_user.basket.lineitems.count %> Pos.
           <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %></a>
       </li>
 
       <li param='compare'>
         <nav-item with="&Product" action="comparison">
-          <%= fa_icon "gift", class: "fa-2x" %> <%= fa_icon "arrows-h", class: "fa-2x" %>
-          <%= fa_icon "gift", class: "fa-2x" %> <%= session[:compared].count %> Art.
+          <%= fa_icon "gift", class: "fa-lg" %> <%= fa_icon "arrows-h", class: "fa-lg" %>
+          <%= fa_icon "gift", class: "fi-lg" %> <%= session[:compared].count %> Art.
         </nav-item>
       </li>
 
 
-      <if test='&logged_in?'>
-        <li class='nav-item dropdown' param='conversation'>
-          <a class="dropdown-toggle" id="drop2" data-toggle="dropdown" href="#">
-            <t name='&name' key='hobo.actions.get_help'>Get Help</t>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-            <nav-item with="&Conversation" action="new"> Konversation starten </nav-item>
+      <li class='nav-item dropdown' param='conversation'>
+        <a class="dropdown-toggle" id="drop2" data-toggle="dropdown" href="#">
+          <t name='&name' key='hobo.actions.get_help'>Get Help</t>
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+          <nav-item with="&Conversation" action="initiate"/>
+          <if test='&logged_in?'>
             <nav-item with="&Conversation" />
-          </ul>
-        </li>
-      </if>
+          </if>
+        </ul>
+      </li>
 
       <if test='&logged_in?'>
         <li class="nav-item dropdown">
