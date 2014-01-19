@@ -40,7 +40,7 @@ gem 'uglifier', '>= 1.3.0'                          # Code minimizer
 gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
 gem 'whenever', :require => false                   # cronjob management
-gem 'private_pub'                                   # Private Pub Sub System
+# gem 'private_pub'                                   # Private Pub Sub System
 
 
 group :development, :test  do

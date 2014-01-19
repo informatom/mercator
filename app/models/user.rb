@@ -93,7 +93,13 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || self == acting_user || acting_user.sales? || lifecycle.provided_key || new_record?
+    acting_user.administrator? ||
+    self == acting_user ||
+    acting_user.sales? ||
+    lifecycle.provided_key ||
+    new_record? ||
+    ( self.sales? && field == :name ) ||
+    ( self.administrator? && field == :name )
   end
 
   def basket
