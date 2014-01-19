@@ -1,0 +1,42 @@
+  <index-page>
+    <main-nav:>
+      <category-nav with="&this.first.categories.first" />
+    </main-nav:>
+
+    <content-header: replace>
+    </content-header:>
+
+    <collection: replace>
+      <set percent="& (80 / this.count).to_i"/>
+      <table class="table">
+        <tr>
+          <td width="20%">Name:</td>
+          <td repeat width="#{percent}%"><h2><view:name/></h2></td>
+        </tr>
+        <tr>
+          <td>Nummer</td>
+          <td repeat><h3><view:number/></h3></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td repeat><transition-button transition="dont_compare" class="btn btn-info"/></td>
+        </tr>
+        <tr>
+          <td>Beschreibung</td>
+          <td repeat><view:description/></td>
+        </tr>
+
+      <repeat with="&@property_lines">
+        <tr>
+          <td><view:name/></td>
+            <repeat with="&this.values">
+              <td><if><view/></if> </td>
+            </repeat>
+        </tr>
+      </repeat>
+
+      </table>
+    </collection:>
+
+  <aside-column:></aside-column:>
+  </index-page>

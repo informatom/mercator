@@ -35,7 +35,7 @@
       <li param='compare'>
         <nav-item with="&Product" action="comparison">
           <%= fa_icon "gift", class: "fa-lg" %> <%= fa_icon "arrows-h", class: "fa-lg" %>
-          <%= fa_icon "gift", class: "fi-lg" %> <%= session[:compared].count %> Art.
+          <%= fa_icon "gift", class: "fa-lg" %> <%= session[:compared].count %> Art.
         </nav-item>
       </li>
 

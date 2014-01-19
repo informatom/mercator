@@ -39,5 +39,4 @@
 
 <def tag="comparison-page" polymorphic/>
 <def tag="comparison-page" for="Product">
-  <index-page/>
 </def>
