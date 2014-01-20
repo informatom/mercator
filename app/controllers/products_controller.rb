@@ -30,33 +30,54 @@ class ProductsController < ApplicationController
     end
   end
 
-  Propertyline = Struct.new(:position, :group, :name, :values, :isgroup)
+  Propertyline = Struct.new(:property_group_position,
+                            :property_position,
+                            :group_id,
+                            :name,
+                            :values,
+                            :isgroup)
 
   def comparison
     self.this = Product.where(id: session[:compared]).paginate(:page => 1, :per_page => Product.count)
 
     @property_lines = Array.new()
     this.each_with_index do |product, i|
-      product.property_groups.each do |pg|
-        if @line = @property_lines.find { |e| e[:name] == pg.name }
-          @group = @line.group
+      @i = i
+      product.property_groups.each do |property_group|
+        if @property_line = @property_lines.find { |e| e[:name] == property_group.name }
+          @group_id = @property_line.group_id
         else
-          @property_lines << Propertyline.new(pg.position, pg.id, pg.name, Array.new(this.count), true)
-          @group = pg.id
+          @property_lines << Propertyline.new(property_group.position || 1000,
+                                              -1,
+                                              property_group.id,
+                                              property_group.name,
+                                              Array.new(this.count),
+                                              true)
+          @group_id = property_group.id
         end
 
-        pg.properties.each do |p|
-          @value = p.description ? p.description : p.value + " " + p.unit
-          if @line = @property_lines.find { |e| e[:name] == p.name &&
-                                                e[:group] == @group &&
-                                                e[:isgroup] == false }
-            @line.values[i] = @value
+        property_group.properties.each do |property|
+          @value = property.description ? property.description : property.value + " " + property.unit
+          if @property_line = @property_lines.find { |e| e[:name] == property.name &&
+                                                         e[:group_id] == @group_id &&
+                                                         e[:isgroup] == false }
+            @property_line.values[i] = @value
           else
-            @line = Propertyline.new(p.position, pg.id, p.name, Array.new(this.count), false)
-            @line.values[i] = @value
-            @property_lines << @line
+            @property_line = Propertyline.new(property_group.position || 1000,
+                                              property.position || 1000,
+                                              @group_id,
+                                              property.name,
+                                              Array.new(this.count),
+                                              false)
+            @property_line.values[i] = @value
+            @property_lines << @property_line
           end
         end
+      end
+
+      @property_lines.sort do |a,b|
+        comparison = (a.property_group_position <=> b.property_group_position)
+        comparison.zero? ? (a.property_position <=> b.property_position) : comparison
       end
     end
 

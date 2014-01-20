@@ -8,29 +8,29 @@
 
     <collection: replace>
       <set percent="& (80 / this.count).to_i"/>
-      <table class="table">
+      <table class="table table-condensed">
         <tr>
-          <td width="20%">Name:</td>
+          <td width="20%">Name</td>
           <td repeat width="#{percent}%"><h2><view:name/></h2></td>
         </tr>
         <tr>
-          <td>Nummer</td>
-          <td repeat><h3><view:number/></h3></td>
+          <td>Nummer</td> <td repeat><h3><view:number/></h3></td>
         </tr>
         <tr>
-          <td></td>
-          <td repeat><transition-button transition="dont_compare" class="btn btn-info"/></td>
+          <td></td> <td repeat><transition-button transition="dont_compare" class="btn btn-info"/></td>
         </tr>
         <tr>
-          <td>Beschreibung</td>
-          <td repeat><view:description/></td>
+          <td>Beschreibung</td> <td repeat><view:description/></td>
         </tr>
 
       <repeat with="&@property_lines">
         <tr>
-          <td><view:name/></td>
+          <td>
+            <if test="&this.isgroup"> <h4><view:name/></h4> </if>
+            <else> <view:name/> </else>
+          </td>
             <repeat with="&this.values">
-              <td><if><view/></if> </td>
+              <td><if><view/></if></td>
             </repeat>
         </tr>
       </repeat>
