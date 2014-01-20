@@ -207,6 +207,9 @@ de:
         markdown: "Markdown Seite"
       conversation:
         name: "Thema oder Titel"
+        lifecycle:
+          creators:
+            initiate: Konversation starten
       inventory:
         number: Artikelnummer
         storage: Lagerort / Filiale

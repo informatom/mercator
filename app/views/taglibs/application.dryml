@@ -19,3 +19,12 @@
                merge-attrs/>
 </def>
 
+<extend tag="index-page">
+  <old-index-page merge>
+    <heading:>
+      <ht key="#{model}.index.heading">
+        <model-name-human model="&model" count="100"/>
+      </ht>
+    </heading:>
+  </old-index-page>
+</extend>

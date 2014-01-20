@@ -46,9 +46,13 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-          <nav-item with="&Conversation" action="initiate"/>
+          <nav-item with="&Conversation" action="initiate">
+            <t key='activerecord.attributes.conversation.lifecycle.creators.initiate'>Start Conversation</t>
+          </nav-item>
           <if test='&logged_in?'>
-            <nav-item with="&Conversation" />
+            <nav-item with="&Conversation">
+              <ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht>
+            </nav-item>
           </if>
         </ul>
       </li>

@@ -37,6 +37,8 @@ class Conversation < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator?
+    acting_user.sales? ||
+    customer == acting_user
   end
 
   def destroy_permitted?
@@ -44,7 +46,10 @@ class Conversation < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? ||
+    acting_user.sales? ||
+    customer == acting_user ||
+    new_record?
   end
 
 end
