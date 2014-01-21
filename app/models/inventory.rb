@@ -5,7 +5,7 @@ class Inventory < ActiveRecord::Base
   fields do
     name_de    :string, :required
     name_en    :string
-    number     :string, :required, :unique
+    number     :string, :required
     amount     :decimal, :required, :precision => 10, :scale => 2
     unit       :string, :required
     comment_de :string

@@ -10,7 +10,6 @@ describe Inventory do
   it {should validate_presence_of(:number)}
   it {should validate_presence_of(:amount)}
   it {should validate_presence_of(:unit)}
-  it {should validate_uniqueness_of(:number)}
   it {should validate_numericality_of(:amount)}
   it {should validate_numericality_of(:weight)}
 

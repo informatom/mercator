@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Conversation"><ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Order"><ht key="order.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -643,6 +644,176 @@
 
 
 
+<!-- ====== Lineitem Pages ====== -->
+
+<def tag="index-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="lineitem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.new.title', :default=>[' New Lineitem'] }">
+    <body: class="new-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.new.heading">
+          New Lineitem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'lineitem.actions.create', :default=>['Create Lineitem']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.show.title', :default=>['Lineitem'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page lineitem" param/>
+
+    <content-header: param>
+      <a:order param="parent-link">&laquo; <ht key="lineitem.actions.back_to_parent" parent="Bestellung" name="&this">Back to <name/></ht></a:order>
+      <h2 param="heading">
+        <ht key="lineitem.show.heading" name="#{name(:no_wrapper => true)}">
+          Lineitem <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a:user param="creator-link"/>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, state, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Lineitem">
+  <page merge title="#{ht 'lineitem.edit.title', :default=>['Edit Lineitem'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page lineitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Lineitem
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'lineitem.actions.delete', :default=>['Remove This Lineitem']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="delete-from-basket-page" polymorphic/>
+<def tag="delete-from-basket-page" for="Lineitem">
+  <page title="#{ht 'lineitem.delete_from_basket.title', :default=>['Delete From Basket']}" merge>
+
+    <body: class="lifecycle-transition-page delete-from-basket-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.delete_from_basket.heading">
+          Delete From Basket
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-from-basket-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="add-one-page" polymorphic/>
+<def tag="add-one-page" for="Lineitem">
+  <page title="#{ht 'lineitem.add_one.title', :default=>['Add One']}" merge>
+
+    <body: class="lifecycle-transition-page add-one-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.add_one.heading">
+          Add One
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-one-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="remove-one-page" polymorphic/>
+<def tag="remove-one-page" for="Lineitem">
+  <page title="#{ht 'lineitem.remove_one.title', :default=>['Remove One']}" merge>
+
+    <body: class="lifecycle-transition-page remove-one-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.remove_one.heading">
+          Remove One
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <remove-one-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
 <!-- ====== Message Pages ====== -->
 
 <def tag="index-page" for="Message">
@@ -825,6 +996,12 @@
       <record-flags fields="" param/>
 
       <a:user param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="order.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Order
+        </ht>
+      </a>
     </content-header:>
 
     <content-body: param>

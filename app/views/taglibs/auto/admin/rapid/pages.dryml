@@ -1203,7 +1203,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, product" param/>
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, state, product" param/>
     </content-body:>
 
   </page>
@@ -1232,6 +1232,69 @@
 </def>
 
 
+
+<def tag="delete-from-basket-page" polymorphic/>
+<def tag="delete-from-basket-page" for="Lineitem">
+  <page title="#{ht 'lineitem.delete_from_basket.title', :default=>['Delete From Basket']}" merge>
+
+    <body: class="lifecycle-transition-page delete-from-basket-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.delete_from_basket.heading">
+          Delete From Basket
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-from-basket-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="add-one-page" polymorphic/>
+<def tag="add-one-page" for="Lineitem">
+  <page title="#{ht 'lineitem.add_one.title', :default=>['Add One']}" merge>
+
+    <body: class="lifecycle-transition-page add-one-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.add_one.heading">
+          Add One
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-one-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="remove-one-page" polymorphic/>
+<def tag="remove-one-page" for="Lineitem">
+  <page title="#{ht 'lineitem.remove_one.title', :default=>['Remove One']}" merge>
+
+    <body: class="lifecycle-transition-page remove-one-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.remove_one.heading">
+          Remove One
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <remove-one-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 
 

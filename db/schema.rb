@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119111948) do
+ActiveRecord::Schema.define(version: 20140121121533) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -213,10 +213,13 @@ ActiveRecord::Schema.define(version: 20140119111948) do
     t.string   "unit"
     t.integer  "user_id"
     t.integer  "product_id"
+    t.string   "state",                                   default: "active"
+    t.datetime "key_timestamp"
   end
 
   add_index "lineitems", ["order_id"], name: "index_lineitems_on_order_id", using: :btree
   add_index "lineitems", ["product_id"], name: "index_lineitems_on_product_id", using: :btree
+  add_index "lineitems", ["state"], name: "index_lineitems_on_state", using: :btree
   add_index "lineitems", ["user_id"], name: "index_lineitems_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|

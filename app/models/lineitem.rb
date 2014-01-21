@@ -37,6 +37,21 @@ class Lineitem < ActiveRecord::Base
 
   belongs_to :product
 
+  lifecycle do
+    state :active, :default => true
+
+    transition :delete_from_basket, {:active => :active}, :available_to => :user do
+      self.delete
+    end
+
+    transition :add_one, {:active => :active}, :available_to => :user do
+      self.update_attributes(amount: self.amount + 1)
+    end
+    transition :remove_one, {:active => :active}, :available_to => :user do
+      amount == 1 ? self.delete : self.update_attributes(amount: self.amount - 1)
+    end
+  end
+
 
   # --- Permissions --- #
 
@@ -45,15 +60,20 @@ class Lineitem < ActiveRecord::Base
   end
 
   def update_permitted?
-    order.user == acting_user || acting_user.administrator?
+    order.user == acting_user ||
+    acting_user.administrator? ||
+    (acting_user == self && only_changed?(:amount))
   end
 
   def destroy_permitted?
-    order.user == acting_user || acting_user.administrator?
+    order.user == acting_user ||
+    acting_user.administrator?
   end
 
   def view_permitted?(field)
-    self.new_record? || order.user == acting_user || acting_user.administrator?
+    self.new_record? ||
+    order.user == acting_user ||
+    acting_user.administrator?
   end
 
 #--- Instace methods ---#

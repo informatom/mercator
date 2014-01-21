@@ -1,0 +1,46 @@
+<extend tag="edit-page" for="Order">
+  <old-edit-page merge>
+  </old-edit-page>
+</extend>
+
+<def tag="my-transition-link" attrs="transition">
+  <transition-link transition="#{transition}" method="put" class="btn" merge-attrs>
+    <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
+  </transition-link>
+</def>
+
+<extend tag="form" for="Order">
+  <old-form merge>
+   <field-list: fields="lineitems">
+      <lineitems-field:>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Menge</th>
+              <th></th>
+              <th>Beschreibung</th>
+              <th>Stückpreis</th>
+              <th>Preis</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody part="lineitems">
+            <tr repeat>
+              <td><%= image_tag this.product.photo.url(:thumb) %></td>
+              <td><view:amount/> <view:unit/></td>
+              <td>
+                <my-transition-link transition="add_one" class="btn-success btn-small"/>
+                <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
+              </td>
+              <td><view:description/></td>
+              <td>EUR <view:product-price/></td>
+              <td>EUR <view:value/></td>
+              <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </lineitems-field:>
+   </field-list:>
+  </old-form>
+</extend>

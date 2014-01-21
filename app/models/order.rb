@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :conversation
 
-  has_many :lineitems, dependent: :destroy
+  has_many :lineitems, dependent: :destroy, accessible: true
   children :lineitems
 
 #  validates :user, :presence => true
@@ -56,7 +56,8 @@ class Order < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || (user_is? acting_user)
+    acting_user.administrator? ||
+    (user_is? acting_user)
   end
 
   def destroy_permitted?
@@ -64,7 +65,10 @@ class Order < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || acting_user.sales? || (user_is? acting_user)
+    acting_user.administrator? ||
+    acting_user.sales? ||
+    (user_is? acting_user) ||
+    (user_is? nil && id == acting_user.basket.id) # Guest's basket
   end
 
   # --- Instance Methods --- #

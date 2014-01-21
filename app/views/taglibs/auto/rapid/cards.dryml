@@ -113,6 +113,11 @@
 
 <def tag="card" for="Lineitem">
   <card class="lineitem" param="default" merge>
+    <header: param>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
+    </header:>
     <body: param>
       <view:description param="description"/>
       <a:user param="creator-link"/>
@@ -131,7 +136,7 @@
 <def tag="card" for="Order">
   <card class="order" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
     <body: param>
       <a:user param="creator-link"/>

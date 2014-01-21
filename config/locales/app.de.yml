@@ -217,6 +217,11 @@ de:
         product_price: Stückpreis
         value: Positionswert
         position: Positionsnummer
+        lifecycle:
+          transitions:
+            delete_from_basket: "Position löschen"
+            add_one: "+1"
+            remove_one: "-1"
       order:
         billing_method: Rechnungsart
         billing_name: Name (Rechnung)

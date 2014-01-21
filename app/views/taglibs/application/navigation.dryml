@@ -27,9 +27,10 @@
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
 
       <li param='basket'>
-        <a href="#">
+        <nav-item with="&current_user.basket" action="edit">
           <%= fa_icon "shopping-cart", class:"fa-lg" %> <%= current_user.basket.lineitems.count %> Pos.
-          <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %></a>
+          <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %>
+        </nav-item>
       </li>
 
       <li param='compare'>
