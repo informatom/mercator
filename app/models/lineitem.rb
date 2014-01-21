@@ -45,10 +45,23 @@ class Lineitem < ActiveRecord::Base
     end
 
     transition :add_one, {:active => :active}, :available_to => :user do
-      self.update_attributes(amount: self.amount + 1)
+      amount = self.amount + 1
+      price = product.price(amount: amount)
+      self.update_attributes(amount:        amount,
+                             product_price: price,
+                             value:         price * amount)
     end
+
     transition :remove_one, {:active => :active}, :available_to => :user do
-      amount == 1 ? self.delete : self.update_attributes(amount: self.amount - 1)
+      if amount == 1
+        self.delete
+      else
+        amount = self.amount - 1
+        price = product.price(amount: amount)
+        self.update_attributes(amount:        amount,
+                               product_price: price,
+                               value:         price * amount)
+      end
     end
   end
 
@@ -82,8 +95,7 @@ class Lineitem < ActiveRecord::Base
     self.amount += amount
 
     product = Product.find(self.product_id)
-    self.value = self.amount * product.price(amount: amount)
-
+    self.value = product.price(self.amount)
     raise unless self.save
   end
 
