@@ -54,5 +54,8 @@ module Mercator
     end
 
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
+    config.time_zone = 'Vienna'
+    config.active_record.default_timezone = :local
   end
 end

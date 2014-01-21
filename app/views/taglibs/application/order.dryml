@@ -1,17 +1,10 @@
-<extend tag="edit-page" for="Order">
-  <old-edit-page merge>
-  </old-edit-page>
-</extend>
+<extend tag="show-page" for="Order">
+  <old-show-page merge>
+    <content-header:>
+      <h1>Warenkorb vom <view:created-at/></h1>
+    </content-header:>
 
-<def tag="my-transition-link" attrs="transition">
-  <transition-link transition="#{transition}" method="put" class="btn" merge-attrs>
-    <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
-  </transition-link>
-</def>
-
-<extend tag="form" for="Order">
-  <old-form merge>
-   <field-list: fields="lineitems">
+    <field-list: fields="lineitems">
       <lineitems-field:>
         <table class="table">
           <thead>
@@ -41,6 +34,12 @@
           </tbody>
         </table>
       </lineitems-field:>
-   </field-list:>
-  </old-form>
+    </field-list:>
+  </old-show-page>
 </extend>
+
+<def tag="my-transition-link" attrs="transition">
+  <transition-link transition="#{transition}" method="put" class="btn" merge-attrs>
+    <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
+  </transition-link>
+</def>

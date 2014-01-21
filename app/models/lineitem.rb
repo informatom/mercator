@@ -40,11 +40,13 @@ class Lineitem < ActiveRecord::Base
   lifecycle do
     state :active, :default => true
 
-    transition :delete_from_basket, {:active => :active}, :available_to => :user do
+    transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == self.order",
+                available_to: :all do
       self.delete
     end
 
-    transition :add_one, {:active => :active}, :available_to => :user do
+    transition :add_one, {:active => :active}, if: "acting_user.basket == self.order",
+               available_to: :all do
       amount = self.amount + 1
       price = product.price(amount: amount)
       self.update_attributes(amount:        amount,
@@ -52,7 +54,8 @@ class Lineitem < ActiveRecord::Base
                              value:         price * amount)
     end
 
-    transition :remove_one, {:active => :active}, :available_to => :user do
+    transition :remove_one, {:active => :active}, if: "acting_user.basket == self.order",
+               available_to: :all do
       if amount == 1
         self.delete
       else
@@ -73,9 +76,9 @@ class Lineitem < ActiveRecord::Base
   end
 
   def update_permitted?
+    order == acting_user.basket ||
     order.user == acting_user ||
-    acting_user.administrator? ||
-    (acting_user == self && only_changed?(:amount))
+    acting_user.administrator?
   end
 
   def destroy_permitted?
@@ -84,7 +87,7 @@ class Lineitem < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    self.new_record? ||
+    order == acting_user.basket ||
     order.user == acting_user ||
     acting_user.administrator?
   end
@@ -95,7 +98,7 @@ class Lineitem < ActiveRecord::Base
     self.amount += amount
 
     product = Product.find(self.product_id)
-    self.value = product.price(self.amount)
+    self.value = product.price(amount: self.amount)
     raise unless self.save
   end
 

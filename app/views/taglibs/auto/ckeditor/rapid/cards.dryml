@@ -141,9 +141,6 @@
     </header:>
     <body: param>
       <view:user param="creator"/>
-      <ht key="lineitem.collection.count" count="&this.lineitems.size">
-         <count:lineitems param/>
-      </ht>
     </body:>
   </card>
 </def>

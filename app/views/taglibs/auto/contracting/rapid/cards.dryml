@@ -141,9 +141,6 @@
     </header:>
     <body: param>
       <a:user param="creator-link"/>
-      <ht key="lineitem.collection.count" count="&this.lineitems.size">
-         <count:lineitems param/>
-      </ht>
     </body:>
   </card>
 </def>

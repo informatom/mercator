@@ -32,7 +32,6 @@ class Order < ActiveRecord::Base
   belongs_to :conversation
 
   has_many :lineitems, dependent: :destroy, accessible: true
-  children :lineitems
 
 #  validates :user, :presence => true
 
@@ -68,7 +67,7 @@ class Order < ActiveRecord::Base
     acting_user.administrator? ||
     acting_user.sales? ||
     (user_is? acting_user) ||
-    (user_is? nil && id == acting_user.basket.id) # Guest's basket
+    (user_is?(nil) && id == acting_user.basket.id) # Guest's basket
   end
 
   # --- Instance Methods --- #
