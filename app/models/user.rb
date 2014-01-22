@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
     last_login_at    :datetime
     logged_in        :boolean, default: false
     login_count      :integer, default: 0
+    gtc_confirmed_at :datetime
+    gtc_version_of   :date
     timestamps
   end
 

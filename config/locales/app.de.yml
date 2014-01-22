@@ -111,6 +111,7 @@ de:
     valid_to: Gültig bis
     value: Wert
     vat: MwSt.
+    version_of: Version vom
     weight: Gewicht
 
   activerecord:
@@ -150,6 +151,9 @@ de:
       download:
         one: Download
         other: Downloads
+      gtc:
+        one: AGB
+        other: AGBs
       inventory:
         one: Bestand
         other: Bestände

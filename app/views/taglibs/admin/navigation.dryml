@@ -111,6 +111,9 @@
         <nav-item with="&Constant">
           <ht key="constant.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Gtc">
+          <ht key="gtc.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
       </ul>
     </li>
 

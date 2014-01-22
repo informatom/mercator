@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121121533) do
+ActiveRecord::Schema.define(version: 20140122155636) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -176,6 +176,16 @@ ActiveRecord::Schema.define(version: 20140121121533) do
 
   add_index "features", ["product_id"], name: "index_features_on_product_id", using: :btree
 
+  create_table "gtcs", force: true do |t|
+    t.string   "title_de"
+    t.string   "title_en"
+    t.text     "content_de"
+    t.text     "content_en"
+    t.date     "version_of"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "inventories", force: true do |t|
     t.string   "name_de"
     t.string   "name_en"
@@ -256,6 +266,8 @@ ActiveRecord::Schema.define(version: 20140121121533) do
     t.string   "state",               default: "basket"
     t.datetime "key_timestamp"
     t.integer  "conversation_id"
+    t.datetime "gtc_confirmed_at"
+    t.date     "gtc_version_of"
   end
 
   add_index "orders", ["conversation_id"], name: "index_orders_on_conversation_id", using: :btree
@@ -404,6 +416,8 @@ ActiveRecord::Schema.define(version: 20140121121533) do
     t.datetime "last_login_at"
     t.integer  "login_count",                          default: 0
     t.boolean  "logged_in",                            default: false
+    t.datetime "gtc_confirmed_at"
+    t.date     "gtc_version_of"
   end
 
   add_index "users", ["state"], name: "index_users_on_state", using: :btree

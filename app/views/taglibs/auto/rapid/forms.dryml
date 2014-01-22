@@ -152,7 +152,7 @@
 <def tag="form" for="Order">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, state, conversation, lineitems, user" param/>
+    <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, state, conversation, lineitems, user" param/>
     <div param="actions">
       <submit label="#{ht 'order.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -253,7 +253,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, sales, last_login_at, logged_in, state, addresses, billing_addresses" param/>
+    <field-list fields="name, email_address, administrator, sales, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, state, addresses, billing_addresses" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

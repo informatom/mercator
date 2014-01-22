@@ -17,6 +17,8 @@ class Order < ActiveRecord::Base
     shipping_postalcode :string
     shipping_city       :string
     shipping_country    :string
+    gtc_confirmed_at    :datetime
+    gtc_version_of      :date
     timestamps
   end
 
