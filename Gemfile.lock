@@ -134,6 +134,7 @@ GEM
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     hike (1.2.3)
+    hirb (0.7.1)
     hobo_bootstrap (2.1.0.pre4)
       bootstrap-sass (~> 2.1)
       hobo_jquery (>= 2.0)
@@ -311,6 +312,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
   font-awesome-rails
+  hirb
   hobo!
   hobo_bootstrap (= 2.1.0.pre4)
   hobo_bootstrap_ui (= 2.1.0.pre4)

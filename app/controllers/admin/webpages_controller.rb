@@ -21,7 +21,7 @@ protected
   def parse_pages(pages_array, parent)
     pages_array.each_with_index do |page_hash, position|
       page = Page.find(page_hash["id"])
-      page.update_attributes(position: position, parent_id: parent)
+      page.update(position: position, parent_id: parent)
       parse_pages(page_hash["children"], page.id) if page_hash["children"]
     end
   end

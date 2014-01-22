@@ -49,9 +49,9 @@ class Lineitem < ActiveRecord::Base
                available_to: :all do
       amount = self.amount + 1
       price = product.price(amount: amount)
-      self.update_attributes(amount:        amount,
-                             product_price: price,
-                             value:         price * amount)
+      self.update(amount:        amount,
+                  product_price: price,
+                  value:         price * amount)
     end
 
     transition :remove_one, {:active => :active}, if: "acting_user.basket == self.order",
@@ -61,9 +61,9 @@ class Lineitem < ActiveRecord::Base
       else
         amount = self.amount - 1
         price = product.price(amount: amount)
-        self.update_attributes(amount:        amount,
-                               product_price: price,
-                               value:         price * amount)
+        self.update(amount:        amount,
+                    product_price: price,
+                    value:         price * amount)
       end
     end
   end

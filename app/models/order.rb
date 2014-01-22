@@ -90,7 +90,7 @@ class Order < ActiveRecord::Base
         if duplicate.present?
           duplicate.merge(lineitem: lineitem)
         else
-          lineitem.update_attributes(order_id: id)
+          lineitem.update(order_id: id)
         end
       end
 

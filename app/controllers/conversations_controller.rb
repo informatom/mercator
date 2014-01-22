@@ -25,11 +25,17 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def initiate
+    self.this = Conversation.new(customer: current_user)
+    current_basket.update(conversation_id: this.id)
+    creator_page_action :initiate
+  end
+
   def do_initiate
+
     do_creator_action :initiate do
-      this.update_attributes(customer: current_user,
-                             consultant: User.sales.where(logged_in: true).first)
-      current_basket.update_attributes(conversation_id: this.id)
+      self.this.update(customer: current_user,
+                       consultant: User.sales.where(logged_in: true).first)
     end
   end
 end

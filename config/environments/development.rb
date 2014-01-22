@@ -18,4 +18,5 @@ Mercator::Application.configure do
   config.assets.debug = true
 
 #  config.hobo.show_translation_keys = true
+  BetterErrors::Middleware.allow_ip! "10.0.0.202"
 end

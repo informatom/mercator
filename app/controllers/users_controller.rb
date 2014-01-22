@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     hobo_login
 
     if logged_in?
-      current_user.update_attributes(logged_in: true)
+      current_user.update(logged_in: true)
 
       last_user = User.find(session[:last_user])
       last_basket = last_user.basket if last_user
@@ -41,20 +41,20 @@ class UsersController < ApplicationController
 
       if last_user.conversations.any?
         last_user.conversations.each do |conversation|
-          conversation.update_attributes(customer_id: current_user.id)
+          conversation.update(customer_id: current_user.id)
         end
       end
     end
   end
 
   def logout
-    current_user.update_attributes(logged_in: false)
+    current_user.update(logged_in: false)
     hobo_logout
   end
 
   def switch
     last_user_id = current_user.id
-    current_user.update_attributes(logged_in: false)
+    current_user.update(logged_in: false)
     hobo_logout do
       session[:last_user] = last_user_id
       redirect_to :user_login

@@ -11,7 +11,7 @@ class Contracting::TonersController < ApplicationController
     @liste.each_with_index do |row, index|
       next if index == 0
       @toner = Toner.find_or_initialize_by(vendor_number: row[4])
-      @toner.update_attributes(article_number: row[2], description: row[3], price: row[8])
+      @toner.update(article_number: row[2], description: row[3], price: row[8])
       puts @toner.errors.first
     end
   end

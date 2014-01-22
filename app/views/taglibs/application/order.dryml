@@ -4,22 +4,22 @@
       <h1>Warenkorb vom <view:created-at/></h1>
     </content-header:>
 
-    <field-list: fields="lineitems">
-      <lineitems-field:>
-        <table class="table">
-          <thead>
+    <field-list: replace>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Menge</th>
+            <th></th>
+            <th>Beschreibung</th>
+            <th>Stückpreis</th>
+            <th>Preis</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody part="lineitems">
+          <repeat with="&this.lineitems">
             <tr>
-              <th></th>
-              <th>Menge</th>
-              <th></th>
-              <th>Beschreibung</th>
-              <th>Stückpreis</th>
-              <th>Preis</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody part="lineitems">
-            <tr repeat>
               <td><%= image_tag this.product.photo.url(:thumb) %></td>
               <td><view:amount/> <view:unit/></td>
               <td>
@@ -31,9 +31,9 @@
               <td>EUR <view:value/></td>
               <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>
             </tr>
-          </tbody>
-        </table>
-      </lineitems-field:>
+          </repeat>
+        </tbody>
+      </table>
     </field-list:>
   </old-show-page>
 </extend>
