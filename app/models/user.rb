@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   lifecycle do
 
     state :inactive, default: true
-    state :active, :consulted
+    state :guest, :active
 
     create :signup, :available_to => "Guest",
       params: [:name, :email_address, :password, :password_confirmation],
@@ -50,21 +50,22 @@ class User < ActiveRecord::Base
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :activate, { [:inactive, :consulted] => :active }, :available_to => :key_holder
+    transition :create_key, {:inactive => :guest}, :available_to => :all, :new_key => true
+
+    transition :activate, { [:inactive, :guest] => :active }, :available_to => :key_holder
 
     transition :deactivate, { active: :inactive }, :available_to => "User.administrator",
                :subsite => "admin"
 
-
-    transition :request_password_reset, { inactive: :inactive }, :new_key => true do
+    transition :request_password_reset, { [:inactive, :guest] => :inactive }, :new_key => true do
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :request_password_reset, { active: :active }, :new_key => true do
+    transition :request_password_reset, { :active => :active }, :new_key => true do
       UserMailer.forgot_password(self, lifecycle.key).deliver
     end
 
-    transition :reset_password, { active: :active }, :available_to => :key_holder,
+    transition :reset_password, { :active => :active }, :available_to => :key_holder,
                params: [ :password, :password_confirmation ]
   end
 
@@ -105,4 +106,11 @@ class User < ActiveRecord::Base
   def basket
     Order.user_is(self).basket.first
   end
+
+  def self.initialize()
+    new_user = self.create(name: "Gast", email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
+    new_user.lifecycle.create_key!(new_user)
+    return new_user
+  end
+
 end

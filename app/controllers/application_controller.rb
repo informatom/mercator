@@ -2,41 +2,23 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :set_locale
-  before_filter :create_basket
+  before_filter :auto_log_in, except: [:login, :logout]
   before_filter :remember_uri
 
-  def create_basket
-    unless @basket = my_basket
-      @basket = Order.create
-      @basket.lifecycle.create_key!(current_user)
-      @basket.save
-      session[:basketkey] = @basket.lifecycle.key
-      session[:basket] = @basket.id
-      current_user.basket = @basket unless logged_in?
-    end
-  end
-
-  def my_basket
-    @basket = Order.where(id: session[:basket]).first
-    if @basket && @basket.lifecycle.key == session[:basketkey]
-      current_user.basket = @basket unless logged_in?
-      return @basket
-    else
-      return nil
+  def auto_log_in
+    if current_user.guest?
+      self.current_user = User.initialize
+      Order.create(user: current_user)
+      session[:compared] = []
     end
   end
 
   def set_locale
-    if (params[:locale])
-      I18n.locale = params[:locale]
-    else
-      I18n.locale = I18n.default_locale
-    end
+    I18n.locale = params[:locale] && I18n.default_locale
   end
 
   def remember_uri
     session[:return_to] = request.referrer
-    session[:compared] ||= []
   end
 
   def default_url_options(options={})

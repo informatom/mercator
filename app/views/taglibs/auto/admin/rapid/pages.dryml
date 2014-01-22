@@ -1061,7 +1061,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1361,7 +1361,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -1409,27 +1409,6 @@
 </def>
 
 
-
-<def tag="create-key-page" polymorphic/>
-<def tag="create-key-page" for="Order">
-  <page title="#{ht 'order.create_key.title', :default=>['Create Key']}" merge>
-
-    <body: class="lifecycle-transition-page create-key-page" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="order.create_key.heading">
-          Create Key
-        </ht>
-      </h2>
-    </content-header:>
-
-    <content-body: param>
-      <create-key-form param="form"/>
-    </content-body:>
-
-  </page>
-</def>
 
 <def tag="shippment-page" polymorphic/>
 <def tag="shippment-page" for="Order">
@@ -1742,7 +1721,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>
@@ -2777,6 +2756,27 @@
 
     <content-body: param>
       <signup-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="create-key-page" polymorphic/>
+<def tag="create-key-page" for="User">
+  <page title="#{ht 'user.create_key.title', :default=>['Create Key']}" merge>
+
+    <body: class="lifecycle-transition-page create-key-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.create_key.heading">
+          Create Key
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <create-key-form param="form"/>
     </content-body:>
 
   </page>

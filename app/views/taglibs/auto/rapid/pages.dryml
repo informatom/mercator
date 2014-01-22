@@ -118,7 +118,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Address">
-  <page merge title="#{ht 'address.index_for_owner.title', :count=>100, :default=>['Addresses for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'address.index_for_owner.title', :count=>100, :default=>['Address for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user address" param/>
     <content-header: param>
       <div param="back-to">
@@ -287,7 +287,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="BillingAddress">
-  <page merge title="#{ht 'billing_address.index_for_owner.title', :count=>100, :default=>['Billing addresses for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'billing_address.index_for_owner.title', :count=>100, :default=>['Billing address for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user billing-address" param/>
     <content-header: param>
       <div param="back-to">
@@ -985,7 +985,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -1027,27 +1027,6 @@
 </def>
 
 
-
-<def tag="create-key-page" polymorphic/>
-<def tag="create-key-page" for="Order">
-  <page title="#{ht 'order.create_key.title', :default=>['Create Key']}" merge>
-
-    <body: class="lifecycle-transition-page create-key-page" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="order.create_key.heading">
-          Create Key
-        </ht>
-      </h2>
-    </content-header:>
-
-    <content-body: param>
-      <create-key-form param="form"/>
-    </content-body:>
-
-  </page>
-</def>
 
 <def tag="shippment-page" polymorphic/>
 <def tag="shippment-page" for="Order">
@@ -1492,6 +1471,27 @@
 
     <content-body: param>
       <signup-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="create-key-page" polymorphic/>
+<def tag="create-key-page" for="User">
+  <page title="#{ht 'user.create_key.title', :default=>['Create Key']}" merge>
+
+    <body: class="lifecycle-transition-page create-key-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.create_key.heading">
+          Create Key
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <create-key-form param="form"/>
     </content-body:>
 
   </page>

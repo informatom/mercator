@@ -198,17 +198,6 @@
 </def>
 
 
-<def tag="create-key-form" polymorphic/>
-<def tag="create-key-form" for="Order">
-  <form lifecycle="create_key" merge param="default">
-    <error-messages param/>
-    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="" param/>
-    <div param="actions">
-      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.create_key', :default=>['Create Key']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
 <def tag="shippment-form" polymorphic/>
 <def tag="shippment-form" for="Order">
   <form lifecycle="shippment" merge param="default">
@@ -416,6 +405,17 @@
   </form>
 </def>
 
+<def tag="create-key-form" polymorphic/>
+<def tag="create-key-form" for="User">
+  <form lifecycle="create_key" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.create_key', :default=>['Create Key']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="activate-form" polymorphic/>
 <def tag="activate-form" for="User">
   <form lifecycle="activate" merge param="default">

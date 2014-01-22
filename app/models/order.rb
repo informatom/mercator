@@ -41,8 +41,6 @@ class Order < ActiveRecord::Base
     state :basket, :default => true
     state :ordered, :paid, :shipped, :offer
 
-    transition :create_key, {:basket => :basket}, :available_to => :all, :new_key => true
-
     transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, :available_to => "User.administrator"

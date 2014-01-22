@@ -21,20 +21,28 @@ class UsersController < ApplicationController
 
   def login
     hobo_login
-    unless current_user.class == Guest
+
+    if logged_in?
       current_user.update_attributes(logged_in: true)
 
-      guest_basket = Order.where(id:session[:basket]).first
+      last_user = User.find(session[:last_user])
+      last_basket = last_user.basket if last_user
 
-      if current_basket.present?
-        if current_basket.merge(basket: guest_basket) == "merged"
-          flash[:notice] = t("hobo.messages.old_basket_items_merged",
-                           :default=>"Old basket items have been merged")
+      if last_basket
+        if current_basket.present?
+          if current_basket.merge(basket: last_basket) == "merged"
+            flash[:notice] = t("hobo.messages.old_basket_items_merged",
+                             :default=>"Old basket items have been merged")
+          end
+        else
+          current_user.orders << last_basket
         end
-        session[:basketkey] = current_basket.lifecycle.key
-        session[:basket] = current_basket.id
-      else
-        current_user.orders << guest_basket
+      end
+
+      if last_user.conversations.any?
+        last_user.conversations.each do |conversation|
+          conversation.update_attributes(customer_id: current_user.id)
+        end
       end
     end
   end
@@ -44,10 +52,19 @@ class UsersController < ApplicationController
     hobo_logout
   end
 
+  def switch
+    last_user_id = current_user.id
+    current_user.update_attributes(logged_in: false)
+    hobo_logout do
+      session[:last_user] = last_user_id
+      redirect_to :user_login
+    end
+  end
+
+
   def do_activate
     do_transition_action :activate do
       redirect_to :user_login
     end
   end
-
 end
