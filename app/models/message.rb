@@ -27,7 +27,7 @@ class Message < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator? ||
-    sender_id == acting_user.id
+    sender_is?(acting_user)
   end
 
   def destroy_permitted?
@@ -37,8 +37,8 @@ class Message < ActiveRecord::Base
   def view_permitted?(field)
     acting_user.administrator? ||
     acting_user.sales ||
-    reciever_id == acting_user.id ||
-    sender_id == acting_user.id
+    reciever_is?(acting_user) ||
+    sender_is?(acting_user)
   end
 
 end

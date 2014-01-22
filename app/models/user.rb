@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator? ||
+    acting_user.sales? ||
     (acting_user == self &&
      only_changed?(:name, :email_address, :crypted_password, :current_password, :password,
                    :password_confirmation, :addresses, :billing_addresses))
@@ -103,9 +104,13 @@ class User < ActiveRecord::Base
     ( self.administrator? && field == :name )
   end
 
+  #--- Instance Methods ---#
+
   def basket
     Order.user_is(self).basket.first
   end
+
+  #--- Class Methods --- #
 
   def self.initialize()
     new_user = self.create(name: "Gast", email_address: Time.now.to_f.to_s + "@mercator.informatom.com")

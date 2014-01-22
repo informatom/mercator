@@ -64,8 +64,7 @@ class Order < ActiveRecord::Base
   def view_permitted?(field)
     acting_user.administrator? ||
     acting_user.sales? ||
-    (user_is? acting_user) ||
-    (user_is?(nil) && id == acting_user.basket.id) # Guest's basket
+    user_is?(acting_user)
   end
 
   # --- Instance Methods --- #
@@ -99,6 +98,8 @@ class Order < ActiveRecord::Base
       return positions_merged
     end
   end
+
+  #--- Class Methods --- #
 
   def self.cleanup_deprecated
     puts "\n" + I18n.l(Time.now).to_s + " Starting Job cleanup orders"

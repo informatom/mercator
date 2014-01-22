@@ -76,19 +76,19 @@ class Lineitem < ActiveRecord::Base
   end
 
   def update_permitted?
-    order == acting_user.basket ||
-    order.user == acting_user ||
+    user_is?(acting_user) ||
+    acting_user.sales? ||
     acting_user.administrator?
   end
 
   def destroy_permitted?
-    order.user == acting_user ||
+    user_is?(acting_user) ||
     acting_user.administrator?
   end
 
   def view_permitted?(field)
-    order == acting_user.basket ||
-    order.user == acting_user ||
+    user_is?(acting_user) ||
+    acting_user.sales? ||
     acting_user.administrator?
   end
 
@@ -101,6 +101,13 @@ class Lineitem < ActiveRecord::Base
     self.value = product.price(amount: self.amount)
     raise unless self.save
   end
+
+  def merge(lineitem: nil)
+    increase_amount(amount: lineitem.amount)
+    lineitem.delete
+  end
+
+  #--- Class Methods --- #
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
     price = product.price(amount: amount)
@@ -120,8 +127,4 @@ class Lineitem < ActiveRecord::Base
     raise unless lineitem.save
   end
 
-  def merge(lineitem: nil)
-    increase_amount(amount: lineitem.amount)
-    lineitem.delete
-  end
 end

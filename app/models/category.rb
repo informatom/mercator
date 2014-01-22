@@ -36,10 +36,6 @@ class Category < ActiveRecord::Base
             dependent: :destroy, :accessible => true
 
 
-  def self.find_by_name(param)
-    self.find_by_name_de(param)
-  end
-
   lifecycle do
     state :new, :default => true
     state :active, :deprecated
@@ -71,10 +67,6 @@ class Category < ActiveRecord::Base
 
   #--- Instance Methods ---#
 
-  def self.find_by_name(param)
-    self.find_by_name_de(param)
-  end
-
   def ancestors
     self.ancestor_ids.map { |id| Category.find(id) }
   end
@@ -86,4 +78,11 @@ class Category < ActiveRecord::Base
   def active_children
     Category.children_of(self).active
   end
+
+  #--- Class Methods --- #
+
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
+
 end

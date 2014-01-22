@@ -44,9 +44,6 @@ class Product < ActiveRecord::Base
   children :inventories, :properties, :categories, :related_products, :supplies,
            :recommended_products, :features
 
-  def self.find_by_name(param)
-    self.find_by_name_de(param)
-  end
 
   lifecycle do
     state :new, :default => true
@@ -91,4 +88,11 @@ class Product < ActiveRecord::Base
                                    (scale_from <= amount) & (scale_to >= amount)}.first.value
     return price
   end
+
+  #--- Class Methods --- #
+
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
+
 end
