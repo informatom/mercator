@@ -526,6 +526,27 @@
   </page>
 </def>
 
+<def tag="accept-gtc-page" polymorphic/>
+<def tag="accept-gtc-page" for="User">
+  <page title="#{ht 'user.accept_gtc.title', :default=>['Accept Gtc']}" merge>
+
+    <body: class="lifecycle-transition-page accept-gtc-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.accept_gtc.heading">
+          Accept Gtc
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <accept-gtc-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="activate-page" polymorphic/>
 <def tag="activate-page" for="User">
   <page title="#{ht 'user.activate.title', :default=>['Activate']}" merge>

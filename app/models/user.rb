@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
-                  :conversations
+                  :conversations, :confirmation
+  attr_accessor :confirmation
+
   has_paper_trail
 
   has_many :addresses, dependent: :destroy, inverse_of: :user, accessible: true
@@ -52,22 +54,25 @@ class User < ActiveRecord::Base
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :create_key, {:inactive => :guest}, :available_to => :all, :new_key => true
+    transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
 
-    transition :activate, { [:inactive, :guest] => :active }, :available_to => :key_holder
+    transition :accept_gtc, {[:guest, :active] => :active}, available_to: :self,
+               params: [:confirmation]
 
-    transition :deactivate, { active: :inactive }, :available_to => "User.administrator",
-               :subsite => "admin"
+    transition :activate, { [:inactive, :guest] => :active }, available_to: :key_holder
 
-    transition :request_password_reset, { [:inactive, :guest] => :inactive }, :new_key => true do
+    transition :deactivate, { active: :inactive }, available_to: "User.administrator",
+               subsite: "admin"
+
+    transition :request_password_reset, { [:inactive, :guest] => :inactive }, new_key: true do
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :request_password_reset, { :active => :active }, :new_key => true do
+    transition :request_password_reset, { :active => :active }, new_key: true do
       UserMailer.forgot_password(self, lifecycle.key).deliver
     end
 
-    transition :reset_password, { :active => :active }, :available_to => :key_holder,
+    transition :reset_password, { :active => :active }, available_to: :key_holder,
                params: [ :password, :password_confirmation ]
   end
 
@@ -87,9 +92,10 @@ class User < ActiveRecord::Base
     acting_user.sales? ||
     (acting_user == self &&
      only_changed?(:name, :email_address, :crypted_password, :current_password, :password,
-                   :password_confirmation, :addresses, :billing_addresses))
+                   :password_confirmation, :confirm))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
+    true
   end
 
   def destroy_permitted?
@@ -104,6 +110,7 @@ class User < ActiveRecord::Base
     new_record? ||
     ( self.sales? && field == :name ) ||
     ( self.administrator? && field == :name )
+    true
   end
 
   #--- Instance Methods ---#

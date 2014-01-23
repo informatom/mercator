@@ -258,6 +258,7 @@ de:
         lifecycle:
           transitions:
             activate: Account aktivieren
+            accept_gtc: AGBs bestätigen
       webpage:
         lifecycle:
           transitions:

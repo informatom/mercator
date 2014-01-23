@@ -5,35 +5,41 @@
     </content-header:>
 
     <field-list: replace>
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Menge</th>
-            <th></th>
-            <th>Beschreibung</th>
-            <th>Stückpreis</th>
-            <th>Preis</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody part="lineitems">
-          <repeat with="&this.lineitems">
+
+      <if test="&this.lineitems">
+        <table class="table">
+          <thead>
             <tr>
-              <td><%= image_tag this.product.photo.url(:thumb) %></td>
-              <td><view:amount/> <view:unit/></td>
-              <td>
-                <my-transition-link transition="add_one" class="btn-success btn-small"/>
-                <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
-              </td>
-              <td><view:description/></td>
-              <td>EUR <view:product-price/></td>
-              <td>EUR <view:value/></td>
-              <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>
+              <th></th>
+              <th>Menge</th>
+              <th></th>
+              <th>Beschreibung</th>
+              <th>Stückpreis</th>
+              <th>Preis</th>
+              <th></th>
             </tr>
-          </repeat>
-        </tbody>
-      </table>
+          </thead>
+          <tbody part="lineitems">
+            <repeat with="&this.lineitems">
+              <tr>
+                <td><%= image_tag this.product.photo.url(:thumb) %></td>
+                <td><view:amount/> <view:unit/></td>
+                <td>
+                  <my-transition-link transition="add_one" class="btn-success btn-small"/>
+                  <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
+                </td>
+                <td><view:description/></td>
+                <td>EUR <view:product-price/></td>
+                <td>EUR <view:value/></td>
+                <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>
+              </tr>
+            </repeat>
+          </tbody>
+        </table>
+
+        <my-transition-link with="&current_user" transition="accept_gtc" class="btn-primary"/>
+      </if>
+      <else>Bisher gibt es keine Bestellpositionen.</else>
     </field-list:>
   </old-show-page>
 </extend>

@@ -282,6 +282,17 @@
     </div>
   </form>
 </def>
+<def tag="accept-gtc-form" polymorphic/>
+<def tag="accept-gtc-form" for="User">
+  <form lifecycle="accept_gtc" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="confirmation" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.accept_gtc', :default=>['Accept Gtc']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="activate-form" polymorphic/>
 <def tag="activate-form" for="User">
   <form lifecycle="activate" merge param="default">

@@ -62,10 +62,23 @@ class UsersController < ApplicationController
     end
   end
 
-
   def do_activate
     do_transition_action :activate do
       redirect_to :user_login
     end
   end
+
+  def accept_gtc
+    @current_gtc = Gtc.order(version_of: :desc).first
+    transition_page_action :accept_gtc do
+      self.this.confirmation = false
+    end
+  end
+
+  def do_accept_gtc
+    do_transition_action :accept_gtc do
+      redirect_to action: :accept_gtc unless this.confirmation == "1"
+    end
+  end
+
 end
