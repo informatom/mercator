@@ -26,5 +26,4 @@ class LineitemsController < ApplicationController
       redirect_to session[:return_to]
     end
   end
-
 end

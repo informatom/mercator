@@ -1,9 +1,3 @@
-<extend tag="form" for="Conversation">
-  <old-form merge>
-   <field-list: fields='name'/>
-  </old-form>
-</extend>
-
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
      <append-content-body:>

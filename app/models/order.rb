@@ -17,6 +17,8 @@ class Order < ActiveRecord::Base
     shipping_postalcode :string
     shipping_city       :string
     shipping_country    :string
+    gtc_confirmed_at    :datetime
+    gtc_version_of      :date
     timestamps
   end
 
@@ -90,7 +92,7 @@ class Order < ActiveRecord::Base
         if duplicate.present?
           duplicate.merge(lineitem: lineitem)
         else
-          lineitem.update_attributes(order_id: id)
+          lineitem.update(order_id: id)
         end
       end
 

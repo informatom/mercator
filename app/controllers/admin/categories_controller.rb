@@ -23,7 +23,7 @@ protected
   def parse_categories(categories_array, parent)
     categories_array.each_with_index do |category_hash, position|
       category = Category.find(category_hash["id"])
-      category.update_attributes(position: position, parent_id: parent)
+      category.update(position: position, parent_id: parent)
       parse_categories(category_hash["children"], category.id) if category_hash["children"]
     end
   end

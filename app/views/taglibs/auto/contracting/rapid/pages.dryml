@@ -320,7 +320,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, state" param/>
+      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, state" param/>
     </content-body:>
 
   </page>

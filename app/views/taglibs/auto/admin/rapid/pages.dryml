@@ -14,6 +14,7 @@
     <nav-item with="&ContentElement"><ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Country"><ht key="country.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Feature"><ht key="feature.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Gtc"><ht key="gtc.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Inventory"><ht key="inventory.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Lineitem"><ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Order"><ht key="order.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -997,6 +998,119 @@
 
 
 
+<!-- ====== Gtc Pages ====== -->
+
+<def tag="index-page" for="Gtc">
+  <page merge title="#{ht 'gtc.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page gtc" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="gtc.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="gtc.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="gtc.actions.new">New Gtc</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Gtc">
+  <page merge title="#{ht 'gtc.new.title', :default=>[' New Gtc'] }">
+    <body: class="new-page gtc" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="gtc.new.heading">
+          New Gtc
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'gtc.actions.create', :default=>['Create Gtc']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Gtc">
+  <page merge title="#{ht 'gtc.show.title', :default=>['Gtc'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page gtc" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="gtc.show.heading" name="#{name(:no_wrapper => true)}">
+          Gtc <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="gtc.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Gtc
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:content param="description" />
+      <field-list fields="title_de, title_en, content_de, content_en, version_of" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Gtc">
+  <page merge title="#{ht 'gtc.edit.title', :default=>['Edit Gtc'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page gtc" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="gtc.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Gtc
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'gtc.actions.delete', :default=>['Remove This Gtc']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Inventory Pages ====== -->
 
 <def tag="index-page" for="Inventory">
@@ -1061,7 +1175,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1361,7 +1475,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -1380,7 +1494,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, state, conversation" param/>
+      <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, state, conversation" param/>
     </content-body:>
 
   </page>
@@ -1721,7 +1835,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>
@@ -2710,7 +2824,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, state" param/>
+      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, state" param/>
     </content-body:>
 
   </page>
