@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     if current_user.guest?
       self.current_user = User.initialize
       Order.create(user: current_user)
-      session[:compared] = []
     end
   end
 
@@ -19,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   def remember_uri
     session[:return_to] = request.referrer
+    session[:compared] = []
   end
 
   def default_url_options(options={})

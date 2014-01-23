@@ -56,8 +56,11 @@ class User < ActiveRecord::Base
 
     transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
 
-    transition :accept_gtc, {[:guest, :active] => :active}, available_to: :self,
-               params: [:confirmation]
+    transition :accept_gtc, {:guest => :guest}, available_to: :self,
+               params: [:confirmation], if: "acting_user.gtc_version_of != Gtc.version_of"
+
+    transition :accept_gtc, {:active => :active}, available_to: :self,
+               params: [:confirmation], if: "acting_user.gtc_version_of != Gtc.version_of"
 
     transition :activate, { [:inactive, :guest] => :active }, available_to: :key_holder
 

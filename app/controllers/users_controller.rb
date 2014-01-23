@@ -40,6 +40,18 @@ class UsersController < ApplicationController
         end
       end
 
+      # If user has already confirmed ...
+      if current_user.gtc_version_of == Gtc.version_of
+        current_basket.update(gtc_version_of: Gtc.version_of,
+                              gtc_confirmed_at: current_user.gtc_confirmed_at)
+      end
+
+      # If user had confirmed, when he was guest ...
+      if current_basket.gtc_version_of == Gtc.version_of
+        current_user.update(gtc_version_of: Gtc.version_of,
+                            gtc_confirmed_at: current_basket.gtc_confirmed_at)
+      end
+
       if last_user.conversations.any?
         last_user.conversations.each do |conversation|
           conversation.update(customer_id: current_user.id)
@@ -77,7 +89,16 @@ class UsersController < ApplicationController
 
   def do_accept_gtc
     do_transition_action :accept_gtc do
-      redirect_to action: :accept_gtc unless this.confirmation == "1"
+      if this.confirmation == "1"
+        current_user.update(gtc_version_of: Gtc.version_of,
+                            gtc_confirmed_at: Time.now())
+        current_user.basket.update(gtc_version_of: Gtc.version_of,
+                                   gtc_confirmed_at: Time.now())
+        redirect_to order_path(current_user.basket)
+      else
+        flash[:error] = "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+        redirect_to action: :accept_gtc
+      end
     end
   end
 

@@ -96,6 +96,12 @@ class Order < ActiveRecord::Base
         end
       end
 
+      # Saving the latest confirmmation of GTC
+      if basket.gtc_version_of > self.gtc_version_of
+        self.update(gtc_version_of: basket.gtc_version_of,
+                    gtc_confirmed_at: basket.gtc_confirmed_at)
+      end
+
       basket.delete
       return positions_merged
     end

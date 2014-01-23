@@ -37,7 +37,7 @@
           </tbody>
         </table>
 
-        <my-transition-link with="&current_user" transition="accept_gtc" class="btn-primary"/>
+        <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
       </if>
       <else>Bisher gibt es keine Bestellpositionen.</else>
     </field-list:>
