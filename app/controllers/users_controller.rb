@@ -40,17 +40,7 @@ class UsersController < ApplicationController
         end
       end
 
-      # If user has already confirmed ...
-      if current_user.gtc_version_of == Gtc.version_of
-        current_basket.update(gtc_version_of: Gtc.version_of,
-                              gtc_confirmed_at: current_user.gtc_confirmed_at)
-      end
-
-      # If user had confirmed, when he was guest ...
-      if current_basket.gtc_version_of == Gtc.version_of
-        current_user.update(gtc_version_of: Gtc.version_of,
-                            gtc_confirmed_at: current_basket.gtc_confirmed_at)
-      end
+      current_user.sync_agb_with_basket
 
       if last_user.conversations.any?
         last_user.conversations.each do |conversation|

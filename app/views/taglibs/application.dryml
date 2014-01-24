@@ -28,3 +28,22 @@
     </heading:>
   </old-index-page>
 </extend>
+
+<def attrs='creator' tag='creator-link'>
+  <% creat = this.new.lifecycle.class.can_create?(creator, current_user) %>
+    <if test='&creat'>
+      <a merge with='&this' action='&creator'/>
+    </if>
+</def>
+
+<def tag="my-transition-link" attrs="transition">
+  <transition-link transition="#{transition}" method="put" class="btn" merge-attrs>
+    <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
+  </transition-link>
+</def>
+
+<def tag="my-creator-link" attrs="creator">
+  <creator-link creator="#{creator}" class="btn" merge with='&this'>
+    <t key="#{this.model_name.element}.#{creator}.heading"/>
+  </creator-link>
+</def>

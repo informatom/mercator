@@ -107,6 +107,12 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def billing_address_filled?
+    # all obligatory fields in billing address are filled?
+    self.billing_name && self.billing_street &&  self.billing_postalcode &&
+    self.billing_city && self.billing_country
+  end
+
   #--- Class Methods --- #
 
   def self.cleanup_deprecated

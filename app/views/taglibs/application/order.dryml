@@ -37,15 +37,14 @@
           </tbody>
         </table>
 
-        <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
+        <div class="pull-right">
+          <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
+          &nbsp; <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/>
+        </div>
+
       </if>
       <else>Bisher gibt es keine Bestellpositionen.</else>
     </field-list:>
+
   </old-show-page>
 </extend>
-
-<def tag="my-transition-link" attrs="transition">
-  <transition-link transition="#{transition}" method="put" class="btn" merge-attrs>
-    <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
-  </transition-link>
-</def>
