@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
 
   has_many :lineitems, dependent: :destroy, accessible: true
 
-#  validates :user, :presence => true
+  validates :user, :presence => true
 
   # --- Lifecycles --- #
 
@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
 
     transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
-    transition :shippment, {:paid => :shipped}, :available_to => "User.administrator"
+    transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
   end
 
   # --- Permissions --- #

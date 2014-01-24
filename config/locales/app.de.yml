@@ -329,6 +329,11 @@ de:
   "Medium version": Mittelgroße Version
   "Large version": Große Version
 
+  address:
+    actions:
+      enter: Lieferadresse speichern und verwenden
+    enter:
+      heading: Abweichende Lieferadresse angeben
   billing_address:
     actions:
       enter: Rechnungsadresse speichern

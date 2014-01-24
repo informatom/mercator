@@ -19,7 +19,7 @@ class BillingAddress < ActiveRecord::Base
   belongs_to :user, :creator => true
   validates :user_id, :presence => true, :uniqueness => true
 
-    # --- Signup lifecycle --- #
+  # --- Lifecycle --- #
 
   lifecycle do
     state :active, default: true

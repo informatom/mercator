@@ -1,0 +1,11 @@
+<def tag="card" for="Address">
+  <card class="address" param="default" merge>
+    <header: replace />
+    <body: param>
+      <p>
+        <strong><view:name/>,</strong> <if:detail><view:detail/>,</if>
+        <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
+      </p>
+    </body:>
+  </card>
+</def>

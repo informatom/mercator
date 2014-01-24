@@ -39,7 +39,8 @@
 
         <div class="pull-right">
           <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
-          &nbsp; <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/>
+          <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/>
+          <my-creator-link with="&Address" creator="enter" class="btn-primary"/>
         </div>
 
       </if>

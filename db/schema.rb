@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124112031) do
+ActiveRecord::Schema.define(version: 20140124181105) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -23,8 +23,11 @@ ActiveRecord::Schema.define(version: 20140124112031) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "country"
+    t.string   "state",         default: "active"
+    t.datetime "key_timestamp"
   end
 
+  add_index "addresses", ["state"], name: "index_addresses_on_state", using: :btree
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "billing_addresses", force: true do |t|
@@ -91,8 +94,8 @@ ActiveRecord::Schema.define(version: 20140124112031) do
     t.string   "type",              limit: 30
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
