@@ -46,6 +46,26 @@ class Order < ActiveRecord::Base
     transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
+
+    transition :cash_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='cash' " do
+      self.update(billing_method: "cash_payment", shipping_method: "pickup_shipment")
+    end
+    transition :atm_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='atm'"do
+      self.update(billing_method: "atm_payment", shipping_method: "pickup_shipment")
+    end
+    transition :pre_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='pre'"do
+      self.update(billing_method: "pre_payment", shipping_method: nil)
+    end
+    transition :e_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='e'"do
+      self.update(billing_method: "e_payment", shipping_method: nil)
+    end
+
+    transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_pickup_shipment do
+      self.update(shipping_method: "pickup_shipment")
+    end
+    transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_parcel_service_shipment do
+      self.update(shipping_method: "parcel_service_shipment")
+    end
   end
 
   # --- Permissions --- #
@@ -112,6 +132,19 @@ class Order < ActiveRecord::Base
     self.billing_name && self.billing_street &&  self.billing_postalcode &&
     self.billing_city && self.billing_country
   end
+
+  def may_change_to_pickup_shipment
+    self.shipping_method !='pickup' && may_select_shipment
+  end
+
+  def may_change_to_parcel_service_shipment
+    self.shipping_method !='parcel_service' && may_select_shipment
+  end
+
+  def may_select_shipment
+    ["pre_payment", "e_payment"].include?(self.billing_method)
+  end
+
 
   #--- Class Methods --- #
 

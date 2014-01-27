@@ -213,6 +213,72 @@
     </div>
   </form>
 </def>
+<def tag="cash-payment-form" polymorphic/>
+<def tag="cash-payment-form" for="Order">
+  <form lifecycle="cash_payment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.cash_payment', :default=>['Cash Payment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="atm-payment-form" polymorphic/>
+<def tag="atm-payment-form" for="Order">
+  <form lifecycle="atm_payment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.atm_payment', :default=>['Atm Payment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="pre-payment-form" polymorphic/>
+<def tag="pre-payment-form" for="Order">
+  <form lifecycle="pre_payment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.pre_payment', :default=>['Pre Payment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="e-payment-form" polymorphic/>
+<def tag="e-payment-form" for="Order">
+  <form lifecycle="e_payment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.e_payment', :default=>['E Payment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="pickup-shipment-form" polymorphic/>
+<def tag="pickup-shipment-form" for="Order">
+  <form lifecycle="pickup_shipment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.pickup_shipment', :default=>['Pickup Shipment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="parcel-service-shipment-form" polymorphic/>
+<def tag="parcel-service-shipment-form" for="Order">
+  <form lifecycle="parcel_service_shipment" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.parcel_service_shipment', :default=>['Parcel Service Shipment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Product">
   <form merge param="default">

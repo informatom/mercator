@@ -245,6 +245,14 @@ de:
         shipping_postalcode: Postleitzahl (Lieferung)
         shipping_city: Stadt (Lieferung)
         shipping_country: Land (Lieferung)
+        lifecycle:
+          transitions:
+            cash_payment: Barzahlung
+            atm_payment: Bankomat
+            pre_payment: Vorkasse
+            e_payment: Online
+            pickup_shipment: Abholung
+            parcel_service_shipment: Paketdienst
       pageelement/usage_types:
         ContentElement: Textbausteine
       product:

@@ -1629,6 +1629,132 @@
   </page>
 </def>
 
+<def tag="cash-payment-page" polymorphic/>
+<def tag="cash-payment-page" for="Order">
+  <page title="#{ht 'order.cash_payment.title', :default=>['Cash Payment']}" merge>
+
+    <body: class="lifecycle-transition-page cash-payment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.cash_payment.heading">
+          Cash Payment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <cash-payment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="atm-payment-page" polymorphic/>
+<def tag="atm-payment-page" for="Order">
+  <page title="#{ht 'order.atm_payment.title', :default=>['Atm Payment']}" merge>
+
+    <body: class="lifecycle-transition-page atm-payment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.atm_payment.heading">
+          Atm Payment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <atm-payment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="pre-payment-page" polymorphic/>
+<def tag="pre-payment-page" for="Order">
+  <page title="#{ht 'order.pre_payment.title', :default=>['Pre Payment']}" merge>
+
+    <body: class="lifecycle-transition-page pre-payment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.pre_payment.heading">
+          Pre Payment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <pre-payment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="e-payment-page" polymorphic/>
+<def tag="e-payment-page" for="Order">
+  <page title="#{ht 'order.e_payment.title', :default=>['E Payment']}" merge>
+
+    <body: class="lifecycle-transition-page e-payment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.e_payment.heading">
+          E Payment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <e-payment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="pickup-shipment-page" polymorphic/>
+<def tag="pickup-shipment-page" for="Order">
+  <page title="#{ht 'order.pickup_shipment.title', :default=>['Pickup Shipment']}" merge>
+
+    <body: class="lifecycle-transition-page pickup-shipment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.pickup_shipment.heading">
+          Pickup Shipment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <pickup-shipment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="parcel-service-shipment-page" polymorphic/>
+<def tag="parcel-service-shipment-page" for="Order">
+  <page title="#{ht 'order.parcel_service_shipment.title', :default=>['Parcel Service Shipment']}" merge>
+
+    <body: class="lifecycle-transition-page parcel-service-shipment-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.parcel_service_shipment.heading">
+          Parcel Service Shipment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <parcel-service-shipment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 <!-- ====== PageContentElementAssignment Pages ====== -->
