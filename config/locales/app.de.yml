@@ -203,6 +203,10 @@ de:
       address:
         name: Empfänger
         detail: Details
+        lifecycle:
+          transitions:
+            use: Lieferadresse verwenden
+            trash: Löschen
       billing_address:
         name: Empfänger
         detail: Details

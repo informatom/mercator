@@ -27,6 +27,9 @@ class Address < ActiveRecord::Base
     create :enter, :available_to => :all, become: :active,
       params: [:name, :detail, :street, :postalcode, :city, :country],
       if: :basket_has_billing_address?
+
+    transition :use, {:active => :active}, :available_to => :user
+    transition :trash, {:active => :active}, :available_to => :user
   end
 
   # --- Permissions --- #

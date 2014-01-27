@@ -115,7 +115,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="detail, street, postalcode, city, country" param/>
+      <field-list fields="detail, street, postalcode, city, country, state" param/>
     </content-body:>
 
   </page>
@@ -161,6 +161,48 @@
 
     <content-body: param>
       <enter-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="use-page" polymorphic/>
+<def tag="use-page" for="Address">
+  <page title="#{ht 'address.use.title', :default=>['Use']}" merge>
+
+    <body: class="lifecycle-transition-page use-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.use.heading">
+          Use
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <use-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="trash-page" polymorphic/>
+<def tag="trash-page" for="Address">
+  <page title="#{ht 'address.trash.title', :default=>['Trash']}" merge>
+
+    <body: class="lifecycle-transition-page trash-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="address.trash.heading">
+          Trash
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <trash-form param="form"/>
     </content-body:>
 
   </page>
@@ -1217,7 +1259,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1517,7 +1559,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -1877,7 +1919,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>

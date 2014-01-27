@@ -5,6 +5,34 @@
     </content-header:>
 
     <field-list: replace>
+      <div class="row">
+        <div class="span4">
+          <if test="&this.billing_name">
+            <h3>Rechnungsadresse</h3>
+            <p class="well"><strong><view:billing_name/></strong><br/>
+            <if:billing_detail><view/><br/></if>
+            <view:billing_street/><br/>
+            <view:billing_postalcode/><br/>
+            <view:billing_city/><br/>
+            <view:billing_country/></p>
+          </if>
+        </div>
+
+        <div class="span4">
+          <if test="&this.shipping_name">
+            <h3>Lieferadresse</h3>
+            <p class="well">
+              <strong><view:shipping_name/></strong><br/>
+              <if:shipping_detail><view/><br/></if>
+              <view:shipping_street/><br/>
+              <view:shipping_postalcode/><br/>
+              <view:shipping_city/><br/>
+              <view:shipping_country/><br/>
+              <my-creator-link with="&Address" creator="enter" class="btn-primary"/>
+            </p>
+          </if>
+        </div>
+      </div>
 
       <if test="&this.lineitems">
         <table class="table">
@@ -40,7 +68,6 @@
         <div class="pull-right">
           <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
           <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/>
-          <my-creator-link with="&Address" creator="enter" class="btn-primary"/>
         </div>
 
       </if>
