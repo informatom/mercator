@@ -47,16 +47,16 @@ class Order < ActiveRecord::Base
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
 
-    transition :cash_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='cash' " do
+    transition :cash_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='cash_payment' " do
       self.update(billing_method: "cash_payment", shipping_method: "pickup_shipment")
     end
-    transition :atm_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='atm'"do
+    transition :atm_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='atm_payment'" do
       self.update(billing_method: "atm_payment", shipping_method: "pickup_shipment")
     end
-    transition :pre_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='pre'"do
+    transition :pre_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='pre_payment'" do
       self.update(billing_method: "pre_payment", shipping_method: nil)
     end
-    transition :e_payment, {:basket => :basket}, available_to: :user, if: "self.shipping_name && self.billing_method !='e'"do
+    transition :e_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='e_payment'" do
       self.update(billing_method: "e_payment", shipping_method: nil)
     end
 
@@ -134,11 +134,11 @@ class Order < ActiveRecord::Base
   end
 
   def may_change_to_pickup_shipment
-    self.shipping_method !='pickup' && may_select_shipment
+    self.shipping_method !='pickup_shipment' && may_select_shipment
   end
 
   def may_change_to_parcel_service_shipment
-    self.shipping_method !='parcel_service' && may_select_shipment
+    self.shipping_method !='parcel_service_shipment' && may_select_shipment
   end
 
   def may_select_shipment

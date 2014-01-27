@@ -27,45 +27,49 @@
               <view:shipping_street/><br/>
               <view:shipping_postalcode/><br/>
               <view:shipping_city/><br/>
-              <view:shipping_country/><br/>
-              <my-creator-link with="&Address" creator="enter" class="btn-primary"/>
+              <view:shipping_country/>
             </p>
+            <p><my-creator-link with="&Address" creator="enter" class="btn-primary"/></p>
           </if>
         </div>
 
         <div class="span4">
           <if test="&this.shipping_name">
             <h3>Zahlungsart</h3>
-            <if test="&this.billing_method">
-              <p><t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" /></p>
-              <p>Zahlungsart ändern:</p>
-            </if>
-            <else>
-              Bitte wählen Sie eine Zahlungsart:<br/>
-            </else>
-            <p><my-transition-link transition="cash_payment" class="btn-success" method="put"/>
-            <my-transition-link transition="atm_payment" class="btn-success" method="put"/>
-            <my-transition-link transition="pre_payment" class="btn-success" method="put"/>
-            <my-transition-link transition="e_payment" class="btn-success" method="put"/></p>
+            <div class="well">
+              <if test="&this.billing_method">
+                <p><strong><t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" /></strong></p>
+                <p>Zahlungsart ändern:</p>
+              </if>
+              <else>
+                Bitte wählen Sie eine Zahlungsart:<br/>
+              </else>
+              <p><my-transition-link transition="cash_payment" class="btn-info" method="put"/>
+              <my-transition-link transition="atm_payment" class="btn-info" method="put"/>
+              <my-transition-link transition="pre_payment" class="btn-info" method="put"/>
+              <my-transition-link transition="e_payment" class="btn-info" method="put"/></p>
+            </div>
 
             <if test="&this.billing_method">
               <h3>Lieferart</h3>
-              <if test="&this.shipping_method">
-                <p><t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" /></p>
-                <if test="&this.may_select_shipment"> <p>Lieferart wechseln:</p> </if>
-              </if>
-              <else>
-                Bitte wählen Sie eine Lieferart:
-              </else>
-              <p><my-transition-link transition="pickup_shipment" class="btn-success" method="put"/>
-              <my-transition-link transition="parcel_service_shipment" class="btn-success" method="put"/></p>
-            </if>
+              <div class="well">
+                <if test="&this.shipping_method">
+                  <p><strong><t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" /></strong></p>
+                  <if test="&this.may_select_shipment"> <p>Lieferart wechseln:</p> </if>
+                </if>
+                <else>
+                  Bitte wählen Sie eine Lieferart:
+                </else>
+                <p><my-transition-link transition="pickup_shipment" class="btn-info" method="put"/>
+                <my-transition-link transition="parcel_service_shipment" class="btn-info" method="put"/></p>
+              </div>
+           </if>
           </if>
         </div>
       </div>
 
       <if test="&this.lineitems">
-        <table class="table">
+        <table class="table well">
           <thead>
             <tr>
               <th></th>

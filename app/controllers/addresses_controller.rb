@@ -26,7 +26,7 @@ class AddressesController < ApplicationController
                               shipping_postalcode: this.postalcode,
                               shipping_city:       this.city,
                               shipping_country:    this.country,
-                              shipping_method:     "parcel_service")
+                              shipping_method:     "parcel_service_shipment")
         redirect_to order_path(current_user.basket)
       end
     end
@@ -40,7 +40,7 @@ class AddressesController < ApplicationController
                       shipping_postalcode: this.postalcode,
                       shipping_city:       this.city,
                       shipping_country:    this.country,
-                      shipping_method:     "parcel_service")
+                      shipping_method:     "parcel_service_shipment")
       redirect_to order_path(current_user.basket)
     end
   end

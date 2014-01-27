@@ -14,7 +14,7 @@ class BillingAddressesController < ApplicationController
                               billing_postalcode: this.postalcode,
                               billing_city:       this.city,
                               billing_country:    this.country,
-                              billing_method:     "e",
+                              billing_method:     "e_payment",
                               shipping_name:       this.name,
                               shipping_detail:     this.detail,
                               shipping_street:     this.street,
