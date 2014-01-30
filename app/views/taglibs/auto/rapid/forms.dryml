@@ -133,6 +133,17 @@
   </form>
 </def>
 
+<def tag="upload-form" polymorphic/>
+<def tag="upload-form" for="Conversation">
+  <form lifecycle="upload" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.conversation.lifecycle.transitions.upload', :default=>['Upload']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Lineitem">
   <form merge param="default">

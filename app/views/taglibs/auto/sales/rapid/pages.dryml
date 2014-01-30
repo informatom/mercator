@@ -147,6 +147,27 @@
   </page>
 </def>
 
+<def tag="upload-page" polymorphic/>
+<def tag="upload-page" for="Conversation">
+  <page title="#{ht 'conversation.upload.title', :default=>['Upload']}" merge>
+
+    <body: class="lifecycle-transition-page upload-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.upload.heading">
+          Upload
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <upload-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 <!-- ====== Download Pages ====== -->
@@ -229,7 +250,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="document_file_name, document_content_type, document_file_size, document_updated_at, conversation" param/>
+      <field-list fields="document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, conversation" param/>
     </content-body:>
 
   </page>

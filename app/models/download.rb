@@ -6,10 +6,13 @@ class Download < ActiveRecord::Base
     name :string, :required
     timestamps
   end
-  attr_accessible :name, :document, :conversation_id, :conversation, :document
+  attr_accessible :name, :document, :conversation_id, :conversation, :document, :photo
   has_paper_trail
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
+  has_attached_file :photo,
+    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
+    :default_url => "/images/:style/missing.png"
 
   belongs_to :conversation
   validates :conversation, :presence => true
@@ -17,19 +20,23 @@ class Download < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.sales?
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.sales?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.sales?
   end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? ||
+    acting_user.sales? ||
+    conversation.customer_is?(acting_user)
   end
-
 end

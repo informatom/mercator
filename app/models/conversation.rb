@@ -27,6 +27,7 @@ class Conversation < ActiveRecord::Base
     state :active, default: true
 
     create :initiate, become: :active, available_to: :all, new_key: true, params: [:name]
+    transition :upload, {:active => :active}, available_to: :collaborators
   end
 
   # --- Permissions --- #
@@ -51,4 +52,9 @@ class Conversation < ActiveRecord::Base
     customer_is?(acting_user)
   end
 
+  #--- Instance Methods ---#
+
+  def collaborators
+    [self.consultant, self.customer]
+  end
 end

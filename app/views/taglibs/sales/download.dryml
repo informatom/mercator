@@ -7,15 +7,39 @@
 <def tag="card" for="Download">
   <card class="download" param="default" merge>
     <header: param>
-      <h4 param="heading">
-        <a href="#{this.document.url}"><name/></a>
-      </h4>
-      <div param="actions">
-        <delete-button label="X" param/>
-      </div>
+      <h4 param="heading"> <name/> </h4>
     </header:>
+
     <body:>
-      <p>Größe: <this.document-file-size/></p>
-      <p>Datum: <view:document-updated-at/></p>
-    </body:>  </card>
+      <div class="row">
+        <div class="span4">
+          <if:photo>
+            <a data-toggle="lightbox" href="#Lightbox-#{this_parent.id}"><image src="&this.url(:small)" /></a>
+            <div id="Lightbox-#{this_parent.id}" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">
+                <div class='lightbox-dialog'>
+                    <div class='lightbox-content'>
+                        <image src="&this.url" />
+                        <div class='lightbox-caption'> <name/> </div>
+                    </div>
+                </div>
+            </div>
+          </if>
+        </div>
+        <div class="span3">
+          <delete-button label="X" param class="btn-danger" />
+          <if test="&this.document">
+            <p>Größe: <this.document-file-size/><br/>
+            Datum: <view:document-updated-at/></p>
+          </if>
+          <if test="&this.photo">
+            <p><%= number_to_human_size(this.photo_file_size) %><br/>
+            <view:photo-updated-at/></p>
+          </if>
+        </div>
+      </div>
+
+    </body:>
+  </card>
 </def>
+
+

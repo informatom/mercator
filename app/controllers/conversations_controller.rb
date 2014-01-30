@@ -37,4 +37,16 @@ class ConversationsController < ApplicationController
                        consultant: User.sales.where(logged_in: true).first)
     end
   end
+
+  def do_upload
+    do_transition_action :upload do
+      data = params[:qqfile]
+      data.class.class_eval { attr_accessor :original_filename }
+      data.original_filename = params[:qqfilename]
+
+      self.this.downloads.create(name: params[:qqfilename].split(".")[0],
+                                 photo: data)
+      render :json => { :success => "true" }
+    end
+  end
 end
