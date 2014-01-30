@@ -14,15 +14,7 @@
       <div class="row">
         <div class="span4">
           <if:photo>
-            <a data-toggle="lightbox" href="#Lightbox-#{this_parent.id}"><image src="&this.url(:small)" /></a>
-            <div id="Lightbox-#{this_parent.id}" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">
-                <div class='lightbox-dialog'>
-                    <div class='lightbox-content'>
-                        <image src="&this.url" />
-                        <div class='lightbox-caption'> <name/> </div>
-                    </div>
-                </div>
-            </div>
+            <image src="&this.url(:small)" />
           </if>
         </div>
         <div class="span3">
@@ -41,5 +33,3 @@
     </body:>
   </card>
 </def>
-
-
