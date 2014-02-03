@@ -89,6 +89,13 @@ class Product < ActiveRecord::Base
     return price
   end
 
+  def price_incl_vat(amount: 1, date: Time.now())
+    inventory = self.inventories.first
+    vat = inventory.prices.where{(valid_to >= date) & (valid_from <= date) &
+                                 (scale_from <= amount) & (scale_to >= amount)}.first.vat
+    self.price(amount: amount, date: date) * (100 + vat) / 100
+  end
+
   #--- Class Methods --- #
 
   def self.find_by_name(param)

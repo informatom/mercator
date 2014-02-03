@@ -5,8 +5,8 @@ describe Gtc do
     expect(build(:gtc)).to be_valid
   end
 
-  it {should validate_presence_of(:titel_de)}
-  it {should validate_presence_of(:titel_en)}
+  it {should validate_presence_of(:title_de)}
+  it {should validate_presence_of(:title_en)}
   it {should validate_presence_of(:content_de)}
   it {should validate_presence_of(:content_en)}
   it {should validate_presence_of(:version_of)}

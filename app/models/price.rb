@@ -5,10 +5,10 @@ class Price < ActiveRecord::Base
   fields do
     value      :decimal, :required, :precision => 10, :scale => 2
     vat        :decimal, :required, :precision => 10, :scale => 2
-    valid_from :date
-    valid_to   :date
-    scale_from :decimal, :precision => 10, :scale => 2
-    scale_to   :decimal, :precision => 10, :scale => 2
+    valid_from :date, :required
+    valid_to   :date, :required
+    scale_from :decimal, :required, :precision => 10, :scale => 2
+    scale_to   :decimal, :required, :precision => 10, :scale => 2
     timestamps
   end
   attr_accessible :vat, :value, :valid_from, :valid_to, :scale_from,
