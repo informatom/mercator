@@ -45,7 +45,7 @@ class AddressesController < ApplicationController
     end
   end
 
-    def do_trash
+  def do_trash
     do_transition_action :trash do
       self.this.delete
       redirect_to enter_addresses_path

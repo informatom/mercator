@@ -4,17 +4,32 @@ class BillingAddressesController < ApplicationController
   auto_actions :lifecycle
   auto_actions_for :user, [ :index, :new, :create ]
 
+
+  def enter
+    if current_user.billing_addresses.any?
+      last_address = current_user.billing_addresses.last
+      self.this = BillingAddress.new(user:       current_user,
+                                     name:       last_address.name,
+                                     detail:     last_address.detail,
+                                     street:     last_address.street,
+                                     postalcode: last_address.postalcode,
+                                     city:       last_address.city,
+                                     country:    last_address.country)
+    end
+    creator_page_action :enter
+  end
+
   def do_enter
     do_creator_action :enter do
       self.this.user = current_user
       if self.this.save
-        current_basket.update(billing_name:       this.name,
-                              billing_detail:     this.detail,
-                              billing_street:     this.street,
-                              billing_postalcode: this.postalcode,
-                              billing_city:       this.city,
-                              billing_country:    this.country,
-                              billing_method:     "e_payment",
+        current_basket.update(billing_name:        this.name,
+                              billing_detail:      this.detail,
+                              billing_street:      this.street,
+                              billing_postalcode:  this.postalcode,
+                              billing_city:        this.city,
+                              billing_country:     this.country,
+                              billing_method:      "e_payment",
                               shipping_name:       this.name,
                               shipping_detail:     this.detail,
                               shipping_street:     this.street,
@@ -32,6 +47,26 @@ class BillingAddressesController < ApplicationController
 
         redirect_to order_path(current_user.basket)
       end
+    end
+  end
+
+  def do_use
+    do_transition_action :use do
+      current_basket.update(billing_name:       this.name,
+                            billing_detail:     this.detail,
+                            billing_street:     this.street,
+                            billing_postalcode: this.postalcode,
+                            billing_city:       this.city,
+                            billing_country:    this.country,
+                            billing_method:     "parcel_service_shipment")
+      redirect_to order_path(current_user.basket)
+    end
+  end
+
+  def do_trash
+    do_transition_action :trash do
+      self.this.delete
+      redirect_to enter_billing_addresses_path
     end
   end
 end

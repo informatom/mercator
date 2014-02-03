@@ -17,7 +17,7 @@ class BillingAddress < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :user, :creator => true
-  validates :user_id, :presence => true, :uniqueness => true
+  validates :user, :presence => true
 
   # --- Lifecycle --- #
 
@@ -26,13 +26,16 @@ class BillingAddress < ActiveRecord::Base
 
     create :enter, :available_to => :all, become: :active,
       params: [:name, :detail, :street, :postalcode, :city, :country],
-      if: :billing_address_missing_and_needed
+      if: :gtc_current
+
+    transition :use, {:active => :active}, :available_to => :user
+    transition :trash, {:active => :active}, :available_to => :user
   end
 
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.billing_addresses.count == 0
+    true
   end
 
   def update_permitted?
@@ -57,9 +60,7 @@ class BillingAddress < ActiveRecord::Base
 
   #--- Instance Methods ---#
 
-  def billing_address_missing_and_needed
-    acting_user.billing_addresses.count == 0 &&
-    !(acting_user.basket.billing_address_filled?) &&
+  def gtc_current
     acting_user.gtc_accepted_current?
   end
 end

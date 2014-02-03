@@ -210,6 +210,10 @@ de:
       billing_address:
         name: Empfänger
         detail: Details
+        lifecycle:
+          transitions:
+            use: Rechnungsadresse verwenden
+            trash: Löschen
       contentelement/markups:
         html: "HTML-Seite"
         markdown: "Markdown Seite"
@@ -345,12 +349,12 @@ de:
     actions:
       enter: Lieferadresse speichern und verwenden
     enter:
-      heading: Abweichende Lieferadresse angeben
+      heading: Lieferadresse ändern
   billing_address:
     actions:
-      enter: Rechnungsadresse speichern
+      enter: Rechnungsadresse speichern und verwenden
     enter:
-      heading: Rechnungsadresse eingeben
+      heading: Rechnungsadresse ändern
   conversation:
     initiate:
       heading: Konversation starten

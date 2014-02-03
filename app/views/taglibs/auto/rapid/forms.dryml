@@ -66,6 +66,28 @@
   </form>
 </def>
 
+<def tag="use-form" polymorphic/>
+<def tag="use-form" for="BillingAddress">
+  <form lifecycle="use" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.billing_address.lifecycle.transitions.use', :default=>['Use']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="trash-form" polymorphic/>
+<def tag="trash-form" for="BillingAddress">
+  <form lifecycle="trash" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.billing_address.lifecycle.transitions.trash', :default=>['Trash']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Category">
   <form merge param="default">
