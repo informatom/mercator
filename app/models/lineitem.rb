@@ -12,12 +12,13 @@ class Lineitem < ActiveRecord::Base
     product_price  :decimal, :required, :scale => 2, :precision => 10
     vat            :decimal, :required, :precision => 10, :scale => 2
     value          :decimal, :required, :scale => 2, :precision => 10
+    delivery_time  :string
     timestamps
   end
 
   attr_accessible :position, :product_number, :description_de, :description_en, :unit,
                   :amount, :product_price, :product_price, :vat, :value,
-                  :value, :order_id, :order, :user_id, :product_id
+                  :value, :order_id, :order, :user_id, :product_id, :delivery_time
   translates :description
   has_paper_trail
   default_scope { order('lineitems.position ASC') }
@@ -118,6 +119,7 @@ class Lineitem < ActiveRecord::Base
                             product_number: product.number,
                             description_de: product.name_de,
                             description_en: product.name_en,
+                            delivery_time:  product.delivery_time,
                             amount:         amount,
                             unit:           product.inventories.first.unit,
                             product_price:  price,

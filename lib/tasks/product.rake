@@ -1,7 +1,7 @@
 # encoding: utf-8
 namespace :product do
   # starten als: 'bundle exec rake product:activateplus
-  # in Produktivumgebungen: 'bundle exec rake import:legacy RAILS_ENV=production'
+  # in Produktivumgebungen: 'bundle exec rake product:activateplus RAILS_ENV=production'
   desc "Creates dummy prices, inventories and activates products"
   task :activateplus => :environment do
     Product.all.each do |product|

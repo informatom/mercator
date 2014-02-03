@@ -77,6 +77,7 @@
               <th></th>
               <th>Menge</th>
               <th></th>
+              <th>Artikelnummer</th>
               <th>Beschreibung</th>
               <th>Stückpreis</th>
               <th>Preis</th>
@@ -92,7 +93,11 @@
                   <my-transition-link transition="add_one" class="btn-success btn-small"/>
                   <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
                 </td>
-                <td><view:description/></td>
+                <td><view:product-number/></td>
+                <td>
+                  <view:description/> <br/>
+                  <em>Lieferzeit:</em> <view:delivery-time/>
+                </td>
                 <td>EUR <view:product-price/></td>
                 <td>EUR <view:value/></td>
                 <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>

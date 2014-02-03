@@ -33,6 +33,7 @@ de:
     created_at: Erzeugt
     current_password: Aktuelles Passwort
     customer: Kunde
+    delivery_time: Lieferzeit
     description: Beschreibung
     document: Dokument
     document_file_name: Dateiname Dokument

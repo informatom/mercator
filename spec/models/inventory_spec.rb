@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Inventory do
   it "is valid with name_de, name_en, number, amount, unit,
-                    comment_de, comment_en, weight, charge, storage" do
+                    comment_de, comment_en, weight, charge, storage, delivery_time" do
     expect(build(:inventory)).to be_valid
   end
 

@@ -13,6 +13,7 @@ FactoryGirl.define do
     product_price  123.45
     vat            20
     value          5184.90
+    delivery_time  "One week"
   end
 
 end

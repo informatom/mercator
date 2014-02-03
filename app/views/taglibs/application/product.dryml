@@ -1,9 +1,12 @@
 <def tag="card" for="Product">
   <div class="product media" param="default" merge>
-    <if test="&this.photo.exists?">
-      <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ),
-                   product_path(this), class: "pull-left") %>
-    </if>
+
+    <span class="pull-left">
+      <if test="&this.photo.exists?">
+        <p><%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ), product_path(this)) %></p>
+      </if>
+      <p><strong>Lieferzeit:</strong> <br/> <view:delivery-time/></p>
+    </span>
 
     <div class="media-body">
     <div class="pull-right">

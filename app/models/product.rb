@@ -96,6 +96,11 @@ class Product < ActiveRecord::Base
     self.price(amount: amount, date: date) * (100 + vat) / 100
   end
 
+  def delivery_time
+    inventory = self.inventories.first
+    inventory.delivery_time
+  end
+
   #--- Class Methods --- #
 
   def self.find_by_name(param)

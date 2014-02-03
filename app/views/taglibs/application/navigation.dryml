@@ -71,6 +71,16 @@
           </a>
 
           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+            <if test="&current_user.administrator">
+              <li class='nav-item' param='administration'>
+                <a href='/admin'><t key='hobo.actions.administration'>Administration</t></a>
+              </li>
+            </if>
+            <if test="&current_user.sales">
+              <li class='nav-item' param='sales'>
+                <a href='/sales'><t key='hobo.actions.sales'>Vertrieb</t></a>
+              </li>
+            </if>
             <li class='nav-item' param='logged-in-as'>
               <a to='&current_user'><t key='hobo.actions.account'>Account</t></a>
             </li>

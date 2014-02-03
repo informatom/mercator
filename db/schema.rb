@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130091801) do
+ActiveRecord::Schema.define(version: 20140203151952) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20140130091801) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "delivery_time"
   end
 
   add_index "inventories", ["product_id"], name: "index_inventories_on_product_id", using: :btree
@@ -235,6 +236,7 @@ ActiveRecord::Schema.define(version: 20140130091801) do
     t.integer  "product_id"
     t.string   "state",                                   default: "active"
     t.datetime "key_timestamp"
+    t.string   "delivery_time"
   end
 
   add_index "lineitems", ["order_id"], name: "index_lineitems_on_order_id", using: :btree
