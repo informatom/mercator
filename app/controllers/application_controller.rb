@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
 
   def auto_log_in
     if current_user.guest?
-      self.current_user = User.initialize
-      Order.create(user: current_user)
+      if session[:last_user]
+        self.current_user = User.find(session[:last_user])
+      else
+        self.current_user = User.initialize
+        Order.create(user: current_user)
+      end
     end
   end
 
