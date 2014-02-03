@@ -48,7 +48,7 @@
 <def tag="form" for="BillingAddress">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, detail, street, postalcode, city, country, state, user" param/>
+    <field-list fields="name, email_address, detail, street, postalcode, city, country, state, user" param/>
     <div param="actions">
       <submit label="#{ht 'billing_address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -59,7 +59,7 @@
 <def tag="enter-form" for="BillingAddress">
   <form lifecycle="enter" merge param="default">
     <error-messages param/>
-    <field-list fields="name, detail, street, postalcode, city, country" param/>
+    <field-list fields="name, detail, street, postalcode, city, country, email_address" param/>
     <div param="actions">
       <submit label="#{ht 'billing_address.actions.enter', :default=>['Enter']}" param/><or-cancel param="cancel"/>
     </div>

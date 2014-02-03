@@ -4,18 +4,22 @@ class BillingAddressesController < ApplicationController
   auto_actions :lifecycle
   auto_actions_for :user, [ :index, :new, :create ]
 
-
   def enter
+    self.this = BillingAddress.new(user: current_user)
+    unless current_user.name == "Gast"
+      self.this.name = current_user.name
+      self.this.email_address= current_user.email_address
+    end
     if current_user.billing_addresses.any?
       last_address = current_user.billing_addresses.last
-      self.this = BillingAddress.new(user:       current_user,
-                                     name:       last_address.name,
-                                     detail:     last_address.detail,
-                                     street:     last_address.street,
-                                     postalcode: last_address.postalcode,
-                                     city:       last_address.city,
-                                     country:    last_address.country)
+      self.this.name = last_address.name
+      self.this.detail = last_address.detail
+      self.this.street = last_address.street
+      self.this.postalcode = last_address.postalcode
+      self.this.city = last_address.city
+      self.this.country = last_address.country
     end
+
     creator_page_action :enter
   end
 
@@ -36,6 +40,11 @@ class BillingAddressesController < ApplicationController
                               shipping_postalcode: this.postalcode,
                               shipping_city:       this.city,
                               shipping_country:    this.country)
+
+      if current_user.name == "Gast"
+        current_user.update(email_address: this.email_address,
+                            name:          this.email_address.split('@')[0].gsub!('.', ' ').titlecase)
+      end
 
         Address.create(name:       this.name,
                        detail:     this.detail,

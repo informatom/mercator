@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203151952) do
+ActiveRecord::Schema.define(version: 20140203161352) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140203151952) do
     t.integer  "user_id"
     t.string   "state",         default: "active"
     t.datetime "key_timestamp"
+    t.string   "email_address"
   end
 
   add_index "billing_addresses", ["state"], name: "index_billing_addresses_on_state", using: :btree

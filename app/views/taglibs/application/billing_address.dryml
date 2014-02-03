@@ -14,6 +14,7 @@
   <card class="address" param="default" merge>
     <body: param>
       <h4><view:name/></h4>
+      (<view:email-address/>)<br/>
       <p>
         <if:detail>
           <view/><br/>
@@ -29,6 +30,12 @@
 
 <extend tag="enter-form" for="BillingAddress">
   <old-enter-form merge>
+   <field-list:>
+      <country-view:>
+        <name-one complete-target="&Country.new()" completer="name_de" autocomplete="off"/>
+      </country-view:>
+   </field-list:>
+
     <append-actions:>
       &nbsp; <a with="&current_user.basket" class="btn btn-info" style="vertical-align: baseline">Abbrechen</a>
     </append-actions:>
