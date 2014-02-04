@@ -71,7 +71,7 @@
       </div>
 
       <if test="&this.lineitems">
-        <table class="table well">
+        <table class="table well table-striped">
           <thead>
             <tr>
               <th></th>
@@ -86,7 +86,7 @@
           </thead>
           <tbody part="lineitems">
             <repeat with="&this.lineitems">
-              <tr>
+              <tr class="success">
                 <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
                 <td><view:amount/> <view:unit/></td>
                 <td>
@@ -105,6 +105,22 @@
                 <td>EUR <view:value/></td>
                 <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>
               </tr>
+              <if:product>
+                <repeat with="&this.supplies[0..4]">
+                  <tr class="warning table-condensed">
+                    <td><%= image_tag this.photo.url(:thumb), width: "50%" %></td>
+                    <td></td>
+                    <td></td>
+                    <td><view:number/></td>
+                    <td><view:name/></td>
+                    <td>EUR <view:price/></td>
+                    <td></td>
+                    <td>
+                      <my-transition-link transition="add_to_basket" class="btn btn-success btn-small" />
+                    </td>
+                  </tr>
+                </repeat>
+              </if>
             </repeat>
           </tbody>
         </table>
