@@ -62,20 +62,20 @@ class User < ActiveRecord::Base
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation], unless: :gtc_accepted_current?
 
-    transition :activate, { [:inactive, :guest] => :active }, available_to: :key_holder
+    transition :activate, {:inactive => :active}, available_to: :key_holder
 
-    transition :deactivate, { active: :inactive }, available_to: "User.administrator",
+    transition :deactivate, {active: :inactive}, available_to: "User.administrator",
                subsite: "admin"
 
-    transition :request_password_reset, { [:inactive, :guest] => :inactive }, new_key: true do
+    transition :request_password_reset, {:inactive => :inactive}, new_key: true do
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :request_password_reset, { :active => :active }, new_key: true do
+    transition :request_password_reset, {:active => :active}, new_key: true do
       UserMailer.forgot_password(self, lifecycle.key).deliver
     end
 
-    transition :reset_password, { :active => :active }, available_to: :key_holder,
+    transition :reset_password, {:active => :active}, available_to: :key_holder,
                params: [ :password, :password_confirmation ]
   end
 

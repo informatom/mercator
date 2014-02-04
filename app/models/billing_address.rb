@@ -26,8 +26,7 @@ class BillingAddress < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :street, :postalcode, :city, :country, :email_address],
-      if: :gtc_current
+      params: [:name, :detail, :street, :postalcode, :city, :country, :email_address]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user
@@ -60,8 +59,4 @@ class BillingAddress < ActiveRecord::Base
   end
 
   #--- Instance Methods ---#
-
-  def gtc_current
-    acting_user.gtc_accepted_current?
-  end
 end

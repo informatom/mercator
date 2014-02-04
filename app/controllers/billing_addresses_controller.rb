@@ -10,6 +10,7 @@ class BillingAddressesController < ApplicationController
       self.this.name = current_user.name
       self.this.email_address= current_user.email_address
     end
+
     if current_user.billing_addresses.any?
       last_address = current_user.billing_addresses.last
       self.this.name = last_address.name
@@ -22,6 +23,7 @@ class BillingAddressesController < ApplicationController
 
     creator_page_action :enter
   end
+
 
   def do_enter
     do_creator_action :enter do

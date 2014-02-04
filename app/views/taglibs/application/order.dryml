@@ -110,10 +110,12 @@
         </table>
 
         <div class="pull-right">
-          <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
           <unless test="&this.billing_name">
             <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">Rechnungsadresse angeben</my-creator-link>
           </unless>
+          <else>
+            <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
+          </else>
         </div>
 
       </if>
