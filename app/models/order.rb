@@ -74,7 +74,7 @@ class Order < ActiveRecord::Base
 
       Lineitem::Lifecycle.insert_shipping(acting_user, order: self, position: 10000, product_number: "shipping",
                                           description_de: "Versandkosten", amount: 1, unit: "Pau.", product_price: shipping_cost.value,
-                                          vat: shipping_cost.vat, value: shipping_cost.value)
+                                          vat: shipping_cost.vat, value: shipping_cost.value, user: acting_user)
     end
   end
 

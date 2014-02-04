@@ -1,4 +1,5 @@
 /.bundle
+db/schema.rb
 
 /log/*.log
 /tmp
