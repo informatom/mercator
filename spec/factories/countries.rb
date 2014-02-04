@@ -1,7 +1,8 @@
 FactoryGirl.define do
 
   factory :country do
-    name "österreich"
+    name_de "österreich"
+    name_en "Austria"
     code "AT"
   end
 

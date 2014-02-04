@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Country do
-  it "is valid with name, code" do
+  it "is valid with name_de, name_en, code" do
     expect(build(:address)).to be_valid
   end
 

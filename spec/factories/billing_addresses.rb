@@ -9,5 +9,6 @@ FactoryGirl.define do
     postalcode "1234"
     city "Vienna"
     country "Österreich"
+    email_address "john.doe@informatom.com"
   end
 end

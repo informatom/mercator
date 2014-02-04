@@ -514,6 +514,18 @@
 
 
 
+<def tag="form" for="ShippingCost">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="shipping_method, value, country" param/>
+    <div param="actions">
+      <submit label="#{ht 'shipping_cost.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Supplyrelation">
   <form merge param="default">
     <error-messages param/>

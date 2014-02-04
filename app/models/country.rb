@@ -31,4 +31,9 @@ class Country < ActiveRecord::Base
     true
   end
 
+  #--- Class Methods --- #
+
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
 end

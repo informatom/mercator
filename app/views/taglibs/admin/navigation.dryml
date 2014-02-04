@@ -25,10 +25,6 @@
         <nav-item with="&Address">
           <ht key="address.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
-        <li class="divider"></li>
-        <nav-item with="&Country">
-          <ht key="country.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
        </ul>
     </li>
 
@@ -113,6 +109,12 @@
         </nav-item>
         <nav-item with="&Gtc">
           <ht key="gtc.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Country">
+          <ht key="country.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&ShippingCost">
+          <ht key="shipping_cost.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
       </ul>
     </li>

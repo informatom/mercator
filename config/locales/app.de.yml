@@ -92,6 +92,7 @@ de:
     scale_from: Staffel ab
     scale_to: Staffel bis
     sender: Absender
+    shipping_method: Versandart
     Sites: Bereiche
     startdate: Startdatum
     state: Status
@@ -191,6 +192,9 @@ de:
       recommendation:
         one: Empfehlung
         other: Empfehlungen
+      shipping_cost:
+        one: Versandspesen
+        other: Versandspesen
       supplyrelation:
         one: Zubehörzuordnung
         other: Zubehörzuordnungen

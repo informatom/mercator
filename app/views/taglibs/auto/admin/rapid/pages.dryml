@@ -25,6 +25,7 @@
     <nav-item with="&Property"><ht key="property.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PropertyGroup"><ht key="property_group.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Recommendation"><ht key="recommendation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&ShippingCost"><ht key="shipping_cost.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Webpage"><ht key="webpage.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -2871,6 +2872,118 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'recommendation.actions.delete', :default=>['Remove This Recommendation']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== ShippingCost Pages ====== -->
+
+<def tag="index-page" for="ShippingCost">
+  <page merge title="#{ht 'shipping_cost.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page shipping-cost" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="shipping_cost.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="shipping_cost.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="shipping_cost.actions.new">New Shipping cost</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ShippingCost">
+  <page merge title="#{ht 'shipping_cost.new.title', :default=>[' New Shipping cost'] }">
+    <body: class="new-page shipping-cost" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="shipping_cost.new.heading">
+          New Shipping cost
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'shipping_cost.actions.create', :default=>['Create Shipping cost']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ShippingCost">
+  <page merge title="#{ht 'shipping_cost.show.title', :default=>['Shipping cost'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page shipping-cost" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="shipping_cost.show.heading" name="#{name(:no_wrapper => true)}">
+          Shipping cost <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="shipping_cost.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Shipping cost
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="shipping_method, value, country" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ShippingCost">
+  <page merge title="#{ht 'shipping_cost.edit.title', :default=>['Edit Shipping cost'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page shipping-cost" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="shipping_cost.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Shipping cost
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'shipping_cost.actions.delete', :default=>['Remove This Shipping cost']}" param/>
     </content-header:>
 
     <content-body: param>
