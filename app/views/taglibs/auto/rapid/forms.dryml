@@ -338,7 +338,7 @@
 <def tag="form" for="Product">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, number, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, property_groups, recommendations, supplyrelations" param/>
+    <field-list fields="name_de, name_en, number, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
     <div param="actions">
       <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -489,6 +489,18 @@
     </div>
   </form>
 </def>
+
+<def tag="form" for="Value">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title_de, title_en, value, flag, unit_de, unit_en, state, product, property, property_group" param/>
+    <div param="actions">
+      <submit label="#{ht 'value.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
 
 <def tag="form" for="Webpage">
   <form merge param="default">

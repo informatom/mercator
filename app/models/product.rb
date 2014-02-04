@@ -22,8 +22,9 @@ class Product < ActiveRecord::Base
     :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
     :default_url => "/images/:style/missing.png"
 
-  has_many :property_groups, dependent: :destroy, :accessible => true, :inverse_of => :product
-  has_many :properties, dependent: :destroy, :through => :property_groups
+  has_many :property_groups, :through => :values
+  has_many :properties, :through => :values
+  has_many :values, dependent: :destroy, :inverse_of => :product, :accessible => true
 
   has_many :categories, :through => :categorizations
   has_many :categorizations, dependent: :destroy, :inverse_of => :product, :accessible => true
