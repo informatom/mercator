@@ -25,8 +25,9 @@ class AddressesController < ApplicationController
                               shipping_street:     this.street,
                               shipping_postalcode: this.postalcode,
                               shipping_city:       this.city,
-                              shipping_country:    this.country,
-                              shipping_method:     "parcel_service_shipment")
+                              shipping_country:    this.country)
+
+        current_basket.lifecycle.parcel_service_shipment! unless current_basket.shipping_method
         redirect_to order_path(current_user.basket)
       end
     end
@@ -35,12 +36,13 @@ class AddressesController < ApplicationController
   def do_use
     do_transition_action :use do
       current_basket.update(shipping_name:       this.name,
-                      shipping_detail:     this.detail,
-                      shipping_street:     this.street,
-                      shipping_postalcode: this.postalcode,
-                      shipping_city:       this.city,
-                      shipping_country:    this.country,
-                      shipping_method:     "parcel_service_shipment")
+                            shipping_detail:     this.detail,
+                            shipping_street:     this.street,
+                            shipping_postalcode: this.postalcode,
+                            shipping_city:       this.city,
+                            shipping_country:    this.country)
+
+      current_basket.lifecycle.parcel_service_shipment! unless current_basket.shipping_method
       redirect_to order_path(current_user.basket)
     end
   end

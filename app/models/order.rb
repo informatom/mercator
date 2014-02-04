@@ -62,9 +62,19 @@ class Order < ActiveRecord::Base
 
     transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_pickup_shipment do
       self.update(shipping_method: "pickup_shipment")
+
+      shippment_costs_line = self.lineitems.where(position: 10000, product_number: "shipping", description_de: "Versandkosten").first
+      shippment_costs_line.delete if shippment_costs_line
     end
+
     transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_parcel_service_shipment do
       self.update(shipping_method: "parcel_service_shipment")
+
+      shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
+
+      Lineitem::Lifecycle.insert_shipping(acting_user, order: self, position: 10000, product_number: "shipping",
+                                          description_de: "Versandkosten", amount: 1, unit: "Pau.", product_price: shipping_cost.value,
+                                          vat: shipping_cost.vat, value: shipping_cost.value)
     end
   end
 

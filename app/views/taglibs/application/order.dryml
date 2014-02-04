@@ -87,7 +87,7 @@
           <tbody part="lineitems">
             <repeat with="&this.lineitems">
               <tr>
-                <td><%= image_tag this.product.photo.url(:thumb) %></td>
+                <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
                 <td><view:amount/> <view:unit/></td>
                 <td>
                   <my-transition-link transition="add_one" class="btn-success btn-small"/>
@@ -95,8 +95,11 @@
                 </td>
                 <td><view:product-number/></td>
                 <td>
-                  <view:description/> <br/>
-                  <em>Lieferzeit:</em> <view:delivery-time/>
+                  <view:description/>
+                  <if:delivery-time>
+                    <br/>
+                    <em>Lieferzeit:</em> <view/>
+                  </if>
                 </td>
                 <td>EUR <view:product-price/></td>
                 <td>EUR <view:value/></td>

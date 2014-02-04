@@ -189,6 +189,16 @@
   </form>
 </def>
 
+<def tag="insert-shipping-form" polymorphic/>
+<def tag="insert-shipping-form" for="Lineitem">
+  <form lifecycle="insert_shipping" merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_number, description_de, amount, unit, product_price, vat, value, order" param/>
+    <div param="actions">
+      <submit label="#{ht 'lineitem.actions.insert_shipping', :default=>['Insert Shipping']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="delete-from-basket-form" polymorphic/>
 <def tag="delete-from-basket-form" for="Lineitem">

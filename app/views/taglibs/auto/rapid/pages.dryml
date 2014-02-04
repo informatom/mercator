@@ -997,6 +997,27 @@
 </def>
 
 
+<def tag="insert-shipping-page" polymorphic/>
+<def tag="insert-shipping-page" for="Lineitem">
+
+  <page title="#{ht 'lineitem.insert_shipping.title', :default=>['Insert Shipping']}" merge>
+
+    <body: class="lifecycle-start-page insert-shipping-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.insert_shipping.heading">
+          Insert Shipping
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <insert-shipping-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 <def tag="delete-from-basket-page" polymorphic/>
 <def tag="delete-from-basket-page" for="Lineitem">

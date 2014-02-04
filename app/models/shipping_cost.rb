@@ -5,9 +5,10 @@ class ShippingCost < ActiveRecord::Base
   fields do
     shipping_method :string, :required
     value           :decimal, :required, :precision => 10, :scale => 2
+    vat             :decimal, :required, :precision => 10, :scale => 2
     timestamps
   end
-  attr_accessible :country, :shipping_method, :value, :country_id
+  attr_accessible :country, :shipping_method, :value, :country_id, :vat
 
   has_paper_trail
   belongs_to :country
@@ -30,4 +31,16 @@ class ShippingCost < ActiveRecord::Base
     true
   end
 
+  #--- Class Methods --- #
+
+  def self.determine(order: nil, shipping_method: "parcel_service_shipment")
+    country = Country.where(name_de: order.shipping_country).first
+    country_specific_costs = self.where(country: country, shipping_method: shipping_method)
+    if country_specific_costs
+     return country_specific_costs.first
+    else
+      country_unspecific_costs = self.where(country: nil, shipping_method: shipping_method)
+      return country_unspecific_costs.first
+    end
+  end
 end

@@ -40,6 +40,10 @@ class Lineitem < ActiveRecord::Base
 
   lifecycle do
     state :active, :default => true
+    state :shipping_costs
+
+    create :insert_shipping, :available_to => :all, become: :shipping_costs,
+           params: [:position, :product_number, :description_de, :amount, :unit, :product_price, :vat, :value, :order]
 
     transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == self.order",
                 available_to: :all do

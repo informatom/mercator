@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204081320) do
+ActiveRecord::Schema.define(version: 20140204085925) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -399,6 +399,7 @@ ActiveRecord::Schema.define(version: 20140204081320) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
+    t.decimal  "vat",             precision: 10, scale: 2
   end
 
   add_index "shipping_costs", ["country_id"], name: "index_shipping_costs_on_country_id", using: :btree
