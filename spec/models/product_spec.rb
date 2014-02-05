@@ -12,6 +12,7 @@ describe Product do
 
   it {should have_many(:property_groups)}
   it {should have_many(:properties)}
+  it {should have_many(:values)}
 
   it {should have_many(:categories)}
   it {should have_many(:categorizations)}

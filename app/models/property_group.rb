@@ -3,16 +3,16 @@ class PropertyGroup < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string, :required
+    name_de  :string, :required, :unique
     name_en  :string
-    position :integer, :required
+    position :integer, :required, :unique
     timestamps
   end
 
   attr_accessible :name_de, :name_en, :position
-
   translates :name
   has_paper_trail
+  acts_as_list
 
   validates :position, numericality: true
 

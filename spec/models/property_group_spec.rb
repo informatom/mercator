@@ -12,14 +12,9 @@ describe PropertyGroup do
   it {should validate_numericality_of(:position)}
   it {should validate_uniqueness_of(:position)}
 
-  it {should belong_to(:product)}
-  it {should validate_presence_of(:product)}
-
   it {should have_many(:properties)}
-
-  it "acts as a list" do
-    should respond_to(:move_to_top)
-  end
+  it {should have_many(:products)}
+  it {should have_many(:values)}
 
   it "is versioned" do
     should respond_to(:versions)

@@ -493,7 +493,7 @@
 <def tag="form" for="Value">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, value, flag, unit_de, unit_en, state, product, property, property_group" param/>
+    <field-list fields="title_de, title_en, amount, unit_de, unit_en, flag, state, product, property, property_group" param/>
     <div param="actions">
       <submit label="#{ht 'value.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

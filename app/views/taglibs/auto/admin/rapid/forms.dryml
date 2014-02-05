@@ -491,7 +491,7 @@
 <def tag="form" for="Property">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, description_de, description_en, value, unit_de, unit_en, datatype, position, values" param/>
+    <field-list fields="name_de, name_en, datatype, position, values" param/>
     <div param="actions">
       <submit label="#{ht 'property.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

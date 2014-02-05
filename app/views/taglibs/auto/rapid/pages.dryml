@@ -2061,7 +2061,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="title_de, title_en, value, unit_de, unit_en, state, product, property, property_group" param/>
+      <field-list fields="title_de, title_en, amount, unit_de, unit_en, state, product, property, property_group" param/>
     </content-body:>
 
   </page>

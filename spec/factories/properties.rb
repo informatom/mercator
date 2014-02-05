@@ -1,14 +1,10 @@
 FactoryGirl.define do
 
   factory :property do
-    name_de  "Ich bin der deutsche Titel"
-    name_en  "I Am the English Title"
-    description_de "Deutsch: Lorem ipsum dolor sit amet."
-    description_en "English: Lorem ipsum dolor sit amet."
-    value 42
-    unit_de "kg"
-    unit_en "kg"
+    name_de  "Größe"
+    name_en  "Size"
     position 1
+    datatype "textual"
   end
 
 end

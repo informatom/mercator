@@ -3,14 +3,9 @@ class Property < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string, :required
+    name_de        :string, :required, :unique
     name_en        :string
-    description_de :string
-    description_en :string
-    value          :decimal, :precision => 10, :scale => 2
-    unit_de        :string
-    unit_en        :string
-    datatype       enum_string(:textual, :numeric, :flag)
+    datatype       enum_string(:textual, :numeric, :flag), :required
 
     position       :integer, :required
     legacy_id      :integer
@@ -22,21 +17,12 @@ class Property < ActiveRecord::Base
   has_paper_trail
   translates :name, :description, :unit
 
-  validates :value, numericality: true, allow_nil: true
   validates :position, numericality: true
+  validates :datatype,inclusion: { in: %w(textual numeric flag) }
 
   has_many :property_groups, :through => :values
   has_many :products, :through => :values
   has_many :values, dependent: :destroy, :inverse_of => :property, :accessible => true
-
-  # validate :textual_or_numerical
-
-  def textual_or_numerical
-    unless (self.value.present? && self.unit_de.present? && self.description_de.blank?) ||
-           (self.value.blank? && self.unit_de.blank? && self.description_de.present?)
-      errors.add(:base, I18n.translate("errors.messages.textual_or_numerical"))
-    end
-  end
 
   # --- Permissions --- #
 
