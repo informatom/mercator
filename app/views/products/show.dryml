@@ -17,20 +17,19 @@
 
     <div class="tab-content">
       <div class="tab-pane active" id="properties">
-        <repeat  with="&this.property_groups">
-          <h3><view:name/></h3>
+        <div repeat="&this.tabled_values">
+
+          <h3><view: with="&this[0]"/></h3>
           <dl class="dl-horizontal">
-            <repeat  with="&this.properties">
-              <dt><view:name/></dt>
-              <if test="&this.description">
-                <dd><view:description/></dd>
-              </if>
-              <if test="&this.value">
-                <dd><view:value/> <view:unit/></dd>
-              </if>
+            <repeat with="&this[1]">
+              <dt>
+                <if:property.name><view/></if>
+                <else><view:property.name_en/></else>
+              </dt>
+              <dd><view:display/></dd>
             </repeat>
           </dl>
-        </repeat>
+        </div>
       </div>
 
       <div class="tab-pane" id="related">

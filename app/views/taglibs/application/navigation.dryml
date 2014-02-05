@@ -45,7 +45,6 @@
         </li>
       </if>
 
-
       <li class='nav-item dropdown' param='conversation'>
         <a class="dropdown-toggle" id="drop2" data-toggle="dropdown" href="#">
           <t name='&name' key='hobo.actions.get_help'>Get Help</t>

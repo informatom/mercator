@@ -12,7 +12,7 @@ class Value < ActiveRecord::Base
     timestamps
   end
   attr_accessible :title_de, :title_en, :amount, :flag, :product, :property_group, :property
-  translates :title
+  translates :title, :unit
   has_paper_trail
 
   belongs_to :property_group
@@ -68,4 +68,22 @@ class Value < ActiveRecord::Base
     true
   end
 
+  # --- Instance Methods --- #
+
+  def display
+    if flag == true
+      return "ja"
+    end
+    if flag == false
+      return "nein"
+    end
+    return title if title
+    if amount
+      if amount.to_i == amount
+        return amount.to_i.to_s + " " + unit.to_s
+      else
+        return amount.to_s + " " + unit.to_s
+      end
+    end
+  end
 end

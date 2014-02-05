@@ -9,7 +9,7 @@
     </span>
 
     <div class="media-body">
-    <div class="pull-right">
+    <div class="pull-right text-right">
       <transition-button transition="add_to_basket" class="btn btn-success" />
       <if test="&session[:compared].include?(this.id)">
         <transition-button transition="dont_compare" class="btn btn-info" />
@@ -18,8 +18,10 @@
         <transition-button transition="compare" class="btn btn-info" />
       </else>
 
-      <p><span class="badge badge-info">excl. Mwst. <span style="font-size:20px;"><%= number_to_currency(this.price) %> </span> </span> <br/> </p>
-      <p><span class="badge badge-success">incl. Mwst. <span style="font-size:20px;"><%= number_to_currency(this.price_incl_vat) %></span> </span> </p>
+      <p class="label">
+        excl. Mwst. <%= number_to_currency(this.price) %> <br/> <br/>
+        incl. Mwst. <%= number_to_currency(this.price_incl_vat) %>
+      </p>
     </div>
 
       <h1 class="media-header"><%= link_to( this.name, product_path(this)) %></h1>

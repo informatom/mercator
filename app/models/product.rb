@@ -102,6 +102,16 @@ class Product < ActiveRecord::Base
     inventory.delivery_time
   end
 
+  def tabled_values
+    new_hash = Hash.new
+    first_hash = self.values.group_by {|value| value.property_group.position}
+    first_hash.each do |key, value|
+      value.sort! { |a,b| a.property.position <=> b.property.position }
+      new_hash[PropertyGroup.find(value[0].property_group_id).name] = value
+    end
+    return new_hash
+  end
+
   #--- Class Methods --- #
 
   def self.find_by_name(param)

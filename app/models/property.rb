@@ -12,6 +12,7 @@ class Property < ActiveRecord::Base
     timestamps
   end
 
+  default_scope { order(position: :asc) }
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
                   :position, :legacy_id
   has_paper_trail

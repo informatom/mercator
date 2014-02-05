@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def remember_uri
     session[:return_to] = request.referrer
-    session[:compared] = []
+    session[:compared] ||= []
   end
 
   def default_url_options(options={})

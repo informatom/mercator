@@ -307,7 +307,7 @@ DEPENDENCIES
   ckeditor!
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.2.0)
-  debugger (~> 1.6.2)
+  debugger (~> 1.6.5)
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
   font-awesome-rails

@@ -7,11 +7,13 @@
     </content-header:>
 
     <collection: replace>
-      <set percent="& (80 / this.count).to_i"/>
+      <set percent="& (80 / this.length).to_i"/>
       <table class="table table-condensed">
         <tr>
           <td width="20%">Name</td>
-          <td repeat width="#{percent}%"><h2><view:name/></h2></td>
+          <repeat with="&@products">
+            <td width="#{percent}%"><h2><view:name/></h2></td>
+          </repeat>
         </tr>
         <tr>
           <td>Nummer</td> <td repeat><h3><view:number/></h3></td>
@@ -23,18 +25,20 @@
           <td>Beschreibung</td> <td repeat><view:description/></td>
         </tr>
 
-      <repeat with="&@property_lines">
-        <tr>
-          <td>
-            <if test="&this.isgroup"> <h4><view:name/></h4> </if>
-            <else> <view:name/> </else>
-          </td>
-            <repeat with="&this.values">
-              <td><if><view/></if></td>
-            </repeat>
-        </tr>
-      </repeat>
-
+        <repeat with="&@nested_hash">
+            <tr>
+              <td colspan="&this.length + 1"> <h4><view with="&this[0]"/></h4> </td>
+            </tr>
+          <repeat with="&this[1]">
+            <tr>
+              <td> <view with="&this[0]"/> </td>
+              <set array="&this[1]"/>
+              <repeat with="&session[:compared]">
+                <td> <if test="&array[this]"><view with="&array[this]"/></if> </td>
+              </repeat>
+            </tr>
+          </repeat>
+        </repeat>
       </table>
     </collection:>
 

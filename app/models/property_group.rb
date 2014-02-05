@@ -9,6 +9,7 @@ class PropertyGroup < ActiveRecord::Base
     timestamps
   end
 
+  default_scope { order(position: :asc) }
   attr_accessible :name_de, :name_en, :position
   translates :name
   has_paper_trail
@@ -17,7 +18,7 @@ class PropertyGroup < ActiveRecord::Base
   validates :position, numericality: true
 
   has_many :products, :through => :values
-  has_many :properties, :through => :values
+  has_many :properties, :through => :values, :uniq => true
   has_many :values, dependent: :destroy, :inverse_of => :property_group, :accessible => true
 
   # --- Permissions --- #
