@@ -6,9 +6,9 @@ gem 'jquery-rails'                                  # JQuery asset handling
 
 gem "protected_attributes"
 
-#gem 'hobo', :path => '../hobo'
-# gem "hobo", "= 2.1.0.pre4"                          # web application meta framework
-gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'
+# gem 'hobo', :path => '../hobo'                      # web application meta framework locally installed
+# gem "hobo", "= 2.1.0.pre4"                          # web application meta framework from Rubygems
+gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'  # web application meta framework from Github
 
 gem "hobo_will_paginate"                            # pagination support
 gem "hobo_bootstrap", "2.1.0.pre4"                  # Twitter Bootstrap asset handling
@@ -50,8 +50,10 @@ group :development, :test  do
   gem "require_all"                                 # requiring a full directory
   gem "better_errors"                               # Debug messages im Browser
   gem "binding_of_caller"                           # Repl for better_errors
-#  gem 'dryml-firemarker', :require => 'dryml13-firemarker'
+#  gem 'rack-mini-profiler'                          # Performance Testing
+#  gem 'dryml-firemarker', :require => 'dryml13-firemarker' # DRYML Debugger
 end
+
 
 group :test do
   gem 'rspec-rails', '~> 2.14.0'                    # unit testing framework
@@ -63,4 +65,3 @@ group :test do
   gem 'selenium-webdriver', '~> 2.35.1'             # front end testing framework
   gem 'shoulda'                                     # additional matchers
 end
-

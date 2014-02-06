@@ -22,11 +22,8 @@
           <h3><view: with="&this[0]"/></h3>
           <dl class="dl-horizontal">
             <repeat with="&this[1]">
-              <dt>
-                <if:property.name><view/></if>
-                <else><view:property.name_en/></else>
-              </dt>
-              <dd><view:display/></dd>
+              <dt> <view with="&this[0]"/> </dt>
+              <dd><view with="&this[1]"/></dd>
             </repeat>
           </dl>
         </div>

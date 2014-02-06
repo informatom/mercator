@@ -103,13 +103,14 @@ class Product < ActiveRecord::Base
   end
 
   def tabled_values
-    new_hash = Hash.new
-    first_hash = self.values.group_by {|value| value.property_group.position}
-    first_hash.each do |key, value|
-      value.sort! { |a,b| a.property.position <=> b.property.position }
-      new_hash[PropertyGroup.find(value[0].property_group_id).name] = value
+    nested_hash = ActiveSupport::OrderedHash.new
+    values = Value.where(product_id: id).sort_by { |a| [a.property_group.position, a.property.position]}
+    values.each do |value|
+      property_name = value.property.name || value.property.name_en
+      nested_hash[value.property_group.name] ||= ActiveSupport::OrderedHash.new
+      nested_hash[value.property_group.name][property_name] = value.display
     end
-    return new_hash
+    return nested_hash
   end
 
   #--- Class Methods --- #
@@ -117,5 +118,5 @@ class Product < ActiveRecord::Base
   def self.find_by_name(param)
     self.find_by_name_de(param)
   end
-
 end
+
