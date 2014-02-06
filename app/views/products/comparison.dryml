@@ -10,9 +10,9 @@
       <set percent="& (80 / this.length).to_i"/>
       <table class="table table-condensed">
         <tr>
-          <td width="20%">Name</td>
+          <td width="20%">Titel</td>
           <repeat with="&@products">
-            <td width="#{percent}%"><h2><view:name/></h2></td>
+            <td width="#{percent}%"><h2><view:title/></h2></td>
           </repeat>
         </tr>
         <tr>

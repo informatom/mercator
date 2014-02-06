@@ -3,18 +3,18 @@ class Product < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string, :required
-    name_en        :string
-    number         :string, :required, :unique
+    title_de        :string, :required
+    title_en        :string
+    number         :string, :required, :unique, name: true
     description_de :cktext, :required
     description_en :cktext
     legacy_id      :integer
     timestamps
   end
-  attr_accessible :name_de, :name_en, :number, :description_de, :description_en,
+  attr_accessible :title_de, :title_en, :number, :description_de, :description_en,
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations
-  translates :name, :description
+  translates :title, :description
   has_paper_trail
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"

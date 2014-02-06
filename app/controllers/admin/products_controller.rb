@@ -6,7 +6,7 @@ class Admin::ProductsController < Admin::AdminSiteController
   autocomplete :number
 
   def index
-    self.this = Product.paginate(:page => params[:page]).search(params[:search], :name_de).order_by(parse_sort_param(:name, :quantity))
+    self.this = Product.paginate(:page => params[:page]).search(params[:search], :title_de, :number).order_by(parse_sort_param(:title, :quantity))
     hobo_index
   end
 end

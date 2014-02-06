@@ -1,6 +1,6 @@
 <extend tag="form" for="Product">
   <old-form merge multipart>
-    <field-list: fields="name_de, name_en, number, description_de, description_en, categorizations,
+    <field-list: fields="title_de, title_en, number, description_de, description_en, categorizations,
                          property_groups, recommendations, productrelations, supplyrelations,
                          document, photo" param>
       <productrelations-view:>

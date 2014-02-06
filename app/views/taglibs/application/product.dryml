@@ -24,7 +24,7 @@
       </p>
     </div>
 
-      <h1 class="media-header"><%= link_to( this.name, product_path(this)) %></h1>
+      <h1 class="media-header"><%= link_to( this.title, product_path(this)) %></h1>
 
       <div param="description"> <view:description/> </div>
 

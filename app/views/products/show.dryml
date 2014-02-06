@@ -34,7 +34,7 @@
           <ul class="nav nav-tabs" id="related-tabs">
             <li repeat="related_products" class="#{'active' if first_item?}">
               <a href="#related#{this.id}" data-toggle="tab">
-                <view:name/>
+                <view:title/>
               </a>
             </li>
           </ul>
@@ -55,7 +55,7 @@
           <ul class="nav nav-tabs" id="recommended-tabs">
             <li repeat="recommended_products" class="#{'active' if first_item?}">
               <a href="#recommended#{this.id}" data-toggle="tab">
-                <view:name/>
+                <view:title/>
               </a>
             </li>
           </ul>
@@ -75,7 +75,7 @@
           <ul class="nav nav-tabs" id="supplies-tabs">
             <li repeat="supplies" class="#{'active' if first_item?}">
               <a href="#supplies#{this.id}" data-toggle="tab">
-                <view:name/>
+                <view:title/>
               </a>
             </li>
           </ul>
