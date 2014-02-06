@@ -328,6 +328,8 @@ de:
         scale_to: "gültig bis exclusive dieser Dezimalzahl, z.B. 9999"
       product:
         productrelations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
+        recommendations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
+        supplyrelations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
       property:
         name: Achten Sie für übersichtliche Ptoduktvergleiche auf einheitliche Bezeichnungen
         description_de: "Bitte Beschreibung oder (Wert und Einheit) angeben, z.B. grün"
