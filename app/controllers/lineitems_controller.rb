@@ -26,4 +26,16 @@ class LineitemsController < ApplicationController
       redirect_to session[:return_to]
     end
   end
+
+  def do_enable_upselling
+    do_transition_action :enable_upselling do
+      redirect_to session[:return_to]
+    end
+  end
+
+  def do_disable_upselling
+    do_transition_action :disable_upselling do
+      redirect_to session[:return_to]
+    end
+  end
 end

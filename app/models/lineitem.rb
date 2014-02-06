@@ -13,6 +13,7 @@ class Lineitem < ActiveRecord::Base
     vat            :decimal, :required, :precision => 10, :scale => 2
     value          :decimal, :required, :scale => 2, :precision => 10
     delivery_time  :string
+    upselling      :boolean
     timestamps
   end
 
@@ -45,9 +46,18 @@ class Lineitem < ActiveRecord::Base
     create :insert_shipping, :available_to => :all, become: :shipping_costs,
            params: [:position, :product_number, :description_de, :amount, :unit, :product_price, :vat, :value, :order, :user]
 
-    transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == self.order",
-                available_to: :all do
+    transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == self.order", available_to: :all do
       self.delete
+    end
+
+    transition :enable_upselling, {:active => :active},
+                                  if: "acting_user.basket == self.order && !self.upselling && self.product.supplies.any?",
+                                  available_to: :all do
+      self.update(upselling: true)
+    end
+
+    transition :disable_upselling, {:active => :active}, if: "acting_user.basket == self.order && self.upselling", available_to: :all do
+      self.update(upselling: false)
     end
 
     transition :add_one, {:active => :active}, if: "acting_user.basket == self.order",

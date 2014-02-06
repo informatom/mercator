@@ -1430,7 +1430,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="upselling" param/>
 
       <a:user param="creator-link"/>
 
@@ -1510,6 +1510,48 @@
 
     <content-body: param>
       <delete-from-basket-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="enable-upselling-page" polymorphic/>
+<def tag="enable-upselling-page" for="Lineitem">
+  <page title="#{ht 'lineitem.enable_upselling.title', :default=>['Enable Upselling']}" merge>
+
+    <body: class="lifecycle-transition-page enable-upselling-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.enable_upselling.heading">
+          Enable Upselling
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <enable-upselling-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="disable-upselling-page" polymorphic/>
+<def tag="disable-upselling-page" for="Lineitem">
+  <page title="#{ht 'lineitem.disable_upselling.title', :default=>['Disable Upselling']}" merge>
+
+    <body: class="lifecycle-transition-page disable-upselling-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.disable_upselling.heading">
+          Disable Upselling
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <disable-upselling-form param="form"/>
     </content-body:>
 
   </page>

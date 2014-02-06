@@ -182,7 +182,7 @@
 <def tag="form" for="Lineitem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, state, order, product, user" param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, state, order, product, user" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -208,6 +208,28 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.lineitem.lifecycle.transitions.delete_from_basket', :default=>['Delete From Basket']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="enable-upselling-form" polymorphic/>
+<def tag="enable-upselling-form" for="Lineitem">
+  <form lifecycle="enable_upselling" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.lineitem.lifecycle.transitions.enable_upselling', :default=>['Enable Upselling']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="disable-upselling-form" polymorphic/>
+<def tag="disable-upselling-form" for="Lineitem">
+  <form lifecycle="disable_upselling" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.lineitem.lifecycle.transitions.disable_upselling', :default=>['Disable Upselling']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

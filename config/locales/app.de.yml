@@ -239,6 +239,8 @@ de:
             delete_from_basket: "Position löschen"
             add_one: "+1"
             remove_one: "-1"
+            enable_upselling: "Zubehör +"
+            disable_upselling: "Zubehör -"
       order:
         billing_method: Rechnungsart
         billing_name: Name (Rechnung)

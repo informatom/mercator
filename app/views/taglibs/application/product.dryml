@@ -26,9 +26,7 @@
 
       <h1 class="media-header"><%= link_to( this.name, product_path(this)) %></h1>
 
-      <div param="description">
-        <view:description/>
-      </div>
+      <div param="description"> <view:description/> </div>
 
       <if test="&this.document.exists?">
         <%= link_to( this.document.filename, this.document) %>

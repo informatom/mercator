@@ -103,12 +103,17 @@
                 </td>
                 <td>EUR <view:product-price/></td>
                 <td>EUR <view:value/></td>
-                <td><my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/></td>
+                <td>
+                  <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
+                  <br/><br/><br/>
+                  <my-transition-link transition="disable_upselling" class="btn btn-mini pull-right"/>
+                  <my-transition-link transition="enable_upselling" class="btn btn-mini pull-right"/>
+                </td>
               </tr>
-              <if:product>
-                <repeat with="&this.supplies[0..4]">
+              <if test="&this.product && this.upselling">
+                <repeat with="&this.product.supplies[0..4]">
                   <tr class="warning table-condensed">
-                    <td><%= image_tag this.photo.url(:thumb), width: "50%" %></td>
+                    <td><%= image_tag this.photo.url(:thumb), width: "25%" %></td>
                     <td></td>
                     <td></td>
                     <td><view:number/></td>

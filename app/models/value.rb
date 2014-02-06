@@ -71,19 +71,18 @@ class Value < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def display
-    if flag == true
-      return "ja"
-    end
-    if flag == false
-      return "nein"
-    end
-    return title if title
-    if amount
+    case state
+    when "textual"
+      title
+    when "numeric"
       if amount.to_i == amount
-        return amount.to_i.to_s + " " + unit.to_s
+        amount.to_i.to_s + " " + unit.to_s
       else
-        return amount.to_s + " " + unit.to_s
+        amount.to_s + " " + unit.to_s
       end
+    when "flag"
+      flag == true ? "ja" : "nein"
     end
   end
+
 end
