@@ -1,6 +1,6 @@
 <index-page>
   <collection: replace>
-    <table-plus without-page-nav fields="this, title, description, state">
+    <table-plus without-page-nav fields="number, title_de, title_en, description_de, state">
       <actions-heading:></actions-heading:>
       <actions-view:><bootstrap-table-actions/></actions-view:>
     </table-plus>
