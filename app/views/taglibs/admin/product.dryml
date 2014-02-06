@@ -8,7 +8,7 @@
           <field-list fields="related_product" size="5">
             <related-product-label: replace/>
             <related-product-view:>
-              <name-one complete-target="&@related_product" completer="name_admin" autocomplete="off" />
+              <name-one complete-target="&@related_product" completer="number_admin" autocomplete="off" />
             </related-product-view:>
           </field-list>
         </input-many>
@@ -19,7 +19,7 @@
           <field-list fields="recommended_product" size="5">
             <recommended-product-label: replace/>
             <recommended-product-view:>
-              <name-one complete-target="&@recommended_product" completer="name_admin" autocomplete="off"/>
+              <name-one complete-target="&@recommended_product" completer="number_admin" autocomplete="off"/>
                <input with="&this_parent" field="reason_de" class="span2"/>
             </recommended-product-view:>
           </field-list>
@@ -31,7 +31,7 @@
           <field-list fields="supply" size="5">
             <supply-label: replace/>
             <supply-view:>
-              <name-one complete-target="&@supplied_product" completer="name_admin" autocomplete="off"/>
+              <name-one complete-target="&@supplied_product" completer="number_admin" autocomplete="off"/>
             </supply-view:>
           </field-list>
         </input-many>
@@ -74,34 +74,6 @@
           <label class="control-label photo-url-label"><%= t("Original version") %></label>
           <div class="controls">
             <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url %></span>
-          </div>
-        </div>
-
-        <div class="control-group   photo-url-field">
-          <label class="control-label photo-url-label"><%= t("Thumbnail version") %></label>
-          <div class="controls">
-            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:thumb) %></span>
-          </div>
-        </div>
-
-        <div class="control-group   photo-url-field">
-          <label class="control-label photo-url-label"><%= t("Small version") %></label>
-          <div class="controls">
-            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:small) %></span>
-          </div>
-        </div>
-
-        <div class="control-group   photo-url-field">
-          <label class="control-label photo-url-label"><%= t("Medium version") %></label>
-          <div class="controls">
-            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:medium) %></span>
-          </div>
-        </div>
-
-        <div class="control-group   photo-url-field">
-          <label class="control-label photo-url-label"><%= t("Large version") %></label>
-          <div class="controls">
-            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url(:large) %></span>
           </div>
         </div>
       </div>
