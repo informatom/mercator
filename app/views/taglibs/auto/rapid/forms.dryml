@@ -345,6 +345,28 @@
     </div>
   </form>
 </def>
+<def tag="check-basket-form" polymorphic/>
+<def tag="check-basket-form" for="Order">
+  <form lifecycle="check_basket" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.check_basket', :default=>['Check Basket']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="place-form" polymorphic/>
+<def tag="place-form" for="Order">
+  <form lifecycle="place" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.place', :default=>['Place']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="park-form" polymorphic/>
 <def tag="park-form" for="Order">
   <form lifecycle="park" merge param="default">

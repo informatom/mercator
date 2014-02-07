@@ -267,6 +267,8 @@ de:
             pickup_shipment: Abholung
             parcel_service_shipment: Paketdienst
             archive_parked_basket: Geparkten Warenkorb archivieren
+            place: Jetzt_bestellen
+            check_basket: Bestellung kontrollieren
       pageelement/usage_types:
         ContentElement: Textbausteine
       product:

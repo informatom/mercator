@@ -1840,6 +1840,48 @@
   </page>
 </def>
 
+<def tag="check-basket-page" polymorphic/>
+<def tag="check-basket-page" for="Order">
+  <page title="#{ht 'order.check_basket.title', :default=>['Check Basket']}" merge>
+
+    <body: class="lifecycle-transition-page check-basket-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.check_basket.heading">
+          Check Basket
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <check-basket-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="place-page" polymorphic/>
+<def tag="place-page" for="Order">
+  <page title="#{ht 'order.place.title', :default=>['Place']}" merge>
+
+    <body: class="lifecycle-transition-page place-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.place.heading">
+          Place
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <place-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="park-page" polymorphic/>
 <def tag="park-page" for="Order">
   <page title="#{ht 'order.park.title', :default=>['Park']}" merge>

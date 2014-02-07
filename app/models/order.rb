@@ -41,7 +41,8 @@ class Order < ActiveRecord::Base
 
   lifecycle do
     state :basket, :default => true
-    state :ordered, :paid, :shipped, :offer, :parked, :archived_basket
+    state :ordered, :offer, :parked, :archived_basket
+    state :paid, :shipped
 
     transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
@@ -59,6 +60,9 @@ class Order < ActiveRecord::Base
     transition :e_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='e_payment'" do
       self.update(billing_method: "e_payment", shipping_method: nil)
     end
+
+    transition :check_basket, {:basket => :basket}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+    transition :place, {:basket => :ordered}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
 
     transition :park, {:basket => :parked}, available_to: :user
 
