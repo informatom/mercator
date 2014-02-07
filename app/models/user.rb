@@ -113,7 +113,6 @@ class User < ActiveRecord::Base
     new_record? ||
     ( self.sales? && field == :name ) ||
     ( self.administrator? && field == :name )
-    true
   end
 
   #--- Instance Methods ---#
