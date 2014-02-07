@@ -117,7 +117,7 @@
                     <td></td>
                     <td></td>
                     <td><view:number/></td>
-                    <td><view:name/></td>
+                    <td><view:title/></td>
                     <td>EUR <view:price/></td>
                     <td></td>
                     <td>
