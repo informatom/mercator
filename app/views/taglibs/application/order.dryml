@@ -139,6 +139,42 @@
           </else>
         </div>
 
+        <if with="&current_user.orders.state_is(:parked).try(:first)">
+          <br/><br/>
+          <h3>Geparkter <view/></h3>
+          <table class="table well table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Menge</th>
+                <th></th>
+                <th>Artikelnummer</th>
+                <th>Beschreibung</th>
+                <th>Stückpreis</th>
+                <th>Preis</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <repeat with="&this.lineitems">
+                <tr class="success">
+                  <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
+                  <td><view:amount/> <view:unit/></td>
+                  <td>&nbsp;</td>
+                  <td><view:product-number/></td>
+                  <td> <view:description/> </td>
+                  <td>EUR <view:product-price/></td>
+                  <td>EUR <view:value/></td>
+                  <td><my-transition-link transition="transfer_to_basket" class="btn-success btn-small"/></td>
+                </tr>
+              </repeat>
+            </tbody>
+          </table>
+          <div class="pull-right">
+              <my-transition-link transition="archive_parked_basket" class="btn-primary"/>
+          </div>
+        </if>
+
       </if>
       <else>Bisher gibt es keine Bestellpositionen.</else>
     </field-list:>

@@ -204,6 +204,7 @@ de:
       webpage:
         one: Webseite
         other: Webseiten
+
     attributes:
       address:
         name: Empfänger
@@ -241,6 +242,7 @@ de:
             remove_one: "-1"
             enable_upselling: "Zubehör +"
             disable_upselling: "Zubehör -"
+            transfer_to_basket: In Warenkorb übernehmen
       order:
         billing_method: Rechnungsart
         billing_name: Name (Rechnung)
@@ -264,6 +266,7 @@ de:
             e_payment: Online
             pickup_shipment: Abholung
             parcel_service_shipment: Paketdienst
+            archive_parked_basket: Geparkten Warenkorb archivieren
       pageelement/usage_types:
         ContentElement: Textbausteine
       product:

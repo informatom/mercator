@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
 
   lifecycle do
     state :basket, :default => true
-    state :ordered, :paid, :shipped, :offer
+    state :ordered, :paid, :shipped, :offer, :parked, :archived_basket
 
     transition :order, {[:basket, :offer] => :ordered}
     transition :payment, {:ordered => :paid}
@@ -59,6 +59,10 @@ class Order < ActiveRecord::Base
     transition :e_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='e_payment'" do
       self.update(billing_method: "e_payment", shipping_method: nil)
     end
+
+    transition :park, {:basket => :parked}, available_to: :user
+
+    transition :archive_parked_basket, {:parked => :archived_basket}, available_to: :user
 
     transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_pickup_shipment do
       self.update(shipping_method: "pickup_shipment")
@@ -102,7 +106,11 @@ class Order < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def name
-    "Bestellung vom " + I18n.l(created_at).to_s
+    if ["basket", "parked"].include?(state)
+      "Warenkorb vom " + I18n.l(created_at).to_s
+    else
+      "Bestellung vom " + I18n.l(created_at).to_s
+    end
   end
 
   def add_product(product: nil, amount: 1)

@@ -250,6 +250,17 @@
     </div>
   </form>
 </def>
+<def tag="transfer-to-basket-form" polymorphic/>
+<def tag="transfer-to-basket-form" for="Lineitem">
+  <form lifecycle="transfer_to_basket" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.lineitem.lifecycle.transitions.transfer_to_basket', :default=>['Transfer To Basket']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="enable-upselling-form" polymorphic/>
 <def tag="enable-upselling-form" for="Lineitem">
   <form lifecycle="enable_upselling" merge param="default">
@@ -358,6 +369,28 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.e_payment', :default=>['E Payment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="park-form" polymorphic/>
+<def tag="park-form" for="Order">
+  <form lifecycle="park" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.park', :default=>['Park']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="archive-parked-basket-form" polymorphic/>
+<def tag="archive-parked-basket-form" for="Order">
+  <form lifecycle="archive_parked_basket" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.archive_parked_basket', :default=>['Archive Parked Basket']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

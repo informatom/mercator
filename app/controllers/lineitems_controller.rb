@@ -11,6 +11,14 @@ class LineitemsController < ApplicationController
     end
   end
 
+  def do_transfer_to_basket
+    do_transition_action :transfer_to_basket do
+      flash[:success] = "Die Bestellposition wurde in den Warenkorb übernommen."
+      flash[:notice] = nil
+      redirect_to session[:return_to]
+    end
+  end
+
   def do_add_one
     do_transition_action :add_one do
       flash[:success] = "Die Stückzahl wurde um 1 erhöht."

@@ -46,21 +46,25 @@ class Lineitem < ActiveRecord::Base
     create :insert_shipping, :available_to => :all, become: :shipping_costs,
            params: [:position, :product_number, :description_de, :amount, :unit, :product_price, :vat, :value, :order, :user]
 
-    transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == self.order", available_to: :all do
+    transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == order", available_to: :all do
       self.delete
     end
 
+    transition :transfer_to_basket, {:active => :active}, if: "acting_user == order.user", available_to: :all do
+      self.update(order: acting_user.basket)
+    end
+
     transition :enable_upselling, {:active => :active},
-                                  if: "acting_user.basket == self.order && !self.upselling && self.product.supplies.any?",
+                                  if: "acting_user.basket == order && !upselling && product.supplies.any?",
                                   available_to: :all do
       self.update(upselling: true)
     end
 
-    transition :disable_upselling, {:active => :active}, if: "acting_user.basket == self.order && self.upselling", available_to: :all do
+    transition :disable_upselling, {:active => :active}, if: "acting_user.basket == order && upselling", available_to: :all do
       self.update(upselling: false)
     end
 
-    transition :add_one, {:active => :active}, if: "acting_user.basket == self.order",
+    transition :add_one, {:active => :active}, if: "acting_user.basket == order",
                available_to: :all do
       amount = self.amount + 1
       price = product.price(amount: amount)
@@ -69,7 +73,7 @@ class Lineitem < ActiveRecord::Base
                   value:         price * amount)
     end
 
-    transition :remove_one, {:active => :active}, if: "acting_user.basket == self.order",
+    transition :remove_one, {:active => :active}, if: "acting_user.basket == order",
                available_to: :all do
       if amount == 1
         self.delete
@@ -131,8 +135,8 @@ class Lineitem < ActiveRecord::Base
                             position:       position,
                             product_id:     product.id,
                             product_number: product.number,
-                            description_de: product.name_de,
-                            description_en: product.name_en,
+                            description_de: product.title_de,
+                            description_en: product.title_en,
                             delivery_time:  product.delivery_time,
                             amount:         amount,
                             unit:           product.inventories.first.unit,

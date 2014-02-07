@@ -1041,6 +1041,27 @@
   </page>
 </def>
 
+<def tag="transfer-to-basket-page" polymorphic/>
+<def tag="transfer-to-basket-page" for="Lineitem">
+  <page title="#{ht 'lineitem.transfer_to_basket.title', :default=>['Transfer To Basket']}" merge>
+
+    <body: class="lifecycle-transition-page transfer-to-basket-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.transfer_to_basket.heading">
+          Transfer To Basket
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <transfer-to-basket-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="enable-upselling-page" polymorphic/>
 <def tag="enable-upselling-page" for="Lineitem">
   <page title="#{ht 'lineitem.enable_upselling.title', :default=>['Enable Upselling']}" merge>
@@ -1442,6 +1463,48 @@
 
     <content-body: param>
       <e-payment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="park-page" polymorphic/>
+<def tag="park-page" for="Order">
+  <page title="#{ht 'order.park.title', :default=>['Park']}" merge>
+
+    <body: class="lifecycle-transition-page park-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.park.heading">
+          Park
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <park-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="archive-parked-basket-page" polymorphic/>
+<def tag="archive-parked-basket-page" for="Order">
+  <page title="#{ht 'order.archive_parked_basket.title', :default=>['Archive Parked Basket']}" merge>
+
+    <body: class="lifecycle-transition-page archive-parked-basket-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.archive_parked_basket.heading">
+          Archive Parked Basket
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <archive-parked-basket-form param="form"/>
     </content-body:>
 
   </page>

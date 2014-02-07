@@ -31,13 +31,9 @@ class UsersController < ApplicationController
 
       if last_basket
         if current_basket.present?
-          if current_basket.merge(basket: last_basket) == "merged"
-            flash[:notice] = t("hobo.messages.old_basket_items_merged",
-                             :default=>"Old basket items have been merged")
-          end
-        else
-          current_user.orders << last_basket
+          current_basket.lifecycle.park!(current_user)
         end
+        current_user.orders << last_basket
       end
 
       current_user.sync_agb_with_basket
