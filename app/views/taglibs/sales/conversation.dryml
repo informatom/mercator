@@ -11,20 +11,18 @@
             <input name="id" value="#{this.id}" type="hidden"/>
           </form>
 
-          <script>
-            function update() {
-              $("form#refresh-form").submit();
-              setTimeout(update, 50000);
-            };
-
-            $(document).ready(function() {
-              setTimeout(update, 50000);
-            });
-          </script>
+          <%= subscribe_to "/conversations/" + this.id.to_s %>
 
           <section param="collection-section" merge>
             <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
-            <collection:messages part="mymessages" />
+            <do part="mymessages">
+              <collection:messages />
+              <script>
+                  PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
+                    $("form#refresh-form").submit();
+                  });
+              </script>
+            </do>
           </section>
 
           <section param="collection-section" merge>

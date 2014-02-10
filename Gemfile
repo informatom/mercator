@@ -40,8 +40,7 @@ gem 'uglifier', '>= 1.3.0'                          # Code minimizer
 gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
 gem 'whenever', :require => false                   # cronjob management
-# gem 'private_pub'                                   # Private Pub Sub System
-
+gem 'private_pub'                                   # Private Pub Sub System using Faye
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
@@ -53,7 +52,6 @@ group :development, :test  do
 #  gem 'rack-mini-profiler'                          # Performance Testing
 #  gem 'dryml-firemarker', :require => 'dryml13-firemarker' # DRYML Debugger
 end
-
 
 group :test do
   gem 'rspec-rails', '~> 2.14.0'                    # unit testing framework

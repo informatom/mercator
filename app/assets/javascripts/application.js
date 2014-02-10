@@ -20,5 +20,4 @@
 //= require messenger
 //= require messenger-theme-future
 //= require jquery.fineuploader-4.2.2.min
-
-// require private_pub
+//= require private_pub

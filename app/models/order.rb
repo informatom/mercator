@@ -94,6 +94,7 @@ class Order < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator? ||
+    acting_user.sales? ||
     (user_is? acting_user)
   end
 
