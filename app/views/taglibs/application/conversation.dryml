@@ -5,37 +5,36 @@
         <div> Neue Nachricht: <input:content/> </div>
       </form>
 
-      <form id="refresh-form" style="display:none;" action="refresh" update="mymessages">
+      <%= subscribe_to "/conversations/" + this.id.to_s %>
+
+      <form id="messages-form" style="display:none;" action="refresh" update="messages">
         <input name="id" value="#{this.id}" type="hidden"/>
       </form>
 
-      <%= subscribe_to "/conversations/" + this.id.to_s %>
+      <form id="downloads-form" style="display:none;" action="refresh" update="downloads">
+        <input name="id" value="#{this.id}" type="hidden"/>
+      </form>
+
+      <script>
+          PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
+            $("form#" + data.type + "-form").submit();
+          });
+      </script>
 
       <section param="collection-section" merge>
         <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
-        <do part="mymessages">
-          <collection:messages />
-          <script>
-              PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
-                $("form#refresh-form").submit();
-              });
-          </script>
-        </do>
+        <collection:messages part="messages"/>
       </section>
 
-      <div class="form-horizontal">
-        <section param="collection-section" merge>
-          <h3 param="collection-heading"> <%= t("attributes.baskets") %> </h3>
-          <collection:baskets param/>
-        </section>
-      </div>
+      <section param="collection-section" merge>
+        <h3 param="collection-heading"> <%= t("attributes.baskets") %> </h3>
+        <collection:baskets param/>
+      </section>
 
-      <div class="form-horizontal">
-        <section param="collection-section" merge>
-          <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
-          <collection:downloads param/>
-        </section>
-      </div>
+      <section param="collection-section" merge>
+        <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
+        <collection:downloads part="downloads"/>
+      </section>
 
    </append-content-body:>
 

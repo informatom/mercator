@@ -4,4 +4,9 @@ class Sales::DownloadsController < Sales::SalesSiteController
 
   auto_actions :all
 
+  def destroy
+    PrivatePub.publish_to("/conversations/"+ Download.find(params[:id]).conversation.id.to_s, type: "downloads")
+    hobo_destroy
+  end
+
 end

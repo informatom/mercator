@@ -7,22 +7,25 @@
             <div> Neue Nachricht: <input:content/> </div>
           </form>
 
-          <form id="refresh-form" style="display:none;" action="refresh" update="mymessages">
+          <%= subscribe_to "/conversations/" + this.id.to_s %>
+
+          <form id="messages-form" style="display:none;" action="refresh" update="messages">
             <input name="id" value="#{this.id}" type="hidden"/>
           </form>
 
-          <%= subscribe_to "/conversations/" + this.id.to_s %>
+          <form id="downloads-form" style="display:none;" action="refresh" update="downloads">
+            <input name="id" value="#{this.id}" type="hidden"/>
+          </form>
+
+          <script>
+            PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
+              $("form#" + data.type + "-form").submit();
+            });
+          </script>
 
           <section param="collection-section" merge>
             <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
-            <do part="mymessages">
-              <collection:messages />
-              <script>
-                  PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
-                    $("form#refresh-form").submit();
-                  });
-              </script>
-            </do>
+            <collection:messages part="messages"/>
           </section>
 
           <section param="collection-section" merge>
@@ -32,7 +35,7 @@
 
           <section param="collection-section" merge>
             <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
-            <collection:downloads param/>
+            <collection:downloads part="downloads"/>
           </section>
         </div>
         <div class="span4">
@@ -41,27 +44,19 @@
           <div class="btn btn-info" id="dropzone"> Bild hier pasten (auf mich zeigen und [STRG]+[v])</div>
 
           <script>
+          var filenames = [];
           $(document).ready(function () {
               $("#fine-uploader").fineUploader({
-                  debug: true,
                   multiple: false,
                   request: {
-                      endpoint: '/conversations/<%= this.id -%>/do_upload',
+                      endpoint: '/sales/conversations/<%= this.id -%>/do_upload',
                       paramsInBody: true,
                       customHeaders: {
                         "X-CSRF-Token": "<%= form_authenticity_token %>"
                      }
                   },
-                  deleteFile: {
-                      enabled: true,
-                      endpoint: '/conversations/<%= this.id -%>/do_upload'
-                  },
-                  retry: {
-                     enableAuto: true
-                  },
                   paste: {
                     targetElement: $('#dropzone')[0],
-                    promptForName: true
                   },
                   params: {
                     authenticity_token: "<%= form_authenticity_token %>",
@@ -74,9 +69,6 @@
 
           <script type="text/template" id="qq-template">
               <div class="qq-uploader-selector qq-uploader">
-                  <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-                      <span>Files mit Drag and Drop hierher ziehen</span>
-                  </div>
                   <div class="qq-upload-button-selector btn btn-success">
                       <div>Datei hochladen</div>
                   </div>

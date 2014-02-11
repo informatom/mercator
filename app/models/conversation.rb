@@ -27,7 +27,7 @@ class Conversation < ActiveRecord::Base
     state :active, default: true
 
     create :initiate, become: :active, available_to: :all, new_key: true, params: [:name]
-    transition :upload, {:active => :active}, available_to: :collaborators
+    transition :upload, {:active => :active}, available_to: :collaborators, subsite: "admin"
   end
 
   # --- Permissions --- #

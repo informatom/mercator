@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     hobo_create do
       this.sender = current_user
       this.save
-      PrivatePub.publish_to("/conversations/"+ this.conversation.id.to_s, message: this)
+      PrivatePub.publish_to("/conversations/"+ this.conversation.id.to_s, type: "messages")
     end
   end
 end
