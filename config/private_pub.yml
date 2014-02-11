@@ -1,10 +1,10 @@
 development:
-  server: "http://localhost:9292/faye/faye"
-  secret_token: "secret"
+  server: "http://www.informatom.com:9292/faye/faye"
+  secret_token: "<%= CONFIG[:faye_secret_token] %>"
 test:
-  server: "http://localhost:9292/faye/faye"
-  secret_token: "secret"
+  server: "http://www.informatom.com:9292/faye/faye"
+  secret_token: "<%= CONFIG[:faye_secret_token] %>"
 production:
   server: "http://www.informatom.com:9292/faye/faye"
-  secret_token: "b90bf8ef08ea1ed350a49d74fa002602e0fd8ad5364ba9b04a0316d7a632839b"
+  secret_token: "<%= CONFIG[:faye_secret_token] %>"
   signature_expiration: 3600 # one hour
