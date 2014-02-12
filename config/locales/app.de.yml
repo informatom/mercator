@@ -112,6 +112,7 @@ de:
     valid_from: Gültig ab
     valid_to: Gültig bis
     value: Wert
+    vat_number: MwSt-Nummer
     vat: MwSt.
     version_of: Version vom
     weight: Gewicht
@@ -303,6 +304,7 @@ de:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
         street: Straße und Hausnummer
+        vat_number: "Auch VAT Nummer, ATU Nummer, ... genannt"
       category:
         position: Reihung innerhalb der Überkategorie im Kategorienbaum
         updated: Kategoriebaum erfolgreich aktualisiert!

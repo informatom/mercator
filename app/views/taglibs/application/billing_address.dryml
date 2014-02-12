@@ -23,6 +23,15 @@
         <view:postalcode/><br/>
         <view:city/><br/>
         <view:country/>
+        <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">
+          <br /><br />
+          <view:vat-number/><br />
+          <small>
+            registriert für:<br/>
+            <%= Valvat.new(this.vat_number).exists?(:detail => true)[:name] %>,
+            <%= Valvat.new(this.vat_number).exists?(:detail => true)[:address].gsub(/\n/,", ") %>
+          </small>
+        </if>
       </p>
     </body:>
   </card>
@@ -51,7 +60,7 @@
         </div>
         <div class="span4">
           <if test="&current_user.billing_addresses">
-            <h3>Gespeicherte Lieferadressen</h3>
+            <h3>Gespeicherte Rechnungsadressen</h3>
           </if>
           <repeat with="&current_user.billing_addresses">
             <br/>

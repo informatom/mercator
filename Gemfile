@@ -41,6 +41,7 @@ gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
 gem 'whenever', :require => false                   # cronjob management
 gem 'private_pub'                                   # Private Pub Sub System using Faye
+gem 'valvat'                                        # European Vat Number Validation
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick

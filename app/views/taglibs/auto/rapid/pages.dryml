@@ -321,7 +321,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, detail, street, postalcode, city, country, state" param/>
+      <field-list fields="email_address, detail, street, postalcode, city, country, vat_number, state" param/>
     </content-body:>
 
   </page>
