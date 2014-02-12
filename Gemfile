@@ -5,6 +5,7 @@ gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'jquery-rails'                                  # JQuery asset handling
 
 gem "protected_attributes"
+gem 'valvat'                                        # European Vat Number Validation
 
 # gem 'hobo', :path => '../hobo'                      # web application meta framework locally installed
 # gem "hobo", "= 2.1.0.pre4"                          # web application meta framework from Rubygems
@@ -41,7 +42,6 @@ gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
 gem 'whenever', :require => false                   # cronjob management
 gem 'private_pub'                                   # Private Pub Sub System using Faye
-gem 'valvat'                                        # European Vat Number Validation
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
