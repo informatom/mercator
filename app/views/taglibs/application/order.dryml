@@ -58,7 +58,7 @@
                     <td></td>
                     <td><view:number/></td>
                     <td><view:title/></td>
-                    <td>EUR <view:price/></td>
+                    <td><div class="text-right"><view with="&number_to_currency(this.price)"/></div></td>
                     <td></td>
                     <td>
                       <my-transition-link transition="add_to_basket" class="btn btn-success btn-small" />
@@ -106,7 +106,7 @@
                   <td><view:amount/> <view:unit/></td>
                   <td><view:product-number/></td>
                   <td> <view:description/> </td>
-                  <td><div class="text-right"><view with="&number_to_currency(this.product-price)"/></div></td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
                   <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
                   <td><my-transition-link transition="transfer_to_basket" class="btn-success btn-small"/></td>
                 </tr>
@@ -161,7 +161,7 @@
                 <view:description/>
                 <if:delivery-time> <br/> <em>Lieferzeit:</em> <view/> </if>
               </td>
-              <td><div class="text-right"><view with="&number_to_currency(this.product-price)"/></div></td>
+              <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
               <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
             </tr>
           </repeat>
