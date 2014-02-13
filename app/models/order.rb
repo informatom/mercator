@@ -61,7 +61,7 @@ class Order < ActiveRecord::Base
       self.update(billing_method: "e_payment", shipping_method: nil)
     end
 
-    transition :check_basket, {:basket => :basket}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+    transition :check_basket, {:basket => :basket}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
     transition :place, {:basket => :ordered}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
 
     transition :park, {:basket => :parked}, available_to: :user
@@ -109,6 +109,10 @@ class Order < ActiveRecord::Base
   end
 
   # --- Instance Methods --- #
+
+  def basket?
+    self.state == "basket"
+  end
 
   def sum
     self.lineitems.sum('value')

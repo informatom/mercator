@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   hobo_user_controller
 
   auto_actions :all, :except => [ :index, :new, :create ]
+  auto_actions :lifecycle
 
   autocomplete :name
 
@@ -34,6 +35,10 @@ class UsersController < ApplicationController
           current_basket.lifecycle.park!(current_user)
         end
         current_user.orders << last_basket
+      end
+
+      unless current_user.basket
+        Order.create(user: current_user)
       end
 
       current_user.sync_agb_with_basket

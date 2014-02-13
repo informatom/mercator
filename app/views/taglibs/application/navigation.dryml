@@ -87,7 +87,7 @@
               <a action='account' to='&current_user'><t key='hobo.actions.password'>Password</t></a>
             </li>
             <li class='nav-item' param='orders'>
-              <%= link_to t('attributes.orders'), orders_path %>
+              <%= link_to t('attributes.orders'), user_orders_path(current_user) %>
             </li>
             <li class='nav-item' param='log-out'>
               <a href='&logout_url'><t key='hobo.actions.logout'>Logout</t></a>

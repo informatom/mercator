@@ -8,7 +8,6 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Conversation"><ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Order"><ht key="order.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Value"><ht key="value.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -1360,6 +1359,39 @@
 
   </page>
 </def>
+
+<def tag="index-for-user-page" polymorphic/>
+<def tag="index-for-user-page" for="Order">
+  <page merge title="#{ht 'order.index_for_owner.title', :count=>100, :default=>['Orders for']} #{name :with => @user, :no_wrapper => true}">
+    <body: class="index-for-owner-page user order" param/>
+    <content-header: param>
+      <div param="back-to">
+        <t key="hobo.actions.back">Back to</t> <a with="&@user"/>
+      </div>
+      <h2 param="heading" if="&@owner">
+        <ht key="order.index_for_owner.heading" count="&@user.orders.count">
+          <human-collection-name with="&@user" collection="orders" your/>
+        </ht>
+      </h2>
+      <p param="count" if>
+        <ht key="order.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+    </content-body:>
+  </page>
+</def>
+
+
 
 
 

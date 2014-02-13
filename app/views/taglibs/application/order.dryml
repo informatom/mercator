@@ -1,18 +1,30 @@
 <extend tag="show-page" for="Order">
   <old-show-page merge>
     <content-header:>
-      <h1>Warenkorb vom <view:created-at/></h1>
+      <h1><view:name/></h1>
     </content-header:>
 
     <field-list: replace>
       <div class="row">
-        <div class="span4"> <billing-address-card editable/></div>
-        <div class="span4"> <shipping-address-card editable/></div>
+        <div class="span4"> 
+          <if test="&this.basket?"><billing-address-card editable/></if>
+          <else><billing-address-card /></else>
+        </div>
+        <div class="span4"> 
+          <if test="&this.basket?"><shipping-address-card editable/></if>
+          <else><shipping-address-card /></else>
+        </div>
 
         <div class="span4">
           <if test="&this.shipping_name && this.billing_method">
-            <payment-card editable/>
-            <delivery-card editable/>
+            <if test="&this.basket?">
+              <payment-card editable/>
+              <delivery-card editable/>
+            </if>
+            <else>
+              <payment-card/>
+              <delivery-card/>
+            </else>
           </if>
         </div>
       </div>
@@ -75,9 +87,9 @@
         </div>
 
         <div class="pull-right">
-          <unless test="&this.billing_name">
+          <if test="&this.basket? && !this.billing_name">
             <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">Rechnungsadresse angeben</my-creator-link>
-          </unless>
+          </if>
           <else>
             <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
             <my-transition-link transition="check_basket" method="get" class="btn-primary"/>
@@ -139,10 +151,7 @@
       <div class="row">
         <div class="span4"> <billing-address-card/></div>
         <div class="span4"> <shipping-address-card/></div>
-
-        <div class="span4">
-          <if test="&this.shipping_name && this.billing_method"> <payment-card/> <delivery-card/> </if>
-        </div>
+        <div class="span4"> <payment-card/> <delivery-card/> </div>
       </div>
 
       <table class="table well table-striped">
@@ -167,6 +176,10 @@
           </repeat>
         </tbody>
       </table>
+
+      <div class="row">
+        <div class="span3 offset9"><summary-card/></div>
+      </div>
     </field-list:>
 
     <actions: replace>
@@ -213,8 +226,8 @@
 
 <def tag="payment-card" attrs="editable">
   <h3>Zahlungsart</h3>
-  <div class="well">
-    <if test="&editable">
+  <if test="&editable">
+    <div class="well">
       <if test="&this.billing_method">
         <p>
           <span class="label label-success">
@@ -232,21 +245,21 @@
         <my-transition-link transition="pre_payment" class="btn-info" method="put"/>
         <my-transition-link transition="e_payment" class="btn-info" method="put"/>
       </p>
-    </if>
-    <else>
-      <p>
-        <span class="label label-success">
-          <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
-        </span>
-      </p>
-    </else>
-  </div>
+    </div>
+  </if>
+  <else>
+    <p>
+      <span class="label label-success">
+        <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
+      </span>
+    </p>
+  </else>
 </def>
 
 <def tag="delivery-card" attrs="editable">
   <h3>Lieferart</h3>
-  <div class="well">
-    <if test="&editable">
+  <if test="&editable">
+    <div class="well">
       <if test="&this.shipping_method">
         <p>
           <span class="label label-success">
@@ -264,15 +277,15 @@
         <my-transition-link transition="pickup_shipment" class="btn-info" method="put"/>
         <my-transition-link transition="parcel_service_shipment" class="btn-info" method="put"/>
       </p>
-    </if>
-    <else>
-      <p>
-        <span class="label label-success">
-          <t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" />
-        </span>
-      </p>
-    </else>
-  </div>
+    </div>
+  </if>
+  <else>
+    <p>
+      <span class="label label-success">
+        <t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" />
+      </span>
+    </p>
+  </else>
 </def>
 
 <def tag="summary-card">

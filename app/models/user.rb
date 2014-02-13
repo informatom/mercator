@@ -56,9 +56,6 @@ class User < ActiveRecord::Base
 
     transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
 
-    transition :accept_gtc, {:guest => :guest}, available_to: :self,
-               params: [:confirmation], unless: :gtc_accepted_current?
-
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation], unless: :gtc_accepted_current?
 
@@ -71,7 +68,7 @@ class User < ActiveRecord::Base
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :request_password_reset, {:active => :active}, new_key: true do
+    transition :request_password_reset, {[:active, :guest] => :active}, new_key: true do
       UserMailer.forgot_password(self, lifecycle.key).deliver
     end
 
