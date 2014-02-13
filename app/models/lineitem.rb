@@ -126,6 +126,10 @@ class Lineitem < ActiveRecord::Base
     lineitem.delete
   end
 
+  def vat_value
+    self.vat * self.value / 100
+  end
+
   #--- Class Methods --- #
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
@@ -146,5 +150,4 @@ class Lineitem < ActiveRecord::Base
 
     raise unless lineitem.save
   end
-
 end

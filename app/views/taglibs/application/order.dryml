@@ -70,6 +70,10 @@
           </tbody>
         </table>
 
+        <div class="row">
+          <div class="span3 offset9"><summary-card/></div>
+        </div>
+
         <div class="pull-right">
           <unless test="&this.billing_name">
             <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">Rechnungsadresse angeben</my-creator-link>
@@ -102,8 +106,8 @@
                   <td><view:amount/> <view:unit/></td>
                   <td><view:product-number/></td>
                   <td> <view:description/> </td>
-                  <td>EUR <view:product-price/></td>
-                  <td>EUR <view:value/></td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.product-price)"/></div></td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
                   <td><my-transition-link transition="transfer_to_basket" class="btn-success btn-small"/></td>
                 </tr>
               </repeat>
@@ -157,8 +161,8 @@
                 <view:description/>
                 <if:delivery-time> <br/> <em>Lieferzeit:</em> <view/> </if>
               </td>
-              <td>EUR <view:product-price/></td>
-              <td>EUR <view:value/></td>
+              <td><div class="text-right"><view with="&number_to_currency(this.product-price)"/></div></td>
+              <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
             </tr>
           </repeat>
         </tbody>
@@ -269,4 +273,23 @@
       </p>
     </else>
   </div>
+</def>
+
+<def tag="summary-card">
+  <table class="table well table-striped table-condensed">
+    <tr>
+      <td>Summe exkl. Mwst</td>
+      <td><div class="text-right"><view with="&number_to_currency(this.sum)"/></div></td>
+    </tr> 
+    <repeat:vat-items>
+      <tr>
+        <td>Mwst. <view: with="&this[0]" />%</td>
+        <td><div class="text-right"><view with="&number_to_currency(this[1])" /></div></td>
+      </tr>
+    </repeat>
+    <tr class="success">
+      <td>Gesamtpreis</td>
+      <td><div class="text-right"><view with="& number_to_currency(this.sum_incl_vat)"/></div></td>
+    </tr> 
+  </table>
 </def>

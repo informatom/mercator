@@ -31,7 +31,7 @@
           <nav-item with="&current_user.basket">
             <%= fa_icon "shopping-cart", class:"fa-lg" %>
               <%= current_user.basket.lineitems.count %> Pos.
-              <%= current_user.basket.lineitems.sum('value') %> <%= fa_icon "eur" %>
+              <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
           </nav-item>
         </li>
       </if>

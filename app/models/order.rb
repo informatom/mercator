@@ -110,6 +110,24 @@ class Order < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
+  def sum
+    self.lineitems.sum('value')
+  end
+
+  def vat_items
+    vat_items = Hash.new
+    grouped_lineitems = self.lineitems.group_by{|lineitem| lineitem.vat}
+    grouped_lineitems.each_pair do |percentage, itemgroup|
+      vat_items[percentage] = itemgroup.reduce(0) {|sum, lineitem| sum + lineitem.vat_value}
+    end
+    return vat_items
+  end
+
+  def sum_incl_vat
+    self.sum + self.lineitems.*.vat_value.sum
+  end
+
+
   def name
     if ["basket", "parked"].include?(state)
       "Warenkorb vom " + I18n.l(created_at).to_s
