@@ -101,6 +101,14 @@
   </card>
 </def>
 
+<def tag="card" for="Feedback">
+  <card class="feedback" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Gtc">
   <card class="gtc" param="default" merge>
     <header: param>

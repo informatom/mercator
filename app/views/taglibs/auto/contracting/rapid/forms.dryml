@@ -28,7 +28,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, sales, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, state, addresses, billing_addresses" param/>
+    <field-list fields="name, email_address, administrator, sales, sales_manager, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, state, addresses, billing_addresses" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

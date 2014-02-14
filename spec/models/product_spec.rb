@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Product do
-  it "is valid with name_de, name_en, number, description_de, description_en, document, photo" do
+  it "is valid with title_de, title_en, number, description_de, description_en, document, photo" do
     expect(build(:product)).to be_valid
   end
 
-  it {should validate_presence_of(:name_de)}
+  it {should validate_presence_of(:title_de)}
   it {should validate_presence_of(:number)}
   it {should validate_presence_of(:description_de)}
   it {should validate_uniqueness_of(:number)}

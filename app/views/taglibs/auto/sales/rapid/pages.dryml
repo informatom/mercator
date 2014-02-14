@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Conversation"><ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Download"><ht key="download.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Feedback"><ht key="feedback.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -282,6 +283,119 @@
 
 
 
+<!-- ====== Feedback Pages ====== -->
+
+<def tag="index-page" for="Feedback">
+  <page merge title="#{ht 'feedback.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page feedback" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="feedback.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="feedback.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="feedback.actions.new">New Feedback</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Feedback">
+  <page merge title="#{ht 'feedback.new.title', :default=>[' New Feedback'] }">
+    <body: class="new-page feedback" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="feedback.new.heading">
+          New Feedback
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'feedback.actions.create', :default=>['Create Feedback']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Feedback">
+  <page merge title="#{ht 'feedback.show.title', :default=>['Feedback'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page feedback" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="feedback.show.heading" name="#{name(:no_wrapper => true)}">
+          Feedback <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="feedback.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Feedback
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:content param="description" />
+      <field-list fields="consultant, conversation, user" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Feedback">
+  <page merge title="#{ht 'feedback.edit.title', :default=>['Edit Feedback'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page feedback" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="feedback.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Feedback
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'feedback.actions.delete', :default=>['Remove This Feedback']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Message Pages ====== -->
 
 <def tag="index-page" for="Message">
@@ -465,7 +579,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="administrator, sales, logged_in" param/>
+      <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">

@@ -95,6 +95,14 @@
   </card>
 </def>
 
+<def tag="card" for="Feedback">
+  <card class="feedback" param="default" merge>
+    <body: param>
+      <view:content param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Gtc">
   <card class="gtc" param="default" merge>
     <header: param>

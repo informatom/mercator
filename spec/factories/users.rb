@@ -17,7 +17,14 @@ FactoryGirl.define do
   factory :sales, class: User do
     name "Sammy Sales Representative"
     email_address "sammy.sales@informatom.com"
-    administrator true
+    sales true
+    password "secret123"
+  end
+
+  factory :salesvmanager, class: User do
+    name "Sally Sales Manager"
+    email_address "sally.salesmanager@informatom.com"
+    sales_manager true
     password "secret123"
   end
 

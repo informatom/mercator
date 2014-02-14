@@ -89,6 +89,8 @@ de:
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
     runtime: Laufzeit
+    sales: Vertriebsmitarbeiter
+    sales_manager: Vertriebsleiter
     scale_from: Staffel ab
     scale_to: Staffel bis
     sender: Absender
@@ -154,6 +156,9 @@ de:
       download:
         one: Download
         other: Downloads
+      feedback:
+        one: Feedback
+        other: Feedback
       gtc:
         one: AGB
         other: AGBs

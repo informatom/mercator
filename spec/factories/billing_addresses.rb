@@ -10,5 +10,6 @@ FactoryGirl.define do
     city "Vienna"
     country "Österreich"
     email_address "john.doe@informatom.com"
+    vat_number "ATU66331917"
   end
 end

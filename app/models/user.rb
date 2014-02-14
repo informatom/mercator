@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     email_address    :email_address, :required, :unique, login: true
     administrator    :boolean, default: false
     sales            :boolean, default: false
+    sales_manager    :boolean, default: false
     legacy_id        :integer
     last_login_at    :datetime
     logged_in        :boolean, default: false

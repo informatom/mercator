@@ -3,8 +3,8 @@ class Product < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title_de        :string, :required
-    title_en        :string
+    title_de       :string, :required
+    title_en       :string
     number         :string, :required, :unique, name: true
     description_de :cktext, :required
     description_en :cktext
