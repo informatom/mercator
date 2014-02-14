@@ -70,6 +70,17 @@ class BillingAddressesController < ApplicationController
                             billing_city:       this.city,
                             billing_country:    this.country,
                             billing_method:     "parcel_service_shipment")
+      
+      unless current_basket.shipping_name
+        current_basket.update(shipping_name:       this.name,
+                              shipping_detail:     this.detail,
+                              shipping_street:     this.street,
+                              shipping_postalcode: this.postalcode,
+                              shipping_city:       this.city,
+                              shipping_country:    this.country,
+                              shipping_method:     "parcel_service_shipment")
+      end
+      
       redirect_to order_path(current_user.basket)
     end
   end

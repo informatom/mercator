@@ -1,0 +1,15 @@
+<def tag="billing-address-card" attrs="editable">
+  <if test="&this.billing_name">
+    <h3>Rechnungsadresse</h3>
+    <p class="well"><strong><view:billing_name/></strong><br/>
+      <if:billing_detail><view/><br/></if>
+      <view:billing_street/><br/>
+      <view:billing_postalcode/><br/>
+      <view:billing_city/><br/>
+      <view:billing_country/>
+    </p>
+    <if test="&editable">
+     <p><my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/></p>
+    </if>
+  </if>
+</def>

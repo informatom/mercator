@@ -1,0 +1,31 @@
+<def tag="delivery-card" attrs="editable">
+  <h3>Lieferart</h3>
+  <if test="&editable">
+    <div class="well">
+      <if test="&this.shipping_method">
+        <p>
+          <span class="label label-success">
+            <t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" />
+          </span>
+        </p>
+        <if test="&this.may_select_shipment">
+          <p>Lieferart wechseln:</p>
+        </if>
+      </if>
+      <else>
+        Bitte wählen Sie eine Lieferart:
+      </else>
+      <p>
+        <my-transition-link transition="pickup_shipment" class="btn-info" method="put"/>
+        <my-transition-link transition="parcel_service_shipment" class="btn-info" method="put"/>
+      </p>
+    </div>
+  </if>
+  <else>
+    <p>
+      <span class="label label-success">
+        <t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" />
+      </span>
+    </p>
+  </else>
+</def>

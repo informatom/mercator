@@ -16,7 +16,10 @@ class OrdersController < ApplicationController
     do_transition_action :place do
       flash[:success] = "Ihre Bestellung wurde angenommen."
       flash[:notice] = nil
-      render action: :show
+
+      Order.create(user: current_user) # and an new basket ...
+
+      render action: :confirm
     end
   end
 end

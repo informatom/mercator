@@ -1,0 +1,12 @@
+<show-page>
+  <field-list: replace>
+    <content-element name="bestellung_angenommen"/>
+  </field-list>
+</show-page>
+
+<def tag="content-element" attrs="name">
+  <do with="&ContentElement.where(name_de: name).first">
+    <if><view:content/></if>
+    <else>Hier fehlt der Textbaustein mit dem Namen <code><%= name %></code>! </else>
+  </do>
+</def>

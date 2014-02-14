@@ -1,0 +1,45 @@
+<extend tag="check-basket-form" for="Order">
+  <old-check-basket-form merge>
+    <field-list: replace>
+      <div class="row">
+        <div class="span4"> <billing-address-card/></div>
+        <div class="span4"> <shipping-address-card/></div>
+        <div class="span4"> <payment-card/> <delivery-card/> </div>
+      </div>
+
+      <table class="table well table-striped">
+        <thead>
+          <tr>
+            <th></th> <th>Menge</th><th>Artikelnummer</th> <th>Beschreibung</th> <th>Stückpreis</th> <th>Preis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <repeat with="&this.lineitems">
+            <tr class="success">
+              <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
+              <td><view:amount/> <view:unit/></td>
+              <td><view:product-number/></td>
+              <td>
+                <view:description/>
+                <if:delivery-time> <br/> <em>Lieferzeit:</em> <view/> </if>
+              </td>
+              <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
+              <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
+            </tr>
+          </repeat>
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="span3 offset9"><summary-card/></div>
+      </div>
+    </field-list:>
+
+    <actions: replace>
+      <div param="actions">
+        <my-transition-link transition="place" method="put" class="btn-danger"/>
+        oder <a with="&current_user.basket">Zurück zum Shop</a>
+      </div>
+    </actions:>
+  </old-check-basket-form>
+</extend>

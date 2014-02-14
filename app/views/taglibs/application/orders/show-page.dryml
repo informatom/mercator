@@ -1,0 +1,138 @@
+<extend tag="show-page" for="Order">
+  <old-show-page merge>
+    <content-header:>
+      <h1><view:name/></h1>
+    </content-header:>
+
+    <field-list: replace>
+      <div class="row">
+        <div class="span4"> 
+          <if test="&this.basket?"><billing-address-card editable/></if>
+          <else><billing-address-card /></else>
+        </div>
+        <div class="span4"> 
+          <if test="&this.basket?"><shipping-address-card editable/></if>
+          <else><shipping-address-card /></else>
+        </div>
+
+        <div class="span4">
+          <if test="&this.shipping_name && this.billing_method">
+            <if test="&this.basket?">
+              <payment-card editable/>
+              <delivery-card editable/>
+            </if>
+            <else>
+              <payment-card/>
+              <delivery-card/>
+            </else>
+          </if>
+        </div>
+      </div>
+
+      <if test="&this.lineitems">
+        <table class="table well table-striped">
+          <thead>
+            <tr>
+              <th></th> <th>Menge</th> <th></th> <th>Artikelnummer</th> <th>Beschreibung</th> <th>Stückpreis</th> <th>Preis</th> <th></th>
+            </tr>
+          </thead>
+          <tbody part="lineitems">
+            <repeat with="&this.lineitems">
+              <tr class="success">
+                <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
+                <td><view:amount/> <view:unit/></td>
+                <td>
+                  <my-transition-link transition="add_one" class="btn-success btn-small"/>
+                  <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
+                </td>
+                <td><view:product-number/></td>
+                <td>
+                  <view:description/>
+                  <if:delivery-time>
+                    <br/>
+                    <em>Lieferzeit:</em> <view/>
+                  </if>
+                </td>
+                <td>EUR <view:product-price/></td>
+                <td>EUR <view:value/></td>
+                <td>
+                  <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
+                  <br/><br/><br/>
+                  <my-transition-link transition="disable_upselling" class="btn btn-mini pull-right"/>
+                  <my-transition-link transition="enable_upselling" class="btn btn-mini pull-right"/>
+                </td>
+              </tr>
+              <if test="&this.product && this.upselling">
+                <repeat with="&this.product.supplies[0..4]">
+                  <tr class="warning table-condensed">
+                    <td><%= image_tag this.photo.url(:thumb), width: "25%" %></td>
+                    <td></td>
+                    <td></td>
+                    <td><view:number/></td>
+                    <td><view:title/></td>
+                    <td><div class="text-right"><view with="&number_to_currency(this.price)"/></div></td>
+                    <td></td>
+                    <td>
+                      <my-transition-link transition="add_to_basket" class="btn btn-success btn-small" />
+                    </td>
+                  </tr>
+                </repeat>
+              </if>
+            </repeat>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="span3 offset9"><summary-card/></div>
+        </div>
+
+        <div class="pull-right">
+          <if test="&this.basket? && !this.billing_name">
+            <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">Rechnungsadresse angeben</my-creator-link>
+          </if>
+          <else>
+            <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
+            <my-transition-link transition="check_basket" method="get" class="btn-primary"/>
+          </else>
+        </div>
+
+        <if with="&current_user.orders.state_is(:parked).try(:first)">
+          <br/><br/>
+          <h3>Geparkter <view/></h3>
+          <table class="table well table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Menge</th>
+                <th>Artikelnummer</th>
+                <th>Beschreibung</th>
+                <th>Stückpreis</th>
+                <th>Preis</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <repeat with="&this.lineitems">
+                <tr class="success">
+                  <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
+                  <td><view:amount/> <view:unit/></td>
+                  <td><view:product-number/></td>
+                  <td> <view:description/> </td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
+                  <td><my-transition-link transition="transfer_to_basket" class="btn-success btn-small"/></td>
+                </tr>
+              </repeat>
+            </tbody>
+          </table>
+          <div class="pull-right">
+              <my-transition-link transition="archive_parked_basket" class="btn-primary"/>
+          </div>
+        </if>
+
+      </if>
+      <else>Bisher gibt es keine Bestellpositionen.</else>
+    </field-list:>
+
+  </old-show-page>
+</extend>
