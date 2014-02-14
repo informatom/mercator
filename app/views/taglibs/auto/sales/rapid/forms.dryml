@@ -33,6 +33,17 @@
     </div>
   </form>
 </def>
+<def tag="feedback-form" polymorphic/>
+<def tag="feedback-form" for="Conversation">
+  <form lifecycle="feedback" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="content, mode" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.conversation.lifecycle.transitions.feedback', :default=>['Feedback']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Download">
   <form merge param="default">

@@ -34,5 +34,4 @@ class Sales::ConversationsController < Sales::SalesSiteController
       PrivatePub.publish_to("/conversations/"+ this.id.to_s, type: "downloads")
     end
   end
-
 end

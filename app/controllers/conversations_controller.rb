@@ -37,4 +37,20 @@ class ConversationsController < ApplicationController
                        consultant: User.sales.where(logged_in: true).first)
     end
   end
+
+  def do_feedback
+    do_transition_action :feedback do
+      @feedback = Feedback.create(content: params[:content])
+      case params[:mode]
+      when "all"
+        @feedback.update(user:         this.customer_id,
+                         cosultant:    this.consultant_id,
+                         conversation: this.id)
+      when "user"
+        @feedback.update(user: this.customer_id)
+      when "consultant"
+        @feedback.update(cosultant: this.consultant_id)
+      end
+    end
+  end
 end

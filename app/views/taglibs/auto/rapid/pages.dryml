@@ -717,6 +717,7 @@
     </content-header:>
 
     <content-body: param>
+      <view:content param="description" />
       <field-list fields="state, consultant, customer" param/>
     </content-body:>
 
@@ -784,6 +785,27 @@
 
     <content-body: param>
       <upload-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="feedback-page" polymorphic/>
+<def tag="feedback-page" for="Conversation">
+  <page title="#{ht 'conversation.feedback.title', :default=>['Feedback']}" merge>
+
+    <body: class="lifecycle-transition-page feedback-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="conversation.feedback.heading">
+          Feedback
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <feedback-form param="form"/>
     </content-body:>
 
   </page>

@@ -9,6 +9,7 @@ class Conversation < ActiveRecord::Base
   attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant,
                   :downloads, :messages, :offers, :baskets, :user
   has_paper_trail
+  attr_accessor :content, :mode
 
   belongs_to :customer, class_name: 'User', inverse_of: :conversations
   belongs_to :consultant, :class_name => 'User'
@@ -28,6 +29,7 @@ class Conversation < ActiveRecord::Base
 
     create :initiate, become: :active, available_to: :all, new_key: true, params: [:name]
     transition :upload, {:active => :active}, available_to: :collaborators, subsite: "admin"
+    transition :feedback, {:active => :active}, available_to: :customer, params: [:content, :mode]
   end
 
   # --- Permissions --- #

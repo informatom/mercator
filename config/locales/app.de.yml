@@ -234,6 +234,8 @@ de:
         lifecycle:
           creators:
             initiate: Konversation starten
+          transitions:
+            feedback: Feedback abgeben
       inventory:
         number: Artikelnummer
         storage: Lagerort / Filiale
