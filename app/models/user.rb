@@ -60,6 +60,9 @@ class User < ActiveRecord::Base
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation], unless: :gtc_accepted_current?
 
+    transition :accept_gtc, {:guest => :guest}, available_to: :self,
+               params: [:confirmation], unless: :gtc_accepted_current?
+
     transition :activate, {:inactive => :active}, available_to: :key_holder
 
     transition :deactivate, {active: :inactive}, available_to: "User.administrator",
@@ -116,7 +119,7 @@ class User < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def gtc_accepted_current?
-    self.gtc_version_of == Gtc.version_of
+    self.gtc_version_of == Gtc.current
   end
 
   def basket
@@ -125,14 +128,14 @@ class User < ActiveRecord::Base
 
   def sync_agb_with_basket
       # If user has already confirmed ...
-      if self.gtc_version_of == Gtc.version_of
-        self.basket.update(gtc_version_of:   Gtc.version_of,
+      if self.gtc_version_of == Gtc.current
+        self.basket.update(gtc_version_of:   Gtc.current,
                            gtc_confirmed_at: self.gtc_confirmed_at)
       end
 
       # If user had confirmed, when he was guest ...
-      if self.gtc_version_of == Gtc.version_of
-         self.update(gtc_version_of:   Gtc.version_of,
+      if self.gtc_version_of == Gtc.current
+         self.update(gtc_version_of:   Gtc.current,
                      gtc_confirmed_at: self.basket.gtc_confirmed_at)
       end
   end

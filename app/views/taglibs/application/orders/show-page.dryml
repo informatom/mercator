@@ -88,7 +88,9 @@
 
         <div class="pull-right">
           <if test="&this.basket? && !this.billing_name">
-            <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">Rechnungsadresse angeben</my-creator-link>
+            <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">
+              Rechnungsadresse angeben
+            </my-creator-link>
           </if>
           <else>
             <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>

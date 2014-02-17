@@ -81,9 +81,9 @@ class UsersController < ApplicationController
   def do_accept_gtc
     do_transition_action :accept_gtc do
       if this.confirmation == "1"
-        current_user.update(gtc_version_of: Gtc.version_of,
+        current_user.update(gtc_version_of: Gtc.current,
                             gtc_confirmed_at: Time.now())
-        current_user.basket.update(gtc_version_of: Gtc.version_of,
+        current_user.basket.update(gtc_version_of: Gtc.current,
                                    gtc_confirmed_at: Time.now())
         redirect_to order_path(current_user.basket)
       else
