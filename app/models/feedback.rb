@@ -6,7 +6,7 @@ class Feedback < ActiveRecord::Base
     content :text, :required
     timestamps
   end
-  attr_accessible :content
+  attr_accessible :content, :user_id, :consultant_id, :conversation_id
 
   has_paper_trail
   belongs_to :user
@@ -28,7 +28,6 @@ class Feedback < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    acting_user.sales_manager?
   end
-
 end

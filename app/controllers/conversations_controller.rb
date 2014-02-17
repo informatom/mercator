@@ -40,16 +40,18 @@ class ConversationsController < ApplicationController
 
   def do_feedback
     do_transition_action :feedback do
-      @feedback = Feedback.create(content: params[:content])
-      case params[:mode]
+      @feedback = Feedback.new(content: params[:conversation][:content])
+      case params[:conversation][:mode]
       when "all"
-        @feedback.update(user:         this.customer_id,
-                         cosultant:    this.consultant_id,
-                         conversation: this.id)
+        @feedback.update(user_id:         this.customer_id,
+                         consultant_id:   this.consultant_id,
+                         conversation_id: this.id)
       when "user"
-        @feedback.update(user: this.customer_id)
+        @feedback.update(user_id: this.customer_id)
       when "consultant"
-        @feedback.update(cosultant: this.consultant_id)
+        @feedback.update(consultant_id: this.consultant_id)
+      else 
+        @feedback.save
       end
     end
   end

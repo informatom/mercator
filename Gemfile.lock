@@ -124,7 +124,6 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.3.1)
     diff-lcs (1.2.5)
-    dryml-firemarker (0.0.12)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -357,7 +356,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.2.0)
   debugger (~> 1.6.5)
-  dryml-firemarker
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
   font-awesome-rails

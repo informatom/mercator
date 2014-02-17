@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator, :legacy_id, :sales,
+                  :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation
   attr_accessor :confirmation

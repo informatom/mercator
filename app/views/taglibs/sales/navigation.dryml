@@ -28,6 +28,11 @@
         <nav-item with="&Download">
           <ht key="download.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <if test="&current_user.sales_manager?">
+          <nav-item with="&Feedback">
+            <ht key="feedback.nav_item" count="100"><model-name-human count="100"/></ht>
+          </nav-item>
+        </if>
         <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
       </ul>
     </li>

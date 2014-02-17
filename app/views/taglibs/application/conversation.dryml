@@ -2,20 +2,21 @@
   <old-feedback-form merge>
     <field-list:>
       <content-view:>
-        <input for="text" cols="100"/>
+        <input for="text" class="input-xxlarge"/>
       </content-view:>
       <mode-label:>
         Protokoll
       </mode-label:>
       <mode-view:>
+        Es sollon folgende Daten protokolliert werden:<br/><br/>
         <input type="radio" name="conversation[mode]" value="all" checked />
-          Ich möchte, dass der Feedbacktext, ich und der Vertriebsberater protokolliert werden<br/>
-        <input type="radio" name="conversation[mode]" value="none" checked />
-          Es soll nur der Feedbacktext protokolliert werden<br/>
-        <input type="radio" name="conversation[mode]" value="user" checked />
-          Der Feedbacktext und ich sollen protokolliert werden<br/>
-        <input type="radio" name="conversation[mode]" value="consultant" checked />
-          Der Feedbacktext und der Vertriebsmitarbeiter sollen protokolliert werden<br/>
+          Feedbacktext, ich und Berater(in)<br/>
+        <input type="radio" name="conversation[mode]" value="consultant"/>
+          Feedbacktext und Berater(in)<br/>
+        <input type="radio" name="conversation[mode]" value="user"/>
+          Feedbacktext und ich<br/>
+        <input type="radio" name="conversation[mode]" value="none"/>
+          Feedbacktext<br/>
       </mode-view:>
     </field-list:>
   </old-feedback-form>
