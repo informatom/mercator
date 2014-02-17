@@ -39,9 +39,10 @@
           </section>
         </div>
         <div class="span4">
+          <h3>Datei und Bild-Upload</h3>
           <div id="fine-uploader"></div>
           <br/>
-          <div class="btn btn-info" id="dropzone"> Bild hier pasten (auf mich zeigen und [STRG]+[v])</div>
+          <div class="btn btn-info" id="dropzone">Datei hier pasten (auf mich zeigen und [STRG]+[v])</div>
 
           <script>
           var filenames = [];
@@ -94,6 +95,13 @@
                   </ul>
               </div>
           </script>
+
+          <div>
+            <h3>Cobrowsing Link</h3>
+            <form with="&@link" update="links">
+              <p> URL: <input:url/> </p>
+            </form>
+          </div>
         </div>
       </div>
    </append-content-body:>

@@ -4,7 +4,7 @@ class Link < ActiveRecord::Base
 
   fields do
     url   :string, :required
-    title :text
+    title :string
     timestamps
   end
   attr_accessible :url, :title, :conversation_id

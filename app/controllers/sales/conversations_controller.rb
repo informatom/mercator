@@ -19,6 +19,7 @@ class Sales::ConversationsController < Sales::SalesSiteController
       @message = Message.new(reciever_id: reciever_id,
                              conversation_id: this.id,
                              sender_id: current_user.id)
+      @link = Link.new(conversation_id: this.id)
     end
   end
 

@@ -35,6 +35,10 @@
         <input name="id" value="#{this.id}" type="hidden"/>
       </form>
 
+      <form id="links-form" style="display:none;" action="refresh" update="links">
+        <input name="id" value="#{this.id}" type="hidden"/>
+      </form>
+
       <form id="downloads-form" style="display:none;" action="refresh" update="downloads">
         <input name="id" value="#{this.id}" type="hidden"/>
       </form>
@@ -59,6 +63,27 @@
         <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
         <collection:downloads part="downloads"/>
       </section>
+
+      <div part="links">
+        <if test="&Time.now - this.links.recent(1)[0].created_at < 10">
+          <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" 
+               aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Webseite</h3>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Schließen</button>
+            </div>
+          </div>
+          <script>
+            $('#myModal').modal({remote: '<%= this.links.recent(1)[0].url %>'})
+          </script>
+        </if>
+      </div>
 
       Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback:
       <my-transition-link transition="feedback" method="get" class="btn-primary"/>
