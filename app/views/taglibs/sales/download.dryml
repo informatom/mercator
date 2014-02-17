@@ -7,7 +7,12 @@
 <def tag="card" for="Download">
   <card class="download" param="default" merge>
     <header: param>
-      <h4 param="heading"> <name/> </h4>
+      <h4 param="heading"> 
+        <click-editor-innards:name>
+            <view: replace>
+              <%= fa_icon "edit" %> <view restore/>
+            </view:>
+         </click-editor-innards:name> </h4>
     </header:>
 
     <body:>
