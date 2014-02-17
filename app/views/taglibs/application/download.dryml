@@ -7,9 +7,8 @@
     <body:>
       <div class="row">
         <div class="span4">
-          <if:photo>
-            <image src="&this.url(:small)" />
-          </if>
+          <if:photo> <a href="&this.url" target="new"><image src="&this.url(:small)" /></a> </if:photo>
+          <if:document>Download: <a href="&this.url"><view:original-filename/></a> </if:document>
         </div>
         <div class="span3">
           <delete-button label="X" param class="btn-danger" />
