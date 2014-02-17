@@ -51,7 +51,7 @@ group :development, :test  do
   gem "better_errors"                               # Debug messages im Browser
   gem "binding_of_caller"                           # Repl for better_errors
 #  gem 'rack-mini-profiler'                          # Performance Testing
-  gem 'dryml-firemarker', :require => 'dryml13-firemarker' # DRYML Debugger
+  # gem 'dryml-firemarker', :require => 'dryml13-firemarker' # DRYML Debugger
 end
 
 group :test do

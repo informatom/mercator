@@ -7,9 +7,10 @@ class Conversation < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :customer_id, :consultant_id, :customer, :consultant,
-                  :downloads, :messages, :offers, :baskets, :user
+                  :downloads, :messages, :offers, :baskets, :user, :content, :mode
   has_paper_trail
-  attr_accessor :content, :mode
+  attr_accessor :content, :type => :text
+  attr_accessor :mode, :type => :text
 
   belongs_to :customer, class_name: 'User', inverse_of: :conversations
   belongs_to :consultant, :class_name => 'User'

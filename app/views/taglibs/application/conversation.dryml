@@ -1,3 +1,26 @@
+<extend tag="feedback-form" for="Conversation">
+  <old-feedback-form merge>
+    <field-list:>
+      <content-view:>
+        <input for="text" cols="100"/>
+      </content-view:>
+      <mode-label:>
+        Protokoll
+      </mode-label:>
+      <mode-view:>
+        <input type="radio" name="conversation[mode]" value="all" checked />
+          Ich möchte, dass der Feedbacktext, ich und der Vertriebsberater protokolliert werden<br/>
+        <input type="radio" name="conversation[mode]" value="none" checked />
+          Es soll nur der Feedbacktext protokolliert werden<br/>
+        <input type="radio" name="conversation[mode]" value="user" checked />
+          Der Feedbacktext und ich sollen protokolliert werden<br/>
+        <input type="radio" name="conversation[mode]" value="consultant" checked />
+          Der Feedbacktext und der Vertriebsmitarbeiter sollen protokolliert werden<br/>
+      </mode-view:>
+    </field-list:>
+  </old-feedback-form>
+</extend>
+
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
      <append-content-body:>
@@ -42,24 +65,4 @@
    </append-content-body:>
 
   </old-show-page>
-</extend>
-
-<extend tag="feedback-form" for="Conversation">
-  <old-feedback-form merge>
-    <field-list: >
-      <content-view:>
-        12345<input for="text"/>
-      </content-view:>
-      <mode-view:>
-        <input type="radio" name="conversation[mode]" value="all" checked />
-          Neben dem Feedbacktext möchti ich, dass ich und der Vertriebsberater protokolliert werden<br/>
-        <input type="radio" name="conversation[mode]" value="none" checked />
-          Es soll nur der Feedbacktext protokolliert werden<br/>
-        <input type="radio" name="conversation[mode]" value="user" checked />
-          Der Feedbacktext und ich sollen protokolliert werden<br/>
-        <input type="radio" name="conversation[mode]" value="consultant" checked />
-          Der Feedbacktext und der Vertriebsmitarbeiter sollen protokolliert werden<br/>
-      </mode-view:>
-    </field-list:>
-  </old-feedback-form>
 </extend>
