@@ -38,4 +38,9 @@ class Suggestion < ActiveRecord::Base
     conversation.customer_is?(acting_user)
   end
 
+# --- Instance methods --- #
+
+  def name
+    product.number 
+  end
 end

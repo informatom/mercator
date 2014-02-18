@@ -17,6 +17,10 @@
             <input name="id" value="#{this.id}" type="hidden"/>
           </form>
 
+          <form id="suggestions-form" style="display:none;" action="refresh" update="suggestions">
+            <input name="id" value="#{this.id}" type="hidden"/>
+          </form>
+
           <script>
             PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
               $("form#" + data.type + "-form").submit();
@@ -104,14 +108,20 @@
           </div>
 
           <div>
-            <h3>Produktvergleich</h3>
-            <form action="/#{this.id}/product_compare" update="links">
+            <h3>Produktvorschlag</h3>
+            <form with="&@suggestion" update="suggestions">
               <p>
-                Artikelnummern: 
-                <autocomplete:products source="&complete_number_sales_products_path" />
+                Artikelnummer: 
+                <autocomplete:product source="&complete_number_sales_products_path" />
               </p>
             </form>
           </div>
+
+          <section param="collection-section" merge>
+            <h3 param="collection-heading"> <%= t("attributes.suggestions") %> </h3>
+            <collection:suggestions part="suggestions"/>
+          </section>
+
         </div>
       </div>
    </append-content-body:>

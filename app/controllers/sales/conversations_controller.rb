@@ -20,6 +20,7 @@ class Sales::ConversationsController < Sales::SalesSiteController
                              conversation_id: this.id,
                              sender_id: current_user.id)
       @link = Link.new(conversation_id: this.id)
+      @suggestion = Suggestion.new(conversation_id: this.id)
     end
   end
 

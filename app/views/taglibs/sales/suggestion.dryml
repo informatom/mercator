@@ -1,0 +1,4 @@
+<def tag="card" for="Suggestion">
+  <div class="span2"><strong><name/></strong></div>
+  <div class="span1"><delete-button label="X" param class="btn-danger btn-mini" /></div>
+</def>
