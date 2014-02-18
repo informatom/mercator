@@ -24,84 +24,98 @@
 
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
-     <append-content-body:>
-      <form with="&@message" update="mymessages">
-        <div> Neue Nachricht: <input:content/> </div>
-      </form>
+     <content-body:>
+      <div class="row">
+        <div class="span8">
+          <form with="&@message" update="mymessages">
+            <div> Neue Nachricht: <input:content/> </div>
+          </form>
 
-      <%= subscribe_to "/conversations/" + this.id.to_s %>
+          <%= subscribe_to "/conversations/" + this.id.to_s %>
 
-      <form id="messages-form" style="display:none;" action="refresh" update="messages">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
+          <form id="messages-form" style="display:none;" action="refresh" update="messages">
+            <input name="id" value="#{this.id}" type="hidden"/>
+          </form>
 
-      <form id="links-form" style="display:none;" action="refresh" update="links">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
+          <form id="links-form" style="display:none;" action="refresh" update="links">
+            <input name="id" value="#{this.id}" type="hidden"/>
+          </form>
 
-      <form id="downloads-form" style="display:none;" action="refresh" update="downloads">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
+          <form id="downloads-form" style="display:none;" action="refresh" update="downloads">
+            <input name="id" value="#{this.id}" type="hidden"/>
+          </form>
 
-      <script>
-          PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
-            $("form#" + data.type + "-form").submit();
-          });
-      </script>
+          <script>
+              PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
+                $("form#" + data.type + "-form").submit();
+              });
+          </script>
 
-      <section param="collection-section" merge>
-        <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
-        <collection:messages part="messages"/>
-      </section>
+          <section param="collection-section" merge>
+            <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
+            <collection:messages part="messages"/>
+          </section>
 
-      <section param="collection-section" merge>
-        <h3 param="collection-heading"> <%= t("attributes.baskets") %> </h3>
-        <collection:baskets param/>
-      </section>
+          <section param="collection-section" merge>
+            <h3 param="collection-heading"> <%= t("attributes.baskets") %> </h3>
+            <collection:baskets param/>
+          </section>
 
-      <section param="collection-section" merge>
-        <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
-        <collection:downloads part="downloads"/>
-      </section>
+          <section param="collection-section" merge>
+            <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
+            <collection:downloads part="downloads"/>
+          </section>
 
-      <div part="links">
-        <if test="&this.last_link && Time.now - this.links.recent(1)[0].created_at < 10">
-          <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" 
-               aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h3 id="myModalLabel">Webseite</h3>
-            </div>
-            <div class="modal-body">
-              <unless test="&this.last_link.local?">
-                <iframe src="#{this.last_link.url}" width="95%" height="700">
-                  <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
-                     Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
-                     aufrufen: <a href="&this.last_link.url">Link</a></p>
-                </iframe>
-              </unless>
-            </div>
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Schließen</button>
-            </div>
+          <div part="links">
+            <if test="&this.last_link && Time.now - this.links.recent(1)[0].created_at < 10">
+              <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" 
+                   aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel">Webseite</h3>
+                </div>
+                <div class="modal-body">
+                  <unless test="&this.last_link.local?">
+                    <iframe src="#{this.last_link.url}" width="95%" height="700">
+                      <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
+                         Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
+                         aufrufen: <a href="&this.last_link.url">Link</a></p>
+                    </iframe>
+                  </unless>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Schließen</button>
+                </div>
+              </div>
+              <if test="&this.last_link.local?">
+                <script>
+                  $('#myModal').modal({remote: '<%= this.links.recent(1)[0].url %>'})
+                </script>
+              </if>
+              <else>
+                <script>
+                  $('#myModal').modal()
+                </script>
+              </else>
+            </if>
           </div>
-          <if test="&this.last_link.local?">
-            <script>
-              $('#myModal').modal({remote: '<%= this.links.recent(1)[0].url %>'})
-            </script>
-          </if>
-          <else>
-            <script>
-              $('#myModal').modal()
-            </script>
-          </else>
-        </if>
+        </div>
+        <div class="span4">
+          <section param="collection-section" merge>
+            <h3 param="collection-heading"> <%= t("attributes.suggestions") %> </h3>
+            <collection:suggestions part="suggestions"/>
+          </section>
+          <create-button with="&Link" update="messages" label="Produktvorschläge anzeigen" 
+                         fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions', 
+                                   conversation_id: this.id.to_s }"/>
+
+          <h3> Feedback </h3>
+          <p>Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback:</p>
+          <p><my-transition-link transition="feedback" method="get" class="btn-primary"/></p>
+
+        </div>
       </div>
-
-      Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback:
-      <my-transition-link transition="feedback" method="get" class="btn-primary"/>
-
-   </append-content-body:>
+    </content-body:>
 
   </old-show-page>
 </extend>

@@ -102,7 +102,7 @@
 
           <div>
             <h3>Cobrowsing Link</h3>
-            <form with="&@link" update="links">
+            <form with="&@link" update="links" id="cobrowsing">
               <p> URL: <input:url/> </p>
             </form>
           </div>
@@ -115,6 +115,9 @@
                 <autocomplete:product source="&complete_number_sales_products_path" />
               </p>
             </form>
+            <create-button with="&Link" update="messages" label="Produktvorschläge anzeigen" 
+                           fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions', 
+                                     conversation_id: this.id.to_s }"/>
           </div>
 
           <section param="collection-section" merge>

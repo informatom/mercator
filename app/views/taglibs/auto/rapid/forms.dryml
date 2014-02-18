@@ -278,6 +278,18 @@
   </form>
 </def>
 
+<def tag="form" for="Link">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="url, title, conversation" param/>
+    <div param="actions">
+      <submit label="#{ht 'link.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Message">
   <form merge param="default">
     <error-messages param/>

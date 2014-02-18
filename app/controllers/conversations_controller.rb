@@ -1,8 +1,8 @@
 class ConversationsController < ApplicationController
 
   hobo_model_controller
-
   auto_actions :show, :index, :lifecycle
+  show_action :suggestions
 
   def refresh
     self.this = Conversation.find(params[:id])
@@ -55,4 +55,11 @@ class ConversationsController < ApplicationController
       end
     end
   end
+
+  def suggestions
+    @conversation = Conversation.find(params[:id])
+    @this = @products = @conversation.products.paginate(:page => 1, :per_page => @conversation.products.count)
+    hobo_index
+  end
+
 end

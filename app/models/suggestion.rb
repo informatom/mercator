@@ -41,6 +41,6 @@ class Suggestion < ActiveRecord::Base
 # --- Instance methods --- #
 
   def name
-    product.number 
+    "(" + product.number + ") " + product.title
   end
 end

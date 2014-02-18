@@ -1,5 +1,5 @@
 <def tag="card" for="Product">
-  <div class="product media" param="default" merge>
+  <div class="product media well" param="default" merge>
 
     <span class="pull-left">
       <if test="&this.photo.exists?">
