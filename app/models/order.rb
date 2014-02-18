@@ -41,10 +41,10 @@ class Order < ActiveRecord::Base
 
   lifecycle do
     state :basket, :default => true
-    state :ordered, :offer, :parked, :archived_basket
+    state :ordered, :parked, :archived_basket
     state :paid, :shipped
 
-    transition :order, {[:basket, :offer] => :ordered}
+    transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
 

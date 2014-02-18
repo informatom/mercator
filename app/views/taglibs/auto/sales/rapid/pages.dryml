@@ -11,6 +11,8 @@
     <nav-item with="&Feedback"><ht key="feedback.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Link"><ht key="link.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Offer"><ht key="offer.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Offeritem"><ht key="offeritem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Suggestion"><ht key="suggestion.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -632,6 +634,231 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'message.actions.delete', :default=>['Remove This Message']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Offeritem Pages ====== -->
+
+<def tag="index-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="offeritem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="offeritem.actions.new">New Offeritem</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.new.title', :default=>[' New Offeritem'] }">
+    <body: class="new-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.new.heading">
+          New Offeritem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'offeritem.actions.create', :default=>['Create Offeritem']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.show.title', :default=>['Offeritem'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.show.heading" name="#{name(:no_wrapper => true)}">
+          Offeritem <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="upselling" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="offeritem.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Offeritem
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, state, offer, product, user" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.edit.title', :default=>['Edit Offeritem'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Offeritem
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'offeritem.actions.delete', :default=>['Remove This Offeritem']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Offer Pages ====== -->
+
+<def tag="index-page" for="Offer">
+  <page merge title="#{ht 'offer.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="offer.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="offer.actions.new">New Offer</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Offer">
+  <page merge title="#{ht 'offer.new.title', :default=>[' New Offer'] }">
+    <body: class="new-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.new.heading">
+          New Offer
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'offer.actions.create', :default=>['Create Offer']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Offer">
+  <page merge title="#{ht 'offer.show.title', :default=>['Offer'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.show.heading" name="#{name(:no_wrapper => true)}">
+          Offer <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="offer.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Offer
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, state, consultant, conversation, user" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Offer">
+  <page merge title="#{ht 'offer.edit.title', :default=>['Edit Offer'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Offer
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'offer.actions.delete', :default=>['Remove This Offer']}" param/>
     </content-header:>
 
     <content-body: param>
