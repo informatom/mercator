@@ -21,4 +21,6 @@ describe Conversation do
   it {should have_many(:messages)}
   it {should have_many(:links)}
   it {should have_many(:offers)}
+  it {should have_many(:products)}
+  it {should have_many(:suggestions)}
 end

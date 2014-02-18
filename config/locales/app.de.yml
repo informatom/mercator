@@ -201,6 +201,9 @@ de:
       shipping_cost:
         one: Versandspesen
         other: Versandspesen
+      suggestion: 
+        one: Produktvorschlag
+        other: Produktvorschläge
       supplyrelation:
         one: Zubehörzuordnung
         other: Zubehörzuordnungen

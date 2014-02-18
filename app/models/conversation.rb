@@ -23,6 +23,8 @@ class Conversation < ActiveRecord::Base
   has_many :links
   has_many :offers, -> {where state: :offer}, :class_name => 'Order'
   has_many :baskets, -> {where state: "basket"}, :class_name => 'Order'
+  has_many :products, :through => :suggestions
+  has_many :suggestions
 
   # --- Lifecycles --- #
 

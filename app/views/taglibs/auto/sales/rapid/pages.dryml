@@ -11,6 +11,7 @@
     <nav-item with="&Feedback"><ht key="feedback.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Link"><ht key="link.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Suggestion"><ht key="suggestion.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -631,6 +632,408 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'message.actions.delete', :default=>['Remove This Message']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Product Pages ====== -->
+
+<def tag="index-page" for="Product">
+  <page merge title="#{ht 'product.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="product.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Product">
+  <page merge title="#{ht 'product.new.title', :default=>[' New Product'] }">
+    <body: class="new-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.new.heading">
+          New Product
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'product.actions.create', :default=>['Create Product']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Product">
+  <page merge title="#{ht 'product.show.title', :default=>['Product'], :name => name(:no_wrapper => true) }" >
+
+    <body: class="show-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.show.heading" name="#{name(:no_wrapper => true)}">
+          Product <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="title_de, title_en, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="inventory.collection.heading" count="&this.inventories.count" >
+            <human-collection-name collection="inventories" your/>
+          </ht>
+        </h3>
+
+        <collection:inventories param/>
+      </section>
+    </content-body:>
+
+    <aside: param>
+      <section param="properties-collection-section">
+        <h3 param="properties-collection-heading">
+          <ht key="property.collection.heading" count="&this.properties.count" >
+            <human-collection-name collection="properties" your/>
+          </ht>
+        </h3>
+        <collection:properties  param="properties-collection"/>
+      </section>
+      <section param="categories-collection-section">
+        <h3 param="categories-collection-heading">
+          <ht key="category.collection.heading" count="&this.categories.count" >
+            <human-collection-name collection="categories" your/>
+          </ht>
+        </h3>
+        <collection:categories  param="categories-collection"/>
+      </section>
+      <section param="related_products-collection-section">
+        <h3 param="related_products-collection-heading">
+          <ht key="product.collection.heading" count="&this.related_products.count" >
+            <human-collection-name collection="related_products" your/>
+          </ht>
+        </h3>
+        <collection:related_products  param="related_products-collection"/>
+      </section>
+      <section param="supplies-collection-section">
+        <h3 param="supplies-collection-heading">
+          <ht key="product.collection.heading" count="&this.supplies.count" >
+            <human-collection-name collection="supplies" your/>
+          </ht>
+        </h3>
+        <collection:supplies  param="supplies-collection"/>
+      </section>
+      <section param="recommended_products-collection-section">
+        <h3 param="recommended_products-collection-heading">
+          <ht key="product.collection.heading" count="&this.recommended_products.count" >
+            <human-collection-name collection="recommended_products" your/>
+          </ht>
+        </h3>
+        <collection:recommended_products  param="recommended_products-collection"/>
+      </section>
+      <section param="features-collection-section">
+        <h3 param="features-collection-heading">
+          <ht key="feature.collection.heading" count="&this.features.count" >
+            <human-collection-name collection="features" your/>
+          </ht>
+        </h3>
+        <collection:features  param="features-collection"/>
+      </section>
+    </aside:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Product">
+  <page merge title="#{ht 'product.edit.title', :default=>['Edit Product'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page product" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Product
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'product.actions.delete', :default=>['Remove This Product']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="add-to-basket-page" polymorphic/>
+<def tag="add-to-basket-page" for="Product">
+  <page title="#{ht 'product.add_to_basket.title', :default=>['Add To Basket']}" merge>
+
+    <body: class="lifecycle-transition-page add-to-basket-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.add_to_basket.heading">
+          Add To Basket
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-to-basket-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="compare-page" polymorphic/>
+<def tag="compare-page" for="Product">
+  <page title="#{ht 'product.compare.title', :default=>['Compare']}" merge>
+
+    <body: class="lifecycle-transition-page compare-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.compare.heading">
+          Compare
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <compare-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="dont-compare-page" polymorphic/>
+<def tag="dont-compare-page" for="Product">
+  <page title="#{ht 'product.dont_compare.title', :default=>['Dont Compare']}" merge>
+
+    <body: class="lifecycle-transition-page dont-compare-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.dont_compare.heading">
+          Dont Compare
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <dont-compare-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="activate-page" polymorphic/>
+<def tag="activate-page" for="Product">
+  <page title="#{ht 'product.activate.title', :default=>['Activate']}" merge>
+
+    <body: class="lifecycle-transition-page activate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.activate.heading">
+          Activate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="Product">
+  <page title="#{ht 'product.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.deactivate.heading">
+          Deactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reactivate-page" polymorphic/>
+<def tag="reactivate-page" for="Product">
+  <page title="#{ht 'product.reactivate.title', :default=>['Reactivate']}" merge>
+
+    <body: class="lifecycle-transition-page reactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="product.reactivate.heading">
+          Reactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<!-- ====== Suggestion Pages ====== -->
+
+<def tag="index-page" for="Suggestion">
+  <page merge title="#{ht 'suggestion.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page suggestion" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="suggestion.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="suggestion.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="suggestion.actions.new">New Suggestion</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Suggestion">
+  <page merge title="#{ht 'suggestion.new.title', :default=>[' New Suggestion'] }">
+    <body: class="new-page suggestion" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="suggestion.new.heading">
+          New Suggestion
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'suggestion.actions.create', :default=>['Create Suggestion']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Suggestion">
+  <page merge title="#{ht 'suggestion.show.title', :default=>['Suggestion'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page suggestion" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="suggestion.show.heading" name="#{name(:no_wrapper => true)}">
+          Suggestion <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="suggestion.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Suggestion
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="conversation, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Suggestion">
+  <page merge title="#{ht 'suggestion.edit.title', :default=>['Edit Suggestion'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page suggestion" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="suggestion.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Suggestion
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'suggestion.actions.delete', :default=>['Remove This Suggestion']}" param/>
     </content-header:>
 
     <content-body: param>

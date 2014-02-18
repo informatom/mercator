@@ -93,6 +93,96 @@
 
 
 
+<def tag="form" for="Product">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title_de, title_en, number, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
+    <div param="actions">
+      <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="add-to-basket-form" polymorphic/>
+<def tag="add-to-basket-form" for="Product">
+  <form lifecycle="add_to_basket" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.add_to_basket', :default=>['Add To Basket']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="compare-form" polymorphic/>
+<def tag="compare-form" for="Product">
+  <form lifecycle="compare" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.compare', :default=>['Compare']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="dont-compare-form" polymorphic/>
+<def tag="dont-compare-form" for="Product">
+  <form lifecycle="dont_compare" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.dont_compare', :default=>['Dont Compare']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="activate-form" polymorphic/>
+<def tag="activate-form" for="Product">
+  <form lifecycle="activate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="deactivate-form" polymorphic/>
+<def tag="deactivate-form" for="Product">
+  <form lifecycle="deactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.deactivate', :default=>['Deactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reactivate-form" polymorphic/>
+<def tag="reactivate-form" for="Product">
+  <form lifecycle="reactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.product.lifecycle.transitions.reactivate', :default=>['Reactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Suggestion">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="conversation, product" param/>
+    <div param="actions">
+      <submit label="#{ht 'suggestion.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>

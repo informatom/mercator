@@ -102,6 +102,16 @@
               <p> URL: <input:url/> </p>
             </form>
           </div>
+
+          <div>
+            <h3>Produktvergleich</h3>
+            <form action="/#{this.id}/product_compare" update="links">
+              <p>
+                Artikelnummern: 
+                <autocomplete:products source="&complete_number_sales_products_path" />
+              </p>
+            </form>
+          </div>
         </div>
       </div>
    </append-content-body:>
