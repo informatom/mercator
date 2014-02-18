@@ -61,4 +61,8 @@ class Conversation < ActiveRecord::Base
   def collaborators
     [self.consultant, self.customer]
   end
+
+  def last_link
+    self.links.recent(1)[0]
+  end
 end

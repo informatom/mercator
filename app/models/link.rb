@@ -35,4 +35,16 @@ class Link < ActiveRecord::Base
     conversation.customer_is?(acting_user)
   end
 
+# --- Class Methods --- #
+
+  def local?
+    @cms_domain = Constant.find_by_key("cms_domain").try(:value)
+    @shop_domain = Constant.find_by_key("shop_domain").try(:value)
+    if url.split("/")[2] == @cms_domain ||  url.split("/")[2] == @shop_domain
+      return true
+    else 
+      return false
+    end
+
+  end 
 end

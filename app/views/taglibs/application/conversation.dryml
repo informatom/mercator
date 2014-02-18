@@ -65,7 +65,7 @@
       </section>
 
       <div part="links">
-        <if test="&Time.now - this.links.recent(1)[0].created_at < 10">
+        <if test="&this.last_link && Time.now - this.links.recent(1)[0].created_at < 10">
           <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" 
                aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
@@ -73,15 +73,28 @@
               <h3 id="myModalLabel">Webseite</h3>
             </div>
             <div class="modal-body">
-              <p></p>
+              <unless test="&this.last_link.local?">
+                <iframe src="#{this.last_link.url}" width="95%" height="700">
+                  <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
+                     Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
+                     aufrufen: <a href="&this.last_link.url">Link</a></p>
+                </iframe>
+              </unless>
             </div>
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal" aria-hidden="true">Schließen</button>
             </div>
           </div>
-          <script>
-            $('#myModal').modal({remote: '<%= this.links.recent(1)[0].url %>'})
-          </script>
+          <if test="&this.last_link.local?">
+            <script>
+              $('#myModal').modal({remote: '<%= this.links.recent(1)[0].url %>'})
+            </script>
+          </if>
+          <else>
+            <script>
+              $('#myModal').modal()
+            </script>
+          </else>
         </if>
       </div>
 
