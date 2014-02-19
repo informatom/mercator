@@ -8,6 +8,12 @@ de:
     ancestry: Ancestry-String
     basket: Warenkorb
     baskets: Warenkörbe
+    billing_country: Rechnungsadresse / Land
+    billing_city: Rechnungsadresse / Stadt
+    billing_detail: Rechnungsadresse / Details
+    billing_name: Rechnungsadresse / Name
+    billing_postalcode: Rechnungsadresse / Postleitzahl
+    billing_street: Rechnungsadresse / Straße
     BillingAddress: Rechnungsadresse
     billing_addresses: Rechnungsadresse
     Category: Kategorie
@@ -17,6 +23,7 @@ de:
     Categorization: Kategorisierung
     categorizations: Kategorisierungen
     category: Kategorie
+    conversation_id: Konversation
     conversations: Konversationen
     charge: Charge
     city: Ort
@@ -25,6 +32,7 @@ de:
     comment: Kommentar
     Constant: Konstante
     consultant: Berater
+    consultant_id: Berater
     content: Inhalt
     content_element: Baustein
     Conversation: Konversation
@@ -54,6 +62,7 @@ de:
     messages: Nachrichten
     miscellaneous: Diverses
     name: Name
+    offers: Angebote
     order: Bestellung
     orders: Bestellungen
     webpage: Webseite
@@ -95,7 +104,13 @@ de:
     scale_from: Staffel ab
     scale_to: Staffel bis
     sender: Absender
+    shipping_country: Lieferadresse / Land
+    shipping_city: Lieferadresse / Stadt
+    shipping_detail: Lieferadresse / Details
     shipping_method: Versandart
+    shipping_name: Lieferadresse / Name
+    shipping_postalcode: Lieferadresse / Postleitzahl
+    shipping_street: Lieferadresse / Straße
     Sites: Bereiche
     startdate: Startdatum
     state: Status
@@ -111,6 +126,7 @@ de:
     usage_id: Element
     used_as: Verwendet als
     usage_type: Verwendungsart
+    user_id: Benutzer
     User: Benutzer
     updated_at: Aktualisiert
     valid_from: Gültig ab
@@ -173,6 +189,12 @@ de:
       message:
         one: Nachricht
         other: Nachrichten
+      offer:
+        one: Angebot
+        other: Angebote
+      offeritem:
+        one: Angobotsposition
+        other: Angobotspositionen
       order:
         one: Bestellung
         other: Bestellungen
@@ -203,7 +225,7 @@ de:
       shipping_cost:
         one: Versandspesen
         other: Versandspesen
-      suggestion: 
+      suggestion:
         one: Produktvorschlag
         other: Produktvorschläge
       supplyrelation:
@@ -390,3 +412,8 @@ de:
       heading: Konversation starten
     actions:
       initiate: Konversation starten
+  offer:
+    build:
+      heading: Angebot legen
+    actions:
+      build: Zwischenspeichern

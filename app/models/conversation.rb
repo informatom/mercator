@@ -21,7 +21,7 @@ class Conversation < ActiveRecord::Base
   has_many :downloads
   has_many :messages
   has_many :links
-  has_many :offers, -> {where state: :offer}, :class_name => 'Order'
+  has_many :offers
   has_many :baskets, -> {where state: "basket"}, :class_name => 'Order'
   has_many :products, :through => :suggestions
   has_many :suggestions

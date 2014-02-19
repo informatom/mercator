@@ -21,6 +21,7 @@ class Sales::ConversationsController < Sales::SalesSiteController
                              sender_id: current_user.id)
       @link = Link.new(conversation_id: this.id)
       @suggestion = Suggestion.new(conversation_id: this.id)
+      session[:current_conversation_id] = this.id
     end
   end
 
@@ -33,7 +34,7 @@ class Sales::ConversationsController < Sales::SalesSiteController
         self.this.downloads.create(name: params[:qqfilename].split(".")[0], photo: data)
       else
         self.this.downloads.create(name: params[:qqfilename].split(".")[0], document: data)
-      end  
+      end
       render :json => { :success => "true" }
       PrivatePub.publish_to("/conversations/"+ this.id.to_s, type: "downloads")
     end

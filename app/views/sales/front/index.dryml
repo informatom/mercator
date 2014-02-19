@@ -31,10 +31,11 @@
     <script>
       PrivatePub.subscribe("/conversations/new", function(data, channel) {
         jQuery.ajax({
-          url: "sales/refresh",
+          url: "refresh",
           type: "POST",
           success: function(result){
             jQuery("#recent").html(result);
+            alert("Eine neue Konversation wurde gestartet!");
           },
         });
         jQuery("#bigben")[0].play();

@@ -21,7 +21,7 @@ class Offeritem < ActiveRecord::Base
                   :offer_id, :offer, :user_id, :product_id, :delivery_time
   translates :description
   has_paper_trail
-  default_scope { order('lineitems.position ASC') }
+  default_scope { order('offeritems.position ASC') }
 
   validates :position, numericality: true
   validates :amount, numericality: true

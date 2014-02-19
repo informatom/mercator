@@ -869,6 +869,27 @@
 </def>
 
 
+<def tag="build-page" polymorphic/>
+<def tag="build-page" for="Offer">
+
+  <page title="#{ht 'offer.build.title', :default=>['Build']}" merge>
+
+    <body: class="lifecycle-start-page build-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.build.heading">
+          Build
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <build-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 
 

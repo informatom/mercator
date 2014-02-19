@@ -1,6 +1,6 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
-    <append-content-body:>
+    <content-body:>
       <div class="row">
         <div class="span8">
           <form with="&@message" update="mymessages">
@@ -33,8 +33,8 @@
           </section>
 
           <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.baskets") %> </h3>
-            <collection:baskets param/>
+            <h3 param="collection-heading"> <%= t("attributes.offers") %> </h3>
+            <collection:offers param/>
           </section>
 
           <section param="collection-section" merge>
@@ -111,23 +111,24 @@
             <h3>Produktvorschlag</h3>
             <form with="&@suggestion" update="suggestions">
               <p>
-                Artikelnummer: 
+                Artikelnummer:
                 <autocomplete:product source="&complete_number_sales_products_path" />
               </p>
             </form>
-            <create-button with="&Link" update="messages" label="Produktvorschläge anzeigen" 
-                           fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions', 
+            <create-button with="&Link" update="messages" label="Produktvorschläge anzeigen"
+                           fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions',
                                      conversation_id: this.id.to_s }"/>
           </div>
 
-          <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.suggestions") %> </h3>
-            <collection:suggestions part="suggestions"/>
-          </section>
+          <h3> <%= t("attributes.suggestions") %> </h3>
+          <collection:suggestions part="suggestions"/>
+
+          <h3>Angebot legen</h3>
+          <my-creator-link with="&Offer" creator="build" class="pull-right btn-primary" conversation-id="&this.id" />
 
         </div>
       </div>
-   </append-content-body:>
+   </content-body:>
 
   </old-show-page>
 </extend>
