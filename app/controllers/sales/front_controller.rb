@@ -6,9 +6,8 @@ class Sales::FrontController < Sales::SalesSiteController
   end
 
   def refresh
-    render action: :index
+    render partial: "recent_conversations"
   end
-
 
   def summary
     if !current_user.administrator? && !current_user.sales?

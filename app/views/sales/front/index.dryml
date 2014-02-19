@@ -14,7 +14,7 @@
     </header>
 
     <section class="content-body">
-      <audio controls style="display:none;">
+      <audio controls style="display:none;" id="bigben">
         <source src="/sounds/big_ben.mp3" type="audio/mpeg" />
         <source src="/sounds/big_ben.ogg" type="audio/ogg" />
         <embed height="50" width="100" src="/sounds/big_ben.mp3" />
@@ -23,8 +23,8 @@
 
     <section>
       <h3> Die letzten 5 <%= t("attributes.conversations") %> </h3>
-      <p>Auf dieser Seite erfolgen die Benachtichtigungen über neue Konversationen</p> 
-      <div id="recent"><partial name="recent_conversations" /></div>
+      <p>Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen</p>
+      <div id="recent"><collection with="&Conversation.recent(5)"/></div>
     </section>
 
     <%= subscribe_to "/conversations/new" %>
@@ -33,10 +33,11 @@
         jQuery.ajax({
           url: "sales/refresh",
           type: "POST",
-          success: function(result){                        
+          success: function(result){
             jQuery("#recent").html(result);
           },
         });
+        jQuery("#bigben")[0].play();
       });
     </script>
   </content:>
