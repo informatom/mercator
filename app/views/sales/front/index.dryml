@@ -31,7 +31,7 @@
     <script>
       PrivatePub.subscribe("/conversations/new", function(data, channel) {
         jQuery.ajax({
-          url: "refresh",
+          url: "/sales/refresh",
           type: "POST",
           success: function(result){
             jQuery("#recent").html(result);
