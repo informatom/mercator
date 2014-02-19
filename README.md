@@ -38,3 +38,6 @@ Your Mercator is now running and fully functional!
 
 FIXME! Second user should be sales guy
 
+Sources: 
+
+* Audio sample Big Ben from Freesound.org: http://www.freesound.org/people/hyderpotter/sounds/80290/

@@ -2,7 +2,13 @@ class Sales::FrontController < Sales::SalesSiteController
 
   hobo_controller
 
-  def index; end
+  def index
+  end
+
+  def refresh
+    render action: :index
+  end
+
 
   def summary
     if !current_user.administrator? && !current_user.sales?

@@ -131,3 +131,13 @@
 
   </old-show-page>
 </extend>
+
+<def tag="card" for="Conversation">
+  <card class="conversation" param="default" merge>
+    <header: param>
+        <div class="span3"><strong><a><name/></a></strong></div>
+        <div class="span3"><view:created-at/></div>
+        <div class="span3"><view with="&distance_of_time_in_words(Time.now - this.created_at)"/></div>
+    </header:>
+  </card>
+</def>

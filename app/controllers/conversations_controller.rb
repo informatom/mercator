@@ -32,6 +32,8 @@ class ConversationsController < ApplicationController
   end
 
   def do_initiate
+    PrivatePub.publish_to("/conversations/new", type: "conversations")
+
     do_creator_action :initiate do
       self.this.update(customer: current_user,
                        consultant: User.sales.where(logged_in: true).first)
