@@ -11,38 +11,35 @@
         <div class="span4"> <my-transition-link transition="add_position" class="btn-primary"/> </div>
       </div>
 
-      <if test="&this.offeritems">
+      <div part="offeritems">
         <table class="table well table-striped">
           <thead>
             <tr>
-              <th></th> <th>Menge</th> <th></th> <th>Artikelnummer</th> <th>Beschreibung</th> <th>Stückpreis</th> <th>Preis</th> <th></th>
+              <th>Position</th>
+              <th>Photo</th>
+              <th>Menge</th>
+              <th>Produkt</th>
+              <th>Artikelnummer</th>
+              <th>Beschreibung</th>
+              <th>Stückpreis</th>
+              <th>Preis</th>
+              <th></th>
             </tr>
           </thead>
           <tbody part="lineitems">
-            <repeat with="&this.offeritems">
-              <tr class="success">
+            <repeat with="&this.offeritems.order_by(:position)">
+              <tr class="success" part="offeritem" id="&this.id">
+                <td><click-editor-innards:position update="offeritems"/></td>
                 <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
-                <td><view:amount/> <view:unit/></td>
+                <td><click-editor-innards:amount update="offeritems"/> <click-editor-innards:unit/></td>
+                <td><live-editor-product-number:product-number update="offeritems" /></td>
                 <td>
-                  <my-transition-link transition="add_one" class="btn-success btn-small"/>
-                  <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
+                  <click-editor-innards:description-de/><br/>
+                  <em>Lieferzeit:</em> <click-editor-innards:delivery-time/>
                 </td>
-                <td><view:product-number/></td>
-                <td>
-                  <view:description/>
-                  <if:delivery-time>
-                    <br/>
-                    <em>Lieferzeit:</em> <view/>
-                  </if>
-                </td>
-                <td>EUR <view:product-price/></td>
+                <td>EUR <click-editor-innards:product-price update="offeritems"/></td>
                 <td>EUR <view:value/></td>
-                <td>
-                  <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
-                  <br/><br/><br/>
-                  <my-transition-link transition="disable_upselling" class="btn btn-mini pull-right"/>
-                  <my-transition-link transition="enable_upselling" class="btn btn-mini pull-right"/>
-                </td>
+                <td> <my-transition-link transition="delete" class="btn-danger btn-small"/> </td>
               </tr>
             </repeat>
           </tbody>
@@ -51,10 +48,15 @@
         <div class="row">
           <div class="span3 offset9"><!-- summary-card/ --></div>
         </div>
-
-      </if>
-      <else>Bisher gibt es keine Bestellpositionen.</else>
+      </div>
     </field-list:>
 
   </old-show-page>
 </extend>
+
+<def tag='live-editor-product-number'>
+  <formlet merge class='in-place-form' ajax param data-rapid='&data_rapid(&apos;live-editor&apos;)' errors-ok with='&this_parent'>
+    <error-messages param/>
+    <name-one:product-number complete-target="&Product.new()" completer="number_sales"/>
+  </formlet>
+</def>

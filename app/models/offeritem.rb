@@ -67,4 +67,25 @@ class Offeritem < ActiveRecord::Base
     acting_user.administrator?
   end
 
+  # --- Instance Methods --- #
+
+  def update_from_product(product_number: nil, amount: 1)
+    product = Product.find_by_number(product_number)
+    if product
+      price = product.price(amount: amount)
+      self.update(product_id:     product.id,
+                  product_number: product.number,
+                  description_de: product.title_de,
+                  description_en: product.title_en,
+                  delivery_time:  product.delivery_time,
+                  unit:           product.inventories.first.unit,
+                  product_price:  price,
+                  vat:            product.inventories.first.prices.first.vat,
+                  value:          amount * price )
+    else
+      self.update(product_id:     nil,
+                  product_number: product_number,
+                  delivery_time:  nil)
+    end
+  end
 end
