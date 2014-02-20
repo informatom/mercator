@@ -66,4 +66,10 @@ class Offer < ActiveRecord::Base
     user_is?(acting_user)
   end
 
+  # --- Instance Methods --- #
+
+  def name
+    shipping_name + " / " + I18n.l(created_at).to_s
+  end
+
 end

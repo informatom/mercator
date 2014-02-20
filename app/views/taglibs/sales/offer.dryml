@@ -1,0 +1,94 @@
+<extend tag="show-page" for="Offer">
+  <old-show-page merge>
+    <content-header:>
+      <h1><view:name/></h1>
+    </content-header:>
+
+    <field-list: replace>
+      <div class="row">
+        <div class="span4"> <billing-address-card /> </div>
+        <div class="span4"> <shipping-address-card /> </div>
+      </div>
+
+      <if test="&this.offeritems">
+        <table class="table well table-striped">
+          <thead>
+            <tr>
+              <th></th> <th>Menge</th> <th></th> <th>Artikelnummer</th> <th>Beschreibung</th> <th>Stückpreis</th> <th>Preis</th> <th></th>
+            </tr>
+          </thead>
+          <tbody part="lineitems">
+            <repeat with="&this.orderitems">
+              <tr class="success">
+                <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
+                <td><view:amount/> <view:unit/></td>
+                <td>
+                  <my-transition-link transition="add_one" class="btn-success btn-small"/>
+                  <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
+                </td>
+                <td><view:product-number/></td>
+                <td>
+                  <view:description/>
+                  <if:delivery-time>
+                    <br/>
+                    <em>Lieferzeit:</em> <view/>
+                  </if>
+                </td>
+                <td>EUR <view:product-price/></td>
+                <td>EUR <view:value/></td>
+                <td>
+                  <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
+                  <br/><br/><br/>
+                  <my-transition-link transition="disable_upselling" class="btn btn-mini pull-right"/>
+                  <my-transition-link transition="enable_upselling" class="btn btn-mini pull-right"/>
+                </td>
+              </tr>
+            </repeat>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="span3 offset9"><summary-card/></div>
+        </div>
+
+        <div class="pull-right">
+          <if test="&this.basket? && !this.billing_name">
+            <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary">
+              Rechnungsadresse angeben
+            </my-creator-link>
+          </if>
+          <else>
+            <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
+            <my-transition-link transition="check_basket" method="get" class="btn-primary"/>
+          </else>
+        </div>
+      </if>
+      <else>Bisher gibt es keine Bestellpositionen.</else>
+    </field-list:>
+
+  </old-show-page>
+</extend>
+
+<def tag="billing-address-card">
+  <h3>Rechnungsadresse</h3>
+  <div class="well">
+    <strong><click-editor:billing-name/></strong>
+    <click-editor:billing-detail/>
+    <click-editor:billing-street/>
+    <click-editor:billing-postalcode/>
+    <click-editor:billing-city/>
+    <click-editor:billing-country/>
+  </div>
+</def>
+
+<def tag="shipping-address-card" >
+  <h3>Lieferadresse</h3>
+  <div class="well">
+    <strong><click-editor:shipping-name/></strong>
+    <click-editor:shipping-detail/>
+    <click-editor:shipping-street/>
+    <click-editor:shipping-postalcode/>
+    <click-editor:shipping-city/>
+    <click-editor:shipping-country/>
+  </div>
+</def>
