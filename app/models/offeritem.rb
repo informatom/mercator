@@ -16,9 +16,8 @@ class Offeritem < ActiveRecord::Base
     upselling      :boolean
     timestamps
   end
-  attr_accessible :position, :product_number, :description_de, :description_en, :unit,
-                  :amount, :product_price, :product_price, :vat, :value,
-                  :offer_id, :offer, :user_id, :product_id, :delivery_time
+  attr_accessible :position, :product_id, :product_number, :description_de, :description_en, :amount,
+                  :unit, :product_price, :vat, :value, :delivery_time, :offer_id, :user_id
   translates :description
   has_paper_trail
   default_scope { order('offeritems.position ASC') }
@@ -37,9 +36,13 @@ class Offeritem < ActiveRecord::Base
   belongs_to :product
 
   lifecycle do
-    state :active, :default => true
-  end
+    state :in_progress, :default => true
 
+    create :add, :available_to => "User.sales", become: :in_progress,
+           params: [:position, :product_id, :product_number, :description_de, :amount,
+                    :unit, :product_price, :vat, :value, :offer_id, :user_id],
+           subsite: "sales"
+  end
 
   # --- Permissions --- #
 

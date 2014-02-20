@@ -1,0 +1,11 @@
+<def tag="shipping-address-card" >
+  <h3>Lieferadresse</h3>
+  <div class="well">
+    <strong><click-editor:shipping-name/></strong>
+    <click-editor:shipping-detail/>
+    <click-editor:shipping-street/>
+    <click-editor:shipping-postalcode/>
+    <click-editor:shipping-city/>
+    <click-editor:shipping-country/>
+  </div>
+</def>

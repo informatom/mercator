@@ -124,7 +124,7 @@
           <collection:suggestions part="suggestions"/>
 
           <h3>Angebot legen</h3>
-          <my-creator-link with="&Offer" creator="build" class="pull-right btn-primary" conversation-id="&this.id" />
+          <my-creator-link with="&Offer" creator="build" class="pull-right btn-primary"/>
 
         </div>
       </div>

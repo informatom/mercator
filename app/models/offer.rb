@@ -41,6 +41,11 @@ class Offer < ActiveRecord::Base
                             :billing_street, :billing_postalcode, :billing_city, :billing_country, :shipping_name,
                             :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country],
                    subsite: "sales"
+
+    transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
+      Offeritem::Lifecycle.add(acting_user, position: 1000, vat: 20, offer_id: self.id, user_id: self.user_id,
+                               description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk." )
+    end
   end
 
   # --- Permissions --- #

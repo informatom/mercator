@@ -103,6 +103,16 @@
   </form>
 </def>
 
+<def tag="add-form" polymorphic/>
+<def tag="add-form" for="Offeritem">
+  <form lifecycle="add" merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_id, product_number, description_de, amount, unit, product_price, vat, value, offer_id, user_id" param/>
+    <div param="actions">
+      <submit label="#{ht 'offeritem.actions.add', :default=>['Add']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 
 <def tag="form" for="Offer">
@@ -126,6 +136,17 @@
   </form>
 </def>
 
+<def tag="add-position-form" polymorphic/>
+<def tag="add-position-form" for="Offer">
+  <form lifecycle="add_position" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.add_position', :default=>['Add Position']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Product">
   <form merge param="default">

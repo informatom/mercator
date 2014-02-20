@@ -1,0 +1,11 @@
+<def tag="billing-address-card">
+  <h3>Rechnungsadresse</h3>
+  <div class="well">
+    <strong><click-editor:billing-name/></strong>
+    <click-editor:billing-detail/>
+    <click-editor:billing-street/>
+    <click-editor:billing-postalcode/>
+    <click-editor:billing-city/>
+    <click-editor:billing-country/>
+  </div>
+</def>

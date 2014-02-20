@@ -28,5 +28,4 @@ class Sales::OffersController < Sales::SalesSiteController
 
     creator_page_action :build
   end
-
 end

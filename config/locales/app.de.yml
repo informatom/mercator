@@ -278,6 +278,10 @@ de:
             enable_upselling: "Zubehör +"
             disable_upselling: "Zubehör -"
             transfer_to_basket: In Warenkorb übernehmen
+      offer:
+        lifecycle:
+          transitions:
+            add_position: Angebotsposition hinzufügen
       order:
         billing_method: Rechnungsart
         billing_name: Name (Rechnung)
@@ -417,3 +421,8 @@ de:
       heading: Angebot legen
     actions:
       build: Zwischenspeichern
+  offeritem:
+    add:
+      heading: Angebotsposition erstellen
+    actions:
+      add: Zwischenspeichern

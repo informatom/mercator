@@ -757,6 +757,27 @@
 </def>
 
 
+<def tag="add-page" polymorphic/>
+<def tag="add-page" for="Offeritem">
+
+  <page title="#{ht 'offeritem.add.title', :default=>['Add']}" merge>
+
+    <body: class="lifecycle-start-page add-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.add.heading">
+          Add
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 
 
@@ -886,6 +907,27 @@
 
     <content-body: param>
       <build-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="add-position-page" polymorphic/>
+<def tag="add-position-page" for="Offer">
+  <page title="#{ht 'offer.add_position.title', :default=>['Add Position']}" merge>
+
+    <body: class="lifecycle-transition-page add-position-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.add_position.heading">
+          Add Position
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-position-form param="form"/>
     </content-body:>
 
   </page>
