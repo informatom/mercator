@@ -42,6 +42,10 @@ class Offeritem < ActiveRecord::Base
            params: [:position, :product_id, :product_number, :description_de, :amount,
                     :unit, :product_price, :vat, :value, :offer_id, :user_id],
            subsite: "sales"
+
+    transition :delete_from_offer, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
+      self.delete
+    end
   end
 
   # --- Permissions --- #
@@ -87,5 +91,9 @@ class Offeritem < ActiveRecord::Base
                   product_number: product_number,
                   delivery_time:  nil)
     end
+  end
+
+  def vat_value
+    self.vat * self.value / 100
   end
 end

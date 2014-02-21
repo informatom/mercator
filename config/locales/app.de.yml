@@ -282,6 +282,10 @@ de:
         lifecycle:
           transitions:
             add_position: Angebotsposition hinzufügen
+      offeritem:
+        lifecycle:
+          transitions:
+            delete_from_offer: "Position löschen"
       order:
         billing_method: Rechnungsart
         billing_name: Name (Rechnung)

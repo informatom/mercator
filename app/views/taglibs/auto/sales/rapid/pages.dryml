@@ -779,6 +779,27 @@
   </page>
 </def>
 
+<def tag="delete-from-offer-page" polymorphic/>
+<def tag="delete-from-offer-page" for="Offeritem">
+  <page title="#{ht 'offeritem.delete_from_offer.title', :default=>['Delete From Offer']}" merge>
+
+    <body: class="lifecycle-transition-page delete-from-offer-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.delete_from_offer.heading">
+          Delete From Offer
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-from-offer-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 <!-- ====== Offer Pages ====== -->

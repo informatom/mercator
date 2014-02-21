@@ -19,4 +19,12 @@ class Sales::OfferitemsController < Sales::SalesSiteController
       @this.update_from_product(product_number: product_number, amount: @this.amount) if product_number
     end
   end
+
+    def do_delete_from_offer
+    do_transition_action :delete_from_offer do
+      flash[:success] = "Die Angebotsposition wurde gelöscht."
+      flash[:notice] = nil
+      redirect_to session[:return_to]
+    end
+  end
 end

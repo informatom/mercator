@@ -77,4 +77,21 @@ class Offer < ActiveRecord::Base
     shipping_name + " / " + I18n.l(created_at).to_s
   end
 
+  def sum
+    self.offeritems.sum('value')
+  end
+
+  def sum_incl_vat
+    self.sum + self.offeritems.*.vat_value.sum
+  end
+
+  def vat_items
+    vat_items = Hash.new
+    grouped_offeritems = self.offeritems.group_by{|offeritems| offeritems.vat}
+    grouped_offeritems.each_pair do |percentage, itemgroup|
+      vat_items[percentage] = itemgroup.reduce(0) {|sum, offeritems| sum + offeritems.vat_value}
+    end
+    return vat_items
+  end
+
 end
