@@ -9,7 +9,8 @@ class Sales::OffersController < Sales::SalesSiteController
     customer = conversation.customer
     self.this = Offer.new(consultant_id: conversation.consultant_id,
                           conversation_id: conversation.id,
-                          user_id: conversation.customer_id)
+                          user_id: conversation.customer_id,
+                          valid_until: Time.now + 1.month)
     billing_address = customer.billing_addresses.recent(1)[0]
     self.this.assign_attributes(billing_name: billing_address.name,
                                  billing_detail: billing_address.detail,

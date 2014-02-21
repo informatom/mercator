@@ -131,6 +131,7 @@ de:
     updated_at: Aktualisiert
     valid_from: Gültig ab
     valid_to: Gültig bis
+    valid_until: Gültig bis
     value: Wert
     vat_number: MwSt-Nummer
     vat: MwSt.
@@ -282,6 +283,10 @@ de:
         lifecycle:
           transitions:
             add_position: Angebotsposition hinzufügen
+            submit: Freigabe anfordern
+            place: Angebot legen
+            copy: Angebot in Warenkorb kopieren
+            devalidate: Ungültig machen
       offeritem:
         lifecycle:
           transitions:

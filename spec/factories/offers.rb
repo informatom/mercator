@@ -16,5 +16,6 @@ FactoryGirl.define do
     shipping_postalcode "1234"
     shipping_city "Musterstadt"
     shipping_country "Österreich"
+    valid_until   "1.1.2113"
   end
 end

@@ -15,9 +15,10 @@ class Offer < ActiveRecord::Base
     shipping_postalcode :string
     shipping_city       :string
     shipping_country    :string
+    valid_until         :date, :required
     timestamps
   end
-  attr_accessible :billing_name, :billing_detail, :billing_street, :billing_postalcode,
+  attr_accessible :valid_until, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
                   :offeritems, :user, :user_id, :user, :user_id, :consultant, :consultant_id, :conversation_id
@@ -34,10 +35,10 @@ class Offer < ActiveRecord::Base
 
   lifecycle do
     state :in_progress, :default => true
-    state :valid, :invalid, :accepted
+    state :pending_approval, :valid, :invalid, :accepted
 
     create :build, :available_to => "User.sales", become: :in_progress,
-                   params: [:conversation_id, :user_id, :consultant_id, :billing_name, :billing_detail,
+                   params: [:valid_until, :conversation_id, :user_id, :consultant_id, :billing_name, :billing_detail,
                             :billing_street, :billing_postalcode, :billing_city, :billing_country, :shipping_name,
                             :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country],
                    subsite: "sales"
@@ -46,6 +47,13 @@ class Offer < ActiveRecord::Base
       Offeritem::Lifecycle.add(acting_user, position: 1000, vat: 20, offer_id: self.id, user_id: self.user_id,
                                description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk." )
     end
+
+    transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales",         if: "Date.today <= valid_until", subsite: "sales"
+    transition :place, {:in_progress => :valid},             available_to: "User.sales",         if: "Date.today <= valid_until", subsite: "sales"
+    transition :place, {:pending_approval => :valid},        available_to: "User.sales_manager", if: "Date.today <= valid_until", subsite: "sales"
+    transition :place, {:invalid => :valid},                 available_to: "User.sales",         if: "Date.today <= valid_until", subsite: "sales"
+    transition :copy, {:valid => :valid},                    available_to: :user,                if: "Date.today <= valid_until"
+    transition :devalidate, {:valid => :invalid},            available_to: :all,                 if: "Date.today > valid_until", subsite: "sales"
   end
 
   # --- Permissions --- #

@@ -882,7 +882,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, state, consultant, conversation, user" param/>
+      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, state, consultant, conversation, user" param/>
     </content-body:>
 
   </page>
@@ -949,6 +949,90 @@
 
     <content-body: param>
       <add-position-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="submit-page" polymorphic/>
+<def tag="submit-page" for="Offer">
+  <page title="#{ht 'offer.submit.title', :default=>['Submit']}" merge>
+
+    <body: class="lifecycle-transition-page submit-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.submit.heading">
+          Submit
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <submit-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="place-page" polymorphic/>
+<def tag="place-page" for="Offer">
+  <page title="#{ht 'offer.place.title', :default=>['Place']}" merge>
+
+    <body: class="lifecycle-transition-page place-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.place.heading">
+          Place
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <place-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="copy-page" polymorphic/>
+<def tag="copy-page" for="Offer">
+  <page title="#{ht 'offer.copy.title', :default=>['Copy']}" merge>
+
+    <body: class="lifecycle-transition-page copy-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.copy.heading">
+          Copy
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <copy-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="devalidate-page" polymorphic/>
+<def tag="devalidate-page" for="Offer">
+  <page title="#{ht 'offer.devalidate.title', :default=>['Devalidate']}" merge>
+
+    <body: class="lifecycle-transition-page devalidate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.devalidate.heading">
+          Devalidate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <devalidate-form param="form"/>
     </content-body:>
 
   </page>
