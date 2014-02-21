@@ -15,7 +15,7 @@ de:
     billing_postalcode: Rechnungsadresse / Postleitzahl
     billing_street: Rechnungsadresse / Straße
     BillingAddress: Rechnungsadresse
-    billing_addresses: Rechnungsadresse
+    billing_addresses: Rechnungsadressen
     Category: Kategorie
     category: Kategorie
     category_tree: Kategorienbaum

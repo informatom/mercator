@@ -6,6 +6,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Address"><ht key="address.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Conversation"><ht key="conversation.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Message"><ht key="message.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Value"><ht key="value.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -36,6 +37,9 @@
     </content-header:>
 
     <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="address.actions.new">New Address</ht>
+      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -85,6 +89,12 @@
       <record-flags fields="" param/>
 
       <a:user param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="address.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Address
+        </ht>
+      </a>
     </content-header:>
 
     <content-body: param>
@@ -317,6 +327,12 @@
       <record-flags fields="" param/>
 
       <a:user param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="billing_address.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Billing address
+        </ht>
+      </a>
     </content-header:>
 
     <content-body: param>

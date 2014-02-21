@@ -41,7 +41,7 @@ class BillingAddress < ActiveRecord::Base
   end
 
   def update_permitted?
-   user_is?(acting_user) ||
+    user_is?(acting_user) ||
     acting_user.administrator? ||
     acting_user.sales?
 

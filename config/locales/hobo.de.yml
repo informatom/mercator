@@ -95,6 +95,7 @@ de:
       show_all: "Alle anzeigen: %{model}"
       delete: "%{model} löschen"
       save: "%{model} speichern"
+      show: "%{model} anzeigen"
       cancel: "Abbrechen"
       edit: "%{model} bearbeiten"
       edit_control: "Bearbeiten"

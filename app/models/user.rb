@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :billing_addresses, dependent: :destroy, inverse_of: :user, accessible: true
 
   has_many :orders, dependent: :restrict_with_exception, inverse_of: :user
+  has_many :offers, dependent: :restrict_with_exception, inverse_of: :user
 
   has_many :conversations, dependent: :destroy, inverse_of: :customer, foreign_key: :customer_id
 

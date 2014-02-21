@@ -1,13 +1,15 @@
 <def tag="card" for="Address">
-  <card class="address" param="default" merge>
-    <header: replace />
+  <div class="well">
+    <header: param>
+        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-small pull-right">
+          <ht key="address.actions.edit">Edit</ht>
+        </a>
+      <h4 param="heading"><name/></h4>
+    </header:>
     <body: param>
-      <p>
-        <strong><view:name/>,</strong> <if:detail><view/>,</if>
-        <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
-      </p>
+      <if:detail><view/>,</if> <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
     </body:>
-  </card>
+  </div>
 </def>
 
 <def tag="sticker" polymorphic/>

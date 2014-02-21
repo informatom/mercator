@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
 
   hobo_model_controller
   auto_actions_for :user, [ :index, :new, :create ]
-  auto_actions :lifecycle
+  auto_actions :all, :lifecycle
 
   def enter
     last_address = current_user.addresses.last
