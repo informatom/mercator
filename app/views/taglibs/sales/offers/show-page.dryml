@@ -66,7 +66,7 @@
                   </click-editor-innards:product-price>
                 </td>
                 <td>
-                  <click-editor-innards:vat>
+                  <click-editor-innards:vat update="offeritems">
                     <input: class="input-mini"/>
                   </click-editor-innards:vat>
                 </td>
