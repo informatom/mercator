@@ -204,7 +204,7 @@
 <def tag="insert-shipping-form" for="Lineitem">
   <form lifecycle="insert_shipping" merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, amount, unit, product_price, vat, value, order, user" param/>
+    <field-list fields="position, product_number, product_id, offer_id, description_de, amount, unit, product_price, vat, value, order_id, user_id, delivery_time" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.insert_shipping', :default=>['Insert Shipping']}" param/><or-cancel param="cancel"/>
     </div>
@@ -301,6 +301,83 @@
 </def>
 
 
+
+<def tag="form" for="Offer">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, complete, state, consultant, conversation, offeritems, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'offer.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="build-form" polymorphic/>
+<def tag="build-form" for="Offer">
+  <form lifecycle="build" merge param="default">
+    <error-messages param/>
+    <field-list fields="valid_until, conversation_id, user_id, consultant_id, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, complete" param/>
+    <div param="actions">
+      <submit label="#{ht 'offer.actions.build', :default=>['Build']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="add-position-form" polymorphic/>
+<def tag="add-position-form" for="Offer">
+  <form lifecycle="add_position" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.add_position', :default=>['Add Position']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="submit-form" polymorphic/>
+<def tag="submit-form" for="Offer">
+  <form lifecycle="submit" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.submit', :default=>['Submit']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="place-form" polymorphic/>
+<def tag="place-form" for="Offer">
+  <form lifecycle="place" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.place', :default=>['Place']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="copy-form" polymorphic/>
+<def tag="copy-form" for="Offer">
+  <form lifecycle="copy" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.copy', :default=>['Copy']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="devalidate-form" polymorphic/>
+<def tag="devalidate-form" for="Offer">
+  <form lifecycle="devalidate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.devalidate', :default=>['Devalidate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Order">
   <form merge param="default">

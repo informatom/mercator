@@ -1390,6 +1390,235 @@
 
 
 
+<!-- ====== Offer Pages ====== -->
+
+<def tag="index-page" for="Offer">
+  <page merge title="#{ht 'offer.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="offer.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Offer">
+  <page merge title="#{ht 'offer.new.title', :default=>[' New Offer'] }">
+    <body: class="new-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.new.heading">
+          New Offer
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'offer.actions.create', :default=>['Create Offer']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Offer">
+  <page merge title="#{ht 'offer.show.title', :default=>['Offer'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.show.heading" name="#{name(:no_wrapper => true)}">
+          Offer <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="complete" param/>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, state, consultant, conversation, user" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Offer">
+  <page merge title="#{ht 'offer.edit.title', :default=>['Edit Offer'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page offer" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Offer
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'offer.actions.delete', :default=>['Remove This Offer']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="build-page" polymorphic/>
+<def tag="build-page" for="Offer">
+
+  <page title="#{ht 'offer.build.title', :default=>['Build']}" merge>
+
+    <body: class="lifecycle-start-page build-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.build.heading">
+          Build
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <build-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="add-position-page" polymorphic/>
+<def tag="add-position-page" for="Offer">
+  <page title="#{ht 'offer.add_position.title', :default=>['Add Position']}" merge>
+
+    <body: class="lifecycle-transition-page add-position-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.add_position.heading">
+          Add Position
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-position-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="submit-page" polymorphic/>
+<def tag="submit-page" for="Offer">
+  <page title="#{ht 'offer.submit.title', :default=>['Submit']}" merge>
+
+    <body: class="lifecycle-transition-page submit-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.submit.heading">
+          Submit
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <submit-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="place-page" polymorphic/>
+<def tag="place-page" for="Offer">
+  <page title="#{ht 'offer.place.title', :default=>['Place']}" merge>
+
+    <body: class="lifecycle-transition-page place-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.place.heading">
+          Place
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <place-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="copy-page" polymorphic/>
+<def tag="copy-page" for="Offer">
+  <page title="#{ht 'offer.copy.title', :default=>['Copy']}" merge>
+
+    <body: class="lifecycle-transition-page copy-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.copy.heading">
+          Copy
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <copy-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="devalidate-page" polymorphic/>
+<def tag="devalidate-page" for="Offer">
+  <page title="#{ht 'offer.devalidate.title', :default=>['Devalidate']}" merge>
+
+    <body: class="lifecycle-transition-page devalidate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.devalidate.heading">
+          Devalidate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <devalidate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
 <!-- ====== Order Pages ====== -->
 
 <def tag="index-page" for="Order">

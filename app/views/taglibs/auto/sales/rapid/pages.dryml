@@ -872,7 +872,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="complete" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="offer.actions.edit" name="#{name(:no_wrapper => true)}">

@@ -45,6 +45,10 @@
             <input name="id" value="#{this.id}" type="hidden"/>
           </form>
 
+          <form id="offers-form" style="display:none;" action="refresh" update="offers">
+            <input name="id" value="#{this.id}" type="hidden"/>
+          </form>
+
           <script>
               PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
                 $("form#" + data.type + "-form").submit();
@@ -58,7 +62,7 @@
 
           <section param="collection-section" merge>
             <h3 param="collection-heading"> <%= t("attributes.offers") %> </h3>
-            <collection:offers param/>
+            <collection:offers part="offers"/>
           </section>
 
           <section param="collection-section" merge>

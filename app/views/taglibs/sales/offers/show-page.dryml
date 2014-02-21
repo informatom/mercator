@@ -10,9 +10,20 @@
           <div class="span4"> <billing-address-card /> </div>
           <div class="span4"> <shipping-address-card /> </div>
           <div class="span4">
-            <div>
+            <div part="complete">
               <strong>Gültig bis:</strong>
-              <click-editor-innards:valid-until update="all"/><br/><br/>
+              <click-editor-innards:valid-until update="all">
+                <view: class="label label-warning"/>
+              </click-editor-innards:valid-until>
+              <br/><br/>
+              <strong>Komplettangebot:</strong>
+              <unless:complete>
+                <span class="label label-important">Nein</span>
+              </unless:complete>
+              <click-editor-innards:complete update="complete">
+                <view: class="label label-success"/>
+              </click-editor-innards:complete>
+              <br/><br/>
             </div>
             <p><my-transition-link transition="add_position" class="btn-primary"/></p>
           </div>

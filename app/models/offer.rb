@@ -16,12 +16,14 @@ class Offer < ActiveRecord::Base
     shipping_city       :string
     shipping_country    :string
     valid_until         :date, :required
+    complete            :boolean
     timestamps
   end
   attr_accessible :valid_until, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
-                  :offeritems, :user, :user_id, :user, :user_id, :consultant, :consultant_id, :conversation_id
+                  :offeritems, :user, :user_id, :user, :user_id,
+                  :consultant, :consultant_id, :conversation_id, :complete
   has_paper_trail
 
   belongs_to :user
@@ -40,7 +42,7 @@ class Offer < ActiveRecord::Base
     create :build, :available_to => "User.sales", become: :in_progress,
                    params: [:valid_until, :conversation_id, :user_id, :consultant_id, :billing_name, :billing_detail,
                             :billing_street, :billing_postalcode, :billing_city, :billing_country, :shipping_name,
-                            :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country],
+                            :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country, :complete],
                    subsite: "sales"
 
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do

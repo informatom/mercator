@@ -44,7 +44,7 @@ class Lineitem < ActiveRecord::Base
     state :shipping_costs
 
     create :insert_shipping, :available_to => :all, become: :shipping_costs,
-           params: [:position, :product_number, :description_de, :amount, :unit, :product_price, :vat, :value, :order, :user]
+           params: [:position, :product_number, :product_id, :offer_id, :description_de, :amount, :unit, :product_price, :vat, :value, :order_id, :user_id, :delivery_time]
 
     transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == order", available_to: :all do
       self.delete

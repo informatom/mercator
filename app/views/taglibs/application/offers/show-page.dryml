@@ -1,0 +1,79 @@
+<extend tag="show-page" for="Offer">
+  <old-show-page merge>
+    <content-header:>
+      <h1><view:name/></h1>
+    </content-header:>
+
+    <field-list: replace >
+      <%= subscribe_to "/offers/" + this.id.to_s %>
+      <form id="all-form" style="display:none;" action="refresh" update="all">
+        <input name="id" value="#{this.id}" type="hidden"/>
+      </form>
+      <script>
+        PrivatePub.subscribe("/offers/<%= this.id.to_s -%>", function(data, channel) {
+          $("form#" + data.type + "-form").submit();
+        });
+      </script>
+
+      <do part="all">
+        <div class="row">
+          <div class="span4"> <billing-address-card /> </div>
+          <div class="span4"> <shipping-address-card /> </div>
+          <div class="span4">
+            <div part="complete">
+              <strong>Gültig bis:</strong>
+              <view:valid-until class="label label-warning"/>
+              <br/><br/>
+              <strong>Komplettangebot:</strong>
+              <view:complete class="label label-info"/>
+              <br/><br/>
+            </div>
+          </div>
+        </div>
+
+        <div part="offeritems" class="row">
+          <table class="table well table-striped">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Photo</th>
+                <th><div class="text-right">Menge</div></th>
+                <th>Artikelnummer</th>
+                <th>Beschreibung</th>
+                <th><div class="text-right">Stückpreis</div></th>
+                <th><div class="text-right">Preis</div></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody part="lineitems">
+              <repeat with="&this.offeritems.order_by(:position)">
+                <tr part="offeritem" id="&this.id">
+                  <td> <view:position/> </td>
+                  <td><if:product><%= image_tag this.photo.url(:thumb), width: "25%" %></if></td>
+                  <td><div class="text-right"> <view:amount/><view:unit/></div></td>
+                  <td><view:product-number/></td>
+                  <td>
+                    <view:description-de/><br/>
+                    <em>Lieferzeit:</em> <view:delivery-time/>
+                  </td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
+                  <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
+                </tr>
+              </repeat>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <div class="span3 offset9"><summary-card/></div>
+          </div>
+
+          <div class="row pull-right">
+            <my-transition-link transition="copy" class="btn-success"/>
+          </div>
+
+        </div>
+      </do>
+    </field-list:>
+
+  </old-show-page>
+</extend>

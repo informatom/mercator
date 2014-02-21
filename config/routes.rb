@@ -35,6 +35,7 @@ Mercator::Application.routes.draw do
 
   post 'categories/sort' => 'categories#sort'
   post 'conversations/refresh' => 'conversations#refresh'
+  post 'offers/refresh' => 'offers#refresh'
   post 'sales/conversations/refresh' => 'sales/conversations#refresh'
   post 'sales/refresh' => 'sales/front#refresh'
   post 'sales' => 'sales/front#index'

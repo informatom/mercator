@@ -280,6 +280,7 @@ de:
             disable_upselling: "Zubehör -"
             transfer_to_basket: In Warenkorb übernehmen
       offer:
+        complete: Komplettangebot
         lifecycle:
           transitions:
             add_position: Angebotsposition hinzufügen

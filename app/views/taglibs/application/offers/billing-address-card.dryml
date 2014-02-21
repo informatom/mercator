@@ -1,0 +1,10 @@
+<def tag="billing-address-card">
+  <h3>Rechnungsadresse</h3>
+  <div class="well">
+    <strong><view:billing-name/></strong><br/>
+    <view:billing-detail/><br/>
+    <view:billing-street/><br/>
+    <view:billing-postalcode/> <view:billing-city/><br/>
+    <view:billing-country/>
+  </div>
+</def>

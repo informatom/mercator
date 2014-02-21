@@ -18,12 +18,14 @@ class Sales::OfferitemsController < Sales::SalesSiteController
       product_number = params[:offeritem][:product_number]
       @this.update_from_product(product_number: product_number, amount: @this.amount) if product_number
     end
+    PrivatePub.publish_to("/offers/"+ @this.offer_id.to_s, type: "all")
   end
 
-    def do_delete_from_offer
+  def do_delete_from_offer
     do_transition_action :delete_from_offer do
       flash[:success] = "Die Angebotsposition wurde gelöscht."
       flash[:notice] = nil
+      PrivatePub.publish_to("/offers/"+ @this.offer_id.to_s, type: "all")
       redirect_to session[:return_to]
     end
   end

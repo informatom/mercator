@@ -6,11 +6,11 @@
 
     <field-list: replace>
       <div class="row">
-        <div class="span4"> 
+        <div class="span4">
           <if test="&this.basket?"><billing-address-card editable/></if>
           <else><billing-address-card /></else>
         </div>
-        <div class="span4"> 
+        <div class="span4">
           <if test="&this.basket?"><shipping-address-card editable/></if>
           <else><shipping-address-card /></else>
         </div>
@@ -33,7 +33,14 @@
         <table class="table well table-striped">
           <thead>
             <tr>
-              <th></th> <th>Menge</th> <th></th> <th>Artikelnummer</th> <th>Beschreibung</th> <th>Stückpreis</th> <th>Preis</th> <th></th>
+              <th></th>
+              <th>Menge</th>
+              <th></th>
+              <th>Artikelnummer</th>
+              <th>Beschreibung</th>
+              <th>Stückpreis</th>
+              <th>Preis</th>
+              <th></th>
             </tr>
           </thead>
           <tbody part="lineitems">

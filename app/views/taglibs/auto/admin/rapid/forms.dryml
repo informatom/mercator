@@ -232,7 +232,7 @@
 <def tag="insert-shipping-form" for="Lineitem">
   <form lifecycle="insert_shipping" merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, amount, unit, product_price, vat, value, order, user" param/>
+    <field-list fields="position, product_number, product_id, offer_id, description_de, amount, unit, product_price, vat, value, order_id, user_id, delivery_time" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.insert_shipping', :default=>['Insert Shipping']}" param/><or-cancel param="cancel"/>
     </div>
