@@ -27,6 +27,11 @@
       <div id="recent"><collection with="&Conversation.recent(5)"/></div>
     </section>
 
+    <section>
+      <h3> Die letzten 5 auf Freigabe wartenden <%= t("attributes.offers") %> </h3>
+      <div id="recent"><collection with="&Offer.pending_approval.recent(5)"/></div>
+    </section>
+
     <%= subscribe_to "/conversations/new" %>
     <script>
       PrivatePub.subscribe("/conversations/new", function(data, channel) {

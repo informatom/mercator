@@ -105,7 +105,7 @@
           </else>
         </div>
 
-        <if with="&current_user.orders.state_is(:parked).try(:first)">
+        <if with="&current_user.orders.parked.try(:first)">
           <br/><br/>
           <h3>Geparkter <view/></h3>
           <table class="table well table-striped">
