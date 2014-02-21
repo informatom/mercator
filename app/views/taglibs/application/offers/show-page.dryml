@@ -45,7 +45,7 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody part="lineitems">
+            <tbody>
               <repeat with="&this.offeritems.order_by(:position)">
                 <tr part="offeritem" id="&this.id">
                   <td> <view:position/> </td>
