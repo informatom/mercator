@@ -58,10 +58,10 @@ class OffersController < ApplicationController
 
   def show
     hobo_show do |format|
-      format.html
       format.pdf do
-        render( :pdf => "offer", :page_size  => 'A4', :zoom => 0.8 )
+        render :template => "offers/pdf.dryml", :pdf => "offer", :page_size  => 'A4', :zoom => 0.8
       end
+      format.html
     end
   end
 end

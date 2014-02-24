@@ -1,8 +1,4 @@
-
-
-
-<show-page:>
-
+<show-page>
   <stylesheets:>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <%= wicked_pdf_stylesheet_link_tag "front" %>
@@ -83,4 +79,4 @@
 
       </div>
     </field-list:>
-</show-page:>
+</show-page>

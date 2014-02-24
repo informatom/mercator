@@ -83,11 +83,13 @@
           </div>
 
           <div class="row pull-right">
+            <my-transition-link transition="copy" class="btn-success"/>
             <if test="&this.state == 'in_progress'"> <p class="text-info">Dieses Angebot ist in Bearbeitung und kann daher noch nicht angenommen werden.</p> </if>
             <if test="&this.state == 'pending_approval'"> <p class="text-info">Dieses Angebot wartet auf Freigabe und kann daher noch nicht angenommen werden.</p> </if>
             <if test="&this.state == 'invalid'"> <p class="text-info">Dieses Angebot ist ungültig und kann daher nicht angenommen werden.</p> </if>
             <if test="&Date.today > this.valid_until"> <p class="text-info">Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.</p> </if>
-            <my-transition-link transition="copy" class="btn-success"/>
+            <if test="&this.state == 'valid'"><a action="show" format="pdf" class="btn btn-primary" target="new">PDF Download</a></if>
+            <else><%= this.state %></else>
           </div>
 
         </div>
