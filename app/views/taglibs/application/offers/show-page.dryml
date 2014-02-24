@@ -89,7 +89,6 @@
             <if test="&this.state == 'invalid'"> <p class="text-info">Dieses Angebot ist ungültig und kann daher nicht angenommen werden.</p> </if>
             <if test="&Date.today > this.valid_until"> <p class="text-info">Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.</p> </if>
             <if test="&this.state == 'valid'"><a action="show" format="pdf" class="btn btn-primary" target="new">PDF Download</a></if>
-            <else><%= this.state %></else>
           </div>
 
         </div>
