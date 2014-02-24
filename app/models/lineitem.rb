@@ -4,7 +4,7 @@ class Lineitem < ActiveRecord::Base
 
   fields do
     position       :integer, :required
-    product_number :string, :required
+    product_number :string
     description_de :string, :required
     description_en :string
     amount         :decimal, :required, :precision => 10, :scale => 2
