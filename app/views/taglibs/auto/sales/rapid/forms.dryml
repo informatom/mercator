@@ -114,6 +114,17 @@
   </form>
 </def>
 
+<def tag="copy-form" polymorphic/>
+<def tag="copy-form" for="Offeritem">
+  <form lifecycle="copy" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offeritem.lifecycle.transitions.copy', :default=>['Copy']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="delete-from-offer-form" polymorphic/>
 <def tag="delete-from-offer-form" for="Offeritem">
   <form lifecycle="delete_from_offer" merge param="default">

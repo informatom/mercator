@@ -1056,6 +1056,48 @@
 
   </page>
 </def>
+<def tag="from-offeritem-page" polymorphic/>
+<def tag="from-offeritem-page" for="Lineitem">
+
+  <page title="#{ht 'lineitem.from_offeritem.title', :default=>['From Offeritem']}" merge>
+
+    <body: class="lifecycle-start-page from-offeritem-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.from_offeritem.heading">
+          From Offeritem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <from-offeritem-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+<def tag="blocked-from-offeritem-page" polymorphic/>
+<def tag="blocked-from-offeritem-page" for="Lineitem">
+
+  <page title="#{ht 'lineitem.blocked_from_offeritem.title', :default=>['Blocked From Offeritem']}" merge>
+
+    <body: class="lifecycle-start-page blocked-from-offeritem-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.blocked_from_offeritem.heading">
+          Blocked From Offeritem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <blocked-from-offeritem-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 <def tag="delete-from-basket-page" polymorphic/>
 <def tag="delete-from-basket-page" for="Lineitem">
@@ -1403,6 +1445,173 @@
 </def>
 
 
+
+
+
+<!-- ====== Offeritem Pages ====== -->
+
+<def tag="index-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="offeritem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.new.title', :default=>[' New Offeritem'] }">
+    <body: class="new-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.new.heading">
+          New Offeritem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'offeritem.actions.create', :default=>['Create Offeritem']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.show.title', :default=>['Offeritem'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.show.heading" name="#{name(:no_wrapper => true)}">
+          Offeritem <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="upselling" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, state, offer, product, user" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Offeritem">
+  <page merge title="#{ht 'offeritem.edit.title', :default=>['Edit Offeritem'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page offeritem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Offeritem
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'offeritem.actions.delete', :default=>['Remove This Offeritem']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="add-page" polymorphic/>
+<def tag="add-page" for="Offeritem">
+
+  <page title="#{ht 'offeritem.add.title', :default=>['Add']}" merge>
+
+    <body: class="lifecycle-start-page add-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.add.heading">
+          Add
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <add-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="copy-page" polymorphic/>
+<def tag="copy-page" for="Offeritem">
+  <page title="#{ht 'offeritem.copy.title', :default=>['Copy']}" merge>
+
+    <body: class="lifecycle-transition-page copy-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.copy.heading">
+          Copy
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <copy-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="delete-from-offer-page" polymorphic/>
+<def tag="delete-from-offer-page" for="Offeritem">
+  <page title="#{ht 'offeritem.delete_from_offer.title', :default=>['Delete From Offer']}" merge>
+
+    <body: class="lifecycle-transition-page delete-from-offer-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offeritem.delete_from_offer.heading">
+          Delete From Offer
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-from-offer-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 
 
@@ -1998,6 +2207,27 @@
 
     <content-body: param>
       <parcel-service-shipment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="delete-all-positions-page" polymorphic/>
+<def tag="delete-all-positions-page" for="Order">
+  <page title="#{ht 'order.delete_all_positions.title', :default=>['Delete All Positions']}" merge>
+
+    <body: class="lifecycle-transition-page delete-all-positions-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.delete_all_positions.heading">
+          Delete All Positions
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-all-positions-form param="form"/>
     </content-body:>
 
   </page>

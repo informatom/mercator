@@ -41,10 +41,20 @@ class Lineitem < ActiveRecord::Base
 
   lifecycle do
     state :active, :default => true
-    state :shipping_costs
+    state :shipping_costs, :blocked
 
     create :insert_shipping, :available_to => :all, become: :shipping_costs,
            params: [:position, :product_number, :product_id, :offer_id, :description_de, :amount, :unit, :product_price, :vat, :value, :order_id, :user_id, :delivery_time]
+
+    create :from_offeritem, :available_to => :all, become: :active,
+           params: [:position, :product_number, :product_id, :offer_id, :description_de,
+                    :description_en, :amount, :unit, :product_price, :vat, :value,
+                    :order_id, :user_id, :delivery_time]
+
+    create :blocked_from_offeritem, :available_to => :all, become: :blocked,
+           params: [:position, :product_number, :product_id, :offer_id, :description_de,
+                    :description_en, :amount, :unit, :product_price, :vat, :value,
+                    :order_id, :user_id, :delivery_time]
 
     transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == order", available_to: :all do
       self.delete
@@ -60,7 +70,17 @@ class Lineitem < ActiveRecord::Base
       self.update(upselling: true)
     end
 
+    transition :enable_upselling, {:blocked => :blocked},
+                                  if: "acting_user.basket == order && !upselling && product.supplies.any?",
+                                  available_to: :all do
+      self.update(upselling: true)
+    end
+
     transition :disable_upselling, {:active => :active}, if: "acting_user.basket == order && upselling", available_to: :all do
+      self.update(upselling: false)
+    end
+
+    transition :disable_upselling, {:blocked => :blocked}, if: "acting_user.basket == order && upselling", available_to: :all do
       self.update(upselling: false)
     end
 

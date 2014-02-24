@@ -210,6 +210,26 @@
     </div>
   </form>
 </def>
+<def tag="from-offeritem-form" polymorphic/>
+<def tag="from-offeritem-form" for="Lineitem">
+  <form lifecycle="from_offeritem" merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_number, product_id, offer_id, description_de, description_en, amount, unit, product_price, vat, value, order_id, user_id, delivery_time" param/>
+    <div param="actions">
+      <submit label="#{ht 'lineitem.actions.from_offeritem', :default=>['From Offeritem']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="blocked-from-offeritem-form" polymorphic/>
+<def tag="blocked-from-offeritem-form" for="Lineitem">
+  <form lifecycle="blocked_from_offeritem" merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_number, product_id, offer_id, description_de, description_en, amount, unit, product_price, vat, value, order_id, user_id, delivery_time" param/>
+    <div param="actions">
+      <submit label="#{ht 'lineitem.actions.blocked_from_offeritem', :default=>['Blocked From Offeritem']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="delete-from-basket-form" polymorphic/>
 <def tag="delete-from-basket-form" for="Lineitem">
@@ -301,6 +321,50 @@
 </def>
 
 
+
+<def tag="form" for="Offeritem">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, state, offer, product, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'offeritem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="add-form" polymorphic/>
+<def tag="add-form" for="Offeritem">
+  <form lifecycle="add" merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_id, product_number, description_de, amount, unit, product_price, vat, value, offer_id, user_id" param/>
+    <div param="actions">
+      <submit label="#{ht 'offeritem.actions.add', :default=>['Add']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="copy-form" polymorphic/>
+<def tag="copy-form" for="Offeritem">
+  <form lifecycle="copy" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offeritem.lifecycle.transitions.copy', :default=>['Copy']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="delete-from-offer-form" polymorphic/>
+<def tag="delete-from-offer-form" for="Offeritem">
+  <form lifecycle="delete_from_offer" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offeritem.lifecycle.transitions.delete_from_offer', :default=>['Delete From Offer']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Offer">
   <form merge param="default">
@@ -508,6 +572,17 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.parcel_service_shipment', :default=>['Parcel Service Shipment']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="delete-all-positions-form" polymorphic/>
+<def tag="delete-all-positions-form" for="Order">
+  <form lifecycle="delete_all_positions" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.order.lifecycle.transitions.delete_all_positions', :default=>['Delete All Positions']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

@@ -17,7 +17,8 @@ class Offeritem < ActiveRecord::Base
     timestamps
   end
   attr_accessible :position, :product_id, :product_number, :description_de, :description_en, :amount,
-                  :unit, :product_price, :vat, :value, :delivery_time, :offer_id, :user_id
+                  :unit, :product_price, :vat, :value, :delivery_time, :offer_id, :user_id, :selected
+  attr_accessor :selected, :boolean
   translates :description
   has_paper_trail
   default_scope { order('offeritems.position ASC') }
@@ -42,6 +43,9 @@ class Offeritem < ActiveRecord::Base
            params: [:position, :product_id, :product_number, :description_de, :amount,
                     :unit, :product_price, :vat, :value, :offer_id, :user_id],
            subsite: "sales"
+
+    transition :copy, {:in_progress => :in_progress}, available_to: :user,
+               if: "Date.today <= offer.valid_until && offer.complete == false && offer.state == 'valid'"
 
     transition :delete_from_offer, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
       self.delete

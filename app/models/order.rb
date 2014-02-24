@@ -84,6 +84,12 @@ class Order < ActiveRecord::Base
                                           description_de: "Versandkosten", amount: 1, unit: "Pau.", product_price: shipping_cost.value,
                                           vat: shipping_cost.vat, value: shipping_cost.value, user: acting_user)
     end
+
+    transition :delete_all_positions, {:basket => :basket}, available_to: :user do
+      lineitems.each do |lineitem|
+        lineitem.delete
+      end
+    end
   end
 
   # --- Permissions --- #
@@ -141,11 +147,12 @@ class Order < ActiveRecord::Base
   end
 
   def add_product(product: nil, amount: 1)
-    if lineitem = self.lineitems.where(product_number: product.number).first
+    if lineitem = self.lineitems.where(product_number: product.number, state: "active").first
       lineitem.increase_amount(amount: amount)
     else
+      last_position = self.lineitems.*.position.max || 0
       Lineitem.create_from_product(order_id: self.id, product: product, amount: amount,
-                                   position: self.lineitems.count + 1, user_id: self.user_id)
+                                   position: last_position + 10, user_id: self.user_id)
     end
   end
 

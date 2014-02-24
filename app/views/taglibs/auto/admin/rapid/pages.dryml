@@ -1302,7 +1302,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1489,6 +1489,48 @@
 
     <content-body: param>
       <insert-shipping-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+<def tag="from-offeritem-page" polymorphic/>
+<def tag="from-offeritem-page" for="Lineitem">
+
+  <page title="#{ht 'lineitem.from_offeritem.title', :default=>['From Offeritem']}" merge>
+
+    <body: class="lifecycle-start-page from-offeritem-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.from_offeritem.heading">
+          From Offeritem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <from-offeritem-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+<def tag="blocked-from-offeritem-page" polymorphic/>
+<def tag="blocked-from-offeritem-page" for="Lineitem">
+
+  <page title="#{ht 'lineitem.blocked_from_offeritem.title', :default=>['Blocked From Offeritem']}" merge>
+
+    <body: class="lifecycle-start-page blocked-from-offeritem-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="lineitem.blocked_from_offeritem.heading">
+          Blocked From Offeritem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <blocked-from-offeritem-form param="form"/>
     </content-body:>
 
   </page>
@@ -1686,7 +1728,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -1961,6 +2003,27 @@
 
     <content-body: param>
       <parcel-service-shipment-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="delete-all-positions-page" polymorphic/>
+<def tag="delete-all-positions-page" for="Order">
+  <page title="#{ht 'order.delete_all_positions.title', :default=>['Delete All Positions']}" merge>
+
+    <body: class="lifecycle-transition-page delete-all-positions-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.delete_all_positions.heading">
+          Delete All Positions
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-all-positions-form param="form"/>
     </content-body:>
 
   </page>
@@ -2256,7 +2319,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>

@@ -50,12 +50,27 @@ class Offer < ActiveRecord::Base
                                description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk." )
     end
 
-    transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales",         if: "Date.today <= valid_until", subsite: "sales"
-    transition :place, {:in_progress => :valid},             available_to: "User.sales",         if: "Date.today <= valid_until", subsite: "sales"
-    transition :place, {:pending_approval => :valid},        available_to: "User.sales_manager", if: "Date.today <= valid_until", subsite: "sales"
-    transition :place, {:invalid => :valid},                 available_to: "User.sales",         if: "Date.today <= valid_until", subsite: "sales"
-    transition :copy, {:valid => :valid},                    available_to: :user,                if: "Date.today <= valid_until"
-    transition :devalidate, {:valid => :invalid},            available_to: :all,                 if: "Date.today > valid_until", subsite: "sales"
+    transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do
+      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+    end
+
+    transition :place, {:in_progress => :valid}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do
+      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+    end
+
+    transition :place, {:pending_approval => :valid}, available_to: "User.sales_manager", if: "Date.today <= valid_until", subsite: "sales" do
+      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+    end
+
+    transition :place, {:invalid => :valid}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do
+      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+    end
+
+    transition :copy, {:valid => :valid}, available_to: :user, if: "Date.today <= valid_until"
+
+    transition :devalidate, {:valid => :invalid}, available_to: :all, if: "Date.today > valid_until", subsite: "sales" do
+      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+    end
   end
 
   # --- Permissions --- #

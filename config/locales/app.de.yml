@@ -292,6 +292,7 @@ de:
         lifecycle:
           transitions:
             delete_from_offer: "Position löschen"
+            copy: in Warenkorb kopieren
       order:
         billing_method: Rechnungsart
         billing_name: Name (Rechnung)
@@ -318,6 +319,7 @@ de:
             archive_parked_basket: Geparkten Warenkorb archivieren
             place: Jetzt_bestellen
             check_basket: Bestellung kontrollieren
+            delete_all_positions: alle Positionen löschen
       pageelement/usage_types:
         ContentElement: Textbausteine
       product:
