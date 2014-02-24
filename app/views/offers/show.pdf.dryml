@@ -56,7 +56,7 @@
             <repeat with="&this.offeritems.order_by(:position)">
               <tr part="offeritem" id="&this.id">
                 <td> <view:position/> </td>
-                <td><if:product><%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb), width: "25%" %></if></td>
+                <td><if:product><%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %></if></td>
                 <td><div class="text-right"> <view:amount/><view:unit/></div></td>
                 <td><view:product-number/></td>
                 <td>
