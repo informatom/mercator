@@ -85,7 +85,7 @@ class Order < ActiveRecord::Base
                                           vat: shipping_cost.vat, value: shipping_cost.value, user: acting_user)
     end
 
-    transition :delete_all_positions, {:basket => :basket}, available_to: :user do
+    transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do
       lineitems.each do |lineitem|
         lineitem.delete
       end
