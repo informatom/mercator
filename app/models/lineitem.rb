@@ -72,7 +72,7 @@ class Lineitem < ActiveRecord::Base
 
     transition :enable_upselling, {:blocked => :blocked},
                                   if: "acting_user.basket == order && !upselling && product.supplies.any?",
-                                  available_to: :all do
+                                  available_to: :all, if: :product_number do
       self.update(upselling: true)
     end
 

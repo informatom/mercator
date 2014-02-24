@@ -46,7 +46,8 @@ class Offer < ActiveRecord::Base
                    subsite: "sales"
 
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
-      Offeritem::Lifecycle.add(acting_user, position: 1000, vat: 20, offer_id: self.id, user_id: self.user_id,
+      last_position = self.offeritems.*.position.max || 0
+      Offeritem::Lifecycle.add(acting_user, position: last_position + 10 , vat: 20, offer_id: self.id, user_id: self.user_id,
                                description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk." )
     end
 
