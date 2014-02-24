@@ -56,4 +56,12 @@ class OffersController < ApplicationController
     end
   end
 
+  def show
+    hobo_show do |format|
+      format.html
+      format.pdf do
+        render( :pdf => "offer", :page_size  => 'A4', :zoom => 0.8 )
+      end
+    end
+  end
 end

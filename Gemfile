@@ -42,6 +42,8 @@ gem "font-awesome-rails"                            # Font awesome icon font
 gem "squeel"                                        # active record improvements
 gem 'whenever', :require => false                   # cronjob management
 gem 'private_pub'                                   # Private Pub Sub System using Faye
+gem 'wicked_pdf'                                    # Pdf Generation
+gem 'wkhtmltopdf-binary'
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
