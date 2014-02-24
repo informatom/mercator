@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     do_transition_action :add_to_basket do
       flash[:success] = "Das Produkt wurde zum Warenkorb hinzugefügt."
       flash[:notice] = nil
+      PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
       redirect_to session[:return_to]
     end
   end

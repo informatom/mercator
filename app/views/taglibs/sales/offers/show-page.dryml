@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div part="offeritems" class="row">
+        <div part="offeritems">
           <table class="table well table-striped">
             <thead>
               <tr>

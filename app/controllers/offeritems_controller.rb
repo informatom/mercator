@@ -25,6 +25,7 @@ class OfferitemsController < ApplicationController
         flash[:success] = "Die Angebotsposition wurde in den Warenkorb übernommen."
         flash[:notice] = nil
       end
+      PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
       redirect_to session[:return_to]
     end
   end

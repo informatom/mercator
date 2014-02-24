@@ -22,16 +22,17 @@
 <def attrs='include-search' tag='account-nav'>
   <div class='nav-collapse collapse'>
   <do with='&current_user'>
-    <ul class='navigation account-nav nav pull-right' param>
+    <ul class='navigation account-nav nav pull-right' param >
       <li param='search' if='&include_search'><live-search param if='&defined_route? :site_search'/></li>
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
-
       <if test="&current_user.basket">
         <li param='basket'>
           <nav-item with="&current_user.basket">
             <%= fa_icon "shopping-cart", class:"fa-lg" %>
+            <span part="summary" style="display: inline">
               <%= current_user.basket.lineitems.count %> Pos.
               <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
+            </span>
           </nav-item>
         </li>
       </if>

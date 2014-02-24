@@ -282,6 +282,10 @@ de:
       offer:
         complete: Komplettangebot
         lifecycle:
+          states:
+            in_progress: in Bearbeitung
+            invalid: ungültig
+            valid: gültig
           transitions:
             add_position: Angebotsposition hinzufügen
             submit: Freigabe anfordern

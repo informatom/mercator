@@ -100,7 +100,7 @@ class Offer < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def name
-    shipping_name + " / " + I18n.l(created_at).to_s
+    "Angebot (" + I18n.t('activerecord.attributes.offer.lifecycle.states.' + state) + ") " + shipping_name + " vom " + I18n.l(created_at).to_s
   end
 
   def sum

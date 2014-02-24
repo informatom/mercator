@@ -57,5 +57,7 @@ module Mercator
 
     config.time_zone = 'Vienna'
     config.active_record.default_timezone = :local
+
+    # config.hobo.show_translation_keys = true
   end
 end

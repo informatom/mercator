@@ -4,6 +4,11 @@ class OrdersController < ApplicationController
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
+  def refresh
+    self.this = Order.find(params[:id])
+    hobo_show
+  end
+
   def do_archive_parked_basket
     do_transition_action :archive_parked_basket do
       flash[:success] = "Der geparkte Warenkorb wurde archiviert."

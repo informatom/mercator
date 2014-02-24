@@ -91,6 +91,7 @@ class Lineitem < ActiveRecord::Base
       self.update(amount:        amount,
                   product_price: price,
                   value:         price * amount)
+      PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
 
     transition :remove_one, {:active => :active}, if: "acting_user.basket == order",
@@ -104,6 +105,7 @@ class Lineitem < ActiveRecord::Base
                     product_price: price,
                     value:         price * amount)
       end
+      PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
   end
 
@@ -137,7 +139,7 @@ class Lineitem < ActiveRecord::Base
     self.amount += amount
 
     product = Product.find(self.product_id)
-    self.value = product.price(amount: self.amount)
+    self.value = product.price(amount: self.amount) * self.amount
     raise unless self.save
   end
 
