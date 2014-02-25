@@ -44,6 +44,7 @@ gem 'whenever', :require => false                   # cronjob management
 gem 'private_pub'                                   # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                    # Pdf Generation
 gem 'wkhtmltopdf-binary'
+gem "searchkick"
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
