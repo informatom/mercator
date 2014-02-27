@@ -44,7 +44,7 @@ class BillingAddressesController < ApplicationController
                               shipping_country:    this.country)
 
       if current_user.name == "Gast"
-        current_user.update(email_address: this.email_address))
+        current_user.update(email_address: this.email_address)
         name = this.email_address.split('@')[0].gsub!('.', ' ')
         current_user.update(name: name.titlecase) if name
       end
