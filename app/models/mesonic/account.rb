@@ -1,8 +1,6 @@
 class Mesonic::Account < Mesonic::Cwl
-  def self.table_name
-    "T045"
-  end
 
+  self.table_name = "T045"
   set_primary_key "mesoprim"
   default_scope mesocomp.mesoyear
 

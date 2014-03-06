@@ -4,11 +4,11 @@ class Mesonic::Cwl < ActiveRecord::Base
   def self.mesonic_connection_environment
     case RAILS_ENV
     when "production"
-      :production_mesonic_cwldaten_sqlserver
+      :production_mesonic_cwldaten
     when "development"
-      :development_mesonic_cwldaten_sqlserver
+      :development_mesonic_cwldaten
     when "test"
-      :development_mesonic_cwldaten_sqlserver
+      :development_mesonic_cwldaten
     end
   end
 

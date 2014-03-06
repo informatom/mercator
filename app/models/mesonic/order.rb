@@ -1,8 +1,5 @@
 class Mesonic::Order < Mesonic::Cwl
 
-  def self.table_name
-    "t025"
-  end
-
+  self.table_name = "t025"
   set_primary_key "C000"
 end

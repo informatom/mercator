@@ -1,12 +1,8 @@
 class Mesonic::KontenstammAdresse < Mesonic::Cwl
 
-  def self.table_name
-    "T051"
-  end
-
+  self.table_name = "T051"
   set_primary_key "mesoprim"
-
-  default_scope self.mesonic_default_scope
+  default_scope mesocomp.mesoyear
 
   alias_attribute :street, :c050
   alias_attribute :city, :c052

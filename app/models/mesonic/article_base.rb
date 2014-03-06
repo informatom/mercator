@@ -1,9 +1,6 @@
 class Mesonic::ArticleBase < Mesonic::Cwl
 
-  def self.table_name
-    "t024"
-  end
-
+  self.table_name = "t024"
   set_primary_key "mesoprim"
 
   class << self ;

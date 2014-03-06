@@ -8,11 +8,7 @@ class Mesonic::CategoryInformation < Mesonic::Web
   def info
     File.open("#{RAILS_ROOT}/tmp/tmp.txt", "w") { |f| f.puts self.C010 }
     sh = `rtf2text #{RAILS_ROOT}/tmp/tmp.txt`
-    if sh
-      Iconv.iconv("UTF-8", "LATIN1", sh ).join(" ")
-    else
-      ""
-    end
+    sh ? Iconv.iconv("UTF-8", "LATIN1", sh ).join(" ") : ""
   end
 
   def pic

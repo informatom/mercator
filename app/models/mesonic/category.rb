@@ -17,11 +17,10 @@ class Mesonic::Category < Mesonic::Web
   end
 
   def parent_key
-    arr = self.C001.split("-")
-    arr[ self.C002.to_i - 1] = "00"
-    arr.join("-")
+    array = self.C001.split("-")
+    array[ self.C002.to_i - 1] = "00"
+    array.join("-")
   end
-
 
   def info_key
     self.C004.to_i

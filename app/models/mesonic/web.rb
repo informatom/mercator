@@ -4,11 +4,11 @@ class Mesonic::Web < ActiveRecord::Base
   def self.mesonic_connection_environment
     case RAILS_ENV
     when "production"
-      :production_mesonic_webedition_sqlserver
+      :production_mesonic_webedition
     when "development"
-      :development_mesonic_webedition_sqlserver
+      :development_mesonic_webedition
     when "test"
-      :development_mesonic_webedition_mysql
+      :development_mesonic_webedition
     end
   end
 

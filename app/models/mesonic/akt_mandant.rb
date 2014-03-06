@@ -1,23 +1,18 @@
 class Mesonic::AktMandant < Mesonic::Cwl
 
-  def self.table_name
-    "AktMandant"
-  end
-
+  self.table_name = "AktMandant"
   set_primary_key :mesocomp
 
-  class << self ;
-    def mesocomp
-      all.first.mesocomp
-    end
+  def self.mesocomp
+    self.first.mesocomp
+  end
 
-    def mesoyear
-      all.first.mesoyear
-    end
+  def self.mesoyear
+    self.first.mesoyear
+  end
 
-    def both
-      f = all.first
-      [f.mesocomp, f.mesoyear]
-    end
+  def self.both
+    f = self.first
+    [f.mesocomp, f.mesoyear]
   end
 end
