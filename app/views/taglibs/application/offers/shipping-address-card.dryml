@@ -1,4 +1,4 @@
-<def tag="shipping-address-card" >
+<def tag="shipping-address-card" for="Offer">
   <h3>Lieferadresse</h3>
   <div class="well">
     <strong><view:shipping-name/></strong><br/>

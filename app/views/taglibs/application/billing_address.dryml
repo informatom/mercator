@@ -15,18 +15,15 @@
 <def tag="sticker" for="BillingAddress">
   <card class="address" param="default" merge>
     <body: param>
-      <h4><view:name/></h4>
       (<view:email-address/>)<br/>
       <p>
         <if:detail>
           <view/><br/>
         </if:detail>
         <view:street/><br/>
-        <view:postalcode/><br/>
-        <view:city/><br/>
-        <view:country/>
+        <view:postalcode/> <view:city/>, <view:country/>
         <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">
-          <br /><br />
+          <br />
           <view:vat-number/><br />
           <small>
             registriert für:<br/>

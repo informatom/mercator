@@ -16,15 +16,12 @@
 <def tag="sticker" for="Address">
   <card class="address" param="default" merge>
     <body: param>
-      <h4><view:name/></h4>
       <p>
         <if:detail>
           <view/><br/>
         </if:detail>
         <view:street/><br/>
-        <view:postalcode/><br/>
-        <view:city/><br/>
-        <view:country/>
+        <view:postalcode/> <view:city/>, <view:country/>
       </p>
     </body:>
   </card>

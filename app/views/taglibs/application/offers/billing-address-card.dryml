@@ -1,4 +1,4 @@
-<def tag="billing-address-card">
+<def tag="billing-address-card" for="Offer">
   <h3>Rechnungsadresse</h3>
   <div class="well">
     <strong><view:billing-name/></strong><br/>

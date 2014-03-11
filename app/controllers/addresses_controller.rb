@@ -53,4 +53,10 @@ class AddressesController < ApplicationController
       redirect_to enter_addresses_path
     end
   end
+
+    def update
+    hobo_update do
+      redirect_to enter_addresses_path
+    end
+  end
 end

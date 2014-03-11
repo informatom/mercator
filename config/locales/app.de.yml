@@ -133,7 +133,7 @@ de:
     valid_to: Gültig bis
     valid_until: Gültig bis
     value: Wert
-    vat_number: MwSt-Nummer
+    vat_number: UID-Nummer
     vat: MwSt.
     version_of: Version vom
     weight: Gewicht
@@ -241,14 +241,14 @@ de:
 
     attributes:
       address:
-        name: Empfänger
+        name: Firma
         detail: Details
         lifecycle:
           transitions:
             use: Lieferadresse verwenden
             trash: Löschen
       billing_address:
-        name: Empfänger
+        name: Firma
         detail: Details
         lifecycle:
           transitions:

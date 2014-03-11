@@ -24,7 +24,6 @@ class BillingAddressesController < ApplicationController
     creator_page_action :enter
   end
 
-
   def do_enter
     do_creator_action :enter do
       self.this.user = current_user
@@ -89,6 +88,12 @@ class BillingAddressesController < ApplicationController
   def do_trash
     do_transition_action :trash do
       self.this.delete
+      redirect_to enter_billing_addresses_path
+    end
+  end
+
+  def update
+    hobo_update do
       redirect_to enter_billing_addresses_path
     end
   end

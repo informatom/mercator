@@ -1,11 +1,12 @@
-<def tag="billing-address-card" attrs="editable">
+<def tag="billing-address-card" polymorphic/>
+
+<def tag="billing-address-card" for="Order" attrs="editable">
   <if test="&this.billing_name">
     <h3>Rechnungsadresse</h3>
     <p class="well"><strong><view:billing_name/></strong><br/>
       <if:billing_detail><view/><br/></if>
       <view:billing_street/><br/>
-      <view:billing_postalcode/><br/>
-      <view:billing_city/><br/>
+      <view:billing_postalcode/> <view:billing_city/><br/>
       <view:billing_country/>
     </p>
     <if test="&editable">
