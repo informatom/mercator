@@ -1,16 +1,16 @@
 class Mesonic::Cwl < ActiveRecord::Base
   self.abstract_class = true
 
-#  def self.mesonic_connection_environment
-#    case RAILS_ENV
-#    when "production"
-#      :production_mesonic_cwldaten
-#    when "development"
-#      :development_mesonic_cwldaten
-#    when "test"
-#      :development_mesonic_cwldaten
-#    end
-#  end
+  def self.mesonic_connection_environment
+    case RAILS_ENV
+    when "production"
+      :production_mesonic_cwldaten
+    when "development"
+      :development_mesonic_cwldaten
+    when "test"
+      :development_mesonic_cwldaten
+    end
+  end
 
   # elf.establish_connection mesonic_connection_environment
 
