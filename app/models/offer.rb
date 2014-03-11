@@ -63,13 +63,13 @@ class Offer < ActiveRecord::Base
       PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
     end
 
-    transition :place, {:invalid => :valid}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do
-      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
-    end
-
     transition :copy, {:valid => :valid}, available_to: :user, if: "Date.today <= valid_until"
 
     transition :devalidate, {:valid => :invalid}, available_to: :all, if: "Date.today > valid_until", subsite: "sales" do
+      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+    end
+
+    transition :revise, {:invalid => :in_progress}, available_to: "User.sales", subsite: "sales" do
       PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
     end
   end

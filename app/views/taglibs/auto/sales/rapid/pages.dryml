@@ -1059,6 +1059,27 @@
   </page>
 </def>
 
+<def tag="revise-page" polymorphic/>
+<def tag="revise-page" for="Offer">
+  <page title="#{ht 'offer.revise.title', :default=>['Revise']}" merge>
+
+    <body: class="lifecycle-transition-page revise-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="offer.revise.heading">
+          Revise
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <revise-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 <!-- ====== Product Pages ====== -->

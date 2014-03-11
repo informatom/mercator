@@ -213,6 +213,17 @@
     </div>
   </form>
 </def>
+<def tag="revise-form" polymorphic/>
+<def tag="revise-form" for="Offer">
+  <form lifecycle="revise" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.offer.lifecycle.transitions.revise', :default=>['Revise']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Product">
   <form merge param="default">

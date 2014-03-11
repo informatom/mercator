@@ -292,6 +292,7 @@ de:
             place: Angebot legen
             copy: Angebot in Warenkorb kopieren
             devalidate: Ungültig machen
+            revise: Bearbeiten
       offeritem:
         lifecycle:
           transitions:

@@ -106,6 +106,7 @@
             <my-transition-link transition="place" class="btn-success"/>
             <my-transition-link transition="submit" class="btn-warning"/>
             <my-transition-link transition="devalidate" class="btn-warning"/>
+            <my-transition-link transition="revise" class="btn-warning"/>
           </div>
         </div>
       </do>
