@@ -19,6 +19,6 @@ class Mesonic::Account < Mesonic::Cwl
   delegate_attribute :uid_number, :c038
 
   def full_name
-    self.c001, self.c002 ].join(" ")
+    [self.c001, self.c002 ].join(" ")
   end
 end
