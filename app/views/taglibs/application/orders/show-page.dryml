@@ -84,7 +84,14 @@
                   <td>EUR <view:value/></td>
                   <td>
                     <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
-                    <else>Position aus Komplettangebot</else>
+                    <else>
+                      <if test="&this.state == 'shipping_costs'">
+                        Versandkosten
+                      </if>
+                      <else>
+                        Position aus Komplettangebot
+                      </else>
+                    </else>
                     <br/><br/><br/>
                     <my-transition-link transition="disable_upselling" class="btn btn-mini pull-right"/>
                     <my-transition-link transition="enable_upselling" class="btn btn-mini pull-right"/>
