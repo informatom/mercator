@@ -35,14 +35,14 @@
           </div>
 
           <div class="span4">
-            <if test="&this.shipping_name && this.billing_method">
+            <if test="&this.shipping_name && this.shipping_method">
               <if test="&this.basket?">
-                <payment-card editable/>
                 <delivery-card editable/>
+                <payment-card editable/>
               </if>
               <else>
-                <payment-card/>
                 <delivery-card/>
+                <payment-card/>
               </else>
             </if>
             <p class="pull-right"><my-transition-link transition="delete_all_positions" class="btn-danger btn-small"/></p>

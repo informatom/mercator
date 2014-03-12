@@ -48,17 +48,17 @@ class Order < ActiveRecord::Base
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
 
-    transition :cash_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='cash_payment' " do
-      self.update(billing_method: "cash_payment", shipping_method: "pickup_shipment")
+    transition :cash_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
+      self.update(billing_method: "cash_payment")
     end
-    transition :atm_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='atm_payment'" do
-      self.update(billing_method: "atm_payment", shipping_method: "pickup_shipment")
+    transition :atm_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
+      self.update(billing_method: "atm_payment")
     end
     transition :pre_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='pre_payment'" do
-      self.update(billing_method: "pre_payment", shipping_method: nil)
+      self.update(billing_method: "pre_payment")
     end
     transition :e_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='e_payment'" do
-      self.update(billing_method: "e_payment", shipping_method: nil)
+      self.update(billing_method: "e_payment")
     end
 
     transition :check_basket, {:basket => :basket}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
@@ -68,18 +68,23 @@ class Order < ActiveRecord::Base
 
     transition :archive_parked_basket, {:parked => :archived_basket}, available_to: :user
 
-    transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_pickup_shipment do
+    transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
 
       shippment_costs_line = self.lineitems.where(position: 10000, product_number: "shipping", description_de: "Versandkosten").first
       shippment_costs_line.delete if shippment_costs_line
     end
 
-    transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: :may_change_to_parcel_service_shipment do
+    transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
+      if ["atm_payment", "cash_payment"].include?(self.shipping_method)
+        self.update(billing_method: "e_payment")
+      end
 
       shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
-      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, position: 10000, product_number: "shipping", description_de: "Versandkosten", amount: 1, unit: "Pau.", product_price: shipping_cost.value, vat: shipping_cost.vat, value: shipping_cost.value, user: acting_user)
+      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, user_id: acting_user.id, position: 10000,
+                                          product_number: "shipping", description_de: "Versandkosten", amount: 1, unit: "Pau.",
+                                          product_price: shipping_cost.value, vat: shipping_cost.vat, value: shipping_cost.value)
     end
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do
@@ -181,19 +186,6 @@ class Order < ActiveRecord::Base
     self.billing_name && self.billing_street &&  self.billing_postalcode &&
     self.billing_city && self.billing_country
   end
-
-  def may_change_to_pickup_shipment
-    self.shipping_method !='pickup_shipment' && may_select_shipment
-  end
-
-  def may_change_to_parcel_service_shipment
-    self.shipping_method !='parcel_service_shipment' && may_select_shipment
-  end
-
-  def may_select_shipment
-    ["pre_payment", "e_payment"].include?(self.billing_method)
-  end
-
 
   #--- Class Methods --- #
 

@@ -8,9 +8,7 @@
             <t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" />
           </span>
         </p>
-        <if test="&this.may_select_shipment">
-          <p>Lieferart wechseln:</p>
-        </if>
+        <p>Lieferart wechseln:</p>
       </if>
       <else>
         Bitte wählen Sie eine Lieferart:

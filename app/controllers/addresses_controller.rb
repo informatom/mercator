@@ -42,7 +42,7 @@ class AddressesController < ApplicationController
                             shipping_city:       this.city,
                             shipping_country:    this.country)
 
-      current_basket.lifecycle.parcel_service_shipment! unless current_basket.shipping_method
+      current_basket.lifecycle.parcel_service_shipment!(current_user) unless current_basket.shipping_method
       redirect_to order_path(current_user.basket)
     end
   end
