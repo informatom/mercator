@@ -5,18 +5,20 @@
         <td><view:discount-rel/>% Rabatt</td>
       <td><div class="text-right"><view with="&number_to_currency(this.discount)"/></div></td>
     </tr>
+    </if>
+
     <tr>
       <td>Summe exkl. Mwst</td>
       <td><div class="text-right"><view with="&number_to_currency(this.sum)"/></div></td>
     </tr>
 
-    </if>
     <repeat:vat-items>
       <tr>
         <td>Mwst. <view: with="&this[0]" />%</td>
         <td><div class="text-right"><view with="&number_to_currency(this[1])" /></div></td>
       </tr>
     </repeat>
+
     <tr class="success">
       <td>Gesamtpreis</td>
       <td><div class="text-right"><view with="& number_to_currency(this.sum_incl_vat)"/></div></td>
