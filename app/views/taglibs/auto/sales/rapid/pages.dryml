@@ -903,7 +903,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, state, consultant, conversation, user" param/>
+      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, discount_rel, state, consultant, conversation, user" param/>
     </content-body:>
 
   </page>

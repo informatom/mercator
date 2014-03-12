@@ -17,13 +17,14 @@ class Offer < ActiveRecord::Base
     shipping_country    :string
     valid_until         :date, :required
     complete            :boolean
+    discount_rel        :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
   attr_accessible :valid_until, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
                   :offeritems, :user, :user_id, :user, :user_id,
-                  :consultant, :consultant_id, :conversation_id, :complete
+                  :consultant, :consultant_id, :conversation_id, :complete, :discount_rel, :discount_abs
   has_paper_trail
 
   belongs_to :user
@@ -104,20 +105,23 @@ class Offer < ActiveRecord::Base
   end
 
   def sum
-    self.offeritems.sum('value')
+    self.offeritems.sum('value') - self.discount
+  end
+
+  def discount
+    offeritems.any? ? self.discount_rel * self.offeritems.sum('value') / 100 : 0
   end
 
   def sum_incl_vat
-    self.sum + self.offeritems.*.vat_value.sum
+    offeritems.any? ? self.sum + self.offeritems.*.vat_value(discount_rel: self.discount_rel).sum : 0
   end
 
   def vat_items
     vat_items = Hash.new
     grouped_offeritems = self.offeritems.group_by{|offeritems| offeritems.vat}
     grouped_offeritems.each_pair do |percentage, itemgroup|
-      vat_items[percentage] = itemgroup.reduce(0) {|sum, offeritems| sum + offeritems.vat_value}
+      vat_items[percentage] = itemgroup.reduce(0) {|sum, offeritems| sum + offeritems.vat_value(discount_rel: self.discount_rel)}
     end
     return vat_items
   end
-
 end

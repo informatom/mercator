@@ -44,6 +44,9 @@ de:
     customer: Kunde
     delivery_time: Lieferzeit
     description: Beschreibung
+    detail: Detaiils
+    discount-abs: "Rabatt absolut in EUR"
+    discount-rel: "Rabatt relativ in %"
     document: Dokument
     document_file_name: Dateiname Dokument
     document_content_type: Dateityp Dokument

@@ -1,11 +1,11 @@
 <def tag="billing-address-card">
   <h3>Rechnungsadresse</h3>
   <div class="well">
-    <strong><click-editor:billing-name/></strong>
-    <click-editor:billing-detail/>
-    <click-editor:billing-street/>
-    <click-editor:billing-postalcode/>
-    <click-editor:billing-city/>
-    <click-editor:billing-country/>
+    <b><t key="activerecord.attributes.address.name"/>:</b> <strong><click-editor-innards:billing-name/></strong><br/>
+    <b><t key="attributes.detail"/>:</b> <click-editor-innards:billing-detail/><br/>
+    <b><t key="attributes.street"/>:</b> <click-editor-innards:billing-street/><br/>
+    <b><t key="attributes.postalcode"/>:</b> <click-editor-innards:billing-postalcode/><br/>
+    <b><t key="attributes.city"/>:</b>  <click-editor-innards:billing-city/><br/>
+    <b><t key="attributes.country"/>:</b> <click-editor-innards:billing-country/><br/>
   </div>
 </def>

@@ -13,7 +13,10 @@ public/assets/*
 public/system/*
 public/ckeditor_assets/*
 # app/views/taglibs/auto/*
+app/views/taglibs/auto/rapid/forms.dryml
+app/views/taglibs/auto/rapid/pages.dryml
+app/views/taglibs/auto/sales/rapid/forms.dryml
+app/views/taglibs/auto/sales/rapid/pages.dryml
+
 app/views/page_templates/*
-
 materials/ivellio-vellin/*
-

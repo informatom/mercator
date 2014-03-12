@@ -25,6 +25,9 @@
               </click-editor-innards:complete>
               <br/><br/>
             </div>
+            <div>
+              <b><t key="attributes.discount-rel"/>:</b> <click-editor-innards:discount-rel/><br/><br/>
+            </div>
             <p><my-transition-link transition="add_position" class="btn-primary"/></p>
           </div>
         </div>

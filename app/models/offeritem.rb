@@ -97,7 +97,7 @@ class Offeritem < ActiveRecord::Base
     end
   end
 
-  def vat_value
-    self.vat * self.value / 100
+  def vat_value(discount_rel: 0)
+    self.vat * self.value * ( 100 - discount_rel) / 100 / 100
   end
 end

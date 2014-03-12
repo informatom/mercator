@@ -1,11 +1,11 @@
 <def tag="shipping-address-card" >
   <h3>Lieferadresse</h3>
   <div class="well">
-    <strong><click-editor:shipping-name/></strong>
-    <click-editor:shipping-detail/>
-    <click-editor:shipping-street/>
-    <click-editor:shipping-postalcode/>
-    <click-editor:shipping-city/>
-    <click-editor:shipping-country/>
+    <b><t key="activerecord.attributes.address.name"/>:</b> <strong><click-editor-innards:shipping-name/></strong><br/>
+    <b><t key="attributes.detail"/>:</b> <click-editor-innards:shipping-detail/><br/>
+    <b><t key="attributes.street"/>:</b> <click-editor-innards:shipping-street/><br/>
+    <b><t key="attributes.postalcode"/>:</b> <click-editor-innards:shipping-postalcode/><br/>
+    <b><t key="attributes.city"/>:</b>  <click-editor-innards:shipping-city/><br/>
+    <b><t key="attributes.country"/>:</b> <click-editor-innards:shipping-country/><br/>
   </div>
 </def>
