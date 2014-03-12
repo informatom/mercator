@@ -325,7 +325,7 @@
 <def tag="form" for="Offeritem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, state, offer, product, user" param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, discount_abs, state, offer, product, user" param/>
     <div param="actions">
       <submit label="#{ht 'offeritem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

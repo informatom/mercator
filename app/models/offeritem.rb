@@ -14,10 +14,11 @@ class Offeritem < ActiveRecord::Base
     value          :decimal, :scale => 2, :precision => 10
     delivery_time  :string
     upselling      :boolean
+    discount_abs   :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
   attr_accessible :position, :product_id, :product_number, :description_de, :description_en, :amount,
-                  :unit, :product_price, :vat, :value, :delivery_time, :offer_id, :user_id, :selected
+                  :unit, :product_price, :vat, :value, :delivery_time, :offer_id, :user_id, :selected, :discount_abs
   attr_accessor :selected, :boolean
   translates :description
   has_paper_trail
@@ -77,7 +78,7 @@ class Offeritem < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
-  def update_from_product(product_number: nil, amount: 1)
+  def update_from_product(product_number: nil, amount: 1, discount_abs: 0)
     product = Product.find_by_number(product_number)
     if product
       price = product.price(amount: amount)
@@ -89,7 +90,7 @@ class Offeritem < ActiveRecord::Base
                   unit:           product.inventories.first.unit,
                   product_price:  price,
                   vat:            product.inventories.first.prices.first.vat,
-                  value:          amount * price )
+                  value:          calculate_value(amount: amount, price: price, discount_abs: discount_abs))
     else
       self.update(product_id:     nil,
                   product_number: product_number,
@@ -99,5 +100,9 @@ class Offeritem < ActiveRecord::Base
 
   def vat_value(discount_rel: 0)
     self.vat * self.value * ( 100 - discount_rel) / 100 / 100
+  end
+
+  def calculate_value(amount: 0, price:0, discount_abs: 0)
+    (price - discount_abs) * amount
   end
 end

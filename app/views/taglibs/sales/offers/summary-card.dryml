@@ -2,7 +2,7 @@
   <table class="table well table-striped table-condensed">
     <if test="&this.discount_rel != 0">
       <tr>
-        <td><view:discount-rel/>% Rabatt</td>
+        <td>- <view:discount-rel/>% Rabatt</td>
       <td><div class="text-right"><view with="&number_to_currency(this.discount)"/></div></td>
     </tr>
     </if>

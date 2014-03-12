@@ -24,7 +24,7 @@ class Offer < ActiveRecord::Base
                   :billing_city, :billing_country, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
                   :offeritems, :user, :user_id, :user, :user_id,
-                  :consultant, :consultant_id, :conversation_id, :complete, :discount_rel, :discount_abs
+                  :consultant, :consultant_id, :conversation_id, :complete, :discount_rel
   has_paper_trail
 
   belongs_to :user

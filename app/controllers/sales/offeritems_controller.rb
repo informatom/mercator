@@ -8,15 +8,22 @@ class Sales::OfferitemsController < Sales::SalesSiteController
     hobo_update do
       if params[:offeritem][:amount]
         @this.update(product_price: @this.product.price(amount: @this.amount)) if @this.product
-        @this.update(value:         @this.product_price * @this.amount)
+        @this.update(value: @this.calculate_value(price: @this.product_price,
+                                                  amount: @this.amount,
+                                                  discount_abs: @this.discount_abs))
       end
 
-      if params[:offeritem][:product_price]
-        @this.update(value: @this.product_price * @this.amount)
+      if params[:offeritem][:product_price] || params[:offeritem][:discount_abs]
+        @this.update(value: @this.calculate_value(price: @this.product_price,
+                                                  amount: @this.amount,
+                                                  discount_abs: @this.discount_abs))
       end
 
-      product_number = params[:offeritem][:product_number]
-      @this.update_from_product(product_number: product_number, amount: @this.amount) if product_number
+      if params[:offeritem][:product_number]
+        @this.update_from_product(product_number: @this.product_number,
+                                  amount: @this.amount,
+                                  discount_abs: @this.discount_abs)
+      end
     end
     PrivatePub.publish_to("/offers/"+ @this.offer_id.to_s, type: "all")
   end
