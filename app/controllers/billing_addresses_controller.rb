@@ -68,8 +68,8 @@ class BillingAddressesController < ApplicationController
                             billing_street:     this.street,
                             billing_postalcode: this.postalcode,
                             billing_city:       this.city,
-                            billing_country:    this.country,
-                            billing_method:     "parcel_service_shipment")
+                            billing_country:    this.country)
+      current_basket.lifecycle.e_payment!(current_user) unless current_basket.shipping_method
 
       unless current_basket.shipping_name
         current_basket.update(shipping_name:       this.name,
@@ -77,8 +77,8 @@ class BillingAddressesController < ApplicationController
                               shipping_street:     this.street,
                               shipping_postalcode: this.postalcode,
                               shipping_city:       this.city,
-                              shipping_country:    this.country,
-                              shipping_method:     "parcel_service_shipment")
+                              shipping_country:    this.country)
+        current_basket.lifecycle.parcel_service_shipment!(current_user) unless current_basket.shipping_method
       end
 
       redirect_to order_path(current_user.basket)

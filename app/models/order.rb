@@ -79,10 +79,7 @@ class Order < ActiveRecord::Base
       self.update(shipping_method: "parcel_service_shipment")
 
       shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
-
-      Lineitem::Lifecycle.insert_shipping(acting_user, order: self, position: 10000, product_number: "shipping",
-                                          description_de: "Versandkosten", amount: 1, unit: "Pau.", product_price: shipping_cost.value,
-                                          vat: shipping_cost.vat, value: shipping_cost.value, user: acting_user)
+      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, position: 10000, product_number: "shipping", description_de: "Versandkosten", amount: 1, unit: "Pau.", product_price: shipping_cost.value, vat: shipping_cost.vat, value: shipping_cost.value, user: acting_user)
     end
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do
