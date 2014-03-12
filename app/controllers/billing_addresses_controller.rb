@@ -55,7 +55,7 @@ class BillingAddressesController < ApplicationController
                        city:       this.city,
                        country:    this.country,
                        user:       current_user)
-
+        current_basket.lifecycle.parcel_service_shipment!(current_user) unless current_basket.shipping_method
         redirect_to order_path(current_user.basket)
       end
     end
