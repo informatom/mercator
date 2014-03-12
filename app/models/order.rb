@@ -77,7 +77,7 @@ class Order < ActiveRecord::Base
 
     transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
-      if ["atm_payment", "cash_payment"].include?(self.shipping_method)
+      if ["atm_payment", "cash_payment"].include?(self.billing_method)
         self.update(billing_method: "e_payment")
       end
 
