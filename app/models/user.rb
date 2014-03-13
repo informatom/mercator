@@ -20,10 +20,14 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
-                  :conversations, :confirmation
+                  :conversations, :confirmation, :photo
   attr_accessor :confirmation
 
   has_paper_trail
+
+  has_attached_file :photo,
+    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
+    :default_url => "/images/:style/missing.png"
 
   has_many :addresses, dependent: :destroy, inverse_of: :user, accessible: true
   has_many :billing_addresses, dependent: :destroy, inverse_of: :user, accessible: true
@@ -68,6 +72,8 @@ class User < ActiveRecord::Base
 
     transition :deactivate, {active: :inactive}, available_to: "User.administrator",
                subsite: "admin"
+    transition :reactivate, {inactive: :active}, available_to: "User.administrator",
+               subsite: "admin"
 
     transition :request_password_reset, {:inactive => :inactive}, new_key: true do
       UserMailer.activation(self, lifecycle.key).deliver
@@ -100,7 +106,6 @@ class User < ActiveRecord::Base
                    :password_confirmation, :confirm))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
-    true
   end
 
   def destroy_permitted?

@@ -44,7 +44,7 @@ gem 'whenever', :require => false                   # cronjob management
 gem 'private_pub'                                   # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                    # Pdf Generation
 gem 'wkhtmltopdf-binary'
-gem "searchkick"
+# gem "searchkick"
 
 group :development, :test  do
   gem 'thin'                                        # web server, replacement for webrick
@@ -54,8 +54,8 @@ group :development, :test  do
   gem "better_errors"                               # Debug messages im Browser
   gem "binding_of_caller"                           # Repl for better_errors
   gem "rails-erd"                                    # ER-Diagrams
-#  gem 'rack-mini-profiler'                          # Performance Testing
-  # gem 'dryml-firemarker', :require => 'dryml13-firemarker' # DRYML Debugger
+# gem 'rack-mini-profiler'                          # Performance Testing
+# gem 'dryml-firemarker', :require => 'dryml13-firemarker' # DRYML Debugger
 end
 
 group :test do

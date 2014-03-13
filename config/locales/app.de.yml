@@ -346,6 +346,8 @@ de:
           transitions:
             activate: Account aktivieren
             accept_gtc: AGBs bestätigen
+            deactivate: Deaktivieren
+            reactivate: Aktivieren
       webpage:
         lifecycle:
           transitions:

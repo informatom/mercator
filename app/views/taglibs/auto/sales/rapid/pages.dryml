@@ -1564,7 +1564,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, state" param/>
+      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
     </content-body:>
 
   </page>
@@ -1694,6 +1694,27 @@
 
     <content-body: param>
       <deactivate-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="reactivate-page" polymorphic/>
+<def tag="reactivate-page" for="User">
+  <page title="#{ht 'user.reactivate.title', :default=>['Reactivate']}" merge>
+
+    <body: class="lifecycle-transition-page reactivate-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.reactivate.heading">
+          Reactivate
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <reactivate-form param="form"/>
     </content-body:>
 
   </page>

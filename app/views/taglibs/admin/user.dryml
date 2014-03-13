@@ -32,3 +32,11 @@
 
   </old-show-page>
 </extend>
+
+<extend tag="form" for="User">
+  <old-form merge multipart>
+    <field-list: fields="name, email_address, sales, sales_manager, administrator,
+                         logged_in, photo, addresses, billing_addresses" param>
+    </field-list:>
+  </old-form>
+</extend>

@@ -1,5 +1,10 @@
 <show-page>
-  <prepend-content-body:>
-    <transition-buttons/>
-  </prepend-content-body:>
+  <aside:>
+  123
+    <my-transition-link transition="deactivate" class="btn-warning"/>
+    <my-transition-link transition="reactivate" class="btn-success"/>
+    <if test="&this.photo">
+      <br/><br/><%= image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ) %>
+    </if>
+  </aside:>
 </show-page>

@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
   set_search_columns :title_de, :title_en, :description_de, :description_en, :number
   translates :title, :description
   has_paper_trail
-  searchkick
+  # searchkick
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
