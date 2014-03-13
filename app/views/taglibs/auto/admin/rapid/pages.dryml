@@ -3395,7 +3395,7 @@
 
 
 <def tag="show-page" for="User">
-  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }"  >
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page user" param/>
 

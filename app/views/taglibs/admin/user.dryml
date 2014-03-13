@@ -1,5 +1,24 @@
-<extend tag="show-page" for="User">
-  <old-show-page merge>
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+          User <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit User
+        </ht>
+      </a>
+    </content-header:>
+
     <content-body: param>
       <field-list fields="email_address, last_login_at, login_count, state" param/>
       <section param="collection-section">
@@ -30,8 +49,8 @@
       </section>
     </content-body:>
 
-  </old-show-page>
-</extend>
+  </page>
+</def>
 
 <extend tag="form" for="User">
   <old-form merge multipart>

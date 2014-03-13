@@ -1,6 +1,5 @@
 <show-page>
   <aside:>
-  123
     <my-transition-link transition="deactivate" class="btn-warning"/>
     <my-transition-link transition="reactivate" class="btn-success"/>
     <if test="&this.photo">
