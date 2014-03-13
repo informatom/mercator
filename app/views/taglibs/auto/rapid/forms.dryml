@@ -193,7 +193,7 @@
 <def tag="form" for="Lineitem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, state, order, product, user" param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, discount_abs, state, order, product, user" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -214,7 +214,7 @@
 <def tag="from-offeritem-form" for="Lineitem">
   <form lifecycle="from_offeritem" merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, product_id, offer_id, description_de, description_en, amount, unit, product_price, vat, value, order_id, user_id, delivery_time" param/>
+    <field-list fields="position, product_number, product_id, offer_id, description_de, description_en, amount, unit, product_price, vat, discount_abs, value, order_id, user_id, delivery_time" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.from_offeritem', :default=>['From Offeritem']}" param/><or-cancel param="cancel"/>
     </div>
@@ -224,7 +224,7 @@
 <def tag="blocked-from-offeritem-form" for="Lineitem">
   <form lifecycle="blocked_from_offeritem" merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, product_id, offer_id, description_de, description_en, amount, unit, product_price, vat, value, order_id, user_id, delivery_time" param/>
+    <field-list fields="position, product_number, product_id, offer_id, description_de, description_en, amount, unit, product_price, vat, discount_abs, value, order_id, user_id, delivery_time" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.blocked_from_offeritem', :default=>['Blocked From Offeritem']}" param/><or-cancel param="cancel"/>
     </div>

@@ -18,6 +18,7 @@ class OfferitemsController < ApplicationController
                                                      description_en: this.description_en,
                                                      amount:         this.amount,
                                                      product_price:  this.product_price,
+                                                     discount_abs:   this.discount_abs,
                                                      value:          this.value,
                                                      unit:           this.unit,
                                                      delivery_time:  this.delivery_time)

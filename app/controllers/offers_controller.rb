@@ -25,6 +25,7 @@ class OffersController < ApplicationController
                                                         description_en: offeritem.description_en,
                                                         amount:         offeritem.amount,
                                                         product_price:  offeritem.product_price,
+                                                        discount_abs:   offeritem.discount_abs,
                                                         value:          offeritem.value,
                                                         unit:           offeritem.unit,
                                                         delivery_time:  offeritem.delivery_time)
@@ -43,6 +44,7 @@ class OffersController < ApplicationController
                                                         description_en: offeritem.description_en,
                                                         amount:         offeritem.amount,
                                                         product_price:  offeritem.product_price,
+                                                        discount_abs:   offeritem.discount_abs,
                                                         value:          offeritem.value,
                                                         unit:           offeritem.unit,
                                                         delivery_time:  offeritem.delivery_time)

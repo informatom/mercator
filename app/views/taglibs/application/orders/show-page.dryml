@@ -80,8 +80,20 @@
                       <em>Lieferzeit:</em> <view/>
                     </if>
                   </td>
-                  <td>EUR <view:product-price/></td>
-                  <td>EUR <view:value/></td>
+                  <td>
+                    <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
+                    <if test="&this.discount_abs != 0">
+                      <div class="text-right"> - <view:discount-abs/>% Rabatt </div>
+                    </if>
+                  </td>
+                  <td>
+                    <if test="&this.discount_abs != 0">
+                      <div class="text-right">
+                        <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
+                      </div>
+                    </if>
+                    <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
+                  </td>
                   <td>
                     <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
                     <else>

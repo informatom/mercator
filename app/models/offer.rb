@@ -119,9 +119,9 @@ class Offer < ActiveRecord::Base
 
   def vat_items
     vat_items = Hash.new
-    grouped_offeritems = self.offeritems.group_by{|offeritems| offeritems.vat}
+    grouped_offeritems = self.offeritems.group_by{|offeritem| offeritem.vat}
     grouped_offeritems.each_pair do |percentage, itemgroup|
-      vat_items[percentage] = itemgroup.reduce(0) {|sum, offeritems| sum + offeritems.vat_value(discount_rel: self.discount_rel)}
+      vat_items[percentage] = itemgroup.reduce(0) {|sum, offeritem| sum + offeritem.vat_value(discount_rel: self.discount_rel)}
     end
     return vat_items
   end

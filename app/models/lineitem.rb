@@ -14,6 +14,7 @@ class Lineitem < ActiveRecord::Base
     value          :decimal, :required, :scale => 2, :precision => 10
     delivery_time  :string
     upselling      :boolean
+    discount_abs   :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
 
@@ -48,13 +49,13 @@ class Lineitem < ActiveRecord::Base
 
     create :from_offeritem, :available_to => :all, become: :active,
            params: [:position, :product_number, :product_id, :offer_id, :description_de,
-                    :description_en, :amount, :unit, :product_price, :vat, :value,
-                    :order_id, :user_id, :delivery_time]
+                    :description_en, :amount, :unit, :product_price, :vat, :discount_abs,
+                    :value, :order_id, :user_id, :delivery_time]
 
     create :blocked_from_offeritem, :available_to => :all, become: :blocked,
            params: [:position, :product_number, :product_id, :offer_id, :description_de,
-                    :description_en, :amount, :unit, :product_price, :vat, :value,
-                    :order_id, :user_id, :delivery_time]
+                    :description_en, :amount, :unit, :product_price, :vat, :discount_abs,
+                    :value, :order_id, :user_id, :delivery_time]
 
     transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == order", available_to: :all do
       self.delete
@@ -89,8 +90,8 @@ class Lineitem < ActiveRecord::Base
       amount = self.amount + 1
       price = product.price(amount: amount)
       self.update(amount:        amount,
-                  product_price: price,
-                  value:         price * amount)
+                  product_price: price)
+      self.update(value: self.calculate_value)
       PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
 
@@ -102,8 +103,8 @@ class Lineitem < ActiveRecord::Base
         amount = self.amount - 1
         price = product.price(amount: amount)
         self.update(amount:        amount,
-                    product_price: price,
-                    value:         price * amount)
+                    product_price: price)
+        self.update(value: self.calculate_value)
       end
       PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
@@ -148,8 +149,12 @@ class Lineitem < ActiveRecord::Base
     lineitem.delete
   end
 
-  def vat_value
-    self.vat * self.value / 100
+  def vat_value(discount_rel: 0)
+    self.vat * self.value * ( 100 - discount_rel) / 100 / 100
+  end
+
+  def calculate_value(discount_abs: self.discount_abs)
+    (self.product_price - discount_abs) * self.amount
   end
 
   #--- Class Methods --- #
@@ -167,8 +172,8 @@ class Lineitem < ActiveRecord::Base
                             amount:         amount,
                             unit:           product.inventories.first.unit,
                             product_price:  price,
-                            vat:            product.inventories.first.prices.first.vat,
-                            value:          amount * price )
+                            vat:            product.inventories.first.prices.first.vat)
+    lineitem.value = lineitem.calculate_value
 
     raise unless lineitem.save
   end

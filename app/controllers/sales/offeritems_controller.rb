@@ -8,15 +8,11 @@ class Sales::OfferitemsController < Sales::SalesSiteController
     hobo_update do
       if params[:offeritem][:amount]
         @this.update(product_price: @this.product.price(amount: @this.amount)) if @this.product
-        @this.update(value: @this.calculate_value(price: @this.product_price,
-                                                  amount: @this.amount,
-                                                  discount_abs: @this.discount_abs))
+        @this.update(value: @this.calculate_value)
       end
 
       if params[:offeritem][:product_price] || params[:offeritem][:discount_abs]
-        @this.update(value: @this.calculate_value(price: @this.product_price,
-                                                  amount: @this.amount,
-                                                  discount_abs: @this.discount_abs))
+        @this.update(value: @this.calculate_value)
       end
 
       if params[:offeritem][:product_number]

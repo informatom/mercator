@@ -1443,7 +1443,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, state, order, product" param/>
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, discount_abs, state, order, product" param/>
     </content-body:>
 
   </page>
