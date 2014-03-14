@@ -40,8 +40,8 @@
   <old-show-page merge>
     <content-header: replace/>
     <content-body:>
-      <div class="row">
-        <div class="span8">
+      <div class="row-fluid">
+        <div class="span8 moveable" id="left-column">
           <form with="&@message" update="mymessages">
             <h3>Ihre Nachricht: </h3>
             <div> <input:content class="input-block-level"/> </div>
@@ -86,40 +86,36 @@
           </section>
 
           <div part="links">
-            <if test="&this.last_link && Time.now - this.links.recent(1)[0].created_at < 10">
-              <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-                   aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="myModalLabel">Webseite</h3>
-                </div>
-                <div class="modal-body">
-                  <unless test="&this.last_link.local?">
-                    <iframe src="#{this.last_link.url}" width="95%" height="700">
-                      <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
-                         Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
-                         aufrufen: <a href="&this.last_link.url">Link</a></p>
-                    </iframe>
-                  </unless>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn" data-dismiss="modal" aria-hidden="true">Schließen</button>
-                </div>
+            <if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
+              <script>
+                $('#left-column').removeClass('span8').addClass('span2');
+                $('#middle-column').removeClass('span0 hidden').addClass('span8');
+                $('#middle-column').html($('#cobrowsing-area').html());
+                $('#right-column').removeClass('span4').addClass('span2');
+                $('.bootstrap-content').addClass('widescreen')
+                $('.row').removeClass('row-fluid').addClass('row')
+              </script>
+              <div id="cobrowsing-area" class="hidden">
+                <iframe src="#{this.last_link.url}" width="100%" height="800">
+                  <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
+                     Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
+                     aufrufen: <a href="&this.last_link.url">Link</a></p>
+                </iframe>
               </div>
-              <if test="&this.last_link.local?">
-                <script>
-                  $('#myModal').modal({remote: '<%= this.links.recent(1)[0].url %>'})
-                </script>
-              </if>
-              <else>
-                <script>
-                  $('#myModal').modal()
-                </script>
-              </else>
             </if>
+            <else>
+              <script>
+                $('#left-column').removeClass('span2').addClass('span8');
+                $('#middle-column').removeClass('span8').addClass('hidden span0');
+                $('#right-column').removeClass('span2').addClass('span4');
+                $('.bootstrap-content').removeClass('widescreen');
+                $('.row').removeClass('row').addClass('row-fluid')
+              </script>
+            </else>
           </div>
         </div>
-        <div class="span4">
+        <div class="span0 moveable" id="middle-column"></div>
+        <div class="span4 moveable" id="right-column">
 
           <photo-card with="&this.consultant" />
 
@@ -127,9 +123,6 @@
             <h3 param="collection-heading"> <%= t("attributes.suggestions") %> </h3>
             <collection:suggestions part="suggestions"/>
           </section>
-          <create-button with="&Link" update="messages" label="Produktvorschläge anzeigen"
-                         fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions',
-                                   conversation_id: this.id.to_s }"/>
 
           <h3> Feedback </h3>
           <p>Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback:</p>
