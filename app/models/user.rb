@@ -154,4 +154,8 @@ class User < ActiveRecord::Base
     return new_user
   end
 
+  def self.assign_consultant()
+    consultant = User.sales.where(logged_in: true).first
+    return consultant
+  end
 end

@@ -22,13 +22,29 @@
   </old-feedback-form>
 </extend>
 
+<extend tag="initiate-page" for="Conversation">
+  <old-initiate-page merge>
+    <before-form:>
+      <set consultant="&User.assign_consultant"/>
+      <photo-card with="&consultant" class="pull-right" />
+      <div class="alert alert-info">
+        <b><view: with="&consultant.name"/></b>: Guten Tag! Mein Name ist <view: with="&consultant.name"/>. Wie kann ich Ihnen helfen?
+      </div>
+
+    </before-form:>
+  </old-initiate-page>
+</extend>
+
+
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
-     <content-body:>
+    <content-header: replace/>
+    <content-body:>
       <div class="row">
         <div class="span8">
           <form with="&@message" update="mymessages">
-            <div> Neue Nachricht: <input:content/> </div>
+            <h3>Ihre Nachricht: </h3>
+            <div> <input:content class="input-block-level"/> </div>
           </form>
 
           <%= subscribe_to "/conversations/" + this.id.to_s %>
@@ -56,7 +72,6 @@
           </script>
 
           <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.messages") %> </h3>
             <collection:messages part="messages"/>
           </section>
 
@@ -105,6 +120,9 @@
           </div>
         </div>
         <div class="span4">
+
+          <photo-card with="&this.consultant" />
+
           <section param="collection-section" merge>
             <h3 param="collection-heading"> <%= t("attributes.suggestions") %> </h3>
             <collection:suggestions part="suggestions"/>

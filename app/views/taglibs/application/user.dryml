@@ -64,3 +64,12 @@
     </content-body:>
   </old-show-page>
 </extend>
+
+<def tag="photo-card">
+  <div class="well" style="margin: 10px" merge-attrs >
+    <p>Sie sprechen mit: <view:name/></p>
+    <if test="&this.photo">
+      <p><%= image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ) %></p>
+    </if>
+  </div>
+</def>

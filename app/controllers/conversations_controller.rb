@@ -35,8 +35,12 @@ class ConversationsController < ApplicationController
     PrivatePub.publish_to("/conversations/new", type: "conversations")
 
     do_creator_action :initiate do
+      consultant = User.assign_consultant
       self.this.update(customer: current_user,
-                       consultant: User.sales.where(logged_in: true).first)
+                       consultant: consultant)
+      self.this.messages << Message.new(sender: consultant,
+                                        reciever: current_user,
+                                        content: "Guten Tag! Mein Name ist " + consultant.name + "Wie kann ich Ihnen helfen?")
     end
   end
 
@@ -52,7 +56,7 @@ class ConversationsController < ApplicationController
         @feedback.update(user_id: this.customer_id)
       when "consultant"
         @feedback.update(consultant_id: this.consultant_id)
-      else 
+      else
         @feedback.save
       end
     end

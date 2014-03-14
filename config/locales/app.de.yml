@@ -374,7 +374,7 @@ de:
         key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
         markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
       conversation:
-        name: "Dient dazu, dass sie später diese Kenversation wiederfinden können."
+        name: "Dient auch dazu, dass sie später diese Konversation wiederfinden können."
       country:
         code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
       inventory:
