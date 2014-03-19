@@ -12,7 +12,10 @@ First of: There are lots of dependencies as we aim to write as little code as po
 * Ruby on Rails. See http://rubyonrails.org/ for more.
 * Ruby. https://www.ruby-lang.org/de/about/
 * PostgresQL (The application should run on MySQL as well, but that is not supported in nay way)
-*
+* FreeTDS:
+```bash
+sudo apt-get install freetds-dev freetds-bin tdsodbc unixodbc unixodbc-dev
+```
 
 FIXME! Links, all below me
 FIXME! What is guided selling
@@ -38,6 +41,6 @@ Your Mercator is now running and fully functional!
 
 FIXME! Second user should be sales guy
 
-Sources: 
+Sources:
 
 * Audio sample Big Ben from Freesound.org: http://www.freesound.org/people/hyderpotter/sounds/80290/

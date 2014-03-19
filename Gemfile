@@ -2,8 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
-gem 'jquery-rails'                                  # JQuery asset handling
+gem 'tiny_tds'                                        # A modern, simple and fast FreeTDS library for Ruby using DB-Library
+gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter'
 
+gem 'jquery-rails'                                  # JQuery asset handling
 gem "protected_attributes"
 gem 'valvat'                                        # European Vat Number Validation
 
