@@ -85,4 +85,16 @@ class Category < ActiveRecord::Base
     self.find_by_name_de(param)
   end
 
+  def self.auto
+    @auto = Category.where(name_de: "automatisch").first
+    @auto = self.create(name_de: "automatisch",
+                        name_en: "automatic",
+                        description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
+                        description_en: "automatically created froducts from ERP import Job",
+                        long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
+                        long_description_en: "Please complete products and put them into categories",
+                        parent: nil,
+                        position: 1) unless @auto
+    return @auto
+  end
 end

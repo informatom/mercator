@@ -1319,7 +1319,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
+      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="price.collection.heading" count="&this.prices.count" >

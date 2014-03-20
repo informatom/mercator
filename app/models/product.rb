@@ -119,4 +119,16 @@ class Product < ActiveRecord::Base
   def self.find_by_name(param)
     self.find_by_number(param)
   end
+
+  def self.create_in_auto(number: nil, title: nil, description: nil)
+    @auto_category = Category.auto
+    description = title if description.blank?
+    @product = self.new(number: number,
+                        title_de: title,
+                        description_de: description)
+    @product.categorizations.new(category_id: @auto_category.id,
+                                 position: @auto_category.products.count + 1)
+    @product.save
+    return @product
+  end
 end

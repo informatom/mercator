@@ -44,5 +44,4 @@ class Mesonic::Price < Mesonic::Cwl
   end
 
   alias :to_s :price
-
 end

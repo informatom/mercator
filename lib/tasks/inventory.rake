@@ -1,5 +1,7 @@
 # encoding: utf-8
+
 namespace :inventory do
+
   # starten als: 'bundle exec rake inventory:delivery_time
   # in Produktivumgebungen: 'bundle exec rake inventory:delivery_time RAILS_ENV=production'
   desc "Creates dummy delivery_time"
