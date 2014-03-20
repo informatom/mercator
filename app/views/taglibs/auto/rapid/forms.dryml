@@ -601,7 +601,7 @@
 <def tag="form" for="Product">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, number, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
+    <field-list fields="title_de, title_en, number, description_de, description_en, novelty, topseller, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
     <div param="actions">
       <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

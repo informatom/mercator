@@ -9,11 +9,14 @@ class Product < ActiveRecord::Base
     description_de :cktext, :required
     description_en :cktext
     legacy_id      :integer
+    novelty        :boolean
+    topseller      :boolean
     timestamps
   end
   attr_accessible :title_de, :title_en, :number, :description_de, :description_en,
                   :photo, :document, :productrelations, :supplyrelations,
-                  :inventories, :recommendations, :legacy_id, :categories, :categorizations
+                  :inventories, :recommendations, :legacy_id, :categories, :categorizations,
+                  :novelty, :topseller
   set_search_columns :title_de, :title_en, :description_de, :description_en, :number
   translates :title, :description
   has_paper_trail
@@ -127,7 +130,7 @@ class Product < ActiveRecord::Base
                         title_de: title,
                         description_de: description)
     @product.categorizations.new(category_id: @auto_category.id,
-                                 position: @auto_category.products.count + 1)
+                                 position: @auto_category.categorizations.maximum(:position) + 1)
     @product.save
     return @product
   end

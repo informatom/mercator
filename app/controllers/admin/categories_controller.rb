@@ -19,6 +19,14 @@ class Admin::CategoriesController < Admin::AdminSiteController
     end
   end
 
+  def index
+    self.this = Category.paginate(:page => params[:page])
+                       .search([params[:search], :name_de, :name_en, :description_de, :description_en])
+                       .order_by(parse_sort_param(:name_de, :name_en, :this))
+    hobo_index
+  end
+
+
 protected
   def parse_categories(categories_array, parent)
     categories_array.each_with_index do |category_hash, position|

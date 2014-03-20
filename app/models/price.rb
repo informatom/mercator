@@ -9,10 +9,11 @@ class Price < ActiveRecord::Base
     valid_to   :date, :required
     scale_from :decimal, :required, :precision => 10, :scale => 2
     scale_to   :decimal, :required, :precision => 10, :scale => 2
+    promotion  :boolean
     timestamps
   end
   attr_accessible :vat, :value, :valid_from, :valid_to, :scale_from,
-                  :scale_to, :inventory, :inventory_id
+                  :scale_to, :inventory, :inventory_id, :promotion
   has_paper_trail
 
   validates :value, numericality: true, allow_nil: true

@@ -1,6 +1,6 @@
 <index-page>
   <collection: replace>
-    <table-plus without-page-nav fields="this, title_de, title_en, description_de, state, actions">
+    <table-plus without-page-nav fields="this, name_en, description_de, description_en, state, actions">
       <actions-heading:></actions-heading:>
       <actions-view:><bootstrap-table-actions/></actions-view:>
     </table-plus>

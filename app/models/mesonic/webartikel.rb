@@ -32,6 +32,50 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
                                      amount: 9999,
                                      erp_updated_at: webartikel.letzteAend)
 
+          if webartikel.Kennzeichen = "T"
+            @product.topseller = true
+            @topsellers = Category.where(name_de: "Topseller").first
+            if @topsellers.categorizations.any?
+              position = @topsellers.categorizations.maximum(:position) + 1
+            else
+              position = 1
+            end
+            @product.categorizations.new(category_id: @topsellers.id,
+                                         position: position)
+            @product.save
+          end
+
+          if webartikel.Kennzeichen = "N"
+            @product.novelty = true
+            @novelties = Category.where(name_de: "Neuheiten").first
+            if @novelties.categorizations.any?
+              position = @novelties.categorizations.maximum(:position) + 1
+            else
+              position = 1
+            end
+
+            @product.categorizations.new(category_id: @novelties.id,
+                                         position: position)
+            @product.save
+          end
+
+          if webartikel.PreisdatumVON &&
+             webartikel.PreisdatumVON <= Time.now &&
+             webartikel.PreisdatumBIS &&
+             webartikel.PreisdatumBIS >= Time.now
+            @discounts = Category.where(name_de: "Aktionen").first
+            if @discounts.categorizations.any?
+              position = @discounts.categorizations.maximum(:position) + 1
+            else
+              position = 1
+            end
+
+            @product.categorizations.new(category_id: @discounts.id,
+                                         position: position)
+            @product.save
+          end
+
+
           if @inventory.save
             print "I"
           else
@@ -42,9 +86,19 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
                               scale_from: webartikel.AbMenge,
                               scale_to: 9999,
                               vat: 20,
-                              valid_from: Date.today,
-                              valid_to: Date.today + 1.year,
                               inventory_id: @inventory.id)
+
+          if webartikel.PreisdatumVON &&
+             webartikel.PreisdatumVON <= Time.now &&
+             webartikel.PreisdatumBIS &&
+             webartikel.PreisdatumBIS >= Time.now
+            @price.promotion = true
+            @price.valid_from = webartikel.PreisdatumVON
+            @price.valid_to = webartikel.PreisdatumBIS
+          else
+            @price.valid_from = Date.today
+            @price.valid_to = Date.today + 1.year
+          end
 
           if @price.save
             print "P"
