@@ -19,6 +19,8 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
                                           title: webartikel.Bezeichnung,
                                           description: webartikel.comment) unless @product
 
+        Inventory.where(product_id: @product.id).destroy_all # This also deletes the prices!
+
         @inventory = Inventory.new(product_id: @product.id,
                                    number: webartikel.Artikelnummer,
                                    name_de: webartikel.Bezeichnung,
