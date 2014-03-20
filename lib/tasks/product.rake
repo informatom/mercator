@@ -29,7 +29,13 @@ namespace :product do
         puts "\nFAILURE: Price " + price.value.to_s + " not created."
         next
       end
-
     end
+  end
+
+  # starten als: 'bundle exec rake product:deprecate
+  # in Produktivumgebungen: 'bundle exec rake product:deprecate RAILS_ENV=production'
+  desc "Deprecates products without inventories"
+  task :deprecate => :environment do
+    Product.deprecate
   end
 end

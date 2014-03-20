@@ -13,43 +13,44 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
       @webartikel = Mesonic::Webartikel.all
     end
     if @webartikel.any?
-      @webartikel.each do |webartikel|
-        @product = Product.where(number: webartikel.Artikelnummer).first
-        @product = Product.create_in_auto(number: webartikel.Artikelnummer,
-                                          title: webartikel.Bezeichnung,
-                                          description: webartikel.comment) unless @product
+      @webartikel.group_by{|webartikel| webartikel.Artikelnummer }.each do |artikelnummer, artikel|
+        Inventory.where(number: artikelnummer).destroy_all # This also deletes the prices!
+        artikel.each do |webartikel|
+          @product = Product.where(number: webartikel.Artikelnummer).first
+          @product = Product.create_in_auto(number: webartikel.Artikelnummer,
+                                            title: webartikel.Bezeichnung,
+                                            description: webartikel.comment) unless @product
 
-        Inventory.where(product_id: @product.id).destroy_all # This also deletes the prices!
+          @inventory = Inventory.new(product_id: @product.id,
+                                     number: webartikel.Artikelnummer,
+                                     name_de: webartikel.Bezeichnung,
+                                     comment_de: webartikel.comment,
+                                     weight: webartikel.Gewicht,
+                                     charge: webartikel.LfdChargennr,
+                                     unit: "Stk.",
+                                     delivery_time: webartikel.Zusatzfeld5 || "Auf Anfrage",
+                                     amount: 9999,
+                                     erp_updated_at: webartikel.letzteAend)
 
-        @inventory = Inventory.new(product_id: @product.id,
-                                   number: webartikel.Artikelnummer,
-                                   name_de: webartikel.Bezeichnung,
-                                   comment_de: webartikel.comment,
-                                   weight: webartikel.Gewicht,
-                                   charge: webartikel.LfdChargennr,
-                                   unit: "Stk.",
-                                   delivery_time: webartikel.Zusatzfeld5 || "Auf Anfrage",
-                                   amount: 9999,
-                                   erp_updated_at: webartikel.letzteAend)
+          if @inventory.save
+            print "I"
+          else
+            puts @inventory.errors.first.to_s
+          end
 
-        if @inventory.save
-          print "I"
-        else
-          puts @inventory.errors.first.to_s
-        end
+          @price =  Price.new(value: webartikel.Preis,
+                              scale_from: webartikel.AbMenge,
+                              scale_to: 9999,
+                              vat: 20,
+                              valid_from: Date.today,
+                              valid_to: Date.today + 1.year,
+                              inventory_id: @inventory.id)
 
-        @price =  Price.new(value: webartikel.Preis,
-                            scale_from: webartikel.AbMenge,
-                            scale_to: 9999,
-                            vat: 20,
-                            valid_from: Date.today,
-                            valid_to: Date.today + 1.year,
-                            inventory_id: @inventory.id)
-
-        if @price.save
-          print "P"
-        else
-          puts @price.errors.first.to_s
+          if @price.save
+            print "P"
+          else
+            puts @price.errors.first.to_s
+          end
         end
       end
     else

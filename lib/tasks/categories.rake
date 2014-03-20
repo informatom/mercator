@@ -16,4 +16,11 @@ namespace :categories do
       cat = Category.create(name: Faker::Commerce.product_name, parent_id: parent.id, position: (i + 2) )
     end
   end
+
+  # starten als: 'bundle exec rake category:deprecate
+  # in Produktivumgebungen: 'bundle exec rake category:deprecate RAILS_ENV=production'
+  desc "Deprecates categories without active products in itself or in subcategories"
+  task :deprecate => :environment do
+    Category.deprecate
+  end
 end

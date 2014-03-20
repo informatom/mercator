@@ -79,6 +79,21 @@ class Category < ActiveRecord::Base
     Category.children_of(self).active
   end
 
+  def try_deprecation
+    return if self.state != "active"
+    return if self.products.where(state: "active").count > 0
+
+    @any_child_active = false
+    self.children.each do |child|
+      child.try_deprecation
+      @any_child_active = true if child.state == "active"
+    end
+    return if @any_child_active == true
+
+    self.lifecycle.deactivate!(User.where(administrator: true).first)
+    puts self.name_de + " deactivated."
+  end
+
   #--- Class Methods --- #
 
   def self.find_by_name(param)
@@ -96,5 +111,11 @@ class Category < ActiveRecord::Base
                         parent: nil,
                         position: 1) unless @auto
     return @auto
+  end
+
+  def self.deprecate
+    Category.roots.each do |category|
+      category.try_deprecation
+    end
   end
 end

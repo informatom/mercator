@@ -131,4 +131,13 @@ class Product < ActiveRecord::Base
     @product.save
     return @product
   end
+
+  def self.deprecate
+    Product.where(state: "active").each do |product|
+      unless product.inventories.any?
+        product.lifecycle.deactivate!(User.where(administrator: true).first)
+        puts product.number + " deactivated."
+      end
+    end
+  end
 end
