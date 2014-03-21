@@ -30,6 +30,10 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
             @product.categorizations.where(category_id: @novelties.id).destroy_all
             @product.categorizations.where(category_id: @discounts.id).destroy_all
             @product.categorizations.where(category_id: @topsellers.id).destroy_all
+            if @product.lifecycle.can_reactivate?(User.where(administrator: true).first)
+              @product.lifecycle.reactivate!(User.where(administrator: true).first)
+              puts @product.number + " reactivated"
+            end
           else
             @product = Product.create_in_auto(number: webartikel.Artikelnummer,
                                               title: webartikel.Bezeichnung,
