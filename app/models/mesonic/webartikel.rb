@@ -6,20 +6,35 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
   # --- Class Methods --- #
 
   def self.import(update: "changed")
+    @topsellers = Category.where(name_de: "Topseller").first
+    @novelties  = Category.where(name_de: "Neuheiten").first
+    @discounts  = Category.where(name_de: "Aktionen").first
+
     if update == "changed"
       @last_batch = Inventory.maximum(:erp_updated_at)
       @webartikel = Mesonic::Webartikel.where("letzteAend > ?", @last_batch)
     else
       @webartikel = Mesonic::Webartikel.all
     end
+
     if @webartikel.any?
       @webartikel.group_by{|webartikel| webartikel.Artikelnummer }.each do |artikelnummer, artikel|
+
         Inventory.where(number: artikelnummer).destroy_all # This also deletes the prices!
+
         artikel.each do |webartikel|
           @product = Product.where(number: webartikel.Artikelnummer).first
-          @product = Product.create_in_auto(number: webartikel.Artikelnummer,
-                                            title: webartikel.Bezeichnung,
-                                            description: webartikel.comment) unless @product
+
+          if @product
+            @product.recommendations.destroy_all
+            @product.categorizations.where(category_id: @novelties.id).destroy_all
+            @product.categorizations.where(category_id: @discounts.id).destroy_all
+            @product.categorizations.where(category_id: @topsellers.id).destroy_all
+          else
+            @product = Product.create_in_auto(number: webartikel.Artikelnummer,
+                                              title: webartikel.Bezeichnung,
+                                              description: webartikel.comment)
+          end
 
           @inventory = Inventory.new(product_id: @product.id,
                                      number: webartikel.Artikelnummer,
@@ -34,47 +49,24 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
 
           if webartikel.Kennzeichen = "T"
             @product.topseller = true
-            @topsellers = Category.where(name_de: "Topseller").first
-            if @topsellers.categorizations.any?
-              position = @topsellers.categorizations.maximum(:position) + 1
-            else
-              position = 1
-            end
-            @product.categorizations.new(category_id: @topsellers.id,
-                                         position: position)
-            @product.save
+            position = 1
+            position = @topsellers.categorizations.maximum(:position) + 1 if @topsellers.categorizations.any?
+            @product.categorizations.new(category_id: @topsellers.id, position: position)
           end
 
           if webartikel.Kennzeichen = "N"
             @product.novelty = true
-            @novelties = Category.where(name_de: "Neuheiten").first
-            if @novelties.categorizations.any?
-              position = @novelties.categorizations.maximum(:position) + 1
-            else
-              position = 1
-            end
-
-            @product.categorizations.new(category_id: @novelties.id,
-                                         position: position)
-            @product.save
+            position = 1
+            position = @novelties.categorizations.maximum(:position) + 1 if @novelties.categorizations.any?
+            @product.categorizations.new(category_id: @novelties.id, position: position)
           end
 
-          if webartikel.PreisdatumVON &&
-             webartikel.PreisdatumVON <= Time.now &&
-             webartikel.PreisdatumBIS &&
-             webartikel.PreisdatumBIS >= Time.now
-            @discounts = Category.where(name_de: "Aktionen").first
-            if @discounts.categorizations.any?
-              position = @discounts.categorizations.maximum(:position) + 1
-            else
-              position = 1
-            end
-
-            @product.categorizations.new(category_id: @discounts.id,
-                                         position: position)
-            @product.save
+          if webartikel.PreisdatumVON && webartikel.PreisdatumVON <= Time.now &&
+             webartikel.PreisdatumBIS && webartikel.PreisdatumBIS >= Time.now
+            position = 1
+            position = @discounts.categorizations.maximum(:position) + 1 if @discounts.categorizations.any?
+            @product.categorizations.new(category_id: @discounts.id, position: position)
           end
-
 
           if @inventory.save
             print "I"
@@ -82,16 +74,15 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
             puts @inventory.errors.first.to_s
           end
 
+          # ---  Price-Handling --- #
           @price =  Price.new(value: webartikel.Preis,
                               scale_from: webartikel.AbMenge,
                               scale_to: 9999,
                               vat: 20,
                               inventory_id: @inventory.id)
 
-          if webartikel.PreisdatumVON &&
-             webartikel.PreisdatumVON <= Time.now &&
-             webartikel.PreisdatumBIS &&
-             webartikel.PreisdatumBIS >= Time.now
+          if webartikel.PreisdatumVON && webartikel.PreisdatumVON <= Time.now &&
+             webartikel.PreisdatumBIS && webartikel.PreisdatumBIS >= Time.now
             @price.promotion = true
             @price.valid_from = webartikel.PreisdatumVON
             @price.valid_to = webartikel.PreisdatumBIS
@@ -101,9 +92,22 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
           end
 
           if @price.save
-            print "P"
+            print "$"
           else
             puts @price.errors.first.to_s
+          end
+
+          # ---  recommendations-Handling --- #
+          if webartikel.Notiz1.present? && webartikel.Notiz2.present?
+            @recommended_product = Product.where(number: webartikel.Notiz1).first
+            @product.recommendations.new(recommended_product: @recommended_product,
+                                         reason_de: webartikel.Notiz2) if @recommended_product
+          end
+
+          if @product.save
+            print "P"
+          else
+            puts @inventory.errors.first.to_s
           end
         end
       end
