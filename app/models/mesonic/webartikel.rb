@@ -122,6 +122,10 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
 
   # --- Instance Methods --- #
 
+   def readonly?  # prevents unintentional changes
+    true
+   end
+
   def comment
     if self.Langtext1.present?
       return self.Langtext1.to_s + " " + self.Langtext2.to_s

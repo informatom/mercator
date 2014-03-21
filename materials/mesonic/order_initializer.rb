@@ -43,14 +43,12 @@ class Mesonic::OrderInitializer
     @mesonic_order_items.collect(&:valid?).all?
   end
 
-
   def set_mesonic_order_customer_information!
     @mesonic_order.c020 = @customer.mesonic_account_id.nil? ? @customer.id : @customer.mesonic_account_id
     @mesonic_order.c021 = @customer.mesonic_kontenstamm.try(:kunde?) ? @customer.mesonic_kontenstamm.kontonummer : "09WEB"
   end
 
   def set_mesonic_order_price_information!
-
     @opensteam_cart.cart_items.reload
 
     if @opensteam_order.delivery?
