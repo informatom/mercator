@@ -1,7 +1,7 @@
-class Mesonic::KontenstammFibu < Mesonic::Cwl
+class Mesonic::KontenstammFibu < Mesonic::Sqlserver
 
   self.table_name = "T058"
-  set_primary_key "mesoprim"
+  self.primary_key = "mesoprim"
 
   default_scope mesocomp.mesoyear
 

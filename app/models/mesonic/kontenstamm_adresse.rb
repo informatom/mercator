@@ -1,7 +1,7 @@
-class Mesonic::KontenstammAdresse < Mesonic::Cwl
+class Mesonic::KontenstammAdresse < Mesonic::Sqlserver
 
   self.table_name = "T051"
-  set_primary_key "mesoprim"
+  self.primary_key = "mesoprim"
   default_scope mesocomp.mesoyear
 
   alias_attribute :street, :c050
@@ -24,6 +24,8 @@ class Mesonic::KontenstammAdresse < Mesonic::Cwl
   validates_presence_of :street
   validates_presence_of :city
   validates_presence_of :postal
+
+  # --- Instance Methods --- #
 
   def full_name
     [ self.firstname, self.lastname ].join(" ")
