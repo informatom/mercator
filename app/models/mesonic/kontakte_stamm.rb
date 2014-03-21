@@ -3,7 +3,9 @@ class Mesonic::KontakteStamm < Mesonic::Sqlserver
   self.table_name = "T045"
   self.primary_key = "c000"
 
-  default_scope mesocomp.mesoyear
+  scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
+  scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
+  default_scope { mesocomp.mesoyear }
 
   alias_attribute :email,:c025
   alias_attribute :kontonummer, :c039

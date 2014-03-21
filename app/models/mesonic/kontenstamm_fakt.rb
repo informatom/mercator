@@ -3,7 +3,9 @@ class Mesonic::KontenstammFakt < Mesonic::Sqlserver
   self.table_name = "T054"
   self.primary_key =  "mesoprim"
 
-  default_scope mesocomp.mesoyear
+  scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
+  scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
+  default_scope { mesocomp.mesoyear }
 
   scope :by_kontonummer, ->(account_number) { where(c112: account_number) }
 

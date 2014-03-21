@@ -3,7 +3,9 @@ class Mesonic::Account < Mesonic::Sqlserver
   self.table_name = "T045"
   self.primary_key = "mesoprim"
 
-  default_scope mesocomp.mesoyear
+  scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
+  scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
+  default_scope { mesocomp.mesoyear }
 
   alias_attribute :email, :c025
   alias_attribute :account_number ,:c039

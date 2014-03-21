@@ -2,7 +2,10 @@ class Mesonic::KontenstammAdresse < Mesonic::Sqlserver
 
   self.table_name = "T051"
   self.primary_key = "mesoprim"
-  default_scope mesocomp.mesoyear
+
+  scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
+  scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
+  default_scope { mesocomp.mesoyear }
 
   alias_attribute :street, :c050
   alias_attribute :city, :c052

@@ -7,7 +7,10 @@ class Mesonic::Kontenstamm < Mesonic::Sqlserver
   alias_attribute :firma, :name
   alias_attribute :kontonummer, :c002
 
-  default_scope mesocomp.mesoyear
+  scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
+  scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
+  default_scope { mesocomp.mesoyear }
+
   scope :interessenten, -> { where("mesoprim LIKE 1I%").select(:coo2).order(c002 desc).limit(1) }
   scope :interessent, -> { where("mesoprim LIKE 1I%") }
 
