@@ -1,0 +1,22 @@
+<b>Icecat Information</b>
+<br />
+
+<table cellpadding="0" cellspacing="0" class="editor-form">
+  <tr>
+    <td class="label"><%= f.label :icecat_product_xml, "Icecat Product XML-File" %></td>
+    <td class="content"><%= Icecat::Access.base_uri %>/<%= f.text_field :icecat_product_xml, :class => "inputFields" , :disabled => false %> <%= link_to( "show", "#{Icecat::Access.base_uri}/#{f.object.icecat_product_xml}")%>
+	</td>
+  </tr>
+  <tr>
+    <td class="label"><%= f.label :icecat_product_id, "ICECAT Product ID" %></td>
+    <td class="content"><%= f.text_field :icecat_product_id, :class => "inputFields", :disabled => true %></td>
+  </tr>
+</table>
+<div style="float:left">
+	<%= link_to_function "<span>import icecat xml js</span>",
+		"if( confirm('Icecat-Import: Product-Data will be overwritten (Properties, Related Products, Supplies). Are You Sure?')) {
+		$('product_form').action = '#{import_icecat_xml_admin_catalog_product_path( @product )}' ;
+		$('product_form')._method = 'put' ;
+	     $('product_form').submit();}return false;", :class => "green-button" %>
+
+</div>

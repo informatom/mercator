@@ -1,0 +1,107 @@
+<div id="products_inner" class="dv_products_inner" style="width:<%= ( @ivellio_products.size + 1 )* 185 %>px;">
+	<div class="product">
+		<style type="text/css" media="screen">
+			.vcategory { 
+				background-color:#003A77;
+				width:184px;
+				color:white;
+				font-family:Arial;
+				font-size:10px;
+				border-top:1px solid #1A5997;
+			}
+			#vmaterial_list {
+				list-style:none;
+				padding:0;
+				margin:0;
+			}
+			#vmaterial_list li {
+				position:relative;
+				list-style:none;
+			}
+			#vmaterial_list li a {
+				text-decoration:none;
+				color:white;
+				padding:10px;
+				width:164px;
+				display:block;
+			}
+			#vmaterial_list li img.indicator {
+				position:absolute;
+				right:10px;
+				top:8px;
+			}
+			
+			h2.top_category a {
+				display:block;
+				width:100%;
+			}
+
+			h2.top_category a:hover {
+				background:transparent url(/images/ivellio_frontend/company/service_arrow_left_small.png) no-repeat 10% center;
+			}
+			
+			h2.top_category img.indicator {
+				position:absolute;left:10px;top:3px;
+			}
+			#vmaterial_list li a:hover {
+				background:transparent url(/images/ivellio_frontend/company/service_arrow.png) no-repeat 90% center;
+			}
+			
+			
+			
+			#vmaterial {
+				margin-left:-8px;
+			}
+			h2.top_category {
+				position:relative;
+				background-color:#003A77;
+				display:block;
+				width:184px;
+				margin-left:-8px;
+				line-height:24px ! important;
+			}
+			
+			.top_category a {
+				color:#FFCC00 ! important;
+			}
+			
+			a.cross_sell_select {
+				color:white;
+				font-weight:normal;
+				text-decoration:none;
+			}
+
+			a.cross_sell_select:hover {
+				text-decoration:underline;
+			}
+
+
+		</style>
+		
+		<h1 class="top_category">
+			Verbrauchsmaterial
+		</h1>
+		<h2><%= link_to "Drucker Auswahl", select_cross_selling_path( :action => :printer ), :class => "cross_sell_select" %> | Übersicht
+		</h2>
+		
+		<% if @top_category %>
+		<h2 class="top_category">
+			<%= image_tag("blue_spinner.gif", :class => "indicator", :style => "display:none;") %>
+			
+			<%= link_to_remote @top_category.DESCRIPTION,
+				:url => "/categories/verbrauchsmaterial/category?category_id=#{@top_category.parent_category_id}",
+				:method => :get,
+				:before => "$(this).up('h2').select('.indicator').each(function(item) { item.show(); }); ",
+				:success => "$(this).up('h2').select('.indicator').each(function(item) { item.hide(); }); " %>
+		</h2>
+		<% end -%>
+			
+		<div id="vmaterial">
+			<ul id="vmaterial_list">
+				<%= render :partial => "vmaterial_category", :collection => @material_categories %>
+			</ul>
+		</div>
+	</div>
+	
+	<%= render :partial => "products/overview", :collection => @ivellio_products %>
+</div>

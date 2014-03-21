@@ -1,0 +1,75 @@
+<div id="products_inner" class="dv_products_inner" style="width:<%= (@ivellio_products.size + 1 )* 185 %>px;">
+	<div class="product">
+
+		<style type="text/css" media="screen">
+		#printer_list {
+			list-style:none;
+			padding:0;
+			margin:0;
+		}
+		#printer_list li img#printer_indicator {
+			position:absolute;
+			right:10px;
+			top:5px;
+		}
+		#printer_list li {
+			padding:10px;
+			padding-left:8px;
+			background-color:#003A77;
+			width:164px;
+			color:white;
+			font-family:Arial;
+			font-size:10px;
+			border-top:1px solid #1A5997;
+			position:relative;
+			list-style:none;
+		}
+
+		#vmaterial {
+			margin-left:-8px;
+		}
+
+		a.cross_sell_select {
+			color:white;
+			font-weight:normal;
+			text-decoration:none;
+		}
+
+		a.cross_sell_select:hover {
+			text-decoration:underline;
+		}
+		
+		</style>
+
+
+
+		<h1 class="top_category">
+			Verbrauchsmaterial
+		</h1>
+		<h2>Drucker Auswahl | <%= link_to "Übersicht", cross_selling_path, :class => "cross_sell_select" %>
+		</h2>
+				
+		Bitte wählen Sie eine Drucker-Serie und ein Drucker-Modell aus.<br /><br />
+		<div id="vmaterial">
+			<ul id="printer_list">
+
+				<li id="select_printer_series">
+					<%= label_tag :printer_series, "Drucker-Serie" %><br /><br  />
+					<%= select_tag( :printer_series, options_for_select( ["All"] + @printer_series_names, @selected_printer_series ), :style => "width:172px;") %>
+					<%= observe_field :printer_series,
+					:url => select_cross_selling_path( :action => :printer ),
+					:with => "printerseries",
+					:before => "$('printer_indicator').show(); $('printer').disable(); "%>
+				</li>
+				<li id="select_printer">
+					<%= render :partial => "printer_selector" %>
+				</li>
+				<li id="printer_selector_results"></li>
+			</ul>
+		</div>
+	</div>
+	<div id="printer_product_list">
+		<%= render :partial => "products/overview", :collection => @ivellio_products %>
+	</div>
+</div>
+
