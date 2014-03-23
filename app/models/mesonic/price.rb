@@ -16,7 +16,7 @@ class Mesonic::Price < Mesonic::Sqlserver
   # find customer-group specific price (for a given account_number)
   scope :by_group_through_customer, ->(account_number) do
     joins("INNER JOIN [t054] ON [t054].[mesoyear] = #{Mesonic::AktMandant.mesoyear} AND [t054].[mesocomp] = #{Mesonic::AktMandant.mesocomp}")
-    .where("[t054].[c112] = ? AND [t043].[c003] = CAST([t054].[c072] as varchar(12)) ", account_number) }
+    .where("[t054].[c112] = ?, account_number").where("[t043].[c003] = CAST([t054].[c072] as varchar(12)) ") }
   end
 
   scope :group, ->(account_number) do
