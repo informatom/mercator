@@ -3,11 +3,11 @@ class Mesonic::Price < Mesonic::Sqlserver
   self.table_name = "T043"
   self.primary_key = :MESOKEY
 
-  alias_attribute :price_column, :c013
-
   scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
   scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
   default_scope { mesocomp.mesoyear.where(c002: 3).pluck(:c002, :c001, :c003, :c013) }
+
+  alias_attribute :price_column, :c013
 
   # find customer specific price (for a given account_number)
   scope :by_customer, ->(account_number) { where(c003: account_number, c001: "3") }
