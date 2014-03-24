@@ -1,4 +1,4 @@
-if @const_mesonic && @const_mesonic.value == "on"
+if CONFIG[:mesonic] == "on"
 
 class Mesonic::Account < Mesonic::Sqlserver
 

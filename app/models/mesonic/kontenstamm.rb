@@ -1,3 +1,5 @@
+if CONFIG[:mesonic] == "on"
+
 class Mesonic::Kontenstamm < Mesonic::Sqlserver
 
   self.table_name = "T055"
@@ -38,4 +40,6 @@ class Mesonic::Kontenstamm < Mesonic::Sqlserver
   def interessent?
     !self.kunde?
   end
+end
+
 end
