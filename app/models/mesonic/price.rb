@@ -1,6 +1,7 @@
 class Mesonic::Price < Mesonic::Sqlserver
-  set_primary_key :MESOKEY
+
   self.table_name = "T043"
+  self.primary_key = :MESOKEY
 
   alias_attribute :price_column, :c013
 
@@ -11,12 +12,12 @@ class Mesonic::Price < Mesonic::Sqlserver
   # find customer specific price (for a given account_number)
   scope :by_customer, ->(account_number) { where(c003: account_number, c001: "3") }
 
-  scope :for_date, ->(date) { where(" ( ( t043.c004 IS NULL  OR t043.c004 <= ? ) AND ( t043.c005 IS NULL OR t043.c005 >= ? ) )", date, date ] }
+  scope :for_date, ->(date) { where(" ( ( t043.c004 IS NULL  OR t043.c004 <= ? ) AND ( t043.c005 IS NULL OR t043.c005 >= ? ) )", date, date ) }
 
   # find customer-group specific price (for a given account_number)
   scope :by_group_through_customer, ->(account_number) do
     joins("INNER JOIN [t054] ON [t054].[mesoyear] = #{Mesonic::AktMandant.mesoyear} AND [t054].[mesocomp] = #{Mesonic::AktMandant.mesocomp}")
-    .where("[t054].[c112] = ?, account_number").where("[t043].[c003] = CAST([t054].[c072] as varchar(12)) ") }
+    .where("[t054].[c112] = ?, account_number").where("[t043].[c003] = CAST([t054].[c072] as varchar(12)) ")
   end
 
   scope :group, ->(account_number) do
@@ -38,5 +39,5 @@ class Mesonic::Price < Mesonic::Sqlserver
     self.send( self.class.price_column )
   end
 
-  alias :to_s, :price
+  alias :to_s :price
 end
