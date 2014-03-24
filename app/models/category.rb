@@ -113,6 +113,45 @@ class Category < ActiveRecord::Base
     return @auto
   end
 
+  def self.discounts
+    @discounts = Category.where(name_de: "Aktionen").first
+    @discounts = self.create(name_de: "Aktionen",
+                             name_en: "Discounts",
+                             description_de: "Aktionsartikel",
+                             description_en: "Dicounted Articles",
+                             long_description_de: "Aktionsartikel",
+                             long_description_en: "Dicounted Articles",
+                             parent: nil,
+                             position: 1) unless @discounts
+    return @discounts
+  end
+
+  def self.novelties
+    @novelties = Category.where(name_de: "Neuheiten").first
+    @novelties = self.create(name_de: "Neuheiten",
+                             name_en: "New",
+                             description_de: "Neuheiten",
+                             description_en: "New",
+                             long_description_de: "Neuheiten",
+                             long_description_en: "Novelties",
+                             parent: nil,
+                             position: 1) unless @novelties
+    return @novelties
+  end
+
+  def self.topseller
+    @topseller = Category.where(name_de: "Topseller").first
+    @topseller = self.create(name_de: "Topseller",
+                             name_en: "Topseller",
+                             description_de: "Topseller",
+                             description_en: "Topseller",
+                             long_description_de: "Topseller",
+                             long_description_en: "Topseller",
+                             parent: nil,
+                             position: 1) unless @topseller
+    return @topseller
+  end
+
   def self.deprecate
     Category.roots.each do |category|
       category.try_deprecation

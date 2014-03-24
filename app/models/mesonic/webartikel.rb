@@ -6,9 +6,9 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
   # --- Class Methods --- #
 
   def self.import(update: "changed")
-    @topsellers = Category.where(name_de: "Topseller").first
-    @novelties  = Category.where(name_de: "Neuheiten").first
-    @discounts  = Category.where(name_de: "Aktionen").first
+    @topsellers = Category.topseller
+    @novelties  = Category.novelties
+    @discounts  = Category.discounts
 
     if update == "changed"
       @last_batch = Inventory.maximum(:erp_updated_at)
@@ -40,6 +40,8 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
                                               description: webartikel.comment)
           end
 
+          webartikel.Zusatzfeld5 ? delivery_time =  webartikel.Zusatzfeld5 : delivery_time = "Auf Anfrage"
+
           @inventory = Inventory.new(product_id: @product.id,
                                      number: webartikel.Artikelnummer,
                                      name_de: webartikel.Bezeichnung,
@@ -47,7 +49,7 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
                                      weight: webartikel.Gewicht,
                                      charge: webartikel.LfdChargennr,
                                      unit: "Stk.",
-                                     delivery_time: webartikel.Zusatzfeld5 || "Auf Anfrage",
+                                     delivery_time: delivery_time,
                                      amount: 9999,
                                      erp_updated_at: webartikel.letzteAend)
 

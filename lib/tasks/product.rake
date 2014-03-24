@@ -1,7 +1,7 @@
 # encoding: utf-8
-namespace :product do
-  # starten als: 'bundle exec rake product:activateplus
-  # in Produktivumgebungen: 'bundle exec rake product:activateplus RAILS_ENV=production'
+namespace :products do
+  # starten als: 'bundle exec rake products:activateplus
+  # in Produktivumgebungen: 'bundle exec rake products:activateplus RAILS_ENV=production'
   desc "Creates dummy prices, inventories and activates products"
   task :activateplus => :environment do
     Product.all.each do |product|
@@ -32,8 +32,8 @@ namespace :product do
     end
   end
 
-  # starten als: 'bundle exec rake product:deprecate
-  # in Produktivumgebungen: 'bundle exec rake product:deprecate RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:deprecate
+  # in Produktivumgebungen: 'bundle exec rake products:deprecate RAILS_ENV=production'
   desc "Deprecates products without inventories"
   task :deprecate => :environment do
     Product.deprecate

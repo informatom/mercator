@@ -31,7 +31,7 @@ class Product < ActiveRecord::Base
   has_many :properties, :through => :values
   has_many :values, dependent: :destroy, :inverse_of => :product, :accessible => true
 
-  has_many :categories, :through => :categorizations
+  has_many :categories, :through => :categorizations, inverse_of: :products
   has_many :categorizations, dependent: :destroy, :inverse_of => :product, :accessible => true
 
   has_many :related_products, :through => :productrelations
@@ -125,12 +125,19 @@ class Product < ActiveRecord::Base
 
   def self.create_in_auto(number: nil, title: nil, description: nil)
     @auto_category = Category.auto
+
+    if @auto_category.categorizations.any?
+      newposition = @auto_category.categorizations.maximum(:position) +1
+    else
+      newposition = 1
+    end
+
     description = title if description.blank?
     @product = self.new(number: number,
                         title_de: title,
                         description_de: description)
     @product.categorizations.new(category_id: @auto_category.id,
-                                 position: @auto_category.categorizations.maximum(:position) + 1)
+                                 position: newposition)
     @product.save
     return @product
   end

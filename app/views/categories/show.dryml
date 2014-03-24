@@ -10,7 +10,7 @@
   </content-header>
 
   <content-body:>
-    <%= this.children.in_groups_of(3) do |group| %>
+    <%= this.children.active.in_groups_of(3) do |group| %>
       <div class="row-fluid">
           <div repeat="&group" class="span4">
             <if><card/></if>
@@ -18,7 +18,7 @@
       </div>
     <% end %>
 
-    <%= this.products.in_groups_of(2) do |group| %>
+    <%= this.products.active.in_groups_of(2) do |group| %>
       <div class="row-fluid">
           <div repeat="&group" class="span6">
             <if><card/></if>

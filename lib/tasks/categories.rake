@@ -17,8 +17,8 @@ namespace :categories do
     end
   end
 
-  # starten als: 'bundle exec rake category:deprecate
-  # in Produktivumgebungen: 'bundle exec rake category:deprecate RAILS_ENV=production'
+  # starten als: 'bundle exec rake categories:deprecate
+  # in Produktivumgebungen: 'bundle exec rake categories:deprecate RAILS_ENV=production'
   desc "Deprecates categories without active products in itself or in subcategories"
   task :deprecate => :environment do
     Category.deprecate
