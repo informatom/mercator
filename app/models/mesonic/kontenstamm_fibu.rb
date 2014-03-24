@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::KontenstammFibu < Mesonic::Sqlserver
 
   self.table_name = "T058"
@@ -11,4 +13,6 @@ class Mesonic::KontenstammFibu < Mesonic::Sqlserver
   alias_attribute :bkz2, :c008
   alias_attribute :zahlungskondition_fibu, :c100
   alias_attribute :kontonummer, :c104
+end
+
 end

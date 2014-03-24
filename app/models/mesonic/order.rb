@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::Order < Mesonic::Sqlserver
 
   self.table_name = "t025"
@@ -6,4 +8,6 @@ class Mesonic::Order < Mesonic::Sqlserver
   scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
   scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
   default_scope { mesocomp.mesoyear }
+end
+
 end

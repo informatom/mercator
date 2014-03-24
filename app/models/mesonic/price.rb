@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::Price < Mesonic::Sqlserver
 
   self.table_name = "T043"
@@ -40,4 +42,6 @@ class Mesonic::Price < Mesonic::Sqlserver
   end
 
   alias :to_s :price
+end
+
 end

@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::AktMandant < Mesonic::Sqlserver
 
   self.table_name = "AktMandant"
@@ -22,4 +24,6 @@ class Mesonic::AktMandant < Mesonic::Sqlserver
   def readonly?  # prevents unintentional changes
     true
   end
+end
+
 end

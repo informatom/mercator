@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::KontakteStamm < Mesonic::Sqlserver
 
   self.table_name = "T045"
@@ -29,4 +31,5 @@ class Mesonic::KontakteStamm < Mesonic::Sqlserver
   def self.kontaktenummer_exists?(n)
     self.where(c000: n).any?
   end
+end
 end

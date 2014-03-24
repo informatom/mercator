@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::Zahlungsart < Mesonic::Sqlserver
 
   self.table_name = "T286"
@@ -20,5 +22,7 @@ class Mesonic::Zahlungsart < Mesonic::Sqlserver
   def readonly?  # prevents unintentional changes
     true
   end
+
+end
 
 end

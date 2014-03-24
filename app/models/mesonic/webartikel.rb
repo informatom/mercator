@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::Webartikel < Mesonic::Sqlserver
 
   self.table_name = "WEBARTIKEL"
@@ -135,4 +137,6 @@ class Mesonic::Webartikel < Mesonic::Sqlserver
       return self.Langtext2.to_s
     end
   end
+end
+
 end

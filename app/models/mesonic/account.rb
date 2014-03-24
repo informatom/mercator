@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::Account < Mesonic::Sqlserver
 
   self.table_name = "T045"
@@ -25,4 +27,6 @@ class Mesonic::Account < Mesonic::Sqlserver
   def full_name
     [self.c001, self.c002 ].join(" ")
   end
+end
+
 end

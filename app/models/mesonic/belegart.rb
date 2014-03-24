@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::Belegart < Mesonic::Sqlserver
 
   self.table_name = "T357"
@@ -12,4 +14,6 @@ class Mesonic::Belegart < Mesonic::Sqlserver
   def readonly?  # prevents unintentional changes
     true
   end
+end
+
 end

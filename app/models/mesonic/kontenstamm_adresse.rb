@@ -1,3 +1,5 @@
+if @const_mesonic && @const_mesonic.value == "on"
+
 class Mesonic::KontenstammAdresse < Mesonic::Sqlserver
 
   self.table_name = "T051"
@@ -41,4 +43,6 @@ class Mesonic::KontenstammAdresse < Mesonic::Sqlserver
   def fax_full
     [ self.tel_land, self.tel_city, self.fax ].join(" ")
   end
+end
+
 end
