@@ -146,6 +146,41 @@ class User < ActiveRecord::Base
       end
   end
 
+  def push_to_mesonic
+    @timestamp = Time.now
+
+    @kontonummer    = Mesonic::Kontenstamm.next_kontonummer
+    @kontaktenummer = Mesonic::KontakteStamm.next_kontaktenummer
+
+    @mesonic_kontakte_stamm = Mesonic::KontakteStamm.initialize_mesonic(user: self, kontonummer: @kontonummer, kontaktenummer: @kontaktenummer)
+    @mesonic_account  = Mesonic::Account.new()
+
+    @mesonic_kontenstamm  = Mesonic::Kontenstamm.initialize_mesonic(user: self, kontonummer: @kontonummer, timestamp: @timestamp)
+    @mesonic_kontenstamm_fakt = Mesonic::KontenstammFakt.initialize_mesonic(kontonummer: @kontonummer)
+    @mesonic_kontenstamm_fibu = Mesonic::KontenstammFibu.initialze_mesonic(kontonummer: @kontonummer)
+    @mesonic_kontenstamm_adresse =  Mesonic::KontenstammAdresse.initialze_mesonic(billing_address: self.billing_address.first, kontonummer: @kontonummer)
+
+    if [mesonic_account, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
+        @mesonic_kontenstamm_fibu, @mesonic_kontenstamm_fakt ].collect(&:valid?).all?
+      [mesonic_account, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
+        @mesonic_kontenstamm_fibu, @mesonic_kontenstamm_fakt ].collect(&:save?).all?
+    end
+
+    self.update(erp_account_nr: @kontonummer, erp_contact_nr: @kontaktenummer)
+  end
+
+  def kontonummer_mesoprim
+    if CONFIG[:mesonic] == "on"
+      [self.erp_account_nr, Mesonic::AktMandant.mesocomp, Mesonic::AktMandant.mesoyear].join("-")
+    end
+  end
+
+  def kontaktenummer_mesoprim
+    if CONFIG[:mesonic] == "on"
+      [self.erp_contact_nr, Mesonic::AktMandant.mesocomp, Mesonic::AktMandant.mesoyear].join("-")
+    end
+  end
+
   #--- Class Methods --- #
 
   def self.initialize()

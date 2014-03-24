@@ -1,6 +1,6 @@
 class CustomersController < OpensteamController
   def create
-    @customer_initializer = Mesonic::AccountInitializer2.new( params[:ivellio_vellin_customer] )
+    @customer_initializer = Mesonic::AccountInitializer.new( params[:ivellio_vellin_customer] )
     @customer_initializer.initialize_account!
     @customer = @customer_initializer.ivellio_customer
   end

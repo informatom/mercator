@@ -1,35 +1,54 @@
 if CONFIG[:mesonic] == "on"
 
-class Mesonic::KontakteStamm < Mesonic::Sqlserver
+  class Mesonic::KontakteStamm < Mesonic::Sqlserver
 
-  self.table_name = "T045"
-  self.primary_key = "c000"
+    self.table_name = "T045"
+    self.primary_key = "c000"
 
-  scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
-  scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
-  default_scope { mesocomp.mesoyear }
+    scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
+    scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
+    default_scope { mesocomp.mesoyear }
 
-  alias_attribute :email,:c025
-  alias_attribute :kontonummer, :c039
+    alias_attribute :email,:c025
+    alias_attribute :kontonummer, :c039
 
-  belongs_to :kontenstamm,         :class_name => "Mesonic::Kontenstamm",        :foreign_key => 'c039'
-  belongs_to :kontenstamm_adresse, :class_name => "Mesonic::KontenstammAdresse", :foreign_key => 'c039'
-  belongs_to :kontenstamm_fakt,    :class_name => "Mesonic::KontenstammFakt",    :foreign_key => 'c039'
+    belongs_to :kontenstamm,         :class_name => "Mesonic::Kontenstamm",        :foreign_key => 'c039'
+    belongs_to :kontenstamm_adresse, :class_name => "Mesonic::KontenstammAdresse", :foreign_key => 'c039'
+    belongs_to :kontenstamm_fakt,    :class_name => "Mesonic::KontenstammFakt",    :foreign_key => 'c039'
 
-  delegate :kunde?, :interessent?, to: :kontenstamm
+    delegate :kunde?, :interessent?, to: :kontenstamm
 
-  # --- Class Methods --- #
+    # --- Class Methods --- #
 
-  def self.next_kontaktenummer
-    last_kontaktenummer = self.select(:c000).order(c000: :desc).limit(1).first.c000.to_i
-    while kontaktenummer_exists?( last_kontaktenummer )
-      last_kontaktenummer += 1
+    def self.next_kontaktenummer
+      last_kontaktenummer = self.select(:c000).order(c000: :desc).limit(1).first.c000.to_i
+      while kontaktenummer_exists?( last_kontaktenummer )
+        last_kontaktenummer += 1
+      end
+      last_kontaktenummer
     end
-    last_kontaktenummer
-  end
 
-  def self.kontaktenummer_exists?(n)
-    self.where(c000: n).any?
+    def self.kontaktenummer_exists?(n)
+      self.where(c000: n).any?
+    end
+
+    def self.initialize_mesonic(user: nil, kontonummer: nil, kontaktenummer: nil)
+      self.new(c039:     kontonummer,
+               id:       kontaktenummer,
+               c000:     kontaktenummer,
+               c025:     user.email,
+               c033:     0,
+               c035:     0, ### geschlecht 0/1 ... ??
+               c040:     1,
+               c042:     0,
+               c043:     0,
+               c054:     0, ## !!! Exim Kennzeichen: 0, 1, 2 ?????
+               c059:     0,
+               c060:     0,
+               C061:     kontaktenummer,
+               mesocomp: Mesonic::AktMandant.mesocomp,
+               mesoyear: Mesonic::AktMandant.mesoyear,
+               mesoprim: kontaktenummer + "-" + Mesonic::AktMandant.mesocomp + "-" + Mesonic::AktMandant.mesoyear)
+    end
   end
-end
 end
