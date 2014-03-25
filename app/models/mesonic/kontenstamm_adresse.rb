@@ -5,6 +5,9 @@ if CONFIG[:mesonic] == "on"
     self.table_name = "T051"
     self.primary_key = "mesoprim"
 
+    attr_accessible :firstname, :lastname, :c001, :c116, :c157, :c180, :c181, :c182, :C241, :c050,
+                    :c051, :c052, :c123, :mesocomp, :mesoyear, :mesoprim
+
     scope :mesoyear, -> { where(mesoyear: Mesonic::AktMandant.mesoyear) }
     scope :mesocomp, -> { where(mesocomp: Mesonic::AktMandant.mesocomp) }
     default_scope { mesocomp.mesoyear }
@@ -46,20 +49,19 @@ if CONFIG[:mesonic] == "on"
 
     #--- Class Methods --- #
 
-    def self.initialze_mesonic(billing_address: nil, kontonummer: nil)
-      self.new(firstname: billing_address.name.split(/\s/).first,
-               lastname:  billing_address.name.split(/\s/).last,
-               c001:      kontonummer,
-               c116:      billing_address.email_address,
-               c157:      0,
-               c180:      nil,
-               c181:      nil,
-               c182:      0,
-               C241:      0,
-               mesocomp:  Mesonic::AktMandant.mesocomp,
-               mesoyear:  Mesonic::AktMandant.mesoyear,
-               mesoprim:  kontonummer + "-" + Mesonic::AktMandant.mesocomp + "-" + Mesonic::AktMandant.mesoyear)
+    def self.initialize_mesonic(billing_address: nil, kontonummer: nil)
+      self.new(c157: 0, c182: 0, C241: 0,
+               c050: billing_address.street,
+               c051: billing_address.postalcode,
+               c052: billing_address.city,
+               c123: billing_address.country,
+               c180: billing_address.name.split(/\s/).first,
+               c181: billing_address.name.split(/\s/).last,
+               c001: kontonummer,
+               c116: billing_address.email_address.to_s,
+               mesocomp: Mesonic::AktMandant.mesocomp,
+               mesoyear: Mesonic::AktMandant.mesoyear,
+               mesoprim: kontonummer.to_s + "-" + Mesonic::AktMandant.mesocomp + "-" + Mesonic::AktMandant.mesoyear.to_s)
     end
-
   end
 end

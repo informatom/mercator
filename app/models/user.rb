@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
     login_count      :integer, default: 0
     gtc_confirmed_at :datetime
     gtc_version_of   :date
+    erp_account_nr   :string
+    erp_contact_nr   :string
     timestamps
   end
 
@@ -21,6 +23,12 @@ class User < ActiveRecord::Base
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo
+
+  if CONFIG[:mesonic] == "on"
+    attr_accessible :mesonic_kontakte_stamm, :mesonic_kontenstamm, :mesonic_kontenstamm_fakt,
+                    :mesonic_kontenstamm_fibu, :mesonic_kontenstamm_adresse
+  end
+
   attr_accessor :confirmation
 
   has_paper_trail
@@ -37,6 +45,22 @@ class User < ActiveRecord::Base
 
   has_many :conversations, dependent: :destroy, inverse_of: :customer, foreign_key: :customer_id
 
+  if CONFIG[:mesonic] == "on"
+    belongs_to :mesonic_kontakte_stamm, class_name: "Mesonic::KontakteStamm", foreign_key: :erp_account_nr
+
+    belongs_to :mesonic_kontenstamm, class_name: "Mesonic::Kontenstamm", foreign_key: :erp_account_nr
+    accepts_nested_attributes_for :mesonic_kontenstamm, allow_destroy: false
+
+    belongs_to :mesonic_kontenstamm_fakt, class_name: "Mesonic::KontenstammFakt", foreign_key: :erp_account_nr
+    accepts_nested_attributes_for :mesonic_kontenstamm_fakt, allow_destroy: false
+
+    belongs_to :mesonic_kontenstamm_fibu, class_name: "Mesonic::KontenstammFibu", foreign_key: :erp_account_nr
+    accepts_nested_attributes_for :mesonic_kontenstamm_fibu, allow_destroy: false
+
+    belongs_to :mesonic_kontenstamm_adresse, class_name: "Mesonic::KontenstammAdresse", foreign_key: :erp_account_nr
+    accepts_nested_attributes_for :mesonic_kontenstamm_adresse, allow_destroy: false
+  end
+
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
   before_create do |user|
@@ -45,7 +69,6 @@ class User < ActiveRecord::Base
       user.state = "active"
     end
   end
-
 
   # --- Signup lifecycle --- #
 
@@ -153,32 +176,21 @@ class User < ActiveRecord::Base
     @kontaktenummer = Mesonic::KontakteStamm.next_kontaktenummer
 
     @mesonic_kontakte_stamm = Mesonic::KontakteStamm.initialize_mesonic(user: self, kontonummer: @kontonummer, kontaktenummer: @kontaktenummer)
-    @mesonic_account  = Mesonic::Account.new()
-
     @mesonic_kontenstamm  = Mesonic::Kontenstamm.initialize_mesonic(user: self, kontonummer: @kontonummer, timestamp: @timestamp)
     @mesonic_kontenstamm_fakt = Mesonic::KontenstammFakt.initialize_mesonic(kontonummer: @kontonummer)
-    @mesonic_kontenstamm_fibu = Mesonic::KontenstammFibu.initialze_mesonic(kontonummer: @kontonummer)
-    @mesonic_kontenstamm_adresse =  Mesonic::KontenstammAdresse.initialze_mesonic(billing_address: self.billing_address.first, kontonummer: @kontonummer)
+    @mesonic_kontenstamm_fibu = Mesonic::KontenstammFibu.initialize_mesonic(kontonummer: @kontonummer)
+    @mesonic_kontenstamm_adresse =  Mesonic::KontenstammAdresse.initialize_mesonic(billing_address: self.billing_addresses.first, kontonummer: @kontonummer)
 
-    if [mesonic_account, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
+    if [@mesonic_kontakte_stamm, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
         @mesonic_kontenstamm_fibu, @mesonic_kontenstamm_fakt ].collect(&:valid?).all?
-      [mesonic_account, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
-        @mesonic_kontenstamm_fibu, @mesonic_kontenstamm_fakt ].collect(&:save?).all?
+
+    # HAS 20140325 Not yet connected to production system, uncomment for persisting erp user date
+    #  [@mesonic_kontakte_stamm, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
+    #    @mesonic_kontenstamm_fibu, @mesonic_kontenstamm_fakt ].collect(&:save?).all?
     end
 
-    self.update(erp_account_nr: @kontonummer, erp_contact_nr: @kontaktenummer)
-  end
-
-  def kontonummer_mesoprim
-    if CONFIG[:mesonic] == "on"
-      [self.erp_account_nr, Mesonic::AktMandant.mesocomp, Mesonic::AktMandant.mesoyear].join("-")
-    end
-  end
-
-  def kontaktenummer_mesoprim
-    if CONFIG[:mesonic] == "on"
-      [self.erp_contact_nr, Mesonic::AktMandant.mesocomp, Mesonic::AktMandant.mesoyear].join("-")
-    end
+    self.update(erp_account_nr: User.mesoprim(number: @kontonummer),
+                erp_contact_nr: User.mesoprim(number: @kontaktenummer) )
   end
 
   #--- Class Methods --- #
@@ -192,5 +204,9 @@ class User < ActiveRecord::Base
   def self.assign_consultant()
     consultant = User.sales.where(logged_in: true).first
     return consultant
+  end
+
+  def self.mesoprim(number: nil)
+    [number.to_s, Mesonic::AktMandant.mesocomp, Mesonic::AktMandant.mesoyear].join("-") if CONFIG[:mesonic] == "on"
   end
 end
