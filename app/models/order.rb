@@ -19,13 +19,16 @@ class Order < ActiveRecord::Base
     shipping_country    :string
     gtc_confirmed_at    :datetime
     gtc_version_of      :date
+    erp_customer_number :string
+    erp_billing_number  :string
+    erp_order_number    :string
     timestamps
   end
 
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
-                  :lineitems, :user, :user_id
+                  :lineitems, :user, :user_id, :erp_customer_number, :erp_billing_number, :erp_order_number
   has_paper_trail
 
   belongs_to :user, :creator => true
@@ -185,6 +188,32 @@ class Order < ActiveRecord::Base
     # all obligatory fields in billing address are filled?
     self.billing_name && self.billing_street &&  self.billing_postalcode &&
     self.billing_city && self.billing_country
+  end
+
+  def push_to_mesonic
+    mesonic_order = Mesonic::Order.initialize_mesonic(order: self)
+    mesonic_order_items = []
+    self.linetimes.each_with_index do |lineitiem, index|
+      mesonic_order_items << Mesonic::OrderItem.initialize_mesonic(mesonic_order: mesonic_order,
+                                                                   lineitem: lineitem,
+                                                                   customer: self.customer,
+                                                                   index: index)
+    end
+
+    save_return_value = Order.transaction do
+      mesonic_order.save
+      mesonic_order_items.collect(&:save)
+    end
+
+    if save_return_value
+      self.update(erp_customer_number: customer.erp_account_nr,
+                  erp_billing_number: mesonic_order.c021,
+                  erp_order_number: mesonic_order.c022)
+
+      Mailer::OrderMailer.deliver_order_confirmation(order: self)
+    else
+      raise "order could not be pushed to mesonic"
+    end
   end
 
   #--- Class Methods --- #
