@@ -24,3 +24,28 @@ production:
   pool: 5
   username: <%= CONFIG[:production_database_user] %>
   password: <%= CONFIG[:production_database_password] %>
+
+import_development:
+  adapter: mysql2
+  host: localhost
+  database: ivellio_vellin_development
+  username: <%= CONFIG[:legacy_database_user] %>
+  password: <%= CONFIG[:legacy_database_password] %>
+
+import_production:
+  adapter: mysql2
+  host: localhost
+  database: ivellio_vellin_production
+  username: <%= CONFIG[:legacy_database_user] %>
+  password: <%= CONFIG[:legacy_database_password] %>
+
+mesonic_cwldaten_development:
+  adapter: sqlserver
+  host: localhost
+  port: <%= CONFIG[:erp_database_port] %>
+  instance: <%= CONFIG[:erp_database_instance] %>
+  database: <%= CONFIG[:erp_database_name] %>
+  username: <%= CONFIG[:erp_database_user] %>
+  password: <%= CONFIG[:erp_database_password] %>
+  encoding: utf8
+  timeout: 5000
