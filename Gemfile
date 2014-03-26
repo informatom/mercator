@@ -49,6 +49,8 @@ gem 'wkhtmltopdf-binary'
 # gem "searchkick"                                    # Elastic Search integration
 gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
                                                       # Engine for integrating Mesonic ERP System
+gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
+                                                      # Engine for importing Legacy Data
 
 group :development, :test  do
   gem 'thin'                                          # web server, replacement for webrick
