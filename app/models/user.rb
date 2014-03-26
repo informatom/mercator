@@ -46,18 +46,18 @@ class User < ActiveRecord::Base
   has_many :conversations, dependent: :destroy, inverse_of: :customer, foreign_key: :customer_id
 
   if CONFIG[:mesonic] == "on"
-    belongs_to :mesonic_kontakte_stamm, class_name: "Mesonic::KontakteStamm", foreign_key: :erp_account_nr
+    belongs_to :mesonic_kontakte_stamm, class_name: "MercatorMesonic::KontakteStamm", foreign_key: :erp_account_nr
 
-    belongs_to :mesonic_kontenstamm, class_name: "Mesonic::Kontenstamm", foreign_key: :erp_account_nr
+    belongs_to :mesonic_kontenstamm, class_name: "MercatorMesonic::Kontenstamm", foreign_key: :erp_account_nr
     accepts_nested_attributes_for :mesonic_kontenstamm, allow_destroy: false
 
-    belongs_to :mesonic_kontenstamm_fakt, class_name: "Mesonic::KontenstammFakt", foreign_key: :erp_account_nr
+    belongs_to :mesonic_kontenstamm_fakt, class_name: "MercatorMesonic::KontenstammFakt", foreign_key: :erp_account_nr
     accepts_nested_attributes_for :mesonic_kontenstamm_fakt, allow_destroy: false
 
-    belongs_to :mesonic_kontenstamm_fibu, class_name: "Mesonic::KontenstammFibu", foreign_key: :erp_account_nr
+    belongs_to :mesonic_kontenstamm_fibu, class_name: "MercatorMesonic::KontenstammFibu", foreign_key: :erp_account_nr
     accepts_nested_attributes_for :mesonic_kontenstamm_fibu, allow_destroy: false
 
-    belongs_to :mesonic_kontenstamm_adresse, class_name: "Mesonic::KontenstammAdresse", foreign_key: :erp_account_nr
+    belongs_to :mesonic_kontenstamm_adresse, class_name: "MercatorMesonic::KontenstammAdresse", foreign_key: :erp_account_nr
     accepts_nested_attributes_for :mesonic_kontenstamm_adresse, allow_destroy: false
   end
 
@@ -172,14 +172,14 @@ class User < ActiveRecord::Base
   def push_to_mesonic
     @timestamp = Time.now
 
-    @kontonummer    = Mesonic::Kontenstamm.next_kontonummer
-    @kontaktenummer = Mesonic::KontakteStamm.next_kontaktenummer
+    @kontonummer    = MercatorMesonic::Kontenstamm.next_kontonummer
+    @kontaktenummer = MercatorMesonic::KontakteStamm.next_kontaktenummer
 
-    @mesonic_kontakte_stamm = Mesonic::KontakteStamm.initialize_mesonic(user: self, kontonummer: @kontonummer, kontaktenummer: @kontaktenummer)
-    @mesonic_kontenstamm  = Mesonic::Kontenstamm.initialize_mesonic(user: self, kontonummer: @kontonummer, timestamp: @timestamp)
-    @mesonic_kontenstamm_fakt = Mesonic::KontenstammFakt.initialize_mesonic(kontonummer: @kontonummer)
-    @mesonic_kontenstamm_fibu = Mesonic::KontenstammFibu.initialize_mesonic(kontonummer: @kontonummer)
-    @mesonic_kontenstamm_adresse =  Mesonic::KontenstammAdresse.initialize_mesonic(billing_address: self.billing_addresses.first, kontonummer: @kontonummer)
+    @mesonic_kontakte_stamm = MercatorMesonic::KontakteStamm.initialize_mesonic(user: self, kontonummer: @kontonummer, kontaktenummer: @kontaktenummer)
+    @mesonic_kontenstamm  = MercatorMesonic::Kontenstamm.initialize_mesonic(user: self, kontonummer: @kontonummer, timestamp: @timestamp)
+    @mesonic_kontenstamm_fakt = MercatorMesonic::KontenstammFakt.initialize_mesonic(kontonummer: @kontonummer)
+    @mesonic_kontenstamm_fibu = MercatorMesonic::KontenstammFibu.initialize_mesonic(kontonummer: @kontonummer)
+    @mesonic_kontenstamm_adresse =  MercatorMesonic::KontenstammAdresse.initialize_mesonic(billing_address: self.billing_addresses.first, kontonummer: @kontonummer)
 
     if [@mesonic_kontakte_stamm, @mesonic_kontenstamm, @mesonic_kontenstamm_adresse,
         @mesonic_kontenstamm_fibu, @mesonic_kontenstamm_fakt ].collect(&:valid?).all?
@@ -207,6 +207,6 @@ class User < ActiveRecord::Base
   end
 
   def self.mesoprim(number: nil)
-    [number.to_s, Mesonic::AktMandant.mesocomp, Mesonic::AktMandant.mesoyear].join("-") if CONFIG[:mesonic] == "on"
+    [number.to_s, MercatorMesonic::AktMandant.mesocomp, MercatorMesonic::AktMandant.mesoyear].join("-") if CONFIG[:mesonic] == "on"
   end
 end

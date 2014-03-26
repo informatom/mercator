@@ -1,3 +1,4 @@
+# This migration comes from mercator_mesonic (originally 20140325093328)
 class AddErpContactNrErpAccountNrToUser < ActiveRecord::Migration
   def self.up
     add_column :users, :erp_contact_nr, :string

@@ -28,9 +28,8 @@ reasonably fast development instace can be fired up pretty fast
 1. Install Ruby. In Linux environments we recommend rvm for doing this. See https://rvm.io/rvm/install for details
 2. Install all gems needed by running <tt>bundle install</tt>
 3. Create a database mercator_production using <tt>rake db:create</tt>
-4  Whenever Gem needs for RVM-compatibility ~/.rvmrc with content rvm_trust_rvmrcs_flag=1
-
-4. Start up your Server <tt>rails s</tt>
+4.  Whenever Gem needs for RVM-compatibility ~/.rvmrc with content rvm_trust_rvmrcs_flag=1
+5. Start up your Server <tt>rails s</tt>
 
 Your Mercator is now running and fully functional!
 
@@ -41,6 +40,17 @@ Your Mercator is now running and fully functional!
 
 FIXME! Second user should be sales guy
 
-Sources:
+## Installing Mesonic Integration
+
+1. Put in your Gemfile
+'''ruby
+gem "mercator_mesonic"
+'''
+2 Get all migrations into your app
+'''ruby
+rake mercator_mesonic:install:migrations
+'''
+
+## Sources
 
 * Audio sample Big Ben from Freesound.org: http://www.freesound.org/people/hyderpotter/sounds/80290/

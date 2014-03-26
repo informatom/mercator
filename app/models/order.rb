@@ -191,13 +191,13 @@ class Order < ActiveRecord::Base
   end
 
   def push_to_mesonic
-    mesonic_order = Mesonic::Order.initialize_mesonic(order: self)
+    mesonic_order = MercatorMesonic::Order.initialize_mesonic(order: self)
     mesonic_order_items = []
     self.linetimes.each_with_index do |lineitiem, index|
-      mesonic_order_items << Mesonic::OrderItem.initialize_mesonic(mesonic_order: mesonic_order,
-                                                                   lineitem: lineitem,
-                                                                   customer: self.customer,
-                                                                   index: index)
+      mesonic_order_items << MercatorMesonic::OrderItem.initialize_mesonic(mesonic_order: mesonic_order,
+                                                                           lineitem: lineitem,
+                                                                           customer: self.customer,
+                                                                           index: index)
     end
 
     save_return_value = Order.transaction do
