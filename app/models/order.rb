@@ -25,6 +25,9 @@ class Order < ActiveRecord::Base
     timestamps
   end
 
+  # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
+  include OrderExtensions if Rails.application.config.erp == "mesonic"
+
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
@@ -142,7 +145,6 @@ class Order < ActiveRecord::Base
     self.sum + self.lineitems.*.vat_value.sum
   end
 
-
   def name
     if ["basket", "parked"].include?(state)
       "Warenkorb vom " + I18n.l(created_at).to_s
@@ -188,32 +190,6 @@ class Order < ActiveRecord::Base
     # all obligatory fields in billing address are filled?
     self.billing_name && self.billing_street &&  self.billing_postalcode &&
     self.billing_city && self.billing_country
-  end
-
-  def push_to_mesonic
-    mesonic_order = MercatorMesonic::Order.initialize_mesonic(order: self)
-    mesonic_order_items = []
-    self.linetimes.each_with_index do |lineitiem, index|
-      mesonic_order_items << MercatorMesonic::OrderItem.initialize_mesonic(mesonic_order: mesonic_order,
-                                                                           lineitem: lineitem,
-                                                                           customer: self.customer,
-                                                                           index: index)
-    end
-
-    save_return_value = Order.transaction do
-      mesonic_order.save
-      mesonic_order_items.collect(&:save)
-    end
-
-    if save_return_value
-      self.update(erp_customer_number: customer.erp_account_nr,
-                  erp_billing_number: mesonic_order.c021,
-                  erp_order_number: mesonic_order.c022)
-
-      Mailer::OrderMailer.deliver_order_confirmation(order: self)
-    else
-      raise "order could not be pushed to mesonic"
-    end
   end
 
   #--- Class Methods --- #

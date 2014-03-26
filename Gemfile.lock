@@ -50,6 +50,13 @@ GIT
       arel (~> 4.0.1)
 
 PATH
+  remote: vendor/engines/mercator_legacy_importer
+  specs:
+    mercator_legacy_importer (0.0.1)
+      mysql2
+      rails (~> 4.0.3)
+
+PATH
   remote: vendor/engines/mercator_mesonic
   specs:
     mercator_mesonic (0.0.1)
@@ -399,6 +406,7 @@ DEPENDENCIES
   jquery-ui-themes (~> 0.0.4)
   launchy (~> 2.3.0)
   less-rails
+  mercator_legacy_importer!
   mercator_mesonic!
   messengerjs-rails
   mysql2
