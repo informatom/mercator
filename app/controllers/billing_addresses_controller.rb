@@ -14,6 +14,7 @@ class BillingAddressesController < ApplicationController
     if current_user.billing_addresses.any?
       last_address = current_user.billing_addresses.last
       self.this.name = last_address.name
+      self.this.c_o = last_address.c_o
       self.this.detail = last_address.detail
       self.this.street = last_address.street
       self.this.postalcode = last_address.postalcode
@@ -29,6 +30,7 @@ class BillingAddressesController < ApplicationController
       self.this.user = current_user
       if self.this.save
         current_basket.update(billing_name:        this.name,
+                              billing_c_o:         this.c_o,
                               billing_detail:      this.detail,
                               billing_street:      this.street,
                               billing_postalcode:  this.postalcode,
@@ -36,19 +38,21 @@ class BillingAddressesController < ApplicationController
                               billing_country:     this.country,
                               billing_method:      "e_payment",
                               shipping_name:       this.name,
+                              shipping_c_o:        this.c_o,
                               shipping_detail:     this.detail,
                               shipping_street:     this.street,
                               shipping_postalcode: this.postalcode,
                               shipping_city:       this.city,
                               shipping_country:    this.country)
 
-      if current_user.name == "Gast"
-        current_user.update(email_address: this.email_address)
-        name = this.email_address.split('@')[0].gsub!('.', ' ')
-        current_user.update(name: name.titlecase) if name
-      end
+        if current_user.name == "Gast"
+          current_user.update(email_address: this.email_address)
+          name = this.email_address.split('@')[0].gsub!('.', ' ')
+          current_user.update(name: name.titlecase) if name
+        end
 
         Address.create(name:       this.name,
+                       c_o:        this.c_o,
                        detail:     this.detail,
                        street:     this.street,
                        postalcode: this.postalcode,
@@ -64,6 +68,7 @@ class BillingAddressesController < ApplicationController
   def do_use
     do_transition_action :use do
       current_basket.update(billing_name:       this.name,
+                            billing_c_o:        this.c_o,
                             billing_detail:     this.detail,
                             billing_street:     this.street,
                             billing_postalcode: this.postalcode,
@@ -73,6 +78,7 @@ class BillingAddressesController < ApplicationController
 
       unless current_basket.shipping_name
         current_basket.update(shipping_name:       this.name,
+                              shipping_c_o:        this.c_o,
                               shipping_detail:     this.detail,
                               shipping_street:     this.street,
                               shipping_postalcode: this.postalcode,

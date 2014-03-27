@@ -7,7 +7,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <if:detail><view/>,</if> <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
+      <if:detail><view/>,</if:detail> <if:c-o><view/>,</if:c-o><view:street/>, <view:postalcode/> <view:city/>, <view:country/>
     </body:>
   </div>
 </def>
@@ -20,6 +20,9 @@
         <if:detail>
           <view/><br/>
         </if:detail>
+        <if:c-o>
+          <view/><br/>
+        </if:c-o>
         <view:street/><br/>
         <view:postalcode/> <view:city/>, <view:country/>
         <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">

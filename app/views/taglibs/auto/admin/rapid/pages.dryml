@@ -116,7 +116,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="detail, street, postalcode, city, country, state" param/>
+      <field-list fields="c_o, detail, street, postalcode, city, country, state" param/>
     </content-body:>
 
   </page>
@@ -293,7 +293,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, detail, street, postalcode, city, country, vat_number, state" param/>
+      <field-list fields="c_o, email_address, detail, street, postalcode, city, country, vat_number, state" param/>
     </content-body:>
 
   </page>
@@ -1319,7 +1319,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
+      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="price.collection.heading" count="&this.prices.count" >
@@ -1747,7 +1747,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="billing_method, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, state, conversation" param/>
+      <field-list fields="billing_method, billing_c_o, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, erp_customer_number, erp_billing_number, erp_order_number, state, conversation" param/>
     </content-body:>
 
   </page>

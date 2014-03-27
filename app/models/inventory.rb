@@ -61,7 +61,7 @@ class Inventory < ActiveRecord::Base
    #--- Instance methods ---#
 
   def determine_price(date: Time.now, amount: 1, incl_vat: false)
-    price = self.determine_price(date: date, amount: amount)
+    price = self.select_price(date: date, amount: amount)
     price_excl_vat = price.value
 
     if incl_vat
@@ -73,14 +73,14 @@ class Inventory < ActiveRecord::Base
     end
   end
 
-  def determine_price(date: Time.now, amount: 1)
+  def select_price(date: Time.now, amount: 1)
     price = self.prices.where{(valid_to >= date) & (valid_from <= date) &
                               (scale_from <= amount) & (scale_to >= amount)}.first
     return price
   end
 
   def determine_vat(date: Time.now, amount: 1)
-    price = self.determine_price(date: date, amount: amount)
+    price = self.select_price(date: date, amount: amount)
     return price.vat
   end
 end

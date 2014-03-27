@@ -7,6 +7,7 @@ class AddressesController < ApplicationController
   def enter
     last_address = current_user.addresses.last
     self.this = Address.new(user:       current_user,
+                            c_o:        last_address.c_o,
                             name:       last_address.name,
                             detail:     last_address.detail,
                             street:     last_address.street,
@@ -21,6 +22,7 @@ class AddressesController < ApplicationController
       self.this.user = current_user
       if self.this.save
         current_basket.update(shipping_name:       this.name,
+                              shipping_c_o:        this.c_o,
                               shipping_detail:     this.detail,
                               shipping_street:     this.street,
                               shipping_postalcode: this.postalcode,
@@ -36,6 +38,7 @@ class AddressesController < ApplicationController
   def do_use
     do_transition_action :use do
       current_basket.update(shipping_name:       this.name,
+                            shipping_c_o:        this.c_o,
                             shipping_detail:     this.detail,
                             shipping_street:     this.street,
                             shipping_postalcode: this.postalcode,

@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
 
   fields do
     billing_method      :string
+    billing_c_o         :string
     billing_name        :string
     billing_detail      :string
     billing_street      :string
@@ -12,6 +13,7 @@ class Order < ActiveRecord::Base
     billing_country     :string
     shipping_method     :string
     shipping_name       :string
+    shipping_c_o        :string
     shipping_detail     :string
     shipping_street     :string
     shipping_postalcode :string
@@ -31,7 +33,8 @@ class Order < ActiveRecord::Base
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
-                  :lineitems, :user, :user_id, :erp_customer_number, :erp_billing_number, :erp_order_number
+                  :lineitems, :user, :user_id, :erp_customer_number, :erp_billing_number, :erp_order_number,
+                  :billing_c_o, :shipping_c_o
   has_paper_trail
 
   belongs_to :user, :creator => true

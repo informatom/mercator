@@ -4,6 +4,7 @@ class BillingAddress < ActiveRecord::Base
 
   fields do
     name          :string, :required
+    c_o           :string
     email_address :email_address, :required
     detail        :string
     street        :string, :required
@@ -15,7 +16,7 @@ class BillingAddress < ActiveRecord::Base
   end
 
   attr_accessible :user_id, :name, :detail, :street, :postalcode,
-                  :city, :user, :country, :email_address, :vat_number
+                  :city, :user, :country, :email_address, :vat_number, :c_o
   has_paper_trail
 
   belongs_to :user, :creator => true
@@ -28,7 +29,7 @@ class BillingAddress < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :street, :postalcode, :city, :country, :email_address, :vat_number]
+      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :email_address, :vat_number]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user

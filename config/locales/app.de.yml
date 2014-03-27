@@ -9,6 +9,7 @@ de:
     basket: Warenkorb
     baskets: Warenkörbe
     billing_country: Rechnungsadresse / Land
+    billing_c_o: zu Handen
     billing_city: Rechnungsadresse / Stadt
     billing_detail: Rechnungsadresse / Details
     billing_name: Rechnungsadresse / Name
@@ -29,6 +30,7 @@ de:
     city: Ort
     CMS: CMS
     code: Code
+    c_o: zu Handen
     comment: Kommentar
     Constant: Konstante
     consultant: Berater
@@ -108,6 +110,7 @@ de:
     scale_to: Staffel bis
     sender: Absender
     shipping_country: Lieferadresse / Land
+    shipping_c_o: zu Handen
     shipping_city: Lieferadresse / Stadt
     shipping_detail: Lieferadresse / Details
     shipping_method: Versandart

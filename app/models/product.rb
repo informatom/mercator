@@ -88,13 +88,13 @@ class Product < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def determine_price(amount: 1, date: Time.now(), incl_vat: false)
-    inventory = self.determine_inventory(amount: amount, date: date)
+    inventory = self.determine_inventory(amount: amount)
     price = inventory.determine_price(amount: amount, date: date, incl_vat: false)
     return price
   end
 
   def delivery_time(amount: 1, date: Time.now())
-    inventory = self.determine_inventory(amount: amount, date: date)
+    inventory = self.determine_inventory(amount: amount)
     return inventory.delivery_time
   end
 

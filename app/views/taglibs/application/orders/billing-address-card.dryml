@@ -4,10 +4,11 @@
   <if test="&this.billing_name">
     <h3>Rechnungsadresse</h3>
     <p class="well"><strong><view:billing_name/></strong><br/>
-      <if:billing_detail><view/><br/></if>
-      <view:billing_street/><br/>
-      <view:billing_postalcode/> <view:billing_city/><br/>
-      <view:billing_country/>
+      <if:billing-detail><view/><br/></if>
+      <if:billing-c-o><view/><br/></if>
+      <view:billing-street/><br/>
+      <view:billing-postalcode/> <view:billing-city/><br/>
+      <view:billing-country/>
     </p>
     <if test="&editable">
      <p><my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/></p>

@@ -3,6 +3,7 @@
   <div class="well">
     <strong><view:shipping-name/></strong><br/>
     <view:shipping-detail/><br/>
+    <view:shipping-c-o/><br/>
     <view:shipping-street/><br/>
     <view:shipping-postalcode/> <view:shipping-city/><br/>
     <view:shipping-country/><br/>

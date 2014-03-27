@@ -4,10 +4,11 @@
     <h3>Lieferadresse</h3>
     <p class="well">
       <strong><view:shipping_name/></strong><br/>
-      <if:shipping_detail><view/><br/></if>
-      <view:shipping_street/><br/>
-      <view:shipping_postalcode/> <view:shipping_city/><br/>
-      <view:shipping_country/>
+      <if:shipping-detail><view/><br/></if>
+      <if:shipping-c-o><view/><br/></if>
+      <view:shipping-street/><br/>
+      <view:shipping-postalcode/> <view:shipping-city/><br/>
+      <view:shipping-country/>
     </p>
     <if test="&editable">
       <p><my-creator-link with="&Address" creator="enter" class="btn-primary"/></p>

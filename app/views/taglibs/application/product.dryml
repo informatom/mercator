@@ -19,8 +19,8 @@
       </else>
 
       <p class="label">
-        excl. Mwst. <%= number_to_currency(this.price) %> <br/> <br/>
-        incl. Mwst. <%= number_to_currency(this.price_incl_vat) %>
+        excl. Mwst. <%= number_to_currency(this.determine_price) %> <br/> <br/>
+        incl. Mwst. <%= number_to_currency(this.determine_price(incl_vat: true)) %>
       </p>
     </div>
 
@@ -46,4 +46,3 @@
 <def tag="comparison-page" polymorphic/>
 <def tag="comparison-page" for="Product">
 </def>
-
