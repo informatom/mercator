@@ -109,7 +109,7 @@ class Product < ActiveRecord::Base
     return nested_hash
   end
 
-  def determine_inventory(:amount)
+  def determine_inventory(amount: 1)
     amount_requested = amount
     self.inventories.order(created_at: :asc).where{(amount >= amount_requested)}.first # FIFO
     #self.inventories.order(created_at: :desc).where{(amount >= amount_requested)}.first # LIFO

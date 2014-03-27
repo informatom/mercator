@@ -40,8 +40,6 @@ class Lineitem < ActiveRecord::Base
 
   belongs_to :product
 
-  belongs_to :inventory
-
   lifecycle do
     state :active, :default => true
     state :shipping_costs, :blocked

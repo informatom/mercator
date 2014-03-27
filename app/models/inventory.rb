@@ -3,18 +3,22 @@ class Inventory < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string, :required
-    name_en        :string
-    number         :string, :required
-    amount         :decimal, :required, :precision => 10, :scale => 2
-    unit           :string, :required
-    comment_de     :string
-    comment_en     :string
-    weight         :decimal, :precision => 10, :scale => 2
-    charge         :string
-    storage        :string
-    delivery_time  :string
-    erp_updated_at :datetime
+    name_de                 :string, :required
+    name_en                 :string
+    number                  :string, :required
+    amount                  :decimal, :required, :precision => 10, :scale => 2
+    unit                    :string, :required
+    comment_de              :string
+    comment_en              :string
+    weight                  :decimal, :precision => 10, :scale => 2
+    charge                  :string
+    storage                 :string
+    delivery_time           :string
+    erp_updated_at          :datetime
+    erp_vatline             :integer
+    erp_article_group       :integer
+    erp_provision_code      :integer
+    erp_characteristic_flag :integer
     timestamps
   end
   attr_accessible :name_de, :name_en, :number, :amount, :unit,
