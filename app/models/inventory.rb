@@ -53,4 +53,30 @@ class Inventory < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+   #--- Instance methods ---#
+
+  def determine_price(date: Time.now, amount: 1, incl_vat: false)
+    price = self.determine_price(date: date, amount: amount)
+    price_excl_vat = price.value
+
+    if incl_vat
+      vat = self.determine_vat(date: date, amount: amount)
+      price_incl_vat = price_excl_vat * (100 + vat) / 100
+      return price_incl_vat
+    else
+      return price_excl_vat
+    end
+  end
+
+  def determine_price(date: Time.now, amount: 1)
+    price = self.prices.where{(valid_to >= date) & (valid_from <= date) &
+                              (scale_from <= amount) & (scale_to >= amount)}.first
+    return price
+  end
+
+  def determine_vat(date: Time.now, amount: 1)
+    price = self.determine_price(date: date, amount: amount)
+    return price.vat
+  end
 end

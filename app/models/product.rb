@@ -87,23 +87,15 @@ class Product < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
-  def price (amount: 1, date: Time.now())
-    inventory = self.inventories.first
-    price = inventory.prices.where{(valid_to >= date) & (valid_from <= date) &
-                                   (scale_from <= amount) & (scale_to >= amount)}.first.value
+  def determine_price(amount: 1, date: Time.now(), incl_vat: false)
+    inventory = self.determine_inventory(amount: amount, date: date)
+    price = inventory.determine_price(amount: amount, date: date, incl_vat: false)
     return price
   end
 
-  def price_incl_vat(amount: 1, date: Time.now())
-    inventory = self.inventories.first
-    vat = inventory.prices.where{(valid_to >= date) & (valid_from <= date) &
-                                 (scale_from <= amount) & (scale_to >= amount)}.first.vat
-    self.price(amount: amount, date: date) * (100 + vat) / 100
-  end
-
-  def delivery_time
-    inventory = self.inventories.first
-    inventory.delivery_time
+  def delivery_time(amount: 1, date: Time.now())
+    inventory = self.determine_inventory(amount: amount, date: date)
+    return inventory.delivery_time
   end
 
   def tabled_values
@@ -115,6 +107,12 @@ class Product < ActiveRecord::Base
       nested_hash[value.property_group.name][property_name] = value.display
     end
     return nested_hash
+  end
+
+  def determine_inventory(:amount)
+    amount_requested = amount
+    self.inventories.order(created_at: :asc).where{(amount >= amount_requested)}.first # FIFO
+    #self.inventories.order(created_at: :desc).where{(amount >= amount_requested)}.first # LIFO
   end
 
   #--- Class Methods --- #

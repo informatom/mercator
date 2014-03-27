@@ -40,6 +40,8 @@ class Lineitem < ActiveRecord::Base
 
   belongs_to :product
 
+  belongs_to :inventory
+
   lifecycle do
     state :active, :default => true
     state :shipping_costs, :blocked
@@ -88,8 +90,8 @@ class Lineitem < ActiveRecord::Base
     transition :add_one, {:active => :active}, if: "acting_user.basket == order",
                available_to: :all do
       amount = self.amount + 1
-      price = product.price(amount: amount)
-      self.update(amount:        amount,
+      price = product.determine_price(amount: amount)
+      self.update(amount: amount,
                   product_price: price)
       self.update(value: self.calculate_value)
       PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
@@ -101,7 +103,7 @@ class Lineitem < ActiveRecord::Base
         self.delete
       else
         amount = self.amount - 1
-        price = product.price(amount: amount)
+        price = product.determine_price(amount: amount)
         self.update(amount:        amount,
                     product_price: price)
         self.update(value: self.calculate_value)
@@ -134,7 +136,7 @@ class Lineitem < ActiveRecord::Base
     acting_user.administrator?
   end
 
-#--- Instace methods ---#
+ #--- Instance methods ---#
 
   def increase_amount(amount: 1)
     self.amount += amount
@@ -149,7 +151,7 @@ class Lineitem < ActiveRecord::Base
     lineitem.delete
   end
 
-  def vat_value(discount_rel: 0)
+  def calculate_vat_value(discount_rel: 0)
     self.vat * self.value * ( 100 - discount_rel) / 100 / 100
   end
 
@@ -160,7 +162,10 @@ class Lineitem < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
-    price = product.price(amount: amount)
+    price = product.determine_price(amount: amount)
+    inventory = product.determine_inventory(amount: amount)
+    vat = inventory.determine_vat(amount: amount)
+
     lineitem = Lineitem.new(user_id:        user_id,
                             order_id:       order_id,
                             position:       position,
@@ -170,11 +175,13 @@ class Lineitem < ActiveRecord::Base
                             description_en: product.title_en,
                             delivery_time:  product.delivery_time,
                             amount:         amount,
-                            unit:           product.inventories.first.unit,
+                            unit:           inventory.unit,
                             product_price:  price,
-                            vat:            product.inventories.first.prices.first.vat)
+                            vat:            vat)
     lineitem.value = lineitem.calculate_value
 
-    raise unless lineitem.save
+    unless lineitem.save
+      raise "Lineitem connot be created"
+    end
   end
 end
