@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
-                  :conversations, :confirmation, :photo
+                  :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr
 
   attr_accessor :confirmation
 
