@@ -5,13 +5,13 @@ class BillingAddress < ActiveRecord::Base
   fields do
     name          :string, :required
     c_o           :string
-    email_address :email_address, :required
+    email_address :email_address#, :required
     detail        :string
     street        :string, :required
     postalcode    :string, :required
     city          :string, :required
     country       :string, :required
-    vat_number    :string, :required
+    vat_number    :string#, :required # for importing disabled
     timestamps
   end
 
@@ -21,7 +21,7 @@ class BillingAddress < ActiveRecord::Base
 
   belongs_to :user, :creator => true
   validates :user, :presence => true
-  validates :vat_number, :valvat => {:lookup => true}
+  #validates :vat_number, :valvat => {:lookup => true}
 
   # --- Lifecycle --- #
 
