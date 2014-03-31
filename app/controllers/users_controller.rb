@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   auto_actions :all, :except => [ :index, :new, :create ]
   auto_actions :lifecycle
 
+  # can be found in mercator/vendor/engines/mercator_mesonic/app/controllers/users_controller_extensions.rb
+  include UsersControllerExtensions if Rails.application.config.erp == "mesonic"
+
   autocomplete :name
 
   # Normally, users should be created via the user lifecycle, except

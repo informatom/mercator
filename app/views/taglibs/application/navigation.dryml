@@ -90,6 +90,11 @@
             <li class='nav-item' param='orders'>
               <%= link_to t('attributes.orders'), user_orders_path(current_user) %>
             </li>
+            <if test="Rails.application.config.erp == 'mesonic'">
+              <li class='nav-item' param='orders'>
+                <%= link_to "Lieferungen und Zahlungen", invoices_shipments_payments_users_path %>
+              </li>
+            </if>
             <li class='nav-item' param='log-out'>
               <a href='&logout_url'><t key='hobo.actions.logout'>Logout</t></a>
             </li>
