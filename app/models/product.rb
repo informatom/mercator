@@ -136,15 +136,22 @@ class Product < ActiveRecord::Base
                         description_de: description)
     @product.categorizations.new(category_id: @auto_category.id,
                                  position: newposition)
-    @product.save
+    if @product.save
+      ::JobLogger.info("Product " + @product.number + " saved in Auto Category.")
+    else
+      ::JobLogger.error("Product " + @product.number + " could not be saved in Auto Category!")
+    end
     return @product
   end
 
   def self.deprecate
     Product.where(state: "active").each do |product|
       unless product.inventories.any?
-        product.lifecycle.deactivate!(User.where(administrator: true).first)
-        puts product.number + " deactivated."
+        if product.lifecycle.deactivate!(User.where(administrator: true).first)
+          ::JobLogger.info("Product " + @product.number + " deactivated.")
+        else
+          ::JobLogger.error("Product " + @product.number + " could not be deactivated!")
+        end
       end
     end
   end
