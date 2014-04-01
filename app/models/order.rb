@@ -90,10 +90,18 @@ class Order < ActiveRecord::Base
         self.update(billing_method: "e_payment")
       end
 
-      shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
-      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, user_id: acting_user.id, position: 10000,
-                                          product_number: "shipping", description_de: "Versandkosten", amount: 1, unit: "Pau.",
-                                          product_price: shipping_cost.value, vat: shipping_cost.vat, value: shipping_cost.value)
+      if Rails.application.config.erp == "mesonic"
+        @webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
+        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, user_id: acting_user.id, position: 10000,
+                                            product_number: "VERSANDSPESEN", description_de: "Versandkostenanteil", amount: 1, unit: "Pau.",
+                                            product_price: @webartikel_versandspesen.preis, vat: @webartikel_versandspesen.Steuersatzzeile * 10 ,
+                                            value: @webartikel_versandspesen.preis)
+      else
+        shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
+        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, user_id: acting_user.id, position: 10000,
+                                            product_number: "shipping", description_de: "Versandkosten", amount: 1, unit: "Pau.",
+                                            product_price: shipping_cost.value, vat: shipping_cost.vat, value: shipping_cost.value)
+      end
     end
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do
