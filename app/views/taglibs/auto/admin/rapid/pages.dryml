@@ -1309,7 +1309,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="infinite" param/>
+      <record-flags fields="infinite, just_imported" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="inventory.actions.edit" name="#{name(:no_wrapper => true)}">
