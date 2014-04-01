@@ -147,11 +147,8 @@ class Product < ActiveRecord::Base
   def self.deprecate
     Product.where(state: "active").each do |product|
       unless product.inventories.any?
-        if product.lifecycle.deactivate!(User.where(administrator: true).first)
-          ::JobLogger.info("Product " + @product.number + " deactivated.")
-        else
-          ::JobLogger.error("Product " + @product.number + " could not be deactivated!")
-        end
+        product.lifecycle.deactivate!(User.where(administrator: true).first)
+        JobLogger.info("Product " + product.number + " deactivated.")
       end
     end
   end

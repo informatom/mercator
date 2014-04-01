@@ -36,6 +36,12 @@ namespace :products do
   # in Produktivumgebungen: 'bundle exec rake products:deprecate RAILS_ENV=production'
   desc "Deprecates products without inventories"
   task :deprecate => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:deprecate")
+
     Product.deprecate
+
+    JobLogger.info("Finished Job: products:deprecate")
+    JobLogger.info("=" * 50)
   end
 end
