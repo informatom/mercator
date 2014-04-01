@@ -53,11 +53,12 @@ rake mercator_mesonic:install:migrations
 
 ## Useful Job Declarations
 
-#### Deleting deprecated Orders
+#### Deleting deprecated Orders hourly
 0 * * * * /bin/bash -l -c 'cd /var/rails/mercator && script/rails runner -e production '\''Order.cleanup_deprecated'\'' >> /var/rails/mercator/log/cron.log 2>&1'
-#### Deleting deprecated Users
+#### Deleting deprecated Users hourly
 10 * * * * /bin/bash -l -c 'cd /var/rails/mercator && script/rails runner -e production '\''User.cleanup_deprecated'\'' >> /var/rails/mercator/log/cron.log 2>&1'
-
+#### Updating Inventories daily
+30 4 * * * /bin/bash -l -c 'cd /var/rails/mercator && RAILS_ENV=production bundle exec rake webartikel:update --silent >> /var/rails/mercator/log/cron.log 2>&1'
 
 ## Sources
 

@@ -4,9 +4,15 @@
 # http://en.wikipedia.org/wiki/Cron
 
 set :output, "/var/rails/mercator/log/cron.log"
+set :path, "/var/rails/mercator"
 
-  every 15.minutes do
-   runner "Order.cleanup_deprecated"
- end
+every 1.hour do
+  runner "Order.cleanup_deprecated"
+  runner "User.cleanup_deprecated"
+end
+
+every 1.day, :at => '4:30 am' do
+  rake "webartikel:update"
+end
 
 # Learn more: http://github.com/javan/whenever
