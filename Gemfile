@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
- gem 'rails', '4.0.3'                                # Web applitation framework
+gem 'rails', '4.0.3'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'tiny_tds'                                        # A modern, simple and fast FreeTDS library for Ruby using DB-Library
 gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter'
