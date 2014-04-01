@@ -170,4 +170,26 @@ class User < ActiveRecord::Base
       [number.to_s, MercatorMesonic::AktMandant.mesocomp, MercatorMesonic::AktMandant.mesoyear].join("-")
     end
   end
+
+  def self.cleanup_deprecated
+    JobLogger.info("=" * 50)
+    JobLogger.info("Starting Cronjob runner: User.cleanup_deprecated")
+
+    User.all.each do |user|
+      if user.orders.count == 0 &&
+         Time.now - user.created_at > 1.hours &&
+         user.name == "Gast" &&
+         user.state == "guest" &&
+         user.gtc_confirmed_at == nil
+        if user.delete
+          JobLogger.info("Deleted User " + user.id.to_s + " successfully.")
+        else
+          JobLogger.error("Deleted User " + user.id.to_s + " failed!")
+        end
+      end
+    end
+
+    JobLogger.info("Finished Cronjob runner: User.cleanup_deprecated")
+    JobLogger.info("=" * 50)
+  end
 end

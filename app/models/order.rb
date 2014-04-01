@@ -198,13 +198,20 @@ class Order < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.cleanup_deprecated
-    puts "\n" + I18n.l(Time.now).to_s + " Starting Job cleanup orders"
+    JobLogger.info("=" * 50)
+    JobLogger.info("Starting Cronjob runner: Order.cleanup_deprecated")
+
     Order.all.each do |basket|
       if basket.lineitems.count == 0 && Time.now - basket.created_at > 1.hours
-        puts "  deleting order " + basket.id.to_s
-        basket.delete
+        if basket.delete
+          JobLogger.info("Deleted order " + basket.id.to_s + " successfully.")
+        else
+          JobLogger.error("Deleted order " + basket.id.to_s + " failed!")
+        end
       end
     end
-    puts I18n.l(Time.now).to_s + " Finished Job cleanup orders"
+
+    JobLogger.info("Finished Cronjob runner: Order.cleanup_deprecated")
+    JobLogger.info("=" * 50)
   end
 end
