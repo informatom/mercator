@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_attached_file :photo,
     :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
     :default_url => "/images/:style/missing.png"
+  validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }
 
   has_many :addresses, dependent: :destroy, inverse_of: :user, accessible: true
   has_many :billing_addresses, dependent: :destroy, inverse_of: :user, accessible: true

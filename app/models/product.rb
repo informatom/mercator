@@ -27,6 +27,9 @@ class Product < ActiveRecord::Base
     :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
     :default_url => "/images/:style/missing.png"
 
+  do_not_validate_attachment_file_type :document
+  validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }
+
   has_many :property_groups, :through => :values
   has_many :properties, :through => :values
   has_many :values, dependent: :destroy, :inverse_of => :product, :accessible => true
