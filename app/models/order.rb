@@ -91,16 +91,33 @@ class Order < ActiveRecord::Base
       end
 
       if Rails.application.config.erp == "mesonic"
-        @webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
-        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, user_id: acting_user.id, position: 10000,
-                                            product_number: "VERSANDSPESEN", description_de: "Versandkostenanteil", amount: 1, unit: "Pau.",
-                                            product_price: @webartikel_versandspesen.preis, vat: @webartikel_versandspesen.Steuersatzzeile * 10 ,
-                                            value: @webartikel_versandspesen.preis)
+        webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
+        shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id) # user-specific derivation
+        shipping_cost_value ||= webartikel_versandspesen.preis # non user-specific derivation
+
+        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
+                                                         user_id: acting_user.id,
+                                                         position: 10000,
+                                                         product_number: "VERSANDSPESEN",
+                                                         description_de: "Versandkostenanteil",
+                                                         amount: 1,
+                                                         unit: "Pau.",
+                                                         product_price: shipping_cost_value,
+                                                         vat: webartikel_versandspesen.Steuersatzzeile * 10 ,
+                                                         value: shipping_cost_value)
       else
         shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
-        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id, user_id: acting_user.id, position: 10000,
-                                            product_number: "shipping", description_de: "Versandkosten", amount: 1, unit: "Pau.",
-                                            product_price: shipping_cost.value, vat: shipping_cost.vat, value: shipping_cost.value)
+
+        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
+                                                         user_id: acting_user.id,
+                                                         position: 10000,
+                                                         product_number: "VERSANDSPESEN",
+                                                         description_de: "Versandkostenanteil",
+                                                         amount: 1,
+                                                         unit: "Pau.",
+                                                         product_price: shipping_cost.value,
+                                                         vat: shipping_cost.vat,
+                                                         value: shipping_cost.value)
       end
     end
 
