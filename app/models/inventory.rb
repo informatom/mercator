@@ -23,6 +23,10 @@ class Inventory < ActiveRecord::Base
     just_imported           :boolean
     timestamps
   end
+
+  # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
+  include InventoryExtensions if Rails.application.config.erp == "mesonic"
+
   attr_accessible :name_de, :name_en, :number, :amount, :unit, :comment_de, :comment_en, :weight, :charge, :storage,
                   :product, :product_id, :photo, :delivery_time, :erp_updated_at, :erp_vatline, :erp_article_group,
                   :erp_provision_code, :erp_characteristic_flag, :infinite, :just_imported
@@ -62,9 +66,15 @@ class Inventory < ActiveRecord::Base
 
    #--- Instance methods ---#
 
-  def determine_price(date: Time.now, amount: 1, incl_vat: false)
+  def determine_price(date: Time.now, amount: 1, incl_vat: false, customer_id: current_user.id)
+
     price = self.select_price(date: date, amount: amount)
     price_excl_vat = price.value
+
+    if Rails.application.config.erp == "mesonic"
+      mesonic_price = self.mesonic_price(customer_id: customer_id)
+      price_excl_vat = mesonic_price if mesonic_price
+    end
 
     if incl_vat
       vat = self.determine_vat(date: date, amount: amount)

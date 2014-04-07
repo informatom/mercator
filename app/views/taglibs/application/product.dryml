@@ -19,8 +19,9 @@
       </else>
 
       <p class="label">
-        excl. Mwst. <%= number_to_currency(this.determine_price) %> <br/> <br/>
-        incl. Mwst. <%= number_to_currency(this.determine_price(incl_vat: true)) %>
+        excl. Mwst. <%= number_to_currency(this.determine_price(customer_id: current_user.id)) %> <br/> <br/>
+        incl. Mwst.
+        <%= number_to_currency(this.determine_price(incl_vat: true, customer_id: current_user.id)) %>
       </p>
     </div>
 

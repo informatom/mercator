@@ -88,7 +88,7 @@ class Lineitem < ActiveRecord::Base
     transition :add_one, {:active => :active}, if: "acting_user.basket == order",
                available_to: :all do
       amount = self.amount + 1
-      price = product.determine_price(amount: amount)
+      price = product.determine_price(amount: amount, customer_id: self.user.id)
       self.update(amount: amount,
                   product_price: price)
       self.update(value: self.calculate_value)
@@ -101,7 +101,7 @@ class Lineitem < ActiveRecord::Base
         self.delete
       else
         amount = self.amount - 1
-        price = product.determine_price(amount: amount)
+        price = product.determine_price(amount: amount, customer_id: self.user.id)
         self.update(amount:        amount,
                     product_price: price)
         self.update(value: self.calculate_value)
@@ -160,7 +160,7 @@ class Lineitem < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
-    price = product.determine_price(amount: amount)
+    price = product.determine_price(amount: amount, customer_id: user_id)
     inventory = product.determine_inventory(amount: amount)
     vat = inventory.determine_vat(amount: amount)
 

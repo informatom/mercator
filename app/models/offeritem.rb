@@ -82,7 +82,7 @@ class Offeritem < ActiveRecord::Base
     product = Product.find_by_number(product_number)
 
     if product
-      price = product.determine_price(amount: amount)
+      price = product.determine_price(amount: amount, customer_id: user_id)
       inventory = product.determine_inventory(amount: amount)
       vat = inventory.determine_vat(amount: amount)
       self.update(product_id: product.id,
