@@ -23,6 +23,9 @@ class ContentElement < ActiveRecord::Base
     :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
     :default_url => "/images/:style/missing.png"
 
+  do_not_validate_attachment_file_type :document
+  validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }
+
   has_many :page_content_element_assignments, :accessible => true
   has_many :webpages, :through => :page_content_element_assignments
 

@@ -40,6 +40,8 @@ class Inventory < ActiveRecord::Base
     :styles => { :large => "1000x1000>", :medium => "500x500>", :small => "250x250>",
                  :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
+  validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }
+
   belongs_to :product
   validates :product, :presence => true
 
