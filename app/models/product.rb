@@ -114,8 +114,8 @@ class Product < ActiveRecord::Base
 
   def determine_inventory(amount: 1)
     amount_requested = amount
-    self.inventories.order(created_at: :asc).where{(amount >= amount_requested) || (infinite == true)}.first # FIFO
-    #self.inventories.order(created_at: :desc).where{(amount >= amount_requested)}.first # LIFO
+    self.inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # FIFO
+    #self.inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # LIFO
   end
 
   #--- Class Methods --- #

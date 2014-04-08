@@ -32,7 +32,7 @@
       <div class="tab-pane" id="related">
         <div class="tabbable tabs-left">
           <ul class="nav nav-tabs" id="related-tabs">
-            <li repeat="related_products" class="#{'active' if first_item?}">
+            <li repeat="related_products.active" class="#{'active' if first_item?}">
               <a href="#related#{this.id}" data-toggle="tab">
                 <view:title/>
               </a>
@@ -40,7 +40,7 @@
           </ul>
 
           <div class="tab-content">
-            <div repeat="related_products"
+            <div repeat="related_products.active"
                  class="tab-pane #{'active' if first_item?}"
                  id="related#{this.id}">
               <if><card/></if>
@@ -53,7 +53,7 @@
       <div class="tab-pane" id="recommended">
         <div class="tabbable tabs-left">
           <ul class="nav nav-tabs" id="recommended-tabs">
-            <li repeat="recommended_products" class="#{'active' if first_item?}">
+            <li repeat="recommended_products.active" class="#{'active' if first_item?}">
               <a href="#recommended#{this.id}" data-toggle="tab">
                 <view:title/>
               </a>
@@ -61,7 +61,7 @@
           </ul>
 
           <div class="tab-content">
-            <div repeat="recommended_products"
+            <div repeat="recommended_products.active"
                  class="tab-pane #{'active' if first_item?}"
                  id="recommended#{this.id}">
               <if><card/></if>
@@ -73,7 +73,7 @@
       <div class="tab-pane" id="supplies">
         <div class="tabbable tabs-left">
           <ul class="nav nav-tabs" id="supplies-tabs">
-            <li repeat="supplies" class="#{'active' if first_item?}">
+            <li repeat="supplies.active" class="#{'active' if first_item?}">
               <a href="#supplies#{this.id}" data-toggle="tab">
                 <view:title/>
               </a>
@@ -81,7 +81,7 @@
           </ul>
 
           <div class="tab-content">
-            <div repeat="supplies"
+            <div repeat="supplies.active"
                  class="tab-pane #{'active' if first_item?}"
                   id="supplies#{this.id}">
               <if><card/></if>
@@ -91,4 +91,6 @@
       </div>
     </div>
   </content-body:>
+
+  <aside-column:></aside-column:>
 </show-page>

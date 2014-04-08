@@ -38,9 +38,7 @@
           <li repeat="&this.features"><view:text/></li>
         </ul>
       </if>
-
     </div>
-
   </div>
 </def>
 
