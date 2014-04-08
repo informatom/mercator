@@ -19,13 +19,26 @@
       </else>
 
       <p class="label">
-        excl. Mwst. <%= number_to_currency(this.determine_price(customer_id: current_user.id)) %> <br/> <br/>
-        incl. Mwst.
-        <%= number_to_currency(this.determine_price(incl_vat: true, customer_id: current_user.id)) %>
+        excl. Mwst. <%= number_to_currency(this.determine_price(customer_id: current_user.id)) %>
+      </p>
+      <br/>
+      <p class="label">
+        incl. Mwst. <%= number_to_currency(this.determine_price(incl_vat: true, customer_id: current_user.id)) %>
       </p>
     </div>
 
-      <h1 class="media-header"><%= link_to( this.title, product_path(this)) %></h1>
+      <h1 class="media-header">
+        <if test="&this.determine_inventory.name">
+          <%= link_to( this.determine_inventory.name, product_path(this)) %>
+        </if>
+        <else>
+          <%= link_to( this.title, product_path(this)) %>
+        </else>
+      </h1>
+
+      <if test="&this.determine_inventory.comment">
+        <p><strong><view:determine-inventory.comment/></strong></p>
+      </if>
 
       <div param="description"> <view:description/> </div>
 
