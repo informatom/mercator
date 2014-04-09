@@ -29,7 +29,6 @@ class Admin::Imports::ProductsController < Admin::ImportsController
     redirect_to :action => :index
   end
 
-
   def import_icecat_data
     Delayed::Job.enqueue( IcecatJob.new( :import_icecat_xml_full ) )
     redirect_to :action => :index

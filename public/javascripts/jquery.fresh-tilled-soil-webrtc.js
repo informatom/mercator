@@ -16,7 +16,11 @@
         peerCountElem: null, // optional div that will be updated with current number of peers within a channel
 
         // Servers & channels
+
+        // HAS: 20140409 Entering my own STUN/TURN here ... not working ...
+        //signallingServer: "ws://meidling.mittenin.at:3478", // or 'ws://209.20.89.197:1337'
         signallingServer: "ws://signaling.freshtilledsoil.com:1337", // or 'ws://209.20.89.197:1337'
+
         iceServers: null,
         optionalDataChannel: null,
         isDataChannel: false,

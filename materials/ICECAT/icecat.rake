@@ -1,16 +1,12 @@
-
 namespace :icecat do
-  
+
   logger = Logger.new( File.join( RAILS_ROOT, "log", "icecat.log" ) )
-  
+
   namespace :import do
 
     desc "import product_xml_filenames from full.index.xml"
     task :meta_data => :environment do
-      
-     # require 'nokogiri'
-      
-      
+
       if( ENV.include?('INDEX') && !ENV['INDEX'].empty? )
         filename = ENV['INDEX']
       else
@@ -20,23 +16,20 @@ namespace :icecat do
         end
       end
       puts "loading index xml '#{filename}'"
-      
-    #  xml = Nokogiri::XML( File.open( filename ) )
+
       xml = LibXML::XML::Document.file( filename )
       products = Product.scoped({:conditions => { :icecat_product_xml => nil } } )
       j = products.count
       i = 1
-      
+
       products.all.each do |product|
         product.import_icecat_meta_data( xml )
         puts "#{product.save} #{i}/#{j}"
         i = i + 1
       end
       xml = nil
-      
     end
-    
-    
+
     desc "import related products from icecat product xml files"
     task :related_products => :environment do
       start = Time.now
@@ -45,9 +38,7 @@ namespace :icecat do
       stop = Time.now
       puts "#{stop} : related-products import stopped (duration: #{stop - start})"
     end
-    
-    
-    
+
     desc "import images from icecat product xml files"
     task :images => :environment do
       start = Time.now
@@ -56,7 +47,6 @@ namespace :icecat do
       stop = Time.now
       puts "#{stop} : image import stopped (duration: #{stop - start})"
     end
-    
 
     desc "import icecat data for all products"
     task :full => :environment do
@@ -67,24 +57,23 @@ namespace :icecat do
       stop = Time.now
       logger.info "[import:full] stop : #{stop}"
     end
-    
+
     task :pictures => :environment do
       icecat_importer = Icecat::Import.new( true, "/Users/shm/_work/ivelliovelin/rails/ivellio_08/icecat_xmls/full_20090414_164816" )
      # icecat_importer.download_xmls_full
       icecat_importer.products_pictures
     end
-    
   end
-  
+
   task :products2 => :environment do
     i = Product.count
     j = 1
     hp_pics = "/Users/shm/_work/ivelliovelin/mesonic_pics"
-    
-    
+
+
     Product.all.each do |product|
       image_name = product.inventory.send( "Grafikfile" )
-      
+
       attach = nil
       if image_name
         image_name =~ /(.+)\_\d*[xX]?\d*\..../
@@ -108,8 +97,4 @@ namespace :icecat do
       end
     end
   end
-
 end
-
-
-    

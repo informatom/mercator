@@ -99,7 +99,6 @@ class IcecatJob
     Product.scoped( @products_scope )
   end
 
-
   def for_each_product( scope = { :conditions => ['icecat_last_import IS NULL AND icecat_product_xml IS NOT NULL'] }, &block)
     each_product_scope = scoped_products.scoped( scope )
     count = each_product_scope.count
@@ -114,16 +113,13 @@ class IcecatJob
     true
   end
 
-
   def import_icecat_xml
     for_each_product { |product| product.import_icecat_xml }
   end
 
-
   def import_icecat_related_products
     for_each_product { |product| product.import_related_products }
   end
-
 
   def import_icecat_images
     for_each_product { |product| product.import_icecat_images }
