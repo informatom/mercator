@@ -63,6 +63,9 @@ group :development, :test  do
 # gem 'rack-mini-profiler'                            # Performance Testing
 # gem 'dryml-firemarker', :require => 'dryml13-firemarker'
                                                       # DRYML Debugger
+  gem 'capistrano'                                    # Deployment automation
+  gem 'capistrano-rails'                              # Rails specific tasks
+  gem 'rvm-capistrano'                                # Capistrano rvm integration
 end
 
 group :test do
