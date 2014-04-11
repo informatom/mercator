@@ -30,40 +30,4 @@ class IcecatJob
       end
     }
   end
-
-  def import_meta_data
-    File.open( self.class.xml_index_filename ) do |f|
-      f.each_line do |line|
-        if line.include?("Supplier_id=\"1\"")
-          hash = Hash.from_xml( line.gsub(/\s\>$/, "/>") )
-          hash = hash['file']
-          next if IcecatMetaData.find_by_product_id( hash['Product_ID'] )
-          imd = IcecatMetaData.new
-          imd.path = hash['path']
-          imd.cat_id = hash['Catid']
-          imd.product_id = hash['Product_ID']
-          imd.icecat_updated_at = hash['Updated']
-          imd.quality = hash['Quality']
-          imd.supplier_id = hash['Supplier_id']
-          imd.prod_id = hash['Prod_ID']
-          imd.on_market = hash['On_Market']
-          imd.model_name = hash['Model_Name']
-          imd.product_view = hash['Product_View']
-          imd.save
-        end
-      end
-    end
-  end
-
-  def download_daily( filename )
-    File.open( filename, "w" ) do |f|
-      Icecat::Access.new.daily_index.read
-    end
-  end
-
-  def download_index( filename )
-    File.open( filename, "w" ) do |f|
-      Icecat::Access.new.full_index.read
-    end
-  end
 end
