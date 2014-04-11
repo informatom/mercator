@@ -51,6 +51,9 @@ gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
                                                       # Engine for integrating Mesonic ERP System
 gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
                                                       # Engine for importing Legacy Data
+gem "mercator_icecat", path:"vendor/engines/mercator_icecat"
+                                                      # Engine for importing Icecat Data
+
 
 group :development, :test  do
   gem 'thin'                                          # web server, replacement for webrick

@@ -1,4 +1,3 @@
-#require 'libxml'
 require 'open-uri'
 
 module Icecat::Product::Xml
@@ -68,10 +67,6 @@ module Icecat::Product::Xml
     product_xml_io = nil
   end
 
-  def convv(c)
-    c #Iconv.iconv("ISO-8859-1","UTF-8",  c)
-  end
-
   def import_icecat_xml
     unless @icecat_hash
       self.load_icecat_xml_to_hash
@@ -128,7 +123,7 @@ module Icecat::Product::Xml
     features.each do |f|
       presentation_value = f['Presentation_Value']
       feature_id = f['Feature']['ID']
-      value = convv( f['Value'] )
+      value = f['Value']
 
       feature_group_id = f['CategoryFeatureGroup_ID']
       globalize_feature = [ [ 1, :en ], [4, :de ] ].collect do |loc|
@@ -165,14 +160,7 @@ module Icecat::Product::Xml
           self.properties << existing_property
         end
       end
-      feature_hash = nil
-
     end
-
-    product_hash = nil
-    icecat_hash = nil
-    tmp_hash = nil
-    tmp_arr = nil
     return self
   end
 end
