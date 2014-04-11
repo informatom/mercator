@@ -3,14 +3,15 @@ module Icecat
 
   class Import
 
-    class << self ;
+    # --- Class Methods --- #
 
-      def products( t = :full, file = nil )
-        i = new
-        i.set_xml( file ) if t == :daily
-        i.send( t )
-      end
+    def self.products( t = :full, file = nil )
+      i = new
+      i.set_xml( file ) if t == :daily
+      i.send( t )
     end
+
+    # --- Instance Methods --- #
 
     def initialize( log = Logger.new( File.join( RAILS_ROOT, "log", "icecat.log" ) ) )
       @logg = log

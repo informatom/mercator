@@ -1,7 +1,4 @@
 namespace :icecat do
-
-  logger = Logger.new( File.join( RAILS_ROOT, "log", "icecat.log" ) )
-
   namespace :import do
 
     desc "import product_xml_filenames from full.index.xml"
@@ -31,41 +28,22 @@ namespace :icecat do
     end
 
     desc "import related products from icecat product xml files"
-    task :related_products => :environment do
-      start = Time.now
-      puts "#{start} : related-products import started"
-      Icecat::Import.products(:related_products)
-      stop = Time.now
-      puts "#{stop} : related-products import stopped (duration: #{stop - start})"
-    end
+    Icecat::Import.products(:related_products)
 
     desc "import images from icecat product xml files"
-    task :images => :environment do
-      start = Time.now
-      puts "#{start} : image import started"
-      Icecat::Import.products(:images)
-      stop = Time.now
-      puts "#{stop} : image import stopped (duration: #{stop - start})"
-    end
+    Icecat::Import.products(:images)
 
     desc "import icecat data for all products"
-    task :full => :environment do
-      start = Time.now
-      logger.info "[import:full] start : #{start}"
-      importer = Icecat::Import.new( logger )
-      importer.full
-      stop = Time.now
-      logger.info "[import:full] stop : #{stop}"
-    end
+    importer = Icecat::Import.new( logger )
+    importer.full
 
     task :pictures => :environment do
       icecat_importer = Icecat::Import.new( true, "/Users/shm/_work/ivelliovelin/rails/ivellio_08/icecat_xmls/full_20090414_164816" )
-     # icecat_importer.download_xmls_full
       icecat_importer.products_pictures
     end
   end
 
-  task :products2 => :environment do
+  task :products2 => :environment do # attachments ???
     i = Product.count
     j = 1
     hp_pics = "/Users/shm/_work/ivelliovelin/mesonic_pics"
@@ -92,7 +70,6 @@ namespace :icecat do
         end
 
         product.attachments << attach if attach
-        puts "image #{i}/#{j}" if attach
         i = i + 1
       end
     end

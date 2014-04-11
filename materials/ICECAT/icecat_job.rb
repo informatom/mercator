@@ -1,25 +1,23 @@
 class IcecatJob
 
-  attr_accessor :runner_method
-
-  class << self ;
-    def xml_index_filename
-      if RAILS_ENV.to_sym == :production
-        File.join( RAILS_ROOT, "..", "..", "shared", "icecat", "full.index.xml" )
-      else
-        File.join( RAILS_ROOT, "tmp", "icecat", "full.index.xml" )
-      end
-    end
-
-    def xml_daily_filename
-      if RAILS_ENV.to_sym == :production
-        File.join( RAILS_ROOT, "..", "..", "shared", "icecat", "daily.index.xml" )
-      else
-        File.join( RAILS_ROOT, "tmp", "icecat", "daily.index.xml" )
-      end
+  # --- Class Methods --- #
+  def self.xml_index_filename
+    if RAILS_ENV.to_sym == :production
+      File.join( RAILS_ROOT, "..", "..", "shared", "icecat", "full.index.xml" )
+    else
+      File.join( RAILS_ROOT, "tmp", "icecat", "full.index.xml" )
     end
   end
 
+  def self.xml_daily_filename
+    if RAILS_ENV.to_sym == :production
+      File.join( RAILS_ROOT, "..", "..", "shared", "icecat", "daily.index.xml" )
+    else
+      File.join( RAILS_ROOT, "tmp", "icecat", "daily.index.xml" )
+    end
+  end
+
+  # --- Instance Methods --- #
   def initialize( method_name, options = {} )
     @runner_method = method_name
     @index_file = options[:index_file] || self.class.xml_index_filename
@@ -52,23 +50,19 @@ class IcecatJob
       return false
     end
 
-    begin
-      p.import_icecat_xml
-      p.import_icecat_related_products
-      p.import_icecat_option_products
-      p.import_icecat_images
-      p.icecat_last_import = Time.now
-      p.save
-      p.clear_icecat_hash
-    rescue => error
-    end
+    p.import_icecat_xml
+    p.import_icecat_related_products
+    p.import_icecat_option_products
+    p.import_icecat_images
+    p.icecat_last_import = Time.now
+    p.save
+    p.clear_icecat_hash
 
     p = nil
     true
   end
 
   def import_icecat_xml_full
-
     for_each_product({:conditions => ["icecat_last_import IS NULL AND icecat_product_xml IS NULL"] } ) do |product|
       if imd = IcecatMetaData.find_by_prod_id( product.icecat_article_number )
         product.icecat_product_xml = imd.path
@@ -102,12 +96,10 @@ class IcecatJob
   def for_each_product( scope = { :conditions => ['icecat_last_import IS NULL AND icecat_product_xml IS NOT NULL'] }, &block)
     each_product_scope = scoped_products.scoped( scope )
     count = each_product_scope.count
-    i = 1
     each_product_scope.all.each do |product|
       block.call(product)
       product.save
       product.clear_icecat_hash
-      i += 1
     end
     each_product_scope = nil
     true
