@@ -54,6 +54,7 @@ PATH
   specs:
     mercator_icecat (0.0.1)
       rails (~> 4.0.3)
+      saxerator
 
 PATH
   remote: vendor/engines/mercator_legacy_importer
@@ -332,6 +333,8 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 2.3.0)
       wasabi (~> 3.2.2)
+    saxerator (0.9.3)
+      nokogiri (>= 1.4.0)
     selenium-webdriver (2.35.1)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
