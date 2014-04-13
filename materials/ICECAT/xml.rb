@@ -7,11 +7,6 @@ module Icecat::Product::Xml
     $1 ? "1" : nil
   end
 
-  def icecat_article_number
-    self.article_number =~ /^HP-(.+)$/
-    $1 || self.article_number
-  end
-
   def import_icecat_related_products
     unless @icecat_hash
       return unless self.load_icecat_xml_to_hash

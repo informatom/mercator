@@ -20,14 +20,4 @@ class IcecatJob
     p.save
     p.clear_icecat_hash
   end
-
-  def import_icecat_meta_data
-    for_each_product(@products_scope || {}) { |product|
-      if imd = IcecatMetaData.find_by_prod_id( product.icecat_article_number )
-        product.icecat_product_xml = imd.path
-        product.icecat_product_id  = imd.product_id
-        product.icecat_category_id = imd.cat_id
-      end
-    }
-  end
 end

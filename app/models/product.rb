@@ -13,6 +13,10 @@ class Product < ActiveRecord::Base
     topseller      :boolean
     timestamps
   end
+
+  # can be found in mercator/vendor/engines/mercator_icecat/app/models/product_extensions.rb
+  include ProductExtensions if Rails.application.config.icecat == true
+
   attr_accessible :title_de, :title_en, :number, :description_de, :description_en,
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
