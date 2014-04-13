@@ -30,3 +30,7 @@ def product_xml_filename( prod_id )
   return nil if result.empty?
   result.first.attributes["path"]
 end
+
+
+
+p.icecat_last_import = Time.now

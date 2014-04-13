@@ -1,51 +1,4 @@
-require 'open-uri'
-
 module Icecat::Product::Xml
-
-  def icecat_vendor
-    self.article_number =~ /^HP-(.+)$/
-    $1 ? "1" : nil
-  end
-
-  def import_icecat_related_products
-    unless @icecat_hash
-      return unless self.load_icecat_xml_to_hash
-    end
-    related_product_ids = @product_hash['ProductRelated'].collect { |s| s['Product']['ID'].to_i } rescue []
-    self.related_product_ids = ::Product.find( :all, :conditions => { :icecat_product_id => related_product_ids } ).collect(&:id)
-  end
-
-  def import_icecat_option_products
-    return nil if self.related_products.empty?
-
-    option_products = self.related_products.select do |related|
-      related.icecat_category_id.to_i != self.icecat_category_id.to_i
-    end
-
-    self.supply_ids = option_products.collect(&:id)
-  end
-
-  def import_icecat_images
-    unless @icecat_hash
-      self.load_icecat_xml_to_hash
-    end
-
-    begin
-      if pic = @product_hash['HighPic']
-        io = open( pic )
-        def io.original_filename ; base_uri.path.split("/").last ; end
-        pic_content = io.original_filename.blank? ? nil : io
-        self.overview = pic_content
-        self.image = pic_content
-      end
-    rescue
-    end
-  end
-
-  def clear_icecat_hash
-    @icecat_hash = nil
-    @product_hash = nil
-  end
 
   def load_icecat_xml_to_hash
     begin
@@ -158,4 +111,42 @@ module Icecat::Product::Xml
     end
     return self
   end
+
+
+
+  def import_icecat_related_products
+    unless @icecat_hash
+      return unless self.load_icecat_xml_to_hash
+    end
+    related_product_ids = @product_hash['ProductRelated'].collect { |s| s['Product']['ID'].to_i } rescue []
+    self.related_product_ids = ::Product.find( :all, :conditions => { :icecat_product_id => related_product_ids } ).collect(&:id)
+  end
+
+  def import_icecat_option_products
+    return nil if self.related_products.empty?
+
+    option_products = self.related_products.select do |related|
+      related.icecat_category_id.to_i != self.icecat_category_id.to_i
+    end
+
+    self.supply_ids = option_products.collect(&:id)
+  end
+
+  def import_icecat_images
+    unless @icecat_hash
+      self.load_icecat_xml_to_hash
+    end
+
+    begin
+      if pic = @product_hash['HighPic']
+        io = open( pic )
+        def io.original_filename ; base_uri.path.split("/").last ; end
+        pic_content = io.original_filename.blank? ? nil : io
+        self.overview = pic_content
+        self.image = pic_content
+      end
+    rescue
+    end
+  end
+
 end
