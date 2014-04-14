@@ -326,6 +326,18 @@
   </form>
 </def>
 
+<def tag="form" for="MercatorIcecat::Metadatum">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="path, icecat_updated_at, quality, product_number, on_market, model_name, product_view, product" param/>
+    <div param="actions">
+      <submit label="#{ht 'mercator_icecat/metadatum.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Order">
   <form merge param="default">
     <error-messages param/>
