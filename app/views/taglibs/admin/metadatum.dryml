@@ -1,0 +1,125 @@
+<def tag="card" for="MercatorIcecat::Metadatum">
+  <card class="mercator-icecat--metadatum" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="form" for="MercatorIcecat::Metadatum">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="path, icecat_updated_at, quality, product_number, on_market, model_name, product_view, product" param/>
+    <div param="actions">
+      <submit label="#{ht 'mercator_icecat/metadatum.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<!-- ====== MercatorIcecat::Metadatum Pages ====== -->
+
+<def tag="index-page" for="MercatorIcecat::Metadatum">
+  <page merge title="#{ht 'mercator_icecat/metadatum.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page mercator-icecat--metadatum" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="mercator_icecat/metadatum.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="mercator_icecat/metadatum.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="mercator_icecat/metadatum.actions.new">New Metadatum</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="MercatorIcecat::Metadatum">
+  <page merge title="#{ht 'mercator_icecat/metadatum.new.title', :default=>[' New Metadatum'] }">
+    <body: class="new-page mercator-icecat--metadatum" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="mercator_icecat/metadatum.new.heading">
+          New Metadatum
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'mercator_icecat/metadatum.actions.create', :default=>['Create Metadatum']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="MercatorIcecat::Metadatum">
+  <page merge title="#{ht 'mercator_icecat/metadatum.show.title', :default=>['Metadatum'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page mercator-icecat--metadatum" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="mercator_icecat/metadatum.show.heading" name="#{name(:no_wrapper => true)}">
+          Metadatum <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="mercator_icecat/metadatum.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Metadatum
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="path, icecat_updated_at, quality, product_number, on_market, model_name, product_view, product" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="MercatorIcecat::Metadatum">
+  <page merge title="#{ht 'mercator_icecat/metadatum.edit.title', :default=>['Edit Metadatum'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page mercator-icecat--metadatum" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="mercator_icecat/metadatum.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Metadatum
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'mercator_icecat/metadatum.actions.delete', :default=>['Remove This Metadatum']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
