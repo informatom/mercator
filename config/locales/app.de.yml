@@ -142,6 +142,7 @@ de:
     vat_number: UID-Nummer
     vat: MwSt.
     version_of: Version vom
+    warranty: Garantie
     weight: Gewicht
 
   activerecord:

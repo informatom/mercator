@@ -1,3 +1,5 @@
+<!-- FIXME! This should not be necessary at all: Problem with namespaces in controllers -->
+
 <def tag="card" for="MercatorIcecat::Metadatum">
   <card class="mercator-icecat--metadatum" param="default" merge>
     <header: param>

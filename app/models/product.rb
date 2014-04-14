@@ -8,6 +8,10 @@ class Product < ActiveRecord::Base
     number         :string, :required, :unique, name: true
     description_de :cktext, :required
     description_en :cktext
+    long_description_de :cktext
+    long_description_en :cktext
+    warranty_de    :string
+    warranty_en    :string
     legacy_id      :integer
     novelty        :boolean
     topseller      :boolean
@@ -22,7 +26,7 @@ class Product < ActiveRecord::Base
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
                   :novelty, :topseller
   set_search_columns :title_de, :title_en, :description_de, :description_en, :number
-  translates :title, :description
+  translates :title, :description, :long_description, :warranty
   has_paper_trail
   # searchkick
 

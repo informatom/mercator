@@ -1,71 +1,6 @@
 module Icecat::Product::Xml
 
-  def load_icecat_xml_to_hash
-    begin
-      product_xml_io = Icecat::Access.new.product_uri( self.icecat_product_xml )
-    rescue Exception => e
-      puts "Error #{e}"
-      return nil
-    end
-
-    @icecat_hash = Hash.from_xml( product_xml_io.read )
-    @product_hash = @icecat_hash['ICECAT_interface']['Product']
-
-    product_xml_io.close
-    product_xml_io = nil
-  end
-
   def import_icecat_xml
-    unless @icecat_hash
-      self.load_icecat_xml_to_hash
-    end
-
-    icecat_hash = @icecat_hash
-    product_hash = @product_hash
-
-    globalize = { :de => { :locale => 'de' }, :en => { :locale => 'en' } }
-
-    if( de_globalize = self.globalize_translations.find_by_locale("de") )
-      globalize[:de][:id] = de_globalize.id
-    end
-    if( de_globalize = self.globalize_translations.find_by_locale("en") )
-      globalize[:en][:id] = de_globalize.id
-    end
-
-    globalize[:de][:title] = self.name
-    globalize[:en][:title] = self.name
-
-    tmp_hash = product_hash['Category']['Name'].select { |s| s['langid'] == '1' }
-    unless tmp_hash.empty?
-      globalize[:en][:icecat_category] = tmp_hash.first['Value']
-    end
-
-    tmp_hash = product_hash['Category']['Name'].select { |s| s['langid'] == '4' }
-    unless tmp_hash.empty?
-      globalize[:de][:icecat_category] = tmp_hash.first['Value']
-    end
-
-    tmp_arr = product_hash['ProductDescription']
-    tmp_arr = [ tmp_arr ] unless tmp_arr.is_a?( Array )
-
-    tmp_hash = tmp_arr.select { |s| s['langid'] == '1' }
-    unless tmp_hash.empty?
-      globalize[:en][:long_description] = tmp_hash.first["LongDesc"]
-      globalize[:en][:short_description] = tmp_hash.first["ShortDesc"]
-      globalize[:en][:warranty_info] = tmp_hash.first["WarrantyInfo"]
-    end
-
-    tmp_hash = tmp_arr.select { |s| s['langid'] == '4' }
-    unless tmp_hash.empty?
-      globalize[:de][:long_description] = tmp_hash.first["LongDesc"]
-      globalize[:de][:short_description] = tmp_hash.first["ShortDesc"]
-      globalize[:de][:warranty_info] = tmp_hash.first["WarrantyInfo"]
-    end
-    tmp_arr = nil
-
-    self.globalize_translations_attributes = [ globalize[:de], globalize[:en] ]
-
-
     features = product_hash['ProductFeature']
     features = features.is_a?( Array ) ? features : [ features ]
     features.each do |f|
@@ -112,12 +47,7 @@ module Icecat::Product::Xml
     return self
   end
 
-
-
   def import_icecat_related_products
-    unless @icecat_hash
-      return unless self.load_icecat_xml_to_hash
-    end
     related_product_ids = @product_hash['ProductRelated'].collect { |s| s['Product']['ID'].to_i } rescue []
     self.related_product_ids = ::Product.find( :all, :conditions => { :icecat_product_id => related_product_ids } ).collect(&:id)
   end
@@ -133,20 +63,12 @@ module Icecat::Product::Xml
   end
 
   def import_icecat_images
-    unless @icecat_hash
-      self.load_icecat_xml_to_hash
-    end
-
-    begin
-      if pic = @product_hash['HighPic']
-        io = open( pic )
-        def io.original_filename ; base_uri.path.split("/").last ; end
-        pic_content = io.original_filename.blank? ? nil : io
-        self.overview = pic_content
-        self.image = pic_content
-      end
-    rescue
+    if pic = @product_hash['HighPic']
+      io = open( pic )
+      def io.original_filename ; base_uri.path.split("/").last ; end
+      pic_content = io.original_filename.blank? ? nil : io
+      self.overview = pic_content
+      self.image = pic_content
     end
   end
-
 end

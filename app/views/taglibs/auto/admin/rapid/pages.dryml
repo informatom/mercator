@@ -17,7 +17,6 @@
     <nav-item with="&Gtc"><ht key="gtc.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Inventory"><ht key="inventory.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Lineitem"><ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&MercatorIcecat::Metadatum"><ht key="mercator_icecat/metadatum.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Order"><ht key="order.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PageContentElementAssignment"><ht key="page_content_element_assignment.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PageTemplate"><ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -1303,7 +1302,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1665,118 +1664,6 @@
 
 
 
-<!-- ====== MercatorIcecat::Metadatum Pages ====== -->
-
-<def tag="index-page" for="MercatorIcecat::Metadatum">
-  <page merge title="#{ht 'mercator_icecat/metadatum.index.title', :default=>[model.model_name.human(:count=>100)] }">
-    <body: class="index-page mercator-icecat--metadatum" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="mercator_icecat/metadatum.index.heading">
-          <model-name-human model="&model"/>
-        </ht>
-      </h2>
-
-      <p param="count" if>
-        <ht key="mercator_icecat/metadatum.collection.count" count="&collection_count">
-          <count summary/>
-        </ht>
-      </p>
-    </content-header:>
-
-    <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="mercator_icecat/metadatum.actions.new">New Metadatum</ht>
-      </a>
-
-      <page-nav param="top-page-nav"/>
-
-      <collection param/>
-
-      <page-nav param="bottom-page-nav"/>
-
-
-    </content-body:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="MercatorIcecat::Metadatum">
-  <page merge title="#{ht 'mercator_icecat/metadatum.new.title', :default=>[' New Metadatum'] }">
-    <body: class="new-page mercator-icecat--metadatum" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="mercator_icecat/metadatum.new.heading">
-          New Metadatum
-        </ht>
-      </h2>
-    </content-header:>
-
-    <content-body: param>
-      <form param>
-        <submit: label="#{ht 'mercator_icecat/metadatum.actions.create', :default=>['Create Metadatum']}"/>
-      </form>
-    </content-body:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="MercatorIcecat::Metadatum">
-  <page merge title="#{ht 'mercator_icecat/metadatum.show.title', :default=>['Metadatum'], :name => name(:no_wrapper => true) }" without-aside >
-
-    <body: class="show-page mercator-icecat--metadatum" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="mercator_icecat/metadatum.show.heading" name="#{name(:no_wrapper => true)}">
-          Metadatum <name/>
-        </ht>
-      </h2>
-
-      <record-flags fields="" param/>
-
-      <a action="edit" if="&can_edit?" param="edit-link">
-        <ht key="mercator_icecat/metadatum.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Metadatum
-        </ht>
-      </a>
-    </content-header:>
-
-    <content-body: param>
-      <field-list fields="path, icecat_updated_at, quality, product_number, on_market, model_name, product_view, product" param/>
-    </content-body:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="MercatorIcecat::Metadatum">
-  <page merge title="#{ht 'mercator_icecat/metadatum.edit.title', :default=>['Edit Metadatum'], :name => name(:no_wrapper => true) }">
-
-    <body: class="edit-page mercator-icecat--metadatum" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="mercator_icecat/metadatum.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Metadatum
-        </ht>
-      </h2>
-      <delete-button label="#{ht 'mercator_icecat/metadatum.actions.delete', :default=>['Remove This Metadatum']}" param/>
-    </content-header:>
-
-    <content-body: param>
-      <form param/>
-    </content-body:>
-
-  </page>
-</def>
-
-
-
-
-
 <!-- ====== Order Pages ====== -->
 
 <def tag="index-page" for="Order">
@@ -1841,7 +1728,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -2432,7 +2319,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>
