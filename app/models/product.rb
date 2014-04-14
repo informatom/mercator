@@ -10,8 +10,8 @@ class Product < ActiveRecord::Base
     description_en :cktext
     long_description_de :cktext
     long_description_en :cktext
-    warranty_de    :string
-    warranty_en    :string
+    warranty_de    :cktext
+    warranty_en    :cktext
     legacy_id      :integer
     novelty        :boolean
     topseller      :boolean

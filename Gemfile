@@ -53,6 +53,7 @@ gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
                                                       # Engine for importing Legacy Data
 gem "mercator_icecat", path:"vendor/engines/mercator_icecat"
                                                       # Engine for importing Icecat Data
+gem 'try_to'
 
 
 group :development, :test  do
@@ -69,6 +70,7 @@ group :development, :test  do
   gem 'capistrano'                                    # Deployment automation
   gem 'capistrano-rails'                              # Rails specific tasks
   gem 'rvm-capistrano'                                # Capistrano rvm integration
+  gem 'zeus'                                          # application server prestarter
 end
 
 group :test do

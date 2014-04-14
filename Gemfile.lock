@@ -55,6 +55,7 @@ PATH
     mercator_icecat (0.0.1)
       rails (~> 4.0.3)
       saxerator
+      try_to
 
 PATH
   remote: vendor/engines/mercator_legacy_importer
@@ -243,6 +244,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     messengerjs-rails (1.4.1)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (4.7.5)
@@ -385,6 +387,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    try_to (1.0)
     turbolinks (2.2.1)
       coffee-rails
     tzinfo (0.3.39)
@@ -407,6 +410,8 @@ GEM
     wkhtmltopdf-binary (0.9.9.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    zeus (0.13.3)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -464,9 +469,11 @@ DEPENDENCIES
   thin
   tiny_tds
   traco
+  try_to
   turbolinks
   uglifier (>= 1.3.0)
   valvat
   whenever
   wicked_pdf
   wkhtmltopdf-binary
+  zeus

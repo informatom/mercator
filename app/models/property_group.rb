@@ -3,15 +3,16 @@ class PropertyGroup < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string, :required, :unique
-    name_en  :string
-    position :integer, :required, :unique
+    name_de   :string, :required, :unique
+    name_en   :string
+    position  :integer, :required, :unique
+    icecat_id :integer
     timestamps
   end
 
   default_scope { order(position: :asc) }
 
-  attr_accessible :name_de, :name_en, :position
+  attr_accessible :name_de, :name_en, :position, :icecat_id
   translates :name
   has_paper_trail
   acts_as_list
