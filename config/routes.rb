@@ -23,7 +23,6 @@ Mercator::Application.routes.draw do
         post 'restart'
       end
     end
-
     resources :metadata
   end
 
