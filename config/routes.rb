@@ -23,8 +23,6 @@ Mercator::Application.routes.draw do
         post 'restart'
       end
     end
-
-    resources :metadata
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
