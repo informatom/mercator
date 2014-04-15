@@ -31,7 +31,7 @@ class Value < ActiveRecord::Base
   def data_meets_state
     case self.state
       when "textual"
-        unless self.title_de.present? && self.amount.blank? && self.unit_de.blank? && self.unit_en.blank? && self.flag.nil?
+        unless self.title_de.present? && self.amount.blank? && self.flag.nil?
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
       when "numeric"
@@ -73,7 +73,7 @@ class Value < ActiveRecord::Base
   def display
     case state
     when "textual"
-      title
+      title + " " + unit.to_s
     when "numeric"
       if amount.to_i == amount
         amount.to_i.to_s + " " + unit.to_s
