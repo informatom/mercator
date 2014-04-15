@@ -1,37 +1,5 @@
 def import_icecat_xml
   features.each do |f|
-    presentation_value = f['Presentation_Value']
-    feature_id = f['Feature']['ID']
-    value = f['Value']
-
-    feature_group_id = f['CategoryFeatureGroup_ID']
-
-
-    globalize_feature = [ [ 1, :en ], [4, :de ] ].collect do |loc|
-
-      name = f['Feature']['Name'].select { |s| s['langid'] == loc.first.to_s }
-      name = name.empty? ? "" : name.first['Value']
-
-      group_arr = product_hash['CategoryFeatureGroup']
-      group_arr = [ group_arr ] unless group_arr.is_a?( Array )
-
-      group = group_arr.select { |s| s['ID'] == feature_group_id }
-      group = group.empty? ? "" : group.first['FeatureGroup']['Name'].select { |s| s['langid'] == loc.first.to_s }
-      group = group.empty? ? "" : group.first['Value']
-
-      sign = f['Feature']['Measure']['Signs']['Sign'].last rescue ""
-      sign = sign.empty? ? "" : sign
-
-      { :locale => loc.last.to_s, :name => name, :group => group, :sign => sign }
-    end
-
-    feature_hash = {
-      :value => value,
-      :presentation_value => presentation_value,
-      :icecat_feature_id => feature_id,
-      :globalize_translations_attributes => globalize_feature
-    }
-
     existing_property = ::Property.find_by_icecat_feature_id_and_value( feature_id, value )
 
     if existing_property.nil?

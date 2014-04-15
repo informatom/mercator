@@ -39,7 +39,7 @@ class Value < ActiveRecord::Base
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
       when "flag"
-        unless self.flag.present? && self.title_de.blank? && self.title_en.blank? && self.amount.blank? && self.unit_de.blank? && self.unit_en.blank?
+        unless !self.flag.nil? && self.title_de.blank? && self.title_en.blank? && self.amount.blank? && self.unit_de.blank? && self.unit_en.blank?
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
     end

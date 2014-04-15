@@ -3,10 +3,10 @@ class PropertyGroup < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de   :string, :required, :unique
+    name_de   :string, :required
     name_en   :string
-    position  :integer, :required, :unique
-    icecat_id :integer
+    position  :integer, :required
+    icecat_id :integer, :unique, :index => true
     timestamps
   end
 

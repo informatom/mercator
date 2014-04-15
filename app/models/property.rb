@@ -3,18 +3,19 @@ class Property < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de        :string, :required, :unique
+    name_de        :string, :required
     name_en        :string
     datatype       enum_string(:textual, :numeric, :flag), :required
 
     position       :integer, :required
     legacy_id      :integer
+    icecat_id      :integer, :unique, :index => true
     timestamps
   end
 
   default_scope { order(position: :asc) }
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
-                  :position, :legacy_id
+                  :position, :legacy_id, :datatype, :icecat_id
   has_paper_trail
   translates :name, :description, :unit
 
