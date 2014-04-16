@@ -28,7 +28,7 @@
     </div>
 
       <h1 class="media-header">
-        <if test="&this.determine_inventory.name">
+        <if test="&this.determine_inventory">
           <%= link_to( this.determine_inventory.name, product_path(this)) %>
         </if>
         <else>
@@ -36,7 +36,7 @@
         </else>
       </h1>
 
-      <if test="&this.determine_inventory.comment">
+      <if test="&this.determine_inventory">
         <p><strong><view:determine-inventory.comment/></strong></p>
       </if>
 

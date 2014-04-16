@@ -100,13 +100,14 @@ class Product < ActiveRecord::Base
 
   def determine_price(amount: 1, date: Time.now(), incl_vat: false, customer_id: current_user.id)
     inventory = self.determine_inventory(amount: amount)
-    price = inventory.determine_price(amount: amount, date: date, incl_vat: incl_vat, customer_id: customer_id)
+    price = inventory ? inventory.determine_price(amount: amount, date: date, incl_vat: incl_vat, customer_id: customer_id) : nil
     return price
   end
 
   def delivery_time(amount: 1, date: Time.now())
     inventory = self.determine_inventory(amount: amount)
-    return inventory.delivery_time
+    delivery_time = inventory ? inventory.delivery_time : "Auf Anfrage"
+    return delivery_time
   end
 
   def tabled_values
