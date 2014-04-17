@@ -1,18 +1,19 @@
-class Bechlem::Vcategory < Bechlem::Base
-  def self.table_name ; "VCATEGORY" ; end
-  set_primary_key 'IDCATEGORY'
+module MercatorBechlem
+  class Base < ActiveRecord::Base
 
-  def parent_category_id
-    cat_id = self.IDCATEGORY.to_s
-    cat_id[0..(9 - ( cat_id.count("0") + 2 ) ) ]
-  end
+    self.table_name = "VCATEGORY"
+    self.primary_key = "IDCATEGORY"
 
-  class << self ;
-    def top_category_id
+    def parent_category_id
+      cat_id = self.IDCATEGORY.to_s
+      cat_id[0..(9 - ( cat_id.count("0") + 2 ) ) ]
+    end
+
+    def self.top_category_id
       1452
     end
 
-    def by_category_id( category_id = self.top_category_id )
+    def self.by_category_id( category_id = self.top_category_id )
       cat_id = category_id.to_s
       cat_id = cat_id + "0" * (9 - cat_id.length )
       self.find_by_sql [
@@ -21,6 +22,11 @@ class Bechlem::Vcategory < Bechlem::Base
       AND i2i.idParItem = ?
       ORDER by idCategory", cat_id.to_i
       ]
+    end
+
+    # --- Instance Methods --- #
+    def readonly?  # prevents unintentional changes
+      true
     end
   end
 end
