@@ -53,6 +53,8 @@ gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
                                                       # Engine for importing Legacy Data
 gem "mercator_icecat", path:"vendor/engines/mercator_icecat"
                                                       # Engine for importing Icecat Data
+gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem"
+                                                      # Engine for integrating Mesonic ERP System
 gem 'try_to'
 
 
