@@ -51,6 +51,12 @@ gem "mercator_mesonic"
 rake mercator_mesonic:install:migrations
 '''
 
+### Icecat Integration
+
+If Using MercatorIcecat for Icecat Integration you need one import like
+  <include src="../../../vendor/engines/mercator_icecat/app/views/taglibs/admin/*"/>
+in admin.dryml per Subsite.
+
 ## Useful Job Declarations
 
 #### Deleting deprecated Orders hourly
