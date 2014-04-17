@@ -8,3 +8,4 @@
 
 <include src="application"/>
 <include src="admin/*"/>
+<include src="../../../vendor/engines/mercator_icecat/views/taglibs/admin/*"/>
