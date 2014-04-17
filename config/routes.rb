@@ -2,6 +2,10 @@ Mercator::Application.routes.draw do
   match ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
 
   mount Ckeditor::Engine => '/ckeditor'
+  mount MercatorMesonic::Engine => "/mercator_mesonic"
+  mount MercatorIcecat::Engine => "/mercator_icecat"
+  mount MercatorBechlem::Engine => "/mercator_bechlem"
+  mount MercatorLegacyImporter::Engine => "/mercator_legacy_importer"
 
   root :to => 'front#index'
   get 'admin' => 'admin/front#index', :as => 'admin_front'
@@ -23,7 +27,6 @@ Mercator::Application.routes.draw do
         post 'restart'
       end
     end
-    resources :metadata
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
