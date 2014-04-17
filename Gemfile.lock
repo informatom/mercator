@@ -50,6 +50,12 @@ GIT
       arel (~> 4.0.1)
 
 PATH
+  remote: vendor/engines/mercator_bechlem
+  specs:
+    mercator_bechlem (0.0.1)
+      rails (~> 4.0, >= 4.0.3)
+
+PATH
   remote: vendor/engines/mercator_icecat
   specs:
     mercator_icecat (0.0.1)
@@ -445,6 +451,7 @@ DEPENDENCIES
   jquery-ui-themes (~> 0.0.4)
   launchy (~> 2.3.0)
   less-rails
+  mercator_bechlem!
   mercator_icecat!
   mercator_legacy_importer!
   mercator_mesonic!
