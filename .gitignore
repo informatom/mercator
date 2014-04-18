@@ -20,6 +20,7 @@ app/views/taglibs/auto/sales/rapid/pages.dryml
 app/views/taglibs/auto/admin/rapid/pages.dryml
 vendor/catalogs/*
 vendor/xml/*
+vendor_bechlem/*
 
 app/views/page_templates/*
 materials/ivellio-vellin/*

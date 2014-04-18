@@ -53,6 +53,7 @@ PATH
   remote: vendor/engines/mercator_bechlem
   specs:
     mercator_bechlem (0.0.1)
+      mysql2
       rails (~> 4.0, >= 4.0.3)
 
 PATH
