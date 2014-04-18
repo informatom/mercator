@@ -95,7 +95,6 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="runtime, startdate" param/>
     </content-body:>
 
   </page>
@@ -208,7 +207,6 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="article_number, price" param/>
     </content-body:>
 
   </page>
@@ -310,7 +308,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
+      <record-flags fields="" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -320,7 +318,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
+      <field-list fields="mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
     </content-body:>
 
   </page>

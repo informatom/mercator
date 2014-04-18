@@ -102,7 +102,7 @@
 
     <content-body: param>
       <view:content param="description" />
-      <field-list fields="state, consultant, customer" param/>
+      <field-list fields="consultant, customer" param/>
     </content-body:>
 
   </page>
@@ -277,7 +277,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, conversation" param/>
+      <field-list fields="conversation" param/>
     </content-body:>
 
   </page>
@@ -502,7 +502,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="url, conversation" param/>
+      <field-list fields="conversation" param/>
     </content-body:>
 
   </page>
@@ -717,7 +717,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="upselling" param/>
+      <record-flags fields="" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="offeritem.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -728,7 +728,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, discount_abs, state, offer, product, user" param/>
+      <field-list fields="offer, product, user" param/>
     </content-body:>
 
   </page>
@@ -893,7 +893,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="complete" param/>
+      <record-flags fields="" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="offer.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -903,7 +903,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, discount_rel, state, consultant, conversation, user" param/>
+      <field-list fields="consultant, conversation, user" param/>
     </content-body:>
 
   </page>
@@ -1149,12 +1149,11 @@
         </ht>
       </h2>
 
-      <record-flags fields="novelty, topseller" param/>
+      <record-flags fields="" param/>
     </content-header:>
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="title_de, title_en, description_de, description_en, long_description_de, long_description_en, warranty_de, warranty_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="inventory.collection.heading" count="&this.inventories.count" >
@@ -1554,7 +1553,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
+      <record-flags fields="" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -1564,7 +1563,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
+      <field-list fields="mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
     </content-body:>
 
   </page>
