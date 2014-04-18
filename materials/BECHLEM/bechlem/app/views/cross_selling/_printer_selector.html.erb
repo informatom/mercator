@@ -1,8 +1,0 @@
-<%= label_tag :printer, "Drucker-Modell" %> (<%= @printer.size %> found)<%= image_tag("blue_spinner.gif", :id => "printer_indicator", :style => "display:none;") %>
-<br /><br  />
-<%= select_tag( :printer, options_for_select( @printer.collect { |s| [s.DESCRIPTION, s.IDITEM ] }, @selected_printer ), :style => "width:172px;") %>
-
-<%= observe_field :printer,
-	:url => select_cross_selling_path( :action => :printer_products ) ,
-	:with => :printer,
-	:before => "$('printer_selector_results').update('<br />#{image_tag('blue_spinner.gif')} Wird gesucht ...'); "%>

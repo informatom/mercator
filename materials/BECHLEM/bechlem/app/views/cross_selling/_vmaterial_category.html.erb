@@ -1,8 +1,0 @@
-<li class="vcategory">
-	<%= link_to_remote vmaterial_category.DESCRIPTION,
-		:url => select_cross_selling_path( :action => :category, :category_id => vmaterial_category.IDCATEGORY ), 		:method => :get,
-		:before => "$(this).up('li').select('.indicator').each(function(item) { item.show() } );",
-		:success => "$(this).up('li').select('.indicator').each(function(item) { item.hide() } );"
-	%>
-	<%= image_tag("blue_spinner.gif", :class => "indicator", :style => "display:none;") %>
-</li>
