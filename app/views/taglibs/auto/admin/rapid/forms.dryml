@@ -4,7 +4,7 @@
 <def tag="form" for="Address">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, c_o, detail, street, postalcode, city, country, state, user" param/>
+    <field-list fields="user" param/>
     <div param="actions">
       <submit label="#{ht 'address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -48,7 +48,7 @@
 <def tag="form" for="BillingAddress">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, c_o, email_address, detail, street, postalcode, city, country, vat_number, state, user" param/>
+    <field-list fields="user" param/>
     <div param="actions">
       <submit label="#{ht 'billing_address.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -92,7 +92,7 @@
 <def tag="form" for="Category">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, description_de, description_en, long_description_de, long_description_en, position, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations" param/>
+    <field-list fields="categorizations" param/>
     <div param="actions">
       <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -137,7 +137,7 @@
 <def tag="form" for="Categorization">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, category, product" param/>
+    <field-list fields="category, product" param/>
     <div param="actions">
       <submit label="#{ht 'categorization.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -149,7 +149,7 @@
 <def tag="form" for="Constant">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="key, value" param/>
+    <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'constant.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -161,7 +161,7 @@
 <def tag="form" for="ContentElement">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, markup, content_de, content_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, page_content_element_assignments" param/>
+    <field-list fields="page_content_element_assignments" param/>
     <div param="actions">
       <submit label="#{ht 'content_element.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -173,7 +173,7 @@
 <def tag="form" for="Country">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, code" param/>
+    <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'country.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -185,7 +185,7 @@
 <def tag="form" for="Feature">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, text_de, text_en, product" param/>
+    <field-list fields="product" param/>
     <div param="actions">
       <submit label="#{ht 'feature.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -197,7 +197,7 @@
 <def tag="form" for="Gtc">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, content_de, content_en, version_of" param/>
+    <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'gtc.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -209,7 +209,7 @@
 <def tag="form" for="Inventory">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, infinite, just_imported, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, product" param/>
+    <field-list fields="product" param/>
     <div param="actions">
       <submit label="#{ht 'inventory.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -221,7 +221,7 @@
 <def tag="form" for="Lineitem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, discount_abs, state, order, product, user" param/>
+    <field-list fields="order, product, user" param/>
     <div param="actions">
       <submit label="#{ht 'lineitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -329,7 +329,7 @@
 <def tag="form" for="Order">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="billing_method, billing_c_o, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, erp_customer_number, erp_billing_number, erp_order_number, state, conversation, lineitems, user" param/>
+    <field-list fields="conversation, lineitems, user" param/>
     <div param="actions">
       <submit label="#{ht 'order.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -473,7 +473,7 @@
 <def tag="form" for="PageContentElementAssignment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="used_as, content_element, webpage" param/>
+    <field-list fields="content_element, webpage" param/>
     <div param="actions">
       <submit label="#{ht 'page_content_element_assignment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -485,7 +485,7 @@
 <def tag="form" for="PageTemplate">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, content" param/>
+    <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'page_template.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -497,7 +497,7 @@
 <def tag="form" for="Price">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="value, vat, valid_from, valid_to, scale_from, scale_to, promotion, inventory" param/>
+    <field-list fields="inventory" param/>
     <div param="actions">
       <submit label="#{ht 'price.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -521,7 +521,7 @@
 <def tag="form" for="Product">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, number, description_de, description_en, long_description_de, long_description_en, warranty_de, warranty_en, novelty, topseller, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
+    <field-list fields="categorizations, productrelations, recommendations, supplyrelations, values" param/>
     <div param="actions">
       <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -599,7 +599,7 @@
 <def tag="form" for="Property">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, datatype, position, values" param/>
+    <field-list fields="values" param/>
     <div param="actions">
       <submit label="#{ht 'property.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -611,7 +611,7 @@
 <def tag="form" for="PropertyGroup">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, position, values" param/>
+    <field-list fields="values" param/>
     <div param="actions">
       <submit label="#{ht 'property_group.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -623,7 +623,7 @@
 <def tag="form" for="Recommendation">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="reason_de, reason_en, product, recommended_product" param/>
+    <field-list fields="product, recommended_product" param/>
     <div param="actions">
       <submit label="#{ht 'recommendation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -635,7 +635,7 @@
 <def tag="form" for="ShippingCost">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="shipping_method, value, vat, country" param/>
+    <field-list fields="country" param/>
     <div param="actions">
       <submit label="#{ht 'shipping_cost.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -659,7 +659,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, sales, sales_manager, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, addresses, billing_addresses, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
+    <field-list fields="addresses, billing_addresses, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -747,7 +747,7 @@
 <def tag="form" for="Webpage">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, url, position, state, page_content_element_assignments, page_template" param/>
+    <field-list fields="page_content_element_assignments, page_template" param/>
     <div param="actions">
       <submit label="#{ht 'webpage.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
