@@ -116,6 +116,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="c_o, detail, street, postalcode, city, country, state" param/>
     </content-body:>
 
   </page>
@@ -292,6 +293,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="c_o, email_address, detail, street, postalcode, city, country, vat_number, state" param/>
     </content-body:>
 
   </page>
@@ -467,6 +469,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="name_de, name_en, description_de, description_en, long_description_de, long_description_en, position, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
     </content-body:>
 
   </page>
@@ -641,7 +644,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="category, product" param/>
+      <field-list fields="position, category, product" param/>
     </content-body:>
 
   </page>
@@ -753,6 +756,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="key, value" param/>
     </content-body:>
 
   </page>
@@ -865,6 +869,7 @@
 
     <content-body: param>
       <view:content param="description" />
+      <field-list fields="name_de, name_en, markup, content_de, content_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
     </content-body:>
 
   </page>
@@ -976,6 +981,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="name_de, name_en, code" param/>
     </content-body:>
 
   </page>
@@ -1087,7 +1093,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="product" param/>
+      <field-list fields="position, text_de, text_en, product" param/>
     </content-body:>
 
   </page>
@@ -1200,6 +1206,7 @@
 
     <content-body: param>
       <view:content param="description" />
+      <field-list fields="title_de, title_en, content_de, content_en, version_of" param/>
     </content-body:>
 
   </page>
@@ -1302,7 +1309,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="infinite, just_imported" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="inventory.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -1312,6 +1319,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="price.collection.heading" count="&this.prices.count" >
@@ -1422,7 +1430,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="upselling" param/>
 
       <a:user param="creator-link"/>
 
@@ -1435,7 +1443,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="order, product" param/>
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, discount_abs, state, order, product" param/>
     </content-body:>
 
   </page>
@@ -1739,7 +1747,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="conversation" param/>
+      <field-list fields="billing_method, billing_c_o, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, erp_customer_number, erp_billing_number, erp_order_number, state, conversation" param/>
     </content-body:>
 
   </page>
@@ -2103,7 +2111,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="content_element, webpage" param/>
+      <field-list fields="used_as, content_element, webpage" param/>
     </content-body:>
 
   </page>
@@ -2318,7 +2326,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="promotion" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="price.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -2328,6 +2336,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="value, vat, valid_from, valid_to, scale_from, scale_to" param/>
     </content-body:>
 
   </page>
@@ -2541,7 +2550,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="novelty, topseller" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="product.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -2552,6 +2561,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="title_de, title_en, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="inventory.collection.heading" count="&this.inventories.count" >
@@ -2850,6 +2860,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="name_de, name_en, datatype, position" param/>
     </content-body:>
 
   </page>
@@ -2906,11 +2917,7 @@
         <ht key="property_group.actions.new">New Property group</ht>
       </a>
 
-      <page-nav param="top-page-nav"/>
-
-      <collection param/>
-
-      <page-nav param="bottom-page-nav"/>
+      <sortable-collection param="collection"/>
 
 
     </content-body:>
@@ -2961,6 +2968,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="name_de, name_en, position" param/>
     </content-body:>
 
   </page>
@@ -3072,7 +3080,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="product, recommended_product" param/>
+      <field-list fields="reason_de, reason_en, product, recommended_product" param/>
     </content-body:>
 
   </page>
@@ -3184,7 +3192,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="country" param/>
+      <field-list fields="shipping_method, value, vat, country" param/>
     </content-body:>
 
   </page>
@@ -3398,7 +3406,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -3408,7 +3416,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
+      <field-list fields="email_address, last_login_at, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
     </content-body:>
 
   </page>
@@ -3667,7 +3675,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="page_template" param/>
+      <field-list fields="title_en, url, position, state, page_template" param/>
     </content-body:>
 
   </page>

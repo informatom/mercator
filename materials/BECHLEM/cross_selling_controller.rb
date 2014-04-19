@@ -1,10 +1,7 @@
 class CrossSellingController < OpensteamController
-  def show
-    @material_categories = Bechlem::Vcategory.by_category_id.select { |s| s.IDCATEGORY == 145210000 || s.IDCATEGORY == 145220000 }
-  end
 
   def printer_products
-    @material_products = Bechlem::Vitem2item.IDITEM_eq( params[:printer] )
+    @material_products = Bechlem::Vitem2item.where(IDITEM: params[:printer] )
     @ivellio_products  = Product.inventory_AltArtNr1_eq_any(
                          @material_products.collect { |s| "#{s.ARTNR.gsub("\s", '')}" }.compact.uniq)
                          .descend_by_inventory_Artikeluntergruppe.uniq

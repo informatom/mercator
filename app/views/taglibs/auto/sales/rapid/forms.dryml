@@ -4,7 +4,7 @@
 <def tag="form" for="Conversation">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="consultant, customer" param/>
+    <field-list fields="name, state, consultant, customer" param/>
     <div param="actions">
       <submit label="#{ht 'conversation.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -48,7 +48,7 @@
 <def tag="form" for="Download">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="conversation" param/>
+    <field-list fields="name, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, conversation" param/>
     <div param="actions">
       <submit label="#{ht 'download.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -60,7 +60,7 @@
 <def tag="form" for="Feedback">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="consultant, conversation, user" param/>
+    <field-list fields="content, consultant, conversation, user" param/>
     <div param="actions">
       <submit label="#{ht 'feedback.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -72,7 +72,7 @@
 <def tag="form" for="Link">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="conversation" param/>
+    <field-list fields="url, title, conversation" param/>
     <div param="actions">
       <submit label="#{ht 'link.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -84,7 +84,7 @@
 <def tag="form" for="Message">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="conversation, reciever, sender" param/>
+    <field-list fields="content, conversation, reciever, sender" param/>
     <div param="actions">
       <submit label="#{ht 'message.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -96,7 +96,7 @@
 <def tag="form" for="Offeritem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="offer, product, user" param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, delivery_time, upselling, discount_abs, state, offer, product, user" param/>
     <div param="actions">
       <submit label="#{ht 'offeritem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -140,7 +140,7 @@
 <def tag="form" for="Offer">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="consultant, conversation, offeritems, user" param/>
+    <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, complete, discount_rel, state, consultant, conversation, offeritems, user" param/>
     <div param="actions">
       <submit label="#{ht 'offer.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -228,7 +228,7 @@
 <def tag="form" for="Product">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="categorizations, productrelations, recommendations, supplyrelations, values" param/>
+    <field-list fields="title_de, title_en, number, description_de, description_en, novelty, topseller, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
     <div param="actions">
       <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -318,7 +318,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="addresses, billing_addresses, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
+    <field-list fields="name, email_address, administrator, sales, sales_manager, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, addresses, billing_addresses, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
