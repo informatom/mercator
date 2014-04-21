@@ -1319,7 +1319,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
+      <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, alternative_number, photo_file_name, photo_content_type, photo_file_size, photo_updated_at" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="price.collection.heading" count="&this.prices.count" >
@@ -2561,7 +2561,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="title_de, title_en, description_de, description_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
+      <field-list fields="title_de, title_en, description_de, description_en, long_description_de, long_description_en, warranty_de, warranty_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="inventory.collection.heading" count="&this.inventories.count" >

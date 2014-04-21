@@ -21,6 +21,7 @@ class Inventory < ActiveRecord::Base
     erp_characteristic_flag :integer
     infinite                :boolean
     just_imported           :boolean
+    alternative_number      :string #used for bechlem
     timestamps
   end
 
@@ -29,7 +30,7 @@ class Inventory < ActiveRecord::Base
 
   attr_accessible :name_de, :name_en, :number, :amount, :unit, :comment_de, :comment_en, :weight, :charge, :storage,
                   :product, :product_id, :photo, :delivery_time, :erp_updated_at, :erp_vatline, :erp_article_group,
-                  :erp_provision_code, :erp_characteristic_flag, :infinite, :just_imported
+                  :erp_provision_code, :erp_characteristic_flag, :infinite, :just_imported, :alternative_number
   translates :name, :comment
   has_paper_trail
 

@@ -209,7 +209,7 @@
 <def tag="form" for="Inventory">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, infinite, just_imported, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, product" param/>
+    <field-list fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, delivery_time, erp_updated_at, erp_vatline, erp_article_group, erp_provision_code, erp_characteristic_flag, infinite, just_imported, alternative_number, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, product" param/>
     <div param="actions">
       <submit label="#{ht 'inventory.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -521,7 +521,7 @@
 <def tag="form" for="Product">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, number, description_de, description_en, novelty, topseller, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
+    <field-list fields="title_de, title_en, number, description_de, description_en, long_description_de, long_description_en, warranty_de, warranty_en, novelty, topseller, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, categorizations, productrelations, recommendations, supplyrelations, values" param/>
     <div param="actions">
       <submit label="#{ht 'product.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

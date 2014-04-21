@@ -1,44 +1,38 @@
 class CrossSellingController < OpensteamController
 
   def printer_products
-    @material_products = Bechlem::Vitem2item.where(IDITEM: params[:printer] )
-    @ivellio_products  = Product.inventory_AltArtNr1_eq_any(
-                         @material_products.collect { |s| "#{s.ARTNR.gsub("\s", '')}" }.compact.uniq)
-                         .descend_by_inventory_Artikeluntergruppe.uniq
+    @products = MercatorBechlem::Vitem2item.where(IDITEM: params[:printer] )
+    printer_alternative_numbers = @products.collect { |product| "#{product.ARTNR.gsub("\s", '')}" }.uniq
+    @inventories  = Inventory.where(alternative_number: printer_alternative_numbers).*.product
+                    # gsub removes whitespace characters, compact removes nil elements
   end
 
   def printer
     if params[:printerseries].nil? || params[:printerseries] == "All"
-      @printer_series = Bechlem::VitemPrinter.find( :all,
-        :select => "DISTINCT PRINTERSERIES",
-        :conditions => ["brand = 'HP' AND printerseries IS NOT NULL"],
-        :order => "PRINTERSERIES ASC"
-      )
-      @printer_series_names = @printer_series.collect(&:PRINTERSERIES)
-      conditions = ["brand = 'HP'"]
+      @printer_series = MercatorBechlem::VitemPrinter.where(brand: "HP").where.not(printerseries: nil).order(PRINTERSERIES: :asc)
+      @printer_series_names = @printer_series.*.PRINTERSERIES.uniq
+      @printers = MercatorBechlem::VitemPrinter.where(brand: "HP").select("CATEGORY, BRAND, DESCRIPTION, IDITEM").order(DESCRIPTION: :asc)
     else
-      conditions = ["brand = 'HP' AND printerseries = ?", params[:printerseries] ]
+      @printers = MercatorBechlem::VitemPrinter.where(brand: "HP").select("CATEGORY, BRAND, DESCRIPTION, IDITEM")
+                                               .where(printerseries: params[:printerseries]).order(DESCRIPTION: :asc)
     end
 
-    @printer = Bechlem::VitemPrinter.find( :all, :select => "CATEGORY, BRAND, DESCRIPTION, IDITEM",
-                                           :conditions => conditions, :order => "DESCRIPTION ASC" )
-    page.replace_html :select_printer, :partial => "printer_selector"
   end
 
   def category
-    cat_id = params[:category_id].to_s
-    cat_id = cat_id + "0" * (9 - cat_id.length )
+    cat_id = params[:category_id].to_s.ljust(9,'0')
 
-    if params[:category_id].to_i == Bechlem::Vcategory.top_category_id
-      @material_categories = Bechlem::Vcategory.by_category_id.select { |s| s.IDCATEGORY == 145210000 || s.IDCATEGORY == 145220000 }
+    if params[:category_id].to_i == MercatorBechlem::Vcategory.top_category_id
+      @material_categories = MercatorBechlem::Vcategory.ivellio_top_categories
     else
-      @top_category = Bechlem::Vcategory.find_by_IDCATEGORY( cat_id )
-      @material_categories = Bechlem::Vcategory.by_category_id( params[:category_id] )
-      @material_products = Bechlem::VitemSupply.for_category_id( 'HP', params[:category_id] )
+      @top_category = MercatorBechlem::Vcategory.where(IDCATEGORY: cat_id).first
+      @material_categories = MercatorBechlem::Vcategory.children(params[:category_id])
+      @printers = MercatorBechlem::VitemSupply.for_category_id(params[:category_id])
     end
 
-    unless @material_products.empty? || cat_id.count("0") > 3
-      @ivellio_products = Product.inventory_AltArtNr1_eq_any( @material_products.collect { |s| "#{s.ARTNR.gsub("\s", '')}" }.compact.uniq )
+    unless @printers.empty? || cat_id.count("0") > 3
+      printer_alternative_numbers = @printers.collect { |printer| "#{printer.ARTNR.gsub("\s", '')}" }.uniq
+      @inventories = Inventory.where(alternative_number: printer_alternative_numbers).*.product
     end
   end
 end

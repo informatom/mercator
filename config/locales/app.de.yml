@@ -272,6 +272,7 @@ de:
           transitions:
             feedback: Feedback abgeben
       inventory:
+        alternative_number: alternative Artikelnummer
         number: Artikelnummer
         storage: Lagerort / Filiale
       lineitem:
