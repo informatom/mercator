@@ -4,7 +4,7 @@ Mercator::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount MercatorMesonic::Engine => "/mercator_mesonic"
   mount MercatorIcecat::Engine => "/mercator_icecat"
-  mount MercatorBechlem::Engine => "/crossselling"
+  mount MercatorBechlem::Engine => "/"
   mount MercatorLegacyImporter::Engine => "/mercator_legacy_importer"
 
   root :to => 'front#index'

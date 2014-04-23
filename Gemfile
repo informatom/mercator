@@ -72,7 +72,6 @@ group :development, :test  do
   gem 'capistrano'                                    # Deployment automation
   gem 'capistrano-rails'                              # Rails specific tasks
   gem 'rvm-capistrano'                                # Capistrano rvm integration
-  gem 'zeus'                                          # application server prestarter
 end
 
 group :test do
