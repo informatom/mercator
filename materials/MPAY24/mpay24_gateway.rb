@@ -7,14 +7,11 @@ require 'active_support'
 
 hash =  {"Tid"=>"200905180719-31", "Price"=>"0.10"}
 
-
 class Mpay24Gateway
   GATEWAY_URL = "www.mpay24.com"
   ETPV5_PATH = '/app/bin/etpv5'
   HEADERS =  {'Referer' => 'http://iv-shop.at', "Content-Type"=>"application/x-www-form-urlencoded"}
-  ETPV5_DATA = {
-    'OPERATION' => 'SELECTPAYMENT'
-  }
+  ETPV5_DATA = {'OPERATION' => 'SELECTPAYMENT'}
 
   class GatewayError < Exception
   end
@@ -23,13 +20,10 @@ class Mpay24Gateway
     @merchant_id = merchant_id
     @tid = tid
     @order_xml = order_xml
-    #URI.escape(hash.to_xml( :skip_instruct => true, :root => "Order" ), Regexp.new("[^#{URI::PATTERN::UNRESERVED}]" ) )
   end
 
   def data
-    { 'TID' => @tid,
-      'MDXI' => @order_xml,
-      'MERCHANTID' => @merchant_id }.merge( ETPV5_DATA )
+    {'TID' => @tid, 'MDXI' => @order_xml, 'MERCHANTID' => @merchant_id }.merge( ETPV5_DATA )
   end
 
   def get_response
@@ -38,7 +32,8 @@ class Mpay24Gateway
     response, body = http.post( ETPV5_PATH, data.to_query , HEADERS )
 
     body_params = CGI.parse( body )
-    raise Mpay24Gateway::GatewayError, [ body_params['RETURNCODE'], body_params['EXTERNALERROR'] ].join(" : ") if body_params['STATUS'] == ['ERROR']
+    raise Mpay24Gateway::GatewayError,
+          [ body_params['RETURNCODE'], body_params['EXTERNALERROR'] ].join(" : ") if body_params['STATUS'] == ['ERROR']
     body_params
   end
 end
