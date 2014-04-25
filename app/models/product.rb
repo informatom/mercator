@@ -134,7 +134,7 @@ class Product < ActiveRecord::Base
     {
       title: title_de,
       number: number,
-      dascription: description_de,
+      description: description_de,
       long_description: long_description_de,
       warranty: warranty_de,
     }.merge(property_hash)

@@ -21,6 +21,9 @@ class Category < ActiveRecord::Base
   translates :name, :description, :long_description
   has_ancestry
   has_paper_trail
+
+  searchkick language: "German"
+
   never_show :ancestry
   default_scope { order('categories.position ASC') }
 
@@ -37,7 +40,6 @@ class Category < ActiveRecord::Base
   has_many :products, :through => :categorizations, :inverse_of => :categories
   has_many :categorizations, -> { order :position }, :inverse_of => :category,
             dependent: :destroy, :accessible => true
-
 
   lifecycle do
     state :new, :default => true
@@ -95,6 +97,23 @@ class Category < ActiveRecord::Base
 
     self.lifecycle.deactivate!(User.where(administrator: true).first)
     puts self.name_de + " deactivated."
+  end
+
+  # --- Searchkick Instance Methods --- #
+
+  def search_data
+    {
+      name: name_de,
+      description: description_de,
+      long_description: long_description_de,
+      properties: property_groups_hash
+    }
+  end
+
+  def property_groups_hash
+    values = self.products.*.values.flatten
+    property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
+    property_groups_hash = property_pairs.group_by { |pair| pair[0] }
   end
 
   #--- Class Methods --- #
