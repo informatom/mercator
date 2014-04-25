@@ -114,6 +114,7 @@ GEM
       nokogiri
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
+    ansi (1.4.3)
     arel (4.0.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -206,6 +207,7 @@ GEM
       railties (>= 3.2, < 5.0)
     gyoku (1.1.1)
       builder (>= 2.1.2)
+    hashr (0.0.22)
     hike (1.2.3)
     hobo_bootstrap (2.1.0)
       bootstrap-sass (~> 2.1)
@@ -304,6 +306,8 @@ GEM
     rake (10.3.1)
     ref (1.0.5)
     require_all (1.3.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     roo (1.13.2)
       nokogiri
       rubyzip
@@ -342,6 +346,9 @@ GEM
       wasabi (~> 3.2.2)
     saxerator (0.9.3)
       nokogiri (>= 1.4.0)
+    searchkick (0.5.3)
+      tire
+      tire-contrib
     selenium-webdriver (2.35.1)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -386,6 +393,16 @@ GEM
     tilt (1.4.1)
     tins (1.1.0)
     tiny_tds (0.6.1)
+    tire (0.6.2)
+      activemodel (>= 3.0)
+      activesupport
+      ansi
+      hashr (~> 0.0.19)
+      multi_json (~> 1.3)
+      rake
+      rest-client (~> 1.6)
+    tire-contrib (0.1.3)
+      tire
     traco (3.1.0)
       activerecord (>= 3.0)
     treetop (1.4.15)
@@ -465,6 +482,7 @@ DEPENDENCIES
   rspec-rails (~> 2.14.0)
   rvm-capistrano
   sass-rails (~> 4.0.0)
+  searchkick
   selenium-webdriver (~> 2.35.1)
   shoulda
   squeel

@@ -46,7 +46,7 @@ gem 'whenever', :require => false                     # cronjob management
 gem 'private_pub'                                     # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                      # Pdf Generation
 gem 'wkhtmltopdf-binary'
-# gem "searchkick"                                    # Elastic Search integration
+gem "searchkick"                                    # Elastic Search integration
 gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
                                                       # Engine for integrating Mesonic ERP System
 gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"

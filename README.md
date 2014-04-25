@@ -51,6 +51,25 @@ gem "mercator_mesonic"
 rake mercator_mesonic:install:migrations
 '''
 
+## Installing Elasticsearch
+
+Download and install the Public Signing Key
+'''bash
+wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+'''
+Add the following to your /etc/apt/sources.list to enable the repository
+'''bash
+deb http://packages.elasticsearch.org/elasticsearch/0.90/debian stable main
+'''
+apt-get update
+sudo apt-get install elasticsearch
+'''
+
+Installing Browser Plugin for Development
+'''bash
+sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+'''
+
 ### Icecat Integration
 
 If Using MercatorIcecat for Icecat Integration you need one import like

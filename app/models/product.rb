@@ -28,7 +28,8 @@ class Product < ActiveRecord::Base
   set_search_columns :title_de, :title_en, :description_de, :description_en, :number
   translates :title, :description, :long_description, :warranty
   has_paper_trail
-  # searchkick
+
+  searchkick language: "German"
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
@@ -126,6 +127,23 @@ class Product < ActiveRecord::Base
     self.inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # FIFO
     #self.inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # LIFO
   end
+
+  # --- Searchkick Instance Methods --- #
+
+  def search_data
+    {
+      title: title_de,
+      number: number,
+      dascription: description_de,
+      long_description: long_description_de,
+      warranty: warranty_de,
+    }.merge(property_hash)
+  end
+
+  def property_hash
+    Hash[self.values.map { |value| [value.property.name_de, value.display.rstrip]}]
+  end
+
 
   #--- Class Methods --- #
 
