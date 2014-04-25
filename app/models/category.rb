@@ -106,14 +106,18 @@ class Category < ActiveRecord::Base
       name: name_de,
       description: description_de,
       long_description: long_description_de,
-      properties: property_groups_hash
+      property_groups: property_groups_hash
     }
   end
 
   def property_groups_hash
     values = self.products.*.values.flatten
     property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
-    property_groups_hash = property_pairs.group_by { |pair| pair[0] }
+    property_groups = property_pairs.group_by { |pair| pair[0]}
+    property_groups.each {|key,value| property_groups[key] = value.map{|pair| pair[1]} }
+    JobLogger.info("Category " + self.id.to_s + " reindexed.")
+    return property_groups
+
   end
 
   #--- Class Methods --- #
