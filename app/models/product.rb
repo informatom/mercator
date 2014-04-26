@@ -141,6 +141,7 @@ class Product < ActiveRecord::Base
   end
 
   def property_hash
+    JobLogger.info("Product " + self.id.to_s + " reindexed.")
     Hash[self.values.map { |value| [value.property.name_de, value.display.rstrip]}]
   end
 

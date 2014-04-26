@@ -59,7 +59,7 @@ wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add 
 '''
 Add the following to your /etc/apt/sources.list to enable the repository
 '''bash
-deb http://packages.elasticsearch.org/elasticsearch/0.90/debian stable main
+deb http://packages.elasticsearch.org/elasticsearch/1.1/debian stable main
 '''
 apt-get update
 sudo apt-get install elasticsearch

@@ -117,7 +117,6 @@ class Category < ActiveRecord::Base
     property_groups.each {|key,value| property_groups[key] = value.map{|pair| pair[1]} }
     JobLogger.info("Category " + self.id.to_s + " reindexed.")
     return property_groups
-
   end
 
   #--- Class Methods --- #
