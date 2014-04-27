@@ -58,3 +58,21 @@
     </li>
   </if>
 </def>
+
+<def tag="filter-nav">
+  <set catid="&this.id"/>
+  <repeat with="&this.filters">
+    <h5><view with="&this[0]"/></h5>
+    <repeat with="&this[1]">
+      <view/>:
+      <repeat with="&Product.search(query: {bool: {must: [{match: {category_ids: 1 } }, {match: {state: 'active'}}]}},
+                                    facets: [this])
+                            .facets[this]['terms']">
+        <view with="&this['term']"/> (<view with="&this['count']"/>)
+      </repeat>
+      <br/>
+    </repeat>
+    <br/>
+  </repeat>
+</def>
+

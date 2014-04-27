@@ -1,5 +1,4 @@
 class Category < ActiveRecord::Base
-
   hobo_model # Don't put anything above this
 
   fields do
@@ -12,13 +11,15 @@ class Category < ActiveRecord::Base
     ancestry            :string, :index => true
     position            :integer, :required
     legacy_id           :integer
+    filters             :serialized
     timestamps
   end
 
   attr_accessible :name_de, :name_en, :ancestry, :position, :active,
                   :parent_id, :parent, :categorizations, :products, :document, :photo,
-                  :description_de, :description_en, :long_description_de, :long_description_en
+                  :description_de, :description_en, :long_description_de, :long_description_en, :filters
   translates :name, :description, :long_description
+
   has_ancestry
   has_paper_trail
 
@@ -99,17 +100,6 @@ class Category < ActiveRecord::Base
     puts self.name_de + " deactivated."
   end
 
-  # --- Searchkick Instance Methods --- #
-
-  def search_data
-    {
-      name: name_de,
-      description: description_de,
-      long_description: long_description_de,
-      property_groups: property_groups_hash
-    }
-  end
-
   def property_groups_hash
     values = self.products.active.*.values.flatten
     property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
@@ -117,6 +107,16 @@ class Category < ActiveRecord::Base
     property_groups.each {|key,value| property_groups[key] = value.map{|pair| pair[1]} }
     JobLogger.info("Category " + self.id.to_s + " reindexed.")
     return property_groups
+  end
+
+  # --- Searchkick Instance Methods --- #
+
+  def search_data
+    {
+      name: name_de,
+      description: description_de,
+      long_description: long_description_de,
+    }
   end
 
   #--- Class Methods --- #
@@ -180,6 +180,13 @@ class Category < ActiveRecord::Base
   def self.deprecate
     Category.roots.each do |category|
       category.try_deprecation
+    end
+  end
+
+  def self.update_property_hash
+    Category.all.each do |category|
+      category.filters = category.property_groups_hash
+      category.save
     end
   end
 end

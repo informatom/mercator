@@ -137,12 +137,14 @@ class Product < ActiveRecord::Base
       description: description_de,
       long_description: long_description_de,
       warranty: warranty_de,
+      category_ids: categories.pluck(:id),
+      state: state
     }.merge(property_hash)
   end
 
   def property_hash
     JobLogger.info("Product " + self.id.to_s + " reindexed.")
-    Hash[self.values.map { |value| [value.property.name_de, value.display.rstrip]}]
+    Hash[self.values.includes(:property).map { |value| [value.property.name_de, value.display.rstrip]}]
   end
 
 

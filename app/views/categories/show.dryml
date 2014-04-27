@@ -10,6 +10,9 @@
   </content-header>
 
   <content-body:>
+
+    <filter-nav/>
+
     <%= this.children.active.in_groups_of(3) do |group| %>
       <div class="row-fluid">
           <div repeat="&group" class="span4">
