@@ -101,7 +101,8 @@ class Category < ActiveRecord::Base
   end
 
   def property_groups_hash
-    values = self.products.active.*.values.flatten
+    product_ids = self.products.includes(:values).active.*.id
+    values = Value.where(product_id: product_ids).includes(:property_group).includes(:property)
     property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
     property_groups = property_pairs.group_by { |pair| pair[0]}
     property_groups.each {|key,value| property_groups[key] = value.map{|pair| pair[1]} }
@@ -184,7 +185,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.update_property_hash
-    Category.all.each do |category|
+    Category.order(id: :asc).load.each do |category|
       category.filters = category.property_groups_hash
       category.save
     end
