@@ -68,25 +68,27 @@
           <strong><view with="&this[0]"/></strong><br/>
           <repeat with="&this[1]">
             <set myfacet="&this"/>
-            <view/>:
-            <repeat with="&@facets.facets[this]['terms']">
-              <set term="&this['term']"/>
-              <if test="&@filter[u(myfacet)] == u(term)">
-                <strong>
-                  <view with="&term"/>
-                </strong>
-                <a with="&category" params="&{:filter => @filter.except(u(myfacet))}">
-                  <%= fa_icon "trash-o" %>
-                </a>
-              </if>
-              <else>
-                <a with="&category" params="&{:filter => @filter.merge({u(myfacet) => u(term)})}">
-                  <view with="&term"/>
-                </a>
-              </else>
-              (<view with="&this['count']"/>)
-            </repeat>
-            <br/>
+            <if test="&@facets.facets[this]['terms']">
+              <view/>:
+              <repeat with="&@facets.facets[this]['terms']">
+                <set term="&this['term']"/>
+                <if test="&@filter[u(myfacet)] == u(term)">
+                  <strong>
+                    <view with="&term"/>
+                  </strong>
+                  <a with="&category" params="&{:filter => @filter.except(u(myfacet))}">
+                    <%= fa_icon "trash-o" %>
+                  </a>
+                </if>
+                <else>
+                  <a with="&category" params="&{:filter => @filter.merge({u(myfacet) => u(term)})}">
+                    <view with="&term"/>
+                  </a>
+                </else>
+                (<view with="&this['count']"/>)
+              </repeat>
+              <br/>
+            </if>
           </repeat>
         </if>
         <br/>

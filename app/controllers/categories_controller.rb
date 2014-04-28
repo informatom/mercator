@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
                                  bool: {
                                    must: [ { match: { category_ids: params[:id].to_i } },
                                            { match: { state: 'active' } }
-                                         ]
+                                         ] + matcharray
                                  }
                                },
                                facets: this.filters.values.flatten)
