@@ -70,6 +70,12 @@ Installing Browser Plugin for Development
 sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
 '''
 
+Autostart Service
+'''bash
+sudo update-rc.d elasticsearch defaults 95 10
+sudo /etc/init.d/elasticsearch start
+'''
+
 ### Icecat Integration
 
 If Using MercatorIcecat for Icecat Integration you need one import like
