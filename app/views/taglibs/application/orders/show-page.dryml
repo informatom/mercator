@@ -117,7 +117,11 @@
                       <td></td>
                       <td><view:number/></td>
                       <td><view:title/></td>
-                      <td><div class="text-right"><view with="&number_to_currency(this.price)"/></div></td>
+                      <td>
+                        <div class="text-right">
+                          <view with="&number_to_currency(this.determine_price(customer_id: current_user.id))"/>
+                        </div>
+                      </td>
                       <td></td>
                       <td>
                         <my-transition-link transition="add_to_basket" class="btn btn-success btn-small" />
