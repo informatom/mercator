@@ -8,7 +8,6 @@ describe Feature do
   it {should validate_presence_of(:text_de)}
 
   it {should validate_presence_of(:position)}
-  it {should validate_numericality_of(:position).only_integer}
 
   it {should belong_to(:product)}
   it {should validate_presence_of(:product)}

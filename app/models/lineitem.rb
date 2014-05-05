@@ -25,12 +25,11 @@ class Lineitem < ActiveRecord::Base
   has_paper_trail
   default_scope { order('lineitems.position ASC') }
 
-  validates :position, numericality: { integer: true }
-  validates :amount, numericality: true
+  validates :position, numericality: { only_integer: true }
+  validates :amount, numericality: :true
   validates :product_price, numericality: true
   validates :vat, numericality: true
   validates :value, numericality: true
-  # validates :product_number, :uniqueness => {:scope => :order_id}
 
   belongs_to :user, :creator => true
 

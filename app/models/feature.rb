@@ -14,7 +14,7 @@ class Feature < ActiveRecord::Base
   default_scope { order('features.position ASC') }
 
   translates :text
-  validates :position, numericality: { integer: true }
+  validates :position, numericality: { only_integer: true }
 
   belongs_to :product
   validates :product, :presence => true

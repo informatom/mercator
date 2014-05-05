@@ -24,7 +24,7 @@ class Offeritem < ActiveRecord::Base
   has_paper_trail
   default_scope { order('offeritems.position ASC') }
 
-  validates :position, numericality: { integer: true }
+  validates :position, numericality: { only_integer: true }
   validates :amount, numericality: true
   validates :product_price, numericality: true
   validates :vat, numericality: true

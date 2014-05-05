@@ -9,7 +9,6 @@ describe Lineitem do
   it {should validate_presence_of(:product_number)}
 
   it {should validate_presence_of(:position)}
-  it {should validate_numericality_of(:position).only_integer}
 
   it {should validate_presence_of(:description_de)}
   it {should validate_presence_of(:amount)}
@@ -31,7 +30,6 @@ describe Lineitem do
   it {should belong_to(:user)}
 
   it {should belong_to(:product)}
-
 
   it "acts as a list" do
     should respond_to(:move_to_top)
