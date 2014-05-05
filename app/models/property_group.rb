@@ -17,7 +17,7 @@ class PropertyGroup < ActiveRecord::Base
   has_paper_trail
   acts_as_list
 
-  validates :position, numericality: true
+  validates :position, numericality: { integer: true }
 
   has_many :products, :through => :values
   has_many :properties, -> { uniq }, :through => :values

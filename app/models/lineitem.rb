@@ -4,7 +4,7 @@ class Lineitem < ActiveRecord::Base
 
   fields do
     position       :integer, :required
-    product_number :string
+    product_number :string,  :required
     description_de :string, :required
     description_en :string
     amount         :decimal, :required, :precision => 10, :scale => 2
@@ -25,7 +25,7 @@ class Lineitem < ActiveRecord::Base
   has_paper_trail
   default_scope { order('lineitems.position ASC') }
 
-  validates :position, numericality: true
+  validates :position, numericality: { integer: true }
   validates :amount, numericality: true
   validates :product_price, numericality: true
   validates :vat, numericality: true

@@ -49,7 +49,7 @@ class Offer < ActiveRecord::Base
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
       last_position = self.offeritems.*.position.max || 0
       Offeritem::Lifecycle.add(acting_user, position: last_position + 10 , vat: 20, offer_id: self.id, user_id: self.user_id,
-                               description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk." )
+                               description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk.", product_number: "manuell" )
     end
 
     transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do

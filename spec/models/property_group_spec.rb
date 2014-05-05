@@ -6,11 +6,9 @@ describe PropertyGroup do
   end
 
   it {should validate_presence_of(:name_de)}
-  it {should validate_uniqueness_of(:name_de)}
 
   it {should validate_presence_of(:position)}
-  it {should validate_numericality_of(:position)}
-  it {should validate_uniqueness_of(:position)}
+  it {should validate_numericality_of(:position).only_integer}
 
   it {should have_many(:properties)}
   it {should have_many(:products)}

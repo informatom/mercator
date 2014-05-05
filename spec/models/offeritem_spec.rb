@@ -7,11 +7,11 @@ describe Offeritem do
   end
 
   it {should validate_presence_of(:position)}
-  it {should validate_numericality_of(:position)}
+  it {should validate_numericality_of(:position).only_integer}
 
   it {should validate_presence_of(:description_de)}
   it {should validate_numericality_of(:amount)}
- 
+
   it {should validate_numericality_of(:product_price)}
   it {should validate_numericality_of(:vat)}
   it {should validate_numericality_of(:value)}
