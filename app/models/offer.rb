@@ -4,12 +4,14 @@ class Offer < ActiveRecord::Base
 
   fields do
     billing_name        :string
+    billing_c_o         :string
     billing_detail      :string
     billing_street      :string
     billing_postalcode  :string
     billing_city        :string
     billing_country     :string
     shipping_name       :string
+    shipping_c_o        :string
     shipping_detail     :string
     shipping_street     :string
     shipping_postalcode :string
@@ -20,21 +22,22 @@ class Offer < ActiveRecord::Base
     discount_rel        :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
-  attr_accessible :valid_until, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
-                  :billing_city, :billing_country, :shipping_name, :shipping_detail,
-                  :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
-                  :offeritems, :user, :user_id, :user, :user_id,
+  attr_accessible :valid_until, :billing_name, :billing_c_o, :billing_detail, :billing_street,
+                  :billing_postalcode, :billing_city, :billing_country, :shipping_name,
+                  :shipping_c_o, :shipping_detail, :shipping_street, :shipping_postalcode,
+                  :shipping_city, :shipping_country, :offeritems, :user, :user_id, :user, :user_id,
                   :consultant, :consultant_id, :conversation_id, :complete, :discount_rel
   has_paper_trail
 
   belongs_to :user
+  validates :user, :presence => true
+
   belongs_to :consultant, :class_name => 'User'
-  belongs_to :conversation
   validates :consultant, :presence => true
 
-  has_many :offeritems, dependent: :destroy, accessible: true
+  belongs_to :conversation
 
-  validates :user, :presence => true
+  has_many :offeritems, dependent: :destroy, accessible: true
 
   lifecycle do
     state :in_progress, :default => true

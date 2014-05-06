@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Download do
-  it "is valid with name, document" do
+  it "is valid with name, document, photo" do
     expect(build(:download)).to be_valid
   end
 
@@ -13,6 +13,10 @@ describe Download do
 
   it "has a document attached" do
     should respond_to(:document)
+  end
+
+  it "has a photo attached" do
+    should respond_to(:photo)
   end
 
   it {should belong_to(:conversation)}

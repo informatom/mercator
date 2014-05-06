@@ -41,5 +41,4 @@ class Price < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
-
 end

@@ -329,7 +329,7 @@
 <def tag="form" for="Order">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="billing_method, billing_c_o, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, erp_customer_number, erp_billing_number, erp_order_number, state, conversation, lineitems, user" param/>
+    <field-list fields="billing_method, billing_name, billing_c_o, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_method, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at, gtc_version_of, erp_customer_number, erp_billing_number, erp_order_number, state, conversation, lineitems, user" param/>
     <div param="actions">
       <submit label="#{ht 'order.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

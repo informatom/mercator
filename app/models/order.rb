@@ -4,8 +4,8 @@ class Order < ActiveRecord::Base
 
   fields do
     billing_method      :string
-    billing_c_o         :string
     billing_name        :string
+    billing_c_o         :string
     billing_detail      :string
     billing_street      :string
     billing_postalcode  :string
@@ -39,12 +39,11 @@ class Order < ActiveRecord::Base
 
   belongs_to :user, :creator => true
   view_hints.parent :user
+  validates :user, :presence => true
 
   belongs_to :conversation
 
   has_many :lineitems, dependent: :destroy, accessible: true
-
-  validates :user, :presence => true
 
   # --- Lifecycles --- #
 

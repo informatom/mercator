@@ -10,6 +10,7 @@ FactoryGirl.define do
     position            42
     photo               { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
     document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+    filters             { ["name_de", "Drucker"] }
   end
 
 end

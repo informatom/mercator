@@ -140,7 +140,7 @@
 <def tag="form" for="Offer">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, complete, discount_rel, state, consultant, conversation, offeritems, user" param/>
+    <field-list fields="billing_name, billing_c_o, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, valid_until, complete, discount_rel, state, consultant, conversation, offeritems, user" param/>
     <div param="actions">
       <submit label="#{ht 'offer.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

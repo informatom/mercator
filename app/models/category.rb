@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
 
   fields do
     name_de             :string, :required
-    name_en             :string, :tequired
+    name_en             :string, :required
     description_de      :cktext
     description_en      :cktext
     long_description_de :cktext
@@ -36,7 +36,7 @@ class Category < ActiveRecord::Base
   do_not_validate_attachment_file_type :document
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }
 
-  validates :position, numericality: true
+  validates :position, numericality: { only_integer: true }
 
   has_many :products, :through => :categorizations, :inverse_of => :categories
   has_many :categorizations, -> { order :position }, :inverse_of => :category,

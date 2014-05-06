@@ -4,7 +4,8 @@ FactoryGirl.define do
   factory :billing_address do
     user
     name "John Dde"
-    detail "in person"
+    c_o "in person"
+    detail "Department of Despair"
     street "Kärntner Straße 123"
     postalcode "1234"
     city "Vienna"

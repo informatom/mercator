@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe Category do
-  it "is valid with name_de, name_en, position, photo, document" do
+  it "is valid with name_de, name_en, position, photo, document, filter" do
     expect(build(:category)).to be_valid
   end
 
   it {should validate_presence_of(:name_de)}
+  it {should validate_presence_of(:name_en)}
+  it {should validate_numericality_of(:position).only_integer}
   it {should validate_presence_of(:position)}
-  it {should validate_numericality_of(:position)}
 
   it "is versioned" do
     should respond_to(:versions)

@@ -35,6 +35,7 @@ class Lineitem < ActiveRecord::Base
 
   belongs_to :order
   validates :order, :presence => true
+
   acts_as_list :scope => :order
 
   belongs_to :product

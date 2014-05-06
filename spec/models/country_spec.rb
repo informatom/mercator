@@ -7,6 +7,8 @@ describe Country do
 
   it {should validate_presence_of(:name_de)}
   it {should validate_uniqueness_of(:name_de)}
+  it {should validate_presence_of(:name_en)}
+  it {should validate_uniqueness_of(:name_en)}
   it {should validate_presence_of(:code)}
   it {should validate_uniqueness_of(:code)}
 
