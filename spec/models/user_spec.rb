@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  it "is valid with a name, email_address but without administrator" do
+  it "is valid with a name, email_address, last_login_at, gtc_confirmed_at,
+      gtc_version_of, erp_account_nr, erp_contact_nr but without administrator" do
     expect(build(:user)).to be_valid
   end
 
   it {should validate_presence_of(:name)}
+
   it {should have_many(:addresses)}
   it {should have_many(:billing_addresses)}
   it {should have_many(:orders)}
@@ -14,6 +16,14 @@ describe User do
 
   it "is valid with a name, email_address and administrator" do
     expect(build(:admin)).to be_valid
+  end
+
+  it "is valid with a name, email_address and sales" do
+    expect(build(:sales)).to be_valid
+  end
+
+  it "is valid with a name, email_address and sales manager" do
+    expect(build(:salesmanager)).to be_valid
   end
 
   it "is versioned" do

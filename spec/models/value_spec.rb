@@ -9,6 +9,10 @@ describe Value do
     expect(build(:value, state: "textual", amount: nil, unit_de: nil, unit_en: nil, flag: nil)).to be_valid
   end
 
+  it "is valid with title_de, title_en, unit_de, unit_en" do
+    expect(build(:value, state: "textual", amount: nil, flag: nil)).to be_valid
+  end
+
   it "is valid with amount" do
     expect(build(:value, state: "numeric", title_de: nil, title_en: nil, unit_de: nil, unit_en: nil, flag: nil)).to be_valid
   end

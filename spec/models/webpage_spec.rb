@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Webpage do
-  it "is valid with name_de, name_en" do
+  it "is valid with title_de, title_en, url, position, page_template" do
     expect(build(:webpage)).to be_valid
   end
 
@@ -23,4 +23,6 @@ describe Webpage do
 
   it {should have_many(:page_content_element_assignments)}
   it {should have_many(:content_elements)}
+
+  it {should respond_to(:name)}
 end

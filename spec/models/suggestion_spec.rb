@@ -14,5 +14,4 @@ describe Suggestion do
   it "is versioned" do
     should respond_to(:versions)
   end
-
 end

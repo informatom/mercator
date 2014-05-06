@@ -11,6 +11,10 @@ class ShippingCost < ActiveRecord::Base
   attr_accessible :country, :shipping_method, :value, :country_id, :vat
 
   has_paper_trail
+
+  validates :value, numericality: true
+  validates :vat, numericality: true
+
   belongs_to :country
 
   # --- Permissions --- #

@@ -6,7 +6,11 @@ describe ShippingCost do
   end
 
   it {should validate_presence_of(:value)}
+  it {should validate_numericality_of(:value)}
+
   it {should validate_presence_of(:vat)}
+  it {should validate_numericality_of(:vat)}
+
   it {should validate_presence_of(:shipping_method)}
   it {should belong_to(:country)}
 

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Supplyrelation do
+  it "is valid with product, supply" do
+      expect(build(:recommendation)).to be_valid
+  end
+
   it {should belong_to(:product)}
   it {should validate_presence_of(:product)}
 

@@ -9,7 +9,9 @@ class Toner < ActiveRecord::Base
     price          :decimal, :required, :precision => 10, :scale => 2
     timestamps
   end
+
   attr_accessible :article_number, :description, :vendor_number, :price, :xls
+
   has_paper_trail
 
 # Attr Acessors for File Upload
