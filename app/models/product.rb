@@ -25,7 +25,9 @@ class Product < ActiveRecord::Base
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
                   :novelty, :topseller
+
   set_search_columns :title_de, :title_en, :description_de, :description_en, :number
+
   translates :title, :description, :long_description, :warranty
   has_paper_trail
 

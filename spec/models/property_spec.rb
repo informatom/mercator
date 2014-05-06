@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe Property do
-  it "is valid with name_de, name_en, datatype, position" do
+  it "is valid with name_de, name_en, datatype, position, icecat_id" do
     expect(build(:property)).to be_valid
   end
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PropertyGroup do
-  it "is valid with name_de, name_en and position" do
+  it "is valid with name_de, name_en, icecat_id and position" do
     expect(build(:property_group)).to be_valid
   end
 
