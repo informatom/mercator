@@ -13,6 +13,8 @@ class Country < ActiveRecord::Base
   translates :name
   has_paper_trail
 
+  default_scope { order('countries.name_de ASC') }
+
   # --- Permissions --- #
 
   def create_permitted?
