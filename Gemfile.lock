@@ -1,30 +1,4 @@
 GIT
-  remote: git://github.com/Hobo/hobo.git
-  revision: e081a16ec26f32ff0997514a143a266e8230a2f7
-  specs:
-    dryml (2.1.0)
-      actionpack (~> 4.0.2)
-      hobo_support (= 2.1.0)
-    hobo (2.1.0)
-      dryml (= 2.1.0)
-      hobo_fields (= 2.1.0)
-      hobo_support (= 2.1.0)
-      hobo_will_paginate
-    hobo_fields (2.1.0)
-      hobo_support (= 2.1.0)
-    hobo_jquery (2.1.0)
-      hobo_rapid (= 2.1.0)
-      jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.1.0)
-      hobo (= 2.1.0)
-      hobo_jquery (= 2.1.0)
-      jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.1.0)
-      hobo (= 2.1.0)
-    hobo_support (2.1.0)
-      rails (~> 4.0.2)
-
-GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
   revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
@@ -48,6 +22,31 @@ GIT
     activerecord-sqlserver-adapter (4.0.0)
       activerecord (~> 4.0.0)
       arel (~> 4.0.1)
+
+PATH
+  remote: ../hobo
+  specs:
+    dryml (2.1.0)
+      actionpack (~> 4.0.2)
+      hobo_support (= 2.1.0)
+    hobo (2.1.0)
+      dryml (= 2.1.0)
+      hobo_fields (= 2.1.0)
+      hobo_support (= 2.1.0)
+      hobo_will_paginate
+    hobo_fields (2.1.0)
+      hobo_support (= 2.1.0)
+    hobo_jquery (2.1.0)
+      hobo_rapid (= 2.1.0)
+      jquery-rails (~> 2.0)
+    hobo_jquery_ui (2.1.0)
+      hobo (= 2.1.0)
+      hobo_jquery (= 2.1.0)
+      jquery-ui-themes (~> 0.0.4)
+    hobo_rapid (2.1.0)
+      hobo (= 2.1.0)
+    hobo_support (2.1.0)
+      rails (~> 4.0.2)
 
 PATH
   remote: vendor/engines/mercator_bechlem
@@ -82,26 +81,26 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.3)
-      actionpack (= 4.0.3)
+    actionmailer (4.0.5)
+      actionpack (= 4.0.5)
       mail (~> 2.5.4)
-    actionpack (4.0.3)
-      activesupport (= 4.0.3)
+    actionpack (4.0.5)
+      activesupport (= 4.0.5)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.3)
-      activesupport (= 4.0.3)
+    activemodel (4.0.5)
+      activesupport (= 4.0.5)
       builder (~> 3.1.0)
-    activerecord (4.0.3)
-      activemodel (= 4.0.3)
+    activerecord (4.0.5)
+      activemodel (= 4.0.5)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.3)
+      activesupport (= 4.0.5)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
-    activesupport (4.0.3)
-      i18n (~> 0.6, >= 0.6.4)
+    activesupport (4.0.5)
+      i18n (~> 0.6, >= 0.6.9)
       minitest (~> 4.2)
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
@@ -263,7 +262,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (4.7.5)
-    multi_json (1.9.3)
+    multi_json (1.10.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.15)
@@ -295,17 +294,17 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     railroady (1.1.1)
-    rails (4.0.3)
-      actionmailer (= 4.0.3)
-      actionpack (= 4.0.3)
-      activerecord (= 4.0.3)
-      activesupport (= 4.0.3)
+    rails (4.0.5)
+      actionmailer (= 4.0.5)
+      actionpack (= 4.0.5)
+      activerecord (= 4.0.5)
+      activesupport (= 4.0.5)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.3)
+      railties (= 4.0.5)
       sprockets-rails (~> 2.0.0)
-    railties (4.0.3)
-      actionpack (= 4.0.3)
-      activesupport (= 4.0.3)
+    railties (4.0.5)
+      actionpack (= 4.0.5)
+      activesupport (= 4.0.5)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.1)
@@ -469,7 +468,7 @@ DEPENDENCIES
   protected_attributes
   quiet_assets
   railroady
-  rails (= 4.0.3)
+  rails (= 4.0.5)
   require_all
   roo
   rspec-rails (~> 2.14.0)

@@ -21,8 +21,8 @@ class Admin::CategoriesController < Admin::AdminSiteController
 
   def index
     self.this = Category.paginate(:page => params[:page])
-                       .search([params[:search], :name_de, :name_en, :description_de, :description_en])
-                       .order_by(parse_sort_param(:name_de, :name_en, :this))
+                        .hobo_search([params[:search], :name_de, :name_en, :description_de, :description_en])
+                        .order_by(parse_sort_param(:name_de, :name_en, :this))
     hobo_index
   end
 

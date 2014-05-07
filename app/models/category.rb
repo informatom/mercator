@@ -23,7 +23,13 @@ class Category < ActiveRecord::Base
   has_ancestry
   has_paper_trail
 
-  searchkick language: "German"
+  set_search_columns :name_de, :name_en, :description_de, :description_en, :long_description_de, :long_description_en
+
+  # Rescueing Hobo's search method from getting overridded by searchkick and being unaccessible
+  # alias_method :hobo_search, :search
+
+
+  # searchkick language: "German"
 
   never_show :ancestry
   default_scope { order('categories.position ASC') }

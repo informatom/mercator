@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.3'                                # Web applitation framework
+gem 'rails', '4.0.5'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'tiny_tds'                                        # A modern, simple and fast FreeTDS library for Ruby using DB-Library
 gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter'
@@ -9,9 +9,9 @@ gem 'jquery-rails'                                    # JQuery asset handling
 gem "protected_attributes"
 gem 'valvat'                                          # European Vat Number Validation
 
-# gem 'hobo', :path => '../hobo'                      # web application meta framework locally installed
+gem 'hobo', :path => '../hobo'                      # web application meta framework locally installed
 # gem "hobo", "= 2.1.0"                               # web application meta framework from Rubygems
-gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'  # web application meta framework from Github
+# gem 'hobo', :git => 'git://github.com/Hobo/hobo.git'  # web application meta framework from Github
 
 gem "hobo_will_paginate"                              # pagination support
 gem "hobo_bootstrap", "2.1.0"                    # Twitter Bootstrap asset handling
