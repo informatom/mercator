@@ -157,6 +157,14 @@
   </card>
 </def>
 
+<def tag="card" for="MercatorIcecat::Metadatum">
+  <card class="mercator-icecat--metadatum" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Message">
   <card class="message" param="default" merge>
     <header: param>

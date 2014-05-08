@@ -28,9 +28,6 @@ class Category < ActiveRecord::Base
   # Rescueing Hobo's search method from getting overridded by searchkick and being unaccessible
   # alias_method :hobo_search, :search
 
-
-  # searchkick language: "German"
-
   never_show :ancestry
   default_scope { order('categories.position ASC') }
 

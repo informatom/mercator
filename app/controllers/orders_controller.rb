@@ -27,4 +27,12 @@ class OrdersController < ApplicationController
       render action: :confirm
     end
   end
+
+  def show
+    @current_gtc = Gtc.order(version_of: :desc).first
+    hobo_show do
+      @current_user = current_user
+      @current_user.confirmation = false
+    end
+  end
 end

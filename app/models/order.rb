@@ -34,7 +34,10 @@ class Order < ActiveRecord::Base
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
                   :lineitems, :user, :user_id, :erp_customer_number, :erp_billing_number, :erp_order_number,
-                  :billing_c_o, :shipping_c_o
+                  :billing_c_o, :shipping_c_o, :confirmation
+
+  attr_accessor :confirmation, :type => :boolean
+
   has_paper_trail
 
   belongs_to :user, :creator => true
@@ -89,7 +92,7 @@ class Order < ActiveRecord::Base
         self.update(billing_method: "e_payment")
       end
 
-      if Rails.application.config.erp == "mesonic"
+      if Rails.application.config.erp == "mesonic" && acting_user.erp_account_nr
         webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
         shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id) # user-specific derivation
         shipping_cost_value ||= webartikel_versandspesen.preis # non user-specific derivation

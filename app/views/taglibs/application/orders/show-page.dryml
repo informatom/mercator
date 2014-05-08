@@ -144,7 +144,25 @@
               </my-creator-link>
             </if>
             <else>
-              <my-transition-link with="&current_user" transition="accept_gtc" method="get" class="btn-primary"/>
+              <if test="&current_user.lifecycle.find_transition(:accept_gtc, current_user)">
+
+
+                <accept-gtc-form with="&@current_user">
+                  <agb:></agb:>
+                  <field-list: fields="confirmation">
+                    <confirmation-view:>
+                      Ich bestätige, die
+                      <transition-link with="&current_user" transition="accept_gtc" method="get">AGB </transition-link>
+                      gelesen und verstanden zu haben und stimme diesen zu
+                    </confirmation-view:>
+                  </field-list:>
+                  <actions: replace>
+                    <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.accept_gtc', :default=>['Accept Gtc']}" class="pull-right"/>
+                    <br/>
+                  </actions:>
+                </accept-gtc-form>
+               </if>
+
               <my-transition-link transition="check_basket" method="get" class="btn-primary"/>
             </else>
           </div>

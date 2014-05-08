@@ -1,4 +1,30 @@
 GIT
+  remote: git://github.com/Hobo/hobo.git
+  revision: d378dd8d242477113d015bb5c41bf7a590af3f63
+  specs:
+    dryml (2.1.0)
+      actionpack (~> 4.0.2)
+      hobo_support (= 2.1.0)
+    hobo (2.1.0)
+      dryml (= 2.1.0)
+      hobo_fields (= 2.1.0)
+      hobo_support (= 2.1.0)
+      hobo_will_paginate
+    hobo_fields (2.1.0)
+      hobo_support (= 2.1.0)
+    hobo_jquery (2.1.0)
+      hobo_rapid (= 2.1.0)
+      jquery-rails (~> 2.0)
+    hobo_jquery_ui (2.1.0)
+      hobo (= 2.1.0)
+      hobo_jquery (= 2.1.0)
+      jquery-ui-themes (~> 0.0.4)
+    hobo_rapid (2.1.0)
+      hobo (= 2.1.0)
+    hobo_support (2.1.0)
+      rails (~> 4.0.2)
+
+GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
   revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
@@ -22,31 +48,6 @@ GIT
     activerecord-sqlserver-adapter (4.0.0)
       activerecord (~> 4.0.0)
       arel (~> 4.0.1)
-
-PATH
-  remote: ../hobo
-  specs:
-    dryml (2.1.0)
-      actionpack (~> 4.0.2)
-      hobo_support (= 2.1.0)
-    hobo (2.1.0)
-      dryml (= 2.1.0)
-      hobo_fields (= 2.1.0)
-      hobo_support (= 2.1.0)
-      hobo_will_paginate
-    hobo_fields (2.1.0)
-      hobo_support (= 2.1.0)
-    hobo_jquery (2.1.0)
-      hobo_rapid (= 2.1.0)
-      jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.1.0)
-      hobo (= 2.1.0)
-      hobo_jquery (= 2.1.0)
-      jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.1.0)
-      hobo (= 2.1.0)
-    hobo_support (2.1.0)
-      rails (~> 4.0.2)
 
 PATH
   remote: vendor/engines/mercator_bechlem

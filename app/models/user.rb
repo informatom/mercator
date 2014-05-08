@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr
 
-  attr_accessor :confirmation
+  attr_accessor :confirmation, :type => :boolean
 
   has_paper_trail
 
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
     acting_user.sales? ||
     (acting_user == self &&
      only_changed?(:name, :email_address, :crypted_password, :current_password, :password,
-                   :password_confirmation, :confirm))
+                   :password_confirmation, :confirmation))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end

@@ -1,8 +1,10 @@
 <extend tag="accept-gtc-form" for="User">
-  <div class="well">
-    <h2><view: with="&@current_gtc"/></h2>
-    <view: with="&@current_gtc.content"/>
-  </div>
+  <span param="agb">
+    <div class="well">
+      <h2><view: with="&@current_gtc"/></h2>
+      <view: with="&@current_gtc.content"/>
+    </div>
+  </span>
 
   <old-accept-gtc-form merge>
     <field-list:>
@@ -10,7 +12,7 @@
         <input for="boolean"/>
       </confirmation-label:>
       <confirmation-view:>
-        Ich bestätige, die AGB gelesen und versanden zu haben und stimme diesen zu
+        Ich bestätige, die AGB gelesen und verstanden zu haben und stimme diesen zu
       </confirmation-view:>
     </field-list:>
   </old-accept-gtc-form>
