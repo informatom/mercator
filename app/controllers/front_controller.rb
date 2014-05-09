@@ -13,7 +13,11 @@ class FrontController < ApplicationController
 
   def search
     if params[:query]
-      site_search(params[:query])
+      @products = Product.search(params[:query],
+                                 where: {state: 'active'},
+                                 fields: [:title_de, :title_en, :number, :description_de, :description_en, :long_description_de, :long_description_en]).results.uniq
+      # categories: set_search_columns :name_de, :name_en, :description_de, :description_en, :long_description_de, :long_description_en
+      # site_search(params[:query])
     end
   end
 

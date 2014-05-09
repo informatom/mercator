@@ -26,8 +26,6 @@ class Product < ActiveRecord::Base
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
                   :novelty, :topseller
 
-  set_search_columns :title_de, :title_en, :description_de, :description_en, :number
-
   translates :title, :description, :long_description, :warranty
   has_paper_trail
 
@@ -58,6 +56,7 @@ class Product < ActiveRecord::Base
   has_many :supplyrelations, :inverse_of => :product, dependent: :destroy, :accessible => true
 
   has_many :inventories, dependent: :restrict_with_exception, :inverse_of => :product
+  has_many :prices, :through => :inventories
 
   has_many :features, :inverse_of => :product
 
@@ -135,8 +134,12 @@ class Product < ActiveRecord::Base
   def search_data
     {
       title: title_de,
+      title_de: title_de,
+      title_en: title_en,
       number: number,
       description: description_de,
+      description_de: description_de,
+      description_en: description_en,
       long_description: long_description_de,
       warranty: warranty_de,
       category_ids: categories.pluck(:id),

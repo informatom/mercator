@@ -23,11 +23,6 @@ class Category < ActiveRecord::Base
   has_ancestry
   has_paper_trail
 
-  set_search_columns :name_de, :name_en, :description_de, :description_en, :long_description_de, :long_description_en
-
-  # Rescueing Hobo's search method from getting overridded by searchkick and being unaccessible
-  # alias_method :hobo_search, :search
-
   never_show :ancestry
   default_scope { order('categories.position ASC') }
 
@@ -118,8 +113,14 @@ class Category < ActiveRecord::Base
   def search_data
     {
       name: name_de,
+      name_de: name_de,
+      name_en: name_en,
       description: description_de,
+      description_de: description_de,
+      description_en: description_en,
       long_description: long_description_de,
+      long_description_de: long_description_de,
+      long_description_en: long_description_en
     }
   end
 

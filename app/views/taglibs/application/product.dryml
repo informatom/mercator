@@ -1,6 +1,6 @@
 <def tag="card" for="Product">
   <div class="product media well" param="default" merge>
-
+    <set inventory="&this.determine_inventory"/>
     <span class="pull-left">
       <if test="&this.photo.exists?">
         <p><%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ), product_path(this)) %></p>
@@ -19,16 +19,16 @@
       </else>
 
       <p class="label">
-        excl. Mwst. <%= number_to_currency(this.determine_price(customer_id: current_user.id)) %>
+        excl. Mwst. <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %>
       </p>
       <br/>
       <p class="label">
-        incl. Mwst. <%= number_to_currency(this.determine_price(incl_vat: true, customer_id: current_user.id)) %>
+        incl. Mwst. <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
       </p>
     </div>
 
       <h1 class="media-header">
-        <if test="&this.determine_inventory">
+        <if test="&inventory">
           <%= link_to( this.determine_inventory.name, product_path(this)) %>
         </if>
         <else>
@@ -36,8 +36,8 @@
         </else>
       </h1>
 
-      <if test="&this.determine_inventory">
-        <p><strong><view:determine-inventory.comment/></strong></p>
+      <if test="&inventory">
+        <p><strong><view:inventory.comment/></strong></p>
       </if>
 
       <div param="description"> <view:description/> </div>
