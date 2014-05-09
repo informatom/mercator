@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def do_add_to_basket
     do_transition_action :add_to_basket do
+      debugger
       flash[:success] = "Das Produkt wurde zum Warenkorb hinzugefügt."
       flash[:notice] = nil
       PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")

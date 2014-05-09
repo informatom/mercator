@@ -44,4 +44,36 @@ namespace :products do
     JobLogger.info("Finished Job: products:deprecate")
     JobLogger.info("=" * 50)
   end
+
+  # starten als: 'bundle exec rake products:fix_photo_content_type
+  # in Produktivumgebungen: 'bundle exec rake products:fix_photo_content_type RAILS_ENV=production'
+  desc "Fixes photo content types"
+  task :fix_photo_content_type => :environment do
+    Product.all.each do |product|
+      if product.photo_content_type && product.photo_content_type.include?("text")
+        extension = product.photo_file_name.split(".").last
+        case extension
+          when "jpg"
+            product.update(photo_content_type: "image/jpeg")
+            print "j"
+          when "JPG"
+            product.update(photo_content_type: "image/jpeg")
+            print "j"
+          when "png"
+            product.update(photo_content_type: "image/png")
+            print "p"
+          when "gif"
+            product.update(photo_content_type: "image/gif")
+            print "g"
+          else
+            puts "No handler for " + extension + " declared. Fix this!"
+        end
+      end
+
+      if product.photo_content_type && product.photo_content_type.include?("jpg")
+        product.update(photo_content_type: "image/jpeg")
+        print "*"
+      end
+    end
+  end
 end
