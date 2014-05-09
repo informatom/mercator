@@ -1302,7 +1302,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1728,7 +1728,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -2319,7 +2319,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>
@@ -2561,7 +2561,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="title_de, title_en, number, description_de, description_en, long_description_de, long_description_en, warranty_de, warranty_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
+      <field-list fields="title_de, title_en, description_de, description_en, long_description_de, long_description_en, warranty_de, warranty_en, document_file_name, document_content_type, document_file_size, document_updated_at, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="inventory.collection.heading" count="&this.inventories.count" >

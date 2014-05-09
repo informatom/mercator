@@ -20,12 +20,20 @@ class Admin::CategoriesController < Admin::AdminSiteController
   end
 
   def index
-    self.this = Category.paginate(:page => params[:page])
-                        .hobo_search([params[:search], :name_de, :name_en, :description_de, :description_en])
-                        .order_by(parse_sort_param(:name_de, :name_en, :this))
+    if params[:search]
+      @search = params[:search].split(" ").map{|word| "%" + word + "%"}
+      self.this = Category.paginate(:page => params[:page])
+                          .where{(name_de.matches_any my{@search}) |
+                                 (name_en.matches_any my{@search}) |
+                                 (description_de.matches_any my{@search}) |
+                                 (description_en.matches_any my{@search}) }
+                          .order_by(parse_sort_param(:name_de, :name_en, :this))
+    else
+      self.this = Category.paginate(:page => params[:page])
+                          .order_by(parse_sort_param(:name_de, :name_en, :this))
+    end
     hobo_index
   end
-
 
 protected
   def parse_categories(categories_array, parent)
