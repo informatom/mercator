@@ -15,6 +15,8 @@
       <li><a href="#supplies" data-toggle="tab"><t key="attributes.supplies"/></a> </li>
     </ul>
 
+    <set icecatid="&this.icecat_product_id"/>
+
     <div class="tab-content">
       <div class="tab-pane active" id="properties">
         <div repeat="&this.tabled_values">
@@ -22,7 +24,16 @@
           <dl class="dl-horizontal">
             <repeat with="&this[1]">
               <dt> <view with="&this[0]"/> </dt>
-              <dd><view with="&this[1]"/></dd>
+              <dd>
+                <if test="&this[1].include?('Icecat.biz')">
+                  <a href="http://prf.icecat.biz/index.cgi?product_id=#{icecatid};mi%3Dstart;smi%3Dproduct;shopname%3DopenICEcat-url;lang%3Dde">
+                    <view with="&this[1]"/>
+                  </a>
+                </if>
+                <else>
+                  <view with="&this[1]"/>
+                </else>
+              </dd>
             </repeat>
           </dl>
         </div>
