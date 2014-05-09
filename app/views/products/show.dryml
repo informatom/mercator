@@ -26,7 +26,8 @@
               <dt> <view with="&this[0]"/> </dt>
               <dd>
                 <if test="&this[1].include?('Icecat.biz')">
-                  <a href="http://prf.icecat.biz/index.cgi?product_id=#{icecatid};mi%3Dstart;smi%3Dproduct;shopname%3DopenICEcat-url;lang%3Dde">
+                  <a href="http://prf.icecat.biz/index.cgi?product_id=#{icecatid};mi%3Dstart;smi%3Dproduct;shopname%3DopenICEcat-url;lang%3Dde"
+                     target="_blank">
                     <view with="&this[1]"/>
                   </a>
                 </if>
