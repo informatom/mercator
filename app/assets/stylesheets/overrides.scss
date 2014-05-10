@@ -40,4 +40,6 @@ h4 small { font-size: 11px; }
 .widescreen {width: 100% !important; }
 
 #search-results-box {width: 95%; left: 2%; margin-left: 20px; height: 90%; top: 2%; }
-#search-results-box .modal-body { max-height: 1500px; }
+#search-results-box .modal-body { max-height: 750px; }
+#search-results-box .span4 { width: 31%; }
+#search-results-box .span12 { width: 95%; }

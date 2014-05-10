@@ -56,7 +56,7 @@
 </def>
 
 <def tag="search-card" for="Product">
-  <div class="product media" param="default" merge>
+  <div class="product media span4" param="default" merge>
     <set inventory="&this.determine_inventory"/>
     <span class="pull-left">
       <if test="&this.photo.exists?">

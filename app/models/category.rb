@@ -23,6 +23,8 @@ class Category < ActiveRecord::Base
   has_ancestry
   has_paper_trail
 
+  searchkick language: "German"
+
   never_show :ancestry
   default_scope { order('categories.position ASC') }
 
@@ -120,7 +122,8 @@ class Category < ActiveRecord::Base
       description_en: description_en,
       long_description: long_description_de,
       long_description_de: long_description_de,
-      long_description_en: long_description_en
+      long_description_en: long_description_en,
+      state: state
     }
   end
 
