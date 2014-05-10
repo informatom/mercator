@@ -1,17 +1,1 @@
-<page title="Home">
-
-  <content:>
-    <header class="content-header">
-      <repeat with="&@products">
-        <card/>
-      </repeat>
-    </header>
-
-    <section class="content-body">
-
-    </section>
-  </content:>
-
-
-
-</page>
+<search-results/>
