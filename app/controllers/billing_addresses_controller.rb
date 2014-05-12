@@ -5,7 +5,7 @@ class BillingAddressesController < ApplicationController
   auto_actions_for :user, [ :index, :new, :create ]
 
   def enter
-    self.this = BillingAddress.new(user: current_user)
+    self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
     unless current_user.name == "Gast"
       self.this.name = current_user.name
       self.this.email_address= current_user.email_address
@@ -28,22 +28,25 @@ class BillingAddressesController < ApplicationController
   def do_enter
     do_creator_action :enter do
       self.this.user = current_user
+
       if self.this.save
-        current_basket.update(billing_name:        this.name,
-                              billing_c_o:         this.c_o,
-                              billing_detail:      this.detail,
-                              billing_street:      this.street,
-                              billing_postalcode:  this.postalcode,
-                              billing_city:        this.city,
-                              billing_country:     this.country,
-                              billing_method:      "e_payment",
-                              shipping_name:       this.name,
-                              shipping_c_o:        this.c_o,
-                              shipping_detail:     this.detail,
-                              shipping_street:     this.street,
-                              shipping_postalcode: this.postalcode,
-                              shipping_city:       this.city,
-                              shipping_country:    this.country)
+        order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
+
+        order.update(billing_name:        this.name,
+                     billing_c_o:         this.c_o,
+                     billing_detail:      this.detail,
+                     billing_street:      this.street,
+                     billing_postalcode:  this.postalcode,
+                     billing_city:        this.city,
+                     billing_country:     this.country,
+                     billing_method:      "e_payment",
+                     shipping_name:       this.name,
+                     shipping_c_o:        this.c_o,
+                     shipping_detail:     this.detail,
+                     shipping_street:     this.street,
+                     shipping_postalcode: this.postalcode,
+                     shipping_city:       this.city,
+                     shipping_country:    this.country)
 
         if current_user.name == "Gast"
           current_user.update(email_address: this.email_address)
@@ -59,32 +62,34 @@ class BillingAddressesController < ApplicationController
                        city:       this.city,
                        country:    this.country,
                        user:       current_user)
-        current_basket.lifecycle.parcel_service_shipment!(current_user) unless current_basket.shipping_method
-        redirect_to order_path(current_user.basket)
+        order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
+        redirect_to order_path(order)
       end
     end
   end
 
   def do_use
     do_transition_action :use do
-      current_basket.update(billing_name:       this.name,
-                            billing_c_o:        this.c_o,
-                            billing_detail:     this.detail,
-                            billing_street:     this.street,
-                            billing_postalcode: this.postalcode,
-                            billing_city:       this.city,
-                            billing_country:    this.country)
-      current_basket.lifecycle.e_payment!(current_user) unless current_basket.shipping_method
+      order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
 
-      unless current_basket.shipping_name
-        current_basket.update(shipping_name:       this.name,
-                              shipping_c_o:        this.c_o,
-                              shipping_detail:     this.detail,
-                              shipping_street:     this.street,
-                              shipping_postalcode: this.postalcode,
-                              shipping_city:       this.city,
-                              shipping_country:    this.country)
-        current_basket.lifecycle.parcel_service_shipment!(current_user) unless current_basket.shipping_method
+      order.update(billing_name:       this.name,
+                   billing_c_o:        this.c_o,
+                   billing_detail:     this.detail,
+                   billing_street:     this.street,
+                   billing_postalcode: this.postalcode,
+                   billing_city:       this.city,
+                   billing_country:    this.country)
+      order.lifecycle.e_payment!(current_user) unless order.shipping_method
+
+      unless order.shipping_name
+        order.update(shipping_name:       this.name,
+                     shipping_c_o:        this.c_o,
+                     shipping_detail:     this.detail,
+                     shipping_street:     this.street,
+                     shipping_postalcode: this.postalcode,
+                     shipping_city:       this.city,
+                     shipping_country:    this.country)
+        order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
       end
 
       redirect_to order_path(current_user.basket)

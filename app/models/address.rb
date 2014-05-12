@@ -14,7 +14,8 @@ class Address < ActiveRecord::Base
   end
 
   attr_accessible :user_id, :name, :detail, :street, :postalcode,
-                  :city, :user, :country, :c_o
+                  :city, :user, :country, :c_o, :order_id
+  attr_accessor :order_id, :type => :integer
   has_paper_trail
 
   belongs_to :user, :creator => true
@@ -26,7 +27,7 @@ class Address < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country],
+      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :order_id],
       if: :basket_has_billing_address?
 
     transition :use, {:active => :active}, :available_to => :user

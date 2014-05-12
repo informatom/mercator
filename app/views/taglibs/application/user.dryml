@@ -31,6 +31,13 @@
           <collection:orders.basket param/>
 
           <h3 param="collection-heading">
+            offene <ht key="order.collection.heading" count="&this.orders.accepted_offer.count" >
+              <human-collection-name collection="orders" your/>
+            </ht>
+          </h3>
+          <collection:orders.accepted_offer param/>
+
+          <h3 param="collection-heading">
             <ht key="order.collection.heading" count="&this.orders.ordered.count" >
               <human-collection-name collection="orders" your/>
             </ht>

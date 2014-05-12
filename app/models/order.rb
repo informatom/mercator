@@ -52,8 +52,10 @@ class Order < ActiveRecord::Base
 
   lifecycle do
     state :basket, :default => true
-    state :ordered, :parked, :archived_basket
+    state :ordered, :parked, :archived_basket, :accepted_offer
     state :paid, :shipped
+
+    create :from_offer, :available_to => :all, become: :accepted_offer, params: [:user_id]
 
     transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}
@@ -62,18 +64,37 @@ class Order < ActiveRecord::Base
     transition :cash_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
     end
+    transition :cash_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
+      self.update(billing_method: "cash_payment")
+    end
+
     transition :atm_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
       self.update(billing_method: "atm_payment")
     end
+    transition :atm_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
+      self.update(billing_method: "atm_payment")
+    end
+
     transition :pre_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='pre_payment'" do
       self.update(billing_method: "pre_payment")
     end
+    transition :pre_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='pre_payment'" do
+      self.update(billing_method: "pre_payment")
+    end
+
     transition :e_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='e_payment'" do
       self.update(billing_method: "e_payment")
     end
+    transition :e_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='e_payment'" do
+      self.update(billing_method: "e_payment")
+    end
+
 
     transition :check_basket, {:basket => :basket}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
+    transition :check_basket, {:accepted_offer => :accepted_offer}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
+
     transition :place, {:basket => :ordered}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+    transition :place, {:accepted_offer => :ordered}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
 
     transition :park, {:basket => :parked}, available_to: :user
 
@@ -86,41 +107,23 @@ class Order < ActiveRecord::Base
       shippment_costs_line.delete if shippment_costs_line
     end
 
+    transition :pickup_shipment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "shipping_method != 'pickup_shipment'" do
+      self.update(shipping_method: "pickup_shipment")
+
+      shippment_costs_line = self.lineitems.where(position: 10000, product_number: "shipping", description_de: "Versandkosten").first
+      shippment_costs_line.delete if shippment_costs_line
+    end
+
     transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
-      if ["atm_payment", "cash_payment"].include?(self.billing_method)
-        self.update(billing_method: "e_payment")
-      end
+      self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(self.billing_method)
+      self.add_shipment_costs
+    end
 
-      if Rails.application.config.erp == "mesonic" && acting_user.erp_account_nr
-        webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
-        shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id) # user-specific derivation
-        shipping_cost_value ||= webartikel_versandspesen.preis # non user-specific derivation
-
-        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
-                                                         user_id: acting_user.id,
-                                                         position: 10000,
-                                                         product_number: "VERSANDSPESEN",
-                                                         description_de: "Versandkostenanteil",
-                                                         amount: 1,
-                                                         unit: "Pau.",
-                                                         product_price: shipping_cost_value,
-                                                         vat: webartikel_versandspesen.Steuersatzzeile * 10 ,
-                                                         value: shipping_cost_value)
-      else
-        shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
-
-        Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
-                                                         user_id: acting_user.id,
-                                                         position: 10000,
-                                                         product_number: "VERSANDSPESEN",
-                                                         description_de: "Versandkostenanteil",
-                                                         amount: 1,
-                                                         unit: "Pau.",
-                                                         product_price: shipping_cost.value,
-                                                         vat: shipping_cost.vat,
-                                                         value: shipping_cost.value)
-      end
+    transition :parcel_service_shipment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
+      self.update(shipping_method: "parcel_service_shipment")
+      self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(self.billing_method)
+      self.add_shipment_costs
     end
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do
@@ -156,6 +159,10 @@ class Order < ActiveRecord::Base
 
   def basket?
     self.state == "basket"
+  end
+
+  def accepted_offer?
+    self.state == "accepted_offer"
   end
 
   def sum
@@ -220,6 +227,38 @@ class Order < ActiveRecord::Base
     # all obligatory fields in billing address are filled?
     self.billing_name && self.billing_street &&  self.billing_postalcode &&
     self.billing_city && self.billing_country
+  end
+
+  def add_shipment_costs
+    if Rails.application.config.erp == "mesonic" && acting_user.erp_account_nr
+      webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
+      shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id) # user-specific derivation
+      shipping_cost_value ||= webartikel_versandspesen.preis # non user-specific derivation
+
+      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
+                                                       user_id: acting_user.id,
+                                                       position: 10000,
+                                                       product_number: "VERSANDSPESEN",
+                                                       description_de: "Versandkostenanteil",
+                                                       amount: 1,
+                                                       unit: "Pau.",
+                                                       product_price: shipping_cost_value,
+                                                       vat: webartikel_versandspesen.Steuersatzzeile * 10 ,
+                                                       value: shipping_cost_value)
+    else
+      shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
+
+      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
+                                                       user_id: acting_user.id,
+                                                       position: 10000,
+                                                       product_number: "VERSANDSPESEN",
+                                                       description_de: "Versandkostenanteil",
+                                                       amount: 1,
+                                                       unit: "Pau.",
+                                                       product_price: shipping_cost.value,
+                                                       vat: shipping_cost.vat,
+                                                       value: shipping_cost.value)
+    end
   end
 
   #--- Class Methods --- #

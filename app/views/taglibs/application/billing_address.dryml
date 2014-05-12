@@ -46,8 +46,8 @@
         <name-one complete-target="&Country.new()" completer="name_de" autocomplete="off"/>
       </country-view:>
    </field-list:>
-
     <append-actions:>
+      <hidden-field with="&this.order_id"/>
       &nbsp; <a with="&current_user.basket" class="btn btn-info" style="vertical-align: baseline">Abbrechen</a>
     </append-actions:>
   </old-enter-form>

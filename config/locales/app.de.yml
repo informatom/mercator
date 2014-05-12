@@ -298,7 +298,7 @@ de:
             add_position: Angebotsposition hinzufügen
             submit: Freigabe anfordern
             place: Angebot legen
-            copy: Angebot in Warenkorb kopieren
+            copy: Angebot in eine Bestellung kopieren
             devalidate: Ungültig machen
             revise: Bearbeiten
       offeritem:

@@ -17,6 +17,7 @@ class BillingAddress < ActiveRecord::Base
 
   attr_accessible :user_id, :name, :detail, :street, :postalcode,
                   :city, :user, :country, :email_address, :vat_number, :c_o
+  attr_accessor :order_id, :type => :integer
   has_paper_trail
 
   belongs_to :user, :creator => true
@@ -32,7 +33,7 @@ class BillingAddress < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :email_address, :vat_number]
+      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :email_address, :vat_number, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user

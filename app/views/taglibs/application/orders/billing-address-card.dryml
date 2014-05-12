@@ -11,7 +11,7 @@
       <view:billing-country/>
     </p>
     <if test="&editable">
-     <p><my-creator-link with="&BillingAddress" creator="enter" class="btn-primary"/></p>
+     <p><my-creator-link with="&BillingAddress" creator="enter" class="btn-primary" params="&{:order_id => this.id}"/></p>
     </if>
   </if>
 </def>

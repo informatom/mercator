@@ -1776,6 +1776,27 @@
 </def>
 
 
+<def tag="from-offer-page" polymorphic/>
+<def tag="from-offer-page" for="Order">
+
+  <page title="#{ht 'order.from_offer.title', :default=>['From Offer']}" merge>
+
+    <body: class="lifecycle-start-page from-offer-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="order.from_offer.heading">
+          From Offer
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <from-offer-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 <def tag="shippment-page" polymorphic/>
 <def tag="shippment-page" for="Order">

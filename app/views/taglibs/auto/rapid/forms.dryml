@@ -15,7 +15,7 @@
 <def tag="enter-form" for="Address">
   <form lifecycle="enter" merge param="default">
     <error-messages param/>
-    <field-list fields="name, detail, c_o, street, postalcode, city, country" param/>
+    <field-list fields="name, detail, c_o, street, postalcode, city, country, order_id" param/>
     <div param="actions">
       <submit label="#{ht 'address.actions.enter', :default=>['Enter']}" param/><or-cancel param="cancel"/>
     </div>
@@ -59,7 +59,7 @@
 <def tag="enter-form" for="BillingAddress">
   <form lifecycle="enter" merge param="default">
     <error-messages param/>
-    <field-list fields="name, detail, c_o, street, postalcode, city, country, email_address, vat_number" param/>
+    <field-list fields="name, detail, c_o, street, postalcode, city, country, email_address, vat_number, order_id" param/>
     <div param="actions">
       <submit label="#{ht 'billing_address.actions.enter', :default=>['Enter']}" param/><or-cancel param="cancel"/>
     </div>
@@ -464,6 +464,16 @@
   </form>
 </def>
 
+<def tag="from-offer-form" polymorphic/>
+<def tag="from-offer-form" for="Order">
+  <form lifecycle="from_offer" merge param="default">
+    <error-messages param/>
+    <field-list fields="user_id" param/>
+    <div param="actions">
+      <submit label="#{ht 'order.actions.from_offer', :default=>['From Offer']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="shippment-form" polymorphic/>
 <def tag="shippment-form" for="Order">
