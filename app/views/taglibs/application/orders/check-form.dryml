@@ -1,5 +1,5 @@
-<extend tag="check-basket-form" for="Order">
-  <old-check-basket-form merge>
+<extend tag="check-form" for="Order">
+  <old-check-form merge>
     <field-list: replace>
       <div class="row">
         <div class="span4"> <billing-address-card/></div>
@@ -38,8 +38,8 @@
     <actions: replace>
       <div param="actions">
         <my-transition-link transition="place" method="put" class="btn-danger"/>
-        oder <a with="&current_user.basket">Zurück zum Shop</a>
+        oder <a with="&this">Zurück</a>
       </div>
     </actions:>
-  </old-check-basket-form>
+  </old-check-form>
 </extend>

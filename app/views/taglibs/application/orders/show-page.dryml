@@ -163,7 +163,7 @@
                 </accept-gtc-form>
                </if>
 
-              <my-transition-link transition="check_basket" method="get" class="btn-primary"/>
+              <my-transition-link transition="check" method="get" class="btn-primary"/>
             </else>
           </div>
 

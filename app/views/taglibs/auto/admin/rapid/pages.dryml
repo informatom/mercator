@@ -1302,7 +1302,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1728,7 +1728,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -1903,22 +1903,22 @@
   </page>
 </def>
 
-<def tag="check-basket-page" polymorphic/>
-<def tag="check-basket-page" for="Order">
-  <page title="#{ht 'order.check_basket.title', :default=>['Check Basket']}" merge>
+<def tag="check-page" polymorphic/>
+<def tag="check-page" for="Order">
+  <page title="#{ht 'order.check.title', :default=>['Check']}" merge>
 
-    <body: class="lifecycle-transition-page check-basket-page" param/>
+    <body: class="lifecycle-transition-page check-page" param/>
 
     <content-header: param>
       <h2 param="heading">
-        <ht key="order.check_basket.heading">
-          Check Basket
+        <ht key="order.check.heading">
+          Check
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
-      <check-basket-form param="form"/>
+      <check-form param="form"/>
     </content-body:>
 
   </page>
@@ -2340,7 +2340,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>

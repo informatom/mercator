@@ -101,9 +101,9 @@ class Order < ActiveRecord::Base
     end
 
 
-    transition :check_basket, {:basket => :basket},
+    transition :check, {:basket => :basket},
                available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
-    transition :check_basket, {:accepted_offer => :accepted_offer},
+    transition :check, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
 
     transition :place, {:basket => :ordered},

@@ -1,7 +1,0 @@
-<extend tag="check-basket-page" for="Order">
-  <old-check-basket-page merge>
-    <content-header: replace>
-      <h2>Warenkorb vom <view:created-at/></h2>
-    </content-header>
-  </old-check-basket-page>
-</extend>

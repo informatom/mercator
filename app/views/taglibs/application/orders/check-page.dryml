@@ -1,0 +1,12 @@
+<extend tag="check-page" for="Order">
+  <old-check-page merge>
+    <content-header: replace>
+      <if test="&this.state == 'basket'">
+        <h2>Warenkorb vom <view:created-at/></h2>
+      </if>
+      <else>
+        <h2>Bestellung vom <view:created-at/></h2>
+      </else>
+    </content-header>
+  </old-check-page>
+</extend>
