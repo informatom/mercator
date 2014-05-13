@@ -88,7 +88,7 @@ class UsersController < ApplicationController
                             gtc_confirmed_at: Time.now())
         current_user.basket.update(gtc_version_of: Gtc.current,
                                    gtc_confirmed_at: Time.now())
-        redirect_to order_path(current_user.basket)
+        redirect_to session[:return_to]
       else
         flash[:error] = "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
         redirect_to action: :accept_gtc

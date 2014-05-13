@@ -41,15 +41,16 @@
 
 <extend tag="enter-form" for="BillingAddress">
   <old-enter-form merge>
-   <field-list:>
+    <field-list:>
       <country-view:>
         <name-one complete-target="&Country.new()" completer="name_de" autocomplete="off"/>
       </country-view:>
-   </field-list:>
-    <append-actions:>
+    </field-list:>
+    <actions:>
       <hidden-field with="&this.order_id"/>
-      &nbsp; <a with="&current_user.basket" class="btn btn-info" style="vertical-align: baseline">Abbrechen</a>
-    </append-actions:>
+      <submit label="#{ht 'billing_address.actions.enter', :default=>['Enter']}" param/>
+      oder <a with="&Order.find(this.order_id)" class="btn btn-info" style="vertical-align: baseline">Abbrechen</a>
+    </actions:>
   </old-enter-form>
 </extend>
 
@@ -82,8 +83,8 @@
             <br/>
             <p><sticker/></p>
             <p>
-              <my-transition-link transition="use" method="put" class="btn-info" params="&{:order_id => params[:order_id]}"/>
-              <transition-link transition="trash" method="put" class="btn btn-danger" params="&{:order_id => params[:order_id]}">
+              <my-transition-link transition="use" method="put" class="btn-info" params="&{:order_id => @this.order_id.to_s}"/>
+              <transition-link transition="trash" method="put" class="btn btn-danger" params="&{:order_id => @this.order_id.to_s}">
                 <%= fa_icon "trash-o", class: "fa-lg" %>
               </transition-link>
             </p>
