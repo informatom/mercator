@@ -1,0 +1,5 @@
+<extend tag="build-form" for="Offer">
+  <old-build-form merge multipart>
+    <field-list: columns="2"/>
+  </old-build-form>
+</extend>

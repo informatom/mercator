@@ -5,7 +5,7 @@ class BillingAddress < ActiveRecord::Base
   fields do
     name          :string, :required
     c_o           :string
-    email_address :email_address
+    email_address :email_address, :required
     detail        :string
     street        :string, :required
     postalcode    :string, :required
@@ -26,6 +26,8 @@ class BillingAddress < ActiveRecord::Base
   validates :vat_number, :valvat => {:allow_blank => true}
   # Alternatively enforce validation:
   # validates :vat_number, :valvat => {:lookup => true}
+
+  validate :if_country_exists
 
   # --- Lifecycle --- #
 
@@ -49,7 +51,6 @@ class BillingAddress < ActiveRecord::Base
     user_is?(acting_user) ||
     acting_user.administrator? ||
     acting_user.sales?
-
   end
 
   def destroy_permitted?
@@ -65,5 +66,9 @@ class BillingAddress < ActiveRecord::Base
     new_record?
   end
 
-  #--- Instance Methods ---#
+  #--- Class Methods ---#
+
+  def if_country_exists
+    errors.add(:base, "Unbekanntes Land") unless Country.find_by_name(self.country)
+  end
 end

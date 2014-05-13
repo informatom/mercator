@@ -21,14 +21,15 @@ class Address < ActiveRecord::Base
   belongs_to :user, :creator => true
   validates :user, :presence => true
 
+  validate :if_country_exists
+
   # --- Lifecycle --- #
 
   lifecycle do
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :order_id],
-      if: :basket_has_billing_address?
+      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user
@@ -59,9 +60,9 @@ class Address < ActiveRecord::Base
     new_record?
   end
 
-  #--- Instance Methods ---#
+  #--- Class Methods ---#
 
-  def basket_has_billing_address?
-    acting_user.basket.billing_address_filled?
+  def if_country_exists
+    errors.add(:base, "Unbekanntes Land") unless Country.find_by_name(self.country)
   end
 end

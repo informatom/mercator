@@ -55,46 +55,61 @@ class Order < ActiveRecord::Base
     state :ordered, :parked, :archived_basket, :accepted_offer
     state :paid, :shipped
 
-    create :from_offer, :available_to => :all, become: :accepted_offer, params: [:user_id]
+    create :from_offer, :available_to => :all, become: :accepted_offer,
+                        params: [:user_id, :billing_name, :billing_c_o, :billing_detail, :billing_street, :billing_postalcode,
+                                 :billing_city, :billing_country, :shipping_name, :shipping_c_o, :shipping_detail,
+                                 :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country]
 
     transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
 
-    transition :cash_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
+    transition :cash_payment, {:basket => :basket},
+               available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
     end
-    transition :cash_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
+    transition :cash_payment, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
     end
 
-    transition :atm_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
+    transition :atm_payment, {:basket => :basket},
+               available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
       self.update(billing_method: "atm_payment")
     end
-    transition :atm_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
+    transition :atm_payment, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
       self.update(billing_method: "atm_payment")
     end
 
-    transition :pre_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='pre_payment'" do
+    transition :pre_payment, {:basket => :basket},
+               available_to: :user, if: "billing_method !='pre_payment'" do
       self.update(billing_method: "pre_payment")
     end
-    transition :pre_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='pre_payment'" do
+    transition :pre_payment, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "billing_method !='pre_payment'" do
       self.update(billing_method: "pre_payment")
     end
 
-    transition :e_payment, {:basket => :basket}, available_to: :user, if: "billing_method !='e_payment'" do
+    transition :e_payment, {:basket => :basket},
+               available_to: :user, if: "billing_method !='e_payment'" do
       self.update(billing_method: "e_payment")
     end
-    transition :e_payment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "billing_method !='e_payment'" do
+    transition :e_payment, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "billing_method !='e_payment'" do
       self.update(billing_method: "e_payment")
     end
 
 
-    transition :check_basket, {:basket => :basket}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
-    transition :check_basket, {:accepted_offer => :accepted_offer}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
+    transition :check_basket, {:basket => :basket},
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
+    transition :check_basket, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
 
-    transition :place, {:basket => :ordered}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
-    transition :place, {:accepted_offer => :ordered}, available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+    transition :place, {:basket => :ordered},
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+    transition :place, {:accepted_offer => :ordered},
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
 
     transition :park, {:basket => :parked}, available_to: :user
 
@@ -103,24 +118,31 @@ class Order < ActiveRecord::Base
     transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
 
-      shippment_costs_line = self.lineitems.where(position: 10000, product_number: "shipping", description_de: "Versandkosten").first
+      shippment_costs_line = self.lineitems
+                                 .where(position: 10000, product_number: "shipping", description_de: "Versandkosten")
+                                 .first
       shippment_costs_line.delete if shippment_costs_line
     end
 
-    transition :pickup_shipment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "shipping_method != 'pickup_shipment'" do
+    transition :pickup_shipment, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
 
-      shippment_costs_line = self.lineitems.where(position: 10000, product_number: "shipping", description_de: "Versandkosten").first
+      shippment_costs_line = self.lineitems
+                                 .where(position: 10000, product_number: "shipping", description_de: "Versandkosten")
+                                 .first
       shippment_costs_line.delete if shippment_costs_line
     end
 
-    transition :parcel_service_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
+    transition :parcel_service_shipment, {:basket => :basket},
+               available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
       self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(self.billing_method)
       self.add_shipment_costs
     end
 
-    transition :parcel_service_shipment, {:accepted_offer => :accepted_offer}, available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
+    transition :parcel_service_shipment, {:accepted_offer => :accepted_offer},
+               available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
       self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(self.billing_method)
       self.add_shipment_costs

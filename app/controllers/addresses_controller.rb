@@ -14,7 +14,7 @@ class AddressesController < ApplicationController
                             postalcode: last_address.postalcode,
                             city:       last_address.city,
                             country:    last_address.country,
-                            order_id: params[:order_id])
+                            order_id:   params[:order_id])
     creator_page_action :enter
   end
 

@@ -380,7 +380,7 @@
 <def tag="build-form" for="Offer">
   <form lifecycle="build" merge param="default">
     <error-messages param/>
-    <field-list fields="valid_until, conversation_id, user_id, consultant_id, billing_name, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country, complete" param/>
+    <field-list fields="valid_until, conversation_id, billing_name, billing_detail, billing_c_o, billing_street, billing_postalcode, billing_city, billing_country, complete, user_id, consultant_id, shipping_name, shipping_detail, shipping_c_o, shipping_street, shipping_postalcode, shipping_city, shipping_country" param/>
     <div param="actions">
       <submit label="#{ht 'offer.actions.build', :default=>['Build']}" param/><or-cancel param="cancel"/>
     </div>
@@ -468,7 +468,7 @@
 <def tag="from-offer-form" for="Order">
   <form lifecycle="from_offer" merge param="default">
     <error-messages param/>
-    <field-list fields="user_id" param/>
+    <field-list fields="user_id, billing_name, billing_c_o, billing_detail, billing_street, billing_postalcode, billing_city, billing_country, shipping_name, shipping_c_o, shipping_detail, shipping_street, shipping_postalcode, shipping_city, shipping_country" param/>
     <div param="actions">
       <submit label="#{ht 'order.actions.from_offer', :default=>['From Offer']}" param/><or-cancel param="cancel"/>
     </div>

@@ -44,9 +44,10 @@ class Offer < ActiveRecord::Base
     state :pending_approval, :valid, :invalid, :accepted
 
     create :build, :available_to => "User.sales", become: :in_progress,
-                   params: [:valid_until, :conversation_id, :user_id, :consultant_id, :billing_name, :billing_detail,
-                            :billing_street, :billing_postalcode, :billing_city, :billing_country, :shipping_name,
-                            :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country, :complete],
+                   params: [:valid_until, :conversation_id, :billing_name, :billing_detail, :billing_c_o,
+                            :billing_street, :billing_postalcode, :billing_city, :billing_country, :complete, :user_id, :consultant_id,
+                            :shipping_name, :shipping_detail, :shipping_c_o, :shipping_street, :shipping_postalcode,
+                            :shipping_city, :shipping_country],
                    subsite: "sales"
 
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
