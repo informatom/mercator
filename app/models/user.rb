@@ -25,9 +25,11 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
-                  :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr
+                  :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
+                  :order_id
 
   attr_accessor :confirmation, :type => :boolean
+  attr_accessor :order_id, :type => :integer
 
   has_paper_trail
 
@@ -70,10 +72,10 @@ class User < ActiveRecord::Base
     transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
 
     transition :accept_gtc, {:active => :active}, available_to: :self,
-               params: [:confirmation], unless: :gtc_accepted_current?
+               params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
     transition :accept_gtc, {:guest => :guest}, available_to: :self,
-               params: [:confirmation], unless: :gtc_accepted_current?
+               params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
     transition :activate, {:inactive => :active}, available_to: :key_holder
 

@@ -7,7 +7,7 @@
   </span>
 
   <old-accept-gtc-form merge>
-    <field-list:>
+    <field-list: fields="confirmation">
       <confirmation-label:>
         <input for="boolean"/>
       </confirmation-label:>
@@ -15,6 +15,9 @@
         Ich bestätige, die AGB gelesen und verstanden zu haben und stimme diesen zu
       </confirmation-view:>
     </field-list:>
+    <prepend-actions:>
+      <hidden-field:order-id />
+    </prepend-actions:>
   </old-accept-gtc-form>
 </extend>
 

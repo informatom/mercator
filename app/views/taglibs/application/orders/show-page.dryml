@@ -144,17 +144,19 @@
               </my-creator-link>
             </if>
             <else>
+              <set orderid="&this.id" />
               <if test="&current_user.lifecycle.find_transition(:accept_gtc, current_user)">
                 <accept-gtc-form with="&@current_user">
                   <agb:></agb:>
                   <field-list: fields="confirmation">
                     <confirmation-view:>
                       Ich bestätige, die
-                      <transition-link with="&current_user" transition="accept_gtc" method="get">AGB </transition-link>
+                      <transition-link with="&current_user" transition="accept_gtc" method="get" params="&{:order_id => orderid}">AGB </transition-link>
                       gelesen und verstanden zu haben und stimme diesen zu
                     </confirmation-view:>
                   </field-list:>
                   <actions: replace>
+                    <%= hidden_field_tag :order_id, orderid %>
                     <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.accept_gtc', :default=>['Accept Gtc']}" class="pull-right"/>
                     <br/>
                   </actions:>

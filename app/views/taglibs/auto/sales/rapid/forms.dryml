@@ -352,7 +352,7 @@
   <form lifecycle="accept_gtc" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="confirmation" param/>
+    <field-list fields="confirmation, order_id" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.accept_gtc', :default=>['Accept Gtc']}" param/><or-cancel param="cancel"/>
     </div>

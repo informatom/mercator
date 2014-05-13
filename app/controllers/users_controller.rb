@@ -78,6 +78,7 @@ class UsersController < ApplicationController
     @current_gtc = Gtc.order(version_of: :desc).first
     transition_page_action :accept_gtc do
       self.this.confirmation = false
+      self.this.order_id = params[:order_id]
     end
   end
 
@@ -88,10 +89,14 @@ class UsersController < ApplicationController
                             gtc_confirmed_at: Time.now())
         current_user.basket.update(gtc_version_of: Gtc.current,
                                    gtc_confirmed_at: Time.now())
-        redirect_to session[:return_to]
+        redirect_to order_path(params[:user][:order_id])
       else
         flash[:error] = "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
-        redirect_to action: :accept_gtc
+        if params[:user][:order_id]
+          redirect_to action: :accept_gtc, order_id: params[:user][:order_id]
+        else
+          redirect_to action: :accept_gtc, order_id: params[:order_id]
+        end
       end
     end
   end
