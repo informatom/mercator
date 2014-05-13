@@ -29,8 +29,10 @@ class OffersController < ApplicationController
                                             shipping_street:     this.shipping_street,
                                             shipping_postalcode: this.shipping_postalcode,
                                             shipping_city:       this.shipping_city,
-                                            shipping_country:    this.shipping_country)
+                                            shipping_country:    this.shipping_country,
+                                            discount_rel:        this.discount_rel)
         order.save
+
         this.offeritems.each_with_index do |offeritem, index|
           lineitem = Lineitem::Lifecycle.blocked_from_offeritem(current_user,
                                                                 position: (index + 1) * 10,

@@ -22,20 +22,20 @@
       <div part="basket">
         <div class="row">
           <div class="span4">
-            <if test="&this.billing_name">
+            <if test="&this.billing_name.present?">
               <if test="&this.basket? || this.accepted_offer?"><billing-address-card editable/></if>
               <else><billing-address-card /></else>
             </if>
           </div>
           <div class="span4">
-            <if test="&this.shipping_name">
+            <if test="&this.shipping_name.present?">
               <if test="&this.basket? || this.accepted_offer?"><shipping-address-card editable/></if>
               <else><shipping-address-card /></else>
             </if>
           </div>
 
           <div class="span4">
-            <if test="&this.shipping_name && this.shipping_method">
+            <if test="&this.shipping_name.present? && this.shipping_method.present?">
               <if test="&this.basket? || this.accepted_offer?">
                 <delivery-card editable/>
                 <payment-card editable/>
@@ -138,7 +138,7 @@
           </div>
 
           <div class="pull-right">
-            <if test="&(this.basket? || this.accepted_offer?) && !this.billing_name">
+            <if test="&(this.basket? || this.accepted_offer?) && !this.billing_name.present?">
               <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary" params="&{:order_id => this.id}">
                 Rechnungsadresse angeben
               </my-creator-link>

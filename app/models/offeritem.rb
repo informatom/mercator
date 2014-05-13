@@ -106,7 +106,7 @@ class Offeritem < ActiveRecord::Base
     self.vat * self.value * ( 100 - discount_rel) / 100 / 100
   end
 
-  def calculate_value
+  def calculate_value(discount_abs: self.discount_abs)
     (self.product_price - self.discount_abs) * self.amount
   end
 end

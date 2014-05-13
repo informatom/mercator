@@ -118,7 +118,11 @@ class Offer < ActiveRecord::Base
   end
 
   def sum_incl_vat
-    offeritems.any? ? self.sum + self.offeritems.*.calculate_vat_value(discount_rel: self.discount_rel).sum : 0
+    if offeritems.any?
+      self.sum + self.offeritems.*.calculate_vat_value(discount_rel: self.discount_rel).sum
+    else
+      0
+    end
   end
 
   def vat_items

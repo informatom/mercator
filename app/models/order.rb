@@ -24,6 +24,7 @@ class Order < ActiveRecord::Base
     erp_customer_number :string
     erp_billing_number  :string
     erp_order_number    :string
+    discount_rel        :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
 
@@ -34,7 +35,7 @@ class Order < ActiveRecord::Base
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
                   :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
                   :lineitems, :user, :user_id, :erp_customer_number, :erp_billing_number, :erp_order_number,
-                  :billing_c_o, :shipping_c_o, :confirmation
+                  :billing_c_o, :shipping_c_o, :confirmation, :discount_rel
 
   attr_accessor :confirmation, :type => :boolean
 
@@ -58,7 +59,7 @@ class Order < ActiveRecord::Base
     create :from_offer, :available_to => :all, become: :accepted_offer,
                         params: [:user_id, :billing_name, :billing_c_o, :billing_detail, :billing_street, :billing_postalcode,
                                  :billing_city, :billing_country, :shipping_name, :shipping_c_o, :shipping_detail,
-                                 :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country]
+                                 :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country, :discount_rel]
 
     transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}
@@ -107,9 +108,9 @@ class Order < ActiveRecord::Base
                available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
 
     transition :place, {:basket => :ordered},
-               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name.present?"
     transition :place, {:accepted_offer => :ordered},
-               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name"
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name.present?"
 
     transition :park, {:basket => :parked}, available_to: :user
 
@@ -188,20 +189,31 @@ class Order < ActiveRecord::Base
   end
 
   def sum
-    self.lineitems.sum('value')
+    self.lineitems.sum('value') - self.discount
+  end
+
+  def discount
+    self.discount_rel = 0 unless self.discount_rel
+    lineitems.any? ? self.discount_rel * self.lineitems.sum('value') / 100 : 0
+  end
+
+  def sum_incl_vat
+    if lineitems.any?
+      self.sum + self.lineitems.*.calculate_vat_value(discount_rel: self.discount_rel).sum
+    else
+      0
+    end
   end
 
   def vat_items
     vat_items = Hash.new
     grouped_lineitems = self.lineitems.group_by{|lineitem| lineitem.vat}
     grouped_lineitems.each_pair do |percentage, itemgroup|
-      vat_items[percentage] = itemgroup.reduce(0) {|sum, lineitem| sum + lineitem.calculate_vat_value}
+      vat_items[percentage] = itemgroup.reduce(0) do |sum, lineitem|
+        sum + lineitem.calculate_vat_value(discount_rel: self.discount_rel)
+      end
     end
     return vat_items
-  end
-
-  def sum_incl_vat
-    self.sum + self.lineitems.*.calculate_vat_value.sum
   end
 
   def name
