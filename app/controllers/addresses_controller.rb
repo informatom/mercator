@@ -4,6 +4,22 @@ class AddressesController < ApplicationController
   auto_actions_for :user, [ :index, :new, :create ]
   auto_actions :all, :lifecycle
 
+  def edit
+    hobo_edit do
+      self.this.order_id = params[:order_id]
+    end
+  end
+
+  def update
+    hobo_update do
+      if params[:address][:order_id]
+        redirect_to enter_addresses_path({:order_id => params[:address][:order_id]})
+      else
+        redirect_to enter_addresses_path
+      end
+    end
+  end
+
   def enter
     last_address = current_user.addresses.last
     self.this = Address.new(user:       current_user,
@@ -40,7 +56,7 @@ class AddressesController < ApplicationController
 
   def do_use
     do_transition_action :use do
-      order = Order.where(id: params[:address][:order_id], user_id: current_user.id ).first
+      order = Order.where(id: params[:order_id], user_id: current_user.id ).first
 
       order.update(shipping_name:       this.name,
                    shipping_c_o:        this.c_o,
@@ -58,13 +74,7 @@ class AddressesController < ApplicationController
   def do_trash
     do_transition_action :trash do
       self.this.delete
-      redirect_to enter_addresses_path
-    end
-  end
-
-    def update
-    hobo_update do
-      redirect_to enter_addresses_path
+      redirect_to enter_addresses_path({:order_id => params[:order_id]})
     end
   end
 end

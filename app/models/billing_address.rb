@@ -37,7 +37,7 @@ class BillingAddress < ActiveRecord::Base
     create :enter, :available_to => :all, become: :active,
       params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :email_address, :vat_number, :order_id]
 
-    transition :use, {:active => :active}, :available_to => :user
+    transition :use, {:active => :active}, :available_to => :user, params: [:order_id]
     transition :trash, {:active => :active}, :available_to => :user
   end
 

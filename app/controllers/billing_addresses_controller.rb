@@ -4,6 +4,22 @@ class BillingAddressesController < ApplicationController
   auto_actions :edit, :update, :lifecycle
   auto_actions_for :user, [ :index, :new, :create ]
 
+  def edit
+    hobo_edit do
+      self.this.order_id = params[:order_id]
+    end
+  end
+
+  def update
+    hobo_update do
+      if params[:billing_address][:order_id]
+        redirect_to enter_billing_addresses_path({:order_id => params[:billing_address][:order_id]})
+      else
+        redirect_to enter_billing_addresses_path
+      end
+    end
+  end
+
   def enter
     self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
     unless current_user.name == "Gast"
@@ -70,7 +86,7 @@ class BillingAddressesController < ApplicationController
 
   def do_use
     do_transition_action :use do
-      order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
+      order = Order.where(id: params[:order_id], user_id: current_user.id ).first
 
       order.update(billing_name:       this.name,
                    billing_c_o:        this.c_o,
@@ -92,20 +108,14 @@ class BillingAddressesController < ApplicationController
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
       end
 
-      redirect_to order_path(current_user.basket)
+      redirect_to order_path(order)
     end
   end
 
   def do_trash
     do_transition_action :trash do
       self.this.delete
-      redirect_to enter_billing_addresses_path
-    end
-  end
-
-  def update
-    hobo_update do
-      redirect_to enter_billing_addresses_path
+      redirect_to enter_billing_addresses_path({:order_id => params[:order_id]})
     end
   end
 end

@@ -1,7 +1,7 @@
 <def tag="card" for="Address">
   <div class="well">
     <header: param>
-        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-small pull-right">
+        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-small pull-right" params="&{:order_id => params[:order_id]}">
           <ht key="address.actions.edit">Edit</ht>
         </a>
       <h4 param="heading"><name/></h4>
@@ -45,6 +45,20 @@
   </old-enter-form>
 </extend>
 
+<extend tag="form" for="Address">
+  <old-form merge>
+    <field-list:>
+      <country-view:>
+        <name-one complete-target="&Country.new()" completer="name_de" autocomplete="off"/>
+      </country-view:>
+    </field-list:>
+    <actions:>
+      <hidden-field:order-id />
+      <submit label="#{ht 'address.actions.save', :default=>['Save']}" param/> oder <%= link_to 'Zurück', request.referrer %>
+    </actions:>
+  </old-form>
+</extend>
+
 <extend tag="enter-page" for="Address">
   <old-enter-page merge>
     <main-content: replace>
@@ -60,8 +74,8 @@
             <br/>
             <p><sticker/></p>
             <p>
-              <my-transition-link transition="use" method="put" class="btn-info" />
-              <transition-link transition="trash" method="put" class="btn btn-danger">
+              <my-transition-link transition="use" method="put" class="btn-info" params="&{:order_id => params[:order_id]}"/>
+              <transition-link transition="trash" method="put" class="btn btn-danger" params="&{:order_id => params[:order_id]}">
                 <%= fa_icon "trash-o", class: "fa-lg" %>
               </transition-link>
             </p>
