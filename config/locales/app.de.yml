@@ -422,12 +422,6 @@ de:
             archive: Kann jederzeit wieder aktiviert werden
             hide: Seite wird aus dem Menü ausgeblendet
             unhide: Webseite wird wieder im menü dargestellt
-  "Original version": Originalversion
-  "Thumbnail version": Thumbnail Version
-  "Small version": Kleine Version
-  "Medium version": Mittelgroße Version
-  "Large version": Große Version
-
   address:
     actions:
       enter: Lieferadresse speichern und verwenden
@@ -453,3 +447,11 @@ de:
       heading: Angebotsposition erstellen
     actions:
       add: Zwischenspeichern
+
+  mercator:
+    image:
+      original_version: Originalversion
+      thumbnail_version: Thumbnail Version
+      small_version: Kleine Version
+      medium_version: Mittelgroße Version
+      large_version: Große Version

@@ -71,7 +71,7 @@
 
       <div class="form-horizontal">
         <div class="control-group   photo-url-field">
-          <label class="control-label photo-url-label"><%= t("Original version") %></label>
+          <label class="control-label photo-url-label"><%= t("mercator.image.original_version") %></label>
           <div class="controls">
             <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url %></span>
           </div>
