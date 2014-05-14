@@ -45,7 +45,9 @@ class Lineitem < ActiveRecord::Base
     state :shipping_costs, :blocked
 
     create :insert_shipping, :available_to => :all, become: :shipping_costs,
-           params: [:position, :product_number, :product_id, :offer_id, :description_de, :amount, :unit, :product_price, :vat, :value, :order_id, :user_id, :delivery_time]
+           params: [:position, :product_number, :product_id, :offer_id, :description_de,
+                    :amount, :unit, :product_price, :vat, :value,
+                    :order_id, :user_id, :delivery_time]
 
     create :from_offeritem, :available_to => :all, become: :active,
            params: [:position, :product_number, :product_id, :offer_id, :description_de,
@@ -57,11 +59,13 @@ class Lineitem < ActiveRecord::Base
                     :description_en, :amount, :unit, :product_price, :vat, :discount_abs,
                     :value, :order_id, :user_id, :delivery_time]
 
-    transition :delete_from_basket, {:active => :active}, if: "acting_user.basket == order", available_to: :all do
+    transition :delete_from_basket, {:active => :active},
+                                    if: "acting_user.basket == order", available_to: :all do
       self.delete
     end
 
-    transition :transfer_to_basket, {:active => :active}, if: "acting_user == order.user", available_to: :all do
+    transition :transfer_to_basket, {:active => :active},
+                                    if: "acting_user == order.user", available_to: :all do
       self.update(order: acting_user.basket)
     end
 
@@ -77,11 +81,13 @@ class Lineitem < ActiveRecord::Base
       self.update(upselling: true)
     end
 
-    transition :disable_upselling, {:active => :active}, if: "acting_user.basket == order && upselling", available_to: :all do
+    transition :disable_upselling, {:active => :active},
+                                   if: "acting_user.basket == order && upselling", available_to: :all do
       self.update(upselling: false)
     end
 
-    transition :disable_upselling, {:blocked => :blocked}, if: "acting_user.basket == order && upselling", available_to: :all do
+    transition :disable_upselling, {:blocked => :blocked},
+                                   if: "acting_user.basket == order && upselling", available_to: :all do
       self.update(upselling: false)
     end
 
@@ -102,7 +108,7 @@ class Lineitem < ActiveRecord::Base
       else
         amount = self.amount - 1
         price = product.determine_price(amount: amount, customer_id: self.user.id)
-        self.update(amount:        amount,
+        self.update(amount: amount,
                     product_price: price)
         self.update(value: self.calculate_value)
       end

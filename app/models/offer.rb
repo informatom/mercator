@@ -45,32 +45,45 @@ class Offer < ActiveRecord::Base
 
     create :build, :available_to => "User.sales", become: :in_progress,
                    params: [:valid_until, :conversation_id, :billing_name, :billing_detail, :billing_c_o,
-                            :billing_street, :billing_postalcode, :billing_city, :billing_country, :complete, :user_id, :consultant_id,
-                            :shipping_name, :shipping_detail, :shipping_c_o, :shipping_street, :shipping_postalcode,
-                            :shipping_city, :shipping_country],
+                            :billing_street, :billing_postalcode, :billing_city, :billing_country, :complete,
+                            :user_id, :consultant_id, :shipping_name, :shipping_detail, :shipping_c_o,
+                            :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country],
                    subsite: "sales"
 
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
       last_position = self.offeritems.*.position.max || 0
-      Offeritem::Lifecycle.add(acting_user, position: last_position + 10 , vat: 20, offer_id: self.id, user_id: self.user_id,
-                               description_de: "dummy", amount: 1, product_price: 0, value: 0, unit: "Stk.", product_number: "manuell" )
+      Offeritem::Lifecycle.add(acting_user,
+                               position: last_position + 10 ,
+                               vat: 20,
+                               offer_id: self.id,
+                               user_id: self.user_id,
+                               description_de: "dummy",
+                               amount: 1,
+                               product_price: 0,
+                               value: 0,
+                               unit: "Stk.",
+                               product_number: "manuell" )
     end
 
-    transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do
+    transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales",
+                        if: "Date.today <= valid_until", subsite: "sales" do
       PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
     end
 
-    transition :place, {:in_progress => :valid}, available_to: "User.sales", if: "Date.today <= valid_until", subsite: "sales" do
+    transition :place, {:in_progress => :valid}, available_to: "User.sales",
+                       if: "Date.today <= valid_until", subsite: "sales" do
       PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
     end
 
-    transition :place, {:pending_approval => :valid}, available_to: "User.sales_manager", if: "Date.today <= valid_until", subsite: "sales" do
+    transition :place, {:pending_approval => :valid}, available_to: "User.sales_manager",
+                       if: "Date.today <= valid_until", subsite: "sales" do
       PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
     end
 
     transition :copy, {:valid => :valid}, available_to: :user, if: "Date.today <= valid_until"
 
-    transition :devalidate, {:valid => :invalid}, available_to: :all, if: "Date.today > valid_until", subsite: "sales" do
+    transition :devalidate, {:valid => :invalid}, available_to: :all,
+                            if: "Date.today > valid_until", subsite: "sales" do
       PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
     end
 
@@ -105,7 +118,9 @@ class Offer < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def name
-    "Angebot (" + I18n.t('activerecord.attributes.offer.lifecycle.states.' + state) + ") " + shipping_name + " vom " + I18n.l(created_at).to_s
+    I18n.t('activerecord.models.offer.one') + " (" +
+    I18n.t('activerecord.attributes.offer.lifecycle.states.' + state) + ") " + shipping_name + " " +
+    I18n.t('mercator.from') + " " + I18n.l(created_at).to_s
   end
 
   def sum

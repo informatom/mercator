@@ -38,5 +38,4 @@ class PageTemplate < ActiveRecord::Base
       f.write(self.content)
     end
   end
-
 end

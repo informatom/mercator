@@ -179,7 +179,7 @@ de:
 
     table_plus:
       search: "Suche"
-      submit_label: "Go"
+      submit_label: "Start"
 
     live_search:
       label: "Suche"

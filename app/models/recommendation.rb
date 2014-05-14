@@ -7,7 +7,9 @@ class Recommendation < ActiveRecord::Base
     reason_en :string
     timestamps
   end
-  attr_accessible :reason_de, :reason_en, :product, :product_id, :recommended_product, :recommended_product_id
+
+  attr_accessible :reason_de, :reason_en, :product, :product_id, :recommended_product,
+                  :recommended_product_id
   translates :reason
   has_paper_trail
 
@@ -34,5 +36,4 @@ class Recommendation < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
-
 end

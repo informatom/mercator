@@ -346,6 +346,10 @@ de:
             activate: Aktivieren
             deactivate: Deaktivieren
             reactivate: Reaktivieren
+      property/datatypes:
+        textual: textartig
+        numeric: numerisch
+        flag: wahr/falsch
       user:
         lifecycle:
           transitions:
@@ -449,9 +453,11 @@ de:
       add: Zwischenspeichern
 
   mercator:
-    image:
+    images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
       small_version: Kleine Version
       medium_version: Mittelgroße Version
       large_version: Große Version
+    from: vom
+    on_request: Auf Anfrage

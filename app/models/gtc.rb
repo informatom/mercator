@@ -36,5 +36,4 @@ class Gtc < ActiveRecord::Base
   def self.current
     Gtc.order(version_of: :desc).first.version_of
   end
-
 end

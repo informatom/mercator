@@ -37,6 +37,8 @@ class Offeritem < ActiveRecord::Base
 
   belongs_to :product
 
+  # --- Lifecycles --- #
+
   lifecycle do
     state :in_progress, :default => true
 

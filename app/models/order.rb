@@ -57,9 +57,10 @@ class Order < ActiveRecord::Base
     state :paid, :shipped
 
     create :from_offer, :available_to => :all, become: :accepted_offer,
-                        params: [:user_id, :billing_name, :billing_c_o, :billing_detail, :billing_street, :billing_postalcode,
-                                 :billing_city, :billing_country, :shipping_name, :shipping_c_o, :shipping_detail,
-                                 :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country, :discount_rel]
+                        params: [:user_id, :billing_name, :billing_c_o, :billing_detail, :billing_street,
+                                 :billing_postalcode, :billing_city, :billing_country, :shipping_name,
+                                 :shipping_c_o, :shipping_detail, :shipping_street, :shipping_postalcode,
+                                 :shipping_city, :shipping_country, :discount_rel]
 
     transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}
@@ -116,7 +117,8 @@ class Order < ActiveRecord::Base
 
     transition :archive_parked_basket, {:parked => :archived_basket}, available_to: :user
 
-    transition :pickup_shipment, {:basket => :basket}, available_to: :user, if: "shipping_method != 'pickup_shipment'" do
+    transition :pickup_shipment, {:basket => :basket},
+                                 available_to: :user, if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
 
       shippment_costs_line = self.lineitems
@@ -218,9 +220,9 @@ class Order < ActiveRecord::Base
 
   def name
     if ["basket", "parked"].include?(state)
-      "Warenkorb vom " + I18n.l(created_at).to_s
+      [I18n.t("attributes.basket"), I18n.t("mercator.from"), I18n.l(created_at).to_s].join(" ")
     else
-      "Bestellung vom " + I18n.l(created_at).to_s
+      [I18n.t("activerecord.models.order"), I18n.t("mercator.from"), I18n.l(created_at).to_s].join(" ")
     end
   end
 
@@ -264,16 +266,22 @@ class Order < ActiveRecord::Base
   end
 
   def add_shipment_costs
+    shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
+
     if Rails.application.config.erp == "mesonic" && acting_user.erp_account_nr
-      webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: "VERSANDSPESEN")
-      shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id) # user-specific derivation
-      shipping_cost_value ||= webartikel_versandspesen.preis # non user-specific derivation
+      webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number)
+
+      # user-specific derivation
+      shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id)
+      # non user-specific derivation
+      shipping_cost_value ||= webartikel_versandspesen.preis
 
       Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
                                                        user_id: acting_user.id,
                                                        position: 10000,
-                                                       product_number: "VERSANDSPESEN",
+                                                       product_number: shipping_cost_product_number,
                                                        description_de: "Versandkostenanteil",
+                                                       description_en: "Shipping Costs",
                                                        amount: 1,
                                                        unit: "Pau.",
                                                        product_price: shipping_cost_value,
@@ -285,8 +293,9 @@ class Order < ActiveRecord::Base
       Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
                                                        user_id: acting_user.id,
                                                        position: 10000,
-                                                       product_number: "VERSANDSPESEN",
+                                                       product_number: shipping_cost_product_number,
                                                        description_de: "Versandkostenanteil",
+                                                       description_en: "Shipping Costs",
                                                        amount: 1,
                                                        unit: "Pau.",
                                                        product_price: shipping_cost.value,

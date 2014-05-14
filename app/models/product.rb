@@ -3,18 +3,18 @@ class Product < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title_de       :string, :required
-    title_en       :string
-    number         :string, :required, :unique, name: true
-    description_de :cktext, :required
-    description_en :cktext
+    title_de            :string, :required
+    title_en            :string
+    number              :string, :required, :unique, name: true
+    description_de      :cktext, :required
+    description_en      :cktext
     long_description_de :cktext
     long_description_en :cktext
-    warranty_de    :cktext
-    warranty_en    :cktext
-    legacy_id      :integer
-    novelty        :boolean
-    topseller      :boolean
+    warranty_de         :cktext
+    warranty_en         :cktext
+    legacy_id           :integer
+    novelty             :boolean
+    topseller           :boolean
     timestamps
   end
 
@@ -102,13 +102,19 @@ class Product < ActiveRecord::Base
 
   def determine_price(amount: 1, date: Time.now(), incl_vat: false, customer_id: current_user.id)
     inventory = self.determine_inventory(amount: amount)
-    price = inventory ? inventory.determine_price(amount: amount, date: date, incl_vat: incl_vat, customer_id: customer_id) : nil
-    return price
+    if inventory
+      return inventory.determine_price(amount: amount,
+                                       date: date,
+                                       incl_vat: incl_vat,
+                                       customer_id: customer_id)
+    else
+      return nil
+    end
   end
 
   def delivery_time(amount: 1, date: Time.now())
     inventory = self.determine_inventory(amount: amount)
-    delivery_time = inventory ? inventory.delivery_time : "Auf Anfrage"
+    delivery_time = inventory ? inventory.delivery_time : I18n.t("mercator.on_request")
     return delivery_time
   end
 
@@ -125,25 +131,30 @@ class Product < ActiveRecord::Base
 
   def determine_inventory(amount: 1)
     amount_requested = amount
-    self.inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # FIFO
-    #self.inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # LIFO
+    if Constant.find_by_key("fifo").value == "true"
+      # FIFO
+      self.inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first
+    else
+      # LIFO
+      self.inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first
+    end
   end
 
   # --- Searchkick Instance Methods --- #
 
   def search_data
     {
-      title: title_de,
-      title_de: title_de,
-      title_en: title_en,
-      number: number,
-      description: description_de,
-      description_de: description_de,
-      description_en: description_en,
+      title:            title_de,
+      title_de:         title_de,
+      title_en:         title_en,
+      number:           number,
+      description:      description_de,
+      description_de:   description_de,
+      description_en:   description_en,
       long_description: long_description_de,
-      warranty: warranty_de,
-      category_ids: categories.pluck(:id),
-      state: state
+      warranty:         warranty_de,
+      category_ids:     categories.pluck(:id),
+      state:            state
     }.merge(property_hash)
   end
 

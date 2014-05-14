@@ -10,9 +10,8 @@ class Download < ActiveRecord::Base
   has_paper_trail
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
-  has_attached_file :photo,
-    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },
-    :default_url => "/images/:style/missing.png"
+  has_attached_file :photo, :default_url => "/images/:style/missing.png",
+                    :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" }
 
   do_not_validate_attachment_file_type :document
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }

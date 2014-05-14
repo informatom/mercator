@@ -42,9 +42,8 @@ class Link < ActiveRecord::Base
     @shop_domain = Constant.find_by_key("shop_domain").try(:value)
     if url.split("/")[2] == @cms_domain ||  url.split("/")[2] == @shop_domain
       return true
-    else 
+    else
       return false
     end
-
-  end 
+  end
 end

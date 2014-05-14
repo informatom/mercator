@@ -41,7 +41,7 @@ class ShippingCost < ActiveRecord::Base
     country = Country.where(name_de: order.shipping_country).first
     country_specific_costs = self.where(country: country, shipping_method: shipping_method)
     if country_specific_costs.any?
-     return country_specific_costs.first
+      return country_specific_costs.first
     else
       country_unspecific_costs = self.where(country_id: nil, shipping_method: shipping_method)
       return country_unspecific_costs.first

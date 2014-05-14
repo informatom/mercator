@@ -27,5 +27,4 @@ class Contract < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
-
 end

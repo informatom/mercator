@@ -40,5 +40,4 @@ class Message < ActiveRecord::Base
     reciever_is?(acting_user) ||
     sender_is?(acting_user)
   end
-
 end

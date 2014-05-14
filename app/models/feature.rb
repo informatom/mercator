@@ -38,5 +38,4 @@ class Feature < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
-
 end

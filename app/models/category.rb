@@ -97,7 +97,7 @@ class Category < ActiveRecord::Base
     return if @any_child_active == true
 
     self.lifecycle.deactivate!(User.where(administrator: true).first)
-    puts self.name_de + " deactivated."
+    JobLogger.info("Category " + self.name_de + " deactivated.")
   end
 
   def property_groups_hash
