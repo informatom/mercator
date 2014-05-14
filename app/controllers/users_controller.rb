@@ -89,7 +89,11 @@ class UsersController < ApplicationController
                             gtc_confirmed_at: Time.now())
         current_user.basket.update(gtc_version_of: Gtc.current,
                                    gtc_confirmed_at: Time.now())
-        redirect_to order_path(params[:user][:order_id])
+        if params[:order_id]
+          redirect_to order_path(params[:order_id])
+        else
+          redirect_to order_path(params[:user][:order_id])
+        end
       else
         flash[:error] = "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
         if params[:user][:order_id]
