@@ -41,7 +41,10 @@
     <actions:>
       <hidden-field with="&this.order_id"/>
       <submit label="#{ht 'address.actions.enter', :default=>['Enter']}" param/>
-      oder <a with="&Order.find(this.order_id)" class="btn btn-info" style="vertical-align: baseline">Abbrechen</a>
+      <t key="hobo.support.or" />
+      <a with="&Order.find(this.order_id)" class="btn btn-info" style="vertical-align: baseline">
+        <t key="hobo.actions.cancel" />
+      </a>
     </actions:>
   </old-enter-form>
 </extend>
@@ -69,7 +72,7 @@
         </div>
         <div class="span4">
           <if test="&current_user.addresses">
-            <h3>Gespeicherte Lieferadressen</h3>
+            <h3><t key="mercator.stored_delivery_addresses"/></h3>
           </if>
           <repeat with="&current_user.addresses">
             <br/>

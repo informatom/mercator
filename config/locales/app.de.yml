@@ -317,6 +317,7 @@ de:
         billing_postalcode: Postleitzahl (Rechnung)
         billing_city: Stadt (Rechnung)
         billing_country: Land (Rechnung)
+        position: Position
         shipping_method: Lieferart
         shipping_name: Name (Lieferung)
         shipping_detail: Details (Lieferung)
@@ -458,11 +459,18 @@ de:
   mercator:
     admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
     back: Zurück
+    billing_method:
+      change: Zahlungsart wechseln
+      select: Bitte wählen Sie eine Zahlungsart
+    coming_from: aus
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
     from: vom
     frontend_subsite_name: Frontend
+    gtc_confirmation_left: Ich bestätige, die
+    gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -474,6 +482,7 @@ de:
       content_element:
         missing: Hier fehlt der Textbaustein mit dem Namen
       conversation:
+      no_frames: Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis aufrufen
         starded: Eine neue Konversation wurde gestartet!
       lineitem:
         delete:
@@ -513,7 +522,17 @@ de:
       user:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+    no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
     on_request: Auf Anfrage
+    parked: Geparkte(r)
+    protocol: Protokoll
+      data_to_be_stored: Es sollon folgende Daten protokolliert werden
+      text_customer_sales: Feedbacktext, ich und Berater(in)
+      text_sales: Feedbacktext und Berater(in)
+      text_customer: Feedbacktext und ich
+      text: Feedbacktext
+    provide_billing_address: Rechnungsadresse angeben
+    registered_for: registriert für
     restart_application: "Applikation neu starten"
     restarting: "Neustart"
     root_category: Wurzelkategorie
@@ -523,6 +542,8 @@ de:
     shipping_method:
       change: Lieferart wechseln
       select: Bitte wählen Sie eine Lieferart
+    stored_delivery_addresses: Gespeicherte Lieferadressen
+    stored_billing_addresses: Gespeicherte Rechnungsadressen
     sum_excl_vat: Summe exkl. Mwst
     sum_incl_vat: Gesamtpreis
     are_you_sure: "Sind Sie Sicher?"
@@ -531,5 +552,6 @@ de:
     video_chat: Video Chat
     welcome_at: Willkommen bei
     waiting_for_release: ", die auf Freigabe warten."
+    your_message: Ihre Nachricht:
 
 # <t key='mercator.'/>

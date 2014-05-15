@@ -5,18 +5,18 @@
         <input for="text" class="input-xxlarge"/>
       </content-view:>
       <mode-label:>
-        Protokoll
+        <t key="mercator.protocol" />
       </mode-label:>
       <mode-view:>
-        Es sollon folgende Daten protokolliert werden:<br/><br/>
+        <t key="mercator.protocol.data_to_be_stored" /> :<br/><br/>
         <input type="radio" name="conversation[mode]" value="all" checked />
-          Feedbacktext, ich und Berater(in)<br/>
+          <t key="mercator.protocol.text_customer_sales" /><br/>
         <input type="radio" name="conversation[mode]" value="consultant"/>
-          Feedbacktext und Berater(in)<br/>
+          <t key="mercator.protocol.text_sales" /><br/>
         <input type="radio" name="conversation[mode]" value="user"/>
-          Feedbacktext und ich<br/>
+          <t key="mercator.protocol.text_customer" /><br/>
         <input type="radio" name="conversation[mode]" value="none"/>
-          Feedbacktext<br/>
+          <t key="mercator.protocol.text" /><br/>
       </mode-view:>
     </field-list:>
   </old-feedback-form>
@@ -28,7 +28,8 @@
       <set consultant="&User.assign_consultant"/>
       <photo-card with="&consultant" class="pull-right" />
       <div class="alert alert-info">
-        <b><view: with="&consultant.name"/></b>: Guten Tag! Mein Name ist <view: with="&consultant.name"/>. Wie kann ich Ihnen helfen?
+        <b><view: with="&consultant.name"/></b>:
+        <t key="mercator.salutation" name="&consultant.name" />
       </div>
 
     </before-form:>
@@ -43,7 +44,7 @@
       <div class="row-fluid">
         <div class="span8 moveable" id="left-column">
           <form with="&@message" update="mymessages">
-            <h3>Ihre Nachricht: </h3>
+            <h3><t key="mercator.your_message" />: </h3>
             <div> <input:content class="input-block-level"/> </div>
           </form>
 
@@ -97,9 +98,10 @@
               </script>
               <div id="cobrowsing-area" class="hidden">
                 <iframe src="#{this.last_link.url}" width="100%" height="800">
-                  <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
-                     Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
-                     aufrufen: <a href="&this.last_link.url">Link</a></p>
+                  <p>
+                    <t key="mercator.messages.conversation.no_frames" />:
+                    <a href="&this.last_link.url">Link</a>
+                  </p>
                 </iframe>
               </div>
             </if>
@@ -124,13 +126,11 @@
             <collection:suggestions part="suggestions"/>
           </section>
 
-          <h3> Feedback </h3>
-          <p>Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback:</p>
+          <h3><t key="activerecord.models.feedback.one" /></h3>
+          <p><t key="mercator.feedback_request" />:</p>
           <p><my-transition-link transition="feedback" method="get" class="btn-primary"/></p>
-
         </div>
       </div>
     </content-body:>
-
   </old-show-page>
 </extend>
