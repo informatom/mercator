@@ -2,25 +2,25 @@
   <table class="table well table-striped table-condensed">
     <if test="&this.discount_rel != 0">
       <tr>
-        <td>- <view:discount-rel/>% Rabatt</td>
+        <td>- <view:discount-rel/>% <t key='attributes.discount'/></td>
       <td><div class="text-right"><view with="&number_to_currency(this.discount)"/></div></td>
     </tr>
     </if>
 
     <tr>
-      <td>Summe exkl. Mwst</td>
+      <td><t key='mercator.sum_excl_vat'/></td>
       <td><div class="text-right"><view with="&number_to_currency(this.sum)"/></div></td>
     </tr>
 
     <repeat:vat-items>
       <tr>
-        <td>Mwst. <view: with="&this[0]" />%</td>
+        <td><t key='attributes.vat'/> <view: with="&this[0]" />%</td>
         <td><div class="text-right"><view with="&number_to_currency(this[1])" /></div></td>
       </tr>
     </repeat>
 
     <tr class="success">
-      <td>Gesamtpreis</td>
+      <td><t key='mercator.sum_incl_vat'/></td>
       <td><div class="text-right"><view with="& number_to_currency(this.sum_incl_vat)"/></div></td>
     </tr>
   </table>

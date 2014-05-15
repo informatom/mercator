@@ -465,16 +465,20 @@ de:
     billing_method:
       change: Zahlungsart wechseln
       select: Bitte wählen Sie eine Zahlungsart
+    cobrowsing_link: Cobrowsing Link
     coming_from: aus
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    delete: Löschen
     deliveries_and_payments: Lieferungen und Zahlungen
     excl_vat: excl. Mwst.
     feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
+    file_and_image_upload: Datei und Bild-Upload
+    file_is_being_processed: Datei wird verarbeitet
     from: vom
     frontend_subsite_name: Frontend
-    gtc_confirmation_left: Ich bestätige, die
+    gtc_confirmation_left: "Ich bestätige, die"
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
     home: Home
     images:
@@ -489,8 +493,8 @@ de:
       content_element:
         missing: Hier fehlt der Textbaustein mit dem Namen
       conversation:
-      no_frames: Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis aufrufen
-        starded: Eine neue Konversation wurde gestartet!
+        no_frames: "Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie können die eingebettete Seite über den folgenden Verweis aufrufen"
+        started: Eine neue Konversation wurde gestartet!
       lineitem:
         delete:
           success: "Die Bestellposition wurde gelöscht."
@@ -529,12 +533,17 @@ de:
       user:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+    new_message: Neue Nachricht
     no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
     on_request: Auf Anfrage
     open(pl): offere
     parked: Geparkte(r)
-    pessword: Kennwort ändern
-    protocol: Protokoll
+    paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
+    password: Kennwort ändern
+    place_offer: Angebot legen
+    product_suggestion: Produktvorschlag
+    protocol:
+      one: Protokoll
       data_to_be_stored: Es sollon folgende Daten protokolliert werden
       text_customer_sales: Feedbacktext, ich und Berater(in)
       text_sales: Feedbacktext und Berater(in)
@@ -542,6 +551,7 @@ de:
       text: Feedbacktext
     provide_billing_address: Rechnungsadresse angeben
     registered_for: registriert für
+    repeat: Wiederholen
     restart_application: "Applikation neu starten"
     restarting: "Neustart"
     root_category: Wurzelkategorie
@@ -558,12 +568,12 @@ de:
     sum_incl_vat: Gesamtpreis
     switch_user: Account wechseln
     toner_upload: Upload Tonerfile
+    upload_file: Datei hochladen
+    url: URL
     use_navigation: Verwenden Sie die Links im Menü zur Navigation.
     user_accounts_missing: Es gibt keine Benuzterkonten - legen Sie nun den ersten Administrationsaccount an.
     video_chat: Video Chat
     welcome_at: Willkommen bei
     waiting_for_release: ", die auf Freigabe warten."
     you_are_talking_to: Sie sprechen mit
-    your_message: Ihre Nachricht:
-
-# <t key='mercator.'/>
+    your_message: Ihre Nachricht

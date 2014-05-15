@@ -23,7 +23,8 @@
       </p>
       <br/>
       <p class="label">
-        <t key="mercator.incl_vat"  <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
+        <t key="mercator.incl_vat" />
+        <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
       </p>
     </div>
 

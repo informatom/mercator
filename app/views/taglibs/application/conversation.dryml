@@ -5,7 +5,7 @@
         <input for="text" class="input-xxlarge"/>
       </content-view:>
       <mode-label:>
-        <t key="mercator.protocol" />
+        <t key="mercator.protocol.one" />
       </mode-label:>
       <mode-view:>
         <t key="mercator.protocol.data_to_be_stored" /> :<br/><br/>

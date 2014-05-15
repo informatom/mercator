@@ -73,7 +73,7 @@
           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
             <if test="&current_user.administrator">
               <li class='nav-item' param='administration'>
-                <a href='/admin'><t key='mercator.administration'/></a>
+                <a href='/admin'><t key='mercator.admin_subsite_name'/></a>
               </li>
             </if>
             <if test="&current_user.sales">

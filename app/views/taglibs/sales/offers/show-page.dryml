@@ -11,14 +11,14 @@
           <div class="span4"> <shipping-address-card /> </div>
           <div class="span4">
             <div part="complete">
-              <strong>Gültig bis:</strong>
+              <strong><t key="attributes.valid_to" />:</strong>
               <click-editor-innards:valid-until update="all">
                 <view: class="label label-warning"/>
               </click-editor-innards:valid-until>
               <br/><br/>
-              <strong>Komplettangebot:</strong>
+              <strong><t key="activerecord.attributes.offer.complete" />:</strong>
               <unless:complete>
-                <span class="label label-important">Nein</span>
+                <span class="label label-important"><t key="hobo.boolean_no" /></span>
               </unless:complete>
               <click-editor-innards:complete update="complete">
                 <view: class="label label-success"/>
@@ -26,7 +26,8 @@
               <br/><br/>
             </div>
             <div>
-              <b><t key="attributes.discount-rel"/>:</b> <click-editor-innards:discount-rel/><br/><br/>
+              <b><t key="attributes.discount-rel"/>:</b>
+              <click-editor-innards:discount-rel/><br/><br/>
             </div>
             <p><my-transition-link transition="add_position" class="btn-primary"/></p>
           </div>
@@ -36,16 +37,16 @@
           <table class="table well table-striped">
             <thead>
               <tr>
-                <th>Position</th>
-                <th>Photo</th>
-                <th><div class="text-right">Menge</div></th>
-                <th>Einheit</th>
-                <th>Artikelnummer</th>
-                <th>Beschreibung</th>
-                <th></th><th>Stückpreis</th>
-                <th>Rabatt (EUR)</th>
-                <th>Mwst.(%)</th>
-                <th><div class="text-right">Preis</div></th>
+                <th><t key='activerecord.attributes.offer.position'/></th>
+                <th><t key='attributes.photo'/></th>
+                <th><div class="text-right"><t key='attributes.amount'/></div></th>
+                <th><t key='attributes.unit'/></th>
+                <th><t key='attributes.product_number'/></th>
+                <th><t key='attributes.description'/></th>
+                <th></th><th><t key='activerecord.attributes.lineitem.product_price'/></th>
+                <th><t key='attributes.discount'/> (EUR)</th>
+                <th><t key='attributes.vat'/>(%)</th>
+                <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
                 <th></th>
               </tr>
             </thead>
@@ -79,7 +80,7 @@
                     <click-editor-innards:description-de>
                       <input: class="input-xlarge"/>
                     </click-editor-innards:description-de><br/>
-                    <em>Lieferzeit:</em> <click-editor-innards:delivery-time/>
+                    <em><t key='attributes.delivery_time'/>:</em> <click-editor-innards:delivery-time/>
                   </td>
                   <td> <div class="text-right"> EUR</div> </td>
                   <td>
