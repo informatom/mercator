@@ -10,19 +10,19 @@
       <set percent="& (80 / this.length).to_i"/>
       <table class="table table-condensed">
         <tr>
-          <td width="20%">Titel</td>
+          <td width="20%"><t key='attributes.title'/></td>
           <repeat with="&@products">
             <td width="#{percent}%"><h2><view:title/></h2></td>
           </repeat>
         </tr>
         <tr>
-          <td>Nummer</td> <td repeat><h3><view:number/></h3></td>
+          <td><t key='attributes.number'/></td> <td repeat><h3><view:number/></h3></td>
         </tr>
         <tr>
           <td></td> <td repeat><transition-button transition="dont_compare" class="btn btn-info"/></td>
         </tr>
         <tr>
-          <td>Beschreibung</td> <td repeat><view:description/></td>
+          <td><t key='attributes.description'/></td> <td repeat><view:description/></td>
         </tr>
 
         <repeat with="&@nested_hash">

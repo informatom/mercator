@@ -11,7 +11,7 @@
   <nav-container: replace/>
 
     <content-header:>
-      <h1> Mercator </h1>
+      <h1><app-name/></h1>
       <h3><view:name/></h3>
     </content-header:>
 
@@ -25,10 +25,10 @@
         </div>
         <div class="span4">
           <div>
-            <strong>Gültig bis:</strong>
+            <strong><t key='mercator.valid_to'/>:</strong>
             <view:valid-until/>
             <br/><br/>
-            <strong>Komplettangebot:</strong>
+            <strong><t key='activerecord.attributes.offer.complete'/>:</strong>
             <view:complete/>
             <br/><br/>
           </div>
@@ -39,13 +39,13 @@
         <table class="table well table-striped">
           <thead>
             <tr>
-              <th>Position</th>
-              <th>Photo</th>
-              <th><div class="text-right">Menge</div></th>
-              <th>Artikelnummer</th>
-              <th>Beschreibung</th>
-              <th><div class="text-right">Stückpreis</div></th>
-              <th><div class="text-right">Preis</div></th>
+              <th><t key='activerecord.attributes.offer.position'/></th>
+              <th><t key='attributes.photo'/></th>
+              <th><div class="text-right"><t key='attributes.amount'/></div></th>
+              <th><t key='attributes.product_number'/></th>
+              <th><t key='attributes.description'/></th>
+              <th><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
+              <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +57,7 @@
                 <td><view:product-number/></td>
                 <td>
                   <view:description-de/><br/>
-                  <em>Lieferzeit:</em> <view:delivery-time/>
+                  <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
                 </td>
                 <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
                 <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
@@ -71,10 +71,10 @@
         </div>
 
         <div class="row pull-right">
-          <if test="&this.state == 'in_progress'"> <p class="text-info">Dieses Angebot ist in Bearbeitung und kann daher noch nicht angenommen werden.</p> </if>
-          <if test="&this.state == 'pending_approval'"> <p class="text-info">Dieses Angebot wartet auf Freigabe und kann daher noch nicht angenommen werden.</p> </if>
-          <if test="&this.state == 'invalid'"> <p class="text-info">Dieses Angebot ist ungültig und kann daher nicht angenommen werden.</p> </if>
-          <if test="&Date.today > this.valid_until"> <p class="text-info">Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.</p> </if>
+          <if test="&this.state == 'in_progress'"><p class="text-info"><t key='mercator.messages.offer.in_progress'/></p></if>
+          <if test="&this.state == 'pending_approval'"><p class="text-info"><t key='mercator.messages.offer.pending_approval'/></p></if>
+          <if test="&this.state == 'invalid'"><p class="text-info"><t key='mercator.messages.offer.invalid'/></p></if>
+          <if test="&Date.today > this.valid_until"><p class="text-info"><t key='mercator.messages.offer.expired'/></p></if>
         </div>
 
       </div>

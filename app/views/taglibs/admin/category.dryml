@@ -3,7 +3,7 @@
     <field-list: fields='name_de, name_en, description_de, description_en,
                          long_description_de, long_description_en, position, parent, categorizations'>
       <parent-view:>
-          <select-menu options="&Category.all" first-option="Wurzelkategorie"/>
+          <select-menu options="&Category.all" first-option="&t('mercator.root_category')"/>
       </parent-view:>
 
       <categorizations-view:>

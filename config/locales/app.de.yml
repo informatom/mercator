@@ -67,6 +67,7 @@ de:
     messages: Nachrichten
     miscellaneous: Diverses
     name: Name
+    number: Nummer
     offers: Angebote
     order: Bestellung
     orders: Bestellungen
@@ -301,6 +302,7 @@ de:
             copy: Angebot in eine Bestellung kopieren
             devalidate: Ungültig machen
             revise: Bearbeiten
+        position: Position
       offeritem:
         lifecycle:
           transitions:
@@ -454,16 +456,22 @@ de:
 
   mercator:
     admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
+    conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    from: vom
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
       small_version: Kleine Version
       medium_version: Mittelgroße Version
       large_version: Große Version
-    from: vom
+    last_x: "Die letzten %{x} "
     messages:
+      content_element:
+        missing: Hier fehlt der Textbaustein mit dem Namen
+      conversation:
+        starded: Eine neue Konversation wurde gestartet!
       lineitem:
         delete:
           success: "Die Bestellposition wurde gelöscht."
@@ -478,6 +486,10 @@ de:
           success: "Das Angebot wurde in den Warenkorb übernommen."
         copy_to_order:
           success: "Das Angebot wurde in eine neue Bestellung kopiert."
+        expired: Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.
+        in_progress: Dieses Angebot ist in Bearbeitung und kann daher noch nicht angenommen werden.
+        invalid: Dieses Angebot ist ungültig und kann daher nicht angenommen werden.
+        pending_approval: Dieses Angebot wartet auf Freigabe und kann daher noch nicht angenommen werden.
       offeritem:
         transfer:
           success: "Die Angebotsposition wurde in den Warenkorb übernommen."
@@ -501,10 +513,14 @@ de:
     on_request: Auf Anfrage
     restart_application: "Applikation neu starten"
     restarting: "Neustart"
+    root_category: Wurzelkategorie
+    sales_subsite_name: Vertriebswesen
+    sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
     salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
     are_you_sure: "Sind Sie Sicher?"
     use_navigation: Verwenden Sie die Links im Menü zur Navigation.
     user_accounts_missing: Es gibt keine Benuzterkonten - legen Sie nun den ersten Administrationsaccount an.
     welcome_at: Willkommen bei
+    waiting_for_release: ", die auf Freigabe warten."
 
 # <t key='mercator.'/>
