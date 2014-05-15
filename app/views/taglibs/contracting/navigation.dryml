@@ -4,11 +4,11 @@
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Sites") %> ...
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item href="#{base_url}/">Frontend</nav-item>
-        <nav-item href="#{base_url}/admin/">Admin</nav-item>
-        <nav-item href="#{base_url}/contracting/">Contracting</nav-item>
-        <nav-item href="#{base_url}/sales/">Sales</nav-item>
-        <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
+        <nav-item href="#{base_url}/"><t key="mercator.frontend_subsite_name" /></nav-item>
+        <nav-item href="#{base_url}/admin/"><t key="mercator.admin_subsite_name" /></nav-item>
+        <nav-item href="#{base_url}/contracting/"><t key="mercator.contracting_subsite_name" /></nav-item>
+        <nav-item href="#{base_url}/sales/"><t key="mercator.sales_subsite_name" /></nav-item>
+        <nav-item href="#{base_url}/chat.html" target="new"><t key="mercator.video_chat" /></nav-item>
       </ul>
     </li>
 

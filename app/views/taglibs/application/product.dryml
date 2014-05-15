@@ -5,7 +5,7 @@
       <if test="&this.photo.exists?">
         <p><%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ), product_path(this)) %></p>
       </if>
-      <p><strong>Lieferzeit:</strong> <br/> <view:delivery-time/></p>
+      <p><strong><t key="attributes.delivery_time" />:</strong> <br/> <view:delivery-time/></p>
     </span>
 
     <div class="media-body">
@@ -19,11 +19,11 @@
       </else>
 
       <p class="label">
-        excl. Mwst. <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %>
+        <t key="mercator.excl_vat" /> <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %>
       </p>
       <br/>
       <p class="label">
-        incl. Mwst. <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
+        <t key="mercator.incl_vat"  <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
       </p>
     </div>
 

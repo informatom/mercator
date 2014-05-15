@@ -1,13 +1,9 @@
 <def tag="upload-page" polymorphic/>
 
 <def tag="upload-page" for="Toner">
-  <page merge title="#{ht 'toner.upload', :default=>[' Upload Tonerfile'] }">
+  <page merge title="&t('mercator.toner_upload')}">
     <content-header:>
-      <h2 param="heading">
-        <ht key="toner.upload">
-          Upload Tonerfile
-        </ht>
-      </h2>
+      <h2 param="heading"><t key="mercator.toner_upload" /></h2>
     </content-header:>
 
     <content-body:>
@@ -24,11 +20,7 @@
 <def tag="do-upload-page" for="Toner">
   <page merge title="#{ht 'toner.upload', :default=>[' Upload Tonerfile'] }">
     <content-header:>
-      <h2 param="heading">
-        <ht key="toner.upload">
-          Fixme
-        </ht>
-      </h2>
+      <h2 param="heading"><t key="mercator.toner_upload" /></h2>
     </content-header:>
 
     <content-body:>

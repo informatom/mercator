@@ -12,7 +12,7 @@
         <input for="boolean"/>
       </confirmation-label:>
       <confirmation-view:>
-        Ich bestätige, die AGB gelesen und verstanden zu haben und stimme diesen zu
+        <t key="mercatoor.gtc_confirmation_left" /> <t key="activerecord.models.gtc.one" /> <t key="mercatoor.gtc_confirmation_right" />
       </confirmation-view:>
     </field-list:>
     <prepend-actions:>
@@ -34,7 +34,7 @@
           <collection:orders.basket param/>
 
           <h3 param="collection-heading">
-            offene <ht key="order.collection.heading" count="&this.orders.accepted_offer.count" >
+            <t key="mercator.open(pl)" /> <ht key="order.collection.heading" count="&this.orders.accepted_offer.count" >
               <human-collection-name collection="orders" your/>
             </ht>
           </h3>
@@ -79,7 +79,7 @@
 
 <def tag="photo-card">
   <div class="well" style="margin: 10px" merge-attrs >
-    <p>Sie sprechen mit: <view:name/></p>
+    <p><t key="mercator.you_are_talking_to" />: <view:name/></p>
     <if test="&this">
       <p><%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid" ) %></p>
     </if>

@@ -51,10 +51,10 @@ de:
     discount-abs: "Rabatt absolut in EUR"
     discount-rel: "Rabatt relativ in %"
     document: Dokument
-    document_file_name: Dateiname Dokument
-    document_content_type: Dateityp Dokument
-    document_file_size: Dateigröße Dokument
-    document_updated_at: Aktualisiert Dokument
+    document_file_name: Dateiname
+    document_content_type: Dateityp
+    document_file_size: Dateigröße
+    document_updated_at: Aktualisiert
     downloads: Downloads
     email_address: E-Mail Adresse
     inventories: Bestände
@@ -457,7 +457,10 @@ de:
       add: Zwischenspeichern
 
   mercator:
+    admin_subsite_name: Administration
     admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
+    account: Mein Account
+    are_you_sure: "Sind Sie Sicher?"
     back: Zurück
     billing_method:
       change: Zahlungsart wechseln
@@ -466,17 +469,21 @@ de:
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    deliveries_and_payments: Lieferungen und Zahlungen
+    excl_vat: excl. Mwst.
     feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
     from: vom
     frontend_subsite_name: Frontend
     gtc_confirmation_left: Ich bestätige, die
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
+    home: Home
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
       small_version: Kleine Version
       medium_version: Mittelgroße Version
       large_version: Große Version
+    incl_vat: incl. Mwst.
     last_x: "Die letzten %{x} "
     messages:
       content_element:
@@ -524,7 +531,9 @@ de:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
     no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
     on_request: Auf Anfrage
+    open(pl): offere
     parked: Geparkte(r)
+    pessword: Kennwort ändern
     protocol: Protokoll
       data_to_be_stored: Es sollon folgende Daten protokolliert werden
       text_customer_sales: Feedbacktext, ich und Berater(in)
@@ -542,16 +551,19 @@ de:
     shipping_method:
       change: Lieferart wechseln
       select: Bitte wählen Sie eine Lieferart
+    size: Größe
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
     sum_excl_vat: Summe exkl. Mwst
     sum_incl_vat: Gesamtpreis
-    are_you_sure: "Sind Sie Sicher?"
+    switch_user: Account wechseln
+    toner_upload: Upload Tonerfile
     use_navigation: Verwenden Sie die Links im Menü zur Navigation.
     user_accounts_missing: Es gibt keine Benuzterkonten - legen Sie nun den ersten Administrationsaccount an.
     video_chat: Video Chat
     welcome_at: Willkommen bei
     waiting_for_release: ", die auf Freigabe warten."
+    you_are_talking_to: Sie sprechen mit
     your_message: Ihre Nachricht:
 
 # <t key='mercator.'/>

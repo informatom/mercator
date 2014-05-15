@@ -1,6 +1,6 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
-    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item href="#{base_url}/"><t key="mercator.home"/></nav-item>
 
     <repeat with="&Webpage.roots.published">
       <if test="url">
@@ -15,7 +15,7 @@
       </unless>
     </repeat>
 
-    <nav-item href="#{base_url}/chat.html" target="new">Video Chat</nav-item>
+    <nav-item href="#{base_url}/chat.html" target="new"><t key="mercator.video_chat"/></nav-item>
   </navigation>
 </def>
 
@@ -73,41 +73,41 @@
           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
             <if test="&current_user.administrator">
               <li class='nav-item' param='administration'>
-                <a href='/admin'><t key='hobo.actions.administration'>Administration</t></a>
+                <a href='/admin'><t key='mercator.administration'/></a>
               </li>
             </if>
             <if test="&current_user.sales">
               <li class='nav-item' param='sales'>
-                <a href='/sales'><t key='hobo.actions.sales'>Vertrieb</t></a>
+                <a href='/sales'><t key='mercator.sales_subsite_name' /></a>
               </li>
             </if>
             <li class='nav-item' param='logged-in-as'>
-              <a to='&current_user'><t key='hobo.actions.account'>Account</t></a>
+              <a to='&current_user'><t key='mercator.account' /></a>
             </li>
             <li class='nav-item' param='account'>
-              <a action='account' to='&current_user'><t key='hobo.actions.password'>Password</t></a>
+              <a action='account' to='&current_user'><t key='mercator.password' /></a>
             </li>
             <li class='nav-item' param='orders'>
               <%= link_to t('attributes.orders'), user_orders_path(current_user) %>
             </li>
             <if test="Rails.application.config.erp == 'mesonic'">
               <li class='nav-item' param='orders'>
-                <%= link_to "Lieferungen und Zahlungen", invoices_shipments_payments_users_path %>
+                <%= link_to t("mercator.deliveries_and_payments"), invoices_shipments_payments_users_path %>
               </li>
             </if>
             <li class='nav-item' param='log-out'>
-              <a href='&logout_url'><t key='hobo.actions.logout'>Logout</t></a>
+              <a href='&logout_url'><t key='hobo.actions.logout' /></a>
             </li>
             <li class='nav-item' param='log-out'>
-              <a href='&user_switch_path'><t key='hobo.actions.switch'>Switch User</t></a>
+              <a href='&user_switch_path'><t key='mercator.switch_user' /></a>
             </li>
           </ul>
 
         </li>
       </if>
       <else>
-        <li class='nav-item' param='log-in'><a href='&login_url'><t key='hobo.actions.login'>Log in</t></a></li>
-        <li class='nav-item' param='sign-up' if='&signup_url'><a href='&signup_url'><t key='hobo.actions.signup'>Sign up</t></a></li>
+        <li class='nav-item' param='log-in'><a href='&login_url'><t key='hobo.actions.login'/></a></li>
+        <li class='nav-item' param='sign-up' if='&signup_url'><a href='&signup_url'><t key='hobo.actions.signup' /></a></li>
       </else>
     </ul>
   </do>
