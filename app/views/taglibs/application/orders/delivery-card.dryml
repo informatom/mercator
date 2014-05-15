@@ -1,5 +1,5 @@
 <def tag="delivery-card" attrs="editable">
-  <h3>Lieferart</h3>
+  <h3><t key="activerecord.attributes.order.shipping_method" /></h3>
   <if test="&editable">
     <div class="well">
       <if test="&this.shipping_method">
@@ -8,10 +8,10 @@
             <t key="activerecord.attributes.order.lifecycle.transitions.#{this.shipping_method}" />
           </span>
         </p>
-        <p>Lieferart wechseln:</p>
+        <p><t key="mercator.shipping_method.change" />:</p>
       </if>
       <else>
-        Bitte wählen Sie eine Lieferart:
+        <t key="mercator.shipping_method.select" />:
       </else>
       <p>
         <my-transition-link transition="pickup_shipment" class="btn-info" method="put"/>

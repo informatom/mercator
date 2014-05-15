@@ -2,8 +2,9 @@
 
 <def tag="billing-address-card" for="Order" attrs="editable">
   <if test="&this.billing_name">
-    <h3>Rechnungsadresse</h3>
-    <p class="well"><strong><view:billing_name/></strong><br/>
+    <h3><t key="activerecord.models.billing_address.one" /></h3>
+    <p class="well">
+      <strong><view:billing-name/></strong><br/>
       <if:billing-detail><view/><br/></if>
       <if:billing-c-o><view/><br/></if>
       <view:billing-street/><br/>

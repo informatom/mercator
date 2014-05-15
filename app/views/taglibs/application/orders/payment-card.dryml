@@ -1,5 +1,5 @@
 <def tag="payment-card" attrs="editable">
-  <h3>Zahlungsart</h3>
+  <h3><t key="activerecord.attributes.order.billing_method" /></h3>
   <if test="&editable">
     <div class="well">
       <if test="&this.billing_method">
@@ -8,10 +8,10 @@
             <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
           </span>
         </p>
-        <p>Zahlungsart ändern:</p>
+        <p><t key="mercator.billing_method.change" />:</p>
       </if>
       <else>
-        Bitte wählen Sie eine Zahlungsart:<br/>
+        <t key="mercator.billing_method.select" />:<br/>
       </else>
       <p>
         <my-transition-link transition="cash_payment" class="btn-info" method="put"/>

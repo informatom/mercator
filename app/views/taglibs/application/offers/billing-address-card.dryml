@@ -1,5 +1,5 @@
 <def tag="billing-address-card" for="Offer">
-  <h3>Rechnungsadresse</h3>
+  <h3><t key="activerecord.models.billing_address.one" /></h3>
   <div class="well">
     <strong><view:billing-name/></strong><br/>
     <view:billing-detail/><br/>

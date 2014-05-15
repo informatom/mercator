@@ -35,10 +35,10 @@
           </div>
           <div class="span4">
             <div part="complete">
-              <strong>Gültig bis:</strong>
+              <strong><t key='mercator.valid_to'/>:</strong>
               <view:valid-until class="label label-warning"/>
               <br/><br/>
-              <strong>Komplettangebot:</strong>
+              <strong><t key='activerecord.attributes.offer.complete'/>:</strong>
               <view:complete class="label label-info"/>
               <br/><br/>
             </div>
@@ -49,13 +49,13 @@
           <table class="table well table-striped">
             <thead>
               <tr>
-                <th>Position</th>
-                <th>Photo</th>
-                <th><div class="text-right">Menge</div></th>
-                <th>Artikelnummer</th>
-                <th>Beschreibung</th>
-                <th><div class="text-right">Stückpreis</div></th>
-                <th><div class="text-right">Preis</div></th>
+                <th><t key='activerecord.attributes.offer.position'/></th>
+                <th><t key='attributes.photo'/></th>
+                <th><div class="text-right"><t key='attributes.amount'/></div></th>
+                <th><t key='attributes.product_number'/></th>
+                <th><t key='attributes.description'/></th>
+                <th><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
+                <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
                 <th></th>
               </tr>
             </thead>
@@ -68,12 +68,12 @@
                   <td><view:product-number/></td>
                   <td>
                     <view:description-de/><br/>
-                    <em>Lieferzeit:</em> <view:delivery-time/>
+                    <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
                   </td>
                   <td>
                     <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
                     <if test="&this.discount_abs != 0">
-                      <div class="text-right"> - <view:discount-abs/>% Rabatt </div>
+                      <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
                     </if>
                   </td>
                   <td>
@@ -96,11 +96,13 @@
 
           <div class="row pull-right">
             <my-transition-link transition="copy" class="btn-success"/>
-            <if test="&this.state == 'in_progress'"> <p class="text-info">Dieses Angebot ist in Bearbeitung und kann daher noch nicht angenommen werden.</p> </if>
-            <if test="&this.state == 'pending_approval'"> <p class="text-info">Dieses Angebot wartet auf Freigabe und kann daher noch nicht angenommen werden.</p> </if>
-            <if test="&this.state == 'invalid'"> <p class="text-info">Dieses Angebot ist ungültig und kann daher nicht angenommen werden.</p> </if>
-            <if test="&Date.today > this.valid_until"> <p class="text-info">Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.</p> </if>
-            <if test="&this.state == 'valid'"><a action="show" format="pdf" class="btn btn-primary" target="new">PDF Download</a></if>
+            <if test="&this.state == 'in_progress'"> <p class="text-info"><t key='mercator.messages.offer.in_progress'/></p> </if>
+            <if test="&this.state == 'pending_approval'"> <p class="text-info"><t key='mercator.messages.offer.pending_approval'/></p> </if>
+            <if test="&this.state == 'invalid'"> <p class="text-info"><t key='mercator.messages.offer.invalid'/></p> </if>
+            <if test="&Date.today > this.valid_until"> <p class="text-info"><t key='mercator.messages.offer.expired'/></p> </if>
+            <if test="&this.state == 'valid'">
+              <a action="show" format="pdf" class="btn btn-primary" target="new">PDF <t key='activerecord.models.download.one'/></a>
+            </if>
           </div>
 
         </div>

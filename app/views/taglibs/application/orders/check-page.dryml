@@ -2,10 +2,10 @@
   <old-check-page merge>
     <content-header: replace>
       <if test="&this.state == 'basket'">
-        <h2>Warenkorb vom <view:created-at/></h2>
+        <h2><t key="attributes.basket" /> <t key="mercator.from" /> <view:created-at/></h2>
       </if>
       <else>
-        <h2>Bestellung vom <view:created-at/></h2>
+        <h2><t key="activerecord.models.order.one" /> <t key="mercator.from" /> <view:created-at/></h2>
       </else>
     </content-header>
   </old-check-page>

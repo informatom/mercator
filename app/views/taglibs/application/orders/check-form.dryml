@@ -10,7 +10,12 @@
       <table class="table well table-striped">
         <thead>
           <tr>
-            <th></th> <th>Menge</th><th>Artikelnummer</th> <th>Beschreibung</th> <th>Stückpreis</th> <th>Preis</th>
+            <th></th>
+            <th><t key='attributes.amount'/></th>
+            <th><t key='attributes.product_number'/></th>
+            <th><t key='attributes.description'/></th>
+            <th><t key='activerecord.attributes.lineitem.product_price'/></th>
+            <th><t key='activerecord.attributes.lineitem.value'/></th>
           </tr>
         </thead>
         <tbody>
@@ -21,7 +26,7 @@
               <td><view:product-number/></td>
               <td>
                 <view:description/>
-                <if:delivery-time> <br/> <em>Lieferzeit:</em> <view/> </if>
+                <if:delivery-time> <br/> <em><t key='attributes.delivery_time'/>:</em> <view/> </if>
               </td>
               <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
               <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
@@ -38,7 +43,7 @@
     <actions: replace>
       <div param="actions">
         <my-transition-link transition="place" method="put" class="btn-danger"/>
-        oder <a with="&this">Zurück</a>
+        <t key='hobo.support.or'/> <a with="&this"><t key='mercator.back'/></a>
       </div>
     </actions:>
   </old-check-form>
