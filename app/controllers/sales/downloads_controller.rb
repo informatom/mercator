@@ -13,5 +13,4 @@ class Sales::DownloadsController < Sales::SalesSiteController
     PrivatePub.publish_to("/conversations/"+ Download.find(params[:id]).conversation.id.to_s, type: "downloads")
     hobo_update
   end
-
 end

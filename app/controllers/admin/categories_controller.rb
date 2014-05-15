@@ -36,6 +36,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
   end
 
 protected
+
   def parse_categories(categories_array, parent)
     categories_array.each_with_index do |category_hash, position|
       category = Category.find(category_hash["id"])

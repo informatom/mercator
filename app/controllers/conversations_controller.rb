@@ -40,7 +40,7 @@ class ConversationsController < ApplicationController
                        consultant: consultant)
       self.this.messages << Message.new(sender: consultant,
                                         reciever: current_user,
-                                        content: "Guten Tag! Mein Name ist " + consultant.name + "Wie kann ich Ihnen helfen?")
+                                        content: I18n.t('mercator.salutation', name: consultant.name)
     end
   end
 
@@ -67,5 +67,4 @@ class ConversationsController < ApplicationController
     @this = @products = @conversation.products.paginate(:page => 1, :per_page => @conversation.products.count)
     hobo_index
   end
-
 end

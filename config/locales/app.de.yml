@@ -460,4 +460,40 @@ de:
       medium_version: Mittelgroße Version
       large_version: Große Version
     from: vom
+    messages:
+      lineitem:
+        delete:
+          success: "Die Bestellposition wurde gelöscht."
+        transfer:
+          success: "Die Bestellposition wurde in den Warenkorb übernommen."
+        increase_amount:
+          success: "Die Stückzahl wurde um 1 erhöht."
+        decrease_amount:
+          success: "Die Stückzahl wurde um 1 erniedrigt."
+      offer:
+        copy_to_offer:
+          success: "Das Angebot wurde in den Warenkorb übernommen."
+        copy_to_order:
+          success: "Das Angebot wurde in eine neue Bestellung kopiert."
+      offeritem:
+        transfer:
+          success: "Die Angebotsposition wurde in den Warenkorb übernommen."
+        delete_from_offer:
+          success: "Die Angebotsposition wurde gelöscht."
+      order:
+        archive: "Der geparkte Warenkorb wurde archiviert."
+          success:
+        place:
+          success: "Ihre Bestellung wurde angenommen."
+      product:
+        add_to_basket:
+          success: "Das Produkt wurde zum Warenkorb hinzugefügt."
+        compare:
+          success: "Das Produkt wurde zur Vergleichsliste hinzugefügt."
+        dont_compare:
+          success: "Das Produkt wurde aus der Vergleichsliste entfernt."
+      user:
+        accept_gtc:
+          error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
     on_request: Auf Anfrage
+    salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"

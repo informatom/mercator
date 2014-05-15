@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def do_add_to_basket
     do_transition_action :add_to_basket do
-      flash[:success] = "Das Produkt wurde zum Warenkorb hinzugefügt."
+      flash[:success] = I18n.t("mercator.messages.product.add_to_basket.success")
       flash[:notice] = nil
       PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
       redirect_to session[:return_to]
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   def do_compare
     do_transition_action :compare do
       session[:compared] << this.id
-      flash[:success] = "Das Produkt wurde zur Vergleichsliste hinzugefügt."
+      flash[:success] = I18n.t("mercator.messages.product.compare.success")
       flash[:notice] = nil
       redirect_to session[:return_to]
     end
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   def do_dont_compare
     do_transition_action :dont_compare do
       session[:compared].delete(this.id)
-      flash[:success] = "Das Produkt wurde aus der Vergleichsliste entfernt."
+      flash[:success] = I18n.t("mercator.messages.product.dont_compare.success")
       flash[:notice] = nil
       redirect_to session[:return_to]
     end

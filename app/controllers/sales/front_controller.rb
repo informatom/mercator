@@ -20,5 +20,4 @@ class Sales::FrontController < Sales::SalesSiteController
       site_search(params[:query])
     end
   end
-
 end

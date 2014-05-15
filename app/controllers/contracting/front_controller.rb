@@ -15,5 +15,4 @@ class Contracting::FrontController < Contracting::ContractingSiteController
       site_search(params[:query])
     end
   end
-
 end

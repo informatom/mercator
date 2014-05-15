@@ -15,5 +15,4 @@ class Contracting::TonersController < ApplicationController
       puts @toner.errors.first
     end
   end
-
 end

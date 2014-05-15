@@ -1,7 +1,6 @@
 class Sales::SalesSiteController < ApplicationController
 
   hobo_controller
-
   before_filter :sales_required
 
   private

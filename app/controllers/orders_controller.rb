@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 
   def do_archive_parked_basket
     do_transition_action :archive_parked_basket do
-      flash[:success] = "Der geparkte Warenkorb wurde archiviert."
+      flash[:success] = I18n.t("mercator.messages.order.archive.success")
       flash[:notice] = nil
       redirect_to session[:return_to]
     end
@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def do_place
     do_transition_action :place do
-      flash[:success] = "Ihre Bestellung wurde angenommen."
+      flash[:success] = I18n.t("mercator.messages.order.place.success")
       flash[:notice] = nil
 
       Order.create(user: current_user) # and an new basket ...

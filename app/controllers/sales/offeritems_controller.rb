@@ -26,7 +26,7 @@ class Sales::OfferitemsController < Sales::SalesSiteController
 
   def do_delete_from_offer
     do_transition_action :delete_from_offer do
-      flash[:success] = "Die Angebotsposition wurde gelöscht."
+      flash[:success] = I18n.t("mercator.messages.offeritem.delete_from_offer.success")
       flash[:notice] = nil
       PrivatePub.publish_to("/offers/"+ @this.offer_id.to_s, type: "all")
       redirect_to session[:return_to]

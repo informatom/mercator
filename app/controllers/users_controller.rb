@@ -95,7 +95,7 @@ class UsersController < ApplicationController
           redirect_to order_path(params[:user][:order_id])
         end
       else
-        flash[:error] = "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+        flash[:error] = I18n.t("mercator.messages.user.accept_gtc.error")
         if params[:user][:order_id]
           redirect_to action: :accept_gtc, order_id: params[:user][:order_id]
         else

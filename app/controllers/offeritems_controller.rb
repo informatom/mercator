@@ -23,7 +23,7 @@ class OfferitemsController < ApplicationController
                                                      unit:           this.unit,
                                                      delivery_time:  this.delivery_time)
       if @lineitem.save
-        flash[:success] = "Die Angebotsposition wurde in den Warenkorb übernommen."
+        flash[:success] = I18n.t("mercator.messages.offeritem.transfer.success")
         flash[:notice] = nil
       end
       PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")

@@ -50,7 +50,7 @@ class OffersController < ApplicationController
                                                                 unit:           offeritem.unit,
                                                                 delivery_time:  offeritem.delivery_time)
           lineitem.save
-          flash[:success] = "Das Angebot wurde in eine neue Bestellung kopiert."
+          flash[:success] = I18n.t("mercator.messages.offer.copy_to_order.success")
           flash[:notice] = nil
           PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
           redirect_to order_path(order)
@@ -73,7 +73,7 @@ class OffersController < ApplicationController
                                                         unit:           offeritem.unit,
                                                         delivery_time:  offeritem.delivery_time)
           lineitem.save
-          flash[:success] = "Das Angebot wurde in den Warenkorb übernommen."
+          flash[:success] = I18n.t("mercator.messages.offer.copy_to_offer.success")
           flash[:notice] = nil
           PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
           redirect_to session[:return_to]

@@ -15,5 +15,4 @@ class Admin::FrontController < Admin::AdminSiteController
       site_search(params[:query])
     end
   end
-
 end
