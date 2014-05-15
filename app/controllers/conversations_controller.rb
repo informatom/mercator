@@ -40,7 +40,7 @@ class ConversationsController < ApplicationController
                        consultant: consultant)
       self.this.messages << Message.new(sender: consultant,
                                         reciever: current_user,
-                                        content: I18n.t('mercator.salutation', name: consultant.name)
+                                        content: I18n.t('mercator.salutation', name: consultant.name))
     end
   end
 

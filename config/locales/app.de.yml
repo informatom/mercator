@@ -453,6 +453,9 @@ de:
       add: Zwischenspeichern
 
   mercator:
+    admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
+    app_name: Mercator
+    contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -481,8 +484,8 @@ de:
         delete_from_offer:
           success: "Die Angebotsposition wurde gelöscht."
       order:
-        archive: "Der geparkte Warenkorb wurde archiviert."
-          success:
+        archive:
+          success: "Der geparkte Warenkorb wurde archiviert."
         place:
           success: "Ihre Bestellung wurde angenommen."
       product:
@@ -496,4 +499,10 @@ de:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
     on_request: Auf Anfrage
+    restart_application: "Applikation neu starten"
+    restarting: "Neustart"
     salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
+    are_you_sure: "Sind Sie Sicher?"
+    use_navigation: Verwenden Sie die Links im Menü zur Navigation.
+
+# <t key='mercator.'/>

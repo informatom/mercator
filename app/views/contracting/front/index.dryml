@@ -3,11 +3,11 @@
   <body: class="front-page"/>
   <content:>
     <header class="content-header hero-unit">
-      <h1>Mercator Contracting</h1>
+      <h1><t key='mercator.app_name'/> <t key='mercator.contracting_subsite_name'/></h1>
       <section class="welcome-message">
-        <h3>Die Seite zur Verwaltung der Verträge im Mercator Guided selling System</h3>
+        <h3><t key='mercator.contracting_subheading'/></h3>
         <ul>
-          <li>Verwenden Sie die Links im Menü zur Navigation</li>
+          <li><t key='mercator.use_navigation'/></li>
         </ul>
       </section>
     </header>
@@ -15,5 +15,4 @@
     <section class="content-body">
     </section>
   </content:>
-
 </page>

@@ -1,7 +1,7 @@
 <index-page>
   <prepend-content-body:>
-    <%= button_to "Restart Application", restart_admin_page_templates_path,
-                  method: :post, data: { confirm: 'Sind Sie Sicher?', disable_with: 'Restarting...' },
+    <%= button_to t("mercator.restart_application"), restart_admin_page_templates_path,
+                  method: :post, data: { confirm: t('mercator.are_you_sure'), disable_with: t('mercator.restarting') + ' ...' },
                   class: "btn btn-danger" %>
   </prepend-content-body:>
 

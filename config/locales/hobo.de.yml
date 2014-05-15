@@ -191,7 +191,7 @@ de:
       guest: "Gast"
 
     admin:
-      subsite_name: "Admin"
+      subsite_name: "Administration"
       invite_new_user: "Neuen Benutzer einladen"
 
     subsite:

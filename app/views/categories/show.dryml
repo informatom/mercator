@@ -5,12 +5,13 @@
 
   <content-header:>
     <card>
-      <description:><view:long-description/></description>
+      <description:>
+        <view:long-description/>
+      </description>
     </card>
   </content-header>
 
   <content-body:>
-
     <filter-nav/>
 
     <%= this.children.active.in_groups_of(3) do |group| %>
@@ -28,7 +29,5 @@
           </div>
       </div>
     <% end %>
-
   </content-body:>
-
 </show-page>

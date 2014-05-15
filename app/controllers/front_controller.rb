@@ -23,8 +23,8 @@ class FrontController < ApplicationController
                                  fields: [:title_de, :title_en, :number, :description_de, :description_en, :long_description_de, :long_description_en])
                          .results.uniq
 
-      @search_results = [I18n.t("activerecord.models.category.other"] + @categories +
-                        [I18n.t("activerecord.models.product.other"] + @products
+      @search_results = [I18n.t("activerecord.models.category.other")] + @categories +
+                        [I18n.t("activerecord.models.product.other")] + @products
       hobo_ajax_response
     end
   end
