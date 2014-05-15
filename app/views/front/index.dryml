@@ -4,7 +4,7 @@
 
   <content:>
     <header class="content-header hero-unit">
-      <h1>Willkommen bei <app-name/></h1>
+      <h1><t key='mercator.welcome_at'/> <app-name/></h1>
       <section class="welcome-message">
         <h3>... hier entsteht das Guided Selling System aus Österreich</h3>
         <ul>
@@ -14,7 +14,7 @@
         </ul>
 
         <% if User.count == 0 -%>
-          <h3 style="margin-top: 20px;">There are no user accounts - please provide the details of the site administrator</h3>
+          <h3 style="margin-top: 20px;"><t key='mercator.user_accounts_missing'/></h3>
           <form with="&this || User.new" without-cancel>
             <field-list: fields="name, email_address, password, password_confirmation"/>
             <submit: label="Register Administrator"/>
@@ -23,9 +23,7 @@
 
       </section>
     </header>
-
     <section class="content-body">
     </section>
   </content:>
-
 </page>

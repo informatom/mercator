@@ -454,7 +454,7 @@ de:
 
   mercator:
     admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
-    app_name: Mercator
+    contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
     images:
       original_version: Originalversion
@@ -504,5 +504,7 @@ de:
     salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
     are_you_sure: "Sind Sie Sicher?"
     use_navigation: Verwenden Sie die Links im Menü zur Navigation.
+    user_accounts_missing: Es gibt keine Benuzterkonten - legen Sie nun den ersten Administrationsaccount an.
+    welcome_at: Willkommen bei
 
 # <t key='mercator.'/>

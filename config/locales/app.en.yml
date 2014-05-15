@@ -18,3 +18,6 @@ en:
     attribute_help:
       user:
         email_address: We will never share your address with third parties
+
+  mercator:
+    user_accounts_missing: There are no user accounts - please provide the details of the site administrator
