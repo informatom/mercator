@@ -301,102 +301,102 @@ de:
             valid: Valid
           transitions:
             add_position: Add Position
-            submit: Freigabe anfordern
-            place: Angebot legen
-            copy: Angebot in eine Bestellung kopieren
-            devalidate: Ungültig machen
-            revise: Bearbeiten
-        position: Position
+            submit: Request Clearing
+            place: Place Offer
+            copy: Copy Offer to Order
+            devalidate: Devalidate
+            revise: Revise
+        position: Item
       offeritem:
         lifecycle:
           transitions:
-            delete_from_offer: "Position löschen"
-            copy: in Warenkorb kopieren
+            delete_from_offer: Delete Item
+            copy: Copy to Basket
       order:
-        billing_method: Zahlungsart
-        billing_name: Name (Rechnung)
-        billing_detail: Details (Rechnung)
-        billing_street: Straße (Rechnung)
-        billing_postalcode: Postleitzahl (Rechnung)
-        billing_city: Stadt (Rechnung)
-        billing_country: Land (Rechnung)
-        position: Position
-        shipping_method: Lieferart
-        shipping_name: Name (Lieferung)
-        shipping_detail: Details (Lieferung)
-        shipping_street: Straße (Lieferung)
-        shipping_postalcode: Postleitzahl (Lieferung)
-        shipping_city: Stadt (Lieferung)
-        shipping_country: Land (Lieferung)
+        billing_method: Billing Method
+        billing_name: Billing Name
+        billing_detail: Billing Detail
+        billing_street: Billing Street
+        billing_postalcode: Billing Postal Code
+        billing_city: Billing City
+        billing_country: Billing Country
+        position: Item
+        shipping_method: Shipping Method
+        shipping_name: Shipping Name
+        shipping_detail: Shipping Detail
+        shipping_street: Shipping Street
+        shipping_postalcode: Shipping Postal Code
+        shipping_city: Shipping City
+        shipping_country: Shipping Country
         lifecycle:
           transitions:
-            cash_payment: Barzahlung
-            atm_payment: Bankomat
-            pre_payment: Vorkasse
-            e_payment: Online
-            pickup_shipment: Abholung
-            parcel_service_shipment: Paketdienst
-            archive_parked_basket: Geparkten Warenkorb archivieren
-            place: Jetzt_bestellen
-            check: Bestellung kontrollieren
-            delete_all_positions: alle Positionen löschen
+            cash_payment: Cash Payment
+            atm_payment: ATM Payment
+            pre_payment: Prepayment
+            e_payment: E-Payment
+            pickup_shipment: Pickup (no Shipment)
+            parcel_service_shipment: Shipment by Parcel Service
+            archive_parked_basket: Archive Parked Basket
+            place: Order Now
+            check: Check Order
+            delete_all_positions: Delete all Items
       pageelement/usage_types:
-        ContentElement: Textbausteine
+        ContentElement: Content Elements
       product:
-        name: Artikelbezeichnung
-        number: Artikelnummer
+        name: Product Name
+        number: Product Number
         lifecycle:
           transitions:
-            add_to_basket: In den Warenkorb
-            compare: Produkt vergleichen
-            dont_compare: Produkt entfernen
-            activate: Aktivieren
-            deactivate: Deaktivieren
-            reactivate: Reaktivieren
+            add_to_basket: Add to Basket
+            compare: Compare Product
+            dont_compare: Remove Product
+            activate: Activate Product
+            deactivate: Deactivate Product
+            reactivate: Reactivate Product
       property/datatypes:
-        textual: textartig
-        numeric: numerisch
-        flag: wahr/falsch
+        textual: textual
+        numeric: numeric
+        flag: yes/no
       user:
         lifecycle:
           transitions:
-            activate: Account aktivieren
-            accept_gtc: AGBs bestätigen
-            deactivate: Deaktivieren
-            reactivate: Aktivieren
+            activate: Activate Account
+            accept_gtc: Accept GTCs
+            deactivate: Deactivate
+            reactivate: Reactivate
       webpage:
         lifecycle:
           transitions:
-            archive: Archivieren
-            hide: Verstecken
-            publish: Veröffentlichen
-            unhide: Zeigen
+            archive: Archive
+            hide: Hide
+            publish: Publish
+            unhide: Unhide
     attribute_help:
       address:
-        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
-        detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
-        street: Straße und Hausnummer
+        name: Please enter your full name including title here.
+        detail: "Enter additional information here, such as Department, Building, Staircase, Room Code."
+        street: Street and Number
       billing_address:
-        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
-        detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
-        street: Straße und Hausnummer
-        vat_number: "Auch VAT Nummer, ATU Nummer, ... genannt"
+        name: Please enter your full name including title here.
+        detail: "Enter additional information here, such as Department, Building, Staircase, Room Code."
+        street: Street and Number
+        vat_number: "also called VAT number, ATU number, tax number"
       category:
-        position: Reihung innerhalb der Überkategorie im Kategorienbaum
-        updated: Kategoriebaum erfolgreich aktualisiert!
-        updating: Kategoriebaum wird aktualisiert
-        update_failed: Kategoriebaum konnte nicht aktualisiert werden!
+        position: Position within Parent Category in the Category Tree
+        updated: Category tree updated successfully!
+        updating: Category tree updating ...
+        update_failed: Category tree update failed!
       constant:
-        key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
-        markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
+        key: "Create only keys that are actually used by the application."
+        markup: "For HTML input, yout are supported by an WYSIWYG editor, please use the editors code view for markdown."
       conversation:
-        name: "Dient auch dazu, dass sie später diese Konversation wiederfinden können."
+        name: "For your personal reference to this conversation in future times."
       country:
-        code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
+        code: "ISO country code 3166 ALPHA2 according to http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
       inventory:
-        number: "Geben Sie die Artikelnummer auch dann ein, wenn Sie nicht von der Artikelnummer des Artikels abweicht."
-        unit: "Verwenden Sie einheitliche Einheiten, z.B. Stk., Std., Pau."
-        weight: "Gewicht in Kilogramm, z.B. 5.3"
+        number: "Please enter article number here even when it does not deviate from the article number of the products"
+        unit: "Use consistent units across all products, e.g. pc., h, unit"
+        weight: "Weight in kilogram, e.g. 5.3"
       lineitem:
         position: Position zur Reihung innerhalb der Bestellung
         price: Netto (ohne Steuern)

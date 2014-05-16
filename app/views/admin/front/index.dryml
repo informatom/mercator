@@ -1,4 +1,4 @@
-<page title="&t(mercator.admin_subsite_name)">
+<page title="&t('mercator.admin_subsite_name')">
 
   <body: class="front-page"/>
 
