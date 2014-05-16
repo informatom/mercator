@@ -7,7 +7,7 @@
 <def tag="card" for="Download">
   <card class="download" param="default" merge>
     <header: param>
-      <h4 param="heading"> 
+      <h4 param="heading">
         <click-editor-innards:name>
             <view: replace>
               <%= fa_icon "edit" %> <view restore/>
@@ -19,14 +19,14 @@
       <div class="row">
         <div class="span4">
           <if:photo> <a href="&this.url" target="new"><image src="&this.url(:small)" /></a> </if:photo>
-          <if:document>Download: <a href="&this.url" target="new"><view:original-filename/></a> </if:document>
+          <if:document><t key="activerecord.models.download.one" />: <a href="&this.url" target="new"><view:original-filename/></a> </if:document>
         </div>
 
         <div class="span3">
           <delete-button label="X" param class="btn-danger" />
           <if test="&this.document">
-            <p>Größe: <this.document-file-size/><br/>
-            Datum: <view:document-updated-at/></p>
+            <p><t key="mercator.size" />: <this.document-file-size/><br/>
+            <t key="attributes.updated_at" />: <view:document-updated-at/></p>
           </if>
           <if test="&this.photo">
             <p><%= number_to_human_size(this.photo_file_size) %><br/>
