@@ -130,8 +130,7 @@ de:
         success: "%{model} wurde gelöscht"
       signup:
         success: "Vielen Dank für Ihre Anmeldung!"
-        must_activate: "Sie müssen Ihr Konto erst aktivieren, bevor Sie sich damit anmelden können.
-                        Bitte schauen Sie in Ihr Postfach."
+        must_activate: "Sie müssen Ihr Konto erst aktivieren, bevor Sie sich damit anmelden können. Bitte schauen Sie in Ihr Postfach."
       login:
         success: "Sie haben sich angemeldet."
         error: "You did not provide a valid %{login} and Password!"
@@ -140,8 +139,7 @@ de:
       permission_denied: "Zugriff verweigert"
       not_found: "Die angeforderte Seite konnte nicht gefunden werden."
       unauthenticated: "Sie konnten nicht Authentifiziert werden"
-      validate_password: "muss mindestens 6 Buchstaben lang sein und darf nicht nur aus
-                          Kleinbuchstaben bestehen"
+      validate_password: "muss mindestens 6 Buchstaben lang sein und darf nicht nur aus Kleinbuchstaben bestehen"
       current_password_is_not_correct: "ist nicht korrekt"
       you_are_site_admin: "Sie sind jetzt der Administrator"
       you_signed_up: "Sie haben sich angemeldet"

@@ -1,23 +1,614 @@
-en:
+de:
   attributes:
+    actions: Actions
+    administator: Administrator
+    Address: Address
+    addresses: Adresses
+    amount: Amount
+    ancestry: Ancestry String
+    basket: Basket
+    baskets: Baskets
+    billing_country: Billing Country
+    billing_c_o: C/O
+    billing_city: Billing City
+    billing_detail: Billing Detail
+    billing_name: Billing Name
+    billing_postalcode: Billing Postal Code
+    billing_street: Billing Street
+    BillingAddress: Billing Address
+    billing_addresses: Billing Addresses
+    Category: Category
+    category: Category
+    category_tree: Category Tree
+    categories: Categories
+    Categorization: Categorization
+    categorizations: Categorizations
+    category: Categorization
+    conversation_id: Conversation ID
+    conversations: Conversations
+    charge: Batch / Lot
+    city: City
+    CMS: CMS
+    code: Code
+    c_o: C/O
+    comment: Comment
+    Constant: Constant
+    consultant: Consultant
+    consultant_id: Consultant ID
+    content: Content
+    content_element: Content Element
+    Conversation: Conversation
+    conversation: conversation
+    country: Country
+    Country: Country
     created_at: Created at
-    updated_at: Updated at
+    current_password: Current Password
+    customer: Customer
+    delivery_time: Delivery Time
+    description: description
+    Detail: Detail
+    discount: Discount
+    discount-abs: "Discount absolute in EUR"
+    discount-rel: "Discount relative in %"
+    document: Document
+    document_file_name: Document File Name
+    document_content_type: Document Content Type
+    document_file_size: Document File Size
+    document_updated_at: Updated at
+    downloads: Downloads
+    email_address: Email Address
+    inventories: Inventories
+    Inventory: Inventory
+    key: Key
+    Lineitem: Order Item
+    lineitems: Order Items
+    login_count: Login Count
+    long_description: Long Description
+    markup: Markup Format
+    messages: Messages
+    miscellaneous: Miscellaneous
+    name: Name
+    number: Number
+    offers: Offers
+    order: Order
+    orders: Orders
+    webpage: Webpage
+    PageTemplate: Page Template
+    page_content_element_assignments: Page ↔ Content Element Assignments
+    page_template: Page Template
+    page_tree: Site Structure
+    parent: Parent Element
+    password_confirmation: Password Confirmation
+    photo: Photo
+    photo_file_name: Photo File Name
+    photo_content_type: Photo Content Type
+    photo_file_size: Photo File Size
+    photo_updated_at: Photo Updated at
+    position: Position
+    postalcode: Postal Code
+    Price: Price
+    prices: Prices
+    Product: Product
+    product: Product
+    product_number: Product Number
+    productrelations: Product Relations
+    products: Products
+    Property: Property
+    properties: Properties
+    PropertyGroup: Property Group
+    property_group: Property Group
+    property_groups: Property Groups
+    recommendations: Empfehlungen
+    recommended_product: empfohlenes Produkt
+    recommended_products: empfohlene Produkte
+    reason: Grund
+    reciever: Empfänger
+    related_product: verwandtes Produkt
+    related_products: verwandte Produkte
+    runtime: Laufzeit
+    sales: Vertriebsmitarbeiter
+    sales_manager: Vertriebsleiter
+    scale_from: Staffel ab
+    scale_to: Staffel bis
+    sender: Absender
+    shipping_country: Lieferadresse / Land
+    shipping_c_o: zu Handen
+    shipping_city: Lieferadresse / Stadt
+    shipping_detail: Lieferadresse / Details
+    shipping_method: Versandart
+    shipping_name: Lieferadresse / Name
+    shipping_postalcode: Lieferadresse / Postleitzahl
+    shipping_street: Lieferadresse / Straße
+    Sites: Bereiche
+    startdate: Startdatum
+    state: Status
+    street: Straße
+    suggestions: Produktvorschläge
+    supply: Zubehör
+    supplyrelations: Zubehörzuordnungen
+    supplies: Zubehör
+    title: Titel
+    unit: Einheit
+    upload: Hochladen
+    usage: Verwendung
+    usage_id: Element
+    used_as: Verwendet als
+    usage_type: Verwendungsart
+    user_id: Benutzer
+    User: Benutzer
+    updated_at: Aktualisiert
+    valid_from: Gültig ab
+    valid_to: Gültig bis
+    valid_until: Gültig bis
+    value: Wert
+    vat_number: UID-Nummer
+    vat: MwSt.
+    version_of: Version vom
+    warranty: Garantie
+    weight: Gewicht
 
   activerecord:
     models:
+      address:
+        one: Lieferadresse
+        other: Lieferadressen
+      billing_address:
+        one: Rechnungsadresse
+        other: Rechnungsadresse
+        actions:
+          index: Rechnungsadresse bearbeiten
+      categorization:
+        one: Kategorisierung
+        other: Kategorisierungen
+      category:
+        one: Kategorie
+        other: Kategorien
+      constant:
+        one: Konstante
+        other: Konstanten
+      content_element:
+        one: Baustein
+        other: Bausteine
+      contract:
+        one: Vertrag
+        other: Verträge
+      conversation:
+        one: Konversation
+        other: Konversationen
+      country:
+        one: Land
+        other: Länder
+      customer:
+        one: Kunde
+        other: Kunden
+      download:
+        one: Download
+        other: Downloads
+      feedback:
+        one: Feedback
+        other: Feedback
+      gtc:
+        one: AGB
+        other: AGBs
+      inventory:
+        one: Bestand
+        other: Bestände
+      lineitem:
+        one: Bestellposition
+        other: Bestellpositionen
+      message:
+        one: Nachricht
+        other: Nachrichten
+      metadatum:
+        one: Meta-Datensatz
+        other: Meta-Datensätza
+      offer:
+        one: Angebot
+        other: Angebote
+      offeritem:
+        one: Angobotsposition
+        other: Angobotspositionen
+      order:
+        one: Bestellung
+        other: Bestellungen
+      page_content_element_assignment:
+        one: Element der Webseite
+        other: Elemente der Webseiten
+      page_template:
+        one: Websitevorlage
+        other: Websitevorlagen
+      price:
+        one: Preis
+        other: Preise
+      product:
+        one: Artikel
+        other: Artikel
+      productrelation:
+        one: Artikelzuordnung
+        other: Artikelzuordnungen
+      property:
+        one: Eigenschaft
+        other: Eigenschaften
+      property_group:
+        one: Eigenschaftsgruppe
+        other: Eigenschaftsgruppen
+      recommendation:
+        one: Empfehlung
+        other: Empfehlungen
+      shipping_cost:
+        one: Versandspesen
+        other: Versandspesen
+      suggestion:
+        one: Produktvorschlag
+        other: Produktvorschläge
+      supplyrelation:
+        one: Zubehörzuordnung
+        other: Zubehörzuordnungen
       user:
-        one: User
-        other: Users
+        one: Benutzer
+        other: Benutzer
+      webpage:
+        one: Webseite
+        other: Webseiten
+
     attributes:
+      address:
+        name: Firma
+        detail: Details
+        lifecycle:
+          transitions:
+            use: Lieferadresse verwenden
+            trash: Löschen
+      billing_address:
+        name: Firma
+        detail: Details
+        lifecycle:
+          transitions:
+            use: Rechnungsadresse verwenden
+            trash: Löschen
+      contentelement/markups:
+        html: "HTML-Seite"
+        markdown: "Markdown Seite"
+      conversation:
+        name: "Thema oder Titel"
+        lifecycle:
+          creators:
+            initiate: Konversation starten
+          transitions:
+            feedback: Feedback abgeben
+      inventory:
+        alternative_number: alternative Artikelnummer
+        number: Artikelnummer
+        storage: Lagerort / Filiale
+      lineitem:
+        product_price: Stückpreis
+        value: Positionswert
+        position: Positionsnummer
+        lifecycle:
+          transitions:
+            delete_from_basket: "Position löschen"
+            add_one: "+1"
+            remove_one: "-1"
+            enable_upselling: "Zubehör +"
+            disable_upselling: "Zubehör -"
+            transfer_to_basket: In Warenkorb übernehmen
+      offer:
+        complete: Komplettangebot
+        lifecycle:
+          states:
+            in_progress: in Bearbeitung
+            invalid: ungültig
+            valid: gültig
+          transitions:
+            add_position: Angebotsposition hinzufügen
+            submit: Freigabe anfordern
+            place: Angebot legen
+            copy: Angebot in eine Bestellung kopieren
+            devalidate: Ungültig machen
+            revise: Bearbeiten
+        position: Position
+      offeritem:
+        lifecycle:
+          transitions:
+            delete_from_offer: "Position löschen"
+            copy: in Warenkorb kopieren
+      order:
+        billing_method: Zahlungsart
+        billing_name: Name (Rechnung)
+        billing_detail: Details (Rechnung)
+        billing_street: Straße (Rechnung)
+        billing_postalcode: Postleitzahl (Rechnung)
+        billing_city: Stadt (Rechnung)
+        billing_country: Land (Rechnung)
+        position: Position
+        shipping_method: Lieferart
+        shipping_name: Name (Lieferung)
+        shipping_detail: Details (Lieferung)
+        shipping_street: Straße (Lieferung)
+        shipping_postalcode: Postleitzahl (Lieferung)
+        shipping_city: Stadt (Lieferung)
+        shipping_country: Land (Lieferung)
+        lifecycle:
+          transitions:
+            cash_payment: Barzahlung
+            atm_payment: Bankomat
+            pre_payment: Vorkasse
+            e_payment: Online
+            pickup_shipment: Abholung
+            parcel_service_shipment: Paketdienst
+            archive_parked_basket: Geparkten Warenkorb archivieren
+            place: Jetzt_bestellen
+            check: Bestellung kontrollieren
+            delete_all_positions: alle Positionen löschen
+      pageelement/usage_types:
+        ContentElement: Textbausteine
+      product:
+        name: Artikelbezeichnung
+        number: Artikelnummer
+        lifecycle:
+          transitions:
+            add_to_basket: In den Warenkorb
+            compare: Produkt vergleichen
+            dont_compare: Produkt entfernen
+            activate: Aktivieren
+            deactivate: Deaktivieren
+            reactivate: Reaktivieren
+      property/datatypes:
+        textual: textartig
+        numeric: numerisch
+        flag: wahr/falsch
       user:
-        name: Name
-        password: Password
-        current_password: Current Password
-        password_confirmation: Password Confirmation
-        email_address: Email Address
+        lifecycle:
+          transitions:
+            activate: Account aktivieren
+            accept_gtc: AGBs bestätigen
+            deactivate: Deaktivieren
+            reactivate: Aktivieren
+      webpage:
+        lifecycle:
+          transitions:
+            archive: Archivieren
+            hide: Verstecken
+            publish: Veröffentlichen
+            unhide: Zeigen
     attribute_help:
+      address:
+        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
+        street: Straße und Hausnummer
+      billing_address:
+        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
+        street: Straße und Hausnummer
+        vat_number: "Auch VAT Nummer, ATU Nummer, ... genannt"
+      category:
+        position: Reihung innerhalb der Überkategorie im Kategorienbaum
+        updated: Kategoriebaum erfolgreich aktualisiert!
+        updating: Kategoriebaum wird aktualisiert
+        update_failed: Kategoriebaum konnte nicht aktualisiert werden!
+      constant:
+        key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
+        markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
+      conversation:
+        name: "Dient auch dazu, dass sie später diese Konversation wiederfinden können."
+      country:
+        code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
+      inventory:
+        number: "Geben Sie die Artikelnummer auch dann ein, wenn Sie nicht von der Artikelnummer des Artikels abweicht."
+        unit: "Verwenden Sie einheitliche Einheiten, z.B. Stk., Std., Pau."
+        weight: "Gewicht in Kilogramm, z.B. 5.3"
+      lineitem:
+        position: Position zur Reihung innerhalb der Bestellung
+        price: Netto (ohne Steuern)
+        value: Netto (ohne Steuern)
+        vat: "in Prozent, z.B. 19.5"
+      price:
+        value: Netto (ohne Steuern)
+        vat: "in Prozent, z.B. 19.5"
+        valid_from: "gültig ab 0:00 morgens des angegegbenen Tages"
+        valid_to: "gültig bis 0:00 morgens des angegegbenen Tages"
+        scale_from: "gültig ab inklusive dieser Dezimalzahl, z.B. 0.5"
+        scale_to: "gültig bis exclusive dieser Dezimalzahl, z.B. 9999"
+      product:
+        productrelations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
+        recommendations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
+        supplyrelations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
+      property:
+        name: Achten Sie für übersichtliche Ptoduktvergleiche auf einheitliche Bezeichnungen
+        description_de: "Bitte Beschreibung oder (Wert und Einheit) angeben, z.B. grün"
+        value: "Bitte in Kombination mit dem Einheit-Feld befüllen, z.B. 5"
+        unit_de: "Bitte in Kombination mit dem Wert-Feld befüllen, z.B. kg"
+        position: Dient zur Reihung innerhalb der Eigenschaftsgruppe
+      property_group:
+        position: Dient zur Reihung der Eigenschaftsgruppen eines Produktes
       user:
-        email_address: We will never share your address with third parties
+        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        email_address: We will never share your address with third parties.
+      webpage:
+        updated: Webseitenbaum erfolgreich aktualisiert!
+        updating: Webseitenbaum wird aktualisiert
+        update_failed: Webseitenbaum konnte nicht aktualisiert werden!
+        lifecycle:
+          transitions:
+            archive: Kann jederzeit wieder aktiviert werden
+            hide: Seite wird aus dem Menü ausgeblendet
+            unhide: Webseite wird wieder im menü dargestellt
+  address:
+    actions:
+      enter: Lieferadresse speichern und verwenden
+    enter:
+      heading: Lieferadresse ändern
+  billing_address:
+    actions:
+      enter: Rechnungsadresse speichern und verwenden
+    enter:
+      heading: Rechnungsadresse ändern
+  conversation:
+    initiate:
+      heading: Konversation starten
+    actions:
+      initiate: Konversation starten
+  offer:
+    build:
+      heading: Angebot legen
+    actions:
+      build: Zwischenspeichern
+  offeritem:
+    add:
+      heading: Angebotsposition erstellen
+    actions:
+      add: Zwischenspeichern
 
   mercator:
-    user_accounts_missing: There are no user accounts - please provide the details of the site administrator
+    admin_subsite_name: Administration
+    admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
+    account: Mein Account
+    are_you_sure: "Sind Sie Sicher?"
+    back: Zurück
+    billing_method:
+      change: Zahlungsart wechseln
+      select: Bitte wählen Sie eine Zahlungsart
+    cobrowsing_link: Cobrowsing Link
+    coming_from: aus
+    consumeables: Verbrauchsmaterialien
+    consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
+    conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
+    contracting_subsite_name: Vertragswesen
+    contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    customer_number: Kundennummer
+    delete: Löschen
+    deliveries_and_payments: Lieferungen und Zahlungen
+    delivery_slip_date: Lieferscheindatum
+    delivery_number: Lieferungsnummer
+    excl_vat: excl. Mwst.
+    feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
+    file_and_image_upload: Datei und Bild-Upload
+    file_is_being_processed: Datei wird verarbeitet
+    from: vom
+    frontend_subsite_name: Frontend
+    goto_search: Zur Suche
+    gtc_confirmation_left: "Ich bestätige, die"
+    gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
+    home: Home
+    identifier: Bezeichnung
+    invoice:
+      date: Rechnungsdatum
+      number: Rechnungsnummer
+      one: Rechnung
+      other: Rechnungen
+    images:
+      original_version: Originalversion
+      thumbnail_version: Thumbnail Version
+      small_version: Kleine Version
+      medium_version: Mittelgroße Version
+      large_version: Große Version
+    incl_vat: incl. Mwst.
+    in_all_categories: aller Kategorien
+    in_the_category: in der Kategorie
+    last_x: "Die letzten %{x} "
+    messages:
+      content_element:
+        missing: Hier fehlt der Textbaustein mit dem Namen
+      conversation:
+        no_frames: "Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie können die eingebettete Seite über den folgenden Verweis aufrufen"
+        started: Eine neue Konversation wurde gestartet!
+      lineitem:
+        delete:
+          success: "Die Bestellposition wurde gelöscht."
+        transfer:
+          success: "Die Bestellposition wurde in den Warenkorb übernommen."
+        increase_amount:
+          success: "Die Stückzahl wurde um 1 erhöht."
+        decrease_amount:
+          success: "Die Stückzahl wurde um 1 erniedrigt."
+      offer:
+        copy_to_offer:
+          success: "Das Angebot wurde in den Warenkorb übernommen."
+        copy_to_order:
+          success: "Das Angebot wurde in eine neue Bestellung kopiert."
+        expired: Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.
+        in_progress: Dieses Angebot ist in Bearbeitung und kann daher noch nicht angenommen werden.
+        invalid: Dieses Angebot ist ungültig und kann daher nicht angenommen werden.
+        pending_approval: Dieses Angebot wartet auf Freigabe und kann daher noch nicht angenommen werden.
+      offeritem:
+        transfer:
+          success: "Die Angebotsposition wurde in den Warenkorb übernommen."
+        delete_from_offer:
+          success: "Die Angebotsposition wurde gelöscht."
+      order:
+        archive:
+          success: "Der geparkte Warenkorb wurde archiviert."
+        place:
+          success: "Ihre Bestellung wurde angenommen."
+      product:
+        add_to_basket:
+          success: "Das Produkt wurde zum Warenkorb hinzugefügt."
+        compare:
+          success: "Das Produkt wurde zur Vergleichsliste hinzugefügt."
+        dont_compare:
+          success: "Das Produkt wurde aus der Vergleichsliste entfernt."
+      user:
+        accept_gtc:
+          error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+    new_message: Neue Nachricht
+    no_deliveries: keine Lieferungen
+    no_invoices: keine Rechnungen
+    no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
+    no_open_payments: keine offenen Zahlungen
+    no_products_available: keine Produkte lieferbar
+    no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
+    on_request: Auf Anfrage
+    open(pl): offene
+    open_deliveries: Offene Lieferungen
+    open_payments: Offene Zahlungen
+    order:
+      date: Auftragsdatum
+      number: Auftragsdatum
+      text: Bestelltext
+    packing_slip_number: Lieferscheinnummer
+    parked: Geparkte(r)
+    paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
+    password: Kennwort ändern
+    place_offer: Angebot legen
+    printer: Drucker
+    printer_series: Druckerserien
+    product_suggestion: Produktvorschlag
+    protocol:
+      one: Protokoll
+      data_to_be_stored: Es sollon folgende Daten protokolliert werden
+      text_customer_sales: Feedbacktext, ich und Berater(in)
+      text_sales: Feedbacktext und Berater(in)
+      text_customer: Feedbacktext und ich
+      text: Feedbacktext
+    provide_billing_address: Rechnungsadresse angeben
+    registered_for: registriert für
+    remove_filter: Filter aufheben
+    repeat: Wiederholen
+    restart_application: "Applikation neu starten"
+    restarting: "Neustart"
+    root_category: Wurzelkategorie
+    sales_subsite_name: Vertriebswesen
+    sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
+    salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
+    select_a_category: Bitte wählen Sie eine Kategorie!
+    shipping_method:
+      change: Lieferart wechseln
+      select: Bitte wählen Sie eine Lieferart
+    size: Größe
+    stored_delivery_addresses: Gespeicherte Lieferadressen
+    stored_billing_addresses: Gespeicherte Rechnungsadressen
+    subcategories: Unterkategorien
+    sum_excl_vat: Summe exkl. Mwst
+    sum_incl_vat: Gesamtpreis
+    switch_user: Account wechseln
+    toner_upload: Upload Tonerfile
+    upload_file: Datei hochladen
+    url: URL
+    use_navigation: Verwenden Sie die Links im Menü zur Navigation.
+    user_accounts_missing: There are no user accounts - please provide the details of the site administrator.
+    video_chat: Video Chat
+    welcome_at: Willkommen bei
+    waiting_for_release: ", die auf Freigabe warten."
+    you_are_here: Sie befinden sich hier
+    you_are_talking_to: Sie sprechen mit
+    your_message: Ihre Nachricht
