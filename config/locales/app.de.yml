@@ -467,6 +467,8 @@ de:
       select: Bitte wählen Sie eine Zahlungsart
     cobrowsing_link: Cobrowsing Link
     coming_from: aus
+    consumeables: Verbrauchsmaterialien
+    consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
@@ -478,9 +480,11 @@ de:
     file_is_being_processed: Datei wird verarbeitet
     from: vom
     frontend_subsite_name: Frontend
+    goto_search: Zur Suche
     gtc_confirmation_left: "Ich bestätige, die"
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
     home: Home
+    identifier: Bezeichnung
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -488,6 +492,8 @@ de:
       medium_version: Mittelgroße Version
       large_version: Große Version
     incl_vat: incl. Mwst.
+    in_all_categories: aller Kategorien
+    in_the_category: in der Kategorie
     last_x: "Die letzten %{x} "
     messages:
       content_element:
@@ -535,12 +541,16 @@ de:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
     new_message: Neue Nachricht
     no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
+    no_products_available: keine Produkte lieferbar
+    no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
     on_request: Auf Anfrage
     open(pl): offere
     parked: Geparkte(r)
     paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
     password: Kennwort ändern
     place_offer: Angebot legen
+    printer: Drucker
+    printer_series: Druckerserien
     product_suggestion: Produktvorschlag
     protocol:
       one: Protokoll
@@ -551,6 +561,7 @@ de:
       text: Feedbacktext
     provide_billing_address: Rechnungsadresse angeben
     registered_for: registriert für
+    remove_filter: Filter aufheben
     repeat: Wiederholen
     restart_application: "Applikation neu starten"
     restarting: "Neustart"
@@ -558,12 +569,14 @@ de:
     sales_subsite_name: Vertriebswesen
     sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
     salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
+    select_a_category: Bitte wählen Sie eine Kategorie!
     shipping_method:
       change: Lieferart wechseln
       select: Bitte wählen Sie eine Lieferart
     size: Größe
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
+    subcategories: Unterkategorien
     sum_excl_vat: Summe exkl. Mwst
     sum_incl_vat: Gesamtpreis
     switch_user: Account wechseln
@@ -575,5 +588,6 @@ de:
     video_chat: Video Chat
     welcome_at: Willkommen bei
     waiting_for_release: ", die auf Freigabe warten."
+    you_are_here: Sie befinden sich hier
     you_are_talking_to: Sie sprechen mit
     your_message: Ihre Nachricht
