@@ -9,7 +9,7 @@ de:
     basket: Basket
     baskets: Baskets
     billing_country: Billing Country
-    billing_c_o: C/O
+    billing_c_o: Billing c/o
     billing_city: Billing City
     billing_detail: Billing Detail
     billing_name: Billing Name
@@ -98,89 +98,89 @@ de:
     PropertyGroup: Property Group
     property_group: Property Group
     property_groups: Property Groups
-    recommendations: Empfehlungen
-    recommended_product: empfohlenes Produkt
-    recommended_products: empfohlene Produkte
-    reason: Grund
-    reciever: Empfänger
-    related_product: verwandtes Produkt
-    related_products: verwandte Produkte
-    runtime: Laufzeit
-    sales: Vertriebsmitarbeiter
-    sales_manager: Vertriebsleiter
-    scale_from: Staffel ab
-    scale_to: Staffel bis
-    sender: Absender
-    shipping_country: Lieferadresse / Land
-    shipping_c_o: zu Handen
-    shipping_city: Lieferadresse / Stadt
-    shipping_detail: Lieferadresse / Details
-    shipping_method: Versandart
-    shipping_name: Lieferadresse / Name
-    shipping_postalcode: Lieferadresse / Postleitzahl
-    shipping_street: Lieferadresse / Straße
-    Sites: Bereiche
-    startdate: Startdatum
-    state: Status
-    street: Straße
-    suggestions: Produktvorschläge
-    supply: Zubehör
-    supplyrelations: Zubehörzuordnungen
-    supplies: Zubehör
-    title: Titel
-    unit: Einheit
-    upload: Hochladen
-    usage: Verwendung
-    usage_id: Element
-    used_as: Verwendet als
-    usage_type: Verwendungsart
-    user_id: Benutzer
-    User: Benutzer
-    updated_at: Aktualisiert
-    valid_from: Gültig ab
-    valid_to: Gültig bis
-    valid_until: Gültig bis
-    value: Wert
-    vat_number: UID-Nummer
-    vat: MwSt.
-    version_of: Version vom
-    warranty: Garantie
-    weight: Gewicht
+    recommendations: Recommendations
+    recommended_product: Recommended Product
+    recommended_products: Recommended Products
+    reason: Reason
+    reciever: Reciever
+    related_product: Related Product
+    related_products: Related Products
+    runtime: Runtime
+    sales: Sales Representative
+    sales_manager: Sales Manager
+    scale_from: Scale from
+    scale_to: Scale to
+    sender: Sender
+    shipping_country: Shipping Country
+    shipping_c_o: Shipping c/o
+    shipping_city: Shipping City
+    shipping_detail: Shipping Detail
+    shipping_method: Shipping Method
+    shipping_name: Shipping Name
+    shipping_postalcode: Shipping Postal Code
+    shipping_street: Shipping Street
+    Sites: Sites
+    startdate: Starting Date
+    state: State
+    street: Street
+    suggestions: Suggestions
+    supply: Supply
+    supplyrelations: Supply Relations
+    supplies: Supplies
+    title: Title
+    unit: Unit
+    upload: Upload
+    usage: Usage
+    usage_id: Usage ID
+    used_as: Used as
+    usage_type: Usage Type
+    user_id: User
+    User: User
+    updated_at: Updated at
+    valid_from: Valid from
+    valid_to: Valid until
+    valid_until: Valid until
+    value: Value
+    vat_number: Vat Number (UID)
+    vat: VAT
+    version_of: Version of
+    warranty: Warranty
+    weight: Weight
 
   activerecord:
     models:
       address:
-        one: Lieferadresse
-        other: Lieferadressen
+        one: Shipping Address
+        other: Shipping Addresses
       billing_address:
-        one: Rechnungsadresse
-        other: Rechnungsadresse
+        one: Billing Address
+        other: Billing Addresses
         actions:
-          index: Rechnungsadresse bearbeiten
+          index: Edit Billing Address
       categorization:
-        one: Kategorisierung
-        other: Kategorisierungen
+        one: Categorization
+        other: Categorizations
       category:
-        one: Kategorie
-        other: Kategorien
+        one: Category
+        other: Categories
       constant:
-        one: Konstante
-        other: Konstanten
+        one: Constant
+        other: Constants
       content_element:
-        one: Baustein
-        other: Bausteine
+        one: Content Element
+        other: Content Elements
       contract:
-        one: Vertrag
-        other: Verträge
+        one: Contract
+        other: Contracts
       conversation:
-        one: Konversation
-        other: Konversationen
+        one: Conversation
+        other: Conversations
       country:
-        one: Land
-        other: Länder
+        one: Country
+        other: Countries
       customer:
-        one: Kunde
-        other: Kunden
+        one: Customer
+        other: Customers
       download:
         one: Download
         other: Downloads
@@ -188,119 +188,119 @@ de:
         one: Feedback
         other: Feedback
       gtc:
-        one: AGB
-        other: AGBs
+        one: GTC
+        other: GTCs
       inventory:
-        one: Bestand
-        other: Bestände
+        one: Inventory
+        other: Inventories
       lineitem:
-        one: Bestellposition
-        other: Bestellpositionen
+        one: Order Item
+        other: Order Items
       message:
-        one: Nachricht
-        other: Nachrichten
+        one: Message
+        other: Messages
       metadatum:
-        one: Meta-Datensatz
-        other: Meta-Datensätza
+        one: Meta Data Set
+        other: Meta Data Sets
       offer:
-        one: Angebot
-        other: Angebote
+        one: Offer
+        other: Offers
       offeritem:
-        one: Angobotsposition
-        other: Angobotspositionen
+        one: Offer Item
+        other: Offer Items
       order:
-        one: Bestellung
-        other: Bestellungen
+        one: Order
+        other: Orders
       page_content_element_assignment:
-        one: Element der Webseite
-        other: Elemente der Webseiten
+        one: Page ↔ Content Element Assignment
+        other: Page ↔ Content Element Assignments
       page_template:
-        one: Websitevorlage
-        other: Websitevorlagen
+        one: Page Template
+        other: Page Templates
       price:
-        one: Preis
-        other: Preise
+        one: Price
+        other: Prices
       product:
-        one: Artikel
-        other: Artikel
+        one: Product
+        other: Products
       productrelation:
-        one: Artikelzuordnung
-        other: Artikelzuordnungen
+        one: Product Relation
+        other: Product Relations
       property:
-        one: Eigenschaft
-        other: Eigenschaften
+        one: Property
+        other: Properties
       property_group:
-        one: Eigenschaftsgruppe
-        other: Eigenschaftsgruppen
+        one: Property Group
+        other: Property Groups
       recommendation:
-        one: Empfehlung
-        other: Empfehlungen
+        one: Recommendation
+        other: Recommendations
       shipping_cost:
-        one: Versandspesen
-        other: Versandspesen
+        one: Shipping Cost
+        other: Shipping Cost
       suggestion:
-        one: Produktvorschlag
-        other: Produktvorschläge
+        one: Product Suggestion
+        other: Product Suggestions
       supplyrelation:
-        one: Zubehörzuordnung
-        other: Zubehörzuordnungen
+        one: Supply Relation
+        other: Supply Relations
       user:
-        one: Benutzer
-        other: Benutzer
+        one: User
+        other: Users
       webpage:
-        one: Webseite
-        other: Webseiten
+        one: Web Page
+        other: Web Pages
 
     attributes:
       address:
-        name: Firma
+        name: Company
         detail: Details
         lifecycle:
           transitions:
-            use: Lieferadresse verwenden
-            trash: Löschen
+            use: Use Delivery Address
+            trash: Delete
       billing_address:
         name: Firma
         detail: Details
         lifecycle:
           transitions:
-            use: Rechnungsadresse verwenden
-            trash: Löschen
+            use: Use Billing Address
+            trash: Delete
       contentelement/markups:
-        html: "HTML-Seite"
-        markdown: "Markdown Seite"
+        html: "HTML Page"
+        markdown: "Markdown Page"
       conversation:
-        name: "Thema oder Titel"
+        name: "Topic or Title"
         lifecycle:
           creators:
-            initiate: Konversation starten
+            initiate: Start Conversation
           transitions:
-            feedback: Feedback abgeben
+            feedback: Post Feedback
       inventory:
-        alternative_number: alternative Artikelnummer
-        number: Artikelnummer
-        storage: Lagerort / Filiale
+        alternative_number: Alternate Product Number
+        number: Product Number
+        storage: Storage / Branch / Store
       lineitem:
-        product_price: Stückpreis
-        value: Positionswert
-        position: Positionsnummer
+        product_price: Product Price
+        value: Value
+        position: Item
         lifecycle:
           transitions:
-            delete_from_basket: "Position löschen"
+            delete_from_basket: "Delete Item"
             add_one: "+1"
             remove_one: "-1"
-            enable_upselling: "Zubehör +"
-            disable_upselling: "Zubehör -"
-            transfer_to_basket: In Warenkorb übernehmen
+            enable_upselling: "Accessories +"
+            disable_upselling: "Accessories -"
+            transfer_to_basket: Copy to Basket
       offer:
-        complete: Komplettangebot
+        complete: All-in-one Offer
         lifecycle:
           states:
-            in_progress: in Bearbeitung
-            invalid: ungültig
-            valid: gültig
+            in_progress: in Progress
+            invalid: Invalid
+            valid: Valid
           transitions:
-            add_position: Angebotsposition hinzufügen
+            add_position: Add Position
             submit: Freigabe anfordern
             place: Angebot legen
             copy: Angebot in eine Bestellung kopieren
