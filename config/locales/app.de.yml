@@ -539,7 +539,7 @@ de:
         archive:
           success: "Der geparkte Warenkorb wurde archiviert."
         place:
-          success: "Ihre Bestellung wurde angenommen."
+          success: "Ihre Bestellung wurde übermittelt und wird in Kürze bearbeitet."
       product:
         add_to_basket:
           success: "Das Produkt wurde zum Warenkorb hinzugefügt."

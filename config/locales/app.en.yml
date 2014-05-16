@@ -1,4 +1,4 @@
-de:
+en:
   attributes:
     actions: Actions
     administator: Administrator
@@ -503,112 +503,112 @@ de:
       medium_version: Medium Version
       large_version: Large Version
     incl_vat: incl. VAT
-    in_all_categories: aller Kategorien
-    in_the_category: in der Kategorie
-    last_x: "Die letzten %{x} "
+    in_all_categories: of all Categories
+    in_the_category: in Category
+    last_x: "The last %{x} "
     messages:
       content_element:
-        missing: Hier fehlt der Textbaustein mit dem Namen
+        missing: "Here, a content element is missing, it should have the name"
       conversation:
-        no_frames: "Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie können die eingebettete Seite über den folgenden Verweis aufrufen"
-        started: Eine neue Konversation wurde gestartet!
+        no_frames: "Unfortunately, your browser cannot display embedded frames. You can visit the site by clicking the following link:"
+        started: A new conversation was started!
       lineitem:
         delete:
-          success: "Die Bestellposition wurde gelöscht."
+          success: The order position was deleted.
         transfer:
-          success: "Die Bestellposition wurde in den Warenkorb übernommen."
+          success: The order position was copied into your current basket.
         increase_amount:
-          success: "Die Stückzahl wurde um 1 erhöht."
+          success: The amount was increased by one.
         decrease_amount:
-          success: "Die Stückzahl wurde um 1 erniedrigt."
+          success: The amount was decreased by one.
       offer:
         copy_to_offer:
-          success: "Das Angebot wurde in den Warenkorb übernommen."
+          success: The offer was copied into your current basket.
         copy_to_order:
-          success: "Das Angebot wurde in eine neue Bestellung kopiert."
-        expired: Dieses Angebot ist abgelaufen und kann daher nicht angenommen werden.
-        in_progress: Dieses Angebot ist in Bearbeitung und kann daher noch nicht angenommen werden.
-        invalid: Dieses Angebot ist ungültig und kann daher nicht angenommen werden.
-        pending_approval: Dieses Angebot wartet auf Freigabe und kann daher noch nicht angenommen werden.
+          success: The offer was copied in e new order.
+        expired: This offer is expired and cannot be accepted.
+        in_progress: This offer is in progress and cannot be accepted yet.
+        invalid: This offer is invalid and cannot be accepted.
+        pending_approval: This offer awaits clearing and cannot be accepted yet.
       offeritem:
         transfer:
-          success: "Die Angebotsposition wurde in den Warenkorb übernommen."
+          success: The offer position was copied into your current basket.
         delete_from_offer:
-          success: "Die Angebotsposition wurde gelöscht."
+          success: The offer position was deleted.
       order:
         archive:
-          success: "Der geparkte Warenkorb wurde archiviert."
+          success: The parked basket was archived.
         place:
-          success: "Ihre Bestellung wurde angenommen."
+          success: Your order is transmitted and will be processed shortly.
       product:
         add_to_basket:
-          success: "Das Produkt wurde zum Warenkorb hinzugefügt."
+          success: The product was added to the basket.
         compare:
-          success: "Das Produkt wurde zur Vergleichsliste hinzugefügt."
+          success: The product was added to the comparison sheet.
         dont_compare:
-          success: "Das Produkt wurde aus der Vergleichsliste entfernt."
+          success: The product was removed from the comparison sheet.
       user:
         accept_gtc:
-          error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
-    new_message: Neue Nachricht
-    no_deliveries: keine Lieferungen
-    no_invoices: keine Rechnungen
-    no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
-    no_open_payments: keine offenen Zahlungen
-    no_products_available: keine Produkte lieferbar
-    no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
-    on_request: Auf Anfrage
-    open(pl): offene
-    open_deliveries: Offene Lieferungen
-    open_payments: Offene Zahlungen
+          error: "You have to accept the General Terms and Conditions (GTCs), to continue with the order process!"
+    new_message: New Message
+    no_deliveries: No deliveries found.
+    no_invoices: No invoices found.
+    no_order_positions_yet: There aro no order items yet.
+    no_open_payments: No open payments found.
+    no_products_available: No products Available
+    no_product_with_this_name: No product found with this name.
+    on_request: On request
+    open(pl): open
+    open_deliveries: Open Deliveries
+    open_payments: Open Payments
     order:
-      date: Auftragsdatum
-      number: Auftragsdatum
-      text: Bestelltext
-    packing_slip_number: Lieferscheinnummer
-    parked: Geparkte(r)
-    paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
-    password: Kennwort ändern
-    place_offer: Angebot legen
-    printer: Drucker
-    printer_series: Druckerserien
-    product_suggestion: Produktvorschlag
+      date: Order Date
+      number: Order Number
+      text: Order Text
+    packing_slip_number: Packing Slip Number
+    parked: Parked
+    paste_here: "Paste file here (point mouse here and press [STRG]+[v])"
+    password: Change Password
+    place_offer: Place Offer
+    printer: Printer
+    printer_series: Printer Series
+    product_suggestion: Product Suggestion
     protocol:
-      one: Protokoll
-      data_to_be_stored: Es sollon folgende Daten protokolliert werden
-      text_customer_sales: Feedbacktext, ich und Berater(in)
-      text_sales: Feedbacktext und Berater(in)
-      text_customer: Feedbacktext und ich
-      text: Feedbacktext
-    provide_billing_address: Rechnungsadresse angeben
-    registered_for: registriert für
-    remove_filter: Filter aufheben
-    repeat: Wiederholen
-    restart_application: "Applikation neu starten"
-    restarting: "Neustart"
-    root_category: Wurzelkategorie
-    sales_subsite_name: Vertriebswesen
-    sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
-    salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
-    select_a_category: Bitte wählen Sie eine Kategorie!
+      one: Protocol
+      data_to_be_stored: I want the follewing data to be saved
+      text_customer_sales: "Feedback text, my name and the consultant's name"
+      text_sales: "Feedback text and the consultant's name"
+      text_customer: Feedback text and my name
+      text: Feedback Text
+    provide_billing_address: Provide Billing Address
+    registered_for: Registered for
+    remove_filter: Remove Filter
+    repeat: Repeat
+    restart_application: Restart Application
+    restarting: Restarting
+    root_category: Root Category
+    sales_subsite_name: Sales
+    sales_subheading: The page for consulting sessions management in the Mercator Guided Selling System
+    salutation: "Hello! My name is %{name}. How can I help you?"
+    select_a_category: Please select a category!
     shipping_method:
-      change: Lieferart wechseln
-      select: Bitte wählen Sie eine Lieferart
-    size: Größe
-    stored_delivery_addresses: Gespeicherte Lieferadressen
-    stored_billing_addresses: Gespeicherte Rechnungsadressen
-    subcategories: Unterkategorien
-    sum_excl_vat: Summe exkl. Mwst
-    sum_incl_vat: Gesamtpreis
-    switch_user: Account wechseln
-    toner_upload: Upload Tonerfile
-    upload_file: Datei hochladen
+      change: Change Shipping Method
+      select: Please select shipping method
+    size: Size
+    stored_delivery_addresses: Stored Delivery Addresses
+    stored_billing_addresses: Stored Billing Addresses
+    subcategories: Subcategories
+    sum_excl_vat: Sum excl. VAT
+    sum_incl_vat: Total
+    switch_user: Switch User Account
+    toner_upload: Upload Toner File
+    upload_file: Upload File
     url: URL
-    use_navigation: Verwenden Sie die Links im Menü zur Navigation.
+    use_navigation: Use the links in the menu for navigation.
     user_accounts_missing: There are no user accounts - please provide the details of the site administrator.
     video_chat: Video Chat
-    welcome_at: Willkommen bei
-    waiting_for_release: ", die auf Freigabe warten."
-    you_are_here: Sie befinden sich hier
-    you_are_talking_to: Sie sprechen mit
-    your_message: Ihre Nachricht
+    welcome_at: Welcome at
+    waiting_for_release: "waiting for release."
+    you_are_here: You ere here
+    you_are_talking_to: You are talking to
+    your_message: Your message
