@@ -141,7 +141,7 @@ de:
     valid_to: Valid until
     valid_until: Valid until
     value: Value
-    vat_number: Vat Number (UID)
+    vat_number: VAT Number (UID)
     vat: VAT
     version_of: Version of
     warranty: Warranty
@@ -398,111 +398,111 @@ de:
         unit: "Use consistent units across all products, e.g. pc., h, unit"
         weight: "Weight in kilogram, e.g. 5.3"
       lineitem:
-        position: Position zur Reihung innerhalb der Bestellung
-        price: Netto (ohne Steuern)
-        value: Netto (ohne Steuern)
-        vat: "in Prozent, z.B. 19.5"
+        position: Used for sorting within order
+        price: excl. VAT
+        value: excl. VAT
+        vat: "in %, e.g. 19.5"
       price:
-        value: Netto (ohne Steuern)
-        vat: "in Prozent, z.B. 19.5"
-        valid_from: "gültig ab 0:00 morgens des angegegbenen Tages"
-        valid_to: "gültig bis 0:00 morgens des angegegbenen Tages"
-        scale_from: "gültig ab inklusive dieser Dezimalzahl, z.B. 0.5"
-        scale_to: "gültig bis exclusive dieser Dezimalzahl, z.B. 9999"
+        value: excl. VAT
+        vat: "in %, e.g. 19.5"
+        valid_from: "valid from 0:00 in the morning of the day given"
+        valid_to: "valid until 0:00 in the morning of the day given"
+        scale_from: "valid from including this decimal number, e.g. 0.5"
+        scale_to: "valid to including this decimal number, e.g. 9999"
       product:
-        productrelations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
-        recommendations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
-        supplyrelations: Geben Sie hier zumindest 3 Zeichen der Artikelnummer für Autocomplete ein
+        productrelations: Enter at least 3 characters of the article number for autocompletion
+        recommendations: Enter at least 3 characters of the article number for autocompletion
+        supplyrelations: Enter at least 3 characters of the article number for autocompletion
       property:
-        name: Achten Sie für übersichtliche Ptoduktvergleiche auf einheitliche Bezeichnungen
-        description_de: "Bitte Beschreibung oder (Wert und Einheit) angeben, z.B. grün"
-        value: "Bitte in Kombination mit dem Einheit-Feld befüllen, z.B. 5"
-        unit_de: "Bitte in Kombination mit dem Wert-Feld befüllen, z.B. kg"
-        position: Dient zur Reihung innerhalb der Eigenschaftsgruppe
+        name: Try to keep a consistent schema
+        description_en: "Please enter description here or value (and unit), e.g. green"
+        value: "Enter the value here, e.g. 5"
+        unit_de: "Enter only in combination with either description or value, e.g. kg"
+        position: Used for sorting within property Group
       property_group:
-        position: Dient zur Reihung der Eigenschaftsgruppen eines Produktes
+        position: Used for sorting on product show page and filters
       user:
-        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        name: Please enter your full name including title here.
         email_address: We will never share your address with third parties.
       webpage:
-        updated: Webseitenbaum erfolgreich aktualisiert!
-        updating: Webseitenbaum wird aktualisiert
-        update_failed: Webseitenbaum konnte nicht aktualisiert werden!
+        updated: Tree of web pages updated successfully!
+        updating: Tree of web pages updating ...
+        update_failed: Tree of web pages could not be updated!
         lifecycle:
           transitions:
-            archive: Kann jederzeit wieder aktiviert werden
-            hide: Seite wird aus dem Menü ausgeblendet
-            unhide: Webseite wird wieder im menü dargestellt
+            archive: Can be reactivated at any time in the future
+            hide: Page will be hidden from the menue structure
+            unhide: Page will be displayed in the menue structure again
   address:
     actions:
-      enter: Lieferadresse speichern und verwenden
+      enter: Save and Use Delivery Address
     enter:
-      heading: Lieferadresse ändern
+      heading: Change Delivery Address
   billing_address:
     actions:
-      enter: Rechnungsadresse speichern und verwenden
+      enter: Save and Use Billing Address
     enter:
-      heading: Rechnungsadresse ändern
+      heading: Change Billing Address
   conversation:
     initiate:
-      heading: Konversation starten
+      heading: Start Conversation
     actions:
-      initiate: Konversation starten
+      initiate: Start Conversation
   offer:
     build:
-      heading: Angebot legen
+      heading: Create Offer
     actions:
-      build: Zwischenspeichern
+      build: Save Offer (w/o releasing)
   offeritem:
     add:
-      heading: Angebotsposition erstellen
+      heading: Create Offer Position
     actions:
-      add: Zwischenspeichern
+      add: Save
 
   mercator:
     admin_subsite_name: Administration
-    admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
-    account: Mein Account
-    are_you_sure: "Sind Sie Sicher?"
-    back: Zurück
+    admin_subheading: This is the administration page for the Mercator Guided Selling System
+    account: My Account
+    are_you_sure: "Are You Sure?"
+    back: Back
     billing_method:
-      change: Zahlungsart wechseln
-      select: Bitte wählen Sie eine Zahlungsart
+      change: Change Billing Method
+      select: Please Select a Billing Method
     cobrowsing_link: Cobrowsing Link
-    coming_from: aus
-    consumeables: Verbrauchsmaterialien
-    consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
-    conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
-    contracting_subsite_name: Vertragswesen
-    contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
-    customer_number: Kundennummer
-    delete: Löschen
-    deliveries_and_payments: Lieferungen und Zahlungen
-    delivery_slip_date: Lieferscheindatum
-    delivery_number: Lieferungsnummer
-    excl_vat: excl. Mwst.
-    feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
-    file_and_image_upload: Datei und Bild-Upload
-    file_is_being_processed: Datei wird verarbeitet
-    from: vom
-    frontend_subsite_name: Frontend
-    goto_search: Zur Suche
-    gtc_confirmation_left: "Ich bestätige, die"
-    gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
+    coming_from: from
+    consumeables: Consumeables
+    consumeable_search_help: You can search for consumeables for your printer here. Select a printer series and / or enter some characters of the type of your HP printer.
+    conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
+    contracting_subsite_name: Contracting
+    contracting_subheading: Contracting Management for the Mercator Guided Selling System
+    customer_number: Customer Number
+    delete: Delete
+    deliveries_and_payments: Deliveries and Payments
+    delivery_slip_date: Delivery Slip Date
+    delivery_number: Delivery Number
+    excl_vat: excl. VAT
+    feedback_request: We would like to get your feedback to increase the quality of our services!
+    file_and_image_upload: File and Image Upload
+    file_is_being_processed: File is being processed ...
+    from: from
+    frontend_subsite_name: Front End
+    goto_search: Goto Search
+    gtc_confirmation_left: "I confirm, that I have read and understood the"
+    gtc_confirmation_right:  und I accept them.
     home: Home
-    identifier: Bezeichnung
+    identifier: Description
     invoice:
-      date: Rechnungsdatum
-      number: Rechnungsnummer
-      one: Rechnung
-      other: Rechnungen
+      date: Date of Invoice
+      number: Invoice Number
+      one: Invoice
+      other: Invoices
     images:
-      original_version: Originalversion
+      original_version: Original Version
       thumbnail_version: Thumbnail Version
-      small_version: Kleine Version
-      medium_version: Mittelgroße Version
-      large_version: Große Version
-    incl_vat: incl. Mwst.
+      small_version: Small Version
+      medium_version: Medium Version
+      large_version: Large Version
+    incl_vat: incl. VAT
     in_all_categories: aller Kategorien
     in_the_category: in der Kategorie
     last_x: "Die letzten %{x} "
