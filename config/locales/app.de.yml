@@ -199,6 +199,9 @@ de:
       message:
         one: Nachricht
         other: Nachrichten
+      metadatum:
+        one: Meta-Datensatz
+        other: Meta-Datensätza
       offer:
         one: Angebot
         other: Angebote
@@ -472,8 +475,11 @@ de:
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    customer_number: Kundennummer
     delete: Löschen
     deliveries_and_payments: Lieferungen und Zahlungen
+    delivery_slip_date: Lieferscheindatum
+    delivery_number: Lieferungsnummer
     excl_vat: excl. Mwst.
     feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
     file_and_image_upload: Datei und Bild-Upload
@@ -485,6 +491,11 @@ de:
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
     home: Home
     identifier: Bezeichnung
+    invoice:
+      date: Rechnungsdatum
+      number: Rechnungsnummer
+      one: Rechnung
+      other: Rechnungen
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -540,11 +551,21 @@ de:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
     new_message: Neue Nachricht
+    no_deliveries: keine Lieferungen
+    no_invoices: keine Rechnungen
     no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
+    no_open_payments: keine offenen Zahlungen
     no_products_available: keine Produkte lieferbar
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
     on_request: Auf Anfrage
-    open(pl): offere
+    open(pl): offene
+    open_deliveries: Offene Lieferungen
+    open_payments: Offene Zahlungen
+    order:
+      date: Auftragsdatum
+      number: Auftragsdatum
+      text: Bestelltext
+    packing_slip_number: Lieferscheinnummer
     parked: Geparkte(r)
     paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
     password: Kennwort ändern
