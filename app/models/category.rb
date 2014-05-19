@@ -25,7 +25,7 @@ class Category < ActiveRecord::Base
 
   searchkick language: "German"
 
-  never_show :ancestry
+  never_show :ancestry, :filters
   default_scope { order('categories.position ASC') }
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
