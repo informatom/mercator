@@ -1,7 +1,7 @@
 <def tag="upload-page" polymorphic/>
 
 <def tag="upload-page" for="Toner">
-  <page merge title="&t('mercator.toner_upload')}">
+  <page merge title="&t('mercator.toner_upload')">
     <content-header:>
       <h2 param="heading"><t key="mercator.toner_upload" /></h2>
     </content-header:>
