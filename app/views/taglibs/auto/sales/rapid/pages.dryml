@@ -669,7 +669,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="offeritem.actions.new">New Offer Item</ht>
+        <ht key="offeritem.actions.new">New Offeritem</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -685,20 +685,20 @@
 
 
 <def tag="new-page" for="Offeritem">
-  <page merge title="#{ht 'offeritem.new.title', :default=>[' New Offer Item'] }">
+  <page merge title="#{ht 'offeritem.new.title', :default=>[' New Offeritem'] }">
     <body: class="new-page offeritem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="offeritem.new.heading">
-          New Offer Item
+          New Offeritem
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'offeritem.actions.create', :default=>['Create Offer Item']}"/>
+        <submit: label="#{ht 'offeritem.actions.create', :default=>['Create Offeritem']}"/>
       </form>
     </content-body:>
   </page>
@@ -706,14 +706,14 @@
 
 
 <def tag="show-page" for="Offeritem">
-  <page merge title="#{ht 'offeritem.show.title', :default=>['Offer Item'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'offeritem.show.title', :default=>['Offeritem'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page offeritem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="offeritem.show.heading" name="#{name(:no_wrapper => true)}">
-          Offer Item <name/>
+          Offeritem <name/>
         </ht>
       </h2>
 
@@ -721,7 +721,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="offeritem.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Offer Item
+          Edit Offeritem
         </ht>
       </a>
     </content-header:>
@@ -736,17 +736,17 @@
 
 
 <def tag="edit-page" for="Offeritem">
-  <page merge title="#{ht 'offeritem.edit.title', :default=>['Edit Offer Item'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'offeritem.edit.title', :default=>['Edit Offeritem'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page offeritem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="offeritem.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Offer Item
+          Edit Offeritem
         </ht>
       </h2>
-      <delete-button label="#{ht 'offeritem.actions.delete', :default=>['Remove This Offer Item']}" param/>
+      <delete-button label="#{ht 'offeritem.actions.delete', :default=>['Remove This Offeritem']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -1394,7 +1394,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="suggestion.actions.new">New Product Suggestion</ht>
+        <ht key="suggestion.actions.new">New Suggestion</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -1410,20 +1410,20 @@
 
 
 <def tag="new-page" for="Suggestion">
-  <page merge title="#{ht 'suggestion.new.title', :default=>[' New Product Suggestion'] }">
+  <page merge title="#{ht 'suggestion.new.title', :default=>[' New Suggestion'] }">
     <body: class="new-page suggestion" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="suggestion.new.heading">
-          New Product Suggestion
+          New Suggestion
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'suggestion.actions.create', :default=>['Create Product Suggestion']}"/>
+        <submit: label="#{ht 'suggestion.actions.create', :default=>['Create Suggestion']}"/>
       </form>
     </content-body:>
   </page>
@@ -1431,14 +1431,14 @@
 
 
 <def tag="show-page" for="Suggestion">
-  <page merge title="#{ht 'suggestion.show.title', :default=>['Product Suggestion'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'suggestion.show.title', :default=>['Suggestion'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page suggestion" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="suggestion.show.heading" name="#{name(:no_wrapper => true)}">
-          Product Suggestion <name/>
+          Suggestion <name/>
         </ht>
       </h2>
 
@@ -1446,7 +1446,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="suggestion.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Product Suggestion
+          Edit Suggestion
         </ht>
       </a>
     </content-header:>
@@ -1460,17 +1460,17 @@
 
 
 <def tag="edit-page" for="Suggestion">
-  <page merge title="#{ht 'suggestion.edit.title', :default=>['Edit Product Suggestion'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'suggestion.edit.title', :default=>['Edit Suggestion'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page suggestion" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="suggestion.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Product Suggestion
+          Edit Suggestion
         </ht>
       </h2>
-      <delete-button label="#{ht 'suggestion.actions.delete', :default=>['Remove This Product Suggestion']}" param/>
+      <delete-button label="#{ht 'suggestion.actions.delete', :default=>['Remove This Suggestion']}" param/>
     </content-header:>
 
     <content-body: param>

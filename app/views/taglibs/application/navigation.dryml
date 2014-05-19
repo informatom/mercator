@@ -109,6 +109,24 @@
         <li class='nav-item' param='log-in'><a href='&login_url'><t key='hobo.actions.login'/></a></li>
         <li class='nav-item' param='sign-up' if='&signup_url'><a href='&signup_url'><t key='hobo.actions.signup' /></a></li>
       </else>
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" id="drop1" data-toggle="dropdown" href="#">
+          <if test="&I18n.locale == :de"><%= image_tag "de.png" %></if>
+          <if test="&I18n.locale == :en"><%= image_tag "en.png" %></if>
+          <b class="caret"></b>
+        </a>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+          <li class='nav-item' param='administration'>
+            <a href='/?locale=de'><%= image_tag "de.png" %> Deutsch</a>
+          </li>
+          <li class='nav-item' param='sales'>
+            <a href='/?locale=en'><%= image_tag "en.png" %> English</a>
+          </li>
+        </ul>
+      </li>
+
     </ul>
   </do>
   </div>
