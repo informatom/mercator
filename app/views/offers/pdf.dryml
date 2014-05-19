@@ -59,8 +59,20 @@
                   <view:description-de/><br/>
                   <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
                 </td>
-                <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
-                <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
+                <td>
+                  <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
+                  <if test="&this.discount_abs != 0">
+                    <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
+                  </if>
+                </td>
+                <td>
+                  <if test="&this.discount_abs != 0">
+                    <div class="text-right">
+                      <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
+                      </div>
+                    </if>
+                  <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
+                </td>
               </tr>
             </repeat>
           </tbody>
