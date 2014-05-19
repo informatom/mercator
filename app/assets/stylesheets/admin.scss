@@ -6,6 +6,7 @@
  *= require_self
  *= require application
  *= require jquery-ui/redmond
- *= require_tree ./admin
+ *= require codemirror
  *= require overrides
-*/
+ *= require_tree ./admin
+ */

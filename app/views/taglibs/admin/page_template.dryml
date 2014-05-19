@@ -1,0 +1,19 @@
+<extend tag="form" for="PageTemplate">
+  <old-form merge>
+    <field-list fields="name, content">
+      <content-view:>
+        <input id="editor" />
+        <script>
+          var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+            mode: "htmlmixed",
+            theme: "default"
+          });
+        </script>
+      </content-view:>
+    </field-list>
+    <div param="actions">
+      <submit label="#{ht 'page_template.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </old-form>
+</extend>

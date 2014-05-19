@@ -8,3 +8,8 @@
 //
 //= require application
 //= require_tree ./admin
+//= require codemirror
+//= require codemirror/modes/htmlmixed
+//= require codemirror/modes/xml
+//= require codemirror/modes/javascript
+//= require codemirror/modes/css

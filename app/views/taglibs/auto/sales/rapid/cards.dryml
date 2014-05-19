@@ -325,6 +325,11 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <ht key="content_element.collection.count" count="&this.content_elements.size">
+         <count:content_elements param/>
+      </ht>
+    </body:>
   </card>
 </def>
 

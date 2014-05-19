@@ -16,6 +16,9 @@ class Webpage < ActiveRecord::Base
   translates :title
   has_ancestry
 
+  extend FriendlyId
+  friendly_id :title_de
+
   has_paper_trail
   never_show :ancestry
   default_scope { order('webpages.position ASC') }
@@ -24,6 +27,8 @@ class Webpage < ActiveRecord::Base
 
   has_many :page_content_element_assignments, :accessible => true
   has_many :content_elements, :through => :page_content_element_assignments
+
+  children :content_elements
 
   belongs_to :page_template
   validates :page_template, :presence => true

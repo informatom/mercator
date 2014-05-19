@@ -22,6 +22,8 @@ module Mercator
     config.assets.precompile += %w(contracting.css contracting.js)
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js)
+    # Codemirror
+    config.assets.precompile += ["codemirror*", "codemirror/**/*"]
 
     config.generators do |g|
       g.test_framework :rspec, :fixtures => true

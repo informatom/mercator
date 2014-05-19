@@ -150,6 +150,8 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
+    codemirror-rails (4.1)
+      railties (>= 3.0, < 5)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -213,6 +215,8 @@ GEM
     ffi (1.9.3)
     font-awesome-rails (4.0.3.2)
       railties (>= 3.2, < 5.0)
+    friendly_id (5.0.3)
+      activerecord (>= 4.0.0)
     gyoku (1.1.1)
       builder (>= 2.1.2)
     hashie (2.1.1)
@@ -439,12 +443,14 @@ DEPENDENCIES
   capistrano-rails
   capybara (~> 2.1.0)
   ckeditor!
+  codemirror-rails
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.2.0)
   debugger
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.2.0)
   font-awesome-rails
+  friendly_id (~> 5.0.0)
   hobo!
   hobo_bootstrap (= 2.1.0)
   hobo_bootstrap_ui (= 2.1.0)

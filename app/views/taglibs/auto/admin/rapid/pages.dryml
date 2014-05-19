@@ -852,6 +852,7 @@
     <body: class="show-page content-element" param/>
 
     <content-header: param>
+      <a:webpages param="parent-link">&laquo; <ht key="content_element.actions.back_to_parent" parent="Webseite" name="&this">Back to <name/></ht></a:webpages>
       <h2 param="heading">
         <ht key="content_element.show.heading" name="#{name(:no_wrapper => true)}">
           Content Element <name/>
@@ -3697,6 +3698,15 @@
 
     <content-body: param>
       <field-list fields="title_en, url, position, state, page_template" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="content_element.collection.heading" count="&this.content_elements.count" >
+            <human-collection-name collection="content_elements" your/>
+          </ht>
+        </h3>
+
+        <collection:content_elements param/>
+      </section>
     </content-body:>
 
   </page>
