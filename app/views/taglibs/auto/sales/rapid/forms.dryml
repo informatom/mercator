@@ -318,7 +318,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, sales, sales_manager, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, addresses, billing_addresses, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
+    <field-list fields="name, email_address, administrator, sales, sales_manager, last_login_at, logged_in, gtc_confirmed_at, gtc_version_of, erp_account_nr, erp_contact_nr, locale, photo_file_name, photo_content_type, photo_file_size, photo_updated_at, state, addresses, billing_addresses, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_adresse, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

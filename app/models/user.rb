@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
     gtc_version_of   :date
     erp_account_nr   :string
     erp_contact_nr   :string
+    locale           :string
     timestamps
   end
 
