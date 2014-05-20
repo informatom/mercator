@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
   hobo_model_controller
   auto_actions :show
 
+  before_filter :domain_shop_redirect
+
   def show
     hobo_show do
       @filter = params[:filter]

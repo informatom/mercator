@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   auto_actions :show, :lifecycle
   index_action :comparison
 
+  before_filter :domain_shop_redirect
+
   def do_add_to_basket
     do_transition_action :add_to_basket do
       flash[:success] = I18n.t("mercator.messages.product.add_to_basket.success")

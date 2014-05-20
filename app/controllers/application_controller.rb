@@ -38,4 +38,32 @@ class ApplicationController < ActionController::Base
   def current_basket
     current_user.basket if current_user
   end
+
+# Domainseperation
+  def domain_cms_redirect
+    if Rails.env.production?
+      begin
+        unless (request.domain == Constant.find_by_key('cms_domain').value.split(".",2)[1] &&
+                request.subdomains[0] == Constant.find_by_key('cms_domain').value.split(".",2)[0] ) || request.domain == nil
+          new_url = 'http://' + Constant.find_by_key('cms_domain').value + request.path
+          redirect_to new_url, :status => 301
+        end
+      rescue
+      end
+    end
+  end
+
+  def domain_shop_redirect
+    if Rails.env.production?
+      begin
+        Constant.find_by_key('shop_domain').value
+        unless request == nil || (request.domain == Constant.find_by_key('shop_domain').value.split(".",2)[1] &&
+                                  request.subdomains[0] == Constant.find_by_key('shop_domain').value.split(".",2)[0] ) || request.domain == nil
+          new_url = 'http://' + Constant.find_by_key('shop_domain').value + request.path
+          redirect_to new_url, :status => 301
+        end
+      rescue
+      end
+    end
+  end
 end

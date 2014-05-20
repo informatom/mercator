@@ -4,6 +4,7 @@
       <param-content/>
         <link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,latin-ext'
         rel='stylesheet' type='text/css'></link>
+        <metatags />
     </stylesheets:>
   </old-page>
 </extend>
@@ -46,4 +47,13 @@
   <creator-link creator="#{creator}" class="btn" merge with='&this'>
     <t key="#{this.model_name.element}.#{creator}.heading"/>
   </creator-link>
+</def>
+
+<def tag="metatags">
+  <if test="&@product">
+    <link rel="canonical" href="& 'http://' + Constant.find_by_key('shop_domain').value + product_path( @product )"/>
+  </if>
+  <if test="&@category">
+    <link rel="canonical" href="& 'http://' + Constant.find_by_key('shop_domain').value + category_path( @category )"/>
+  </if>
 </def>
