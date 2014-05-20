@@ -70,6 +70,8 @@ Add the following to your /etc/apt/sources.list to enable the repository
 ```bash
 deb http://packages.elasticsearch.org/elasticsearch/1.1/debian stable main
 ```
+und then run
+```bash
 apt-get update
 sudo apt-get install elasticsearch
 ```
