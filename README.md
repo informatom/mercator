@@ -1,6 +1,4 @@
-,# Welcome to Mercator
-
-The Austrian Guided Selling Solution based on Hobo on Ruby on Rails
+# Mercator
 
 Mercator is a guided selling web application written using the Hobo web application framework.
 
@@ -35,16 +33,26 @@ Your Mercator is now running and fully functional!
 
 5. Visit <tt>http://localhost:3000</tt>
 6. The first user registered will have administrator priviliges assigned
-7. The second user registered will have sales priviliges assigned
-8. The third and any further users registered will have customer priviliges assigned
+7. The second and any further users registered will have customer priviliges assigned
 
-FIXME! Second user should be sales guy
+## Setting up constants
 
-## Installing Mesonic Integration
+The following constants have to be set in the Administration Area (http://yourdomain.com/admin/constants)
+* delivery_times_de, delivery_times_en: Comma seperated list of texts used for available delivery times
+* shipping_cost_article: name of the article used for shipping costs
+* site_name: text string, used for title-tags in the application
+* shop_domain, cms_domain: Damain names for the shop and the cms area of the application, respectively. They have to be porvided including subdomais, but without protocol (e.g. mercator.informatom.com). They can be identical.
+* fifo: storage strategy, either true or false (as text strings). If false is given, lifo is used.
 
-1. Put in your Gemfile
+## Add-Ons
+
+Several Gems are installed, which are non-mandatory add-ons.
+
 '''ruby
 gem "mercator_mesonic"
+gem "mercator_legacy_importer"
+gem "mercator_bechlem"
+gem "mercator_icecat"
 '''
 2 Get all migrations into your app
 '''ruby
