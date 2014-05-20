@@ -55,11 +55,9 @@ gem "mercator_icecat", path:"vendor/engines/mercator_icecat"
                                                       # Engine for importing Icecat Data
 gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem"
                                                       # Engine for integrating Mesonic ERP System
-
 gem 'try_to'                                          # checks for methods existance and avoids dumps
 gem 'friendly_id', '~> 5.0.0'                         # Friendlier URLs for webpages
-gem 'codemirror-rails'                                    # Code Editor
-
+gem 'codemirror-rails'                                # Code Editor
 
 group :development, :test  do
   gem 'thin'                                          # web server, replacement for webrick

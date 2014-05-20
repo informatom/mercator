@@ -35,7 +35,7 @@
           </div>
           <div class="span4">
             <div part="complete">
-              <strong><t key='mercator.valid_to'/>:</strong>
+              <strong><t key='attributes.valid_to'/>:</strong>
               <view:valid-until class="label label-warning"/>
               <br/><br/>
               <strong><t key='activerecord.attributes.offer.complete'/>:</strong>
