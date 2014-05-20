@@ -48,41 +48,41 @@ The following constants have to be set in the Administration Area (http://yourdo
 
 Several Gems are installed, which are non-mandatory add-ons.
 
-'''ruby
+```ruby
 gem "mercator_mesonic"
 gem "mercator_legacy_importer"
 gem "mercator_bechlem"
 gem "mercator_icecat"
-'''
+```
 2 Get all migrations into your app
-'''ruby
+```ruby
 rake mercator_mesonic:install:migrations
-'''
+```
 
 ## Installing Elasticsearch
 
 Download and install the Public Signing Key
-'''bash
+```bash
 wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-'''
+```
 Add the following to your /etc/apt/sources.list to enable the repository
-'''bash
+```bash
 deb http://packages.elasticsearch.org/elasticsearch/1.1/debian stable main
-'''
+```
 apt-get update
 sudo apt-get install elasticsearch
-'''
+```
 
 Installing Browser Plugin for Development
-'''bash
+```bash
 sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
-'''
+```
 
 Autostart Service
-'''bash
+```bash
 sudo update-rc.d elasticsearch defaults 95 10
 sudo /etc/init.d/elasticsearch start
-'''
+```
 
 ### Icecat Integration
 
