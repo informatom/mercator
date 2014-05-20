@@ -1,4 +1,8 @@
 <show-page>
+  <title:>
+    <%= Constant.find_by_key('site_name').value + " - " + @category.name %>
+  </title:>
+
   <main-nav:>
     <category-nav/>
   </main-nav:>
