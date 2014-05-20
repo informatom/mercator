@@ -54,7 +54,8 @@ gem "mercator_legacy_importer"
 gem "mercator_bechlem"
 gem "mercator_icecat"
 ```
-2 Get all migrations into your app
+
+Get all migrations from the gems into your application:
 ```ruby
 rake mercator_mesonic:install:migrations
 ```
