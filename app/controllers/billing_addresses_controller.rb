@@ -22,7 +22,7 @@ class BillingAddressesController < ApplicationController
 
   def enter
     self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
-    unless current_user.name == "Gast"
+    unless current_user.state == "guest"
       self.this.name = current_user.name
       self.this.email_address= current_user.email_address
     end
@@ -44,10 +44,21 @@ class BillingAddressesController < ApplicationController
   def do_enter
     do_creator_action :enter do
       self.this.user = current_user
+      order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
+
+      if current_user.state == "guest"
+        name = this.email_address.split('@')[0].gsub!('.', ' ') if this.email_address.present?
+        current_user.update(name: name.titlecase) if name
+
+        unless current_user.update(email_address: this.email_address)
+          self.this.email_address = nil
+          self.this.errors.clear
+          self.this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))
+          render action: :enter, order_id: order.id and return
+        end
+      end
 
       if self.this.save
-        order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
-
         order.update(billing_name:        this.name,
                      billing_c_o:         this.c_o,
                      billing_detail:      this.detail,
@@ -63,12 +74,6 @@ class BillingAddressesController < ApplicationController
                      shipping_postalcode: this.postalcode,
                      shipping_city:       this.city,
                      shipping_country:    this.country)
-
-        if current_user.name == "Gast"
-          current_user.update(email_address: this.email_address)
-          name = this.email_address.split('@')[0].gsub!('.', ' ')
-          current_user.update(name: name.titlecase) if name
-        end
 
         Address.create(name:       this.name,
                        c_o:        this.c_o,

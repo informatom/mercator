@@ -61,7 +61,7 @@ gem 'codemirror-rails'                                # Code Editor
 
 group :development, :test  do
   gem 'thin'                                          # web server, replacement for webrick
-  gem 'debugger'                                      # Command line debugger
+  gem 'byebug'                                      # Command line debugger
   gem "quiet_assets"                                  # leaner log output
   gem "require_all"                                   # requiring a full directory
   gem "better_errors"                                 # Debug messages im Browser

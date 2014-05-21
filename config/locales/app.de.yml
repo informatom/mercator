@@ -486,6 +486,8 @@ de:
     file_is_being_processed: Datei wird verarbeitet
     from: vom
     frontend_subsite_name: Frontend
+    get_login_link: "falls Sie Ihr Kennwort nicht mehr kennen, sich einen Link mailen lassen, mit dem Sie sich anmelden können:"
+    goto_login: "sich anmelden, falls sie ihr Kennwort noch kennen:"
     goto_search: Zur Suche
     gtc_confirmation_left: "Ich bestätige, die"
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
@@ -550,6 +552,8 @@ de:
       user:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+        update_email:
+          error: ist bereits registriert.
     new_message: Neue Nachricht
     no_deliveries: keine Lieferungen
     no_invoices: keine Rechnungen
@@ -581,6 +585,7 @@ de:
       text_customer: Feedbacktext und ich
       text: Feedbacktext
     provide_billing_address: Rechnungsadresse angeben
+    register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
     remove_filter: Filter aufheben
     repeat: Wiederholen
@@ -611,4 +616,5 @@ de:
     waiting_for_release: ", die auf Freigabe warten."
     you_are_here: Sie befinden sich hier
     you_are_talking_to: Sie sprechen mit
+    you_could: Sie können
     your_message: Ihre Nachricht

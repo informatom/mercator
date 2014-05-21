@@ -41,11 +41,25 @@
 
 <extend tag="enter-form" for="BillingAddress">
   <old-enter-form merge>
-    <field-list:>
-      <country-view:>
-        <name-one complete-target="&Country.new()" completer="name_de" autocomplete="off"/>
-      </country-view:>
+
+    <field-list:  replace>
+      <if test="&this.errors.messages[:email_address].include?(I18n.t('mercator.messages.user.update_email.error'))">
+        <t key="mercator.you_could"/>
+        <ul>
+          <li><t key="mercator.register_different_email"/></li>
+          <li><t key="mercator.goto_login"/> <a href='&user_switch_path'><t key='mercator.switch_user' /></a></li>
+          <li><t key="mercator.get_login_link"/></li>
+        </ul>
+      </if>
+
+      <field-list: restore>
+        <country-view:>
+          <name-one complete-target="&Country.new()" completer="name_de" autocomplete="off"/>
+        </country-view:>
+      </field-list: >
+
     </field-list:>
+
     <actions:>
       <hidden-field with="&this.order_id"/>
       <submit label="#{ht 'billing_address.actions.enter', :default=>['Enter']}" param/>

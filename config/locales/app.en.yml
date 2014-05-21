@@ -486,6 +486,8 @@ en:
     file_is_being_processed: File is being processed ...
     from: from
     frontend_subsite_name: Front End
+    get_login_link: "if you can't remember your password, recieve an e-mail with a login link:"
+    goto_login: "if you remember the password, use it to login:"
     goto_search: Goto Search
     gtc_confirmation_left: "I confirm, that I have read and understood the"
     gtc_confirmation_right:  und I accept them.
@@ -550,6 +552,8 @@ en:
       user:
         accept_gtc:
           error: "You have to accept the General Terms and Conditions (GTCs), to continue with the order process!"
+        update_email:
+          error: is already registered!
     new_message: New Message
     no_deliveries: No deliveries found.
     no_invoices: No invoices found.
@@ -581,6 +585,7 @@ en:
       text_customer: Feedback text and my name
       text: Feedback Text
     provide_billing_address: Provide Billing Address
+    register_different_email: register a different e-mail address.
     registered_for: Registered for
     remove_filter: Remove Filter
     repeat: Repeat
@@ -611,4 +616,5 @@ en:
     waiting_for_release: "waiting for release."
     you_are_here: You ere here
     you_are_talking_to: You are talking to
+    you_could: You could
     your_message: Your message
