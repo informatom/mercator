@@ -1,14 +1,15 @@
 <h3>Guten Tag, <%= @user %>,</h3>
 
-<p>um Ihren E-Mail Adresss zu für <%= @app_name %> bestätigen, klicken Sie bitte auf folgenden Link:</p>
+<p>um Ihren Account für <%= @app_name %> zu aktiveren, klicken Sie bitte auf folgenden Link:</p>
 <p> <%= link_to activate_from_email_url(:id => @user, :key => @key), activate_from_email_url(:id => @user, :key => @key) %></p>
 
 <p>Mit freundlichen Grüßen und bestem Dank,</p>
 
 <p>das <%= @app_name %> Team.</p>
 
+<hr>
 
-<h3><%= @user %>,</h3>
+<h3>Hello <%= @user %>,</h3>
 
 
 <p>To activate your account for <%= @app_name %>, click on this link:</p>

@@ -21,6 +21,14 @@
   </old-accept-gtc-form>
 </extend>
 
+<extend tag="activate-form" for="User">
+  <old-activate-form merge>
+    <before-actions:>
+      <t key="mercator.click_to_finish"/>
+    </before-actions:>
+  </old-activate-form>
+</extend>
+
 <extend tag="show-page" for="User">
   <old-show-page merge>
     <content-body: param>

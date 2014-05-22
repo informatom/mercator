@@ -42,7 +42,7 @@ de:
     country: Land
     Country: Land
     created_at: Erzeugt
-    current_password: Aktuelles Passwort
+    current_password: Aktuelles Kennwort
     customer: Kunde
     delivery_time: Lieferzeit
     description: Beschreibung
@@ -78,7 +78,8 @@ de:
     page_template: Websitevorlage
     page_tree: Sitestruktur
     parent: Elternelement
-    password_confirmation: Passwortbestätigung
+    password: Kennwort
+    password_confirmation: Kennwortbestätigung
     photo: Foto
     photo_file_name: Dateiname Foto
     photo_content_type: Dateityp Foto
@@ -364,6 +365,7 @@ de:
             accept_gtc: AGBs bestätigen
             deactivate: Deaktivieren
             reactivate: Aktivieren
+            reset_password: Kennwort festlegen
       webpage:
         lifecycle:
           transitions:
@@ -458,6 +460,11 @@ de:
       heading: Angebotsposition erstellen
     actions:
       add: Zwischenspeichern
+  user:
+    activate:
+      heading: Account aktivieren
+    reset_password:
+      heading: Kennwort festlegen
 
   mercator:
     admin_subsite_name: Administration
@@ -468,6 +475,7 @@ de:
     billing_method:
       change: Zahlungsart wechseln
       select: Bitte wählen Sie eine Zahlungsart
+    click_to_finish: "Klicken Sie bitte noch auf den 'Account aktivieren'-Button, um die Aktivierung abzuschließen."
     cobrowsing_link: Cobrowsing Link
     coming_from: aus
     consumeables: Verbrauchsmaterialien
@@ -596,6 +604,7 @@ de:
     sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
     salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
     select_a_category: Bitte wählen Sie eine Kategorie!
+    set_password: Kennwort festlegen
     shipping_method:
       change: Lieferart wechseln
       select: Bitte wählen Sie eine Lieferart

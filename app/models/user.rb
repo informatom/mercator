@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
     transition :activate, {:inactive => :active}, available_to: :key_holder
+    transition :activate, {:guest => :active}, available_to: :key_holder
 
     transition :deactivate, {active: :inactive}, available_to: "User.administrator",
                subsite: "admin"
@@ -95,6 +96,11 @@ class User < ActiveRecord::Base
 
     transition :reset_password, {:active => :active}, available_to: :key_holder,
                params: [ :password, :password_confirmation ]
+
+    transition :reset_password, {:active => :active}, available_to: :all,
+               params: [ :password, :password_confirmation ], unless: :crypted_password
+
+
   end
 
   def signed_up?

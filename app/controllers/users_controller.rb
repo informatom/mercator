@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     if logged_in?
       current_user.update(logged_in: true)
 
-      last_user = User.find(session[:last_user])
+      last_user = User.find(session[:last_user]) if session[:last_user]
       last_basket = last_user.basket if last_user
 
       if last_basket
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
       current_user.sync_agb_with_basket
 
-      if last_user.conversations.any?
+      if last_user && last_user.conversations.any?
         last_user.conversations.each do |conversation|
           conversation.update(customer_id: current_user.id)
         end

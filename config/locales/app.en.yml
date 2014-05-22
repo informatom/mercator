@@ -78,6 +78,7 @@ en:
     page_template: Page Template
     page_tree: Site Structure
     parent: Parent Element
+    password: Password
     password_confirmation: Password Confirmation
     photo: Photo
     photo_file_name: Photo File Name
@@ -364,6 +365,7 @@ en:
             accept_gtc: Accept GTCs
             deactivate: Deactivate
             reactivate: Reactivate
+            reset_password: Set Password
       webpage:
         lifecycle:
           transitions:
@@ -458,6 +460,11 @@ en:
       heading: Create Offer Position
     actions:
       add: Save
+  user:
+    activate:
+      heading: Activate Account
+    reset_password:
+      heading: Set Password
 
   mercator:
     admin_subsite_name: Administration
@@ -468,6 +475,7 @@ en:
     billing_method:
       change: Change Billing Method
       select: Please Select a Billing Method
+    click_to_finish: "Please click an the Activate Account button to finish the activation process."
     cobrowsing_link: Cobrowsing Link
     coming_from: from
     consumeables: Consumeables
@@ -596,6 +604,7 @@ en:
     sales_subheading: The page for consulting sessions management in the Mercator Guided Selling System
     salutation: "Hello! My name is %{name}. How can I help you?"
     select_a_category: Please select a category!
+    set_password: Set Password
     shipping_method:
       change: Change Shipping Method
       select: Please select shipping method

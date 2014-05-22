@@ -47,11 +47,10 @@ class BillingAddressesController < ApplicationController
       order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
 
       if current_user.state == "guest"
-        name = this.email_address.split('@')[0].gsub!('.', ' ') if this.email_address.present?
-        current_user.update(name: name.titlecase) if name
+        name = this.email_address.split('@')[0].tr('.', ' ') if this.email_address.present?
 
-        if current_user.update(email_address: this.email_address)
-          UserMailer.activation(@current_user, current_user.lifecycle.key).deliver
+        if current_user.update(name: name.titlecase, email_address: this.email_address)
+          UserMailer.activation(current_user, current_user.lifecycle.key).deliver
         else
           self.this.email_address = nil
           self.this.errors.clear

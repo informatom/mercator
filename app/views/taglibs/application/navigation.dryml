@@ -84,9 +84,16 @@
             <li class='nav-item' param='logged-in-as'>
               <a to='&current_user'><t key='mercator.account' /></a>
             </li>
-            <li class='nav-item' param='account'>
-              <a action='account' to='&current_user'><t key='mercator.password' /></a>
-            </li>
+            <if test='&current_user.state == "active"' >
+              <li class='nav-item' param='account'>
+                <if test='&current_user.crypted_password' >
+                  <a action='account' to='&current_user'><t key='mercator.password' /></a>
+                </if>
+                <else>
+                  <a action='reset_password' to='&current_user'><t key='mercator.set_password' /></a>
+                </else>
+              </li>
+            </if>
             <li class='nav-item' param='orders'>
               <%= link_to t('attributes.orders'), user_orders_path(current_user) %>
             </li>
