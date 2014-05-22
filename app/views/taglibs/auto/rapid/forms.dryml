@@ -773,6 +773,17 @@
     </div>
   </form>
 </def>
+<def tag="login-via-email-form" polymorphic/>
+<def tag="login-via-email-form" for="User">
+  <form lifecycle="login_via_email" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.login_via_email', :default=>['Login Via Email']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Value">
   <form merge param="default">

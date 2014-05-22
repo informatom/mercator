@@ -497,4 +497,25 @@
   </page>
 </def>
 
+<def tag="login-via-email-page" polymorphic/>
+<def tag="login-via-email-page" for="User">
+  <page title="#{ht 'user.login_via_email.title', :default=>['Login Via Email']}" merge>
+
+    <body: class="lifecycle-transition-page login-via-email-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.login_via_email.heading">
+          Login Via Email
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <login-via-email-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 

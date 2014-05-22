@@ -1,0 +1,16 @@
+<h3>Guten Tag, <%= @user %>,</h3>
+
+<p>Sie können mit folgendem Link bei <%= @app_name %> einloggen:</p>
+<p> <%= link_to login_via_email_user_url(:id => @user, :key => @key), login_via_email_user_url(:id => @user, :key => @key) %></p>
+
+<p>Ihr <%= @app_name %> Team.</p>
+
+<hr>
+
+<h3>Hello <%= @user %>,</h3>
+
+
+<p>You can log in to <%= @app_name %> using the following link:</p>
+<p> <%= link_to login_via_email_user_url(:id => @user, :key => @key), login_via_email_user_url(:id => @user, :key => @key) %></p>
+
+<p>The <%= @app_name %> team.</p>

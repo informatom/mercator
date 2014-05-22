@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
     end
 
     transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
+    transition :create_key, {:active => :active}, available_to: :all, new_key: true
 
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?
@@ -100,7 +101,7 @@ class User < ActiveRecord::Base
     transition :reset_password, {:active => :active}, available_to: :all,
                params: [ :password, :password_confirmation ], unless: :crypted_password
 
-
+    transition :login_via_email, {:active => :active}, available_to: :key_holder
   end
 
   def signed_up?

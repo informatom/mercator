@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :set_locale
-  before_filter :auto_log_in, except: [:login, :logout]
+  before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
 
   def auto_log_in

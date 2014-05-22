@@ -54,6 +54,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def login_via_email
+    do_transition_action :login_via_email do
+      self.current_user = User.find(params[:id])
+      create_auth_cookie
+      self.current_user.lifecycle.create_key!(current_user)
+      redirect_to home_page
+    end
+  end
+
   def logout
     current_user.update(logged_in: false)
     hobo_logout
@@ -66,6 +75,11 @@ class UsersController < ApplicationController
       session[:last_user] = last_user_id
       redirect_to :user_login
     end
+  end
+
+  def request_email_login
+    user = User.find_by_email_address(params[:email_address])
+    UserMailer.login_link(user, user.lifecycle.key).deliver
   end
 
   def do_activate

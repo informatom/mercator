@@ -1,0 +1,14 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header hero-unit">
+      <section class="welcome-message">
+        an Email has been sent ...
+      </section>
+    </header>
+    <section class="content-body">
+    </section>
+  </content:>
+</page>
