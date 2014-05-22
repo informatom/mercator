@@ -1,9 +1,19 @@
-<%= @user %>,
+<h3>Guten Tag, <%= @user %>,</h3>
 
-To activate your account for <%= @app_name %>, click on this link:
+<p>um Ihren E-Mail Adresss zu für <%= @app_name %> bestätigen, klicken Sie bitte auf folgenden Link:</p>
+<p> <%= link_to activate_from_email_url(:id => @user, :key => @key), activate_from_email_url(:id => @user, :key => @key) %></p>
 
-  <%= activate_from_email_url :id => @user, :key => @key %>
+<p>Mit freundlichen Grüßen und bestem Dank,</p>
 
-Thank you,
+<p>das <%= @app_name %> Team.</p>
 
-The <%= @app_name %> team.
+
+<h3><%= @user %>,</h3>
+
+
+<p>To activate your account for <%= @app_name %>, click on this link:</p>
+<p> <%= link_to activate_from_email_url(:id => @user, :key => @key), activate_from_email_url(:id => @user, :key => @key) %></p>
+
+<p>Thank you,</p>
+
+<p>The <%= @app_name %> team.</p>

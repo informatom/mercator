@@ -50,7 +50,9 @@ class BillingAddressesController < ApplicationController
         name = this.email_address.split('@')[0].gsub!('.', ' ') if this.email_address.present?
         current_user.update(name: name.titlecase) if name
 
-        unless current_user.update(email_address: this.email_address)
+        if current_user.update(email_address: this.email_address)
+          UserMailer.activation(@current_user, current_user.lifecycle.key).deliver
+        else
           self.this.email_address = nil
           self.this.errors.clear
           self.this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))

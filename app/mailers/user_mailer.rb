@@ -9,8 +9,7 @@ class UserMailer < ActionMailer::Base
 
   def activation(user, key)
     @user, @key = user, key
-    mail( :subject => "#{app_name} -- activate",
+    mail( :subject => "#{app_name} -- E-Mail Verifizierung / email verification",
           :to      => user.email_address )
   end
-
 end
