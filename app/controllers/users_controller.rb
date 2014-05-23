@@ -79,6 +79,7 @@ class UsersController < ApplicationController
 
   def request_email_login
     user = User.find_by_email_address(params[:email_address])
+    user.lifecycle.create_key!(current_user)
     UserMailer.login_link(user, user.lifecycle.key).deliver
   end
 
