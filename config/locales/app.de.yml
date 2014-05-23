@@ -488,6 +488,7 @@ de:
     deliveries_and_payments: Lieferungen und Zahlungen
     delivery_slip_date: Lieferscheindatum
     delivery_number: Lieferungsnummer
+    email_sent: Wir haben ein E-Mail an sie mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden.
     excl_vat: excl. Mwst.
     feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
     file_and_image_upload: Datei und Bild-Upload
@@ -569,6 +570,7 @@ de:
     no_open_payments: keine offenen Zahlungen
     no_products_available: keine Produkte lieferbar
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
+    offer_email_login: "Wenn Sie sich per E-Mail anmelden möchten, senden wir Ihnen einen Anmelde-Link zu."
     on_request: Auf Anfrage
     open(pl): offene
     open_deliveries: Offene Lieferungen
@@ -597,6 +599,7 @@ de:
     registered_for: registriert für
     remove_filter: Filter aufheben
     repeat: Wiederholen
+    request_email:  E-Mail anfordern
     restart_application: "Applikation neu starten"
     restarting: "Neustart"
     root_category: Wurzelkategorie

@@ -1,7 +1,8 @@
 <h3>Guten Tag <%= @user %>!</h3>
 
-<p>Sie können mit folgendem Link bei <%= @app_name %> einmal einloggen:</p>
+<p>Sie können mit folgendem Link bei <%= @app_name %> einmal einloggen.</p>
 <p> <%= link_to login_via_email_user_url(:id => @user, :key => @key), login_via_email_user_url(:id => @user, :key => @key) %></p>
+<p> Der Link ist 10 Minuten (bis <%= l(Time.now + 10.minutes, locale: :de) %>) gültig.
 
 <p>Ihr <%= @app_name %> Team.</p>
 
@@ -12,5 +13,6 @@
 
 <p>You can log in to <%= @app_name %> using the following link once :</p>
 <p> <%= link_to login_via_email_user_url(:id => @user, :key => @key), login_via_email_user_url(:id => @user, :key => @key) %></p>
+<p> The link is valid for 10 minutes (until <%= l(Time.now + 10.minutes, locale: :en) %>).
 
 <p>The <%= @app_name %> team.</p>

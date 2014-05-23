@@ -33,7 +33,8 @@ Mercator::Application.routes.draw do
   get 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
   get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
   get 'switch(.:format)' => 'users#switch', :as => 'user_switch'
-  get 'request_login_link(.:format)' => 'users#request_email_login', :as => 'request_email_login'
+
+  post 'request_login_link(.:format)' => 'users#request_email_login', :as => 'request_email_login'
 
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
@@ -47,4 +48,3 @@ Mercator::Application.routes.draw do
   post 'sales' => 'sales/front#index'
   post 'sales/conversations/:id/do_upload' => 'sales/conversations#do_upload'
 end
-

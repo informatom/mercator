@@ -5,7 +5,7 @@
   <content:>
     <header class="content-header hero-unit">
       <section class="welcome-message">
-        an Email has been sent ...
+        <t key="mercator.email_sent"/>
       </section>
     </header>
     <section class="content-body">

@@ -488,6 +488,7 @@ en:
     deliveries_and_payments: Deliveries and Payments
     delivery_slip_date: Delivery Slip Date
     delivery_number: Delivery Number
+    email_sent: We have sent you an email with a login link. This link is valid for 10 minutes and can only be used once.
     excl_vat: excl. VAT
     feedback_request: We would like to get your feedback to increase the quality of our services!
     file_and_image_upload: File and Image Upload
@@ -569,6 +570,7 @@ en:
     no_open_payments: No open payments found.
     no_products_available: No products Available
     no_product_with_this_name: No product found with this name.
+    offer_email_login: "If you want to login using your E-Mail, we will send you a login link."
     on_request: On request
     open(pl): open
     open_deliveries: Open Deliveries
@@ -597,6 +599,7 @@ en:
     registered_for: Registered for
     remove_filter: Remove Filter
     repeat: Repeat
+    request_email:  Request E-Mail
     restart_application: Restart Application
     restarting: Restarting
     root_category: Root Category

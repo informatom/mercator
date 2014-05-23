@@ -24,6 +24,17 @@
       </section>
     </header>
     <section class="content-body">
+      <if test="&current_user.name == 'Gast'" >
+        <form action="request_login_link" method="POST">
+          <fieldset>
+            <label><t key="attributes.email_address"/></label>
+            <input type="string" name="email_address"/>
+            <span class="help-block"><t key="mercator.offer_email_login"/></span>
+          </fieldset>
+          <p>&nbsp;</p>
+          <submit label="&t('mercator.request_email')"/>
+        </form>
+      </if>
     </section>
   </content:>
 </page>
