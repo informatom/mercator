@@ -570,7 +570,7 @@ en:
     no_open_payments: No open payments found.
     no_products_available: No products Available
     no_product_with_this_name: No product found with this name.
-    offer_email_login: "If you want to login using your E-Mail, we will send you a login link."
+    offer_email_login: "If you are registered already and want to login using your E-Mail, we can send you a login link."
     on_request: On request
     open(pl): open
     open_deliveries: Open Deliveries
