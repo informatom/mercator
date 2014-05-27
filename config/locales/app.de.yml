@@ -37,6 +37,7 @@ de:
     consultant_id: Berater
     content: Inhalt
     content_element: Baustein
+    Contract: Vertrag
     Conversation: Konversation
     conversation: Konversation
     country: Land
@@ -48,6 +49,7 @@ de:
     description: Beschreibung
     detail: Detaiils
     discount: Rabatt
+    discount_abs: "Rabatt absolut in EUR"
     discount-abs: "Rabatt absolut in EUR"
     discount-rel: "Rabatt relativ in %"
     document: Dokument
@@ -92,6 +94,7 @@ de:
     Product: Artikel
     product: Artikel
     product_number: Artikelnummer
+    product_price: Preis
     productrelations: Produktzuordnungen
     products: Artikel
     Property: Eigenschaft
@@ -136,6 +139,7 @@ de:
     used_as: Verwendet als
     usage_type: Verwendungsart
     user_id: Benutzer
+    user: Benutzer
     User: Benutzer
     updated_at: Aktualisiert
     valid_from: Gültig ab
@@ -173,6 +177,9 @@ de:
       contract:
         one: Vertrag
         other: Verträge
+      contractitem:
+        one: Vertragsposition
+        other: Vertragspositionen
       conversation:
         one: Konversation
         other: Konversationen

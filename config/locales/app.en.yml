@@ -37,6 +37,7 @@ en:
     consultant_id: Consultant ID
     content: Content
     content_element: Content Element
+    Contract: Contract
     Conversation: Conversation
     conversation: conversation
     country: Country
@@ -48,6 +49,7 @@ en:
     description: description
     Detail: Detail
     discount: Discount
+    discount_abs: "Discount absolute in EUR"
     discount-abs: "Discount absolute in EUR"
     discount-rel: "Discount relative in %"
     document: Document
@@ -91,6 +93,7 @@ en:
     prices: Prices
     Product: Product
     product: Product
+    product_price: Price
     product_number: Product Number
     productrelations: Product Relations
     products: Products
@@ -136,6 +139,7 @@ en:
     used_as: Used as
     usage_type: Usage Type
     user_id: User
+    user: User
     User: User
     updated_at: Updated at
     valid_from: Valid from
@@ -173,6 +177,9 @@ en:
       contract:
         one: Contract
         other: Contracts
+      contractitem:
+        one: Contract Item
+        other: Contract Items
       conversation:
         one: Conversation
         other: Conversations

@@ -7,10 +7,124 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Contract"><ht key="contract.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Contractitem"><ht key="contractitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Toner"><ht key="toner.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Contractitem Pages ====== -->
+
+<def tag="index-page" for="Contractitem">
+  <page merge title="#{ht 'contractitem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page contractitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contractitem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="contractitem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="contractitem.actions.new">New Contract Item</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Contractitem">
+  <page merge title="#{ht 'contractitem.new.title', :default=>[' New Contract Item'] }">
+    <body: class="new-page contractitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contractitem.new.heading">
+          New Contract Item
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'contractitem.actions.create', :default=>['Create Contract Item']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Contractitem">
+  <page merge title="#{ht 'contractitem.show.title', :default=>['Contract Item'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page contractitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contractitem.show.heading" name="#{name(:no_wrapper => true)}">
+          Contract Item <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="contractitem.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Contract Item
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, discount_abs, contract, product, toner, user" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Contractitem">
+  <page merge title="#{ht 'contractitem.edit.title', :default=>['Edit Contract Item'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page contractitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="contractitem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Contract Item
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'contractitem.actions.delete', :default=>['Remove This Contract Item']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 
@@ -95,7 +209,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="runtime, startdate" param/>
+      <field-list fields="runtime, startdate, consultant, conversation, user" param/>
     </content-body:>
 
   </page>

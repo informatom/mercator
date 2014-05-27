@@ -22,6 +22,9 @@
         <nav-item with="&Contract">
           <ht key="contract.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Contractitem">
+          <ht key="contractitem.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
         <nav-item with="&Toner">
           <ht key="toner.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
@@ -30,6 +33,5 @@
         </nav-item>
       </ul>
     </li>
-
   </navigation>
 </def>

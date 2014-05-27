@@ -14,6 +14,8 @@ class Toner < ActiveRecord::Base
 
   has_paper_trail
 
+  has_many :contractitems
+
 # Attr Acessors for File Upload
   def xls
     @xls

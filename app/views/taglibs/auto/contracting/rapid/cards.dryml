@@ -69,6 +69,14 @@
   </card>
 </def>
 
+<def tag="card" for="Contractitem">
+  <card class="contractitem" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Conversation">
   <card class="conversation" param="default" merge>
     <header: param>

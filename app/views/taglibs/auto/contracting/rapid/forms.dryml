@@ -1,10 +1,22 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="Contractitem">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, product_price, vat, value, discount_abs, contract, product, toner, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'contractitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Contract">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="runtime, startdate" param/>
+    <field-list fields="runtime, startdate, consultant, contractitems, conversation, user" param/>
     <div param="actions">
       <submit label="#{ht 'contract.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
