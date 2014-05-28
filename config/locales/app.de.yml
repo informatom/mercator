@@ -277,6 +277,8 @@ de:
       contentelement/markups:
         html: "HTML-Seite"
         markdown: "Markdown Seite"
+      contractitem:
+        volume: monatliches Druckvolumen
       conversation:
         name: "Thema oder Titel"
         lifecycle:

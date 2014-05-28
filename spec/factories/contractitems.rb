@@ -16,5 +16,6 @@ FactoryGirl.define do
     value          45632
     discount_abs   3
     toner
+    volume         10000
   end
 end

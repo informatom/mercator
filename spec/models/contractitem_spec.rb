@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contractitem do
   it "is valid with contract, user, position, product, product_number,
       description_de, description_en, amount, unit, product_price,
-      vat, discount_abs, toner, value" do
+      vat, discount_abs, toner, value, volume" do
     expect(build(:contractitem)).to be_valid
   end
 

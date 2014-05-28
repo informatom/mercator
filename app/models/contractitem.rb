@@ -9,6 +9,7 @@ class Contractitem < ActiveRecord::Base
     description_en :string
     amount         :integer
     unit           :string
+    volume         :integer
     product_price  :decimal, :precision => 10, :scale => 2
     vat            :decimal, :precision => 10, :scale => 2
     value          :decimal, :precision => 10, :scale => 2
