@@ -7,12 +7,12 @@ class Contract < ActiveRecord::Base
     startdate :date, :required
     timestamps
   end
-  attr_accessible :runtime, :startdate,:user_id, :user_id, :consultant, :consultant_id,
+  attr_accessible :runtime, :startdate, :user_id, :user_id, :consultant, :consultant_id,
                   :conversation, :conversation_id
   has_paper_trail
 
-  belongs_to :user
-  validates :user, :presence => true
+  belongs_to :customer, :class_name => 'User'
+  validates :customer, :presence => true
 
   belongs_to :consultant, :class_name => 'User'
   validates :consultant, :presence => true

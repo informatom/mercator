@@ -5,5 +5,4 @@ FactoryGirl.define do
     name_en "Austria"
     code "AT"
   end
-
 end

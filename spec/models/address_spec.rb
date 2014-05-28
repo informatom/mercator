@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Address do
   it "is valid with name, c_o, detail, street, postal code, city, country" do
+    build(:country).save
     expect(build(:address)).to be_valid
   end
 

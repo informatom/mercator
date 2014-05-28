@@ -3,9 +3,9 @@ class Contractitem < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    position       :integer
+    position       :integer, :required
     product_number :string
-    description_de :string
+    description_de :string, :required
     description_en :string
     amount         :integer
     unit           :string

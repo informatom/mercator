@@ -38,7 +38,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="contractitem.actions.new">New Contract Item</ht>
+        <ht key="contractitem.actions.new">New Contractitem</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -54,20 +54,20 @@
 
 
 <def tag="new-page" for="Contractitem">
-  <page merge title="#{ht 'contractitem.new.title', :default=>[' New Contract Item'] }">
+  <page merge title="#{ht 'contractitem.new.title', :default=>[' New Contractitem'] }">
     <body: class="new-page contractitem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="contractitem.new.heading">
-          New Contract Item
+          New Contractitem
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'contractitem.actions.create', :default=>['Create Contract Item']}"/>
+        <submit: label="#{ht 'contractitem.actions.create', :default=>['Create Contractitem']}"/>
       </form>
     </content-body:>
   </page>
@@ -75,14 +75,14 @@
 
 
 <def tag="show-page" for="Contractitem">
-  <page merge title="#{ht 'contractitem.show.title', :default=>['Contract Item'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'contractitem.show.title', :default=>['Contractitem'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page contractitem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="contractitem.show.heading" name="#{name(:no_wrapper => true)}">
-          Contract Item <name/>
+          Contractitem <name/>
         </ht>
       </h2>
 
@@ -90,7 +90,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="contractitem.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Contract Item
+          Edit Contractitem
         </ht>
       </a>
     </content-header:>
@@ -105,17 +105,17 @@
 
 
 <def tag="edit-page" for="Contractitem">
-  <page merge title="#{ht 'contractitem.edit.title', :default=>['Edit Contract Item'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'contractitem.edit.title', :default=>['Edit Contractitem'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page contractitem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="contractitem.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Contract Item
+          Edit Contractitem
         </ht>
       </h2>
-      <delete-button label="#{ht 'contractitem.actions.delete', :default=>['Remove This Contract Item']}" param/>
+      <delete-button label="#{ht 'contractitem.actions.delete', :default=>['Remove This Contractitem']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -209,7 +209,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="runtime, startdate, consultant, conversation, user" param/>
+      <field-list fields="runtime, startdate, consultant, conversation, customer" param/>
     </content-body:>
 
   </page>
