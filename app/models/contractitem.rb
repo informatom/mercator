@@ -16,7 +16,7 @@ class Contractitem < ActiveRecord::Base
     discount_abs   :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
-  attr_accessible :position, :product_number, :description_de, :description_en, :amount, :unit,
+  attr_accessible :position, :product_number, :description_de, :description_en, :amount, :unit, :volume
                   :product_price, :vat, :value, :discount_abs, :user, :user_id, :contract_id, :contract,
                   :product, :product_id, :toner, :toner_id
 
