@@ -24,3 +24,5 @@ vendor/bechlem/*
 
 app/views/page_templates/*
 materials/ivellio-vellin/*
+
+.gemtags

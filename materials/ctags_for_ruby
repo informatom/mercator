@@ -1,0 +1,14 @@
+#!/home/stefan/.rvm/rubies/ruby-2.0.0-p451/bin/ruby
+
+# put me in ~/.rvm/bin
+# install sudo apt-get install exuberant-ctags
+# Install Sublime 3 Package CTags
+# run me
+
+system "find . -name '*.rb' | ctags -f .tags -L -"
+
+if File.exist? './Gemfile'
+  require 'bundler'
+  paths = Bundler.load.specs.map(&:full_gem_path).join(' ')
+  system "ctags -R -f .gemtags #{paths}"
+end
