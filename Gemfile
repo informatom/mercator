@@ -59,9 +59,14 @@ gem 'try_to'                                          # checks for methods exist
 gem 'friendly_id', '~> 5.0.0'                         # Friendlier URLs for webpages
 gem 'codemirror-rails'                                # Code Editor
 
+gem "active_model_serializers"
+gem "ember-rails"
+gem "ember-source"
+
 group :development, :test  do
-  gem 'thin'                                          # web server, replacement for webrick
-  gem 'byebug'                                      # Command line debugger
+#  gem 'thin'                                          # web server, replacement for webrick
+  gem "puma"                                          # web server, replacement for webrick
+  gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output
   gem "require_all"                                   # requiring a full directory
   gem "better_errors"                                 # Debug messages im Browser

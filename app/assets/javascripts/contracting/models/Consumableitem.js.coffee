@@ -1,5 +1,5 @@
-Contracting.ConsumableItem = DS.Model.extend(
-  contractItem: DS.belongsTo("contractItem",
+Contracting.Consumableitem = DS.Model.extend(
+  contractitem: DS.belongsTo("contractitem",
     async: true
   )
 
@@ -10,7 +10,7 @@ Contracting.ConsumableItem = DS.Model.extend(
   descriptionDe: DS.attr("string")
   descriptionEn: DS.attr("string")
   amount: DS.attr("number")
-  yield: DS.attr("number")
+  theyield: DS.attr("number")
   wholesalePrice: DS.attr("number")
   term: DS.attr("number")
   consumption1: DS.attr("number")
@@ -22,8 +22,8 @@ Contracting.ConsumableItem = DS.Model.extend(
   balance6: DS.attr("number")
 
   price: (->
-    @get("wholesalePrice") * (100 + parseFloat(@get("contractItem").get("marge"))) / 100
-  ).property("wholesalePrice", "contractItem.marge")
+    @get("wholesalePrice") * (100 + parseFloat(@get("contractitem").get("marge"))) / 100
+  ).property("wholesalePrice", "contractitem.marge")
 
   value: (->
     @get("price") * @get("amount")
@@ -34,14 +34,14 @@ Contracting.ConsumableItem = DS.Model.extend(
   ).property("value", "term")
 
   newRate2: (->
-    if @get("term") is "contractItem.term"
+    if @get("term") is "contractitem.term"
       if @get("amount") * 12 / @get("term") >= 1
         @get("consumption1") * @get("price") / 12
       else
         @get "monthlyRate"
     else
       @get "monthlyRate"
-  ).property("term", "contractItem.term", "monthlyRate", "consumption1", "price", "amount")
+  ).property("term", "contractitem.term", "monthlyRate", "consumption1", "price", "amount")
 
   newRate3: (->
     if @get("consumption2") > 0

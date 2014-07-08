@@ -1,6 +1,18 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="Consumableitem">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="contractitem" param/>
+    <div param="actions">
+      <submit label="#{ht 'consumableitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Contractitem">
   <form merge param="default">
     <error-messages param/>

@@ -1,5 +1,5 @@
 <div class="pull-right">
-  <button class="btn btn-success btn-xs" {{action "createContractItem"}}>
+  <button class="btn btn-success btn-xs" {{action "createContractitem"}}>
     <span class="glyphicon glyphicon-plus" /> neue Position
   </button>
 </div>
@@ -30,8 +30,8 @@
     </tr>
   </thead>
   <tbody>
-    {{#each contractItem in controller}}
-      {{contractitem-line item=contractItem}}
+    {{#each contractitem in controller}}
+      {{contractitem-line item=contractitem}}
     {{/each}}
   </tbody>
   </thead>

@@ -6,12 +6,125 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Consumableitem"><ht key="consumableitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Contract"><ht key="contract.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Contractitem"><ht key="contractitem.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Toner"><ht key="toner.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Consumableitem Pages ====== -->
+
+<def tag="index-page" for="Consumableitem">
+  <page merge title="#{ht 'consumableitem.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page consumableitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="consumableitem.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="consumableitem.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="consumableitem.actions.new">New Consumableitem</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Consumableitem">
+  <page merge title="#{ht 'consumableitem.new.title', :default=>[' New Consumableitem'] }">
+    <body: class="new-page consumableitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="consumableitem.new.heading">
+          New Consumableitem
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'consumableitem.actions.create', :default=>['Create Consumableitem']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Consumableitem">
+  <page merge title="#{ht 'consumableitem.show.title', :default=>['Consumableitem'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page consumableitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="consumableitem.show.heading" name="#{name(:no_wrapper => true)}">
+          Consumableitem <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="consumableitem.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Consumableitem
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="contractitem" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Consumableitem">
+  <page merge title="#{ht 'consumableitem.edit.title', :default=>['Edit Consumableitem'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page consumableitem" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="consumableitem.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Consumableitem
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'consumableitem.actions.delete', :default=>['Remove This Consumableitem']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 

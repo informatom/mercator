@@ -3,12 +3,13 @@ class Contract < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    runtime   :integer, :required
-    startdate :date, :required
+    runtime   :integer
+    term      :integer
+    startdate :date
     timestamps
   end
   attr_accessible :runtime, :startdate, :user_id, :user_id, :consultant, :consultant_id,
-                  :conversation, :conversation_id
+                  :conversation, :conversation_id, :term
   has_paper_trail
 
   belongs_to :customer, :class_name => 'User'

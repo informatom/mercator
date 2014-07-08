@@ -1,5 +1,5 @@
 Contracting.Contract = DS.Model.extend
-  contractItems: DS.hasMany("contractItem",
+  contractitems: DS.hasMany("contractitem",
     async: true
   )
 
@@ -13,5 +13,5 @@ Contracting.Contract = DS.Model.extend
                              .subtract "days", 1
   ).property("startdate", "term")
 
-  positions: Ember.computed.mapBy('contractItems', 'position'),
+  positions: Ember.computed.mapBy('contractitems', 'position'),
   maxposition: Ember.computed.max('positions')

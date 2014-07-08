@@ -1,6 +1,6 @@
 Contracting.ContractController = Ember.ObjectController.extend
   actions:
-    createContractItem: ->
+    createContractitem: ->
       contract = @get("model")
 
       if isFinite(contract.get("maxposition"))
@@ -8,14 +8,14 @@ Contracting.ContractController = Ember.ObjectController.extend
       else
         position = 10
 
-      contractItem = @store.createRecord("contractItem",
+      contractitem = @store.createRecord("contractitem",
         position: position
         contract: @get("model")
         startdate: moment().toDate()
       )
 
-      contractItem.save().then (contractItem) ->
-        contract.get("contractItems").pushObject contractItem
+      contractitem.save().then (contractitem) ->
+        contract.get("contractitems").pushObject contractitem
 
     save: ->
       @wantstodelete = true
@@ -26,10 +26,10 @@ Contracting.ContractController = Ember.ObjectController.extend
     delete: ->
       contract = @get("model")
 
-      contract.get("contractItems").forEach (contractItem) ->
-        contractItem.get("consumableItems").forEach (consumableItem) ->
-          consumableItem.destroyRecord()
-        contractItem.destroyRecord()
+      contract.get("contractitems").forEach (contractitem) ->
+        contractitem.get("consumableitems").forEach (consumableitem) ->
+          consumableitem.destroyRecord()
+        contractitem.destroyRecord()
       contract.destroyRecord()
       @transitionToRoute "/"
 

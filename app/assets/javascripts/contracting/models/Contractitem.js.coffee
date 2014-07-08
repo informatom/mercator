@@ -1,8 +1,8 @@
-Contracting.ContractItem = DS.Model.extend
+Contracting.Contractitem = DS.Model.extend
   contract: DS.belongsTo("contract",
     async: true
   )
-  consumableItems: DS.hasMany("consumableItem",
+  consumableitems: DS.hasMany("consumableitem",
     async: true
   )
 
@@ -24,9 +24,9 @@ Contracting.ContractItem = DS.Model.extend
   updatedAt: DS.attr("date")
 
   price: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("value")
-  ).property("consumableItems.@each.value")
+  ).property("consumableitems.@each.value")
 
   enddate: (->
     moment(@get("startdate")).add("months", @get("term")).subtract "days", 1
@@ -45,79 +45,79 @@ Contracting.ContractItem = DS.Model.extend
   ).property("value", "vat")
 
   newRate2: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("newRate2")
-  ).property("consumableItems.@each.newRate2")
+  ).property("consumableitems.@each.newRate2")
 
   newRateWithMonitoring2: (->
     @get("newRate2") + parseFloat(@get("monitoringRate"))
   ).property("newRate2", "monitoringRate")
 
   newRate3: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("newRate3")
-  ).property("consumableItems.@each.newRate3")
+  ).property("consumableitems.@each.newRate3")
 
   newRateWithMonitoring3: (->
     @get("newRate3") + parseFloat(@get("monitoringRate"))
   ).property("newRate3", "monitoringRate")
 
   newRate4: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("newRate4")
-  ).property("consumableItems.@each.newRate4")
+  ).property("consumableitems.@each.newRate4")
 
   newRateWithMonitoring4: (->
     @get("newRate4") + parseFloat(@get("monitoringRate"))
   ).property("newRate4", "monitoringRate")
 
   newRate5: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("newRate5")
-  ).property("consumableItems.@each.newRate5")
+  ).property("consumableitems.@each.newRate5")
 
   newRateWithMonitoring5: (->
     @get("newRate5") + parseFloat(@get("monitoringRate"))
   ).property("newRate5", "monitoringRate")
 
   newRate6: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("newRate6")
-  ).property("consumableItems.@each.newRate6")
+  ).property("consumableitems.@each.newRate6")
 
   newRateWithMonitoring6: (->
     @get("newRate6") + parseFloat(@get("monitoringRate"))
   ).property("newRate6", "monitoringRate")
 
   balance1: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("balance1")
-  ).property("consumableItems.@each.balance1", "monitoringRate")
+  ).property("consumableitems.@each.balance1", "monitoringRate")
 
   balance2: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("balance2")
-  ).property("consumableItems.@each.balance2", "monitoringRate")
+  ).property("consumableitems.@each.balance2", "monitoringRate")
 
   balance3: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("balance3")
-  ).property("consumableItems.@each.balance3", "monitoringRate")
+  ).property("consumableitems.@each.balance3", "monitoringRate")
 
   balance4: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("balance4")
-  ).property("consumableItems.@each.balance4", "monitoringRate")
+  ).property("consumableitems.@each.balance4", "monitoringRate")
 
   balance5: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("balance5")
-  ).property("consumableItems.@each.balance5", "monitoringRate")
+  ).property("consumableitems.@each.balance5", "monitoringRate")
 
   balance6: (->
-    @get("consumableItems").reduce (prevVal, item) ->
+    @get("consumableitems").reduce (prevVal, item) ->
       (prevVal or 0) + item.get("balance6")
-  ).property("consumableItems.@each.balance6", "monitoringRate")
+  ).property("consumableitems.@each.balance6", "monitoringRate")
 
   monthsWithoutRates1: (->
     if @get("balance1") < 0
@@ -174,5 +174,5 @@ Contracting.ContractItem = DS.Model.extend
     ((@get("monthsWithoutRates5") * @get("newRate6")) + parseFloat(@get("balance5"))) * (-1)
   ).property("monthsWithoutRates5", "newRate6", "balance5")
 
-  positions: Ember.computed.mapBy('consumableItems', 'position'),
+  positions: Ember.computed.mapBy('consumableitems', 'position'),
   maxposition: Ember.computed.max('positions')

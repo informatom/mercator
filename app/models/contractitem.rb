@@ -3,22 +3,30 @@ class Contractitem < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    position       :integer, :required
-    product_number :string
-    description_de :string, :required
-    description_en :string
-    amount         :integer
-    unit           :string
-    volume         :integer
-    product_price  :decimal, :precision => 10, :scale => 2
-    vat            :decimal, :precision => 10, :scale => 2
-    value          :decimal, :precision => 10, :scale => 2
-    discount_abs   :decimal, :required, :scale => 2, :precision => 10, :default => 0
+    position        :integer, :required
+    product_number  :string
+    description_de  :string, :required
+    description_en  :string
+    amount          :integer
+    unit            :string
+    volume          :integer
+    product_price   :decimal, :precision => 10, :scale => 2
+    vat             :decimal, :precision => 10, :scale => 2
+    value           :decimal, :precision => 10, :scale => 2
+    discount_abs    :decimal, :required, :scale => 2, :precision => 10, :default => 0
+    term            :integer
+    startdate       :date
+    volume_bw       :integer
+    volume_color    :integer
+    marge           :decimal, :precision => 10, :scale => 2
+    monitoring_rate :decimal, :precision => 10, :scale => 2
     timestamps
   end
+
   attr_accessible :position, :product_number, :description_de, :description_en, :amount, :unit, :volume,
                   :product_price, :vat, :value, :discount_abs, :user, :user_id, :contract_id, :contract,
-                  :product, :product_id, :toner, :toner_id
+                  :product, :product_id, :toner, :toner_id, :term, :startdate, :volume_bw, :volume_color,
+                  :marge, :monitoring_rate
 
   translates :description
   has_paper_trail
@@ -37,6 +45,8 @@ class Contractitem < ActiveRecord::Base
 
   belongs_to :product
   belongs_to :toner
+
+  has_many :consumableitems
 
   # --- Permissions --- #
 
