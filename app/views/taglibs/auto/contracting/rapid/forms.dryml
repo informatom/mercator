@@ -4,7 +4,7 @@
 <def tag="form" for="Contractitem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="contract, product, toner, user" param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, volume, product_price, vat, value, discount_abs, contract, product, toner, user" param/>
     <div param="actions">
       <submit label="#{ht 'contractitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

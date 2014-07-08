@@ -19,4 +19,6 @@ Mercator::Application.configure do
   BetterErrors::Middleware.allow_ip! "10.0.0.202"
 
   ActionMailer::Base.delivery_method = :sendmail
+
+  config.ember.variant = :development
 end

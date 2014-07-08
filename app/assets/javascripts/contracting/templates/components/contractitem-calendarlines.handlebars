@@ -1,0 +1,77 @@
+<thead>
+  <tr>
+    <th></th>
+    <th>Jahr 1</th>
+    <th>Jahr 2</th>
+    <th>Jahr 3</th>
+    <th>Jahr 4</th>
+    <th>Jahr 5</th>
+    <th>Jahr 6</th>
+  <tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Jahresbeginn</th>
+    <td><small>{{plusYearsMinusDays item.startdate years=0 days=1}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=1 days=0}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=2 days=0}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=3 days=0}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=4 days=0}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=5 days=0}}</small></td>
+  </th>
+  <tr>
+    <th>Jahresende</th>
+    <td><small>{{plusYearsMinusDays item.startdate years=1 days=1}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=2 days=1}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=3 days=1}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=4 days=1}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=5 days=1}}</small></td>
+    <td><small>{{plusYearsMinusDays item.startdate years=6 days=1}}</small></td>
+  </th>
+  <tr>
+    <th>Monate ohne Rate</th>
+    <td>{{item.monthsWithoutRates1}}</td>
+    <td>{{item.monthsWithoutRates2}}</td>
+    <td>{{item.monthsWithoutRates3}}</td>
+    <td>{{item.monthsWithoutRates4}}</td>
+    <td>{{item.monthsWithoutRates5}}</td>
+    <td>---</td>
+  </tr>
+  <tr>
+    <th>Folgeraten (EUR)</th>
+    <td>---</td>
+    <td>{{twoDigits item.newRate2}}</td>
+    <td>{{twoDigits item.newRate3}}</td>
+    <td>{{twoDigits item.newRate4}}</td>
+    <td>{{twoDigits item.newRate5}}</td>
+    <td>{{twoDigits item.newRate6}}</td>
+  </tr>
+  <tr>
+    <th>Folgemonat</th>
+    <td>{{twoDigits item.nextMonth1}}</td>
+    <td>{{twoDigits item.nextMonth2}}</td>
+    <td>{{twoDigits item.nextMonth3}}</td>
+    <td>{{twoDigits item.nextMonth4}}</td>
+    <td>{{twoDigits item.nextMonth5}}</td>
+    <td>---</td>
+  </tr>
+  <tr>
+    <th>Folgeraten mit Monitoring (EUR)</th>
+    <td>---</td>
+    <td>{{twoDigits item.newRateWithMonitoring2}}</td>
+    <td>{{twoDigits item.newRateWithMonitoring3}}</td>
+    <td>{{twoDigits item.newRateWithMonitoring4}}</td>
+    <td>{{twoDigits item.newRateWithMonitoring5}}</td>
+    <td>{{twoDigits item.newRateWithMonitoring6}}</td>
+  </tr>
+  <tr>
+    <th>Summe Gutschrift/Nachzahlung</th>
+    <td>{{twoDigits item.balance1}}</td>
+    <td>{{twoDigits item.balance2}}</td>
+    <td>{{twoDigits item.balance3}}</td>
+    <td>{{twoDigits item.balance4}}</td>
+    <td>{{twoDigits item.balance5}}</td>
+    <td>{{twoDigits item.balance6}}</td>
+  </tr>
+</tbody>

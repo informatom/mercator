@@ -1,0 +1,8 @@
+{{#link-to 'contract' item.id tagName="td"}}
+  <span class="glyphicon glyphicon-edit">{{item.id}}
+{{/link-to}}
+<td>{{item.term}}</td>
+<td>{{formatDate item.startdate}}</td>
+<td>{{formatDate item.enddate}}</td>
+<td>{{formatDatetime item.createdAt}}</td>
+<td>{{formatDatetime item.updatedAt}}</td>

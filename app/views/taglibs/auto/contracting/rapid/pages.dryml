@@ -97,7 +97,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="contract, product, toner, user" param/>
+      <field-list fields="position, product_number, description_de, description_en, amount, unit, volume, product_price, vat, value, discount_abs, contract, product, toner, user" param/>
     </content-body:>
 
   </page>

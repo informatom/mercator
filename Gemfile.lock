@@ -78,7 +78,6 @@ PATH
       activerecord-sqlserver-adapter (~> 4.0.0)
       nokogiri
       rails (~> 4.0.3)
-      squeel
 
 GEM
   remote: https://rubygems.org/

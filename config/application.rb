@@ -61,5 +61,9 @@ module Mercator
     config.active_record.default_timezone = :local
 
     # config.hobo.show_translation_keys = true
+
+    config.ember.app_name = "Contracting"
+    config.handlebars.templates_root = "contracting/templates"
+    config.handlebars.precompile = true
   end
 end

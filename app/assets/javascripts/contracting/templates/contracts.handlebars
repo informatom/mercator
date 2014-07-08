@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Verträge
+      <div class="pull-right">
+        <button class="btn btn-success btn-xs" {{action "create"}}>
+          <span class="glyphicon glyphicon-plus" /> Vertrag anlegen
+        </button>
+      </div>
+    </h1>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Laufzeit (Monate)</th>
+        <th>Vertragsbeginn</th>
+        <th>Vertragsende</th>
+        <th>Vertrag angelegt</th>
+        <th>Vertrag zuletzt aktualisiert</th>
+      </tr>
+    </head>
+    <tbody>
+      {{#each contract in controller}}
+        {{contract-line item=contract}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+{{outlet}}
