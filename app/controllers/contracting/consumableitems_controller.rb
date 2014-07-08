@@ -1,6 +1,6 @@
 class Contracting::ConsumableitemsController < Contracting::ContractingSiteController
-#  hobo_model_controller
-#  auto_actions :all
+  hobo_model_controller
+  auto_actions :all
 
   respond_to :json
 

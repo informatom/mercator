@@ -4,7 +4,7 @@
 <def tag="form" for="Consumableitem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="contractitem" param/>
+    <field-list fields="position, product_number, product_line, description_de, description_en, amount, theyield, wholesale_price, term, consumption1, consumption2, consumption3, consumption4, consumption5, consumption6, balance6, contractitem" param/>
     <div param="actions">
       <submit label="#{ht 'consumableitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -16,7 +16,7 @@
 <def tag="form" for="Contractitem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="position, product_number, description_de, description_en, amount, unit, volume, product_price, vat, value, discount_abs, contract, product, toner, user" param/>
+    <field-list fields="position, product_number, description_de, description_en, amount, unit, volume, product_price, vat, value, discount_abs, term, startdate, volume_bw, volume_color, marge, monitoring_rate, contract, product, toner, user" param/>
     <div param="actions">
       <submit label="#{ht 'contractitem.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -28,7 +28,7 @@
 <def tag="form" for="Contract">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="runtime, startdate, consultant, contractitems, conversation, customer" param/>
+    <field-list fields="runtime, term, startdate, consultant, contractitems, conversation, customer" param/>
     <div param="actions">
       <submit label="#{ht 'contract.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

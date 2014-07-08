@@ -1,0 +1,21 @@
+<page title="Vertragswesen">
+  <head:>
+    <meta charset="utf-8">
+    <title></title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+  </head:>
+
+  <body: class="front-page"/>
+  <content:>
+    <header class="content-header hero-unit">
+    </header>
+
+    <section class="content-body">
+      <script type="text/x-handlebars">
+        {{outlet}}
+      </script>
+      <%= javascript_include_tag "application" %>
+    </section>
+  </content:>
+</page>
