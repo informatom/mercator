@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vertragswesen</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+      {{outlet}}
+    </script>
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>
+
+<!-- einbauen -->
+
+
+<page title="Contracting">
+  <body: class="front-page"/>
+  <content:>
+    <header class="content-header hero-unit">
+      <h1><app-name/> <t key='mercator.contracting_subsite_name'/></h1>
+      <section class="welcome-message">
+        <h3><t key='mercator.contracting_subheading'/></h3>
+        <ul>
+          <li><t key='mercator.use_navigation'/></li>
+        </ul>
+      </section>
+    </header>
+
+    <section class="content-body">
+    </section>
+  </content:>
+</page>
