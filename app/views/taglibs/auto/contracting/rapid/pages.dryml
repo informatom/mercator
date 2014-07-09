@@ -97,7 +97,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="position, product_number, product_line, description_de, description_en, amount, theyield, wholesale_price, term, consumption1, consumption2, consumption3, consumption4, consumption5, consumption6, balance6, contractitem" param/>
+      <field-list fields="position, product_number, contract_type, product_line, description_de, description_en, amount, theyield, wholesale_price, term, consumption1, consumption2, consumption3, consumption4, consumption5, consumption6, balance6, contractitem" param/>
     </content-body:>
 
   </page>

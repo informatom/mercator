@@ -12,6 +12,9 @@ Contracting.ContractController = Ember.ObjectController.extend
         position: position
         contract: @get("model")
         startdate: moment().toDate()
+        descriptionDe: "Dummy"
+        discountAbs: 0
+        amount: 1
       )
 
       contractitem.save().then (contractitem) ->

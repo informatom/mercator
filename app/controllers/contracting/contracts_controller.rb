@@ -2,26 +2,32 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
   hobo_model_controller
   auto_actions :all
 
-  respond_to :json
-
   def index
-    respond_with Contract.all
+    hobo_index do |expects|
+      expects.json { render json: this }
+      expects.html { hobo_index }
+    end
   end
 
   def show
-    respond_with Contract.find(params[:id])
+    hobo_show do
+      render json: this
   end
 
    def create
-    respond_with Contract.create(params[:contract])
+    hobo_create do
+      render json: this
+    end
   end
 
   def update
-    Contract.find(params[:id]).update_attributes(params[:contract])
-    render json: Contract.find(params[:id])
+    hobo_update
+      render json: this
+    end
   end
 
   def destroy
-    respond_with Contract.find(params[:id]).delete
+    hobo_destroy
+      render json: this
   end
 end

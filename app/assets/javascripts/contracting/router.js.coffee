@@ -1,5 +1,4 @@
 Contracting.Router.map ->
-
   @resource "contracts",
     path: "/", ->
       @resource "contract",

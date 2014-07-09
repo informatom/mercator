@@ -9,14 +9,14 @@ class Contract < ActiveRecord::Base
     timestamps
   end
   attr_accessible :runtime, :startdate, :user_id, :user_id, :consultant, :consultant_id,
-                  :conversation, :conversation_id, :term
+                  :conversation, :conversation_id, :term,  :created_at, :updated_at
   has_paper_trail
 
   belongs_to :customer, :class_name => 'User'
-  validates :customer, :presence => true
+#  validates :customer, :presence => true
 
   belongs_to :consultant, :class_name => 'User'
-  validates :consultant, :presence => true
+#  validates :consultant, :presence => true
 
   belongs_to :conversation
 
@@ -40,7 +40,7 @@ class Contract < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    user_is?(acting_user) ||
+#    user_is?(acting_user) ||
     acting_user.sales? ||
     acting_user.administrator?
   end

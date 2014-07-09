@@ -1,4 +1,4 @@
-class ContractItemSerializer < ActiveModel::Serializer
+class ContractitemSerializer < ActiveModel::Serializer
   embed :ids
 
   attributes :id, :position, :term, :startdate, :product_number,
@@ -6,6 +6,6 @@ class ContractItemSerializer < ActiveModel::Serializer
              :volume_color, :marge, :vat, :discount_abs, :monitoring_rate,
              :created_at, :updated_at
 
-  has_many :consumable_items
+  has_many :consumableitems
   has_one :contract
 end

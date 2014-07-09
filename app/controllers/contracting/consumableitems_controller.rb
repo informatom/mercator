@@ -2,26 +2,32 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   hobo_model_controller
   auto_actions :all
 
-  respond_to :json
-
   def index
-    respond_with Consumableitem.all
+    hobo_index do |expects|
+      expects.json { render json: this }
+      expects.html { hobo_index }
+    end
   end
 
   def show
-    respond_with Consumableitem.find(params[:id])
+    hobo_show do
+      render json: this
   end
 
-  def create
-    respond_with Consumableitem.create(params[:consumableitem])
+   def create
+    hobo_create do
+      render json: this
+    end
   end
 
   def update
-    Consumableitem.find(params[:id]).update_attributes(params[:consumableitem])
-    render json: Consumableitem.find(params[:id])
+    hobo_update
+      render json: this
+    end
   end
 
   def destroy
-    respond_with Consumableitem.find(params[:id]).delete
+    hobo_destroy
+      render json: this
   end
 end

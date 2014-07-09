@@ -26,7 +26,7 @@ class Contractitem < ActiveRecord::Base
   attr_accessible :position, :product_number, :description_de, :description_en, :amount, :unit, :volume,
                   :product_price, :vat, :value, :discount_abs, :user, :user_id, :contract_id, :contract,
                   :product, :product_id, :toner, :toner_id, :term, :startdate, :volume_bw, :volume_color,
-                  :marge, :monitoring_rate
+                  :marge, :monitoring_rate, :created_at, :updated_at
 
   translates :description
   has_paper_trail
@@ -34,9 +34,9 @@ class Contractitem < ActiveRecord::Base
 
   validates :position, numericality: { only_integer: true }
   validates :amount, numericality: true
-  validates :product_price, numericality: true
+# validates :product_price, numericality: true
   validates :vat, numericality: true
-  validates :value, numericality: true
+#  validates :value, numericality: true
 
   belongs_to :user
   belongs_to :contract
@@ -66,7 +66,7 @@ class Contractitem < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    user_is?(acting_user) ||
+#    user_is?(acting_user) ||
     acting_user.sales? ||
     acting_user.administrator?
   end

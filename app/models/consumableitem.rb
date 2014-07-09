@@ -5,6 +5,7 @@ class Consumableitem < ActiveRecord::Base
   fields do
     position        :integer
     product_number  :string
+    contract_type   :string
     product_line    :string
     description_de  :string
     description_en  :string
@@ -21,7 +22,10 @@ class Consumableitem < ActiveRecord::Base
     balance6        :decimal, :precision => 10, :scale => 2
     timestamps
   end
-  attr_accessible :position, :product_number, :product_line, :description_de, :description_en, :amount, :theyield, :wholesale_price, :term, :consumption1, :consumption2, :consumption3, :consumption4, :consumption5, :consumption6, :balance6
+  attr_accessible :position, :product_number, :product_line, :description_de, :description_en, :amount,
+                  :theyield, :wholesale_price, :term, :consumption1, :consumption2, :consumption3,
+                  :consumption4, :consumption5, :consumption6, :balance6, :created_at, :updated_at,
+                  :contract_type, :contractitem_id
 
   belongs_to :contractitem
   validates :contractitem, :presence => true
