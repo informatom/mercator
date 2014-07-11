@@ -3,6 +3,6 @@
  *= require contracting/bootstrap
  *= require contracting/bootstrap-theme
  *= require contracting/datepicker
- *= require contractingstyle
+ *= require contracting/style
  *= require_self
  */
