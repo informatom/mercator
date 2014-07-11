@@ -15,6 +15,7 @@ Contracting.ContractController = Ember.ObjectController.extend
         descriptionDe: "Dummy"
         discountAbs: 0
         amount: 1
+        vat: 20
       )
 
       contractitem.save().then (contractitem) ->

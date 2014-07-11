@@ -28,6 +28,8 @@ class Consumableitem < ActiveRecord::Base
                   :contract_type, :contractitem_id
 
   belongs_to :contractitem
+  has_paper_trail
+
   validates :contractitem, :presence => true
 
   # --- Permissions --- #

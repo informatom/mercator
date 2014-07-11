@@ -1,6 +1,7 @@
 class Contracting::ContractsController < Contracting::ContractingSiteController
   hobo_model_controller
   auto_actions :all
+  respond_to :html, :json
 
   def index
     hobo_index do |expects|
@@ -12,6 +13,7 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
   def show
     hobo_show do
       render json: this
+    end
   end
 
    def create
@@ -21,13 +23,14 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
   end
 
   def update
-    hobo_update
+    hobo_update do
       render json: this
     end
   end
 
   def destroy
-    hobo_destroy
+    hobo_destroy do
       render json: this
+    end
   end
 end
