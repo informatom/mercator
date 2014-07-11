@@ -7,6 +7,3 @@
 // appear at the bottom of the the compiled file.
 //
 //= require application
-
-// HAS 20140711 no ember app here!
-// require contracting/contracting
