@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require_tree ./vendor
+#= require_tree contracting/vendor
 #= require ember
 #= require ember-data
 #= require_self
