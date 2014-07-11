@@ -11,9 +11,10 @@ Gem::Specification.new do |s|
   s.summary = 'A bootstrap based theme for Hobo'
   s.description = 'A bootstrap based theme for Hobo'
 
-  s.add_runtime_dependency('hobo', "~> 2.0.0.pre6")
-  s.add_runtime_dependency('hobo_jquery', "~> 2.0.0.pre6")
-  s.add_runtime_dependency "bootstrap-sass", "~> 3.0"
+  s.add_runtime_dependency('hobo', "~> 2.1")
+  s.add_runtime_dependency('hobo_jquery', "~> 2.1")
+  s.add_runtime_dependency "bootstrap-sass", "~> 3.2.0"
+  s.add_runtime_dependency "sass-rails", "~> 3.2"
   s.add_runtime_dependency "will_paginate-bootstrap", "~> 0.2.1"
 
   s.files = `git ls-files -x #{name}/* -z`.split("\0")
@@ -25,5 +26,4 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib", "vendor", "taglibs"]
-
 end
