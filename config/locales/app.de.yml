@@ -497,7 +497,7 @@ de:
     deliveries_and_payments: Lieferungen und Zahlungen
     delivery_slip_date: Lieferscheindatum
     delivery_number: Lieferungsnummer
-    email_sent:"Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."
+    email_sent: "Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."
     excl_vat: excl. Mwst.
     feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
     file_and_image_upload: Datei und Bild-Upload
