@@ -50,27 +50,29 @@ Make your choice global with:
     <body param>
       <set-scoped flash-rendered="&false">
         <ajax-progress param/>
-        <div class="navbar" param="navbar">
-          <div class="navbar-inner" param="navbar-innner">
-            <header class="container" param>
-              <a href="#" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </a>
-              <div param="app-name">
-                <a class="brand" href="#{base_url}/"><app-name/></a>
-              </div>
-              <main-nav class="nav" current="&title" param if="&nav_location.blank? || nav_location=='top'" />
-              <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)" include-search="&nav_location.blank? || nav_location=='top'" param/>
+
+        <nav class="navbar navbar-fixed-top" param="navbar">
+          <div class="container">
+            <header class="navbar-header" param>
+              <a class="navbar-brand" href="#{base_url}/"><app-name/></a>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+              </button>
+              <main-nav class="nav navbar-nav" current="&title" param if="&nav_location.blank? || nav_location=='top'" />
             </header>
+
+            <div class="navbar-header navbar-right">
+              <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)" include-search="&nav_location.blank? || nav_location=='top'" param/>
+            </div>
           </div>
-        </div>
+        </nav>
+
         <div class="container" param="nav-container" if="&nav_location=='sub'">
           <div class="subnav" param="subnav">
             <main-nav class="nav nav-pills" current="&title" include-search param/>
           </div>
         </div>
+
         <%
           if all_parameters[:aside]
             attributes[:content_size] ||= "9"

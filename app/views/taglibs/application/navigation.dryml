@@ -20,9 +20,8 @@
 </def>
 
 <def attrs='include-search' tag='account-nav'>
-  <div class='nav-collapse collapse'>
   <do with='&current_user'>
-    <ul class='navigation account-nav nav pull-right' param >
+    <ul class='nav navbar-nav' param >
       <li param='search' if='&include_search'><live-search param if='&defined_route? :site_search'/></li>
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
       <if test="&current_user.basket">
@@ -133,8 +132,6 @@
           </li>
         </ul>
       </li>
-
     </ul>
   </do>
-  </div>
 </def>
