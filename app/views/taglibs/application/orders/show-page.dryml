@@ -21,20 +21,20 @@
 
       <div part="basket">
         <div class="row">
-          <div class="span4">
+          <div class="col-md-4">
             <if test="&this.billing_name.present?">
               <if test="&this.basket? || this.accepted_offer?"><billing-address-card editable/></if>
               <else><billing-address-card /></else>
             </if>
           </div>
-          <div class="span4">
+          <div class="col-md-4">
             <if test="&this.shipping_name.present?">
               <if test="&this.basket? || this.accepted_offer?"><shipping-address-card editable/></if>
               <else><shipping-address-card /></else>
             </if>
           </div>
 
-          <div class="span4">
+          <div class="col-md-4">
             <if test="&this.shipping_name.present? && this.shipping_method.present?">
               <if test="&this.basket? || this.accepted_offer?">
                 <delivery-card editable/>
@@ -136,7 +136,7 @@
           </table>
 
           <div class="row">
-            <div class="span3 offset9"><summary-card/></div>
+            <div class="col-md-3 offset9"><summary-card/></div>
           </div>
 
           <div class="pull-right">

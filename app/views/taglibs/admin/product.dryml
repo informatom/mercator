@@ -20,7 +20,7 @@
             <recommended-product-label: replace/>
             <recommended-product-view:>
               <name-one complete-target="&@recommended_product" completer="number_admin" autocomplete="off"/>
-               <input with="&this_parent" field="reason_de" class="span2"/>
+               <input with="&this_parent" field="reason_de" class="col-md-2"/>
             </recommended-product-view:>
           </field-list>
         </input-many>
@@ -43,7 +43,7 @@
             <category-label: replace/>
             <category-view:>
               <name-one complete-target="&@category" completer="name_admin" autocomplete="off"/>
-               <input with="&this_parent" field="position" class="span2"/>
+               <input with="&this_parent" field="position" class="col-md-2"/>
             </category-view:>
           </field-list>
         </input-many>

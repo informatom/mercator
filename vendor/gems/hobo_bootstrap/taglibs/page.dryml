@@ -75,7 +75,7 @@ Make your choice global with:
           if all_parameters[:aside]
             attributes[:content_size] ||= "9"
             attributes[:aside_size] ||= (12 - attributes[:content_size].to_i).to_s
-            aside_span = "span" + attributes[:aside_size]
+            aside_span = "col-md-" + attributes[:aside_size]
             aside_location ||= 'right'
           else
             attributes[:content_size] = "12" unless attributes[:content_size]
@@ -88,7 +88,7 @@ Make your choice global with:
                 <section param="aside"/>
               </div>
             </div>
-            <div class="span#{attributes[:content_size]}" param="main-column">
+            <div class="col-md-#{attributes[:content_size]}" param="main-column">
               <section with-flash-messages param="content">
                 <section param="main-content">
                   <header param="content-header"/>

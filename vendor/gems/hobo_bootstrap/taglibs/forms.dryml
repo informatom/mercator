@@ -33,13 +33,13 @@
 - columns: # of columns.  Default is 1.
 - input-attrs: A ruby hash containing attributes to be merged onto each view.   For example
 
-`<bootstrap-fields fields="foo,bar" input-attrs="&{:class => 'span9'}"/>`
+`<bootstrap-fields fields="foo,bar" input-attrs="&{:class => 'col-md-9'}"/>`
 
 is equivalent to:
 
     <bootstrap-fields fields="foo,bar">
-      <foo-tag: class="span9"/>
-      <bar-tag: class="span9"/>
+      <foo-tag: class="col-md-9"/>
+      <bar-tag: class="col-md-9"/>
     </bootstrap-fields>
 
 %>
@@ -58,7 +58,7 @@ is equivalent to:
        error_class = this_parent.errors[this_field].empty? ? "" : "error"
     -%>
       <div
-         class="control-group #{'required' if required.include?(scope.field_name)} #{error_class}" 
+         class="control-group #{'required' if required.include?(scope.field_name)} #{error_class}"
          unless="&(tag == 'input' && no_edit == 'skip' && !can_edit?) || ((tag == 'view' || tag == 'uneditable-input') && no_blanks && this.blank?)"
          param="#{field_method}-field">
 
@@ -112,7 +112,7 @@ Supports all attributes supported by `<with-fields>` plus:
   row_classes += " columns" if columns > 1
   %><div class="#{row_classes}" merge-attrs> <%
   field_names_groups.each do |field_names_group|
-    %> <div class="span#{span_size}"> <%
+    %> <div class="col-md-#{span_size}"> <%
     field_names_group.each do |field|
       %><set-scoped field-name="&field"><%
       if field == "this"
@@ -123,7 +123,7 @@ Supports all attributes supported by `<with-fields>` plus:
       %></set-scoped><%
     end
     %> </div> <%
-  end 
+  end
   %> </div>
 </def>
 
@@ -133,21 +133,21 @@ Supports all attributes supported by `<with-fields>` plus:
   <% required ||= "" ; required = comma_split(required.gsub('-', '_')) -%>
   <legend param if="&all_parameters[:legend]" />
   <with-fields merge-attrs="&attributes & attrs_for(:with_fields)">
-  
+
   <% field_name = this_field_name
      input_attrs = {:no_edit => no_edit} if tag == "input" && no_edit == "disable"
      field_method = scope.field_name.to_s.sub('?', '').gsub('.', '-')
      id_for_this = param_name_for_this.gsub('[', '_').gsub(']', '')
   -%>
-    <div 
-      class="control-group #{'required' if required.include?(scope.field_name)}" 
-      unless="&(tag == 'input' && no_edit == 'skip' && !can_edit?) || (tag == 'view' && no_blanks && this.blank?)" 
+    <div
+      class="control-group #{'required' if required.include?(scope.field_name)}"
+      unless="&(tag == 'input' && no_edit == 'skip' && !can_edit?) || (tag == 'view' && no_blanks && this.blank?)"
       param="#{field_method}-field">
-      
+
       <label class="control-label" for="&id_for_this" param="#{field_method}-label" unless="&field_name.blank?">
         <%= field_name %>
       </label>
-      
+
       <div class="controls">
         <do param="#{field_method}-view">
           <do param="view"><call-tag tag="&tag" param="#{field_method}-tag" merge-attrs="&input_attrs"/></do>
@@ -156,7 +156,7 @@ Supports all attributes supported by `<with-fields>` plus:
           <%= this_field_help %>
         </p>
       </div>
-      
+
     </div>
   </with-fields>
 </def>
@@ -168,7 +168,7 @@ Supports all attributes supported by `<with-fields>` plus:
   <% required ||= "" ; required = comma_split(required.gsub('-', '_')) -%>
   <legend param if="&all_parameters[:legend]" />
   <with-fields merge-attrs="&attributes & attrs_for(:with_fields)">
-  
+
     <% field_name = this_field_name
        input_attrs = {:no_edit => no_edit} if tag == "input" && no_edit == "disable"
        field_method = scope.field_name.to_s.sub('?', '').gsub('.', '-')
@@ -183,7 +183,7 @@ Supports all attributes supported by `<with-fields>` plus:
     <p param="#{field_method}-help" class="help-block" if="&tag.to_sym == :input && !this_field_help.blank?">
       <%= this_field_help %>
     </p>
-      
+
   </with-fields>
 </def>
 
@@ -192,7 +192,7 @@ Supports all attributes supported by `<with-fields>` plus:
 <!-- This tag creates a form in just one line using bootstrap's inline-form -->
 <def tag="one-line-form" attrs="fields">
   <div class="row">
-    <div class="span12">
+    <div class="col-md-12">
       <form class="inline-form well" remove-class="form-horizontal" merge>
         <field-list: replace>
           <one-line-field-list param="field-list" fields="&fields"/>

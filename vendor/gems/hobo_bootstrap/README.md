@@ -142,42 +142,42 @@ By default, forms only have one column. But many you need more complex forms. Ta
         <field-list: replace>
           <field-list size="9" columns="3" fields="name, end_date, codigo_postal"/>
           <div class="row columns">
-            <div class="span6">
+            <div class="col-md-6">
               <single-field-list fields="description"/>
             </div>
-            <div class="span3">
+            <div class="col-md-3">
               <single-field-list fields="responsable"/>
             </div>
           </div>
           <div class="row columns">
-            <div class="span6">
+            <div class="col-md-6">
               <single-field-list fields="description"/>
             </div>
-            <div class="span3">
+            <div class="col-md-3">
               <single-field-list fields="responsable"/>
             </div>
           </div>
           <div class="row columns">
-            <div class="span9">
+            <div class="col-md-9">
               <single-field-list fields="description"/>
             </div>
           </div>
           <div class="row columns">
-            <div class="span3">
+            <div class="col-md-3">
               <single-field-list fields="description"/>
             </div>
-            <div class="span6">
+            <div class="col-md-6">
               <single-field-list fields="responsable"/>
             </div>
           </div>
           <div class="row columns">
-            <div class="span3">
+            <div class="col-md-3">
               <single-field-list fields="description"/>
             </div>
-            <div class="span3">
+            <div class="col-md-3">
               <single-field-list fields="responsable"/>
             </div>
-            <div class="span3">
+            <div class="col-md-3">
               <single-field-list fields="responsable"/>
             </div>
           </div>

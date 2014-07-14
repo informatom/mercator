@@ -27,13 +27,13 @@
 
       <do part="all">
         <div class="row">
-          <div class="span4">
+          <div class="col-md-4">
             <if test="&this.billing_name"><billing-address-card /></if>
           </div>
-          <div class="span4">
+          <div class="col-md-4">
             <if test="&this.shipping_name"><shipping-address-card /></if>
           </div>
-          <div class="span4">
+          <div class="col-md-4">
             <div part="complete">
               <strong><t key='attributes.valid_to'/>:</strong>
               <view:valid-until class="label label-warning"/>
@@ -91,7 +91,7 @@
           </table>
 
           <div class="row">
-            <div class="span3 offset9"><summary-card/></div>
+            <div class="col-md-3 offset9"><summary-card/></div>
           </div>
 
           <div class="row pull-right">

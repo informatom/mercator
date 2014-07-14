@@ -12,7 +12,7 @@
             <product-label: replace/>
             <product-view:>
               <name-one complete-target="&@product" completer="number_admin" autocomplete="off"/>
-              <input with="&this_parent" field="position" class="span2"/>
+              <input with="&this_parent" field="position" class="col-md-2"/>
             </product-view:>
           </field-list>
         </input-many>

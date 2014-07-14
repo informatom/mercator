@@ -90,10 +90,10 @@
   <old-enter-page merge>
     <main-content: replace>
       <div class="row">
-        <div class="span8">
+        <div class="col-md-8">
           <main-content restore/>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <if test="&current_user.billing_addresses">
             <h3><t key="mercator.stored_billing_addresses"/></h3>
           </if>

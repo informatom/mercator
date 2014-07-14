@@ -42,7 +42,7 @@
     <content-header: replace/>
     <content-body:>
       <div class="row-fluid">
-        <div class="span8 moveable" id="left-column">
+        <div class="col-md-8 moveable" id="left-column">
           <form with="&@message" update="mymessages">
             <h3><t key="mercator.your_message" />: </h3>
             <div> <input:content class="input-block-level"/> </div>
@@ -89,10 +89,10 @@
           <div part="links">
             <if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
               <script>
-                $('#left-column').removeClass('span8').addClass('span2');
-                $('#middle-column').removeClass('span0 hidden').addClass('span8');
+                $('#left-column').removeClass('col-md-8').addClass('col-md-2');
+                $('#middle-column').removeClass('col-md-0 hidden').addClass('col-md-8');
                 $('#middle-column').html($('#cobrowsing-area').html());
-                $('#right-column').removeClass('span4').addClass('span2');
+                $('#right-column').removeClass('col-md-4').addClass('col-md-2');
                 $('.bootstrap-content').addClass('widescreen')
                 $('.row').removeClass('row-fluid').addClass('row')
               </script>
@@ -107,17 +107,17 @@
             </if>
             <else>
               <script>
-                $('#left-column').removeClass('span2').addClass('span8');
-                $('#middle-column').removeClass('span8').addClass('hidden span0');
-                $('#right-column').removeClass('span2').addClass('span4');
+                $('#left-column').removeClass('col-md-2').addClass('col-md-8');
+                $('#middle-column').removeClass('col-md-8').addClass('hidden col-md-0');
+                $('#right-column').removeClass('col-md-2').addClass('col-md-4');
                 $('.bootstrap-content').removeClass('widescreen');
                 $('.row').removeClass('row').addClass('row-fluid')
               </script>
             </else>
           </div>
         </div>
-        <div class="span0 moveable" id="middle-column"></div>
-        <div class="span4 moveable" id="right-column">
+        <div class="col-md-0 moveable" id="middle-column"></div>
+        <div class="col-md-4 moveable" id="right-column">
 
           <photo-card with="&this.consultant" />
 
