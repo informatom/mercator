@@ -63,7 +63,6 @@ gem 'codemirror-rails'                                # Code Editor
 gem "active_model_serializers"
 gem "ember-rails"
 gem "ember-source"
-gem "require_all"                                   # requiring a full directory
 
 group :development, :test  do
 #  gem 'thin'                                          # web server, replacement for webrick
