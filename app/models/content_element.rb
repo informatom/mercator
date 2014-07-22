@@ -18,6 +18,8 @@ class ContentElement < ActiveRecord::Base
   translates :name, :content
   has_paper_trail
 
+  default_scope { order('content_elements.name_de ASC') }
+
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
     :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" },

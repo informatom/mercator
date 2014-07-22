@@ -12,6 +12,8 @@ class PageContentElementAssignment < ActiveRecord::Base
 
   has_paper_trail
 
+  default_scope { order('page_content_element_assignments.id ASC') }
+
   belongs_to :webpage
   validates :webpage, :presence => true
 
