@@ -63,11 +63,12 @@ gem 'codemirror-rails'                                # Code Editor
 gem "active_model_serializers"
 gem "ember-rails"
 gem "ember-source"
+gem 'byebug'                                        # Command line debugger
 
 group :development, :test  do
 #  gem 'thin'                                          # web server, replacement for webrick
   gem "puma"                                          # web server, replacement for webrick
-  gem 'byebug'                                        # Command line debugger
+#  gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output
   gem "better_errors"                                 # Debug messages im Browser
   gem "binding_of_caller"                             # Repl for better_errors
