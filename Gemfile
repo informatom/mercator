@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.5'                                # Web applitation framework
+gem 'rails', '4.0.8'                                # Web applitation framework
 gem 'mysql2'                                        # MYSQL Database Adapter
 gem 'tiny_tds'                                        # A modern, simple and fast FreeTDS library for Ruby using DB-Library
 gem 'activerecord-sqlserver-adapter', '~> 4.0'
@@ -10,15 +10,15 @@ gem "protected_attributes"
 gem 'valvat'                                          # European Vat Number Validation
 
 # gem 'hobo', :path => '../hobo'                      # web application meta framework locally installed
-# gem "hobo", "= 2.1.0"                               # web application meta framework from Rubygems
+# gem "hobo", "= 2.1.1"                               # web application meta framework from Rubygems
 gem 'hobo', :git => 'https://github.com/Hobo/hobo.git'  # web application meta framework from Github
 
 gem "hobo_will_paginate"                              # pagination support
-# gem "hobo_bootstrap", "2.1.0"                         # Twitter Bootstrap asset handling
-gem "hobo_bootstrap", path:"vendor/gems/hobo_bootstrap"
+gem "hobo_bootstrap", "2.1.1"                         # Twitter Bootstrap asset handling
+# gem "hobo_bootstrap", path:"vendor/gems/hobo_bootstrap"
 gem 'bootswatch-rails'                                # Bootstrap Bootswatch themes
-gem "hobo_jquery_ui", "2.1.0"                         # JQuery UI asser handling
-gem "hobo_bootstrap_ui", "2.1.0"                      # additional Bootstrap features
+gem "hobo_jquery_ui", "2.1.1"                         # JQuery UI asser handling
+gem "hobo_bootstrap_ui", "2.1.1"                      # additional Bootstrap features
 gem "jquery-ui-themes", "~> 0.0.4"                    # JQury Ui theming
 gem "paperclip"                                       # attachment handling
 gem 'hobo_paperclip', :git => "https://github.com/Hobo/hobo_paperclip.git", :branch => "master"
@@ -63,12 +63,11 @@ gem 'codemirror-rails'                                # Code Editor
 gem "active_model_serializers"
 gem "ember-rails"
 gem "ember-source"
-gem 'byebug'                                        # Command line debugger
 
 group :development, :test  do
 #  gem 'thin'                                          # web server, replacement for webrick
   gem "puma"                                          # web server, replacement for webrick
-#  gem 'byebug'                                        # Command line debugger
+  gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output
   gem "better_errors"                                 # Debug messages im Browser
   gem "binding_of_caller"                             # Repl for better_errors
