@@ -57,8 +57,8 @@ class ApplicationController < ActionController::Base
     if Rails.env.production?
       begin
         Constant.find_by_key('shop_domain').value
-        unless request == nil || (request.domain == Constant.find_by_key('shop_domain').value.split(".",2)[1] &&
-                                  request.subdomains[0] == Constant.find_by_key('shop_domain').value.split(".",2)[0] ) || request.domain == nil
+        unless request == nil || (request.domain.include? Constant.find_by_key('shop_domain').value.split(".",2)[1] &&
+                                  request.subdomains[0].include? Constant.find_by_key('shop_domain').value.split(".",2)[0] ) || request.domain == nil
           new_url = 'http://' + Constant.find_by_key('shop_domain').value + request.path
           redirect_to new_url, :status => 301
         end
