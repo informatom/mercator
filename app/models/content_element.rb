@@ -7,7 +7,7 @@ class ContentElement < ActiveRecord::Base
     name_de    :string, :unique, :required
     name_en    :string
     markup     ContentElement::MarkupType
-    content_de :cktext, :required
+    content_de :cktext
     content_en :cktext
     legacy_id   :integer
     timestamps
