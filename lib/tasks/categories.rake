@@ -23,4 +23,15 @@ namespace :categories do
   task :deprecate => :environment do
     Category.deprecate
   end
+
+  # starten als: 'bundle exec rake categories:reindex
+  # in Produktivumgebungen: 'bundle exec rake categories:reindex RAILS_ENV=production'
+  desc "Rebuilds category property hashes and reindexes Elasticsearch as a side effect."
+  task :reindex => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: categories:reindex")
+    Category.update_property_hash
+    JobLogger.info("Finished Job: categories:reindex")
+    JobLogger.info("=" * 50)
+  end
 end

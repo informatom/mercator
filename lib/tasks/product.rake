@@ -76,4 +76,15 @@ namespace :products do
       end
     end
   end
+
+  # starten als: 'bundle exec rake products:reindex
+  # in Produktivumgebungen: 'bundle exec rake products:reindex RAILS_ENV=production'
+  desc "Reindexes products in Elasticsearch."
+  task :reindex => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:reindex")
+    Product.reindex
+    JobLogger.info("Finished Job: products:reindex")
+    JobLogger.info("=" * 50)
+  end
 end

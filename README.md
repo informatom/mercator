@@ -62,9 +62,14 @@ rake mercator_mesonic:install:migrations
 
 ## Installing Elasticsearch
 
+Elasticsearch needs Java 7:
+```bash
+sudo apt-get install openjdk-7-jre
+```
+
 Download and install the Public Signing Key
 ```bash
-wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 ```
 Add the following to your /etc/apt/sources.list to enable the repository
 ```bash
@@ -74,6 +79,19 @@ und then run
 ```bash
 apt-get update
 sudo apt-get install elasticsearch
+```
+
+Be sure to restrict Elasticsearch to local requests and disable script execution in
+it's config file (`/etc/elasticsearch/elasticsearch.yml` in Ubuntu).
+!This is a major security flaw in the default installation settings!
+I further more restric elasticsearch to IP4.
+
+``bash
+script.disable_dynamic: true
+network.bind_host: 127.0.0.1
+network.publish_host: 127.0.0.1
+network.host: _non_loopback:ipv4_
+
 ```
 
 Installing Browser Plugin for Development
