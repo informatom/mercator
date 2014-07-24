@@ -74,4 +74,8 @@ Mercator::Application.configure do
   }
 
   config.ember.variant = :production
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => { :email_prefix => "[MERCATOR FEHLER] ", :sender_address => %{"notifier" <error@mercator.informatom.com>},
+              :exception_recipients => CONFIG[:exception_notification]}
 end

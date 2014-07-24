@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.8'                                # Web applitation framework
-gem 'mysql2'                                        # MYSQL Database Adapter
+gem 'rails', '4.0.8'                                  # Web applitation framework
+gem 'mysql2'                                          # MYSQL Database Adapter
 gem 'tiny_tds'                                        # A modern, simple and fast FreeTDS library for Ruby using DB-Library
-gem 'activerecord-sqlserver-adapter', '~> 4.0'
+gem 'activerecord-sqlserver-adapter', '~> 4.0'        # MSSQL server database connector
 
 gem 'jquery-rails'                                    # JQuery asset handling
 gem "protected_attributes"
@@ -20,6 +20,7 @@ gem 'bootswatch-rails'                                # Bootstrap Bootswatch the
 gem "hobo_jquery_ui", "2.1.1"                         # JQuery UI asser handling
 gem "hobo_bootstrap_ui", "2.1.1"                      # additional Bootstrap features
 gem "jquery-ui-themes", "~> 0.0.4"                    # JQury Ui theming
+
 gem "paperclip"                                       # attachment handling
 gem 'hobo_paperclip', :git => "https://github.com/Hobo/hobo_paperclip.git", :branch => "master"
                                                       # Paperclip Hobo integration
@@ -29,6 +30,7 @@ gem "hobo_ckeditor"                                   # CKEditor integration
 gem "paper_trail", '~> 3.0.0'                         # historization on object level
 gem "ancestry"                                        # hierarchical data structures
 gem "acts_as_list"                                    # list structures
+
 gem "messengerjs-rails"                               # Messenger Javascript Framework assets
 gem 'traco'                                           # model attribute translations
 gem 'turbolinks'                                      # Exchanges only body content lia ajax call on reload
@@ -60,12 +62,14 @@ gem 'try_to'                                          # checks for methods exist
 gem 'friendly_id', '~> 5.0.0'                         # Friendlier URLs for webpages
 gem 'codemirror-rails'                                # Code Editor
 
-gem "active_model_serializers"
-gem "ember-rails"
-gem "ember-source"
+gem "ember-rails"                                     # Ember - Rails Integration
+gem "ember-source"                                    # Ember Asset Handling
+gem "active_model_serializers"                        # JSON serialization, easy configuration for Ember
+
+gem 'exception_notification'                          # exception_notification via e-mail
 
 group :development, :test  do
-#  gem 'thin'                                          # web server, replacement for webrick
+#  gem 'thin'                                         # web server, replacement for webrick
   gem "puma"                                          # web server, replacement for webrick
   gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output
