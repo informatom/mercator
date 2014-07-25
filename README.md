@@ -86,12 +86,11 @@ it's config file (`/etc/elasticsearch/elasticsearch.yml` in Ubuntu).
 !This is a major security flaw in the default installation settings!
 I further more restric elasticsearch to IP4.
 
-``bash
+```bash
 script.disable_dynamic: true
 network.bind_host: 127.0.0.1
 network.publish_host: 127.0.0.1
 network.host: _non_loopback:ipv4_
-
 ```
 
 Installing Browser Plugin for Development
