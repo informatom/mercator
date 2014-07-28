@@ -21,7 +21,11 @@ namespace :categories do
   # in Produktivumgebungen: 'bundle exec rake categories:deprecate RAILS_ENV=production'
   desc "Deprecates categories without active products in itself or in subcategories"
   task :deprecate => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: categories:deprecate")
     Category.deprecate
+    JobLogger.info("Finished Job: categories:deprecate")
+    JobLogger.info("=" * 50)
   end
 
   # starten als: 'bundle exec rake categories:reindex
