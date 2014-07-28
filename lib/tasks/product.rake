@@ -88,6 +88,17 @@ namespace :products do
     JobLogger.info("=" * 50)
   end
 
+  # starten als: 'bundle exec rake products:catch_orphans
+  # in Produktivumgebungen: 'bundle exec rake products:catch_orphans RAILS_ENV=production'
+  desc "Assigns orphaned products to category Orphans."
+  task :catch_orphans => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:catch_orphans")
+    Product.catch_orphans
+    JobLogger.info("Finished Job: products:catch_orphans")
+    JobLogger.info("=" * 50)
+  end
+
   # starten als: 'bundle exec rake products:first_activation
   # in Produktivumgebungen: 'bundle exec rake products:first_activation RAILS_ENV=production'
   desc "Product activation after first import"

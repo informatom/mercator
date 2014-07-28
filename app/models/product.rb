@@ -201,4 +201,21 @@ class Product < ActiveRecord::Base
       end
     end
   end
+
+  def self.catch_orphans
+    @orphans = Category.orphans
+    position = 1
+    amount = Product.count
+    Product.all.each_with_index do |product, index|
+      unless product.categorizations.any?
+        position = @orphans.categorizations.maximum(:position) + 1 if @orphans.categorizations.any?
+        product.categorizations.new(category_id: @orphans.id, position: position)
+        if product.save
+          JobLogger.info("Product " + product.number + " added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
+        else
+          JobLogger.error("Product " + product.number + " could not be added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
+        end
+      end
+    end
+  end
 end
