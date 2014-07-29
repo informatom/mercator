@@ -41,25 +41,27 @@ class ApplicationController < ActionController::Base
 
 # Domainseperation
   def domain_cms_redirect
-    if Rails.env.production?
-      cms_domain = Constant.find_by_key('cms_domain').value
-      unless (request.domain == cms_domain.split(".",2)[1] &&
-              request.subdomains[0] == cms_domain.split(".",2)[0] ) || request.domain == nil
-        new_url = 'http://' + cms_domain + request.path
-        redirect_to new_url, :status => 301
+    cms_domain = Constant.find_by_key('cms_domain').value
+
+    unless request.url.include?(cms_domain)
+      if (request.port > 443)
+        new_url = 'http://' + cms_domain + ":" + request.port.to_s + request.path
+      else
+        new_url 'http://' + cms_domain + request.path
       end
+      redirect_to new_url, :status => 301
     end
   end
 
   def domain_shop_redirect
-    if Rails.env.production?
-      shop_domain = Constant.find_by_key('shop_domain').value
-      debugger
-      unless request == nil || (request.domain.include? shop_domain.split(".",2)[1] &&
-                                request.subdomains[0].include?(shop_domain.split(".",2)[0]) ) || request.domain == nil
-        new_url = 'http://' + shop_domain + request.path
-        redirect_to new_url, :status => 301
+    shop_domain = Constant.find_by_key('shop_domain').value
+    unless request == nil || (request.url.include?(shop_domain))
+      if (request.port > 443)
+        new_url = 'http://' + shop_domain + ":" + request.port.to_s + request.path
+      else
+        new_url 'http://' + shop_domain + request.path
       end
+      redirect_to new_url, :status => 301
     end
   end
 end
