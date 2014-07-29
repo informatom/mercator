@@ -185,6 +185,19 @@ class Category < ActiveRecord::Base
     return @topseller
   end
 
+  def self.orphans
+    @orphans = Category.where(name_de: "verwaiste Produkte").first
+    @orphans = self.create(name_de: "verwaiste Produkte",
+                           name_en: "Orphans",
+                           description_de: "verwaiste Produkte",
+                           description_en: "Orphans",
+                           long_description_de: "verwaiste Produkte",
+                           long_description_en: "Orphans",
+                           parent: nil,
+                           position: 1) unless @orphans
+    return @orphans
+  end
+
   def self.deprecate
     Category.roots.each do |category|
       category.try_deprecation

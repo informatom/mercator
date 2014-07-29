@@ -17,6 +17,26 @@ class Admin::WebpagesController < Admin::AdminSiteController
     end
   end
 
+  def show
+    @this = Webpage.friendly.find(params[:id])
+    hobo_show
+  end
+
+  def edit
+    @this = Webpage.friendly.find(params[:id])
+    hobo_edit
+  end
+
+  def update
+    @this = Webpage.friendly.find(params[:id])
+    hobo_update
+  end
+
+  def destroy
+    @this = Webpage.friendly.find(params[:id])
+    hobo_destroy
+  end
+
 protected
   def parse_pages(pages_array, parent)
     pages_array.each_with_index do |page_hash, position|

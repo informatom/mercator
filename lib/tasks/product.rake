@@ -76,4 +76,41 @@ namespace :products do
       end
     end
   end
+
+  # starten als: 'bundle exec rake products:reindex
+  # in Produktivumgebungen: 'bundle exec rake products:reindex RAILS_ENV=production'
+  desc "Reindexes products in Elasticsearch."
+  task :reindex => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:reindex")
+    Product.reindex
+    JobLogger.info("Finished Job: products:reindex")
+    JobLogger.info("=" * 50)
+  end
+
+  # starten als: 'bundle exec rake products:catch_orphans
+  # in Produktivumgebungen: 'bundle exec rake products:catch_orphans RAILS_ENV=production'
+  desc "Assigns orphaned products to category Orphans."
+  task :catch_orphans => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:catch_orphans")
+    Product.catch_orphans
+    JobLogger.info("Finished Job: products:catch_orphans")
+    JobLogger.info("=" * 50)
+  end
+
+  # starten als: 'bundle exec rake products:first_activation
+  # in Produktivumgebungen: 'bundle exec rake products:first_activation RAILS_ENV=production'
+  desc "Product activation after first import"
+  task :first_activation => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:first_activation")
+    Inventory.all.each do |inventory|
+      inventory.product.lifecycle.activate!(User.where(administrator: true).first) unless inventory.product.state == "active"
+      JobLogger.info("Product activated: " + inventory.number)
+    end
+
+    JobLogger.info("Finished Job: products:first_activation")
+    JobLogger.info("=" * 50)
+  end
 end

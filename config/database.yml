@@ -47,7 +47,7 @@ import_production:
 
 mesonic_cwldaten_development:
   adapter: sqlserver
-  host: localhost
+  host: <%= CONFIG[:erp_host] %>
   port: <%= CONFIG[:erp_database_port] %>
   instance: <%= CONFIG[:erp_database_instance] %>
   database: <%= CONFIG[:erp_database_name] %>

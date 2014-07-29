@@ -7,7 +7,7 @@ class ContentElement < ActiveRecord::Base
     name_de    :string, :unique, :required
     name_en    :string
     markup     ContentElement::MarkupType
-    content_de :cktext, :required
+    content_de :cktext
     content_en :cktext
     legacy_id   :integer
     timestamps
@@ -17,6 +17,8 @@ class ContentElement < ActiveRecord::Base
                   :webpages, :page_content_element_assignments, :legacy_id, :photo, :document
   translates :name, :content
   has_paper_trail
+
+  default_scope { order('content_elements.name_de ASC') }
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
   has_attached_file :photo,
