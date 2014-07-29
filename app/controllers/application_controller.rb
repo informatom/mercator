@@ -42,27 +42,23 @@ class ApplicationController < ActionController::Base
 # Domainseperation
   def domain_cms_redirect
     if Rails.env.production?
-      begin
-        unless (request.domain == Constant.find_by_key('cms_domain').value.split(".",2)[1] &&
-                request.subdomains[0] == Constant.find_by_key('cms_domain').value.split(".",2)[0] ) || request.domain == nil
-          new_url = 'http://' + Constant.find_by_key('cms_domain').value + request.path
-          redirect_to new_url, :status => 301
-        end
-      rescue
+      cms_domain = Constant.find_by_key('cms_domain').value
+      unless (request.domain == cms_domain.split(".",2)[1] &&
+              request.subdomains[0] == cms_domain.split(".",2)[0] ) || request.domain == nil
+        new_url = 'http://' + cms_domain + request.path
+        redirect_to new_url, :status => 301
       end
     end
   end
 
   def domain_shop_redirect
     if Rails.env.production?
-      begin
-        Constant.find_by_key('shop_domain').value
-        unless request == nil || (request.domain.include? Constant.find_by_key('shop_domain').value.split(".",2)[1] &&
-                                  request.subdomains[0].include?(Constant.find_by_key('shop_domain').value.split(".",2)[0]) ) || request.domain == nil
-          new_url = 'http://' + Constant.find_by_key('shop_domain').value + request.path
-          redirect_to new_url, :status => 301
-        end
-      rescue
+      shop_domain = Constant.find_by_key('shop_domain').value
+      debugger
+      unless request == nil || (request.domain.include? shop_domain.split(".",2)[1] &&
+                                request.subdomains[0].include?(shop_domain.split(".",2)[0]) ) || request.domain == nil
+        new_url = 'http://' + shop_domain + request.path
+        redirect_to new_url, :status => 301
       end
     end
   end
