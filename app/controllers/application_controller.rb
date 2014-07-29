@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
       if (request.port > 443)
         new_url = 'http://' + cms_domain + ":" + request.port.to_s + request.path
       else
-        new_url 'http://' + cms_domain + request.path
+        new_url = 'http://' + cms_domain + request.path
       end
       redirect_to new_url, :status => 301
     end
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
       if (request.port > 443)
         new_url = 'http://' + shop_domain + ":" + request.port.to_s + request.path
       else
-        new_url 'http://' + shop_domain + request.path
+        new_url = 'http://' + shop_domain + request.path
       end
       redirect_to new_url, :status => 301
     end
