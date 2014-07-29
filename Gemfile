@@ -67,14 +67,13 @@ gem 'codemirror-rails'                                # Code Editor
 gem "ember-rails"                                     # Ember - Rails Integration
 gem "ember-source"                                    # Ember Asset Handling
 gem "active_model_serializers"                        # JSON serialization, easy configuration for Ember
-
 gem 'exception_notification'                          # exception_notification via e-mail
 
 group :development, :test  do
-#  gem 'thin'                                         # web server, replacement for webrick
   gem "puma"                                          # web server, replacement for webrick
   gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output
+
   gem "better_errors"                                 # Debug messages im Browser
   gem "binding_of_caller"                             # Repl for better_errors
   gem "railroady"                                     # ER-Diagrams
