@@ -9,17 +9,6 @@
   </old-page>
 </extend>
 
-<def tag="dev-user-changer">
-  <set user="&Hobo::Model::UserBase.default_user_model"/>
-  <select-menu if="&user && Rails.env.development?"
-               first-option="#{t('hobo.dev_user_changer.guest', {:default=>'Guest'})}"
-               options="&user.name_contains('(').*.login"
-               onchange="location.href = '#{dev_support_path :action=>:set_current_user}?login=' + encodeURIComponent(this.options[this.selectedIndex].value)"
-               selected="#{current_user.login}"
-               class="dev-user-changer"
-               merge-attrs/>
-</def>
-
 <extend tag="index-page">
   <old-index-page merge>
     <heading:>
