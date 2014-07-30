@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
     end
 
     transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
+    transition :create_key, {:guest => :active}, available_to: :all, new_key: true
     transition :create_key, {:active => :active}, available_to: :all, new_key: true
 
     transition :accept_gtc, {:active => :active}, available_to: :self,

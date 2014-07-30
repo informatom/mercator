@@ -46,13 +46,13 @@ PATH
   specs:
     mercator_bechlem (0.0.1)
       mysql2
-      rails (~> 4.0, >= 4.0.3)
+      rails (~> 4.0.8)
 
 PATH
   remote: vendor/engines/mercator_icecat
   specs:
     mercator_icecat (0.0.1)
-      rails (~> 4.0.3)
+      rails (~> 4.0.8)
       saxerator
       try_to
 
@@ -61,7 +61,7 @@ PATH
   specs:
     mercator_legacy_importer (0.0.1)
       mysql2
-      rails (~> 4.0.3)
+      rails (~> 4.0.8)
 
 PATH
   remote: vendor/engines/mercator_mesonic
@@ -69,7 +69,7 @@ PATH
     mercator_mesonic (0.0.1)
       activerecord-sqlserver-adapter (~> 4.0.0)
       nokogiri
-      rails (~> 4.0.3)
+      rails (~> 4.0.8)
 
 GEM
   remote: https://rubygems.org/
