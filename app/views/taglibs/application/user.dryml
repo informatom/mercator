@@ -93,3 +93,10 @@
     </if>
   </div>
 </def>
+
+<extend tag="form" for="User">
+  <old-form merge multipart>
+    <field-list: fields="name, email_address, addresses, billing_addresses" param>
+    </field-list:>
+  </old-form>
+</extend>

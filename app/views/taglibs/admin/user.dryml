@@ -20,7 +20,9 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, login_count, state" param/>
+      <field-list fields="email_address, last_login_at, login_count, state,
+                          mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu,
+                          mesonic_kontenstamm_adresse" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="order.collection.heading" count="&this.orders.count" >
