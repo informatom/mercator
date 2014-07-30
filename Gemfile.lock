@@ -112,6 +112,7 @@ GEM
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (4.0.2)
+    awesome_print (1.2.0)
     barber (0.4.2)
       ember-source
       execjs
@@ -451,6 +452,7 @@ DEPENDENCIES
   activerecord-sqlserver-adapter (~> 4.0)
   acts_as_list
   ancestry
+  awesome_print
   better_errors
   binding_of_caller
   bootswatch-rails

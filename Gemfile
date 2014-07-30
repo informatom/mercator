@@ -67,6 +67,7 @@ gem "ember-source"                                    # Ember Asset Handling
 gem "active_model_serializers"                        # JSON serialization, easy configuration for Ember
 
 gem 'exception_notification'                          # exception_notification via e-mail
+gem 'awesome_print'
 
 group :development, :test  do
 #  gem 'thin'                                         # web server, replacement for webrick

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     hobo_login
 
     if logged_in?
-      current_user.update(logged_in: true)
+      current_user.update(logged_in: true) if Rails.application.config.erp == "mesonic"
 
       last_user = User.find(session[:last_user]) if session[:last_user]
       last_basket = last_user.basket if last_user

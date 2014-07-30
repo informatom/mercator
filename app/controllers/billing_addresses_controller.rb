@@ -12,6 +12,8 @@ class BillingAddressesController < ApplicationController
 
   def update
     hobo_update do
+      current_user.update_mesonic(billing_address: self.this) if Rails.application.config.erp == "mesonic"
+
       if params[:billing_address][:order_id]
         redirect_to enter_billing_addresses_path({:order_id => params[:billing_address][:order_id]})
       else
