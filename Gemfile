@@ -5,7 +5,7 @@ gem 'mysql2'                                          # MYSQL Database Adapter
 gem 'tiny_tds'                                        # A modern, simple and fast FreeTDS library for Ruby using DB-Library
 gem 'activerecord-sqlserver-adapter', '~> 4.0'        # MSSQL server database connector
 
-gem 'jquery-rails'                                    # JQuery asset handling
+gem 'jquery-rails', '~> 2.3.0'                        # JQuery asset handling
 gem "protected_attributes"
 gem 'valvat'                                          # European Vat Number Validation
 

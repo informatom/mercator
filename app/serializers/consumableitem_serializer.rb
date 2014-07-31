@@ -1,4 +1,5 @@
 class ConsumableitemSerializer < ActiveModel::Serializer
+  self.root = true
   embed :ids
 
   attributes :id, :contract_type, :position, :product_number, :product_line,

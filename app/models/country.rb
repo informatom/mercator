@@ -13,6 +13,8 @@ class Country < ActiveRecord::Base
   translates :name
   has_paper_trail
 
+  self.include_root_in_json = true
+
   default_scope { order('countries.name_de ASC') }
 
   # --- Permissions --- #
