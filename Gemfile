@@ -70,7 +70,6 @@ gem 'exception_notification'                          # exception_notification v
 gem 'awesome_print'
 
 group :development, :test  do
-#  gem 'thin'                                         # web server, replacement for webrick
   gem "puma"                                          # web server, replacement for webrick
   gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output

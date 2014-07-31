@@ -42,13 +42,17 @@ class ApplicationController < ActionController::Base
 # Domainseperation
   def domain_cms_redirect
     cms_domain = Constant.find_by_key('cms_domain').value
-
     unless request.url.include?(cms_domain)
-      if (request.port > 443)
-        new_url = 'http://' + cms_domain + ":" + request.port.to_s + request.path
-      else
+
+      case request.port
+      when 80
         new_url = 'http://' + cms_domain + request.path
+      when 443
+        new_url = 'https://' + cms_domain + request.path
+      else
+        new_url = 'http://' + cms_domain + ":" + request.port.to_s + request.path
       end
+
       redirect_to new_url, :status => 301
     end
   end
@@ -56,11 +60,16 @@ class ApplicationController < ActionController::Base
   def domain_shop_redirect
     shop_domain = Constant.find_by_key('shop_domain').value
     unless request == nil || (request.url.include?(shop_domain))
-      if (request.port > 443)
-        new_url = 'http://' + shop_domain + ":" + request.port.to_s + request.path
-      else
+
+      case request.port
+      when 80
         new_url = 'http://' + shop_domain + request.path
+      when 443
+        new_url = 'https://' + shop_domain + request.path
+      else
+        new_url = 'http://' + shop_domain + ":" + request.port.to_s + request.path
       end
+
       redirect_to new_url, :status => 301
     end
   end

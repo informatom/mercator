@@ -12,7 +12,9 @@ class BillingAddressesController < ApplicationController
 
   def update
     hobo_update do
-      current_user.update_mesonic(billing_address: self.this) if Rails.application.config.erp == "mesonic"
+      if (Rails.application.config.erp == "mesonic" && Rails.env == "production")
+        current_user.update_mesonic(billing_address: self.this)
+      end
 
       if params[:billing_address][:order_id]
         redirect_to enter_billing_addresses_path({:order_id => params[:billing_address][:order_id]})
@@ -62,6 +64,10 @@ class BillingAddressesController < ApplicationController
       end
 
       if self.this.save
+        if (Rails.application.config.erp == "mesonic" && Rails.env == "production")
+          current_user.update_mesonic(billing_address: self.this)
+        end
+
         order.update(billing_name:        this.name,
                      billing_c_o:         this.c_o,
                      billing_detail:      this.detail,
@@ -103,6 +109,11 @@ class BillingAddressesController < ApplicationController
                    billing_postalcode: this.postalcode,
                    billing_city:       this.city,
                    billing_country:    this.country)
+
+      if (Rails.application.config.erp == "mesonic" && Rails.env == "production")
+        current_user.update_mesonic(billing_address: self.this)
+      end
+
       order.lifecycle.e_payment!(current_user) unless order.shipping_method
 
       unless order.shipping_name
