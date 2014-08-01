@@ -768,7 +768,7 @@
 <def tag="form" for="Webpage">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title_de, title_en, url, position, state, page_content_element_assignments, page_template" param/>
+    <field-list fields="title_de, title_en, url, position, slug, state, page_content_element_assignments, page_template" param/>
     <div param="actions">
       <submit label="#{ht 'webpage.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

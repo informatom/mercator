@@ -8,6 +8,7 @@ class Webpage < ActiveRecord::Base
     ancestry   :string, :index => true
     position   :integer, :required
     legacy_id  :integer
+    slug       :string, :unique
     timestamps
   end
 
@@ -17,7 +18,10 @@ class Webpage < ActiveRecord::Base
   has_ancestry
 
   extend FriendlyId
-  friendly_id :title_de
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [:url, :title_de]
+  end
 
   has_paper_trail
   never_show :ancestry
