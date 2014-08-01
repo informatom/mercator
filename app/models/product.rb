@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_icecat/app/models/product_extensions.rb
-  include ProductExtensions if Rails.application.config.icecat == true
+  include ProductExtensions if Rails.application.config.try(:icecat) == true
 
   attr_accessible :title_de, :title_en, :number, :description_de, :description_en,
                   :photo, :document, :productrelations, :supplyrelations,
