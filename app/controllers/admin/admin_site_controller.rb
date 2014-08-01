@@ -6,6 +6,6 @@ class Admin::AdminSiteController < ApplicationController
   private
 
   def admin_required
-    redirect_to home_page unless logged_in? && current_user.administrator?
+    redirect_to :root unless logged_in? && current_user.administrator?
   end
 end

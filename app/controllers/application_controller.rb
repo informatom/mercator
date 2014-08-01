@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = params[:locale] || session[:locale] || current_user.locale || I18n.default_locale
     session[:locale] = I18n.locale
-    current_user.update(locale: I18n.locale) if (current_user.class != Guest ) && (current_user.locale != I18n.locale.to_s)
+    current_user.update(locale: I18n.locale) if current_user.class != Guest && current_user.locale != I18n.locale.to_s
   end
 
   def remember_uri
@@ -43,15 +43,11 @@ class ApplicationController < ActionController::Base
   def domain_cms_redirect
     cms_domain = Constant.find_by_key('cms_domain').value
     unless request.url.include?(cms_domain)
-
-      case request.port
-      when 80
-        new_url = 'http://' + cms_domain + request.path
-      when 443
-        new_url = 'https://' + cms_domain + request.path
-      else
-        new_url = 'http://' + cms_domain + ":" + request.port.to_s + request.path
-      end
+    new_url = case request.port
+              when 80  then 'http://' + cms_domain + request.path
+              when 443 then 'https://' + cms_domain + request.path
+              else          'http://' + cms_domain + ":" + request.port.to_s + request.path
+              end
 
       redirect_to new_url, :status => 301
     end
@@ -60,15 +56,11 @@ class ApplicationController < ActionController::Base
   def domain_shop_redirect
     shop_domain = Constant.find_by_key('shop_domain').value
     unless request == nil || (request.url.include?(shop_domain))
-
-      case request.port
-      when 80
-        new_url = 'http://' + shop_domain + request.path
-      when 443
-        new_url = 'https://' + shop_domain + request.path
-      else
-        new_url = 'http://' + shop_domain + ":" + request.port.to_s + request.path
-      end
+    new_url = case request.port
+              when 80  then 'http://' + shop_domain + request.path
+              when 443 then 'https://' + shop_domain + request.path
+              else          'http://' + shop_domain + ":" + request.port.to_s + request.path
+              end
 
       redirect_to new_url, :status => 301
     end

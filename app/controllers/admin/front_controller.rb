@@ -5,14 +5,10 @@ class Admin::FrontController < Admin::AdminSiteController
   def index; end
 
   def summary
-    if !current_user.administrator?
-      redirect_to user_login_path
-    end
+    redirect_to user_login_path unless current_user.administrator?
   end
 
   def search
-    if params[:query]
-      site_search(params[:query])
-    end
+    site_search(params[:query]) if params[:query]
   end
 end
