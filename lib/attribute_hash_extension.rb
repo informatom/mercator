@@ -1,7 +1,7 @@
 module AttributeHashExtension
 
   #--- Instance Methods ---#
-  def to_h(attributes)
+  def namely(attributes)
     hash = {}
     attributes.each do |attribute|
       hash[attribute] = self[attribute]

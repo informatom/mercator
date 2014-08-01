@@ -142,11 +142,11 @@ class Lineitem < ActiveRecord::Base
 
  #--- Instance methods ---#
 
-  def increase_amount(amount: 1)
+  def increase_amount(user_id: nil, amount: 1)
     self.amount += amount
 
     product = Product.find(self.product_id)
-    self.value = product.price(amount: self.amount) * self.amount
+    self.value = product.determine_price(amount: self.amount, customer_id: user_id) * self.amount
     raise unless self.save
   end
 

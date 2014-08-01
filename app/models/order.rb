@@ -122,7 +122,7 @@ class Order < ActiveRecord::Base
       self.update(shipping_method: "pickup_shipment")
 
       shippment_costs_line = self.lineitems
-                                 .where(position: 10000, product_number: "shipping", description_de: "Versandkosten")
+                                 .where(position: 10000, product_number: Constant.find_by_key("shipping_cost_article").value)
                                  .first
       shippment_costs_line.delete if shippment_costs_line
     end
@@ -132,7 +132,7 @@ class Order < ActiveRecord::Base
       self.update(shipping_method: "pickup_shipment")
 
       shippment_costs_line = self.lineitems
-                                 .where(position: 10000, product_number: "shipping", description_de: "Versandkosten")
+                                 .where(position: 10000, product_number: Constant.find_by_key("shipping_cost_article").value)
                                  .first
       shippment_costs_line.delete if shippment_costs_line
     end
@@ -228,7 +228,7 @@ class Order < ActiveRecord::Base
 
   def add_product(product: nil, amount: 1)
     if lineitem = self.lineitems.where(product_number: product.number, state: "active").first
-      lineitem.increase_amount(amount: amount)
+      lineitem.increase_amount(user_id: self.user_id, amount: amount)
     else
       last_position = self.lineitems.*.position.max || 0
       Lineitem.create_from_product(order_id: self.id, product: product, amount: amount,
@@ -268,13 +268,14 @@ class Order < ActiveRecord::Base
   def add_shipment_costs
     shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
 
-    if Rails.application.config.erp == "mesonic" && acting_user.erp_account_nr
-      webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number)
+    if Rails.application.config.erp == "mesonic"
+      webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number).first
+      inventory_versandspesen = Inventory.where(number: shipping_cost_product_number).first
 
       # user-specific derivation
-      shipping_cost_value = webartikel_versandspesen.mesonic_price(customer_id: acting_user.id)
+      shipping_cost_value = inventory_versandspesen.mesonic_price(customer_id: acting_user.id)
       # non user-specific derivation
-      shipping_cost_value ||= webartikel_versandspesen.preis
+      shipping_cost_value ||= webartikel_versandspesen.Preis
 
       Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
                                                        user_id: acting_user.id,

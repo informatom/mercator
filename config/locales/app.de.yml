@@ -571,7 +571,7 @@ de:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
         update_email:
-          error: ist bereits registriert.
+          error: ist bereits registriert oder fehlt.
     new_message: Neue Nachricht
     no_deliveries: keine Lieferungen
     no_invoices: keine Rechnungen

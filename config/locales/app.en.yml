@@ -571,7 +571,7 @@ en:
         accept_gtc:
           error: "You have to accept the General Terms and Conditions (GTCs), to continue with the order process!"
         update_email:
-          error: is already registered!
+          error: is already registered or missing!
     new_message: New Message
     no_deliveries: No deliveries found.
     no_invoices: No invoices found.

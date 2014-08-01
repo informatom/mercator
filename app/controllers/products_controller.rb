@@ -37,6 +37,9 @@ class ProductsController < ApplicationController
     @nested_hash = ActiveSupport::OrderedHash.new
 
     @this = @products = Product.where(id: session[:compared]).paginate(:page => 1, :per_page => session[:compared].length)
+
+    redirect_to :root and return unless @products.any?
+
     @products = @products.sort_by { |a| session[:compared].index(a.id)}
     values = Value.where(product_id: session[:compared]).sort_by { |a| [a.property_group.position, a.property.position]}
     values.each do |value|

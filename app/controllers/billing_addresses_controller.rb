@@ -26,6 +26,7 @@ class BillingAddressesController < ApplicationController
 
   def enter
     self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
+
     unless current_user.state == "guest"
       self.this.name = current_user.name
       self.this.email_address= current_user.email_address
@@ -53,13 +54,15 @@ class BillingAddressesController < ApplicationController
       if current_user.state == "guest"
         name = this.email_address.split('@')[0].tr('.', ' ') if this.email_address.present?
 
-        if current_user.update(name: name.titlecase, email_address: this.email_address)
-          UserMailer.activation(current_user, current_user.lifecycle.key).deliver
-        else
-          self.this.email_address = nil
-          self.this.errors.clear
-          self.this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))
-          render action: :enter, order_id: order.id and return
+        if this.valid? 
+          if current_user.update(name: name.titlecase, email_address: this.email_address)
+            UserMailer.activation(current_user, current_user.lifecycle.key).deliver
+          else
+            self.this.email_address = nil
+            self.this.errors.clear
+            self.this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))
+            render action: :enter, order_id: order.id and return
+          end
         end
       end
 

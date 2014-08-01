@@ -175,6 +175,7 @@ class User < ActiveRecord::Base
 
   def self.assign_consultant()
     consultant = User.sales.where(logged_in: true).first
+    consultant ||= User.sales_manager.first
     return consultant
   end
 
