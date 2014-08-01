@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
-  include OrderExtensions if Rails.application.config.erp == "mesonic"
+  include OrderExtensions if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
 
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,

@@ -43,7 +43,8 @@
   <old-enter-form merge>
 
     <field-list:  replace>
-      <if test="&this.errors.messages[:email_address] && this.errors.messages[:email_address].include?(I18n.t('mercator.messages.user.update_email.error'))">
+      <if test="&this.errors.messages[:email_address] && 
+                 this.errors.messages[:email_address].include?(I18n.t('mercator.messages.user.update_email.error'))">
         <t key="mercator.you_could"/>
         <ul>
           <li><t key="mercator.register_different_email"/></li>
@@ -61,12 +62,16 @@
     </field-list:>
 
     <actions:>
-      <hidden-field with="&this.order_id"/>
+      <if test="&this.order_id">
+        <hidden-field with="&this.order_id"/>
+      </if>
       <submit label="#{ht 'billing_address.actions.enter', :default=>['Enter']}" param/>
-      <t key="hobo.support.or" />
-      <a with="&Order.find(this.order_id)" class="btn btn-info" style="vertical-align: baseline">
-        <t key="hobo.actions.cancel" />
-      </a>
+      <if test="&this.order_id">
+        <t key="hobo.support.or" />
+        <a with="&Order.find(this.order_id)" class="btn btn-info" style="vertical-align: baseline">
+          <t key="hobo.actions.cancel" />
+        </a>
+      </if>
     </actions:>
   </old-enter-form>
 </extend>

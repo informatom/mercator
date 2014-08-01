@@ -12,14 +12,14 @@ class BillingAddressesController < ApplicationController
 
   def update
     hobo_update do
-      if (Rails.application.config.erp == "mesonic" && Rails.env == "production")
+      if (Rails.application.config.erp && Rails.application.config.erp == "mesonic" && Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
       end
 
-      if params[:billing_address][:order_id]
+      if params[:billing_address][:order_id].present?
         redirect_to enter_billing_addresses_path({:order_id => params[:billing_address][:order_id]})
       else
-        redirect_to enter_billing_addresses_path
+        redirect_to user_path(current_user.id)
       end
     end
   end
@@ -67,7 +67,10 @@ class BillingAddressesController < ApplicationController
       end
 
       if self.this.save
-        if (Rails.application.config.erp == "mesonic" && Rails.env == "production" && current_user.erp_account_nr.present?)
+        if (Rails.application.config.erp && 
+            Rails.application.config.erp == "mesonic" && 
+            Rails.env == "production" && 
+            current_user.erp_account_nr.present?)
           current_user.update_mesonic(billing_address: self.this)
         end
 
@@ -113,7 +116,9 @@ class BillingAddressesController < ApplicationController
                    billing_city:       this.city,
                    billing_country:    this.country)
 
-      if (Rails.application.config.erp == "mesonic" && Rails.env == "production")
+      if (Rails.application.config.erp && 
+          Rails.application.config.erp == "mesonic" && 
+          Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
       end
 

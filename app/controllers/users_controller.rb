@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   auto_actions :lifecycle
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/controllers/users_controller_extensions.rb
-  include UsersControllerExtensions if Rails.application.config.erp == "mesonic"
+  include UsersControllerExtensions if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
 
   autocomplete :name
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     hobo_login
 
     if logged_in?
-      current_user.update(logged_in: true) if Rails.application.config.erp == "mesonic"
+      current_user.update(logged_in: true) if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
 
       last_user = User.find(session[:last_user]) if session[:last_user]
       last_basket = last_user.basket if last_user
