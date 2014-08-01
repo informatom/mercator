@@ -67,7 +67,7 @@ class BillingAddressesController < ApplicationController
       end
 
       if self.this.save
-        if (Rails.application.config.erp == "mesonic" && Rails.env == "production")
+        if (Rails.application.config.erp == "mesonic" && Rails.env == "production" && current_user.erp_account_nr.present?)
           current_user.update_mesonic(billing_address: self.this)
         end
 
