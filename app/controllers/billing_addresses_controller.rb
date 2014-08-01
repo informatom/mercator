@@ -12,7 +12,7 @@ class BillingAddressesController < ApplicationController
 
   def update
     hobo_update do
-      if (Rails.application.config.erp && Rails.application.config.erp == "mesonic" && Rails.env == "production")
+      if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
       end
 
@@ -67,8 +67,7 @@ class BillingAddressesController < ApplicationController
       end
 
       if self.this.save
-        if (Rails.application.config.erp && 
-            Rails.application.config.erp == "mesonic" && 
+        if (Rails.application.config.try(:erp) == "mesonic" && 
             Rails.env == "production" && 
             current_user.erp_account_nr.present?)
           current_user.update_mesonic(billing_address: self.this)
@@ -116,9 +115,7 @@ class BillingAddressesController < ApplicationController
                    billing_city:       this.city,
                    billing_country:    this.country)
 
-      if (Rails.application.config.erp && 
-          Rails.application.config.erp == "mesonic" && 
-          Rails.env == "production")
+      if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
       end
 

@@ -26,7 +26,7 @@ class Inventory < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
-  include InventoryExtensions if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
+  include InventoryExtensions if Rails.application.config.try(:erp) == "mesonic"
 
   attr_accessible :name_de, :name_en, :number, :amount, :unit, :comment_de, :comment_en, :weight, :charge, :storage,
                   :product, :product_id, :photo, :delivery_time, :erp_updated_at, :erp_vatline, :erp_article_group,
@@ -74,7 +74,7 @@ class Inventory < ActiveRecord::Base
     price = self.select_price(date: date, amount: amount)
     price_excl_vat = price.value
 
-    if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
+    if Rails.application.config.try(:erp) == "mesonic"
       mesonic_price = self.mesonic_price(customer_id: customer_id)
       price_excl_vat = mesonic_price if mesonic_price
     end

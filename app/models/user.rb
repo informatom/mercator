@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/user_extensions.rb
-  include UserExtensions if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
+  include UserExtensions if Rails.application.config.try(:erp) == "mesonic"
 
   attr_accessible :name, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
@@ -180,7 +180,7 @@ class User < ActiveRecord::Base
   end
 
   def self.mesoprim(number: nil)
-    if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
+    if Rails.application.config.try(:erp) == "mesonic"
       [number.to_s, MercatorMesonic::AktMandant.mesocomp, MercatorMesonic::AktMandant.mesoyear].join("-")
     end
   end

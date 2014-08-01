@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
-  include OrderExtensions if (Rails.application.config.erp && Rails.application.config.erp == "mesonic")
+  include OrderExtensions if Rails.application.config.try(:erp) == "mesonic"
 
   attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
                   :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
@@ -268,7 +268,7 @@ class Order < ActiveRecord::Base
   def add_shipment_costs
     shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
 
-    if Rails.application.config.erp == "mesonic"
+    if Rails.application.config.try(:erp) == "mesonic"
       webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number).first
       inventory_versandspesen = Inventory.where(number: shipping_cost_product_number).first
 
