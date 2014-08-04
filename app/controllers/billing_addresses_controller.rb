@@ -4,11 +4,13 @@ class BillingAddressesController < ApplicationController
   auto_actions :edit, :update, :lifecycle
   auto_actions_for :user, [ :index, :new, :create ]
 
+
   def edit
     hobo_edit do
       self.this.order_id = params[:order_id]
     end
   end
+
 
   def update
     hobo_update do
@@ -24,6 +26,7 @@ class BillingAddressesController < ApplicationController
     end
   end
 
+
   def enter
     self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
 
@@ -34,17 +37,12 @@ class BillingAddressesController < ApplicationController
 
     if current_user.billing_addresses.any?
       last_address = current_user.billing_addresses.last
-      self.this.name = last_address.name
-      self.this.c_o = last_address.c_o
-      self.this.detail = last_address.detail
-      self.this.street = last_address.street
-      self.this.postalcode = last_address.postalcode
-      self.this.city = last_address.city
-      self.this.country = last_address.country
+      self.this.attributes = last_address.namely [:name, :c_o, :detail, :street, :postalcode, :city, :country]
     end
 
     creator_page_action :enter
   end
+
 
   def do_enter
     do_creator_action :enter do
@@ -54,7 +52,7 @@ class BillingAddressesController < ApplicationController
       if current_user.state == "guest"
         name = this.email_address.split('@')[0].tr('.', ' ') if this.email_address.present?
 
-        if this.valid? 
+        if this.valid?
           if current_user.update(name: name.titlecase, email_address: this.email_address)
             UserMailer.activation(current_user, current_user.lifecycle.key).deliver
           else
@@ -67,53 +65,34 @@ class BillingAddressesController < ApplicationController
       end
 
       if self.this.save
-        if (Rails.application.config.try(:erp) == "mesonic" && 
-            Rails.env == "production" && 
+        if (Rails.application.config.try(:erp) == "mesonic" &&
+            Rails.env == "production" &&
             current_user.erp_account_nr.present?)
-          current_user.update_mesonic(billing_address: self.this)
+          if current_user.erp_account_nr.present?
+            current_user.update_mesonic(billing_address: self.this)
+          else
+            # Create User
+          end
         end
 
-        order.update(billing_name:        this.name,
-                     billing_c_o:         this.c_o,
-                     billing_detail:      this.detail,
-                     billing_street:      this.street,
-                     billing_postalcode:  this.postalcode,
-                     billing_city:        this.city,
-                     billing_country:     this.country,
-                     billing_method:      "e_payment",
-                     shipping_name:       this.name,
-                     shipping_c_o:        this.c_o,
-                     shipping_detail:     this.detail,
-                     shipping_street:     this.street,
-                     shipping_postalcode: this.postalcode,
-                     shipping_city:       this.city,
-                     shipping_country:    this.country)
+        order.update(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "billing_")
+                     .merge(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
+                     .merge(billing_method: "e_payment"))
 
-        Address.create(name:       this.name,
-                       c_o:        this.c_o,
-                       detail:     this.detail,
-                       street:     this.street,
-                       postalcode: this.postalcode,
-                       city:       this.city,
-                       country:    this.country,
-                       user:       current_user)
+        Address.create(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country])
+                       .merge(user_id: current_user.id))
+
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
         redirect_to order_path(order)
       end
     end
   end
 
+
   def do_use
     do_transition_action :use do
       order = Order.where(id: params[:order_id], user_id: current_user.id ).first
-
-      order.update(billing_name:       this.name,
-                   billing_c_o:        this.c_o,
-                   billing_detail:     this.detail,
-                   billing_street:     this.street,
-                   billing_postalcode: this.postalcode,
-                   billing_city:       this.city,
-                   billing_country:    this.country)
+      order.update(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "billing_"))
 
       if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
@@ -122,19 +101,14 @@ class BillingAddressesController < ApplicationController
       order.lifecycle.e_payment!(current_user) unless order.shipping_method
 
       unless order.shipping_name
-        order.update(shipping_name:       this.name,
-                     shipping_c_o:        this.c_o,
-                     shipping_detail:     this.detail,
-                     shipping_street:     this.street,
-                     shipping_postalcode: this.postalcode,
-                     shipping_city:       this.city,
-                     shipping_country:    this.country)
+        order.update(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
       end
 
       redirect_to order_path(order)
     end
   end
+
 
   def do_trash
     do_transition_action :trash do

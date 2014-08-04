@@ -1,10 +1,15 @@
 module AttributeHashExtension
 
   #--- Instance Methods ---#
-  def namely(attributes)
+  def namely(attributes, prefix: nil)
     hash = {}
     attributes.each do |attribute|
-      hash[attribute] = self[attribute]
+      if prefix
+        prefixed_argument = (prefix.to_s + attribute.to_s).to_sym
+        hash[prefixed_argument] = self[attribute]
+      else
+        hash[attribute] = self[attribute]
+      end
     end
     return hash
   end

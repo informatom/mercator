@@ -46,13 +46,13 @@ PATH
   specs:
     mercator_bechlem (0.0.1)
       mysql2
-      rails (~> 4.0.8)
+      rails (~> 4.0)
 
 PATH
   remote: vendor/engines/mercator_icecat
   specs:
     mercator_icecat (0.0.1)
-      rails (~> 4.0.8)
+      rails (~> 4.0)
       saxerator
       try_to
 
@@ -61,7 +61,7 @@ PATH
   specs:
     mercator_legacy_importer (0.0.1)
       mysql2
-      rails (~> 4.0.8)
+      rails (~> 4.0)
 
 PATH
   remote: vendor/engines/mercator_mesonic

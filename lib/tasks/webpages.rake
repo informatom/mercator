@@ -1,10 +1,10 @@
 # encoding: utf-8
 
 namespace :webpages do
-  # starten als: 'bundle exec rake categories:generate_slugs'
-  # in Produktivumgebungen: 'bundle exec rake categories:generate_slugs RAILS_ENV=production'
+  # starten als: 'bundle exec rake webpages:generate_slugs'
+  # in Produktivumgebungen: 'bundle exec rake webpages:generate_slugs RAILS_ENV=production'
   desc "Create Slugs for Webpages"
-  task :generate_slugs => :environment do 
+  task :generate_slugs => :environment do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: categories:generate_slugs")
 
