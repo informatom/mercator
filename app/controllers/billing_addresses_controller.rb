@@ -50,10 +50,9 @@ class BillingAddressesController < ApplicationController
       order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
 
       if current_user.state == "guest"
-        name = this.email_address.split('@')[0].tr('.', ' ') if this.email_address.present?
 
         if this.valid?
-          if current_user.update(name: name.titlecase, email_address: this.email_address)
+          if current_user.update(name: this.c_o, email_address: this.email_address)
             UserMailer.activation(current_user, current_user.lifecycle.key).deliver
           else
             self.this.email_address = nil

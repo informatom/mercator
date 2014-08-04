@@ -388,10 +388,13 @@ en:
         detail: "Enter additional information here, such as Department, Building, Staircase, Room Code."
         street: Street and Number
       billing_address:
-        name: Please enter your full name including title here.
+        name: Company title, as it will be print on the invoice.
+        c_o: Please enter your full name including title here.
         detail: "Enter additional information here, such as Department, Building, Staircase, Room Code."
         street: Street and Number
         vat_number: "also called VAT number, ATU number, tax number"
+        email_address: A valid email address is needed for account verification.
+        country: Enter some characters for autocompletion.
       category:
         position: Position within Parent Category in the Category Tree
         updated: Category tree updated successfully!

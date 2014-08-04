@@ -388,10 +388,13 @@ de:
         detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
         street: Straße und Hausnummer
       billing_address:
-        name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
+        name: "Ihr Firmenname, wie er auf dem Rechnungskopf erscheinen soll"
+        c_o: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         detail: "Geben Sie hier weitere nötige Informationon wie Abteilung, Lieferort oder Haus ein."
         street: Straße und Hausnummer
         vat_number: "Auch VAT Nummer, ATU Nummer, ... genannt"
+        email_address: Eine gültige E-Mail Adresse ist zur Verifizierung Ihres Accounts nötig.
+        country: Geben Sie einige Buchstaben ein, um Vervollständigungsvorschläge zu erhalten.
       category:
         position: Reihung innerhalb der Überkategorie im Kategorienbaum
         updated: Kategoriebaum erfolgreich aktualisiert!

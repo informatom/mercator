@@ -4,7 +4,7 @@ class BillingAddress < ActiveRecord::Base
 
   fields do
     name          :string, :required
-    c_o           :string
+    c_o           :string, :required
     email_address :email_address, :required
     detail        :string
     street        :string, :required
