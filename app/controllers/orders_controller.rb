@@ -18,13 +18,19 @@ class OrdersController < ApplicationController
   end
 
   def do_place
-    do_transition_action :place do
-      flash[:success] = I18n.t("mercator.messages.order.place.success")
+    self.this = Order.find(params[:id])
+    if self.this.push_to_mesonic()
+      do_transition_action :place do
+        flash[:success] = I18n.t("mercator.messages.order.place.success")
+        flash[:notice] = nil
+
+        Order.create(user: current_user) # and create a new basket ...
+        render action: :confirm
+      end
+    else
+      flash[:error] = I18n.t("mercator.messages.order.place.failure")
       flash[:notice] = nil
-
-      Order.create(user: current_user) # and an new basket ...
-
-      render action: :confirm
+      render action: :error
     end
   end
 

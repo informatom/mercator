@@ -563,6 +563,7 @@ de:
           success: "Der geparkte Warenkorb wurde archiviert."
         place:
           success: "Ihre Bestellung wurde übermittelt und wird in Kürze bearbeitet."
+          error: "Ihre Bestellung konnte nicht übernommen werden. Wir werden das Problem in Kürze analysieren."
       product:
         add_to_basket:
           success: "Das Produkt wurde zum Warenkorb hinzugefügt."

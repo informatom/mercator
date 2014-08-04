@@ -563,6 +563,7 @@ en:
           success: The parked basket was archived.
         place:
           success: Your order is transmitted and will be processed shortly.
+          error: "Your order could not be processed. We will analyze the problem shortly."
       product:
         add_to_basket:
           success: The product was added to the basket.
