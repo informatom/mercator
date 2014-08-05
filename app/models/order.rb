@@ -271,6 +271,7 @@ class Order < ActiveRecord::Base
     if Rails.application.config.try(:erp) == "mesonic"
       webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number).first
       inventory_versandspesen = Inventory.where(number: shipping_cost_product_number).first
+      product_versandspesen = inventory_versandspesen.product
 
       # user-specific derivation
       shipping_cost_value = inventory_versandspesen.mesonic_price(customer_id: acting_user.id)
@@ -287,7 +288,8 @@ class Order < ActiveRecord::Base
                                                        unit: "Pau.",
                                                        product_price: shipping_cost_value,
                                                        vat: webartikel_versandspesen.Steuersatzzeile * 10 ,
-                                                       value: shipping_cost_value)
+                                                       value: shipping_cost_value,
+                                                       product_id: product_versandspesen.id)
     else
       shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
 

@@ -56,7 +56,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="address.actions.new">New Shipping Address</ht>
+        <ht key="address.actions.new">New Address</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -72,20 +72,20 @@
 
 
 <def tag="new-page" for="Address">
-  <page merge title="#{ht 'address.new.title', :default=>[' New Shipping Address'] }">
+  <page merge title="#{ht 'address.new.title', :default=>[' New Address'] }">
     <body: class="new-page address" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="address.new.heading">
-          New Shipping Address
+          New Address
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'address.actions.create', :default=>['Create Shipping Address']}"/>
+        <submit: label="#{ht 'address.actions.create', :default=>['Create Address']}"/>
       </form>
     </content-body:>
   </page>
@@ -93,14 +93,14 @@
 
 
 <def tag="show-page" for="Address">
-  <page merge title="#{ht 'address.show.title', :default=>['Shipping Address'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'address.show.title', :default=>['Address'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page address" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="address.show.heading" name="#{name(:no_wrapper => true)}">
-          Shipping Address <name/>
+          Address <name/>
         </ht>
       </h2>
 
@@ -110,7 +110,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="address.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Shipping Address
+          Edit Address
         </ht>
       </a>
     </content-header:>
@@ -124,17 +124,17 @@
 
 
 <def tag="edit-page" for="Address">
-  <page merge title="#{ht 'address.edit.title', :default=>['Edit Shipping Address'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'address.edit.title', :default=>['Edit Address'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page address" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="address.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Shipping Address
+          Edit Address
         </ht>
       </h2>
-      <delete-button label="#{ht 'address.actions.delete', :default=>['Remove This Shipping Address']}" param/>
+      <delete-button label="#{ht 'address.actions.delete', :default=>['Remove This Address']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -233,7 +233,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="billing_address.actions.new">New Billing Address</ht>
+        <ht key="billing_address.actions.new">New Billing address</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -249,20 +249,20 @@
 
 
 <def tag="new-page" for="BillingAddress">
-  <page merge title="#{ht 'billing_address.new.title', :default=>[' New Billing Address'] }">
+  <page merge title="#{ht 'billing_address.new.title', :default=>[' New Billing address'] }">
     <body: class="new-page billing-address" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="billing_address.new.heading">
-          New Billing Address
+          New Billing address
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'billing_address.actions.create', :default=>['Create Billing Address']}"/>
+        <submit: label="#{ht 'billing_address.actions.create', :default=>['Create Billing address']}"/>
       </form>
     </content-body:>
   </page>
@@ -270,14 +270,14 @@
 
 
 <def tag="show-page" for="BillingAddress">
-  <page merge title="#{ht 'billing_address.show.title', :default=>['Billing Address'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'billing_address.show.title', :default=>['Billing address'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page billing-address" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="billing_address.show.heading" name="#{name(:no_wrapper => true)}">
-          Billing Address <name/>
+          Billing address <name/>
         </ht>
       </h2>
 
@@ -287,7 +287,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="billing_address.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Billing Address
+          Edit Billing address
         </ht>
       </a>
     </content-header:>
@@ -301,17 +301,17 @@
 
 
 <def tag="edit-page" for="BillingAddress">
-  <page merge title="#{ht 'billing_address.edit.title', :default=>['Edit Billing Address'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'billing_address.edit.title', :default=>['Edit Billing address'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page billing-address" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="billing_address.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Billing Address
+          Edit Billing address
         </ht>
       </h2>
-      <delete-button label="#{ht 'billing_address.actions.delete', :default=>['Remove This Billing Address']}" param/>
+      <delete-button label="#{ht 'billing_address.actions.delete', :default=>['Remove This Billing address']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -810,7 +810,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="content_element.actions.new">New Content Element</ht>
+        <ht key="content_element.actions.new">New Content element</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -826,20 +826,20 @@
 
 
 <def tag="new-page" for="ContentElement">
-  <page merge title="#{ht 'content_element.new.title', :default=>[' New Content Element'] }">
+  <page merge title="#{ht 'content_element.new.title', :default=>[' New Content element'] }">
     <body: class="new-page content-element" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="content_element.new.heading">
-          New Content Element
+          New Content element
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'content_element.actions.create', :default=>['Create Content Element']}"/>
+        <submit: label="#{ht 'content_element.actions.create', :default=>['Create Content element']}"/>
       </form>
     </content-body:>
   </page>
@@ -847,15 +847,15 @@
 
 
 <def tag="show-page" for="ContentElement">
-  <page merge title="#{ht 'content_element.show.title', :default=>['Content Element'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'content_element.show.title', :default=>['Content element'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page content-element" param/>
 
     <content-header: param>
-      <a:webpages param="parent-link">&laquo; <ht key="content_element.actions.back_to_parent" parent="Webseite" name="&this">Back to <name/></ht></a:webpages>
+      <a:webpages param="parent-link">&laquo; <ht key="content_element.actions.back_to_parent" parent="Webpage" name="&this">Back to <name/></ht></a:webpages>
       <h2 param="heading">
         <ht key="content_element.show.heading" name="#{name(:no_wrapper => true)}">
-          Content Element <name/>
+          Content element <name/>
         </ht>
       </h2>
 
@@ -863,7 +863,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="content_element.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Content Element
+          Edit Content element
         </ht>
       </a>
     </content-header:>
@@ -878,17 +878,17 @@
 
 
 <def tag="edit-page" for="ContentElement">
-  <page merge title="#{ht 'content_element.edit.title', :default=>['Edit Content Element'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'content_element.edit.title', :default=>['Edit Content element'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page content-element" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="content_element.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Content Element
+          Edit Content element
         </ht>
       </h2>
-      <delete-button label="#{ht 'content_element.actions.delete', :default=>['Remove This Content Element']}" param/>
+      <delete-button label="#{ht 'content_element.actions.delete', :default=>['Remove This Content element']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -1148,7 +1148,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="gtc.actions.new">New GTC</ht>
+        <ht key="gtc.actions.new">New Gtc</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -1164,20 +1164,20 @@
 
 
 <def tag="new-page" for="Gtc">
-  <page merge title="#{ht 'gtc.new.title', :default=>[' New GTC'] }">
+  <page merge title="#{ht 'gtc.new.title', :default=>[' New Gtc'] }">
     <body: class="new-page gtc" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="gtc.new.heading">
-          New GTC
+          New Gtc
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'gtc.actions.create', :default=>['Create GTC']}"/>
+        <submit: label="#{ht 'gtc.actions.create', :default=>['Create Gtc']}"/>
       </form>
     </content-body:>
   </page>
@@ -1185,14 +1185,14 @@
 
 
 <def tag="show-page" for="Gtc">
-  <page merge title="#{ht 'gtc.show.title', :default=>['GTC'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'gtc.show.title', :default=>['Gtc'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page gtc" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="gtc.show.heading" name="#{name(:no_wrapper => true)}">
-          GTC <name/>
+          Gtc <name/>
         </ht>
       </h2>
 
@@ -1200,7 +1200,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="gtc.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit GTC
+          Edit Gtc
         </ht>
       </a>
     </content-header:>
@@ -1215,17 +1215,17 @@
 
 
 <def tag="edit-page" for="Gtc">
-  <page merge title="#{ht 'gtc.edit.title', :default=>['Edit GTC'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'gtc.edit.title', :default=>['Edit Gtc'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page gtc" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="gtc.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit GTC
+          Edit Gtc
         </ht>
       </h2>
-      <delete-button label="#{ht 'gtc.actions.delete', :default=>['Remove This GTC']}" param/>
+      <delete-button label="#{ht 'gtc.actions.delete', :default=>['Remove This Gtc']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -1303,7 +1303,7 @@
     <body: class="show-page inventory" param/>
 
     <content-header: param>
-      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Artikel" name="&this">Back to <name/></ht></a:product>
+      <a:product param="parent-link">&laquo; <ht key="inventory.actions.back_to_parent" parent="Product" name="&this">Back to <name/></ht></a:product>
       <h2 param="heading">
         <ht key="inventory.show.heading" name="#{name(:no_wrapper => true)}">
           Inventory <name/>
@@ -1383,7 +1383,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="lineitem.actions.new">New Order Item</ht>
+        <ht key="lineitem.actions.new">New Lineitem</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -1399,20 +1399,20 @@
 
 
 <def tag="new-page" for="Lineitem">
-  <page merge title="#{ht 'lineitem.new.title', :default=>[' New Order Item'] }">
+  <page merge title="#{ht 'lineitem.new.title', :default=>[' New Lineitem'] }">
     <body: class="new-page lineitem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="lineitem.new.heading">
-          New Order Item
+          New Lineitem
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'lineitem.actions.create', :default=>['Create Order Item']}"/>
+        <submit: label="#{ht 'lineitem.actions.create', :default=>['Create Lineitem']}"/>
       </form>
     </content-body:>
   </page>
@@ -1420,14 +1420,14 @@
 
 
 <def tag="show-page" for="Lineitem">
-  <page merge title="#{ht 'lineitem.show.title', :default=>['Order Item'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'lineitem.show.title', :default=>['Lineitem'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page lineitem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="lineitem.show.heading" name="#{name(:no_wrapper => true)}">
-          Order Item <name/>
+          Lineitem <name/>
         </ht>
       </h2>
 
@@ -1437,7 +1437,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="lineitem.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Order Item
+          Edit Lineitem
         </ht>
       </a>
     </content-header:>
@@ -1452,17 +1452,17 @@
 
 
 <def tag="edit-page" for="Lineitem">
-  <page merge title="#{ht 'lineitem.edit.title', :default=>['Edit Order Item'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'lineitem.edit.title', :default=>['Edit Lineitem'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page lineitem" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="lineitem.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Order Item
+          Edit Lineitem
         </ht>
       </h2>
-      <delete-button label="#{ht 'lineitem.actions.delete', :default=>['Remove This Order Item']}" param/>
+      <delete-button label="#{ht 'lineitem.actions.delete', :default=>['Remove This Lineitem']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -1729,7 +1729,7 @@
     <body: class="show-page order" param/>
 
     <content-header: param>
-      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="Benutzer" name="&this">Back to <name/></ht></a:user>
+      <a:user param="parent-link">&laquo; <ht key="order.actions.back_to_parent" parent="User" name="&this">Back to <name/></ht></a:user>
       <h2 param="heading">
         <ht key="order.show.heading" name="#{name(:no_wrapper => true)}">
           Order <name/>
@@ -2075,7 +2075,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="page_content_element_assignment.actions.new">New Page ↔ Content Element Assignment</ht>
+        <ht key="page_content_element_assignment.actions.new">New Page content element assignment</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -2091,20 +2091,20 @@
 
 
 <def tag="new-page" for="PageContentElementAssignment">
-  <page merge title="#{ht 'page_content_element_assignment.new.title', :default=>[' New Page ↔ Content Element Assignment'] }">
+  <page merge title="#{ht 'page_content_element_assignment.new.title', :default=>[' New Page content element assignment'] }">
     <body: class="new-page page-content-element-assignment" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="page_content_element_assignment.new.heading">
-          New Page ↔ Content Element Assignment
+          New Page content element assignment
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'page_content_element_assignment.actions.create', :default=>['Create Page ↔ Content Element Assignment']}"/>
+        <submit: label="#{ht 'page_content_element_assignment.actions.create', :default=>['Create Page content element assignment']}"/>
       </form>
     </content-body:>
   </page>
@@ -2112,14 +2112,14 @@
 
 
 <def tag="show-page" for="PageContentElementAssignment">
-  <page merge title="#{ht 'page_content_element_assignment.show.title', :default=>['Page ↔ Content Element Assignment'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'page_content_element_assignment.show.title', :default=>['Page content element assignment'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page page-content-element-assignment" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="page_content_element_assignment.show.heading" name="#{name(:no_wrapper => true)}">
-          Page ↔ Content Element Assignment <name/>
+          Page content element assignment <name/>
         </ht>
       </h2>
 
@@ -2127,7 +2127,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="page_content_element_assignment.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Page ↔ Content Element Assignment
+          Edit Page content element assignment
         </ht>
       </a>
     </content-header:>
@@ -2141,17 +2141,17 @@
 
 
 <def tag="edit-page" for="PageContentElementAssignment">
-  <page merge title="#{ht 'page_content_element_assignment.edit.title', :default=>['Edit Page ↔ Content Element Assignment'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'page_content_element_assignment.edit.title', :default=>['Edit Page content element assignment'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page page-content-element-assignment" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="page_content_element_assignment.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Page ↔ Content Element Assignment
+          Edit Page content element assignment
         </ht>
       </h2>
-      <delete-button label="#{ht 'page_content_element_assignment.actions.delete', :default=>['Remove This Page ↔ Content Element Assignment']}" param/>
+      <delete-button label="#{ht 'page_content_element_assignment.actions.delete', :default=>['Remove This Page content element assignment']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -2187,7 +2187,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="page_template.actions.new">New Page Template</ht>
+        <ht key="page_template.actions.new">New Page template</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -2203,20 +2203,20 @@
 
 
 <def tag="new-page" for="PageTemplate">
-  <page merge title="#{ht 'page_template.new.title', :default=>[' New Page Template'] }">
+  <page merge title="#{ht 'page_template.new.title', :default=>[' New Page template'] }">
     <body: class="new-page page-template" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="page_template.new.heading">
-          New Page Template
+          New Page template
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'page_template.actions.create', :default=>['Create Page Template']}"/>
+        <submit: label="#{ht 'page_template.actions.create', :default=>['Create Page template']}"/>
       </form>
     </content-body:>
   </page>
@@ -2224,14 +2224,14 @@
 
 
 <def tag="show-page" for="PageTemplate">
-  <page merge title="#{ht 'page_template.show.title', :default=>['Page Template'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'page_template.show.title', :default=>['Page template'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page page-template" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="page_template.show.heading" name="#{name(:no_wrapper => true)}">
-          Page Template <name/>
+          Page template <name/>
         </ht>
       </h2>
 
@@ -2239,7 +2239,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="page_template.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Page Template
+          Edit Page template
         </ht>
       </a>
     </content-header:>
@@ -2253,17 +2253,17 @@
 
 
 <def tag="edit-page" for="PageTemplate">
-  <page merge title="#{ht 'page_template.edit.title', :default=>['Edit Page Template'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'page_template.edit.title', :default=>['Edit Page template'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page page-template" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="page_template.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Page Template
+          Edit Page template
         </ht>
       </h2>
-      <delete-button label="#{ht 'page_template.actions.delete', :default=>['Remove This Page Template']}" param/>
+      <delete-button label="#{ht 'page_template.actions.delete', :default=>['Remove This Page template']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -2341,7 +2341,7 @@
     <body: class="show-page price" param/>
 
     <content-header: param>
-      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Bestand" name="&this">Back to <name/></ht></a:inventory>
+      <a:inventory param="parent-link">&laquo; <ht key="price.actions.back_to_parent" parent="Inventory" name="&this">Back to <name/></ht></a:inventory>
       <h2 param="heading">
         <ht key="price.show.heading" name="#{name(:no_wrapper => true)}">
           Price <name/>
@@ -2412,7 +2412,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="productrelation.actions.new">New Product Relation</ht>
+        <ht key="productrelation.actions.new">New Productrelation</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -2428,20 +2428,20 @@
 
 
 <def tag="new-page" for="Productrelation">
-  <page merge title="#{ht 'productrelation.new.title', :default=>[' New Product Relation'] }">
+  <page merge title="#{ht 'productrelation.new.title', :default=>[' New Productrelation'] }">
     <body: class="new-page productrelation" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="productrelation.new.heading">
-          New Product Relation
+          New Productrelation
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'productrelation.actions.create', :default=>['Create Product Relation']}"/>
+        <submit: label="#{ht 'productrelation.actions.create', :default=>['Create Productrelation']}"/>
       </form>
     </content-body:>
   </page>
@@ -2449,14 +2449,14 @@
 
 
 <def tag="show-page" for="Productrelation">
-  <page merge title="#{ht 'productrelation.show.title', :default=>['Product Relation'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'productrelation.show.title', :default=>['Productrelation'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page productrelation" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="productrelation.show.heading" name="#{name(:no_wrapper => true)}">
-          Product Relation <name/>
+          Productrelation <name/>
         </ht>
       </h2>
 
@@ -2464,7 +2464,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="productrelation.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Product Relation
+          Edit Productrelation
         </ht>
       </a>
     </content-header:>
@@ -2478,17 +2478,17 @@
 
 
 <def tag="edit-page" for="Productrelation">
-  <page merge title="#{ht 'productrelation.edit.title', :default=>['Edit Product Relation'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'productrelation.edit.title', :default=>['Edit Productrelation'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page productrelation" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="productrelation.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Product Relation
+          Edit Productrelation
         </ht>
       </h2>
-      <delete-button label="#{ht 'productrelation.actions.delete', :default=>['Remove This Product Relation']}" param/>
+      <delete-button label="#{ht 'productrelation.actions.delete', :default=>['Remove This Productrelation']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -2936,7 +2936,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="property_group.actions.new">New Property Group</ht>
+        <ht key="property_group.actions.new">New Property group</ht>
       </a>
 
       <sortable-collection param="collection"/>
@@ -2948,20 +2948,20 @@
 
 
 <def tag="new-page" for="PropertyGroup">
-  <page merge title="#{ht 'property_group.new.title', :default=>[' New Property Group'] }">
+  <page merge title="#{ht 'property_group.new.title', :default=>[' New Property group'] }">
     <body: class="new-page property-group" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="property_group.new.heading">
-          New Property Group
+          New Property group
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'property_group.actions.create', :default=>['Create Property Group']}"/>
+        <submit: label="#{ht 'property_group.actions.create', :default=>['Create Property group']}"/>
       </form>
     </content-body:>
   </page>
@@ -2969,14 +2969,14 @@
 
 
 <def tag="show-page" for="PropertyGroup">
-  <page merge title="#{ht 'property_group.show.title', :default=>['Property Group'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'property_group.show.title', :default=>['Property group'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page property-group" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="property_group.show.heading" name="#{name(:no_wrapper => true)}">
-          Property Group <name/>
+          Property group <name/>
         </ht>
       </h2>
 
@@ -2984,7 +2984,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="property_group.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Property Group
+          Edit Property group
         </ht>
       </a>
     </content-header:>
@@ -2998,17 +2998,17 @@
 
 
 <def tag="edit-page" for="PropertyGroup">
-  <page merge title="#{ht 'property_group.edit.title', :default=>['Edit Property Group'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'property_group.edit.title', :default=>['Edit Property group'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page property-group" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="property_group.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Property Group
+          Edit Property group
         </ht>
       </h2>
-      <delete-button label="#{ht 'property_group.actions.delete', :default=>['Remove This Property Group']}" param/>
+      <delete-button label="#{ht 'property_group.actions.delete', :default=>['Remove This Property group']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -3156,7 +3156,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="shipping_cost.actions.new">New Shipping Cost</ht>
+        <ht key="shipping_cost.actions.new">New Shipping cost</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -3172,20 +3172,20 @@
 
 
 <def tag="new-page" for="ShippingCost">
-  <page merge title="#{ht 'shipping_cost.new.title', :default=>[' New Shipping Cost'] }">
+  <page merge title="#{ht 'shipping_cost.new.title', :default=>[' New Shipping cost'] }">
     <body: class="new-page shipping-cost" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="shipping_cost.new.heading">
-          New Shipping Cost
+          New Shipping cost
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'shipping_cost.actions.create', :default=>['Create Shipping Cost']}"/>
+        <submit: label="#{ht 'shipping_cost.actions.create', :default=>['Create Shipping cost']}"/>
       </form>
     </content-body:>
   </page>
@@ -3193,14 +3193,14 @@
 
 
 <def tag="show-page" for="ShippingCost">
-  <page merge title="#{ht 'shipping_cost.show.title', :default=>['Shipping Cost'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'shipping_cost.show.title', :default=>['Shipping cost'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page shipping-cost" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="shipping_cost.show.heading" name="#{name(:no_wrapper => true)}">
-          Shipping Cost <name/>
+          Shipping cost <name/>
         </ht>
       </h2>
 
@@ -3208,7 +3208,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="shipping_cost.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Shipping Cost
+          Edit Shipping cost
         </ht>
       </a>
     </content-header:>
@@ -3222,17 +3222,17 @@
 
 
 <def tag="edit-page" for="ShippingCost">
-  <page merge title="#{ht 'shipping_cost.edit.title', :default=>['Edit Shipping Cost'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'shipping_cost.edit.title', :default=>['Edit Shipping cost'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page shipping-cost" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="shipping_cost.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Shipping Cost
+          Edit Shipping cost
         </ht>
       </h2>
-      <delete-button label="#{ht 'shipping_cost.actions.delete', :default=>['Remove This Shipping Cost']}" param/>
+      <delete-button label="#{ht 'shipping_cost.actions.delete', :default=>['Remove This Shipping cost']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -3268,7 +3268,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="supplyrelation.actions.new">New Supply Relation</ht>
+        <ht key="supplyrelation.actions.new">New Supplyrelation</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -3284,20 +3284,20 @@
 
 
 <def tag="new-page" for="Supplyrelation">
-  <page merge title="#{ht 'supplyrelation.new.title', :default=>[' New Supply Relation'] }">
+  <page merge title="#{ht 'supplyrelation.new.title', :default=>[' New Supplyrelation'] }">
     <body: class="new-page supplyrelation" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="supplyrelation.new.heading">
-          New Supply Relation
+          New Supplyrelation
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'supplyrelation.actions.create', :default=>['Create Supply Relation']}"/>
+        <submit: label="#{ht 'supplyrelation.actions.create', :default=>['Create Supplyrelation']}"/>
       </form>
     </content-body:>
   </page>
@@ -3305,14 +3305,14 @@
 
 
 <def tag="show-page" for="Supplyrelation">
-  <page merge title="#{ht 'supplyrelation.show.title', :default=>['Supply Relation'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'supplyrelation.show.title', :default=>['Supplyrelation'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page supplyrelation" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="supplyrelation.show.heading" name="#{name(:no_wrapper => true)}">
-          Supply Relation <name/>
+          Supplyrelation <name/>
         </ht>
       </h2>
 
@@ -3320,7 +3320,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="supplyrelation.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Supply Relation
+          Edit Supplyrelation
         </ht>
       </a>
     </content-header:>
@@ -3334,17 +3334,17 @@
 
 
 <def tag="edit-page" for="Supplyrelation">
-  <page merge title="#{ht 'supplyrelation.edit.title', :default=>['Edit Supply Relation'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'supplyrelation.edit.title', :default=>['Edit Supplyrelation'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page supplyrelation" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="supplyrelation.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Supply Relation
+          Edit Supplyrelation
         </ht>
       </h2>
-      <delete-button label="#{ht 'supplyrelation.actions.delete', :default=>['Remove This Supply Relation']}" param/>
+      <delete-button label="#{ht 'supplyrelation.actions.delete', :default=>['Remove This Supplyrelation']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -3660,7 +3660,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="webpage.actions.new">New Web Page</ht>
+        <ht key="webpage.actions.new">New Webpage</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -3676,20 +3676,20 @@
 
 
 <def tag="new-page" for="Webpage">
-  <page merge title="#{ht 'webpage.new.title', :default=>[' New Web Page'] }">
+  <page merge title="#{ht 'webpage.new.title', :default=>[' New Webpage'] }">
     <body: class="new-page webpage" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="webpage.new.heading">
-          New Web Page
+          New Webpage
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'webpage.actions.create', :default=>['Create Web Page']}"/>
+        <submit: label="#{ht 'webpage.actions.create', :default=>['Create Webpage']}"/>
       </form>
     </content-body:>
   </page>
@@ -3697,14 +3697,14 @@
 
 
 <def tag="show-page" for="Webpage">
-  <page merge title="#{ht 'webpage.show.title', :default=>['Web Page'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'webpage.show.title', :default=>['Webpage'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page webpage" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="webpage.show.heading" name="#{name(:no_wrapper => true)}">
-          Web Page <name/>
+          Webpage <name/>
         </ht>
       </h2>
 
@@ -3712,7 +3712,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="webpage.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Web Page
+          Edit Webpage
         </ht>
       </a>
     </content-header:>
@@ -3735,17 +3735,17 @@
 
 
 <def tag="edit-page" for="Webpage">
-  <page merge title="#{ht 'webpage.edit.title', :default=>['Edit Web Page'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'webpage.edit.title', :default=>['Edit Webpage'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page webpage" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="webpage.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Web Page
+          Edit Webpage
         </ht>
       </h2>
-      <delete-button label="#{ht 'webpage.actions.delete', :default=>['Remove This Web Page']}" param/>
+      <delete-button label="#{ht 'webpage.actions.delete', :default=>['Remove This Webpage']}" param/>
     </content-header:>
 
     <content-body: param>

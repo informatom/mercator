@@ -72,9 +72,10 @@ class BillingAddressesController < ApplicationController
           end
         end
 
-        order.update(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "billing_")
-                     .merge(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
-                     .merge(billing_method: "e_payment"))
+        order.attributes = this.namely [:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "billing_"
+        order.attributes = this.namely [:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "shipping_"
+        order.billing_method = "e_payment"
+        order.save
 
         Address.create(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country])
                        .merge(user_id: current_user.id))
@@ -84,7 +85,6 @@ class BillingAddressesController < ApplicationController
       end
     end
   end
-
 
   def do_use
     do_transition_action :use do
