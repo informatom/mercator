@@ -20,10 +20,24 @@ class OrdersController < ApplicationController
   def do_place
     self.this = Order.find(params[:id])
 
-    # A quick ckeck, if erp_account_number is current (User could have been changed since last job run)
-    current_user.update_erp_account_nr()
+    if Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production"
+      # A quick ckeck, if erp_account_number is current (User could have been changed since last job run)
+      current_user.update_erp_account_nr()
 
-    if self.this.push_to_mesonic()
+      if self.this.push_to_mesonic()
+        do_transition_action :place do
+          flash[:success] = I18n.t("mercator.messages.order.place.success")
+          flash[:notice] = nil
+
+          Order.create(user: current_user) # and create a new basket ...
+          render action: :confirm
+        end
+      else
+        flash[:error] = I18n.t("mercator.messages.order.place.failure")
+        flash[:notice] = nil
+        render action: :error
+      end
+    else
       do_transition_action :place do
         flash[:success] = I18n.t("mercator.messages.order.place.success")
         flash[:notice] = nil
@@ -31,10 +45,6 @@ class OrdersController < ApplicationController
         Order.create(user: current_user) # and create a new basket ...
         render action: :confirm
       end
-    else
-      flash[:error] = I18n.t("mercator.messages.order.place.failure")
-      flash[:notice] = nil
-      render action: :error
     end
   end
 

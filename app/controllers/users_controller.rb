@@ -38,6 +38,9 @@ class UsersController < ApplicationController
           current_basket.lifecycle.park!(current_user)
         end
         current_user.orders << last_basket
+        last_basket.lineitems.each do |lineitem|
+          lineitem.update(user_id: current_user.id)
+        end
       end
 
       unless current_user.basket

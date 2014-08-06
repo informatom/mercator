@@ -3,8 +3,8 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-set :output, "/var/rails/mercator/log/cron.log"
-set :path, "/var/rails/mercator"
+set :output, "/var/rails/%enter_app_puth_here%/log/cron.log"
+set :path, "/var/rails/%enter_app_path_here%%"
 
 every 1.hour do
   runner "Order.cleanup_deprecated"
@@ -17,6 +17,10 @@ end
 
 every 1.day, :at => '4:30 am' do
   rake "webartikel:update"
+end
+
+every 1.day, :at => '5:00 am' do
+  rake "rake mesonic:users:update_erp_account_nrs"
 end
 
 every 1.day, :at => '5:30 am' do

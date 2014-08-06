@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+  <head>
+    <title> Bestellinfo </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style> body, table { font-family: Arial, Helvetica, Sans-Serif; font-size: small; } </style>
+  </head>
+
+  <body>
+    <h1>Bestellinfo</h1>
+
+    <h3>Sehr geehrter Kunde!</h3>
+
+    <p><strong>
+      Vielen Dank für ihre Bestellung <%= @order.erp_order_number || @order.id %> vom <%= l @order.created_at %>
+    </strong></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Lieferung erfolgt an</td>
+          <th>Rechnung erfolgt an</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= @order.shipping_name %><br />
+            <%= @order.shipping_c_o %><br />
+            <%= @order.shipping_detail %><br />
+            <%= @order.shipping_street %><br />
+            <%= @order.shipping_postalcode %> <%= @order.shipping_city %><br />
+            <%= @order.shipping_country %>
+          </td>
+          <td>
+            <%= @order.billing_name %><br />
+            <%= @order.billing_c_o %><br />
+            <%= @order.billing_detail %><br />
+            <%= @order.billing_street %><br />
+            <%= @order.billing_postalcode %> <%= @order.billing_city %><br />
+            <%= @order.shipping_country %>
+          </td>
+        </tr>
+        <tr>
+          <th>Liefermethode</th>
+          <th>Ihre Zahlungskonditionen</th>
+        </tr>
+        <tr>
+          <td>
+            <%= I18n.translate("activerecord.attributes.order.lifecycle.transitions.#{@order.shipping_method}") %>
+          </td>
+          <td>
+            <%= I18n.translate("activerecord.attributes.order.lifecycle.transitions.#{@order.billing_method}") %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Anzahl</th>
+          <th>Nummer</th>
+          <th>Artikel</th>
+          <th>Einzelpreis</th>
+          <th>Preis</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @order.lineitems.each do |lineitem| %>
+        <tr>
+          <td><%= lineitem.amount %></td>
+          <td><%= lineitem.product_number %></td>
+          <td><%= lineitem.description_de %></td>
+          <td><strong><%= number_to_currency lineitem.product_price %></strong></td>
+          <td><strong><%= number_to_currency lineitem.value %></strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="4"><small>Lieferzeit: <%= lineitem.delivery_time %></small></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+    <table>
+      <tr>
+        <td><strong>Nettosumme:</strong> </td>
+        <td><%= number_to_currency @order.sum %></td>
+      </tr>
+      <% @order.vat_items.each do |percentage, value| %>
+        <tr>
+          <td><strong>+ <%= percentage %>% MWSt.:</strong></td>
+          <td><%= number_to_currency value %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><strong>Auftragssumme:</strong></td>
+        <td><%= number_to_currency @order.sum_incl_vat %></td>
+      </tr>
+    </table>
+
+    <p>
+      Wenn Sie die Ware zur Selbstabholung bestellt haben, erhalten Sie eine Verständigung per e-mail, sobald die Ware abholbereit ist.<br />
+      Für weitere Informationen, Anregungen und Datenauskünfte stehen wir Ihnen jederzeit gerne zur Verfügung
+      (<a href="mailto:<%= @service_mail %>"><%= @service_mail %></a>).
+    </p>
+    <p> Mit freundlichen Grüßen<br /> Ihr Team von Ivellio-Vellin</p>
+
+    <p>---------------------------------------</p>
+    <p>
+      Ivellio-Vellin professionelle IT-Lösungen<br />
+      Kaiserstraße 26 1070 Wien<br />
+      Tel: 01/587 57 70-0 Fax: 01/587 57 70-21<br />
+      e-mail: <a href="mailto:<%= @service_mail %>"> <%= @service_mail %> </a> <br />
+      Internet:
+        <a href="http://<%= Constant.find_by_key('cms_domain').value %>"%>http://<%= Constant.find_by_key('cms_domain').value %></a>
+        <a href="http://<%= Constant.find_by_key('shop_domain').value %>"%>http://<%= Constant.find_by_key('shop_domain').value %></a>
+    </p>
+    <p>---------------------------------------</p>
+
+    <p>
+      Mitglied der WKO, Fachgruppe Handel mit Computern und Bürosystemen<br />
+      Die Gewährleistung erfolgt nach den gesetzlichen Bestimmungen oder zu den für den Kunden günstigeren Bestimmungen des Herstellers. <br />
+      Weitere Informationen dazu finden Sie in den AGB. Erfüllungsort und Gerichtsstand ist Wien.<br />
+      Behörde gem. ECG: Magistratisches Bezirksamt des VII. Bezirkes.<br />
+      Gesetzliche Vorschriften: Gewerbeordnung.<br />
+      Firmenbuch-Nummer: 8433b; Steuernummer: ATU12134901<br />
+      Kontoverbindung: Bank Austria BLZ 12000, Konto: 233 110 16200 (IBAN AT871200023311016200)</p>
+  </body>
+</html>
