@@ -19,6 +19,10 @@ class OrdersController < ApplicationController
 
   def do_place
     self.this = Order.find(params[:id])
+
+    # A quick ckeck, if erp_account_number is current (User could have been changed since last job run)
+    current_user.update_erp_account_nr()
+
     if self.this.push_to_mesonic()
       do_transition_action :place do
         flash[:success] = I18n.t("mercator.messages.order.place.success")
