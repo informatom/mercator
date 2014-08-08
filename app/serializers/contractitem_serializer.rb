@@ -1,5 +1,5 @@
 class ContractitemSerializer < ActiveModel::Serializer
-  self.root = true
+
   embed :ids
 
   attributes :id, :position, :term, :startdate, :product_number,
