@@ -4,7 +4,7 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   respond_to :html, :json
 
   def default_serializer_options
-    {root: "consumable_item" }
+    {root: "consumableitem" }
   end
 
   def index
