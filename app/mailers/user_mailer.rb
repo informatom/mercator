@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "no-reply@mercator.informatom.com"
+  default :from => Constant.find_by_key('service_mail').value || "no-reply@mercator.informatom.com"
 
   def forgot_password(user, key)
     @user, @key = user, key

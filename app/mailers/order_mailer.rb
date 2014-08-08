@@ -1,5 +1,5 @@
 class OrderMailer < ActionMailer::Base
-  default :from => Constant.find_by_key('service_mail').value
+  default :from => Constant.find_by_key('service_mail').value || "no-reply@mercator.informatom.com"
 
   def confirmation(order: nil)
     @order = order
