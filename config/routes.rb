@@ -6,6 +6,7 @@ Mercator::Application.routes.draw do
   mount MercatorIcecat::Engine => "/mercator_icecat"
   mount MercatorBechlem::Engine => "/"
   mount MercatorLegacyImporter::Engine => "/mercator_legacy_importer"
+  mount MercatorMPay24::Engine => "/mercator_mpay24"
 
   root :to => 'front#index'
   get 'admin' => 'admin/front#index', :as => 'admin_front'
