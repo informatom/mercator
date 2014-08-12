@@ -9,6 +9,5 @@
 <include src="application"/>
 <include src="admin/*"/>
 
-<if test="&Rails.application.config.try(:icecat) == true">
-  <include src="../../../vendor/engines/mercator_icecat/app/views/taglibs/admin/*"/>
-</if>
+<include if="&Rails.application.config.try(:icecat) == true"
+         src="../../../vendor/engines/mercator_icecat/app/views/taglibs/admin/*"/>
