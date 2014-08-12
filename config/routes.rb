@@ -2,11 +2,14 @@ Mercator::Application.routes.draw do
   match ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
 
   mount Ckeditor::Engine => '/ckeditor'
-  mount MercatorMesonic::Engine => "/mercator_mesonic"
-  mount MercatorIcecat::Engine => "/mercator_icecat"
-  mount MercatorBechlem::Engine => "/"
-  mount MercatorLegacyImporter::Engine => "/mercator_legacy_importer"
-  mount MercatorMPay24::Engine => "/mercator_mpay24"
+
+  if Rails.env.production?
+    mount MercatorMesonic::Engine => "/mercator_mesonic"
+    mount MercatorIcecat::Engine => "/mercator_icecat"
+    mount MercatorBechlem::Engine => "/"
+    mount MercatorLegacyImporter::Engine => "/mercator_legacy_importer"
+    mount MercatorMPay24::Engine => "/mercator_mpay24"
+  end
 
   root :to => 'front#index'
   get 'admin' => 'admin/front#index', :as => 'admin_front'

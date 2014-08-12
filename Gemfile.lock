@@ -44,14 +44,14 @@ GIT
 PATH
   remote: vendor/engines/mercator_bechlem
   specs:
-    mercator_bechlem (0.0.1)
+    mercator_bechlem (0.1)
       mysql2
       rails (~> 4.0)
 
 PATH
   remote: vendor/engines/mercator_icecat
   specs:
-    mercator_icecat (0.0.1)
+    mercator_icecat (0.1)
       rails (~> 4.0)
       saxerator
       try_to
@@ -59,16 +59,22 @@ PATH
 PATH
   remote: vendor/engines/mercator_legacy_importer
   specs:
-    mercator_legacy_importer (0.0.1)
+    mercator_legacy_importer (0.1)
       mysql2
       rails (~> 4.0)
 
 PATH
   remote: vendor/engines/mercator_mesonic
   specs:
-    mercator_mesonic (0.0.1)
+    mercator_mesonic (0.1)
       activerecord-sqlserver-adapter (~> 4.0.0)
       nokogiri
+      rails (~> 4.0)
+
+PATH
+  remote: vendor/engines/mercator_mpay24
+  specs:
+    mercator_mpay24 (0.1)
       rails (~> 4.0)
 
 GEM
@@ -487,6 +493,7 @@ DEPENDENCIES
   mercator_icecat!
   mercator_legacy_importer!
   mercator_mesonic!
+  mercator_mpay24!
   messengerjs-rails
   mysql2
   paper_trail (~> 3.0.0)
