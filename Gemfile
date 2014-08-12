@@ -51,7 +51,7 @@ gem 'wicked_pdf'                                      # Pdf Generation
 gem 'wkhtmltopdf-binary'
 gem "searchkick"                                      # Elastic Search integration
 
-group :production, do
+group :production do
   gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
                                                       # Engine for integrating Mesonic ERP System
   gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
