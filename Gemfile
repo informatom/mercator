@@ -49,18 +49,21 @@ gem 'whenever', :require => false                     # cronjob management
 gem 'private_pub'                                     # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                      # Pdf Generation
 gem 'wkhtmltopdf-binary'
-gem "searchkick"                                    # Elastic Search integration
-gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
+gem "searchkick"                                      # Elastic Search integration
+begin
+  gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
                                                       # Engine for integrating Mesonic ERP System
-gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
+  gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
                                                       # Engine for importing Legacy Data
-gem "mercator_icecat", path:"vendor/engines/mercator_icecat"
+  gem "mercator_icecat", path:"vendor/engines/mercator_icecat"
                                                       # Engine for importing Icecat Data
-gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem"
+  gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem"
                                                       # Engine for integrating Mesonic ERP System
-gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"
+  gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"
                                                       # Engine for MPay24 interface
-
+rescue Gem::LoadError
+  # it's OK, if they are not installed
+end
 
 gem 'try_to'                                          # checks for methods existance and avoids dumps
 gem 'friendly_id', '~> 5.0.0'                         # Friendlier URLs for webpages
