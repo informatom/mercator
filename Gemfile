@@ -61,7 +61,7 @@ begin
                                                       # Engine for integrating Mesonic ERP System
   gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"
                                                       # Engine for MPay24 interface
-rescue Bundler::GemNotFound
+rescue Exception => e
   # it's OK, if they are not installed
 end
 
