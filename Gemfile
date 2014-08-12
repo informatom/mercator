@@ -50,7 +50,8 @@ gem 'private_pub'                                     # Private Pub Sub System u
 gem 'wicked_pdf'                                      # Pdf Generation
 gem 'wkhtmltopdf-binary'
 gem "searchkick"                                      # Elastic Search integration
-begin
+
+group :production, do
   gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic"
                                                       # Engine for integrating Mesonic ERP System
   gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"
@@ -61,8 +62,6 @@ begin
                                                       # Engine for integrating Mesonic ERP System
   gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"
                                                       # Engine for MPay24 interface
-rescue Exception => e
-  # it's OK, if they are not installed
 end
 
 gem 'try_to'                                          # checks for methods existance and avoids dumps

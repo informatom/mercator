@@ -27,6 +27,15 @@ production:
   username: <%= CONFIG[:production_database_user] %>
   password: <%= CONFIG[:production_database_password] %>
 
+demo:
+  adapter: mysql2
+  encoding: utf8
+  host: localhost
+  database: mercator_production
+  pool: 5
+  username: <%= CONFIG[:production_database_user] %>
+  password: <%= CONFIG[:production_database_password] %>
+
 ### Lecgacy (Opensteam) ###
 
 import_development:
