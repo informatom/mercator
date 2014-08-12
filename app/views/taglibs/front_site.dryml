@@ -8,3 +8,7 @@
 
 <include src="application"/>
 <include src="application/*"/>
+
+<if test="&Rails.application.config.try(:payment) == 'mpay24'">
+  <include src="../../../vendor/engines/mercator_mpay24/app/views/orders/*"/>
+</if>

@@ -4,6 +4,9 @@ class OrdersController < ApplicationController
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
+  # can be found in mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
+  include OrdersControllerExtensions if Rails.application.config.try(:payment) == "mpay24"
+
   def refresh
     self.this = Order.find(params[:id])
     hobo_show
@@ -25,6 +28,8 @@ class OrdersController < ApplicationController
       current_user.update_erp_account_nr()
 
       if self.this.push_to_mesonic()
+        payment if Rails.application.config.try(:payment) == "mpay24"
+
         do_transition_action :place do
           flash[:success] = I18n.t("mercator.messages.order.place.success")
           flash[:notice] = nil
@@ -32,6 +37,7 @@ class OrdersController < ApplicationController
           Order.create(user: current_user) # and create a new basket ...
           render action: :confirm
         end
+
       else
         flash[:error] = I18n.t("mercator.messages.order.place.failure")
         flash[:notice] = nil
