@@ -52,5 +52,5 @@ Mercator::Application.routes.draw do
   post 'sales' => 'sales/front#index'
   post 'sales/conversations/:id/do_upload' => 'sales/conversations#do_upload'
 
-  get ':id' => 'webpages#show', :as => 'webpage_in_root'
+  # get ':id' => 'webpages#show', :as => 'webpage_in_root'
 end
