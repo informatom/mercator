@@ -6,7 +6,7 @@ class Admin::ProductsController < Admin::AdminSiteController
   autocomplete :number
 
   def index
-    if params[:search]
+    if params[:search].present?
       @search = params[:search].split(" ").map{|word| "%" + word + "%"}
       self.this = Product.paginate(:page => params[:page])
                           .where{(title_de.matches_any my{@search}) |

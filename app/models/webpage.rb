@@ -18,7 +18,7 @@ class Webpage < ActiveRecord::Base
   has_ancestry
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, use: [:slugged, :finders]
   def slug_candidates
     [:url, :title_de]
   end
