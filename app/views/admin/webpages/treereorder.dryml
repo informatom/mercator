@@ -13,12 +13,12 @@
   $('.dd').nestable('collapseAll');
   $('.dd').on('change', function() {
     Messenger().run({
-      progressMessage: '<%= t "activerecord.attribute_help.page.updating" %> ...',
-      successMessage: '<%= t "activerecord.attribute_help.page.updated" %>',
-      errorMessage: '<%= t "activerecord.attribute_help.page.update_failed" %>'
+      progressMessage: '<%= t "activerecord.attribute_help.webpage.updating" %> ...',
+      successMessage: '<%= t "activerecord.attribute_help.webpage.updated" %>',
+      errorMessage: '<%= t "activerecord.attribute_help.webpage.update_failed" %>'
     },{
-      url:"/admin/pages/do_treereorder",
-      data: 'pages=' + JSON.stringify($('.dd').nestable('serialize')),
+      url:"/admin/webpages/do_treereorder",
+      data: 'webpages=' + JSON.stringify($('.dd').nestable('serialize')),
       dataType: 'script',
     });
   });

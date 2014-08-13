@@ -4,7 +4,7 @@ class Webpage < ActiveRecord::Base
   fields do
     title_de   :string, :required, :name => true
     title_en   :string
-    url        :string, :index => true
+    url        :string, :required, :index => true
     ancestry   :string, :index => true
     position   :integer, :required
     legacy_id  :integer

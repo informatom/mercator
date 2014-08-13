@@ -10,8 +10,8 @@ class Admin::WebpagesController < Admin::AdminSiteController
   end
 
   index_action :do_treereorder do
-    pages_array = ActiveSupport::JSON.decode(params[:pages])
-    parse_pages(pages_array, nil)
+    webpages_array = ActiveSupport::JSON.decode(params[:webpages])
+    parse_webpages(webpages_array, nil)
     if request.xhr?
       hobo_ajax_response
     end
@@ -38,11 +38,11 @@ class Admin::WebpagesController < Admin::AdminSiteController
   end
 
 protected
-  def parse_pages(pages_array, parent)
-    pages_array.each_with_index do |page_hash, position|
-      page = Page.find(page_hash["id"])
-      page.update(position: position, parent_id: parent)
-      parse_pages(page_hash["children"], page.id) if page_hash["children"]
+  def parse_webpages(webpages_array, parent)
+    webpages_array.each_with_index do |webpage_hash, position|
+      webpage = Webpage.find(webpage_hash["id"])
+      webpage.update(position: position, parent_id: parent)
+      parse_webpages(webpage_hash["children"], webpage.id) if webpage_hash["children"]
     end
   end
 end
