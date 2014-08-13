@@ -37,6 +37,20 @@ class Admin::WebpagesController < Admin::AdminSiteController
     hobo_destroy
   end
 
+  def index
+    if params[:search]
+      @search = params[:search].split(" ").map{|word| "%" + word + "%"}
+      self.this = Webpage.paginate(:page => params[:page])
+                          .where{(title_de.matches_any my{@search}) |
+                                 (title_en.matches_any my{@search})}
+                         .order_by(parse_sort_param(:title_de, :title_en, :this))
+    else
+      self.this = Webpage.paginate(:page => params[:page])
+                         .order_by(parse_sort_param(:title_de, :title_en, :this))
+    end
+    hobo_index
+  end
+
 protected
   def parse_webpages(webpages_array, parent)
     webpages_array.each_with_index do |webpage_hash, position|
