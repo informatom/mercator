@@ -3,6 +3,8 @@ class Admin::ContentElementsController < Admin::AdminSiteController
   hobo_model_controller
   auto_actions :all
 
+  autocomplete :name_de
+
   def index
     if params[:search].present?
       @search = params[:search].split(" ").map{|word| "%" + word + "%"}

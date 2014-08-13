@@ -48,4 +48,9 @@ class ContentElement < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+  # --- Class Methods --- #
+  def self.find_by_name(param)
+    self.find_by_name_de(param)
+  end
 end

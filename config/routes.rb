@@ -8,7 +8,7 @@ Mercator::Application.routes.draw do
     mount MercatorIcecat::Engine => "/mercator_icecat"
     mount MercatorBechlem::Engine => "/"
     mount MercatorLegacyImporter::Engine => "/mercator_legacy_importer"
-    mount MercatorMPay24::Engine => "/mercator_mpay24"
+    mount MercatorMpay24::Engine => "/mercator_mpay24"
   end
 
   root :to => 'front#index'

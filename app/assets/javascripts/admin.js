@@ -13,3 +13,5 @@
 //= require codemirror/modes/xml
 //= require codemirror/modes/javascript
 //= require codemirror/modes/css
+//= require codemirror/modes/ruby
+//= require codemirror/modes/htmlembedded

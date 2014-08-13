@@ -28,7 +28,7 @@ class Admin::WebpagesController < Admin::AdminSiteController
   end
 
   def update
-    @this = Webpage.friendly.find(params[:id])
+    self.this = Webpage.friendly.find(params[:id])
     hobo_update
   end
 

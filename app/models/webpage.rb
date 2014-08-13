@@ -70,4 +70,14 @@ class Webpage < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+  # --- Instance Methods --- #
+
+  def content_name(used_as)
+    PageContentElementAssignment.where(webpage_id: self.id, used_as: used_as).first.try(:content_element).try(:name).html_safe
+  end
+
+  def content(used_as)
+    PageContentElementAssignment.where(webpage_id: self.id, used_as: used_as).first.try(:content_element).try(:content).html_safe
+  end
 end
