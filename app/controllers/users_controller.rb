@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def logout
-    current_user.update(logged_in: false)
+    current_user.update(logged_in: false) unless current_user.class == Guest
     hobo_logout
   end
 
