@@ -1,4 +1,7 @@
-body, label, input, button, select, textarea { font-family: 'Ubuntu', sans-serif; font-size: 12px; line-height: 17px;}
+@font-face {font-family: Glypha; src: url(glypha.ttf); }
+body, label, input, button, select, textarea { font-family: Glypha, sans-serif; font-size: 12px; line-height: 17px; }
+
+//body, label, input, button, select, textarea { font-family: 'Ubuntu', sans-serif; font-size: 12px; line-height: 17px;}
 
 // Making all fonts smaller
 h1 { font-size: 26px; line-height: 32px; }
