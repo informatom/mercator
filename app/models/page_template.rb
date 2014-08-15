@@ -3,12 +3,13 @@ class PageTemplate < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name    :string, :required, :unique
-    content :text, :required
+    name      :string, :required, :unique
+    content   :text, :required
     legacy_id :integer
+    dryml     :boolean
     timestamps
   end
-  attr_accessible :name, :content, :legacy_id
+  attr_accessible :name, :content, :legacy_id, :dryml
 
   has_paper_trail
 
@@ -33,9 +34,15 @@ class PageTemplate < ActiveRecord::Base
   end
 
   def save_to_disk
-    filename = Rails.root.to_s + "/app/views/page_templates/" + self.name + ".html.erb"
+    extension = self.dryml? ? ".dryml" : ".html.erb"
+    wrong_extension = self.dryml? ? ".html.erb" : ".dryml"
+
+    filename = Rails.root.to_s + "/app/views/page_templates/" + self.name + extension
     File.open(filename, "w+") do |f|
       f.write(self.content)
     end
+
+    legacy_file = Rails.root.to_s + "/app/views/page_templates/" + self.name + wrong_extension
+    File.delete(legacy_file) if File.exists?(legacy_file)
   end
 end

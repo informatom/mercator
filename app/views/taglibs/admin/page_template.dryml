@@ -1,13 +1,13 @@
 <extend tag="form" for="PageTemplate">
   <old-form merge>
-    <field-list fields="name, content">
+    <field-list fields="name, dryml, content">
       <content-view:>
         <input id="editor" />
         <script>
           var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
             mode: "application/x-erb",
-            theme: "default"
+            theme: "solarized"
           });
         </script>
       </content-view:>
@@ -16,4 +16,17 @@
       <submit label="#{ht 'page_template.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </old-form>
+</extend>
+
+<extend tag="show-page" for="PageTemplate">
+  <old-show-page merge>
+    <content-body: param>
+      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/solarized_light.min.css"/>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+      <pre>
+        <code class="html" style="font-size: 15px;"><%= this.content -%></code>
+      </pre>
+    </content-body:>
+  </old-show-page>
 </extend>
