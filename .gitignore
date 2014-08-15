@@ -19,5 +19,6 @@ vendor/bechlem/*
 
 app/views/page_templates/*
 materials/ivellio-vellin/*
+app/assets/stylesheets/glypha.ttf
 
 .gemtags
