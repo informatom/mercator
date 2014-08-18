@@ -7,4 +7,12 @@
 // code directly here, but if you do, it'll appear at the bottom of
 // the the compiled file.
 //
-//= require application
+//= require jquery
+//= require jquery_ujs
+//= request_password_reset
+//= require hobo_rapid
+//= require hobo_jquery
+//= require hobo_jquery_ui
+//= require front/bootstrap
+//= require ckeditor/init
+//= require private_pub

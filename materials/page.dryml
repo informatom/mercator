@@ -1,0 +1,57 @@
+<set-scoped flash-rendered='&false'>
+  <ajax-progress param/>
+  <div class='navbar' param='navbar'>
+    <div class='navbar-inner' param='navbar-innner'>
+      <header class='container' param>
+        <a href='#' class='btn btn-navbar' data-toggle='collapse' data-target='.nav-collapse'>
+          <span class='icon-bar'/>
+          <span class='icon-bar'/>
+          <span class='icon-bar'/>
+        </a>
+        <div param='app-name'>
+          <a href='#{base_url}/' class='brand'><app-name/></a>
+        </div>
+        <main-nav class='nav' current='&title' param if='&nav_location.blank? || nav_location==&apos;top&apos;'/>
+        <account-nav include-search='&nav_location.blank? || nav_location==&apos;top&apos;' param if='&login_url(Hobo::Model::UserBase.default_user_model)'/>
+      </header>
+    </div>
+  </div>
+  <div class='container' param='nav-container' if='&nav_location==&apos;sub&apos;'>
+    <div class='subnav' param='subnav'>
+      <main-nav class='nav nav-pills' current='&title' include-search param/>
+    </div>
+  </div>
+  <%
+    if all_parameters[:aside]
+      attributes[:content_size] ||= "9"
+      attributes[:aside_size] ||= (12 - attributes[:content_size].to_i).to_s
+      aside_span = "span" + attributes[:aside_size]
+      aside_location ||= 'right'
+    else
+      attributes[:content_size] = "12" unless attributes[:content_size]
+    end
+  %>
+  <div class='container bootstrap-content' param='container'>
+    <div class='row' param='main-row'>
+      <div class='#{aside_span}' param='aside-column' if='&all_parameters[:aside] && aside_location==&apos;left&apos;'>
+        <div class='well'>
+          <section param='aside'/>
+        </div>
+      </div>
+      <div class='span#{attributes[:content_size]}' param='main-column'>
+        <section param='content' with-flash-messages>
+          <section param='main-content'>
+            <header param='content-header'/>
+            <section param='content-body'/>
+          </section>
+        </section>
+      </div>
+      <div class='#{aside_span}' param='aside-column' if='&all_parameters[:aside] && aside_location==&apos;right&apos;'>
+        <div class='well'>
+          <section param='aside'/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</set-scoped>

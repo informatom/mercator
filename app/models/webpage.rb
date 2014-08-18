@@ -73,11 +73,19 @@ class Webpage < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
+  def content_element(used_as)
+    PageContentElementAssignment.where(webpage_id: id, used_as: used_as).first.try(:content_element)
+  end
+
   def element_name(used_as)
-    PageContentElementAssignment.where(webpage_id: self.id, used_as: used_as).first.try(:content_element).try(:name).html_safe
+    content_element(used_as).content_element.try(:name).try(:html_safe)
   end
 
   def element_content(used_as)
-    PageContentElementAssignment.where(webpage_id: self.id, used_as: used_as).first.try(:content_element).try(:content).html_safe
+    content_element(used_as).try(:content).try(:html_safe)
+  end
+
+  def image(used_as)
+    content_element(used_as).try(:photo)
   end
 end

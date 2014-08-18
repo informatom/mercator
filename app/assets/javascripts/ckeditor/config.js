@@ -14,10 +14,6 @@ CKEDITOR.editorConfig = function( config ) {
     ];
     config.language = 'de';
     config.extraPlugins = 'save';
-    config.entities_latin = false;
-    config.entities_greek = false;
-    config.entities = false;
-    config.basicEntities = false;
 };
 
 $(document).ready(function() {

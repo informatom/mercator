@@ -5,7 +5,10 @@
  * will be included.
  *
  *= require_self
- *= require application
- *= require_tree ./front
- *= require overrides
+ *= require hobo_rapid
+ *= require hobo_jquery
+ *= require front/bootstrap
+ *= require front/bootstrap-theme
+ *= require font-awesome
+ *= require front/overrides
 */
