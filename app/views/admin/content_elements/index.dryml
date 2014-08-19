@@ -4,7 +4,7 @@
       <actions-heading:></actions-heading:>
       <actions-view:><bootstrap-table-actions/></actions-view:>
 
-      <content-de-view:> <%= strip_tags(this).truncate(300) %></content-de-view>
+      <content-de-view:> <%= strip_tags(this).truncate(300) if this %></content-de-view>
       <photo-view:> <image src="&this.url(:thumb)" /> </photo-view:>
     </table-plus>
   </collection:>
