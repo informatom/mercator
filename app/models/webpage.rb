@@ -95,6 +95,10 @@ class Webpage < ActiveRecord::Base
   end
 
   def image(used_as)
-    content_element(used_as).try(:photo)
+    if content_element = content_element(used_as)
+      content_element.photo
+    else
+      ContentElement.where(name_de: used_as).first.try(:photo)
+    end
   end
 end

@@ -6,6 +6,7 @@ gem 'tiny_tds'                                        # A modern, simple and fas
 gem 'activerecord-sqlserver-adapter', '~> 4.0'        # MSSQL server database connector
 
 gem 'jquery-rails', '~> 2.3.0'                        # JQuery asset handling
+gem 'jquery-ui-rails'
 gem "protected_attributes"
 gem 'valvat'                                          # European Vat Number Validation
 

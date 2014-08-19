@@ -8,6 +8,7 @@
 // the the compiled file.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= request_password_reset
 //= require hobo_rapid
