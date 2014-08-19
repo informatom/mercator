@@ -13,7 +13,7 @@ class Webpage < ActiveRecord::Base
   end
 
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
-                  :position, :parent_id, :parent, :position, :page_template, :url, :ancestry
+                  :position, :parent_id, :parent, :position, :page_template, :url, :ancestry, :slug
   translates :title
   has_ancestry orphan_strategy: :adopt
 
