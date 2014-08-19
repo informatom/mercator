@@ -15,7 +15,7 @@ class Webpage < ActiveRecord::Base
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
                   :position, :parent_id, :parent, :position, :page_template, :url
   translates :title
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]

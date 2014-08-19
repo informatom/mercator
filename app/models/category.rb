@@ -20,7 +20,7 @@ class Category < ActiveRecord::Base
                   :description_de, :description_en, :long_description_de, :long_description_en, :filters
   translates :name, :description, :long_description
 
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
   has_paper_trail
 
   searchkick language: "German"
