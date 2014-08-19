@@ -13,7 +13,7 @@ class Webpage < ActiveRecord::Base
   end
 
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
-                  :position, :parent_id, :parent, :position, :page_template, :url
+                  :position, :parent_id, :parent, :position, :page_template, :url, :ancestry
   translates :title
   has_ancestry orphan_strategy: :adopt
 
@@ -78,11 +78,20 @@ class Webpage < ActiveRecord::Base
   end
 
   def element_name(used_as)
-    content_element(used_as).content_element.try(:name).try(:html_safe)
+    if content_element = content_element(used_as)
+      content_element.name.html_safe
+    else
+      I18n.t("mercator.messages.content_element.no_assignment") + " " + used_as
+    end
   end
 
   def element_content(used_as)
-    content_element(used_as).try(:content).try(:html_safe)
+    if content_element = content_element(used_as)
+      content_element.content.html_safe
+    else
+      I18n.t("mercator.messages.content_element.no_assignment") + " " + used_as
+    end
+
   end
 
   def image(used_as)

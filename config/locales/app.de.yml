@@ -532,6 +532,7 @@ de:
     messages:
       content_element:
         missing: Hier fehlt der Textbaustein mit dem Namen
+        no_assignment: Hier fehlt der Textbaustein mit der Zuordnung
       conversation:
         no_frames: "Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie können die eingebettete Seite über den folgenden Verweis aufrufen"
         started: Eine neue Konversation wurde gestartet!

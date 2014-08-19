@@ -532,6 +532,7 @@ en:
     messages:
       content_element:
         missing: "Here, a content element is missing, it should have the name"
+        no_assignment: "Hier a page content element assignment is missing, it is the one with the 'used as'"
       conversation:
         no_frames: "Unfortunately, your browser cannot display embedded frames. You can visit the site by clicking the following link:"
         started: A new conversation was started!

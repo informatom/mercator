@@ -2,14 +2,10 @@
   <collection: replace>
     <table-plus without-page-nav fields="this, name_en, content_de, photo, photo_file_name, document_file_name, actions">
       <actions-heading:></actions-heading:>
-      
-      <actions-view:>
-        <bootstrap-table-actions/>
-      </actions-view:>
-      
-      <photo-view:>
-        <image src="&this.url(:thumb)" />
-      </photo-view:>
+      <actions-view:><bootstrap-table-actions/></actions-view:>
+
+      <content-de-view:> <%= strip_tags(this).truncate(300) %></content-de-view>
+      <photo-view:> <image src="&this.url(:thumb)" /> </photo-view:>
     </table-plus>
   </collection:>
 </index-page>
