@@ -1,0 +1,47 @@
+$white: #fff;
+$blue: #012E4F;
+$light-blue: #5B819F;
+$red: #B10D28;
+
+@font-face { font-family: Glypha;
+             src: url(<%= asset_path 'front/glypha.ttf' %>); }
+
+.eightypercent { background-size: 80% !important;
+                 background-repeat: no-repeat !important;
+                 background-position: center top !important; }
+
+.double { height: 4px;
+          border: 2px; }
+
+.glow { border: 2px solid #ddd;
+        box-shadow: 5px 0 12px #ddd;
+        -moz-box-shadow: 5px 0 12px #ddd;
+        -webkit-box-shadow: 5px 0 12px #ddd;
+        padding: 30px; }
+
+.double { height: 6px;
+          border: 2px #000 solid;
+          width: 90%; }
+
+ul.navigation.nav li a { background-color: $blue;
+                         color: $white; }
+.dropdown-menu { background-color: $blue;
+                 margin: 14px 0 0;}
+ul.navigation.nav li a:hover,
+ul.navigation.nav li.open > a { background-color: $light-blue; }
+ul.navigation.nav li ul.dropdown-menu li > a:hover { background-color: $light-blue;
+                                                     background-image:none; }
+
+// Drop Down Triale, source: http://red-team-design.com/css3-dropdown-menu/
+ul.navigation.nav li ul.dropdown-menu li:first-child a:after { content: '';
+                                                               position: absolute;
+                                                               left: 20px;
+                                                               top: -14px;
+                                                               width: 0;
+                                                               height: 0;
+                                                               border-left: 5px solid transparent;
+                                                               border-right: 12px solid transparent;
+                                                               border-bottom: 14px solid $blue; }
+//ul.navigation.nav li ul.dropdown-menu li:first-child a:hover:after {border-bottom-color: $light-blue; }
+
+.label-danger { background-color: $red; }
