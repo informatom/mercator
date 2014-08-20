@@ -1,23 +1,37 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
-    <nav-item href="#{base_url}/"><t key="mercator.home"/></nav-item>
-
     <repeat with="&Webpage.roots.published">
-      <if test="url">
+      <if test="&this.menu">
+        <li class='nav-item dropdown' param='conversation'>
+          <a class="dropdown-toggle" id="drop#{this.id}" data-toggle="dropdown" href="#">
+            <view:title/>
+            <b class="caret"></b>
+          </a>
+
+          <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
+            <repeat with="&this.children">
+              <nav-item href="#{this.url}">
+                <view:title/>
+              </nav-item>
+            </repeat>
+          </ul>
+        </li>
+      </if>
+
+      <else>
         <nav-item href="#{this.url}">
           <view:title/>
         </nav-item>
-      </if>
-      <unless test="url">
-        <nav-item href="#{webpage_path(this)}">
-          <view:title/>
-        </nav-item>
-      </unless>
+      </else>
     </repeat>
 
-    <nav-item href="#{base_url}/chat.html" target="new"><t key="mercator.video_chat"/></nav-item>
+    <nav-item href="#{base_url}/chat.html" target="new">
+      <t key="mercator.video_chat"/>
+    </nav-item>
   </navigation>
 </def>
+
+
 
 <def attrs='include-search' tag='account-nav'>
   <div class='nav-collapse collapse'>

@@ -9,10 +9,9 @@
   </form>
 </def>
 
-
 <extend tag="form" for="Webpage">
   <old-form merge>
-    <field-list: fields="title_de, title_en, url, position, slug, state, page_content_element_assignments, page_template" param>
+    <field-list: fields="title_de, title_en, menu, url, position, slug, state, page_content_element_assignments, page_template" param>
       <page-content-element-assignments-view:>
         <input-many>
           <field-list fields="used-as, content-element">
