@@ -32,7 +32,6 @@
 </def>
 
 
-
 <def attrs='include-search' tag='account-nav'>
   <div class='nav-collapse collapse'>
   <do with='&current_user'>
@@ -130,25 +129,46 @@
         <li class='nav-item' param='log-in'><a href='&login_url'><t key='hobo.actions.login'/></a></li>
         <li class='nav-item' param='sign-up' if='&signup_url'><a href='&signup_url'><t key='hobo.actions.signup' /></a></li>
       </else>
-
-      <li class="nav-item dropdown">
-        <a class="dropdown-toggle" id="drop1" data-toggle="dropdown" href="#">
-          <if test="&I18n.locale == :de"><image src="de.png"/></if>
-          <if test="&I18n.locale == :en"><image src="en.png"/></if>
-          <b class="caret"></b>
-        </a>
-
-        <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-          <li class='nav-item' param='administration'>
-            <a href='/?locale=de'><image src="de.png"/> Deutsch</a>
-          </li>
-          <li class='nav-item' param='sales'>
-            <a href='/?locale=en'><image src="en.png"/> English</a>
-          </li>
-        </ul>
-      </li>
-
+        <li class="nav-item dropdown">
+          <language-selector />
+        </li>
     </ul>
   </do>
   </div>
+</def>
+
+<def tag="language-selector" >
+  <a class="dropdown-toggle" id="droplang" data-toggle="dropdown" href="#">
+    <if test="&I18n.locale == :de"><image src="de.png"/></if>
+    <if test="&I18n.locale == :en"><image src="en.png"/></if>
+    <b class="caret"></b>
+  </a>
+
+  <ul class="dropdown-menu" role="menu" aria-labelledby="droplang">
+    <li class='nav-item' param='administration'>
+      <a href='/?locale=de'><image src="de.png"/> Deutsch</a>
+    </li>
+    <li class='nav-item' param='sales'>
+      <a href='/?locale=en'><image src="en.png"/> English</a>
+    </li>
+  </ul>
+</def>
+
+<def tag="language-selector-plain" >
+  <span class="dropdown" >
+    <a id="droplang" data-toggle="dropdown" href="#">
+      <if test="&I18n.locale == :de"><image src="de.png"/></if>
+      <if test="&I18n.locale == :en"><image src="en.png"/></if>
+      <b class="caret"></b>
+    </a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="droplang">
+      <li class='nav-item' param='administration'>
+        <a href='/?locale=de'><image src="de.png"/> Deutsch</a>
+      </li>
+      <li class='nav-item' param='sales'>
+        <a href='/?locale=en'><image src="en.png"/> English</a>
+      </li>
+    </ul>
+  </span>
 </def>

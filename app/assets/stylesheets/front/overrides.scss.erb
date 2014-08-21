@@ -23,14 +23,17 @@ $red: #B10D28;
           border: 2px #000 solid;
           width: 90%; }
 
+ul.dropdown-menu li a,
+ul.dropdown-menu li a:hover,
 ul.navigation.nav li a { background-color: $blue;
                          color: $white; }
+
 .dropdown-menu { background-color: $blue;
                  margin: 14px 0 0;}
 ul.navigation.nav li a:hover,
-ul.navigation.nav li.open > a { background-color: $light-blue; }
-ul.navigation.nav li ul.dropdown-menu li > a:hover { background-color: $light-blue;
-                                                     background-image:none; }
+ul.navigation.nav li.open > a,
+ul.dropdown-menu li > a:hover { background-color: $light-blue;
+                                background-image:none; }
 
 // Drop Down Triale, source: http://red-team-design.com/css3-dropdown-menu/
 ul.navigation.nav li ul.dropdown-menu li:first-child a:after { content: '';
