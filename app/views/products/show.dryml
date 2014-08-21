@@ -5,6 +5,7 @@
 
   <main-nav:>
     <category-nav with="&this.categories.first" />
+    <br /><br />
   </main-nav:>
 
   <content-header:>
