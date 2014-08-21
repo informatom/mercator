@@ -14,11 +14,11 @@
 </def>
 
 <def tag="search-card" for="String">
-  <h1 class ="span12"><view/></h1>
+  <h1 class ="col-md-12"><view/></h1>
 </def>
 
 <def tag="search-card" for="Category">
-  <div class="category media span4" param="default" merge>
+  <div class="category media col-md-4" param="default" merge>
     <if test="&this.photo.exists?">
       <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid", width: "50%"),
                    category_path(this), class: "pull-left") %>
@@ -82,7 +82,7 @@
   <set category="&this"/>
   <%= this.filters.to_a.in_groups_of(3) do |group| %>
     <div class="row-fluid">
-      <div repeat="&group" class="span4">
+      <div repeat="&group" class="col-md-4">
         <if>
           <strong><view with="&this[0]"/></strong><br/>
           <repeat with="&this[1]">

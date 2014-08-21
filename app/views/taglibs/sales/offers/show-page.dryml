@@ -7,9 +7,9 @@
     <field-list: replace >
       <do part="all">
         <div class="row">
-          <div class="span4"> <billing-address-card /> </div>
-          <div class="span4"> <shipping-address-card /> </div>
-          <div class="span4">
+          <div class="col-md-4"> <billing-address-card /> </div>
+          <div class="col-md-4"> <shipping-address-card /> </div>
+          <div class="col-md-4">
             <div part="complete">
               <strong><t key="attributes.valid_to" />:</strong>
               <click-editor-innards:valid-until update="all">
@@ -113,7 +113,7 @@
           </table>
 
           <div class="row">
-            <div class="span3 offset9"><summary-card/></div>
+            <div class="col-md-3 col-md-offset-9"><summary-card/></div>
           </div>
           <div class="row pull-right">
             <my-transition-link transition="place" class="btn-success"/>

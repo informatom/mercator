@@ -2,7 +2,7 @@
   <old-show-page merge>
     <content-body:>
       <div class="row">
-        <div class="span8">
+        <div class="col-md-8">
           <form with="&@message" update="mymessages">
             <div><t key="mercator.new_message" />: <input:content/> </div>
           </form>
@@ -42,7 +42,7 @@
             <collection:downloads part="downloads"/>
           </section>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h3><t key="mercator.file_and_image_upload" /></h3>
           <div id="fine-uploader"></div>
           <br/>
@@ -136,9 +136,9 @@
 <def tag="card" for="Conversation">
   <card class="conversation" param="default" merge>
     <header: param>
-        <div class="span3"><strong><a><name/></a></strong></div>
-        <div class="span3"><view:created-at/></div>
-        <div class="span3"><view with="&distance_of_time_in_words(Time.now - this.created_at)"/></div>
+        <div class="col-md-3"><strong><a><name/></a></strong></div>
+        <div class="col-md-3"><view:created-at/></div>
+        <div class="col-md-3"><view with="&distance_of_time_in_words(Time.now - this.created_at)"/></div>
     </header:>
   </card>
 </def>

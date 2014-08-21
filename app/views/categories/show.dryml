@@ -20,7 +20,7 @@
 
     <%= this.children.active.in_groups_of(3) do |group| %>
       <div class="row-fluid">
-          <div repeat="&group" class="span4">
+          <div repeat="&group" class="col-md-4">
             <if><card/></if>
           </div>
       </div>
@@ -28,7 +28,7 @@
 
     <%= @products.in_groups_of(2) do |group| %>
       <div class="row-fluid">
-          <div repeat="&group" class="span6">
+          <div repeat="&group" class="col-md-6">
             <if><card/></if>
           </div>
       </div>

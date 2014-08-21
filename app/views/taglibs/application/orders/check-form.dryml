@@ -2,9 +2,9 @@
   <old-check-form merge>
     <field-list: replace>
       <div class="row">
-        <div class="span4"> <billing-address-card/></div>
-        <div class="span4"> <shipping-address-card/></div>
-        <div class="span4"> <payment-card/> <delivery-card/> </div>
+        <div class="col-md-4"> <billing-address-card/></div>
+        <div class="col-md-4"> <shipping-address-card/></div>
+        <div class="col-md-4"> <payment-card/> <delivery-card/> </div>
       </div>
 
       <table class="table well table-striped">
@@ -36,7 +36,7 @@
       </table>
 
       <div class="row">
-        <div class="span3 offset9"><summary-card/></div>
+        <div class="col-md-3 col-md-offset-9"><summary-card/></div>
       </div>
     </field-list:>
 

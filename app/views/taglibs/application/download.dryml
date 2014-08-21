@@ -6,11 +6,11 @@
 
     <body:>
       <div class="row">
-        <div class="span4">
+        <div class="col-md-4">
           <if:photo> <a href="&this.url" target="new"><image src="&this.url(:small)" /></a> </if:photo>
           <if:document><t key="activerecord.models.download.one" />: <a href="&this.url"><view:original-filename/></a> </if:document>
         </div>
-        <div class="span3">
+        <div class="col-md-3">
           <delete-button label="X" param class="btn-danger" />
           <if test="&this.document">
             <p><t key="attributes.document_file_size" />: <this.document-file-size/><br/>
