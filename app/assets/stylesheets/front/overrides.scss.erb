@@ -6,10 +6,6 @@ $red: #B10D28;
 @font-face { font-family: Glypha;
              src: url(<%= asset_path 'front/glypha.ttf' %>); }
 
-.eightypercent { background-size: 80% !important;
-                 background-repeat: no-repeat !important;
-                 background-position: center top !important; }
-
 .double { height: 4px;
           border: 2px; }
 
@@ -48,3 +44,27 @@ ul.navigation.nav li ul.dropdown-menu li:first-child a:after { content: '';
 //ul.navigation.nav li ul.dropdown-menu li:first-child a:hover:after {border-bottom-color: $light-blue; }
 
 .label-danger { background-color: $red; }
+
+div.mask { width: 80%;
+           height: 100%;
+           position: absolute;
+           left: 50%;
+           -webkit-transform: translate(-50%, -50%);
+           -ms-transform: translate(-50%, -50%);
+           transform: translate(-50%, -50%);
+           top: 50%; }
+
+div.mask:hover { -webkit-box-shadow: inset 0 0 100px #000;
+                 -moz-box-shadow:   inset 0 0 100px #000;
+                 box-shadow:        inset 0 0 100px #000; }
+
+img.mask { position: absolute;
+           top: 50%;
+           width: 80%;
+           display: inline;
+           left: 50%;
+           -webkit-transform: translate(-50%, -50%);
+           -ms-transform: translate(-50%, -50%);
+           transform: translate(-50%, -50%);
+           height: 100%;
+           z-index: -1; }
