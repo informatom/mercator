@@ -41,7 +41,7 @@
   <old-show-page merge>
     <content-header: replace/>
     <content-body:>
-      <div class="row-fluid">
+      <div class="row">
         <div class="col-md-8 moveable" id="left-column">
           <form with="&@message" update="mymessages">
             <h3><t key="mercator.your_message" />: </h3>
@@ -94,7 +94,6 @@
                 $('#middle-column').html($('#cobrowsing-area').html());
                 $('#right-column').removeClass('col-md-4').addClass('col-md-2');
                 $('.bootstrap-content').addClass('widescreen')
-                $('.row').removeClass('row-fluid').addClass('row')
               </script>
               <div id="cobrowsing-area" class="hidden">
                 <iframe src="#{this.last_link.url}" width="100%" height="800">
@@ -111,7 +110,6 @@
                 $('#middle-column').removeClass('col-md-8').addClass('hidden col-md-0');
                 $('#right-column').removeClass('col-md-2').addClass('col-md-4');
                 $('.bootstrap-content').removeClass('widescreen');
-                $('.row').removeClass('row').addClass('row-fluid')
               </script>
             </else>
           </div>
