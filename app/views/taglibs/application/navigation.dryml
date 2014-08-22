@@ -1,36 +1,41 @@
 <def tag="main-nav">
-  <navigation class="main-nav" merge-attrs param="default">
-    <repeat with="&Webpage.roots.published">
-      <if test="&this.menu">
-        <li class='nav-item dropdown' param='conversation'>
-          <a class="dropdown-toggle" id="drop#{this.id}" data-toggle="dropdown" href="#">
+  <navigation class="main-nav" without-live-search merge-attrs>
+    <default:>
+      <repeat with="&Webpage.roots.published">
+        <if test="&this.menu">
+          <li class='nav-item dropdown'>
+            <a class="dropdown-toggle" id="drop#{this.id}" data-toggle="dropdown" href="#">
+              <view:title/>
+              <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
+              <repeat with="&this.children">
+                <nav-item href="#{this.url}">
+                  <view:title/>
+                </nav-item>
+              </repeat>
+            </ul>
+          </li>
+        </if>
+
+        <else>
+          <nav-item href="#{this.url}">
             <view:title/>
-            <b class="caret"></b>
-          </a>
-
-          <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
-            <repeat with="&this.children">
-              <nav-item href="#{this.url}">
-                <view:title/>
-              </nav-item>
-            </repeat>
-          </ul>
-        </li>
-      </if>
-
-      <else>
-        <nav-item href="#{this.url}">
-          <view:title/>
-        </nav-item>
-      </else>
-    </repeat>
-
-    <nav-item href="#{base_url}/chat.html" target="new">
-      <t key="mercator.video_chat"/>
-    </nav-item>
+          </nav-item>
+        </else>
+      </repeat>
+    </default:>
+    <right:>
+      <li>
+        <a href="chat.html" style="background-color: #fff; color: #012E4F;">
+          <img src="&ContentElement.where(name_de: 'video-chat').first.photo" />
+          <h3 style="display: inline; vertical-align: bottom">&nbsp; Live-Chat</h3>
+        </a>
+      </li>
+    </right:>
   </navigation>
 </def>
-
 
 <def attrs='include-search' tag='account-nav'>
   <div class='nav-collapse collapse'>
