@@ -2,6 +2,7 @@ $white: #fff;
 $blue: #012E4F;
 $light-blue: #5B819F;
 $red: #B10D28;
+$dark-red: #98000F;
 
 @font-face { font-family: Glypha;
              src: url(<%= asset_path 'front/glypha.ttf' %>); }
@@ -44,6 +45,8 @@ ul.navigation.nav li ul.dropdown-menu li:first-child a:after { content: '';
 //ul.navigation.nav li ul.dropdown-menu li:first-child a:hover:after {border-bottom-color: $light-blue; }
 
 .label-danger { background-color: $red; }
+.label-danger:hover,
+.label-danger:focus { background-color: $dark-red; }
 
 div.mask { width: 80%;
            height: 100%;
@@ -68,3 +71,13 @@ img.mask { position: absolute;
            transform: translate(-50%, -50%);
            height: 100%;
            z-index: -1; }
+
+.navbar { background-image:none; }
+.navbar-default { border: 0px;
+                  background-color: $white;
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none; }
+
+.basket:hover,
+.basket:focus { text-decoration:none }

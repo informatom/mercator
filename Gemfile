@@ -15,8 +15,8 @@ gem 'valvat'                                          # European Vat Number Vali
 gem 'hobo', :git => 'https://github.com/Hobo/hobo.git'  # web application meta framework from Github
 
 gem "hobo_will_paginate"                              # pagination support
-gem "hobo_bootstrap", "2.1.1"                         # Twitter Bootstrap asset handling
-# gem "hobo_bootstrap", path:"vendor/gems/hobo_bootstrap"
+# gem "hobo_bootstrap", "2.1.1"                         # Twitter Bootstrap asset handling
+gem "hobo_bootstrap", path:"vendor/gems/hobo_bootstrap"
 gem 'bootswatch-rails'                                # Bootstrap Bootswatch themes
 gem "hobo_jquery_ui", "2.1.1"                         # JQuery UI asser handling
 gem "hobo_bootstrap_ui", "2.1.1"                      # additional Bootstrap features

@@ -11,7 +11,7 @@ Mercator::Application.routes.draw do
     mount MercatorMpay24::Engine => "/mercator_mpay24"
   end
 
-  root :to => 'front#index'
+  root :to => 'front#home'
   get 'admin' => 'admin/front#index', :as => 'admin_front'
   get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
   get 'sales' => 'sales/front#index', :as => 'sales_front'

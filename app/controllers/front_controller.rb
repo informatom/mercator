@@ -4,6 +4,15 @@ class FrontController < ApplicationController
 
   def index; end
 
+  def home
+    @home = Webpage.where(slug: "home").first
+    if @home
+      redirect_to "/home"
+    else
+      redirect_to action: :index
+    end
+  end
+
   def summary
     redirect_to user_login_path unless current_user.administrator?
   end
