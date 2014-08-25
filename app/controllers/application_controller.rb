@@ -9,10 +9,16 @@ class ApplicationController < ActionController::Base
     if current_user.guest?
       if session[:last_user]
         self.current_user = User.find(session[:last_user])
-      else
-        self.current_user = User.initialize
-        Order.create(user: current_user)
+        return
       end
+
+      if params[:remember_token]
+        self.current_user = User.find_by_remember_token(params[:remember_token])
+        return
+      end
+
+      self.current_user = User.initialize
+      Order.create(user: current_user)
     end
   end
 
@@ -43,11 +49,14 @@ class ApplicationController < ActionController::Base
   def domain_cms_redirect
     cms_domain = Constant.find_by_key('cms_domain').value
     unless request.url.include?(cms_domain)
-    new_url = case request.port
-              when 80  then 'http://' + cms_domain + request.path
-              when 443 then 'https://' + cms_domain + request.path
-              else          'http://' + cms_domain + ":" + request.port.to_s + request.path
-              end
+      new_url = case request.port
+                when 80  then 'http://' + cms_domain + request.path
+                when 443 then 'https://' + cms_domain + request.path
+                else          'http://' + cms_domain + ":" + request.port.to_s + request.path
+                end
+
+      current_user.lifecycle.create_key!(current_user)
+      new_url = new_url + "?remember_token=" + current_user.remember_token
 
       redirect_to new_url, :status => 301
     end
@@ -56,11 +65,14 @@ class ApplicationController < ActionController::Base
   def domain_shop_redirect
     shop_domain = Constant.find_by_key('shop_domain').value
     unless request == nil || (request.url.include?(shop_domain))
-    new_url = case request.port
-              when 80  then 'http://' + shop_domain + request.path
-              when 443 then 'https://' + shop_domain + request.path
-              else          'http://' + shop_domain + ":" + request.port.to_s + request.path
-              end
+      new_url = case request.port
+                when 80  then 'http://' + shop_domain + request.path
+                when 443 then 'https://' + shop_domain + request.path
+                else          'http://' + shop_domain + ":" + request.port.to_s + request.path
+                end
+
+      current_user.remember_me
+      new_url = new_url + "?remember_token=" + current_user.remember_token
 
       redirect_to new_url, :status => 301
     end
