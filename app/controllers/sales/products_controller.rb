@@ -1,5 +1,5 @@
 class Sales::ProductsController < Sales::SalesSiteController
 
   hobo_model_controller
-  autocomplete :number
+  autocomplete :number, :query_scope => [:active_and_number_contains]
 end

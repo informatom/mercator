@@ -29,6 +29,10 @@ class Product < ActiveRecord::Base
   translates :title, :description, :long_description, :warranty
   has_paper_trail
 
+  def self.active_and_number_contains(number)
+    Product.active.number_contains(number)
+  end
+
   searchkick language: "German"
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
