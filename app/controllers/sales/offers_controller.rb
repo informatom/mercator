@@ -11,7 +11,9 @@ class Sales::OffersController < Sales::SalesSiteController
                           conversation_id: conversation.id,
                           user_id: conversation.customer_id,
                           valid_until: Date.today + 1.month)
+
     billing_address = customer.billing_addresses.recent(1)[0]
+
     self.this.assign_attributes(billing_name: billing_address.name,
                                  billing_detail: billing_address.detail,
                                  billing_street: billing_address.street,
