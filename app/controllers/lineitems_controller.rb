@@ -1,4 +1,5 @@
 class LineitemsController < ApplicationController
+  before_filter :domain_shop_redirect
 
   hobo_model_controller
   auto_actions :destroy, :lifecycle

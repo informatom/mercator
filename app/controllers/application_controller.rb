@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
                 else          'http://' + cms_domain + ":" + request.port.to_s + request.path
                 end
 
-      current_user.lifecycle.create_key!(current_user)
+      current_user.remember_me
       new_url = new_url + "?remember_token=" + current_user.remember_token
 
       redirect_to new_url, :status => 301

@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
 
+  before_filter :domain_shop_redirect
+
   hobo_model_controller
   auto_actions :show, :lifecycle
   index_action :comparison
 
-  before_filter :domain_shop_redirect
 
   def do_add_to_basket
     do_transition_action :add_to_basket do
@@ -15,6 +16,7 @@ class ProductsController < ApplicationController
     end
   end
 
+
   def do_compare
     do_transition_action :compare do
       session[:compared] << this.id
@@ -24,6 +26,7 @@ class ProductsController < ApplicationController
     end
   end
 
+
   def do_dont_compare
     do_transition_action :dont_compare do
       session[:compared].delete(this.id)
@@ -32,6 +35,7 @@ class ProductsController < ApplicationController
       redirect_to session[:return_to]
     end
   end
+
 
   def comparison
     @nested_hash = ActiveSupport::OrderedHash.new

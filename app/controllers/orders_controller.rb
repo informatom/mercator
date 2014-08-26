@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  before_filter :domain_shop_redirect
+
   hobo_model_controller
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
@@ -7,10 +9,12 @@ class OrdersController < ApplicationController
   # can be found in mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
   include OrdersControllerExtensions if Rails.application.config.try(:payment) == "mpay24"
 
+
   def refresh
     self.this = Order.find(params[:id])
     hobo_show
   end
+
 
   def do_archive_parked_basket
     do_transition_action :archive_parked_basket do
@@ -19,6 +23,7 @@ class OrdersController < ApplicationController
       redirect_to session[:return_to]
     end
   end
+
 
   def do_place
     self.this = Order.find(params[:id])
@@ -53,6 +58,7 @@ class OrdersController < ApplicationController
       end
     end
   end
+
 
   def show
     @current_gtc = Gtc.order(version_of: :desc).first

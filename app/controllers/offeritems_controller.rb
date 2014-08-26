@@ -1,4 +1,5 @@
 class OfferitemsController < ApplicationController
+  before_filter :domain_shop_redirect
 
   hobo_model_controller
 

@@ -1,5 +1,7 @@
 class AddressesController < ApplicationController
 
+  before_filter :domain_shop_redirect
+
   hobo_model_controller
   auto_actions_for :user, [ :index, :new, :create ]
   auto_actions :all, :lifecycle

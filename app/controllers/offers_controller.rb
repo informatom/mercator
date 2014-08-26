@@ -1,5 +1,7 @@
 class OffersController < ApplicationController
 
+  before_filter :domain_shop_redirect
+
   hobo_model_controller
 
   auto_actions :show, :lifecycle

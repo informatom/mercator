@@ -48,29 +48,30 @@ ul.navigation.nav li ul.dropdown-menu li:first-child a:after { content: '';
 .label-danger:hover,
 .label-danger:focus { background-color: $dark-red; }
 
-div.mask { width: 80%;
-           height: 100%;
-           position: absolute;
-           left: 50%;
-           -webkit-transform: translate(-50%, -50%);
-           -ms-transform: translate(-50%, -50%);
-           transform: translate(-50%, -50%);
-           top: 50%; }
+.touchpad  { position: absolute;
+             width: 80%;
+             height: 100%;
+             top: 50%;
+             left: 50%;
+             -webkit-transform: translate(-50%, -50%);
+             -ms-transform: translate(-50%, -50%);
+             transform: translate(-50%, -50%); }
 
-div.mask:hover { -webkit-box-shadow: inset 0 0 100px #000;
-                 -moz-box-shadow:   inset 0 0 100px #000;
-                 box-shadow:        inset 0 0 100px #000; }
+div.touchpad:hover { -webkit-box-shadow: inset 0 0 100px #000;
+                     -moz-box-shadow:   inset 0 0 100px #000;
+                     box-shadow:        inset 0 0 100px #000; }
 
-img.mask { position: absolute;
-           top: 50%;
-           width: 80%;
-           display: inline;
-           left: 50%;
-           -webkit-transform: translate(-50%, -50%);
-           -ms-transform: translate(-50%, -50%);
-           transform: translate(-50%, -50%);
-           height: 100%;
-           z-index: -1; }
+img.touchpad { z-index: -1; }
+
+.stretched { min-height: 400px; position: relative;}
+
+.touchpad-text { position: absolute;
+                 left: 50%;
+                 -webkit-transform: translate(-50%, -50%);
+                 -ms-transform: translate(-50%, -50%);
+                 transform: translate(-50%, -50%);
+                 color: $white;
+                 top: 85%; }
 
 .navbar { background-image:none; }
 .navbar-default { border: 0px;
