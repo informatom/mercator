@@ -2,6 +2,7 @@ class Sales::SalesSiteController < ApplicationController
 
   hobo_controller
   before_filter :sales_required
+  before_filter :domain_shop_redirect
 
   private
 
