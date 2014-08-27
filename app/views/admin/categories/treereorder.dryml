@@ -15,11 +15,12 @@
     Messenger().run({
       progressMessage: '<%= t "activerecord.attribute_help.category.updating" %> ...',
       successMessage: '<%= t "activerecord.attribute_help.category.updated" %>',
-      errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>'
+      errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>',
+      hideAfter: 3
     },{
       url:"/admin/categories/do_treereorder",
       data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),
-      dataType: 'script',
+      dataType: 'script'
     });
   });
 </script>
