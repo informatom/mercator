@@ -13,6 +13,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
 
   index_action :do_treereorder do
     categories_array = ActiveSupport::JSON.decode(params[:categories])
+    @categories = Category.all
     parse_categories(categories_array, nil)
     if request.xhr?
       hobo_ajax_response
@@ -39,8 +40,10 @@ protected
 
   def parse_categories(categories_array, parent)
     categories_array.each_with_index do |category_hash, position|
-      category = Category.find(category_hash["id"])
-      category.update(position: position, parent_id: parent)
+      category = @categories.find(category_hash["id"])
+      if category.position.to_i != position || category.parent_id != parent
+        category.update(position: position, parent_id: parent)
+      end
       parse_categories(category_hash["children"], category.id) if category_hash["children"]
     end
   end
