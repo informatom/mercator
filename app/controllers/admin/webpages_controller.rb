@@ -55,7 +55,9 @@ protected
   def parse_webpages(webpages_array, parent)
     webpages_array.each_with_index do |webpage_hash, position|
       webpage = Webpage.find(webpage_hash["id"])
-      webpage.update(position: position, parent_id: parent)
+      if webpage.position.to_i != position || webpage.parent_id != parent
+        webpage.update(position: position, parent_id: parent)
+      end
       parse_webpages(webpage_hash["children"], webpage.id) if webpage_hash["children"]
     end
   end
