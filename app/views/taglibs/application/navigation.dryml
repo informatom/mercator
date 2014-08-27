@@ -177,3 +177,16 @@
     </ul>
   </span>
 </def>
+
+
+<def tag="greeter" >
+  Hallo, <view with="&current_user.name" />
+  <if test="&current_user.administrator?">
+    <br/>
+    <a href='/admin'><%= fa_icon "cog", class: "text-danger" %></a>
+  </if>
+  <if test="&current_user.sales?">
+    <a href='/sales'><%= fa_icon "building", class: "text-success" %></a>
+    <a href='/contracting'><%= fa_icon "university", class: "text-warning" %></a>
+  </if>
+</def>
