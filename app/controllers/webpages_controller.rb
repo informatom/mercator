@@ -2,6 +2,7 @@ class WebpagesController < ApplicationController
 
   hobo_model_controller
   auto_actions :show
+  index_action :viewtest
 
   before_filter :domain_cms_redirect
 

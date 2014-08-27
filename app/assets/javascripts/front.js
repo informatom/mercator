@@ -14,6 +14,8 @@
 //= require hobo_rapid
 //= require hobo_jquery
 //= require hobo_jquery_ui
-//= require front/bootstrap
+// require front/bootstrap
+//= require hobo_bootstrap
+//= require hobo_bootstrap_ui
 //= require ckeditor/init
 //= require private_pub
