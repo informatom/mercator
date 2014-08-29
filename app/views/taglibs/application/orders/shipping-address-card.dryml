@@ -4,9 +4,12 @@
   <if test="&this.shipping_company">
     <h3><t key="activerecord.models.address.one" /></h3>
     <p class="well">
-      <strong><view:shipping-name/></strong><br/>
-      <if:shipping-detail><view/><br/></if>
-      <if:shipping-c-o><view/><br/></if>
+      <view:shipping-company/><br/>
+      <view:shipping-detail/><br/>
+      <view:shipping-gender/><br/>
+      <view:shipping-title/><br/>
+      <view:shipping-first-name/><br/>
+      <strong><view:billling-surname/></strong><br/>
       <view:shipping-street/><br/>
       <view:shipping-postalcode/> <view:shipping-city/><br/>
       <view:shipping-country/>

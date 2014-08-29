@@ -1,9 +1,12 @@
 <def tag="billing-address-card" for="Offer">
   <h3><t key="activerecord.models.billing_address.one" /></h3>
   <div class="well">
-    <strong><view:billing-name/></strong><br/>
+    <view:billing-company/><br/>
     <view:billing-detail/><br/>
-    <view:billing-c-o/><br/>
+    <view:billing-gender/><br/>
+    <view:billing-title/><br/>
+    <view:billing-first-name/><br/>
+    <strong><view:billling-surname/></strong><br/>
     <view:billing-street/><br/>
     <view:billing-postalcode/> <view:billing-city/><br/>
     <view:billing-country/>

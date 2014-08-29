@@ -7,7 +7,9 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <if:detail><view/>,</if:detail> <if:c-o><view/>,</if:c-o> <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
+      <if:company><view/>,</if> <if:detail><view/></if><br/>
+      <if:gender><view/></if> <if:title><view/></if> <if:first-name><view/> </if> <if:surname><view/></if> <br />
+      <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
     </body:>
   </div>
 </def>
@@ -17,14 +19,12 @@
   <card class="address" param="default" merge>
     <body: param>
       <p>
-        <if:detail>
-          <view/><br/>
-        </if:detail>
-        <if:c-o>
-          <view/><br/>
-        </if:c-o>
-        <view:street/><br/>
-        <view:postalcode/> <view:city/>, <view:country/>
+        <if:company><view/><br /></if>
+        <if:detail><view/> <br/></if>
+        <if:gender><view/></if> <if:title><view/></if> <if:first-name><view/> </if> <if:surname><view/></if> <br />
+        <view:street/><br />
+        <view:postalcode/> <view:city/><br />
+        <view:country/>
       </p>
     </body:>
   </card>

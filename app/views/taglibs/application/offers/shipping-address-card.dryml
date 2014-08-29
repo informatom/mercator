@@ -1,11 +1,14 @@
 <def tag="shipping-address-card" for="Offer">
   <h3><t key="activerecord.models.address.one" /></h3>
   <div class="well">
-    <strong><view:shipping-name/></strong><br/>
+    <view:shipping-company/><br/>
     <view:shipping-detail/><br/>
-    <view:shipping-c-o/><br/>
+    <view:shipping-gender/><br/>
+    <view:shipping-title/><br/>
+    <view:shipping-first-name/><br/>
+    <strong><view:billling-surname/></strong><br/>
     <view:shipping-street/><br/>
     <view:shipping-postalcode/> <view:shipping-city/><br/>
-    <view:shipping-country/><br/>
+    <view:shipping-country/>
   </div>
 </def>
