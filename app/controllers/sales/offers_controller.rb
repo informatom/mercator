@@ -14,20 +14,13 @@ class Sales::OffersController < Sales::SalesSiteController
 
     billing_address = customer.billing_addresses.recent(1)[0]
 
-    self.this.assign_attributes(billing_name: billing_address.name,
-                                 billing_detail: billing_address.detail,
-                                 billing_street: billing_address.street,
-                                 billing_postalcode: billing_address.postalcode,
-                                 billing_city: billing_address.city,
-                                 billing_country: billing_address.country) if billing_address
+    self.this.attributes = billing_address.namely([:company, :gender, :title, :first_name, :surname,
+                                                   :detail, :street, :postalcode, :city, :country], prefix: "billing_")) if billing_address
 
     shipping_address = customer.addresses.recent(1)[0]
-    self.this.assign_attributes(shipping_name: shipping_address.name,
-                                 shipping_detail: shipping_address.detail,
-                                 shipping_street: shipping_address.street,
-                                 shipping_postalcode: shipping_address.postalcode,
-                                 shipping_city: shipping_address.city,
-                                 shipping_country: shipping_address.country) if shipping_address
+    self.this.attributes = shipping_address.namely([:company, :gender, :title, :first_name, :surname,
+                                                   :detail, :street, :postalcode, :city, :country], prefix: "shipping_")) if shipping_address
+
     creator_page_action :build
   end
 
@@ -58,7 +51,7 @@ class Sales::OffersController < Sales::SalesSiteController
 
   def update
     hobo_update do
-      if params[:offer][:shipping_name]
+      if params[:offer][:shipping_company]
         PrivatePub.publish_to("/conversations/"+ @this.conversation_id.to_s, type: "offers")
       end
     end

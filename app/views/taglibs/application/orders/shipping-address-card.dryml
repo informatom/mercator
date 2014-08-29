@@ -1,7 +1,7 @@
 <def tag="shipping-address-card" polymorphic/>
 
 <def tag="shipping-address-card" for="Order" attrs="editable">
-  <if test="&this.shipping_name">
+  <if test="&this.shipping_company">
     <h3><t key="activerecord.models.address.one" /></h3>
     <p class="well">
       <strong><view:shipping-name/></strong><br/>

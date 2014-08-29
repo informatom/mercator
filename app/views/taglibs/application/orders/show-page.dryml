@@ -22,20 +22,20 @@
       <div part="basket">
         <div class="row">
           <div class="col-md-4">
-            <if test="&this.billing_name.present?">
+            <if test="&this.billing_company.present?">
               <if test="&this.basket? || this.accepted_offer?"><billing-address-card editable/></if>
               <else><billing-address-card /></else>
             </if>
           </div>
           <div class="col-md-4">
-            <if test="&this.shipping_name.present?">
+            <if test="&this.shipping_company.present?">
               <if test="&this.basket? || this.accepted_offer?"><shipping-address-card editable/></if>
               <else><shipping-address-card /></else>
             </if>
           </div>
 
           <div class="col-md-4">
-            <if test="&this.shipping_name.present? && this.shipping_method.present?">
+            <if test="&this.shipping_company.present? && this.shipping_method.present?">
               <if test="&this.basket? || this.accepted_offer?">
                 <delivery-card editable/>
                 <payment-card editable/>
@@ -140,7 +140,7 @@
           </div>
 
           <div class="pull-right">
-            <if test="&(this.basket? || this.accepted_offer?) && !this.billing_name.present?">
+            <if test="&(this.basket? || this.accepted_offer?) && !this.billing_company.present?">
               <my-creator-link with="&BillingAddress" creator="enter" class="btn-primary" params="&{:order_id => this.id}">
                 <t key="mercator.provide_billing_address" />
               </my-creator-link>

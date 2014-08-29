@@ -116,14 +116,14 @@ class Order < ActiveRecord::Base
 
 
     transition :check, {:basket => :basket},
-               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
     transition :check, {:accepted_offer => :accepted_offer},
-               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name && shipping_method"
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
 
     transition :place, {:basket => :ordered},
-               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name.present?"
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_company.present?"
     transition :place, {:accepted_offer => :ordered},
-               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_name.present?"
+               available_to: :user, if: "acting_user.gtc_accepted_current? && billing_company.present?"
 
     transition :park, {:basket => :parked}, available_to: :user
 

@@ -105,7 +105,7 @@ class BillingAddressesController < ApplicationController
 
       order.lifecycle.e_payment!(current_user) unless order.shipping_method
 
-      unless order.shipping_name
+      unless order.shipping_company
         order.update(this.namely([:company, :gender, :title, :first_name, :surname,
                                   :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method

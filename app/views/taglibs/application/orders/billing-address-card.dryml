@@ -1,15 +1,15 @@
 <def tag="billing-address-card" polymorphic/>
 
 <def tag="billing-address-card" for="Order" attrs="editable">
-  <if test="&this.billing_name">
+  <if test="&this.billing_company">
     <h3><t key="activerecord.models.billing_address.one" /></h3>
     <p class="well">
-      <strong><view:billing-name/></strong><br/>
-      <if:billing-detail><view/><br/></if>
-      <if:billing-c-o><view/><br/></if>
-      <view:billing-street/><br/>
-      <view:billing-postalcode/> <view:billing-city/><br/>
-      <view:billing-country/>
+      <strong><view:billing-company/></strong>, <if:billing-detail><view/><br/></if>
+
+      <if:billing-gender><view/><br/></if><if:billing-title><view/><br/></if>
+      <if:billing-first-name><view/><br/></if><if:billing-surname><view/><br/></if>
+
+      <view:billing-street/>, <view:billing-postalcode/> <view:billing-city/>, <view:billing-country/>
     </p>
     <if test="&editable">
      <p><my-creator-link with="&BillingAddress" creator="enter" class="btn-primary" params="&{:order_id => this.id}"/></p>

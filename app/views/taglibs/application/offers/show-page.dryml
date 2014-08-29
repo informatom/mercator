@@ -28,10 +28,10 @@
       <do part="all">
         <div class="row">
           <div class="col-md-4">
-            <if test="&this.billing_name"><billing-address-card /></if>
+            <if test="&this.billing_company"><billing-address-card /></if>
           </div>
           <div class="col-md-4">
-            <if test="&this.shipping_name"><shipping-address-card /></if>
+            <if test="&this.shipping_company"><shipping-address-card /></if>
           </div>
           <div class="col-md-4">
             <div part="complete">
