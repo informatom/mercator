@@ -15,11 +15,11 @@ class Sales::OffersController < Sales::SalesSiteController
     billing_address = customer.billing_addresses.recent(1)[0]
 
     self.this.attributes = billing_address.namely([:company, :gender, :title, :first_name, :surname,
-                                                   :detail, :street, :postalcode, :city, :country], prefix: "billing_")) if billing_address
+                                                   :detail, :street, :postalcode, :city, :country], prefix: "billing_") if billing_address
 
     shipping_address = customer.addresses.recent(1)[0]
     self.this.attributes = shipping_address.namely([:company, :gender, :title, :first_name, :surname,
-                                                   :detail, :street, :postalcode, :city, :country], prefix: "shipping_")) if shipping_address
+                                                   :detail, :street, :postalcode, :city, :country], prefix: "shipping_") if shipping_address
 
     creator_page_action :build
   end
