@@ -33,7 +33,7 @@ class BillingAddressesController < ApplicationController
     self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
 
     unless current_user.state == "guest"
-      self.this.attributes = current_user.namely [:gender, :title, :firstname, :surname, :email_address]
+      self.this.attributes = current_user.namely [:gender, :title, :first_name, :surname, :email_address]
     end
 
     if current_user.billing_addresses.any?
