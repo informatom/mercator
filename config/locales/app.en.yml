@@ -24,14 +24,13 @@ en:
     Categorization: Categorization
     categorizations: Categorizations
     category: Categorization
-    conversation_id: Conversation ID
-    conversations: Conversations
     charge: Batch / Lot
     city: City
     CMS: CMS
     code: Code
     c_o: C/O
     comment: Comment
+    company: Company
     Constant: Constant
     consultant: Consultant
     consultant_id: Consultant ID
@@ -40,14 +39,16 @@ en:
     Contract: Contract
     Conversation: Conversation
     conversation: conversation
+    conversation_id: Conversation ID
+    conversations: Conversations
     country: Country
     Country: Country
     created_at: Created at
     current_password: Current Password
     customer: Customer
     delivery_time: Delivery Time
-    description: description
-    Detail: Detail
+    description: Description
+    Detail: Details
     discount: Discount
     discount_abs: "Discount absolute in EUR"
     discount-abs: "Discount absolute in EUR"
@@ -59,6 +60,8 @@ en:
     document_updated_at: Updated at
     downloads: Downloads
     email_address: Email Address
+    first_name: First Name
+    gender: Gender
     inventories: Inventories
     Inventory: Inventory
     key: Key
@@ -261,19 +264,23 @@ en:
 
     attributes:
       address:
-        name: Company
-        detail: Details
         lifecycle:
           transitions:
             use: Use Delivery Address
             trash: Delete
+      address/genders:
+        male: male
+        female: female
+        no_info: no information provided
       billing_address:
-        name: Firma
-        detail: Details
         lifecycle:
           transitions:
             use: Use Billing Address
             trash: Delete
+      billingaddress/genders:
+        male: male
+        female: female
+        no_info: no information provided
       contentelement/markups:
         html: "HTML Page"
         markdown: "Markdown Page"
@@ -323,21 +330,29 @@ en:
             delete_from_offer: Delete Item
             copy: Copy to Basket
       order:
-        billing_method: Billing Method
-        billing_name: Billing Name
-        billing_detail: Billing Detail
-        billing_street: Billing Street
-        billing_postalcode: Billing Postal Code
         billing_city: Billing City
+        billing_company: Billing Company
         billing_country: Billing Country
+        billing_detail: Billing Detail
+        billing_first_name: Billing First Name
+        billing_gender: Billing Gender
+        billing_method: Billing Method
+        billing_postalcode: Billing Postal Code
+        billing_street: Billing Street
+        billing_surname: Billing Surname
+        billing_title: Billing Title
         position: Item
-        shipping_method: Shipping Method
-        shipping_name: Shipping Name
-        shipping_detail: Shipping Detail
-        shipping_street: Shipping Street
-        shipping_postalcode: Shipping Postal Code
         shipping_city: Shipping City
+        shipping_company: Shipping Company
         shipping_country: Shipping Country
+        shipping_detail: Shipping Detail
+        shipping_first_name: Shipping First Name
+        shipping_gender: Shipping Gender
+        shipping_method: Shipping Method
+        shipping_postalcode: Shipping Postal Code
+        shipping_street: Shipping Street
+        shipping_surname: Shipping Surname
+        shipping_title: Shipping Title
         lifecycle:
           transitions:
             cash_payment: Cash Payment
@@ -375,6 +390,10 @@ en:
             deactivate: Deactivate
             reactivate: Reactivate
             reset_password: Set Password
+      user/genders:
+        male: male
+        female: female
+        no_info: no information provided
       webpage:
         lifecycle:
           transitions:

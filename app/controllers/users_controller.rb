@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # can be found in mercator/vendor/engines/mercator_mesonic/app/controllers/users_controller_extensions.rb
   include UsersControllerExtensions if Rails.application.config.try(:erp) == "mesonic"
 
-  autocomplete :name
+  autocomplete :surname
 
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on

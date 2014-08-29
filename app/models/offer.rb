@@ -3,15 +3,21 @@ class Offer < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    billing_name        :string
-    billing_c_o         :string
+    billing_company     :string
+    billing_gender      :string
+    billing_title       :string
+    billing_first_name  :string
+    billing_surname     :string
     billing_detail      :string
     billing_street      :string
     billing_postalcode  :string
     billing_city        :string
     billing_country     :string
-    shipping_name       :string
-    shipping_c_o        :string
+    shipping_company     :string
+    shipping_gender      :string
+    shipping_title       :string
+    shipping_first_name  :string
+    shipping_surname     :string
     shipping_detail     :string
     shipping_street     :string
     shipping_postalcode :string
@@ -22,10 +28,12 @@ class Offer < ActiveRecord::Base
     discount_rel        :decimal, :required, :scale => 2, :precision => 10, :default => 0
     timestamps
   end
-  attr_accessible :valid_until, :billing_name, :billing_c_o, :billing_detail, :billing_street,
-                  :billing_postalcode, :billing_city, :billing_country, :shipping_name,
-                  :shipping_c_o, :shipping_detail, :shipping_street, :shipping_postalcode,
-                  :shipping_city, :shipping_country, :offeritems, :user, :user_id, :user, :user_id,
+  attr_accessible :valid_until, :billing_company,
+                  :billing_gender, :billing_title, :billing_first_name, :billing_sur,
+                  :billing_detail, :billing_street, :billing_postalcode, :billing_city, :billing_country,
+                  :shipping_gender, :shipping_title, :shipping_first_name, :shipping_surname,
+                  :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
+                  :offeritems, :user, :user_id, :user, :user_id,
                   :consultant, :consultant_id, :conversation_id, :complete, :discount_rel
   has_paper_trail
 
@@ -44,10 +52,13 @@ class Offer < ActiveRecord::Base
     state :pending_approval, :valid, :invalid, :accepted
 
     create :build, :available_to => "User.sales", become: :in_progress,
-                   params: [:valid_until, :conversation_id, :billing_name, :billing_detail, :billing_c_o,
-                            :billing_street, :billing_postalcode, :billing_city, :billing_country, :complete,
-                            :user_id, :consultant_id, :shipping_name, :shipping_detail, :shipping_c_o,
-                            :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country],
+                   params: [:valid_until, :conversation_id,
+                            :billing_company, :billing_gender, :billing_title, :billing_first_name, :billing_surname,
+                            :billing_detail, :billing_street, :billing_postalcode, :billing_city, :billing_country,
+                            :complete,
+                            :user_id, :consultant_id,
+                            :shipping_company, :shipping_gender, :shipping_title, :shipping_first_name, :shipping_surname,
+                            :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country],
                    subsite: "sales"
 
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do

@@ -28,7 +28,8 @@ class AddressesController < ApplicationController
   def enter
     last_address = current_user.addresses.last
 
-    self.this = Address.new(last_address.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country])
+    self.this = Address.new(last_address.namely([:company, :gender, :title, :first_name, :surname,
+                                                 :detail, :street, :postalcode, :city, :country])
                             .merge(user_id: current_user.id, order_id: params[:order_id]))
     creator_page_action :enter
   end
@@ -40,7 +41,8 @@ class AddressesController < ApplicationController
 
       self.this.user = current_user
       if self.this.save
-        order.update(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
+        order.update(this.namely([:company, :gender, :title, :first_name, :surname,
+                                  :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
 
         redirect_to order_path(order)
@@ -52,7 +54,8 @@ class AddressesController < ApplicationController
   def do_use
     do_transition_action :use do
       order = Order.where(id: params[:order_id], user_id: current_user.id ).first
-      order.update(this.namely([:name, :c_o, :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
+      order.update(this.namely([:company, :gender, :title, :first_name, :surname,
+                                :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
       order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
 
       redirect_to order_path(order)

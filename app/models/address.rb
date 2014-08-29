@@ -2,9 +2,14 @@ class Address < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
+  Gender = HoboFields::Types::EnumString.for(:male, :female, :no_info)
+
   fields do
-    name       :string, :required
-    c_o           :string
+    company    :string, :required
+    gender     Address::Gender
+    title      :string
+    first_name :string, :required
+    surname    :string, :required, :name => true
     detail     :string
     street     :string, :required
     postalcode :string, :required
@@ -13,8 +18,8 @@ class Address < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :user_id, :name, :detail, :street, :postalcode,
-                  :city, :user, :country, :c_o, :order_id
+  attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
+                  :detail, :street, :postalcode, :city, :user, :country, :order_id
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 
@@ -29,7 +34,7 @@ class Address < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :order_id]
+      params: [:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode, :city, :country, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user

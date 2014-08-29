@@ -4,16 +4,22 @@ class Order < ActiveRecord::Base
 
   fields do
     billing_method      :string
-    billing_name        :string
-    billing_c_o         :string
+    billing_gender      :string
+    billing_title       :string
+    billing_first_name  :string
+    billing_surname     :string
+    billing_company     :string
     billing_detail      :string
     billing_street      :string
     billing_postalcode  :string
     billing_city        :string
     billing_country     :string
     shipping_method     :string
-    shipping_name       :string
-    shipping_c_o        :string
+    shipping_gender     :string
+    shipping_title      :string
+    shipping_first_name :string
+    shipping_surname    :string
+    shipping_company    :string
     shipping_detail     :string
     shipping_street     :string
     shipping_postalcode :string
@@ -31,11 +37,14 @@ class Order < ActiveRecord::Base
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
   include OrderExtensions if Rails.application.config.try(:erp) == "mesonic"
 
-  attr_accessible :billing_method, :billing_name, :billing_detail, :billing_street, :billing_postalcode,
-                  :billing_city, :billing_country, :shipping_method, :shipping_name, :shipping_detail,
-                  :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
+  attr_accessible :billing_method, :billing_company,
+                  :billing_gender, :billing_title, :billing_first_name, :billing_surname,
+                  :billing_detail, :billing_street, :billing_postalcode, :billing_city, :billing_country,
+                  :shipping_method, :shipping_company,
+                  :shipping_gender, :shipping_title, :shipping_first_name, :shipping_surname,
+                  :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
                   :lineitems, :user, :user_id, :erp_customer_number, :erp_billing_number, :erp_order_number,
-                  :billing_c_o, :shipping_c_o, :confirmation, :discount_rel
+                  :confirmation, :discount_rel
 
   attr_accessor :confirmation, :type => :boolean
 
@@ -57,10 +66,13 @@ class Order < ActiveRecord::Base
     state :paid, :shipped
 
     create :from_offer, :available_to => :all, become: :accepted_offer,
-                        params: [:user_id, :billing_name, :billing_c_o, :billing_detail, :billing_street,
-                                 :billing_postalcode, :billing_city, :billing_country, :shipping_name,
-                                 :shipping_c_o, :shipping_detail, :shipping_street, :shipping_postalcode,
-                                 :shipping_city, :shipping_country, :discount_rel]
+                        params: [:user_id, :billing_company,
+                                 :billing_gender, :billing_title, :billing_first_name, :billing_surname,
+                                 :billing_detail, :billing_street, :billing_postalcode, :billing_city, :billing_country,
+                                 :shipping_company,
+                                 :shipping_gender, :shipping_title, :shipping_first_name, :shipping_surname,
+                                 :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city, :shipping_country,
+                                 :discount_rel]
 
     transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}
@@ -261,7 +273,7 @@ class Order < ActiveRecord::Base
 
   def billing_address_filled?
     # all obligatory fields in billing address are filled?
-    self.billing_name && self.billing_street &&  self.billing_postalcode &&
+    self.billing_surname && self.billing_street &&  self.billing_postalcode &&
     self.billing_city && self.billing_country
   end
 

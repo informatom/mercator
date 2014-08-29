@@ -2,9 +2,14 @@ class BillingAddress < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
+  Gender = HoboFields::Types::EnumString.for(:male, :female, :no_info)
+
   fields do
-    name          :string, :required
-    c_o           :string, :required
+    company       :string, :required
+    gender        BillingAddress::Gender
+    title         :string
+    first_name    :string, :required
+    surname       :string, :required, :name => true
     email_address :email_address, :required
     detail        :string
     street        :string, :required
@@ -15,8 +20,8 @@ class BillingAddress < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :user_id, :name, :detail, :street, :postalcode,
-                  :city, :user, :country, :email_address, :vat_number, :c_o
+  attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
+                  :detail, :street, :postalcode, :city, :user, :country, :email_address, :vat_number
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 
@@ -35,7 +40,8 @@ class BillingAddress < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:name, :detail, :c_o, :street, :postalcode, :city, :country, :email_address, :vat_number, :order_id]
+      params: [:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode,
+               :city, :country, :email_address, :vat_number, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user, params: [:order_id]
     transition :trash, {:active => :active}, :available_to => :user

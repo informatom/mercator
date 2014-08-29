@@ -7,7 +7,18 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <if:detail><view/>,</if:detail> <if:c-o><view/>,</if:c-o><view:street/>, <view:postalcode/> <view:city/>, <view:country/>
+      <if:company><view/>,</if><br />
+
+      <if:gender><view/>,</if>
+      <if:title><view/> </if>
+      <if:first-name><view/> </if>
+      <if:surname><view/></if><br />
+
+      <if:detail><view/>,</if>
+      <view:street/>,
+      <view:postalcode/>
+      <view:city/>,
+      <view:country/>
     </body:>
   </div>
 </def>
@@ -17,14 +28,17 @@
     <body: param>
       (<view:email-address/>)<br/>
       <p>
-        <if:detail>
-          <view/><br/>
-        </if:detail>
-        <if:c-o>
-          <view/><br/>
-        </if:c-o>
-        <view:street/><br/>
-        <view:postalcode/> <view:city/>, <view:country/>
+        <if:gender><view/>,</if>
+        <if:title><view/> </if>
+        <if:first-name><view/> </if>
+        <if:surname><view/></if><br />
+
+        <if:detail><view/>,</if>
+        <view:street/>,
+        <view:postalcode/>
+        <view:city/>,
+        <view:country/>
+
         <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">
           <br />
           <view:vat-number/><br />

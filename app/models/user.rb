@@ -2,8 +2,13 @@ class User < ActiveRecord::Base
 
   hobo_user_model # Don't put anything above this
 
+  Gender = HoboFields::Types::EnumString.for(:male, :female, :no_info)
+
   fields do
-    name             :string, :required
+    gender           User::Gender
+    title            :string
+    first_name       :string
+    surname          :string, :required
     email_address    :email_address, :required, :unique, login: true
     administrator    :boolean, default: false
     sales            :boolean, default: false
@@ -14,7 +19,7 @@ class User < ActiveRecord::Base
     login_count      :integer, default: 0
     gtc_confirmed_at :datetime
     gtc_version_of   :date
-    erp_account_nr   :string
+    erp_account_nr   :string, :index => true
     erp_contact_nr   :string
     locale           :string
     timestamps
@@ -23,7 +28,7 @@ class User < ActiveRecord::Base
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/user_extensions.rb
   include UserExtensions if Rails.application.config.try(:erp) == "mesonic"
 
-  attr_accessible :name, :email_address, :password, :password_confirmation,
+  attr_accessible :gender, :title, :first_name, :surname, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
@@ -65,7 +70,7 @@ class User < ActiveRecord::Base
     state :guest, :active
 
     create :signup, :available_to => "Guest",
-      params: [:name, :email_address, :password, :password_confirmation],
+      params: [:gender, :title, :first_name, :surname, :email_address, :password, :password_confirmation],
       become: :inactive, new_key: true  do
       UserMailer.activation(self, lifecycle.key).deliver
     end
@@ -121,7 +126,7 @@ class User < ActiveRecord::Base
     acting_user.administrator? ||
     acting_user.sales? ||
     (acting_user == self &&
-     only_changed?(:name, :email_address, :crypted_password, :current_password, :password,
+     only_changed?(:gender, :title, :first_name, :surname, :email_address, :crypted_password, :current_password, :password,
                    :password_confirmation, :confirmation))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
@@ -137,11 +142,15 @@ class User < ActiveRecord::Base
     acting_user.sales? ||
     lifecycle.provided_key ||
     new_record? ||
-    ( self.sales? && field == :name ) ||
-    ( self.administrator? && field == :name )
+    ( self.sales? && ( field == :first_name || field == :surname ) ) ||
+    ( self.administrator? && ( field == :first_name || field == :surname ) )
   end
 
   #--- Instance Methods ---#
+
+  def name
+    [self.gender, self.title, self.first_name, self.surname].join " "
+  end
 
   def gtc_accepted_current?
     self.gtc_version_of == Gtc.current
@@ -168,7 +177,7 @@ class User < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.initialize()
-    new_user = self.create(name: "Gast", email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
+    new_user = self.create(surname: "Gast", email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
     new_user.lifecycle.create_key!(new_user)
     return new_user
   end

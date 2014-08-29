@@ -1,9 +1,12 @@
 <def tag="billing-address-card">
   <h3><t key="activerecord.models.billing_address.one" /></h3>
   <div class="well">
-    <b><t key="activerecord.attributes.address.name"/>:</b> <strong><click-editor-innards:billing-name/></strong><br/>
+    <b><t key="attributes.company"/>:</b> <click-editor-innards:billing-company/><br/>
+    <b><t key="attributes.gender"/>:</b> <click-editor-innards:billing-gender/><br/>
+    <b><t key="attributes.title"/>:</b> <click-editor-innards:billing-title/><br/>
+    <b><t key="attributes.firstname"/>:</b> <click-editor-innards:billing-firstname/><br/>
+    <b><t key="attributes.surname"/>:</b> <strong><click-editor-innards:billing-surname/></strong><br/>
     <b><t key="attributes.detail"/>:</b> <click-editor-innards:billing-detail/><br/>
-    <b><t key="attributes.c_o"/>:</b> <click-editor-innards:billing-c-o/><br/>
     <b><t key="attributes.street"/>:</b> <click-editor-innards:billing-street/><br/>
     <b><t key="attributes.postalcode"/>:</b> <click-editor-innards:billing-postalcode/><br/>
     <b><t key="attributes.city"/>:</b>  <click-editor-innards:billing-city/><br/>

@@ -9,12 +9,15 @@ de:
     basket: Warenkorb
     baskets: Warenkörbe
     billing_country: Rechnungsadresse / Land
-    billing_c_o: zu Handen
+    billing_company: Firmenname
     billing_city: Rechnungsadresse / Stadt
     billing_detail: Rechnungsadresse / Details
-    billing_name: Rechnungsadresse / Name
+    billing_first_name: Rechnungsadresse / Vorname
+    billing_gender: Geschleicht
     billing_postalcode: Rechnungsadresse / Postleitzahl
     billing_street: Rechnungsadresse / Straße
+    billing_surname: Rechnungsadresse / Familienname
+    billing_title: Rechnungsadresse / Titel
     BillingAddress: Rechnungsadresse
     billing_addresses: Rechnungsadressen
     Category: Kategorie
@@ -32,6 +35,7 @@ de:
     code: Code
     c_o: zu Handen
     comment: Kommentar
+    company: Firma
     Constant: Konstante
     consultant: Berater
     consultant_id: Berater
@@ -47,7 +51,7 @@ de:
     customer: Kunde
     delivery_time: Lieferzeit
     description: Beschreibung
-    detail: Detaiils
+    detail: Details
     discount: Rabatt
     discount_abs: "Rabatt absolut in EUR"
     discount-abs: "Rabatt absolut in EUR"
@@ -59,6 +63,8 @@ de:
     document_updated_at: Aktualisiert
     downloads: Downloads
     email_address: E-Mail Adresse
+    first_name: Vorname
+    gender: Geschlecht
     inventories: Bestände
     Inventory: Bestand
     key: Schlüssel
@@ -116,13 +122,16 @@ de:
     scale_to: Staffel bis
     sender: Absender
     shipping_country: Lieferadresse / Land
-    shipping_c_o: zu Handen
+    shipping_company: Lieferadresse / Firmenname
     shipping_city: Lieferadresse / Stadt
     shipping_detail: Lieferadresse / Details
+    shipping_first_name: Lieferadresse / Vorname
+    shipping_gender: Lieferadresse / Geschlecht
     shipping_method: Versandart
-    shipping_name: Lieferadresse / Name
     shipping_postalcode: Lieferadresse / Postleitzahl
     shipping_street: Lieferadresse / Straße
+    shipping_surname: Lieferadresse / Familienname
+    shipping_title: Lieferadresse / Titel
     Sites: Bereiche
     startdate: Startdatum
     state: Status
@@ -131,6 +140,7 @@ de:
     supply: Zubehör
     supplyrelations: Zubehörzuordnungen
     supplies: Zubehör
+    surname: Familienname
     title: Titel
     unit: Einheit
     upload: Hochladen
@@ -261,19 +271,23 @@ de:
 
     attributes:
       address:
-        name: Firma
-        detail: Details
         lifecycle:
           transitions:
             use: Lieferadresse verwenden
             trash: Löschen
+      address/genders:
+        male: männlich
+        female: weiblich
+        no_info: keine Angabe
       billing_address:
-        name: Firma
-        detail: Details
         lifecycle:
           transitions:
             use: Rechnungsadresse verwenden
             trash: Löschen
+      billingaddress/genders:
+        male: männlich
+        female: weiblich
+        no_info: keine Angabe
       contentelement/markups:
         html: "HTML-Seite"
         markdown: "Markdown Seite"
@@ -323,21 +337,29 @@ de:
             delete_from_offer: "Position löschen"
             copy: in Warenkorb kopieren
       order:
-        billing_method: Zahlungsart
-        billing_name: Name (Rechnung)
-        billing_detail: Details (Rechnung)
-        billing_street: Straße (Rechnung)
-        billing_postalcode: Postleitzahl (Rechnung)
         billing_city: Stadt (Rechnung)
+        billing_company: Firme (Rechnung)
         billing_country: Land (Rechnung)
+        billing_detail: Details (Rechnung)
+        billing_first_name: Vorname (Rechnung)
+        billing_gender: Geschlecht (Rechnung)
+        billing_method: Zahlungsart
+        billing_postalcode: Postleitzahl (Rechnung)
+        billing_street: Straße (Rechnung)
+        billing_surname: Familienname (Rechnung)
+        billing_title: Titel (Rechnung)
         position: Position
-        shipping_method: Lieferart
-        shipping_name: Name (Lieferung)
-        shipping_detail: Details (Lieferung)
-        shipping_street: Straße (Lieferung)
-        shipping_postalcode: Postleitzahl (Lieferung)
         shipping_city: Stadt (Lieferung)
+        shipping_company: Firma (Lieferung)
         shipping_country: Land (Lieferung)
+        shipping_detail: Details (Lieferung)
+        shipping_first_name: Vorname (Lieferung)
+        shipping_gender: Geschlecht (Lieferung)
+        shipping_method: Lieferart
+        shipping_postalcode: Postleitzahl (Lieferung)
+        shipping_street: Straße (Lieferung)
+        shipping_surname: Familienname (Lieferung)
+        shipping_title: Titel (Lieferung)
         lifecycle:
           transitions:
             cash_payment: Barzahlung
@@ -375,6 +397,10 @@ de:
             deactivate: Deaktivieren
             reactivate: Aktivieren
             reset_password: Kennwort festlegen
+      user/genders:
+        male: männlich
+        female: weiblich
+        no_info: keine Angabe
       webpage:
         lifecycle:
           transitions:
