@@ -6,7 +6,7 @@
     <view:billing-gender/><br/>
     <view:billing-title/><br/>
     <view:billing-first-name/><br/>
-    <strong><view:billling-surname/></strong><br/>
+    <strong><view:billing-surname/></strong><br/>
     <view:billing-street/><br/>
     <view:billing-postalcode/> <view:billing-city/><br/>
     <view:billing-country/>
