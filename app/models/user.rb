@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     first_name       :string
     surname          :string, :required
     email_address    :email_address, :required, :unique, login: true
+    phone            :string
     administrator    :boolean, default: false
     sales            :boolean, default: false
     sales_manager    :boolean, default: false
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
-                  :order_id
+                  :order_id, :phone
 
   attr_accessor :confirmation, :type => :boolean
   attr_accessor :order_id, :type => :integer
@@ -70,7 +71,7 @@ class User < ActiveRecord::Base
     state :guest, :active
 
     create :signup, :available_to => "Guest",
-      params: [:gender, :title, :first_name, :surname, :email_address, :password, :password_confirmation],
+      params: [:gender, :title, :first_name, :surname, :email_address, :phone, :password, :password_confirmation],
       become: :inactive, new_key: true  do
       UserMailer.activation(self, lifecycle.key).deliver
     end
@@ -126,8 +127,8 @@ class User < ActiveRecord::Base
     acting_user.administrator? ||
     acting_user.sales? ||
     (acting_user == self &&
-     only_changed?(:gender, :title, :first_name, :surname, :email_address, :crypted_password, :current_password, :password,
-                   :password_confirmation, :confirmation))
+     only_changed?(:gender, :title, :first_name, :surname, :email_address, :phone,
+                   :crypted_password, :current_password, :password, :password_confirmation, :confirmation))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
@@ -177,7 +178,8 @@ class User < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.initialize()
-    new_user = self.create(surname: "Gast", email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
+    new_user = self.create(surname: "Gast",
+                           email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
     new_user.lifecycle.create_key!(new_user)
     return new_user
   end

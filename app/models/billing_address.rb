@@ -16,12 +16,13 @@ class BillingAddress < ActiveRecord::Base
     postalcode    :string, :required
     city          :string, :required
     country       :string, :required
+    phone         :string
     vat_number    :string
     timestamps
   end
 
   attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
-                  :detail, :street, :postalcode, :city, :user, :country, :email_address, :vat_number
+                  :detail, :street, :postalcode, :city, :user, :country, :phone, :email_address, :vat_number
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 
@@ -41,7 +42,7 @@ class BillingAddress < ActiveRecord::Base
 
     create :enter, :available_to => :all, become: :active,
       params: [:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode,
-               :city, :country, :email_address, :vat_number, :order_id]
+               :city, :country, :email_address, :phone, :vat_number, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user, params: [:order_id]
     transition :trash, {:active => :active}, :available_to => :user

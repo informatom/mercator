@@ -8,7 +8,8 @@
     </header:>
     <body: param>
       <view:company /> <if:detail>, <view/></if> <br />
-      <view:street />, <view:postalcode /> <view:city />, <view:country />
+      <view:street />, <view:postalcode /> <view:city />, <view:country /> <br/>
+      <view:phone/>
     </body:>
   </div>
 </def>
@@ -27,7 +28,8 @@
         <view:street/>,
         <view:postalcode/>
         <view:city/>,
-        <view:country/>
+        <view:country/><br>
+        <view:phone/>
 
         <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">
           <br />

@@ -15,11 +15,12 @@ class Address < ActiveRecord::Base
     postalcode :string, :required
     city       :string, :required
     country    :string, :required
+    phone      :string
     timestamps
   end
 
   attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
-                  :detail, :street, :postalcode, :city, :user, :country
+                  :detail, :street, :postalcode, :city, :user, :country, :phone
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 
@@ -34,7 +35,8 @@ class Address < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode, :city, :country, :order_id]
+      params: [:company, :gender, :title, :first_name, :surname, :detail,
+               :street, :postalcode, :city, :country, :phone, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user

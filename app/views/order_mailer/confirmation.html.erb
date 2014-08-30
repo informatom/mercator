@@ -34,7 +34,8 @@
             <%= @order.shipping_detail %><br />
             <%= @order.shipping_street %><br />
             <%= @order.shipping_postalcode %> <%= @order.shipping_city %><br />
-            <%= @order.shipping_country %>
+            <%= @order.shipping_country %><br />
+            <%= @order.shipping_phone %>
           </td>
           <td>
             <%= @order.billing_company %><br />
@@ -45,7 +46,8 @@
             <%= @order.billing_detail %><br />
             <%= @order.billing_street %><br />
             <%= @order.billing_postalcode %> <%= @order.billing_city %><br />
-            <%= @order.shipping_country %>
+            <%= @order.billing_country %><br />
+            <%= @order.billing_phone %>
           </td>
         </tr>
         <tr>

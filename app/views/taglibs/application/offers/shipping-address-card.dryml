@@ -9,6 +9,7 @@
     <strong><view:billing-surname/></strong><br/>
     <view:shipping-street/><br/>
     <view:shipping-postalcode/> <view:shipping-city/><br/>
-    <view:shipping-country/>
+    <view:shipping-country/><br/>
+    <view:shipping-phone/>
   </div>
 </def>

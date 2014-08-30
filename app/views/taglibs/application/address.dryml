@@ -11,7 +11,8 @@
     </header:>
     <body: param>
       <view:company/> <if:detail>, <view/></if><br/>
-      <view:street/>, <view:postalcode/> <view:city/>, <view:country/>
+      <view:street/>, <view:postalcode/> <view:city/>, <view:country/><br />
+      <view:phone/>
     </body:>
   </div>
 </def>
@@ -25,8 +26,8 @@
         <if:detail><view/> <br/></if>
         <if:gender><view/></if> <if:title><view/></if> <if:first-name><view/> </if> <if:surname><view/></if> <br />
         <view:street/><br />
-        <view:postalcode/> <view:city/><br />
-        <view:country/>
+        <view:postalcode/> <view:city/>, <view:country/><br />
+        <view:phone/>
       </p>
     </body:>
   </card>

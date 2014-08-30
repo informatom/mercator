@@ -7,15 +7,16 @@
       <view:shipping-company/>
       <if:shipping-detail>, <view/></if> <br/>
 
-      <view with="&t this.billing_gender"/>
+      <view with="&t this.shipping_gender"/>
       <if:shipping-title><view/></if>
       <if:shipping-first-name><view/></if>
-      <strong><view:billing-surname/></strong><br/>
+      <strong><view:shipping-surname/></strong><br/>
 
       <view:shipping-street/>,
       <view:shipping-postalcode/>
       <view:shipping-city/><br/>
-      <view:shipping-country/>
+      <view:shipping-country/><br>
+      <view:shipping-phone/>
     </p>
     <if test="&editable">
       <p><my-creator-link with="&Address" creator="enter" class="btn-primary" params="&{:order_id => this.id}"/></p>

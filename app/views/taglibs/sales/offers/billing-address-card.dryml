@@ -11,5 +11,6 @@
     <b><t key="attributes.postalcode"/>:</b> <click-editor-innards:billing-postalcode/><br/>
     <b><t key="attributes.city"/>:</b>  <click-editor-innards:billing-city/><br/>
     <b><t key="attributes.country"/>:</b> <click-editor-innards:billing-country/><br/>
+    <b><t key="attributes.phone"/>:</b> <click-editor-innards:billing-phone/>
   </div>
 </def>

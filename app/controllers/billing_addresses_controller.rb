@@ -33,13 +33,13 @@ class BillingAddressesController < ApplicationController
     self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
 
     unless current_user.state == "guest"
-      self.this.attributes = current_user.namely [:gender, :title, :first_name, :surname, :email_address]
+      self.this.attributes = current_user.namely [:gender, :title, :first_name, :surname, :email_address, :phone]
     end
 
     if current_user.billing_addresses.any?
       last_address = current_user.billing_addresses.last
       self.this.attributes = last_address.namely [:company, :gender, :title, :first_name, :surname,
-                                                  :detail, :street, :postalcode, :city, :country]
+                                                  :detail, :street, :postalcode, :city, :country, :phone]
     end
 
     creator_page_action :enter
@@ -54,7 +54,7 @@ class BillingAddressesController < ApplicationController
       if current_user.state == "guest"
 
         if this.valid?
-            current_user.attributes = this.namely [:gender, :title, :first_name, :surname, :email_address]
+            current_user.attributes = this.namely [:gender, :title, :first_name, :surname, :email_address, :phone]
           if current_user.save
             UserMailer.activation(current_user, current_user.lifecycle.key).deliver
           else
@@ -76,14 +76,14 @@ class BillingAddressesController < ApplicationController
         end
 
         order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
-                                        :detail, :street, :postalcode, :city, :country], prefix: "billing_"
+                                        :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"
         order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
-                                        :detail, :street, :postalcode, :city, :country], prefix: "shipping_"
+                                        :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"
         order.billing_method = "e_payment"
         order.save
 
         Address.create(this.namely([:company, :gender, :title, :first_name, :surname,
-                                    :detail, :street, :postalcode, :city, :country])
+                                    :detail, :street, :postalcode, :city, :country, :phone])
                        .merge(user_id: current_user.id))
 
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
@@ -96,7 +96,7 @@ class BillingAddressesController < ApplicationController
     do_transition_action :use do
       order = Order.where(id: params[:order_id], user_id: current_user.id ).first
       order.update(this.namely([:company, :gender, :title, :first_name, :surname,
-                                :detail, :street, :postalcode, :city, :country], prefix: "billing_"))
+                                :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"))
 
       if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
@@ -106,7 +106,7 @@ class BillingAddressesController < ApplicationController
 
       unless order.shipping_company
         order.update(this.namely([:company, :gender, :title, :first_name, :surname,
-                                  :detail, :street, :postalcode, :city, :country], prefix: "shipping_"))
+                                  :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
       end
 

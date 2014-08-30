@@ -13,6 +13,7 @@ en:
     billing_city: Billing City
     billing_detail: Billing Detail
     billing_name: Billing Name
+    billing_phone: Billing Phone Number
     billing_postalcode: Billing Postal Code
     billing_street: Billing Street
     BillingAddress: Billing Address
@@ -85,6 +86,7 @@ en:
     parent: Parent Element
     password: Password
     password_confirmation: Password Confirmation
+    phone: Phone Number
     photo: Photo
     photo_file_name: Photo File Name
     photo_content_type: Photo Content Type
@@ -124,6 +126,7 @@ en:
     shipping_detail: Shipping Detail
     shipping_method: Shipping Method
     shipping_name: Shipping Name
+    shipping_phone: Shipping Phone Number
     shipping_postalcode: Shipping Postal Code
     shipping_street: Shipping Street
     Sites: Sites
@@ -330,29 +333,7 @@ en:
             delete_from_offer: Delete Item
             copy: Copy to Basket
       order:
-        billing_city: Billing City
-        billing_company: Billing Company
-        billing_country: Billing Country
-        billing_detail: Billing Detail
-        billing_first_name: Billing First Name
-        billing_gender: Billing Salutation
-        billing_method: Billing Method
-        billing_postalcode: Billing Postal Code
-        billing_street: Billing Street
-        billing_surname: Billing Surname
-        billing_title: Billing Title
         position: Item
-        shipping_city: Shipping City
-        shipping_company: Shipping Company
-        shipping_country: Shipping Country
-        shipping_detail: Shipping Detail
-        shipping_first_name: Shipping First Name
-        shipping_gender: Shipping Salutation
-        shipping_method: Shipping Method
-        shipping_postalcode: Shipping Postal Code
-        shipping_street: Shipping Street
-        shipping_surname: Shipping Surname
-        shipping_title: Shipping Title
         lifecycle:
           transitions:
             cash_payment: Cash Payment
