@@ -30,7 +30,7 @@ class BillingAddressesController < ApplicationController
 
 
   def enter
-    self.this = BillingAddress.new(user: current_user, order_id: params[:order_id])
+    self.this = BillingAddress.new(user: current_user, order_id: params[:order_id], email_address: current_user.email_address)
 
     unless current_user.state == "guest"
       self.this.attributes = current_user.namely [:gender, :title, :first_name, :surname, :email_address, :phone]

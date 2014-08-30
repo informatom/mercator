@@ -10,11 +10,11 @@
       <view with="&t this.billing_gender"/>
       <if:billing-title><view/><br/></if>
       <if:billing-first-name><view/></if>
-      <strong><view:billing-surname /></strong><br/>
+      <view:billing-surname /><br/>
 
       <view:billing-street/>,
       <view:billing-postalcode/>
-      <view:billing-city/>,
+      <view:billing-city/><br/>
       <view:billing-country/><br/>
       <view:billing-phone/>
     </p>

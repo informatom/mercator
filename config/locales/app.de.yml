@@ -14,7 +14,7 @@ de:
     billing_detail: Details (Rechnung)
     billing_first_name: Vorname (Rechnung)
     billing_gender: Anrede (Rechnung)
-    billing_method: Zahlingsmethode
+    billing_method: Zahlungsmethode
     billing_phone: Telefon (Rechnung)
     billing_postalcode: Postleitzahl (Rechnung)
     billing_street: Straße (Rechnung)

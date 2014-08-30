@@ -150,7 +150,9 @@ class User < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def name
-    [self.gender, self.title, self.first_name, self.surname].join " "
+    name = [self.title, self.first_name, self.surname].join " "
+    name = self.gender + " " + name if self.gender
+    return name
   end
 
   def gtc_accepted_current?
