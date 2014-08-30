@@ -19,7 +19,7 @@ class Address < ActiveRecord::Base
   end
 
   attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
-                  :detail, :street, :postalcode, :city, :user, :country, :order_id
+                  :detail, :street, :postalcode, :city, :user, :country
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 

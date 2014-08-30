@@ -13,7 +13,7 @@ de:
     billing_city: Rechnungsadresse / Stadt
     billing_detail: Rechnungsadresse / Details
     billing_first_name: Rechnungsadresse / Vorname
-    billing_gender: Geschleicht
+    billing_gender: Anrede
     billing_postalcode: Rechnungsadresse / Postleitzahl
     billing_street: Rechnungsadresse / Straße
     billing_surname: Rechnungsadresse / Familienname
@@ -64,7 +64,7 @@ de:
     downloads: Downloads
     email_address: E-Mail Adresse
     first_name: Vorname
-    gender: Geschlecht
+    gender: Anrede
     inventories: Bestände
     Inventory: Bestand
     key: Schlüssel
@@ -126,7 +126,7 @@ de:
     shipping_city: Lieferadresse / Stadt
     shipping_detail: Lieferadresse / Details
     shipping_first_name: Lieferadresse / Vorname
-    shipping_gender: Lieferadresse / Geschlecht
+    shipping_gender: Lieferadresse / Anrede
     shipping_method: Versandart
     shipping_postalcode: Lieferadresse / Postleitzahl
     shipping_street: Lieferadresse / Straße
@@ -276,8 +276,8 @@ de:
             use: Lieferadresse verwenden
             trash: Löschen
       address/genders:
-        male: männlich
-        female: weiblich
+        male: Herr
+        female: Frau
         no_info: keine Angabe
       billing_address:
         lifecycle:
@@ -285,8 +285,8 @@ de:
             use: Rechnungsadresse verwenden
             trash: Löschen
       billingaddress/genders:
-        male: männlich
-        female: weiblich
+        male: Herr
+        female: Frau
         no_info: keine Angabe
       contentelement/markups:
         html: "HTML-Seite"
@@ -342,7 +342,7 @@ de:
         billing_country: Land (Rechnung)
         billing_detail: Details (Rechnung)
         billing_first_name: Vorname (Rechnung)
-        billing_gender: Geschlecht (Rechnung)
+        billing_gender: Anrede (Rechnung)
         billing_method: Zahlungsart
         billing_postalcode: Postleitzahl (Rechnung)
         billing_street: Straße (Rechnung)
@@ -354,7 +354,7 @@ de:
         shipping_country: Land (Lieferung)
         shipping_detail: Details (Lieferung)
         shipping_first_name: Vorname (Lieferung)
-        shipping_gender: Geschlecht (Lieferung)
+        shipping_gender: Anrede (Lieferung)
         shipping_method: Lieferart
         shipping_postalcode: Postleitzahl (Lieferung)
         shipping_street: Straße (Lieferung)
@@ -398,8 +398,8 @@ de:
             reactivate: Aktivieren
             reset_password: Kennwort festlegen
       user/genders:
-        male: männlich
-        female: weiblich
+        male: Herr
+        female: Frau
         no_info: keine Angabe
       webpage:
         lifecycle:
@@ -503,6 +503,10 @@ de:
       heading: Account aktivieren
     reset_password:
       heading: Kennwort festlegen
+
+  male: Herr
+  female: Frau
+  no_info: ""
 
   mercator:
     admin_subsite_name: Administration

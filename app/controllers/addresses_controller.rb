@@ -28,9 +28,13 @@ class AddressesController < ApplicationController
   def enter
     last_address = current_user.addresses.last
 
-    self.this = Address.new(last_address.namely([:company, :gender, :title, :first_name, :surname,
-                                                 :detail, :street, :postalcode, :city, :country])
-                            .merge(user_id: current_user.id, order_id: params[:order_id]))
+    if last_address
+      self.this = Address.new(last_address.namely([:company, :gender, :title, :first_name, :surname,
+                                                   :detail, :street, :postalcode, :city, :country])
+                              .merge(user_id: current_user.id, order_id: params[:order_id]))
+    else
+      self.this = Address.new(user_id: current_user.id, order_id: params[:order_id])
+    end
     creator_page_action :enter
   end
 

@@ -61,7 +61,7 @@ en:
     downloads: Downloads
     email_address: Email Address
     first_name: First Name
-    gender: Gender
+    gender: Salutation
     inventories: Inventories
     Inventory: Inventory
     key: Key
@@ -269,18 +269,18 @@ en:
             use: Use Delivery Address
             trash: Delete
       address/genders:
-        male: male
-        female: female
-        no_info: no information provided
+        male: Mr.
+        female: Mrs.
+        no_info: not provided
       billing_address:
         lifecycle:
           transitions:
             use: Use Billing Address
             trash: Delete
       billingaddress/genders:
-        male: male
-        female: female
-        no_info: no information provided
+        male: Mr.
+        female: Mrs.
+        no_info: not provided
       contentelement/markups:
         html: "HTML Page"
         markdown: "Markdown Page"
@@ -335,7 +335,7 @@ en:
         billing_country: Billing Country
         billing_detail: Billing Detail
         billing_first_name: Billing First Name
-        billing_gender: Billing Gender
+        billing_gender: Billing Salutation
         billing_method: Billing Method
         billing_postalcode: Billing Postal Code
         billing_street: Billing Street
@@ -347,7 +347,7 @@ en:
         shipping_country: Shipping Country
         shipping_detail: Shipping Detail
         shipping_first_name: Shipping First Name
-        shipping_gender: Shipping Gender
+        shipping_gender: Shipping Salutation
         shipping_method: Shipping Method
         shipping_postalcode: Shipping Postal Code
         shipping_street: Shipping Street
@@ -391,9 +391,9 @@ en:
             reactivate: Reactivate
             reset_password: Set Password
       user/genders:
-        male: male
-        female: female
-        no_info: no information provided
+        male: Mr.
+        female: Mrs.
+        no_info: not provided
       webpage:
         lifecycle:
           transitions:
@@ -496,6 +496,10 @@ en:
       heading: Activate Account
     reset_password:
       heading: Set Password
+
+  female: Mrs.
+  male: Mr.
+  no_info: ""
 
   mercator:
     admin_subsite_name: Administration

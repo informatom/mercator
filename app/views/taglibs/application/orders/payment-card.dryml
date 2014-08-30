@@ -1,31 +1,19 @@
 <def tag="payment-card" attrs="editable">
-  <h3><t key="activerecord.attributes.order.billing_method" /></h3>
+
+  <h3>
+    <t key="activerecord.attributes.order.billing_method" /> &nbsp;
+    <span class="label label-success">
+      <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
+    </span>
+  </h3>
+
   <if test="&editable">
-    <div class="well">
-      <if test="&this.billing_method">
-        <p>
-          <span class="label label-success">
-            <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
-          </span>
-        </p>
-        <p><t key="mercator.billing_method.change" />:</p>
-      </if>
-      <else>
-        <t key="mercator.billing_method.select" />:<br/>
-      </else>
-      <p>
-        <my-transition-link transition="cash_payment" class="btn-info" method="put"/>
-        <my-transition-link transition="atm_payment" class="btn-info" method="put"/>
-        <my-transition-link transition="pre_payment" class="btn-info" method="put"/>
-        <my-transition-link transition="e_payment" class="btn-info" method="put"/>
-      </p>
-    </div>
-  </if>
-  <else>
+    <p><t key="mercator.billing_method.change" />:</p>
     <p>
-      <span class="label label-success">
-        <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
-      </span>
+      <my-transition-link transition="cash_payment" class="btn-info" method="put"/>
+      <my-transition-link transition="atm_payment" class="btn-info" method="put"/>
+      <my-transition-link transition="pre_payment" class="btn-info" method="put"/>
+      <my-transition-link transition="e_payment" class="btn-info" method="put"/>
     </p>
-  </else>
+  </if>
 </def>

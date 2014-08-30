@@ -4,12 +4,18 @@
   <if test="&this.billing_company">
     <h3><t key="activerecord.models.billing_address.one" /></h3>
     <p class="well">
-      <strong><view:billing-company/></strong>, <if:billing-detail><view/><br/></if>
+      <strong><view:billing-company/></strong>
+      <if:billing-detail>, <view/></if><br/>
 
-      <if:billing-gender><view/><br/></if><if:billing-title><view/><br/></if>
-      <if:billing-first-name><view/><br/></if><if:billing-surname><view/><br/></if>
+      <view with="&t this.billing_gender"/>
+      <if:billing-title><view/><br/></if>
+      <if:billing-first-name><view/></if>
+      <strong><view:billing-surname /></strong><br/>
 
-      <view:billing-street/>, <view:billing-postalcode/> <view:billing-city/>, <view:billing-country/>
+      <view:billing-street/>,
+      <view:billing-postalcode/>
+      <view:billing-city/>,
+      <view:billing-country/>
     </p>
     <if test="&editable">
      <p><my-creator-link with="&BillingAddress" creator="enter" class="btn-primary" params="&{:order_id => this.id}"/></p>

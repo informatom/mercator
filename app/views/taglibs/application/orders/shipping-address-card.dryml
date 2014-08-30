@@ -4,14 +4,17 @@
   <if test="&this.shipping_company">
     <h3><t key="activerecord.models.address.one" /></h3>
     <p class="well">
-      <view:shipping-company/><br/>
-      <view:shipping-detail/><br/>
-      <view:shipping-gender/><br/>
-      <view:shipping-title/><br/>
-      <view:shipping-first-name/><br/>
+      <view:shipping-company/>
+      <if:shipping-detail>, <view/></if> <br/>
+
+      <view with="&t this.billing_gender"/>
+      <if:shipping-title><view/></if>
+      <if:shipping-first-name><view/></if>
       <strong><view:billing-surname/></strong><br/>
-      <view:shipping-street/><br/>
-      <view:shipping-postalcode/> <view:shipping-city/><br/>
+
+      <view:shipping-street/>,
+      <view:shipping-postalcode/>
+      <view:shipping-city/><br/>
       <view:shipping-country/>
     </p>
     <if test="&editable">

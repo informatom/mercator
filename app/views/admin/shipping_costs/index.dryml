@@ -1,0 +1,8 @@
+<index-page>
+  <collection: replace>
+    <table-plus without-page-nav fields="this, country, value, vat, actions">
+      <actions-heading:></actions-heading:>
+      <actions-view:><bootstrap-table-actions/></actions-view:>
+    </table-plus>
+  </collection:>
+</index-page>
