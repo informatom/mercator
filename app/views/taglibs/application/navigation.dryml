@@ -180,7 +180,7 @@
 
 
 <def tag="greeter" >
-  Hallo, <view with="&current_user.name" />
+  Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
   <if test="&current_user.administrator?">
     <br/>
     <a href='/admin'><%= fa_icon "cog", class: "text-danger" %></a>

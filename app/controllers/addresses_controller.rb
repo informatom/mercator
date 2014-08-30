@@ -16,10 +16,10 @@ class AddressesController < ApplicationController
 
   def update
     hobo_update do
-      if params[:address][:order_id]
+      if params[:address][:order_id].present?
         redirect_to enter_addresses_path({:order_id => params[:address][:order_id]})
       else
-        redirect_to enter_addresses_path
+        redirect_to user_path(current_user.id)
       end
     end
   end
