@@ -15,7 +15,7 @@
       <view:shipping-street/>,
       <view:shipping-postalcode/>
       <view:shipping-city/><br/>
-      <view:shipping-country/><br>
+      <view:shipping-country/><br/>
       <view:shipping-phone/>
     </p>
     <if test="&editable">

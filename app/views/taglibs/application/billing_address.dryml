@@ -28,7 +28,7 @@
         <view:street/>,
         <view:postalcode/>
         <view:city/>,
-        <view:country/><br>
+        <view:country/><br/>
         <view:phone/>
 
         <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">
