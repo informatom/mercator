@@ -24,6 +24,17 @@ class CategoriesController < ApplicationController
                                },
                                facets: this.filters.values.flatten)
 
+      @prices = Product.search(query: {
+                                 bool: {
+                                   must: [ { match: { category_ids: params[:id].to_i } },
+                                           { match: { state: 'active' } }
+                                         ] + matcharray
+                                 }
+                               },
+                              facets: { price: { stats: "true" } } )
+
+      debugger
+
       @products = Product.search(query: {
                                    bool: {
                                      must: [ { match: { category_ids: params[:id].to_i } },

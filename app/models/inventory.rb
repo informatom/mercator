@@ -69,7 +69,8 @@ class Inventory < ActiveRecord::Base
 
    #--- Instance methods ---#
 
-  def determine_price(date: Time.now, amount: 1, incl_vat: false, customer_id: current_user.id)
+  def determine_price(date: Time.now, amount: 1, incl_vat: false, customer_id: nil)
+    customer_id ||= current_user.id if try(:current_user)
 
     price = self.select_price(date: date, amount: amount)
     price_excl_vat = price.value

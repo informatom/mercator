@@ -104,7 +104,9 @@ class Product < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
-  def determine_price(amount: 1, date: Time.now(), incl_vat: false, customer_id: current_user.id)
+  def determine_price(amount: 1, date: Time.now(), incl_vat: false, customer_id: nil)
+    customer_id ||= current_user.id if try(:current_user)
+
     inventory = self.determine_inventory(amount: amount)
     if inventory
       return inventory.determine_price(amount: amount,
@@ -158,7 +160,8 @@ class Product < ActiveRecord::Base
       long_description: long_description_de,
       warranty:         warranty_de,
       category_ids:     categories.pluck(:id),
-      state:            state
+      state:            state,
+      price:            determine_price
     }.merge(property_hash)
   end
 
