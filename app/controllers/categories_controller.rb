@@ -24,8 +24,6 @@ class CategoriesController < ApplicationController
                                },
                                facets: this.filters.values.flatten)
 
-      @stats = Product.search(query: {bool: {must: [ { match: { category_ids: params[:id].to_i } }, { match: { state: 'active' } } ] + matcharray } }, facets: { price: { stats: true } } )
-
       @products = Product.search(query: {
                                    bool: {
                                      must: [ { match: { category_ids: params[:id].to_i } },
@@ -33,6 +31,10 @@ class CategoriesController < ApplicationController
                                            ] + matcharray
                                    }
                                  }).results
+
+      prices = @products.results.*.determine_price
+      @min = prices.min
+      @max = prices.max
     end
   end
 end

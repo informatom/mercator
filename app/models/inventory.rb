@@ -73,7 +73,7 @@ class Inventory < ActiveRecord::Base
     customer_id ||= current_user.id if try(:current_user)
 
     price = self.select_price(date: date, amount: amount)
-    price_excl_vat = price.value
+    price_excl_vat = price.value if price
 
     if Rails.application.config.try(:erp) == "mesonic"
       mesonic_price = self.mesonic_price(customer_id: customer_id)
