@@ -12,6 +12,7 @@ Mercator::Application.routes.draw do
   end
 
   root :to => 'front#home'
+  get 'front' => 'front#index', :as => 'front'
   get 'admin' => 'admin/front#index', :as => 'admin_front'
   get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
   get 'sales' => 'sales/front#index', :as => 'sales_front'
