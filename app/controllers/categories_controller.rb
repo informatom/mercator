@@ -32,9 +32,11 @@ class CategoriesController < ApplicationController
                                    }
                                  }).results
 
-      prices = @products.results.*.determine_price
-      @min = prices.min
-      @max = prices.max
+      if @products.any?
+        prices = @products.results.*.determine_price
+        @min = prices.min
+        @max = prices.max
+      end
     end
   end
 end
