@@ -33,9 +33,9 @@ class CategoriesController < ApplicationController
                                  }).results
 
       if @products.any?
-        prices = @products.results.*.determine_price
-        @min = prices.min
-        @max = prices.max
+        prices = @products.*.determine_price
+        @min = prices.min.round
+        @max = (prices.max + 0.5).round
       end
     end
   end

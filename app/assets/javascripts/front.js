@@ -17,5 +17,6 @@
 // require front/bootstrap
 //= require hobo_bootstrap
 //= require hobo_bootstrap_ui
+//= require bootstrap-slider
 //= require ckeditor/init
 //= require private_pub

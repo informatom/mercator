@@ -79,6 +79,29 @@
 </def>
 
 <def tag="filter-nav">
+  <p><strong>Preisfilter: </strong></p>
+  <p><%= @min %> EUR &nbsp; &nbsp; &nbsp;
+  <input id="ex1"
+         class="slider"
+         data-slider-id='ex1Slider'
+         type="text"
+         data-slider-min="&@min"
+         data-slider-max="&@max"
+         data-slider-step="1"
+         data-slider-value="&'[' + @min.to_s + ','  + @max.to_s + ']'" />
+  &nbsp; &nbsp; &nbsp; <%= @max %> EUR </p>
+  <br/> <br/>
+
+  <script>
+    var pricefilter = function() {
+      var lower = priceslider.getValue()[0];
+      var higher = priceslider.getValue()[1];
+
+    };
+
+    var priceslider = $("input.slider").slider().on('slideStop', pricefilter).data('slider');
+  </script>
+
   <set category="&this"/>
   <%= this.filters.to_a.in_groups_of(3) do |group| %>
     <div class="row">

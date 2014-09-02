@@ -147,6 +147,8 @@ GEM
       railties (>= 3.0)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
+    bootstrap-slider-rails (1.9.0)
+      railties (>= 3.2, < 5.0)
     bootswatch-rails (3.2.0)
       railties (>= 3.1)
     builder (3.1.4)
@@ -471,6 +473,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap-slider-rails
   bootswatch-rails
   byebug
   capistrano
