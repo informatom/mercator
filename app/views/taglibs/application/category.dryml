@@ -79,6 +79,8 @@
 </def>
 
 <def tag="filter-nav">
+  <set category="&this"/>
+
   <p><strong>Preisfilter: </strong></p>
   <p><%= @min %> EUR &nbsp; &nbsp; &nbsp;
   <input id="ex1"
@@ -88,7 +90,7 @@
          data-slider-min="&@min"
          data-slider-max="&@max"
          data-slider-step="1"
-         data-slider-value="&'[' + @min.to_s + ','  + @max.to_s + ']'" />
+         data-slider-value="&'[' + @minslider.to_s + ','  + @maxslider.to_s + ']'" />
   &nbsp; &nbsp; &nbsp; <%= @max %> EUR </p>
   <br/> <br/>
 
@@ -96,13 +98,13 @@
     var pricefilter = function() {
       var lower = priceslider.getValue()[0];
       var higher = priceslider.getValue()[1];
-
+      window.location.href = "<%= category_path(category.id, filter: @filter) -%>&amp;pricelow=" + lower + "&amp;pricehigh=" + higher
     };
 
     var priceslider = $("input.slider").slider().on('slideStop', pricefilter).data('slider');
   </script>
 
-  <set category="&this"/>
+
   <%= this.filters.to_a.in_groups_of(3) do |group| %>
     <div class="row">
       <div repeat="&group" class="col-md-4">
