@@ -195,6 +195,11 @@ GEM
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    delayed_job (4.0.2)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_active_record (4.0.2)
+      activerecord (>= 3.0, < 4.2)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     elasticsearch (1.0.4)
       elasticsearch-api (= 1.0.4)
@@ -483,6 +488,7 @@ DEPENDENCIES
   codemirror-rails
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.2.0)
+  delayed_job_active_record
   ember-rails
   ember-source
   exception_notification

@@ -57,6 +57,7 @@ gem 'private_pub'                                     # Private Pub Sub System u
 gem 'wicked_pdf'                                      # Pdf Generation
 gem 'wkhtmltopdf-binary'
 gem "searchkick"                                      # Elastic Search integration
+gem 'delayed_job_active_record'                       # asynchronous Jobs
 
 group :production do
   gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic" # Engine for integrating Mesonic ERP System
