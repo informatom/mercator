@@ -58,6 +58,8 @@ gem 'wicked_pdf'                                      # Pdf Generation
 gem 'wkhtmltopdf-binary'
 gem "searchkick"                                      # Elastic Search integration
 gem 'delayed_job_active_record'                       # asynchronous Jobs
+gem "daemons"                                         # to daemonize delayed_job
+gem "holidays"                                        # Determine if there is a public holiday
 
 group :production do
   gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic" # Engine for integrating Mesonic ERP System

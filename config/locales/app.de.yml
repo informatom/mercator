@@ -630,7 +630,10 @@ de:
     root_category: Wurzelkategorie
     sales_subsite_name: Vertriebswesen
     sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
-    salutation: "Guten Tag! Mein Name ist %{name}. Wie kann ich Ihnen helfen?"
+    salutation:
+      success: "Guten Tag! Mein Name ist %{firstname} %{surname}. Wie kann ich Ihnen helfen?"
+      call: "Guten Tag! Mein Name ist %{firstname} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
+      sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
     select_a_category: Bitte wählen Sie eine Kategorie!
     set_password: Kennwort festlegen
     shipping_method:

@@ -32,15 +32,9 @@ class ConversationsController < ApplicationController
   end
 
   def do_initiate
-    PrivatePub.publish_to("/conversations/new", type: "conversations")
-
     do_creator_action :initiate do
-      consultant = User.assign_consultant
-      self.this.update(customer: current_user,
-                       consultant: consultant)
-      self.this.messages << Message.new(sender: consultant,
-                                        reciever: current_user,
-                                        content: I18n.t('mercator.salutation', name: consultant.name))
+      self.this.update(customer: current_user)
+      self.this.delay.inform_sales # we fork into delayed handling
     end
   end
 

@@ -25,11 +25,11 @@
 <extend tag="initiate-page" for="Conversation">
   <old-initiate-page merge>
     <before-form:>
-      <set consultant="&User.assign_consultant"/>
+      <set consultant="&User.robot"/>
       <photo-card with="&consultant" class="pull-right" />
       <div class="alert alert-info">
-        <b><view: with="&consultant.name"/></b>:
-        <t key="mercator.salutation" name="&consultant.name" />
+        <b><view: with="&consultant.first_name"/> <view: with="&consultant.surname"/></b>:
+        <t key="mercator.salutation.call" firstname="&consultant.first_name" surname="&consultant.surname" />
       </div>
 
     </before-form:>

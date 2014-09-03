@@ -15,7 +15,6 @@ class Conversation < ActiveRecord::Base
   belongs_to :customer, class_name: 'User', inverse_of: :conversations
   belongs_to :consultant, :class_name => 'User'
 
-  validates :consultant, :presence => true
   validates :customer, :presence => true
 
   has_many :downloads
@@ -67,4 +66,28 @@ class Conversation < ActiveRecord::Base
   def last_link
     self.links.recent(1)[0]
   end
+
+  def inform_sales
+    [0, 1, 2, 3, 4].each do |attempt|
+      self.reload
+      return if self.consultant_id
+      consultant = User.assign_consultant(position: attempt)
+      break unless consultant
+      PrivatePub.publish_to("/conversations/new", type: "conversations", consultant_id: consultant.id)
+      sleep 5
+    end
+
+    self.reload
+    unless self.consultant_id
+      message = Message.create(conversation_id: self.id,
+                               reciever: self.customer,
+                               sender: User.robot,
+                               content: I18n.t('mercator.salutation.sorry'))
+    end
+  end
 end
+
+#    Message.create(conversation_id: self.id,
+#                   sender: self.consultant,
+#                   reciever: self.customer,
+#                   content: I18n.t('mercator.salutation.success', firstname: self.consultant.first_name, surname: self.consultant.surname)) unless self.consultant_id

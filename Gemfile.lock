@@ -192,6 +192,7 @@ GEM
     columnize (0.8.9)
     commonjs (0.2.7)
     cookiejar (0.3.2)
+    daemons (1.1.9)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
@@ -273,6 +274,7 @@ GEM
     hobo_will_paginate (2.1.1)
     hobo_will_paginate-bootstrap (1.0.0)
       hobo_will_paginate
+    holidays (1.0.6)
     http_parser.rb (0.6.0)
     httparty (0.13.1)
       json (~> 1.8)
@@ -487,6 +489,7 @@ DEPENDENCIES
   ckeditor!
   codemirror-rails
   coffee-rails (~> 4.0.0)
+  daemons
   database_cleaner (~> 1.2.0)
   delayed_job_active_record
   ember-rails
@@ -503,6 +506,7 @@ DEPENDENCIES
   hobo_jquery_ui (= 2.1.1)
   hobo_paperclip!
   hobo_will_paginate
+  holidays
   jbuilder (~> 1.2)
   jquery-rails (~> 2.3.0)
   jquery-ui-rails

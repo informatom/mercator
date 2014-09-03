@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
     erp_account_nr   :string, :index => true
     erp_contact_nr   :string
     locale           :string
+    call_priority    :integer
     timestamps
   end
 
@@ -186,9 +187,11 @@ class User < ActiveRecord::Base
     return new_user
   end
 
-  def self.assign_consultant()
-    consultant = User.sales.where(logged_in: true).first
-    consultant ||= User.sales_manager.first
+  def self.assign_consultant(position: nil)
+    available_consultants = User.sales.where(logged_in: true).order(:call_priority)
+    return nil unless available_consultants.any?
+
+    consultant = available_consultants[position.modulo(available_consultants.count)]
     return consultant
   end
 
@@ -218,5 +221,9 @@ class User < ActiveRecord::Base
 
     JobLogger.info("Finished Cronjob runner: User.cleanup_deprecated")
     JobLogger.info("=" * 50)
+  end
+
+  def self.robot
+    User.find_by(surname: "Robot")
   end
 end

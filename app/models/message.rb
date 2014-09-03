@@ -17,7 +17,7 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
 
   validates :sender, :presence => true
-  validates :reciever, :presence => true
+#  validates :reciever, :presence => true
 
   # --- Permissions --- #
 

@@ -623,7 +623,10 @@ en:
     root_category: Root Category
     sales_subsite_name: Sales
     sales_subheading: The page for consulting sessions management in the Mercator Guided Selling System
-    salutation: "Hello! My name is %{name}. How can I help you?"
+    salutation:
+      success: "Hello! My name is %{firstname} %{surname}. How can I help you?"
+      sorry: "Unfortunately, we have no sales representative available for you right now. Please try later or stay at this page."
+      call: "Hello! My name is %{firstname} %{surname}. Please give me I title for your call and I'm getting a sales representative for you."
     select_a_category: Please select a category!
     set_password: Set Password
     shipping_method:

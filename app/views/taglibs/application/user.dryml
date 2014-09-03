@@ -87,7 +87,7 @@
 
 <def tag="photo-card">
   <div class="well" style="margin: 10px" merge-attrs >
-    <p><t key="mercator.you_are_talking_to" />: <view:name/></p>
+    <p><t key="mercator.you_are_talking_to" />: <view:first-name/> <view:surname/></p>
     <if test="&this">
       <p><%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid" ) %></p>
     </if>
