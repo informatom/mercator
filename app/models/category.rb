@@ -12,6 +12,8 @@ class Category < ActiveRecord::Base
     position            :integer, :required
     legacy_id           :integer
     filters             :serialized
+    filtermin           :decimal, :required, :precision => 10, :scale => 2
+    filtermax           :decimal, :required, :precision => 10, :scale => 2
     timestamps
   end
 
@@ -106,9 +108,13 @@ class Category < ActiveRecord::Base
     property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
     property_groups = property_pairs.group_by { |pair| pair[0]}
     property_groups.each {|key,value| property_groups[key] = value.map{|pair| pair[1]} }
-    JobLogger.info("Category " + self.id.to_s + " reindexed.")
     return property_groups
   end
+
+  def update_property_hash
+    self.update( filters: self.property_groups_hash)
+  end
+
 
   # --- Searchkick Instance Methods --- #
 
@@ -206,8 +212,7 @@ class Category < ActiveRecord::Base
 
   def self.update_property_hash
     Category.order(id: :asc).load.each do |category|
-      category.filters = category.property_groups_hash
-      category.save
+      category.update_property_hash
     end
   end
 end

@@ -7,6 +7,10 @@ class CategoriesController < ApplicationController
 
   def show
     hobo_show do
+      category_id = params[:id].to_i
+      @min = Category.find(category_id).filtermin
+      @max = Category.find(category_id).filtermax
+
       @filter = params[:filter]
       @filter ||= {}
 
@@ -15,58 +19,21 @@ class CategoriesController < ApplicationController
         matcharray << { match: { URI.unescape(key) => URI.unescape(value) } }
       end
 
-      @facets = Product.search(query: {
-                                 bool: {
-                                   must: [ { match: { category_ids: params[:id].to_i } },
-                                           { match: { state: 'active' } }
-                                         ] + matcharray
-                                 }
-                               },
+      @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
+                                              { match: { state: 'active' } } ] + matcharray } },
                                facets: this.filters.values.flatten)
 
-      if params[:pricelow]
-        @products = Product.search(query: {
-                                     bool: {
-                                       must: [ { match: { category_ids: params[:id].to_i } },
-                                               { match: { state: 'active' } },
-                                               { range: {
-                                                  price: {
-                                                    gte: params[:pricelow],
-                                                    lte: params[:pricehigh]
-                                                    }
-                                                  }
-                                               }
-                                             ] + matcharray
-                                     }
-                                   }).results
+      if params[:pricelow] && params[:pricehigh]
+        @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
+                                                            { match: { state: 'active' } },
+                                                            { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } } ).results
 
-        @category_products = Product.search(query: {
-                                              bool: {
-                                                must: [ { match: { category_ids: params[:id].to_i } },
-                                                        { match: { state: 'active' } } ]
-                                              }
-                                            }).results
+        @minslider, @maxslider = params[:pricelow], params[:pricehigh]
       else
-        @products = Product.search(query: {
-                                     bool: {
-                                       must: [ { match: { category_ids: params[:id].to_i } },
-                                               { match: { state: 'active' } }
-                                             ] + matcharray
-                                     }
-                                   }).results
-        @category_products = @products
-      end
+        @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
+                                                            { match: { state: 'active' } } ] + matcharray } } ).results
 
-      prices = @category_products.*.determine_price
-      @min = prices.min.round
-      @max = (prices.max + 0.5).round
-
-      if params[:pricelow]
-        @minslider = params[:pricelow]
-        @maxslider = params[:pricehigh]
-      else
-        @minslider = @min
-        @maxslider = @max
+        @minslider, @maxslider = @min, @max
       end
     end
   end

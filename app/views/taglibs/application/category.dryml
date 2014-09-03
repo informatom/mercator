@@ -82,17 +82,13 @@
   <set category="&this"/>
 
   <p><strong>Preisfilter: </strong></p>
-  <p><%= @min %> EUR &nbsp; &nbsp; &nbsp;
-  <input id="ex1"
-         class="slider"
-         data-slider-id='ex1Slider'
-         type="text"
-         data-slider-min="&@min"
-         data-slider-max="&@max"
-         data-slider-step="1"
-         data-slider-value="&'[' + @minslider.to_s + ','  + @maxslider.to_s + ']'" />
-  &nbsp; &nbsp; &nbsp; <%= @max %> EUR </p>
-  <br/> <br/>
+  <p>
+    <%= @min %> EUR &nbsp; &nbsp; &nbsp;
+    <input id="ex1" class="slider" data-slider-id='ex1Slider' type="text"
+           data-slider-min="&@min" data-slider-max="&@max" data-slider-step="1"
+           data-slider-value="&'[' + @minslider.to_s + ', '  + @maxslider.to_s + ']'" />
+    &nbsp; &nbsp; &nbsp; <%= @max %> EUR
+  </p><br/> <br/>
 
   <script>
     var pricefilter = function() {
