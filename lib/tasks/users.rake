@@ -13,8 +13,8 @@ namespace :users do
       User.create(first_name: "E-Mail",
                   surname: "Robot",
                   email_address: "robot@mercator.mittenin.at",
-                  photo: open("#{Rails.root}/materials/images/little-robot.png",
-                  sales: true))
+                  photo: open("#{Rails.root}/materials/images/little-robot.png"),
+                  sales: true)
     end
 
     JobLogger.info("Finished Job: categories:create_default_users")
