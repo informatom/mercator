@@ -4,9 +4,19 @@
   </title:>
 
   <main-nav:>
-    <category-nav/>
-    <br />
-    <br />
+    <catnav:>
+      <nav class="navbar navbar-default" role="navigation" >
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <category-nav/>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br />
+      <br />
+    </catnav:>
   </main-nav:>
 
   <content-header:>

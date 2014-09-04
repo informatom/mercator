@@ -35,6 +35,8 @@
       </li>
     </right:>
   </navigation>
+  <div param="catnav">
+  </div>
 </def>
 
 <def attrs='include-search' tag='account-nav'>
