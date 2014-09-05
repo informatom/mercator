@@ -22,11 +22,28 @@
   </audio>
   <script>
       PrivatePub.subscribe("/personal/<%= current_user.id.to_s -%>", function(data, channel) {
-        message = Messenger().post({
-          message: "<strong>" + data.sender + "</strong>: " + data.content,
-          hideAfter: 300,
-          showCloseButton: true
-        });
+        if (data.conversation) {
+          message = Messenger().post({
+            message: "<strong>" + data.sender + "</strong>: " + data.content,
+            hideAfter: 300,
+            showCloseButton: true,
+            actions: {
+              take: {
+                label: "Übernehmen",
+                action: function(){
+                  window.location.href = "/sales/conversations/" + data.conversation + "/take";
+                }
+              }
+            }
+          });
+        }
+        else {
+          message = Messenger().post({
+            message: "<strong>" + data.sender + "</strong>: " + data.content,
+            hideAfter: 300,
+            showCloseButton: true
+          });
+        }
         jQuery("#ding")[0].play();        
       });
   </script>

@@ -69,12 +69,15 @@ class Conversation < ActiveRecord::Base
 
   def inform_sales
     [0, 1, 2, 3, 4].each do |attempt|
-      self.reload
-      return if self.consultant_id
       consultant = User.assign_consultant(position: attempt)
       break unless consultant
-      PrivatePub.publish_to("/conversations/new", type: "conversations", consultant_id: consultant.id)
+      PrivatePub.publish_to("/personal/"+ consultant.id.to_s, 
+                            sender: User.robot.name, 
+                            content: I18n.t('mercator.salutation.new_conversation'),
+                            conversation: self.id)
       sleep 5
+      self.reload
+      return if self.consultant_id
     end
 
     self.reload

@@ -8,6 +8,12 @@ class Sales::ConversationsController < Sales::SalesSiteController
     hobo_show
   end
 
+  def take
+    self.this = Conversation.find(params[:id])
+    this.update(consultant: current_user)
+    redirect_to sales_conversation_path(this)
+  end
+
   def show
     hobo_show do
       if current_user.id == this.customer_id

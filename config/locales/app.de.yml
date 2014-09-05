@@ -634,6 +634,7 @@ de:
       success: "Guten Tag! Mein Name ist %{firstname} %{surname}. Wie kann ich Ihnen helfen?"
       call: "Guten Tag! Mein Name ist %{firstname} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
       sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
+      new_conversation: "Haben Sie Zeit eine Anfrage anzunehmen?"
     select_a_category: Bitte wählen Sie eine Kategorie!
     set_password: Kennwort festlegen
     shipping_method:

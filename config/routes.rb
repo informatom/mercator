@@ -17,6 +17,14 @@ Mercator::Application.routes.draw do
   get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
   get 'sales' => 'sales/front#index', :as => 'sales_front'
 
+  namespace :sales do
+    resources :conversations do
+      member do
+        get 'take'
+      end
+    end
+  end
+
   namespace :contracting do
     resources :toners do
       collection do
