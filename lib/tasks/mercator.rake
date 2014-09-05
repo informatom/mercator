@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 namespace :mercator do
-  # starten als: rake mercator:delete_inactive_and_history
+  # starten als: r
   # in Produktivumgebungen: bundle exec rake orders:delete_inactive_and_history RAILS_ENV=production
   desc "Delete inactive products, users and version history"
   task :delete_inactive_and_history => :environment do
@@ -81,7 +81,7 @@ namespace :mercator do
         inventory.delete
       end
     end
-    JobLogger.info("Done with features")
+    JobLogger.info("Done with inventories")
 
     Price.all.each do |price|
       unless price.inventory

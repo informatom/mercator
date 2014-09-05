@@ -4,6 +4,7 @@
 
   <content:>
     <header class="content-header hero-unit">
+      <message-subscription />
       <h1><t key='mercator.welcome_at'/> <app-name/></h1>
       <section class="welcome-message">
         <h3>... hier entsteht das Guided Selling System aus Österreich</h3>

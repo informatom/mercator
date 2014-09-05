@@ -20,3 +20,5 @@
 //= require bootstrap-slider
 //= require ckeditor/init
 //= require private_pub
+//= require messenger
+//= require messenger-theme-future

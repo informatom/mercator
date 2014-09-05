@@ -14,10 +14,10 @@
     </header>
 
     <section class="content-body">
-      <audio controls style="display:none;" id="bigben">
-        <source src="/sounds/big_ben.mp3" type="audio/mpeg" />
-        <source src="/sounds/big_ben.ogg" type="audio/ogg" />
-        <embed height="50" width="100" src="/sounds/big_ben.mp3" />
+      <audio controls style="display:none;" id="ding">
+        <source src="/sounds/ding.mp3" type="audio/mpeg" />
+        <source src="/sounds/ding.ogg" type="audio/ogg" />
+        <embed height="50" width="100" src="/sounds/ding.mp3" />
       </audio>
     </section>
 
@@ -40,10 +40,10 @@
           type: "POST",
           success: function(result){
             jQuery("#recent").html(result);
-            alert("<t key="mercator.conversation.starded" />");
+            alert("<t key="mercator.conversation.started" />");
           },
         });
-        jQuery("#bigben")[0].play();
+        jQuery("#ding")[0].play();
       });
     </script>
   </content:>

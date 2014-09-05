@@ -8,7 +8,11 @@ class Sales::MessagesController < Sales::SalesSiteController
     hobo_create do
       this.sender = current_user
       this.save
-      PrivatePub.publish_to("/conversations/"+ this.conversation.id.to_s, type: "messages")
+      PrivatePub.publish_to("/conversations/"+ this.conversation.id.to_s, 
+                            type: "messages")
+      PrivatePub.publish_to("/personal/"+ this.reciever_id.to_s, 
+                            sender: this.sender.name, 
+                            content: this.content)
     end
   end
 end
