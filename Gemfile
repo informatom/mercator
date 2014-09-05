@@ -61,10 +61,10 @@ gem 'delayed_job_active_record'                       # asynchronous Jobs
 gem "daemons"                                         # to daemonize delayed_job
 gem "holidays"                                        # Determine if there is a public holiday
 
+gem "mercator_icecat", path:"vendor/engines/mercator_icecat"   # Engine for importing Icecat Data
 group :production do
   gem "mercator_mesonic", path:"vendor/engines/mercator_mesonic" # Engine for integrating Mesonic ERP System
   gem "mercator_legacy_importer", path:"vendor/engines/mercator_legacy_importer"# Engine for importing Legacy Data
-  gem "mercator_icecat", path:"vendor/engines/mercator_icecat"   # Engine for importing Icecat Data
   gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem" # Engine for integrating Mesonic ERP System
   gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"   # Engine for MPay24 interface
 end
