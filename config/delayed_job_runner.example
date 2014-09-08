@@ -1,0 +1,4 @@
+#!/bin/sh
+export RAILS_ENV=production
+exec 2>/dev/null
+exec setuidgid %railsuser% /var/rails/%my_projec_name%/bin/delayed_job run
