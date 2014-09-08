@@ -60,7 +60,7 @@ class Conversation < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def collaborators
-    [self.consultant, self.customer]
+    [consultant, customer]
   end
 
   def last_link
@@ -71,10 +71,8 @@ class Conversation < ActiveRecord::Base
     [0, 1, 2, 3, 4].each do |attempt|
       consultant = User.assign_consultant(position: attempt)
       break unless consultant
-      PrivatePub.publish_to("/personal/"+ consultant.id.to_s, 
-                            sender: User.robot.name, 
-                            content: I18n.t('mercator.salutation.new_conversation'),
-                            conversation: self.id)
+      PrivatePub.publish_to("/personal/"+ consultant.id.to_s, sender: User.robot.name,
+                            content: I18n.t('mercator.salutation.new_conversation'), conversation: id)
       sleep 5
       self.reload
       return if self.consultant_id
@@ -82,10 +80,12 @@ class Conversation < ActiveRecord::Base
 
     self.reload
     unless self.consultant_id
-      message = Message.create(conversation_id: self.id,
-                               reciever: self.customer,
+      message = Message.create(conversation_id: id,
+                               reciever: customer,
                                sender: User.robot,
                                content: I18n.t('mercator.salutation.sorry'))
+      PrivatePub.publish_to("/conversations/"+ id.to_s, type: "messages")
+      PrivatePub.publish_to("/personal/"+ message.reciever_id.to_s, sender: message.sender.name, content: message.content)
     end
   end
 end

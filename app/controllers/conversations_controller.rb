@@ -26,9 +26,21 @@ class ConversationsController < ApplicationController
   end
 
   def initiate
-    self.this = Conversation.new(customer: current_user)
+    self.this = Conversation.new(customer: current_user, name: I18n.t("mercator.salutation.callback"))
     current_basket.update(conversation_id: this.id)
     creator_page_action :initiate
+
+    message_content =
+      if Constant.office_hours?
+        I18n.t('mercator.salutation.call')
+      else
+        I18n.t('mercator.salutation.out_of_office_hours') + Constant.pretty_office_hours
+      end
+
+    self.this.messages << Message.new(conversation_id: this.id,
+                                      reciever: this.customer,
+                                      sender: User.robot,
+                                      content: message_content)
   end
 
   def do_initiate

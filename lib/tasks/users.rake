@@ -17,6 +17,18 @@ namespace :users do
                   sales: true)
     end
 
+    ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
+      unless User.find_by(first_name: firstname)
+        User.create(first_name: firstname,
+                    surname: "Vertriebsmitarbeiter",
+                    email_address: (index + 1).to_s + "@mercator.mittenin.at",
+                    sales: true,
+                    password: "123456",
+                    password_confirmation: "123456",
+                    state: :active)
+      end
+    end
+
     JobLogger.info("Finished Job: categories:create_default_users")
     JobLogger.info("=" * 50)
   end

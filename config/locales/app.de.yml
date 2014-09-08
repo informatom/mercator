@@ -635,6 +635,8 @@ de:
       call: "Guten Tag! Mein Name ist %{firstname} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
       sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
       new_conversation: "Haben Sie Zeit eine Anfrage anzunehmen?"
+      out_of_office_hours: "Sie kontaktieren uns außerhalb unserer Geschäftszeiten. Unsere Geschäftszeiten sind "
+      callback: "Bitten rufen Sie mich zurück, meine Telefonnummer ist:"
     select_a_category: Bitte wählen Sie eine Kategorie!
     set_password: Kennwort festlegen
     shipping_method:
