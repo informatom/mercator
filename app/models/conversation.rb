@@ -89,8 +89,3 @@ class Conversation < ActiveRecord::Base
     end
   end
 end
-
-#    Message.create(conversation_id: self.id,
-#                   sender: self.consultant,
-#                   reciever: self.customer,
-#                   content: I18n.t('mercator.salutation.success', firstname: self.consultant.first_name, surname: self.consultant.surname)) unless self.consultant_id

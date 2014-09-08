@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
     return new_user
   end
 
-  def self.assign_consultant(position: nil)
+  def self.assign_consultant(position: 0)
     available_consultants = User.sales.where(logged_in: true).order(:call_priority)
     return nil unless available_consultants.any?
 
@@ -225,5 +225,11 @@ class User < ActiveRecord::Base
 
   def self.robot
     User.find_by(surname: "Robot")
+  end
+
+  def self.no_sales_logged_in
+    unless User.assign_consultant
+      UserMailer.consultant_missing.deliver
+    end
   end
 end

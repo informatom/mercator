@@ -18,4 +18,9 @@ class UserMailer < ActionMailer::Base
     mail( :subject => "#{app_name} -- Login Link",
           :to      => user.email_address )
   end
+
+  def consultant_missing
+    mail( :subject => "#{app_name} -- Kein Vertriebsmitarbeiter angemeldet / no sales associate logged in",
+          :to      => Constant.find_by_key('service_mail').try(:value) )
+  end
 end

@@ -27,5 +27,9 @@ every 1.day, :at => '5:30 am' do
   rake "icecat:metadata:daily_update"
 end
 
+every :weekday, :at => '8:30 am' do
+  runner "User.no_sales_logged_in"
+end
+
 # whenever
 # Learn more: http://github.com/javan/whenever
