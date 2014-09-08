@@ -2,12 +2,12 @@
 require 'open-uri'
 
 namespace :users do
-  # starten als: 'bundle exec rake users:create_default_users'
-  # in Produktivumgebungen: 'bundle exec rake users:create_default_users RAILS_ENV=production'
+  # starten als: 'bundle exec rake users:create_defaults'
+  # in Produktivumgebungen: 'bundle exec rake users:create_defaults RAILS_ENV=production'
   desc "Create default users"
-  task :create_default_users => :environment do
+  task :create_defaults => :environment do
     JobLogger.info("=" * 50)
-    JobLogger.info("Started Job: categories:create_default_users")
+    JobLogger.info("Started Job: categories:create_defaults")
 
     unless User.find_by(surname: "Robot")
       User.create(first_name: "E-Mail",
@@ -29,7 +29,7 @@ namespace :users do
       end
     end
 
-    JobLogger.info("Finished Job: categories:create_default_users")
+    JobLogger.info("Finished Job: categories:create_defaults")
     JobLogger.info("=" * 50)
   end
 end
