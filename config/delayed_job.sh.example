@@ -1,0 +1,12 @@
+#!/bin/bash
+
+logger "Trying to start delayed_job"
+date >> /var/rails/appname/log/start_delayed_job.txt
+
+
+rvm_path=/home/railsuser/.rvm
+source "/home/railsuser/.rvm/scripts/rvm"
+cd /home/railsuser/inoty
+/usr/bin/env RAILS_ENV=production /home/railsuser/.rvm/rubies/ruby-2.1.2/bin/ruby /var/rails/appname/bin/delayed_job restart &>> /var/rails/appname/log/start_delayed_job.txt
+
+logger "delayed_job deamon started"
