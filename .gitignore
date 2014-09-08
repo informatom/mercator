@@ -8,7 +8,7 @@ db/schema.rb
 /config/application.yml
 /config/private_pub.yml
 /config/database.yml
-/config/deladed_job_runner
+/config/deladed_job/run
 
 log/*
 public/assets/*
