@@ -67,7 +67,9 @@ class Conversation < ActiveRecord::Base
     self.links.recent(1)[0]
   end
 
-  def inform_sales
+  def inform_sales(locale: :en)
+    I18n.locale = locale
+
     [0, 1, 2, 3, 4].each do |attempt|
       consultant = User.assign_consultant(position: attempt)
       break unless consultant
