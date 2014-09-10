@@ -25,7 +25,7 @@ namespace :users do
                     sales: true,
                     password: "123456",
                     password_confirmation: "123456",
-                    state: :active)
+                    state: "active")
       end
     end
 

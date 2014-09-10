@@ -11,6 +11,8 @@ Mercator::Application.routes.draw do
     mount MercatorMpay24::Engine => "/mercator_mpay24"
   end
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
   root :to => 'front#home'
   get 'front' => 'front#index', :as => 'front'
   get 'admin' => 'admin/front#index', :as => 'admin_front'

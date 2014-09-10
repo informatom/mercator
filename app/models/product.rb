@@ -225,4 +225,12 @@ class Product < ActiveRecord::Base
       end
     end
   end
+
+  def self.with_at_least_two_prices
+    products = []
+    Product.all.each do |product|
+      products << product if product.prices.count > 1
+    end
+    return products
+  end
 end
