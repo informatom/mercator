@@ -233,4 +233,10 @@ class Product < ActiveRecord::Base
     end
     return products
   end
+
+  def self.show_diffs_of_double_priced_in_stdout
+    with_at_least_two_prices.each do |product|
+      puts product.number, product.prices[0].attributes.to_a - product.prices[1].attributes.to_a
+    end
+  end
 end

@@ -13,6 +13,14 @@ module AttributeHashExtension
     end
     return hash
   end
+
+  def different_attributes(other_object)
+    hash = {}
+    self.attributes.each do |key, value|
+      hash[key] = [value.to_s, other_object.try(key).to_s] unless other_object.try(key) == value
+    end
+    return hash
+  end
 end
 
 ActiveRecord::Base.send :include, AttributeHashExtension
