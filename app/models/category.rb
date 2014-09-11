@@ -41,6 +41,8 @@ class Category < ActiveRecord::Base
   validates :position, numericality: { only_integer: true }
 
   has_many :products, :through => :categorizations, :inverse_of => :categories
+  has_many :active_products, :class_name => "Product", :through => :categorizations,
+           :source => :product, :scope => :active
   has_many :categorizations, -> { order :position }, :inverse_of => :category,
             dependent: :destroy, :accessible => true
 
@@ -74,6 +76,10 @@ class Category < ActiveRecord::Base
   end
 
   #--- Instance Methods ---#
+
+  def active_product_count
+    self.products.active.count + self.descendants.active.joins(:active_products).count
+  end
 
   def ancestors
     self.ancestor_ids.map { |id| Category.find(id) }

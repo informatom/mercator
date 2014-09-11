@@ -3,47 +3,36 @@
     <%= Constant.find_by_key('site_name').value + " - " + @category.name %>
   </title:>
 
-  <main-nav:>
-    <catnav:>
-      <nav class="navbar navbar-default" role="navigation" >
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <category-nav/>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <br />
-      <br />
-    </catnav:>
-  </main-nav:>
+  <main-nav: />
 
-  <content-header:>
-    <card>
-      <description:>
-        <view:long-description/>
-      </description>
-    </card>
-  </content-header>
+  <content-header: />
 
   <content-body:>
-    <filter-nav/>
-
-    <%= this.children.active.in_groups_of(3) do |group| %>
-      <div class="row">
-          <div repeat="&group" class="col-md-4">
-            <if><card/></if>
-          </div>
+    <div class="row">
+      <div class="col-md-3">
+        <category-list-nav category-id="&this.id"/>
       </div>
-    <% end %>
 
-    <%= @products.in_groups_of(2) do |group| %>
-      <div class="row">
-          <div repeat="&group" class="col-md-6">
-            <if><card/></if>
+      <div class="col-md-9">
+        <card> <description:> <view:long-description/> </description> </card>
+        <filter-nav/>
+
+        <%= this.children.active.in_groups_of(3) do |group| %>
+          <div class="row">
+              <div repeat="&group" class="col-md-4">
+                <if><card/></if>
+              </div>
           </div>
+        <% end %>
+
+        <%= @products.in_groups_of(2) do |group| %>
+          <div class="row">
+              <div repeat="&group" class="col-md-6">
+                <if><card/></if>
+              </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </content-body:>
 </show-page>
