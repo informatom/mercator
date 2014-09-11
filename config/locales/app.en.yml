@@ -605,6 +605,7 @@ en:
     printer: Printer
     printer_series: Printer Series
     product_suggestion: Product Suggestion
+    products_available: products available
     protocol:
       one: Protocol
       data_to_be_stored: I want the follewing data to be saved
@@ -636,6 +637,8 @@ en:
       change: Change Shipping Method
       select: Please select shipping method
     size: Size
+    start_conversation: Online Advice
+    starting_from: starting from
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories
@@ -644,6 +647,7 @@ en:
     switch_user: Switch User Account
     toner_upload: Upload Toner File
     upload_file: Upload File
+    up_to: up to
     url: URL
     use_navigation: Use the links in the menu for navigation.
     user_accounts_missing: There are no user accounts - please provide the details of the site administrator.

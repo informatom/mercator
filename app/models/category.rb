@@ -121,6 +121,10 @@ class Category < ActiveRecord::Base
     self.update( filters: self.property_groups_hash)
   end
 
+  def image(used_as)
+    ContentElement.where(name_de: used_as).first.try(:photo)
+  end
+
 
   # --- Searchkick Instance Methods --- #
 

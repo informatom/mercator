@@ -14,17 +14,19 @@
       </div>
 
       <div class="col-md-9">
-        <card> <description:> <view:long-description/> </description> </card>
-        <filter-nav/>
+        <card>
+          <description:>
+            <i><view:long-description/> </i>
+          </description>
+        </card>
 
-        <%= this.children.active.in_groups_of(3) do |group| %>
-          <div class="row">
-              <div repeat="&group" class="col-md-4">
-                <if><card/></if>
-              </div>
-          </div>
-        <% end %>
+        <repeat with="&this.children.active">
+          <card/>
+        </repeat>
 
+        <if test="&this.products.active">
+          <filter-nav/>
+        </if>
         <%= @products.in_groups_of(2) do |group| %>
           <div class="row">
               <div repeat="&group" class="col-md-6">

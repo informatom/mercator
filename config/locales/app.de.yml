@@ -612,6 +612,7 @@ de:
     printer: Drucker
     printer_series: Druckerserien
     product_suggestion: Produktvorschlag
+    products_available: Produkte zur Auswahl
     protocol:
       one: Protokoll
       data_to_be_stored: Es sollon folgende Daten protokolliert werden
@@ -643,6 +644,8 @@ de:
       change: Lieferart wechseln
       select: Bitte wählen Sie eine Lieferart
     size: Größe
+    start_conversation: Online Beratung
+    starting_from: von
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
     subcategories: Unterkategorien
@@ -651,6 +654,7 @@ de:
     switch_user: Account wechseln
     toner_upload: Upload Tonerfile
     upload_file: Datei hochladen
+    up_to: bis
     url: URL
     use_navigation: Verwenden Sie die Links im Menü zur Navigation.
     user_accounts_missing: Es gibt keine Benuzterkonten - legen Sie nun den ersten Administrationsaccount an.

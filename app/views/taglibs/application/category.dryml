@@ -1,14 +1,28 @@
 <def tag="card" for="Category">
-  <div class="category media" param="default" merge>
-    <if test="&this.photo.exists?">
-      <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ),
-                   category_path(this), class: "pull-left") %>
-    </if>
-    <div class="media-body">
-      <h1 class="media-header"><%= link_to( this.name, category_path(this)) %></h1>
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to( image_tag( this.photo.url(:thumb) ), category_path(this) ) %>
+    </div>
+    <div class="col-md-4">
+      <h1><%= link_to( this.name, category_path(this)) %></h1>
       <div param="description">
         <view:description/>
       </div>
+    </div>
+    <div class="col-md-4">
+      <img class="pull-left" src="&this.image('video-chat')" />
+      <h1>
+        <a href="&initiate_conversations_path">
+          <t key="mercator.start_conversation" />
+        </a>
+      </h1>
+      <p>
+        <view with="&this.active_product_count" /> <t key="mercator.products_available" />
+      </p>
+      <p>
+        <t key="mercator.starting_from" /> <view with="&number_to_currency(this.filtermin)"/>
+        <t key="mercator.up_to" /> <view with="&number_to_currency(this.filtermax)"/>
+      </p>
     </div>
   </div>
 </def>
