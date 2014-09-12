@@ -9,19 +9,18 @@
 
   <content-body:>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <category-list-nav category-id="&this.id"/>
       </div>
 
-      <div class="col-md-9">
-        <card>
-          <description:>
-            <i><view:long-description/> </i>
-          </description>
-        </card>
+      <div class="col-md-8">
+        <h1><view /></h1>
+        <p>
+          <i><view:long-description/> </i>
+        </p>
 
         <repeat with="&this.children.active">
-          <card/>
+          <card />
         </repeat>
 
         <if test="&this.products.active">

@@ -125,6 +125,18 @@ class Category < ActiveRecord::Base
     ContentElement.where(name_de: used_as).first.try(:photo)
   end
 
+  def starting_from
+    filtermins = (self.descendants.active.*.filtermin << self.filtermin).uniq
+    filtermins.delete(0.0)
+    return filtermins.min
+  end
+
+  def up_to
+    filtermaxs = (self.descendants.active.*.filtermax << self.filtermax).uniq
+    filtermaxs.delete(1000.0)
+    return filtermaxs.max
+  end
+
 
   # --- Searchkick Instance Methods --- #
 

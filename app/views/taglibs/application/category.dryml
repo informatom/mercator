@@ -1,28 +1,28 @@
 <def tag="card" for="Category">
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row category-card">
+    <div class="col-md-3">
       <%= link_to( image_tag( this.photo.url(:thumb) ), category_path(this) ) %>
     </div>
-    <div class="col-md-4">
-      <h1><%= link_to( this.name, category_path(this)) %></h1>
-      <div param="description">
-        <view:description/>
+    <div class="col-md-9">
+      <h3><%= link_to( this.name, category_path(this)) %></h3>
+      <div class="row">
+        <div class="col-md-6">
+          <view:description/>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3">
+              <img class="pull-left" src="&this.image('video-chat')" />
+            </div>
+            <div class="col-md-9">
+              <h2><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h2>
+            </div>
+          </div>
+          <view with="&this.active_product_count" /> <t key="mercator.products_available" /><br/>
+          <t key="mercator.starting_from" /> <strong><view with="&number_to_currency(this.starting_from)"/></strong>
+         <t key="mercator.up_to" />  <strong><view with="&number_to_currency(this.up_to)"/></strong>
+        </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <img class="pull-left" src="&this.image('video-chat')" />
-      <h1>
-        <a href="&initiate_conversations_path">
-          <t key="mercator.start_conversation" />
-        </a>
-      </h1>
-      <p>
-        <view with="&this.active_product_count" /> <t key="mercator.products_available" />
-      </p>
-      <p>
-        <t key="mercator.starting_from" /> <view with="&number_to_currency(this.filtermin)"/>
-        <t key="mercator.up_to" /> <view with="&number_to_currency(this.filtermax)"/>
-      </p>
     </div>
   </div>
 </def>

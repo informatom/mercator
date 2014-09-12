@@ -1,8 +1,12 @@
 $white: #fff;
-$blue: #012E4F;
+$dark-blue: #012E4F;
+$blue: #5C819E;
 $light-blue: #5B819F;
 $red: #B10D28;
 $dark-red: #98000F;
+$grey: #868686;
+$light-grey: #F1F1F1;
+$black: #000;
 
 @font-face { font-family: Glypha;
              src: url(<%= asset_path 'front/glypha.ttf' %>); }
@@ -25,10 +29,10 @@ $dark-red: #98000F;
 
 ul.dropdown-menu li a,
 ul.dropdown-menu li a:hover,
-ul.navigation.nav li a { background-color: $blue;
+ul.navigation.nav li a { background-color: $dark-blue;
                          color: $white; }
 
-.dropdown-menu { background-color: $blue;
+.dropdown-menu { background-color: $dark-blue;
                  margin: 14px 0 0;}
 ul.navigation.nav li a:hover,
 ul.navigation.nav li.open > a,
@@ -44,7 +48,7 @@ ul.navigation.nav li ul.dropdown-menu li:first-child a:after { content: '';
                                                                height: 0;
                                                                border-left: 5px solid transparent;
                                                                border-right: 12px solid transparent;
-                                                               border-bottom: 14px solid $blue; }
+                                                               border-bottom: 14px solid $dark-blue; }
 
 .label-danger { background-color: $red; }
 .label-danger:hover,
@@ -96,4 +100,14 @@ img.touchpad { z-index: -1; }
 ul.collection > li { margin-left: 0; list-style: none; }
 ul.collection { margin-left: 0; padding: 0;}
 
-.grey a { color: #868686; }
+.grey a { color: $grey; }
+
+.category-card { border: 1px solid $light-grey;
+                 margin-bottom: 10px; }
+.category-card a { color: $blue; }
+.category-card h3 { margin-top: 10px; }
+.category-card h2 { margin-top: 0px; }
+.category-card h2 a {color: $black; }
+
+.category-card:hover { border: 1px solid $blue; }
+.category-card:hover h3 { text-decoration: underline; }
