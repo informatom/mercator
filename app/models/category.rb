@@ -121,10 +121,6 @@ class Category < ActiveRecord::Base
     self.update( filters: self.property_groups_hash)
   end
 
-  def image(used_as)
-    ContentElement.where(name_de: used_as).first.try(:photo)
-  end
-
   def starting_from
     filtermins = (self.descendants.active.*.filtermin << self.filtermin).uniq
     filtermins.delete(0.0)

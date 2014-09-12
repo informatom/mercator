@@ -51,7 +51,7 @@ de:
     created_at: Erzeugt
     current_password: Aktuelles Kennwort
     customer: Kunde
-    delivery_time: Lieferzeit
+    delivery_time: Versand-/Abholbereit in
     description: Beschreibung
     detail: Details
     discount: Rabatt
@@ -588,6 +588,7 @@ de:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
         update_email:
           error: ist bereits registriert oder fehlt.
+    more_info: mehr Infos
     new_message: Neue Nachricht
     no_deliveries: keine Lieferungen
     no_invoices: keine Rechnungen

@@ -3,9 +3,8 @@
     <%= Constant.find_by_key('site_name').value + " - " + @category.name %>
   </title:>
 
-  <main-nav: />
-
-  <content-header: />
+  <content-header: >
+  </content-header: >
 
   <content-body:>
     <div class="row">
@@ -15,24 +14,9 @@
 
       <div class="col-md-8">
         <h1><view /></h1>
-        <p>
-          <i><view:long-description/> </i>
-        </p>
-
-        <repeat with="&this.children.active">
-          <card />
-        </repeat>
-
-        <if test="&this.products.active">
-          <filter-nav/>
-        </if>
-        <%= @products.in_groups_of(2) do |group| %>
-          <div class="row">
-              <div repeat="&group" class="col-md-6">
-                <if><card/></if>
-              </div>
-          </div>
-        <% end %>
+        <p><i><view:long-description/></i></p>
+        <card repeat="&this.children.active"/>
+        <card repeat="&@products"/>
       </div>
     </div>
   </content-body:>

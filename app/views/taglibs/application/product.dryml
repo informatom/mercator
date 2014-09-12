@@ -1,57 +1,54 @@
 <def tag="card" for="Product">
-  <div class="product media well" param="default" merge>
-    <set inventory="&this.determine_inventory"/>
-    <span class="pull-left">
-      <if test="&this.photo.exists?">
-        <p><%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid" ), product_path(this)) %></p>
-      </if>
-      <p><strong><t key="attributes.delivery_time" />:</strong> <br/> <view:delivery-time/></p>
-    </span>
-
-    <div class="media-body">
-    <div class="pull-right text-right">
-      <transition-button transition="add_to_basket" class="btn btn-success" />
+  <set inventory="&this.determine_inventory"/>
+  <div class="row product-card" param="default" merge>
+    <div class="col-md-4 text-center">
+      <br/><br/>
+      <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+      <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
+      <transition-link transition="add_to_basket"><photo name="in-den-warenkorb" class="card-button pull-left"/></transition-link>
       <if test="&session[:compared].include?(this.id)">
         <transition-button transition="dont_compare" class="btn btn-info" />
       </if>
       <else>
-        <transition-button transition="compare" class="btn btn-info" />
+        <transition-link transition="compare"><photo name="produkt-vergleichen" class="card-button pull-right"/></transition-link>
       </else>
-
-      <p class="label">
-        <t key="mercator.excl_vat" /> <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %>
-      </p>
-      <br/>
-      <p class="label">
-        <t key="mercator.incl_vat" />
-        <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
-      </p>
     </div>
 
-      <h1 class="media-header">
+    <div class="col-md-4">
+      <h4>
         <if test="&inventory">
           <%= link_to( this.determine_inventory.name, product_path(this)) %>
         </if>
         <else>
           <%= link_to( this.title, product_path(this)) %>
         </else>
-      </h1>
-
-      <if test="&inventory">
-        <p><strong><view:inventory.comment/></strong></p>
-      </if>
-
-      <div param="description"> <view:description/> </div>
-
-      <if test="&this.document.exists?">
-        <%= link_to( this.document.filename, this.document) %>
-      </if>
-
+      </h4>
       <if test="&this.features">
         <ul>
           <li repeat="&this.features"><view:text/></li>
         </ul>
       </if>
+    </div>
+
+    <div class="col-md-4">
+      <p class="text-right">
+        <span class="h3 text-right"> <%= number_to_currency( inventory.determine_price(customer_id: current_user.id) ) %> </span>
+        <t key="mercator.excl_vat" /><br/>
+        <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
+        <small><t key="mercator.incl_vat" /></small>
+      </p>
+
+      <p><small><view:warranty/></small></p>
+      <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
+
+      <div class="row">
+        <div class="col-md-3">
+          <photo name="video-chat" class="pull-left" />
+        </div>
+        <div class="col-md-9">
+          <h3><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h3>
+        </div>
+      </div>
     </div>
   </div>
 </def>

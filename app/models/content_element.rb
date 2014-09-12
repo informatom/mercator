@@ -51,6 +51,10 @@ class ContentElement < ActiveRecord::Base
 
   # --- Class Methods --- #
   def self.find_by_name(param)
-    self.find_by_name_de(param)
+    find_by_name_de(param)
+  end
+
+  def self.image(name: nil)
+    where(name_de: name).first.try(:photo) || where(name_en: name).first.try(:photo)
   end
 end

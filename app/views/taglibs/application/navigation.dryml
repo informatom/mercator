@@ -144,6 +144,7 @@
   </div>
 </def>
 
+
 <def tag="language-selector" >
   <a class="dropdown-toggle" id="droplang" data-toggle="dropdown" href="#">
     <if test="&I18n.locale == :de"><image src="de.png"/></if>
@@ -160,6 +161,7 @@
     </li>
   </ul>
 </def>
+
 
 <def tag="language-selector-plain" >
   <span class="dropdown" >
@@ -183,6 +185,10 @@
 
 <def tag="greeter" >
   Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
+</def>
+
+
+<def tag="admin" >
   <if test="&current_user.administrator?">
     <br/>
     <a href='/admin'><%= fa_icon "cog", class: "text-danger" %></a>

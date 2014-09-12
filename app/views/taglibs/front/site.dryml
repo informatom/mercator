@@ -1,0 +1,41 @@
+<extend tag="page">
+  <old-page merge nav-location="sub">
+    <navbar: param>
+      <div class="container">
+        <br/>
+        <div class="row">
+          <div class="col-lg-4">
+            <a href="/"><image width="110%" name="ivellio-logo" /></a>
+          </div>
+          <div class="col-lg-8 text-right">
+            <div class="row">
+              <div class="col-lg-5">
+                <br/>
+                <live-search/>
+              </div>
+              <div class="col-lg-7 text-right">
+                <br /><br />
+                <a href="/">Home</a> | <language-selector-plain /> | <greeter /> |
+                <if test="&current_user.surname == 'Gast'"><a href="/switch">Anmelden</a></if>
+                <else><a href="/logout">Abmelden</a></else>
+              </div>
+              <admin /><br /><br />
+              Tel. 01 587 57 70 &nbsp; &nbsp;
+              <a href="skype:verkauf.ivellio?call">Skype <image name="skype" /></a> &nbsp; &nbsp;
+
+              <if test="&current_user.basket">
+                <a with="&current_user.basket" class="basket">
+                  <%= fa_icon "shopping-cart", class:"fa-lg" %>
+                  <span part="summary" class="label label-danger" style="display: inline">
+                    <%= current_user.basket.lineitems.count %> Pos. /
+                    <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
+                  </span>
+                </a>
+              </if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </navbar:>
+  </old-page>
+</extend>

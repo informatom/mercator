@@ -102,12 +102,14 @@ ul.collection { margin-left: 0; padding: 0;}
 
 .grey a { color: $grey; }
 
-.category-card { border: 1px solid $light-grey;
+.product-card, .category-card { border: 1px solid $light-grey;
                  margin-bottom: 10px; }
-.category-card a { color: $blue; }
-.category-card h3 { margin-top: 10px; }
-.category-card h2 { margin-top: 0px; }
-.category-card h2 a {color: $black; }
+.product-card a, .category-card a { color: $blue; }
+.product-card h3, .category-card h3 { margin-top: 10px; }
+.product-card h2, .category-card h2 { margin-top: 0px; }
+.product-card h2 a, .category-card h2 a {color: $black; }
 
-.category-card:hover { border: 1px solid $blue; }
-.category-card:hover h3 { text-decoration: underline; }
+.product-card:hover, .category-card:hover { border: 1px solid $blue; }
+.product-card:hover, .category-card:hover h3 { text-decoration: underline; }
+
+.card-button { width: 50%; }

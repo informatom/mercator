@@ -1,0 +1,3 @@
+<def tag="photo" attrs="name">
+  <img src="&ContentElement.image(name: name)" merge-attrs />
+</def>
