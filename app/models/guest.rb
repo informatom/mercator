@@ -12,5 +12,9 @@ class Guest < Hobo::Model::Guest
     I18n.default_locale
   end
 
+  def name
+    "Gast"
+  end
+
   attr_accessor :basket
 end
