@@ -1,7 +1,7 @@
 <def tag="card" for="Category">
   <div class="row category-card">
     <div class="col-md-3">
-      <%= link_to( image_tag( this.photo.url(:thumb) ), category_path(this) ) %>
+      <%= link_to( image_tag( this.photo.url(:small) ), category_path(this) ) %>
     </div>
     <div class="col-md-9">
       <h3><%= link_to( this.name, category_path(this)) %></h3>
