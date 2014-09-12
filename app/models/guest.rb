@@ -16,5 +16,9 @@ class Guest < Hobo::Model::Guest
     "Gast"
   end
 
+  def surname
+    "Gast"
+  end
+
   attr_accessor :basket
 end
