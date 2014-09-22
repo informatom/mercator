@@ -31,7 +31,7 @@
 <def tag="mini-card" for="Category">
   <div class="col-md-3 category-card">
     <p class="text-center"><%= link_to( image_tag( this.photo.url(:thumb) ), category_path(this), ) %></p>
-    <h4 class="text-center"><%= link_to( this.name, category_path(this)) %></h4>
+    <h5 class="text-center"><%= link_to( this.name, category_path(this)) %></h5>
   </div>
 </def>
 

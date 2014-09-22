@@ -13,7 +13,11 @@
       </div>
 
       <div class="col-md-8">
-        <mini-card repeat="&this"/>
+        <% this.in_groups_of(4) do |group| %>
+          <div class="row">
+            <mini-card repeat="&group"/>
+          </div>
+        <% end %>
       </div>
     </div>
   </content-body:>
