@@ -69,5 +69,7 @@ Mercator::Application.routes.draw do
   get 'logout(.:format)' => 'users#logout'
   get 'forgot_password(.:format)' => 'users#forgot_password'
   post 'forgot_password(.:format)' => 'users#forgot_password'
+
+  get 'categories' => 'categories#index'
   get ':id' => 'webpages#show', :as => 'webpage_in_root'
 end

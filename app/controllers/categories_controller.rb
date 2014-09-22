@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   hobo_model_controller
-  auto_actions :show
+  auto_actions :show, :index
 
   before_filter :domain_shop_redirect
 
@@ -44,5 +44,12 @@ class CategoriesController < ApplicationController
         @maxslider = @max
       end
     end
+  end
+
+
+  def index
+    @categories = Category.where(ancestry: nil).active
+    self.this = @categories
+    hobo_index
   end
 end

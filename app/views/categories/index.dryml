@@ -1,0 +1,20 @@
+<index-page>
+  <title:>
+    <%= Constant.find_by_key('site_name').value %>
+  </title:>
+
+  <content-header: >
+  </content-header: >
+
+  <content-body:>
+    <div class="row glow">
+      <div class="col-md-4">
+        <category-list-nav />
+      </div>
+
+      <div class="col-md-8">
+        <mini-card repeat="&this"/>
+      </div>
+    </div>
+  </content-body:>
+</index-page>
