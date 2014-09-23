@@ -1,0 +1,10 @@
+<def tag="breadcrumb" polymorphic />
+
+<def tag="breadcrumb" for="Webpage">
+  <h4>
+    <repeat with="&this.ancestors">
+      <a href="&this"><view:title/></a> &gt;
+    </repeat>
+    <view:title />
+  </h4>
+</def>
