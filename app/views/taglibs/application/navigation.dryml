@@ -29,8 +29,8 @@
     <right:>
       <li>
         <a href="chat.html" style="background-color: #fff; color: #012E4F;">
-          <img src="&ContentElement.where(name_de: 'video-chat').first.photo" />
-          <h3 style="display: inline; vertical-align: bottom">&nbsp; Live-Chat</h3>
+          <img src="&ContentElement.where(name_de: 'video-chat').first.photo" height="24" />
+          <h4 style="display: inline; vertical-align: bottom">&nbsp; Live-Chat</h4>
         </a>
       </li>
     </right:>
@@ -47,7 +47,7 @@
         <li param='basket'>
           <nav-item with="&current_user.basket">
             <%= fa_icon "shopping-cart", class:"fa-lg" %>
-            <span part="summary" style="display: inline">
+            <span part="summaryxxx" style="display: inline">
               <%= current_user.basket.lineitems.count %> Pos.
               <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
             </span>
@@ -187,12 +187,35 @@
 
 
 <def tag="admin" >
-  <if test="&current_user.administrator?">
-    <br/>
-    <a href='/admin'><%= fa_icon "cog", class: "text-danger" %></a>
+  <p>&nbsp;
+    <if test="&current_user.administrator?">
+      <a href='/admin'><%= fa_icon "cog", class: "text-danger" %></a>
+    </if>
+    <if test="&current_user.sales?">
+      <a href='/sales'><%= fa_icon "building", class: "text-success" %></a>
+      <a href='/contracting'><%= fa_icon "university", class: "text-warning" %></a>
+    </if>
+  </p>
+</def>
+
+<def tag="skype-and-tel">
+  Tel. 01 587 57 70
+  &nbsp; &nbsp;
+  <a href="skype:verkauf.ivellio?call">
+    Skype <photo name="skype" height="24px"/>
+  </a>
+  &nbsp; &nbsp;
+</def>
+
+<def tag="basket-info">
+  <if test="&current_user.basket">
+    <a with="&current_user.basket" class="basket">
+      <%= fa_icon "shopping-cart", class:"fa-lg" %>
+      <span part="summary" class="label label-danger" style="display: inline">
+        <%= current_user.basket.lineitems.count %> Pos. /
+        <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
+      </span>
+    </a>
   </if>
-  <if test="&current_user.sales?">
-    <a href='/sales'><%= fa_icon "building", class: "text-success" %></a>
-    <a href='/contracting'><%= fa_icon "university", class: "text-warning" %></a>
-  </if>
+  <br/><br/>
 </def>
