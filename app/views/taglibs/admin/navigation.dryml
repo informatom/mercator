@@ -1,7 +1,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Sites") %> ...
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Sites") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
         <nav-item href="#{base_url}/"><t key='mercator.frontend_subsite_name'/></nav-item>
@@ -13,7 +13,7 @@
     </li>
 
     <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.User") %> ...
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.User") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
         <nav-item with="&User">
@@ -29,7 +29,7 @@
     </li>
 
     <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Product") %> ...
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("mercator.shop") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
         <nav-item with="&Category">
@@ -90,9 +90,6 @@
         </nav-item>
         <nav-item with="&ContentElement">
           <ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item with="&PageContentElementAssignment">
-          <ht key="page_content_element_assignment.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
         <nav-item with="&PageTemplate">
           <ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht>

@@ -637,6 +637,7 @@ en:
     shipping_method:
       change: Change Shipping Method
       select: Please select shipping method
+    shop: Webshop
     size: Size
     start_conversation: Online Advice
     starting_from: starting from

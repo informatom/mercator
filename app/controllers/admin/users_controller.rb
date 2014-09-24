@@ -7,8 +7,9 @@ class Admin::UsersController < Admin::AdminSiteController
 
   def index
     self.this = User.paginate(:page => params[:page])
-                    .search([params[:search], :name, :email_address])
-                    .order_by(parse_sort_param(:name, :email_address))
+                    .search([params[:search], :surname, :first_name, :email_address])
+                    .order_by(parse_sort_param(:surname, :email_address, :last_login_at, :firstname,
+                                               :sales, :sales_manager, :administrator, :login_count, :logged_in))
     hobo_index
   end
 end

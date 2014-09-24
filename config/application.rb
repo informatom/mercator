@@ -65,5 +65,7 @@ module Mercator
     config.ember.app_name = "Contracting"
     config.handlebars.templates_root = "contracting/templates"
     config.handlebars.precompile = true
+
+    WillPaginate.per_page = 20
   end
 end
