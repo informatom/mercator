@@ -5,12 +5,12 @@
       <br/><br/>
       <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
       <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
-      <transition-link transition="add_to_basket"><photo name="in-den-warenkorb" class="card-button pull-left"/></transition-link>
+      <transition-link transition="add_to_basket" method="put"><photo name="in-den-warenkorb" class="card-button pull-left"/></transition-link>
       <if test="&session[:compared].include?(this.id)">
         <transition-button transition="dont_compare" class="btn btn-info" />
       </if>
       <else>
-        <transition-link transition="compare"><photo name="produkt-vergleichen" class="card-button pull-right"/></transition-link>
+        <transition-link transition="compare" method="put"><photo name="produkt-vergleichen" class="card-button pull-right"/></transition-link>
       </else>
     </div>
 
