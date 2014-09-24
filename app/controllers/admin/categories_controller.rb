@@ -27,7 +27,8 @@ class Admin::CategoriesController < Admin::AdminSiteController
                           .where{(name_de.matches_any my{@search}) |
                                  (name_en.matches_any my{@search}) |
                                  (description_de.matches_any my{@search}) |
-                                 (description_en.matches_any my{@search}) }
+                                 (description_en.matches_any my{@search}) |
+                                 (state.matches_any my{@search}) }
                           .order_by(parse_sort_param(:name_de, :name_en, :this))
     else
       self.this = Category.paginate(:page => params[:page])

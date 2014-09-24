@@ -42,7 +42,8 @@ class Admin::WebpagesController < Admin::AdminSiteController
       @search = params[:search].split(" ").map{|word| "%" + word + "%"}
       self.this = Webpage.paginate(:page => params[:page])
                           .where{(title_de.matches_any my{@search}) |
-                                 (title_en.matches_any my{@search})}
+                                 (title_en.matches_any my{@search}) |
+                                 (state.matches_any my{@search})}
                          .order_by(parse_sort_param(:title_de, :title_en, :state, :url, :position, :slug, :this))
     else
       self.this = Webpage.paginate(:page => params[:page])
