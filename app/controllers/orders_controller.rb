@@ -6,10 +6,6 @@ class OrdersController < ApplicationController
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
-  # can be found in mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
-  include OrdersControllerExtensions if Rails.application.config.try(:payment) == "mpay24"
-
-
   def refresh
     self.this = Order.find(params[:id])
     hobo_show
@@ -32,30 +28,29 @@ class OrdersController < ApplicationController
       # A quick ckeck, if erp_account_number is current (User could have been changed since last job run)
       current_user.update_erp_account_nr()
 
-      if self.this.push_to_mesonic()
-        payment if Rails.application.config.try(:payment) == "mpay24"
-
-        do_transition_action :place do
-          flash[:success] = I18n.t("mercator.messages.order.place.success")
-          flash[:notice] = nil
-
-          Order.create(user: current_user) # and create a new basket ...
-          render action: :confirm
-        end
-
-      else
-        flash[:error] = I18n.t("mercator.messages.order.place.failure")
-        flash[:notice] = nil
-        render action: :error
-      end
-    else
-      do_transition_action :place do
-        flash[:success] = I18n.t("mercator.messages.order.place.success")
+      unless self.this.push_to_mesonic()
+        flash[:error] = I18n.t "mercator.messages.order.place.failure"
         flash[:notice] = nil
 
-        Order.create(user: current_user) # and create a new basket ...
-        render action: :confirm
+        render action: :error and return
       end
+    end
+
+    if Rails.application.config.try(:payment) == "mpay24"
+      unless self.payment
+        flash[:error] = I18n.t "mercator.messages.order.payment.failure"
+        flash[:notice] = nil
+
+        render action: :error and return
+      end
+    end
+
+    do_transition_action :place do
+      flash[:success] = I18n.t "mercator.messages.order.place.success"
+      flash[:notice] = nil
+
+      Order.create(user: current_user) # and create a new basket ...
+      render action: :confirm
     end
   end
 

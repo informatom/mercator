@@ -576,6 +576,8 @@ de:
         place:
           success: "Ihre Bestellung wurde übermittelt und wird in Kürze bearbeitet."
           error: "Ihre Bestellung konnte nicht übernommen werden. Wir werden das Problem in Kürze analysieren."
+        payment:
+          failure: "Die Zahlungstransaktion war nicht erfolgreich."
       product:
         add_to_basket:
           success: "Das Produkt wurde zum Warenkorb hinzugefügt."
@@ -633,8 +635,8 @@ de:
     sales_subsite_name: Vertriebswesen
     sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
     salutation:
-      success: "Guten Tag! Mein Name ist %{firstname} %{surname}. Wie kann ich Ihnen helfen?"
-      call: "Guten Tag! Mein Name ist %{firstname} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
+      success: "Guten Tag! Mein Name ist %{first_name} %{surname}. Wie kann ich Ihnen helfen?"
+      call: "Guten Tag! Mein Name ist %{first_name} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
       sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
       new_conversation: "Haben Sie Zeit, eine Anfrage anzunehmen?"
       out_of_office_hours: "Sie kontaktieren uns außerhalb unserer Geschäftszeiten. Unsere Geschäftszeiten sind "
