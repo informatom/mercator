@@ -569,6 +569,8 @@ en:
         place:
           success: Your order is transmitted and will be processed shortly.
           error: "Your order could not be processed. We will analyze the problem shortly."
+        payment:
+          failure: "The payment transaction failed."
       product:
         add_to_basket:
           success: The product was added to the basket.

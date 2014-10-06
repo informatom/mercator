@@ -576,6 +576,8 @@ de:
         place:
           success: "Ihre Bestellung wurde übermittelt und wird in Kürze bearbeitet."
           error: "Ihre Bestellung konnte nicht übernommen werden. Wir werden das Problem in Kürze analysieren."
+        payment:
+          failure: "Die Zahlungstransaktion war nicht erfolgreich."
       product:
         add_to_basket:
           success: "Das Produkt wurde zum Warenkorb hinzugefügt."
