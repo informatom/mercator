@@ -32,7 +32,7 @@ class ConversationsController < ApplicationController
 
     message_content =
       if Constant.office_hours?
-        I18n.t('mercator.salutation.call')
+        I18n.t('mercator.salutation.call', first_name: User.robot.first_name, surname: User.robot.surname)
       else
         I18n.t('mercator.salutation.out_of_office_hours') + Constant.pretty_office_hours
       end

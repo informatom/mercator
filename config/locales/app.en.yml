@@ -626,9 +626,9 @@ en:
     sales_subsite_name: Sales
     sales_subheading: The page for consulting sessions management in the Mercator Guided Selling System
     salutation:
-      success: "Hello! My name is %{firstname} %{surname}. How can I help you?"
+      success: "Hello! My name is %{first_name} %{surname}. How can I help you?"
       sorry: "Unfortunately, we have no sales representative available for you right now. Please try later or stay at this page."
-      call: "Hello! My name is %{firstname} %{surname}. Please give me I title for your call and I'm getting a sales representative for you."
+      call: "Hello! My name is %{first_name} %{surname}. Please give me I title for your call and I'm getting a sales representative for you."
       out_of_office_hours: "You are contacting us outside office hours. They are "
       new_conversation: "Can you take a new conversation?"
       callback: "Please, give me a call, my phone number is:"
