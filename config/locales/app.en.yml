@@ -477,6 +477,8 @@ en:
       heading: Activate Account
     reset_password:
       heading: Set Password
+    show:
+      heading: User Summary
 
   female: Mrs.
   male: Mr.

@@ -1,18 +1,20 @@
 <def tag="card" for="Address">
   <div class="well">
     <header: param>
-        <a action="edit" if="&can_edit?"
-                         param="edit-link"
-                         class="btn btn-primary btn-small pull-right"
-                         params="&{:order_id => params[:order_id]}">
-          <ht key="address.actions.edit">Edit</ht>
-        </a>
       <h4 param="heading"><t key="&this.gender" /> <view:title /> <view:first-name/> <view:surname/></h4>
     </header:>
     <body: param>
-      <view:company/> <if:detail>, <view/></if><br/>
-      <view:street/>, <view:postalcode/> <view:city/>, <view:country/><br />
-      <view:phone/>
+      <p>
+        <view:company/> <if:detail>, <view/></if><br/>
+        <view:street/>, <view:postalcode/> <view:city/>, <view:country/><br />
+        <view:phone/>
+      </p>
+      <p>
+        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-small pull-right"
+                         params="&{:order_id => params[:order_id]}">
+          <ht key="address.actions.edit">Edit</ht>
+        </a><br/>
+      </p>
     </body:>
   </div>
 </def>

@@ -484,6 +484,8 @@ de:
       heading: Account aktivieren
     reset_password:
       heading: Kennwort festlegen
+    show:
+      heading: Benutzerübersicht
 
   male: Herr
   female: Frau
