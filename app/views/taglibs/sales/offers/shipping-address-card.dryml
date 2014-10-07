@@ -1,7 +1,7 @@
 <def tag="shipping-address-card" >
   <h3><t key="activerecord.models.address.one" /></h3>
   <div class="well">
-    <b><t key="attributes.company"/>:</b> <click-editor-innards:shipping-company/><br/>
+    <b><t key="attributes.company"/>:</b><click-editor-innards:shipping-company/><br/>
     <b><t key="attributes.gender"/>:</b> <click-editor-innards:shipping-gender/><br/>
     <b><t key="attributes.title"/>:</b> <click-editor-innards:shipping-title/><br/>
     <b><t key="attributes.first_name"/>:</b> <click-editor-innards:shipping-first-name/><br/>
@@ -11,6 +11,6 @@
     <b><t key="attributes.postalcode"/>:</b> <click-editor-innards:shipping-postalcode/><br/>
     <b><t key="attributes.city"/>:</b>  <click-editor-innards:shipping-city/><br/>
     <b><t key="attributes.country"/>:</b> <click-editor-innards:shipping-country/><br/>
-    <b><t key="attributes.gender"/>:</b> <click-editor-innards:shipping-phone/>
+    <b><t key="attributes.phone"/>:</b> <click-editor-innards:shipping-phone/>
   </div>
 </def>

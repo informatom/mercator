@@ -4,7 +4,7 @@
     <b><t key="attributes.company"/>:</b> <click-editor-innards:billing-company/><br/>
     <b><t key="attributes.gender"/>:</b> <click-editor-innards:billing-gender/><br/>
     <b><t key="attributes.title"/>:</b> <click-editor-innards:billing-title/><br/>
-    <b><t key="attributes.firstname"/>:</b> <click-editor-innards:billing-firstname/><br/>
+    <b><t key="attributes.first_name"/>:</b> <click-editor-innards:billing-first-name/><br/>
     <b><t key="attributes.surname"/>:</b> <strong><click-editor-innards:billing-surname/></strong><br/>
     <b><t key="attributes.detail"/>:</b> <click-editor-innards:billing-detail/><br/>
     <b><t key="attributes.street"/>:</b> <click-editor-innards:billing-street/><br/>

@@ -35,14 +35,14 @@ class Offer < ActiveRecord::Base
                   :billing_country, :billing_phone, :shipping_gender, :shipping_title, :shipping_first_name,
                   :shipping_surname, :shipping_detail, :shipping_street, :shipping_postalcode, :shipping_city,
                   :shipping_country, :shipping_phone, :offeritems, :user, :user_id, :user, :user_id,
-                  :consultant, :consultant_id, :conversation_id, :complete, :discount_rel
+                  :consultant, :consultant_id, :conversation_id, :complete, :discount_rel, :shipping_company
   has_paper_trail
 
   belongs_to :user
   validates :user, :presence => true
 
   belongs_to :consultant, :class_name => 'User'
-  validates :consultant, :presence => true
+  validates :consultant_id, :presence => true
 
   belongs_to :conversation
 
@@ -131,12 +131,12 @@ class Offer < ActiveRecord::Base
 
   def name
     I18n.t('activerecord.models.offer.one') + " (" +
-    I18n.t('activerecord.attributes.offer.lifecycle.states.' + state) + ") " + shipping_company + " " +
+    I18n.t('activerecord.attributes.offer.lifecycle.states.' + state) + ") " + (shipping_company || "") + " " +
     I18n.t('mercator.from') + " " + I18n.l(created_at).to_s
   end
 
   def sum
-    self.offeritems.sum('value') - self.discount
+    offeritems.sum('value') - discount
   end
 
   def discount

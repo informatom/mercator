@@ -48,7 +48,7 @@ de:
       email_address: &email_address "E-Mail-Adresse"
       name: "Name"
       password: "Passwort"
-      remember_me: "Remember me"
+      remember_me: "Erinnere Dich an mich!"
       login: "Login"
       signup: "Konto anlegen"
       forgot_password: &forgot_password "Passwort vergessen?"
