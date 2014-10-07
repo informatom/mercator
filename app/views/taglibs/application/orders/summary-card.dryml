@@ -1,5 +1,5 @@
 <def tag="summary-card" for="Order">
-  <table class="table well table-striped table-condensed">
+  <table class="table well table-condensed">
     <if test="&this.discount_rel != 0">
       <tr>
         <td>- <view:discount-rel/>% <t key='attributes.discount'/></td>
@@ -11,7 +11,7 @@
       </tr>
     </if>
 
-    <tr>
+    <tr class="order-darkgrey">
       <td><t key='mercator.sum_excl_vat'/></td>
       <td>
         <div class="text-right">

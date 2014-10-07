@@ -1,7 +1,10 @@
 <extend tag="show-page" for="Order">
   <old-show-page merge>
+
+    <container: class="glow"/>
+
     <content-header:>
-      <h1><view:name/></h1>
+      <h2><view:name/></h2>
     </content-header:>
 
     <field-list: replace>
@@ -45,17 +48,16 @@
                 <payment-card/>
               </else>
             </if>
-            <p class="pull-right"><my-transition-link transition="delete_all_positions" class="btn-danger btn-small"/></p>
+            <p class="pull-right"><my-transition-link transition="delete_all_positions" class="btn-danger btn-sm"/></p>
           </div>
         </div>
 
         <if test="&this.lineitems">
-          <table class="table well table-striped">
+          <table class="table well">
             <thead>
-              <tr>
-                <th></th>
+              <tr class="order-darkgrey">
+                <th><t key='attributes.symbolic_image'/></th>
                 <th><t key='attributes.amount'/></th>
-                <th></th>
                 <th><t key='attributes.product_number'/></th>
                 <th><t key='attributes.description'/></th>
                 <th><t key='activerecord.attributes.lineitem.product_price'/></th>
@@ -65,12 +67,12 @@
             </thead>
             <tbody part="lineitems">
               <repeat with="&this.lineitems">
-                <tr class="success">
+                <tr class="order-lightgrey">
                   <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
-                  <td><view:amount/> <view:unit/></td>
                   <td>
-                    <my-transition-link transition="add_one" class="btn-success btn-small"/>
-                    <my-transition-link transition="remove_one" class="btn-warning btn-small"/>
+                    <view:amount/> <view:unit/><br/>
+                    <my-transition-link transition="add_one" class="btn-success btn-xs"/>
+                    <my-transition-link transition="remove_one" class="btn-danger btn-xs"/>
                   </td>
                   <td><view:product-number/></td>
                   <td>
@@ -95,7 +97,7 @@
                     <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
                   </td>
                   <td>
-                    <my-transition-link transition="delete_from_basket" class="btn-danger btn-small"/>
+                    <my-transition-link transition="delete_from_basket" class="btn-danger btn-sm"/>
                     <else>
                       <if test="&this.state == 'shipping_costs'">
                         <t key="activerecord.models.shipping_cost.other" />
@@ -113,9 +115,8 @@
                 </tr>
                 <if test="&this.product && this.upselling">
                   <repeat with="&this.product.supplies[0..4]">
-                    <tr class="warning table-condensed">
+                    <tr class="table-condensed">
                       <td><%= image_tag this.photo.url(:thumb), width: "25%" %></td>
-                      <td></td>
                       <td></td>
                       <td><view:number/></td>
                       <td><view:title/></td>
@@ -126,7 +127,7 @@
                       </td>
                       <td></td>
                       <td>
-                        <my-transition-link transition="add_to_basket" class="btn btn-success btn-small" />
+                        <my-transition-link transition="add_to_basket" class="btn btn-success btn-sm" />
                       </td>
                     </tr>
                   </repeat>
@@ -180,8 +181,8 @@
           <h3><t key="mercator.parked" /> <view/></h3>
           <table class="table well table-striped">
             <thead>
-              <tr>
-                <th></th>
+              <tr class="order-darkgrey">
+                <th><t key='attributes.symbolic_image'/></th>
                 <th><t key='attributes.amount'/></th>
                 <th><t key='attributes.product_number'/></th>
                 <th><t key='attributes.description'/></th>
@@ -192,14 +193,14 @@
             </thead>
             <tbody>
               <repeat with="&this.lineitems">
-                <tr class="success">
+                <tr  class="order-lightgrey">
                   <td><if:product><%= image_tag this.photo.url(:thumb) %></if></td>
                   <td><view:amount/> <view:unit/></td>
                   <td><view:product-number/></td>
                   <td> <view:description/> </td>
                   <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
                   <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
-                  <td><my-transition-link transition="transfer_to_basket" class="btn-success btn-small"/></td>
+                  <td><my-transition-link transition="transfer_to_basket" class="btn-success btn-sm"/></td>
                 </tr>
               </repeat>
             </tbody>

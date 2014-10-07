@@ -144,6 +144,7 @@ de:
     supplyrelations: Zubehörzuordnungen
     supplies: Zubehör
     surname: Familienname
+    symbolic_image: Symbolfoto
     title: Titel
     unit: Einheit
     upload: Hochladen
@@ -611,7 +612,7 @@ de:
       number: Auftragsdatum
       text: Bestelltext
     packing_slip_number: Lieferscheinnummer
-    parked: Geparkte(r)
+    parked: Geparkter
     paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
     password: Kennwort ändern
     place_offer: Angebot legen

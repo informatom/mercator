@@ -10,7 +10,7 @@
         <view:phone/>
       </p>
       <p>
-        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-small pull-right"
+        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-sm pull-right"
                          params="&{:order_id => params[:order_id]}">
           <ht key="address.actions.edit">Edit</ht>
         </a><br/>

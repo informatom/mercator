@@ -106,7 +106,7 @@
                       <view with="&number_to_currency(this.value)"/>
                     </div>
                   </td>
-                  <td> <my-transition-link transition="delete_from_offer" class="btn-danger btn-small"/> </td>
+                  <td> <my-transition-link transition="delete_from_offer" class="btn-danger btn-sm"/> </td>
                 </tr>
               </repeat>
             </tbody>

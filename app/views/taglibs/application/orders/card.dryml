@@ -5,7 +5,7 @@
     </header:>
     <body: param>
       <summary-card/>
-      <a action="show" if="&can_view?" param="show-link" class="btn btn-primary btn-small pull-right">
+      <a action="show" if="&can_view?" param="show-link" class="btn btn-primary btn-sm pull-right">
         <ht key="order.actions.show">Show</ht>
       </a>
       <br/>
