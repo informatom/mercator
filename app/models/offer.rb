@@ -130,9 +130,7 @@ class Offer < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def name
-    I18n.t('activerecord.models.offer.one') + " (" +
-    I18n.t('activerecord.attributes.offer.lifecycle.states.' + state) + ") " + (shipping_company || "") + " " +
-    I18n.t('mercator.from') + " " + I18n.l(created_at).to_s
+    I18n.t('activerecord.models.offer.one') + " " + id.to_s + " " + I18n.t('mercator.from') + " " + I18n.l(created_at).to_s
   end
 
   def sum

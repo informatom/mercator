@@ -1,7 +1,9 @@
 <extend tag="show-page" for="Offer">
   <old-show-page merge>
-    <content-header:>
-      <h1><view:name/></h1>
+    <container: class="glow"/>
+
+    <content-header: class="nopadding nomargin">
+      <h2><view:name/></h2>
     </content-header:>
 
     <field-list: replace >
@@ -35,12 +37,10 @@
           </div>
           <div class="col-md-4">
             <div part="complete">
-              <strong><t key='attributes.valid_to'/>:</strong>
-              <view:valid-until class="label label-warning"/>
-              <br/><br/>
-              <strong><t key='activerecord.attributes.offer.complete'/>:</strong>
-              <view:complete class="label label-info"/>
-              <br/><br/>
+              <br/> <br/> <br/>
+              <strong><t key='attributes.state'/>: </strong><view:state /> <br/>
+              <strong><t key='attributes.valid_to'/>: </strong> <view:valid-until /> <br/>
+              <strong><t key='activerecord.attributes.offer.complete'/>: </strong> <view:complete />
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
         <div part="offeritems">
           <table class="table well table-striped">
             <thead>
-              <tr>
+              <tr class="order-darkgrey">
                 <th><t key='activerecord.attributes.offer.position'/></th>
                 <th><t key='attributes.photo'/></th>
                 <th><div class="text-right"><t key='attributes.amount'/></div></th>

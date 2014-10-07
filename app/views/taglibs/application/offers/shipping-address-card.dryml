@@ -3,13 +3,9 @@
   <div class="well">
     <view:shipping-company/><br/>
     <view:shipping-detail/><br/>
-    <view:shipping-gender/><br/>
-    <view:shipping-title/><br/>
-    <view:shipping-first-name/><br/>
-    <strong><view:billing-surname/></strong><br/>
+    <view:shipping-gender/> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
     <view:shipping-street/><br/>
-    <view:shipping-postalcode/> <view:shipping-city/><br/>
-    <view:shipping-country/><br/>
+    <view:shipping-postalcode/> <view:shipping-city/>, <view:shipping-country/><br/>
     <view:shipping-phone/>
   </div>
 </def>

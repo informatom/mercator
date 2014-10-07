@@ -3,13 +3,9 @@
   <div class="well">
     <view:billing-company/><br/>
     <view:billing-detail/><br/>
-    <view:billing-gender/><br/>
-    <view:billing-title/><br/>
-    <view:billing-first-name/><br/>
-    <strong><view:billing-surname/></strong><br/>
+    <view:billing-gender/> <view:billing-title/> <view:billing-first-name/> <strong><view:billing-surname/></strong><br/>
     <view:billing-street/><br/>
-    <view:billing-postalcode/> <view:billing-city/><br/>
-    <view:billing-country/><br/>
+    <view:billing-postalcode/> <view:billing-city/>, <view:billing-country/><br/>
     <view:billing-phone/>
   </div>
 </def>

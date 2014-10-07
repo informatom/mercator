@@ -3,7 +3,7 @@
 <def tag="summary-card" for="Offer">
   <table class="table well table-striped table-condensed">
     <if test="&this.discount_rel != 0">
-      <tr>
+      <tr class="order-darkgrey">
         <td>- <view:discount-rel/>% <t key='attributes.discount'/></td>
         <td>
           <div class="text-right">
