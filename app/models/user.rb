@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
                params: [ :password, :password_confirmation ], unless: :crypted_password
 
     transition :login_via_email, {:active => :active},
-               available_to: :key_holder, if: "Time.now() - self.key_timestamp < 10.minutes"
+               available_to: :key_holder, if: "Time.now() - key_timestamp < 10.minutes"
   end
 
   def signed_up?
@@ -144,20 +144,20 @@ class User < ActiveRecord::Base
     acting_user.sales? ||
     lifecycle.provided_key ||
     new_record? ||
-    ( self.sales? && ( field == :first_name || field == :surname ) ) ||
-    ( self.administrator? && ( field == :first_name || field == :surname ) )
+    ( sales? && ( field == :first_name || field == :surname ) ) ||
+    ( administrator? && ( field == :first_name || field == :surname ) )
   end
 
   #--- Instance Methods ---#
 
   def name
-    name = [self.title, self.first_name, self.surname].join " "
-    name = self.gender + " " + name if self.gender
+    name = [title, first_name, surname].join " "
+    name = gender + " " + name if gender
     return name
   end
 
   def gtc_accepted_current?
-    self.gtc_version_of == Gtc.current
+    gtc_version_of == Gtc.current
   end
 
   def basket
@@ -166,23 +166,23 @@ class User < ActiveRecord::Base
 
   def sync_agb_with_basket
       # If user has already confirmed ...
-      if self.gtc_version_of == Gtc.current
-        self.basket.update(gtc_version_of:   Gtc.current,
-                           gtc_confirmed_at: self.gtc_confirmed_at)
+      if gtc_version_of == Gtc.current
+        basket.update(gtc_version_of:   Gtc.current,
+                      gtc_confirmed_at: gtc_confirmed_at)
       end
 
       # If user had confirmed, when he was guest ...
-      if self.gtc_version_of == Gtc.current
-         self.update(gtc_version_of:   Gtc.current,
-                     gtc_confirmed_at: self.basket.gtc_confirmed_at)
+      if gtc_version_of == Gtc.current
+         update(gtc_version_of:   Gtc.current,
+                gtc_confirmed_at: basket.gtc_confirmed_at)
       end
   end
 
   #--- Class Methods --- #
 
   def self.initialize()
-    new_user = self.create(surname: "Gast",
-                           email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
+    new_user = create(surname: "Gast",
+                      email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
     new_user.lifecycle.create_key!(new_user)
     return new_user
   end

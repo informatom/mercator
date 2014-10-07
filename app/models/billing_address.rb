@@ -76,6 +76,6 @@ class BillingAddress < ActiveRecord::Base
   #--- Class Methods ---#
 
   def if_country_exists
-    errors.add(:base, "Unbekanntes Land") unless Country.find_by_name(self.country)
+    errors.add(:base, "Unbekanntes Land") unless Country.find_by_name(country)
   end
 end

@@ -72,16 +72,16 @@ class Inventory < ActiveRecord::Base
   def determine_price(date: Time.now, amount: 1, incl_vat: false, customer_id: nil)
     customer_id ||= current_user.id if try(:current_user)
 
-    price = self.select_price(date: date, amount: amount)
+    price = select_price(date: date, amount: amount)
     price_excl_vat = price.value if price
 
     if Rails.application.config.try(:erp) == "mesonic"
-      mesonic_price = self.mesonic_price(customer_id: customer_id)
+      mesonic_price = mesonic_price(customer_id: customer_id)
       price_excl_vat = mesonic_price if mesonic_price
     end
 
     if incl_vat
-      vat = self.determine_vat(date: date, amount: amount)
+      vat = determine_vat(date: date, amount: amount)
       price_incl_vat = price_excl_vat * (100 + vat) / 100
       return price_incl_vat
     else
@@ -90,13 +90,13 @@ class Inventory < ActiveRecord::Base
   end
 
   def select_price(date: Time.now, amount: 1)
-    price = self.prices.where{(valid_to >= date) & (valid_from <= date) &
-                              (scale_from <= amount) & (scale_to >= amount)}.first
+    price = prices.where{(valid_to >= date) & (valid_from <= date) &
+                         (scale_from <= amount) & (scale_to >= amount)}.first
     return price
   end
 
   def determine_vat(date: Time.now, amount: 1)
-    price = self.select_price(date: date, amount: amount)
+    price = select_price(date: date, amount: amount)
     return price.vat
   end
 end

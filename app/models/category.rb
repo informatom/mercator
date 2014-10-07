@@ -76,11 +76,11 @@ class Category < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def active_product_count
-    self.products.active.count + self.descendants.active.joins{ products }.where{ products.state == "active" }.count
+    products.active.count + descendants.active.joins{ products }.where{ products.state == "active" }.count
   end
 
   def ancestors
-    self.ancestor_ids.map { |id| Category.find(id) }
+    ancestor_ids.map { |id| Category.find(id) }
   end
 
   def active_siblings
@@ -92,22 +92,22 @@ class Category < ActiveRecord::Base
   end
 
   def try_deprecation
-    return if self.state != "active"
-    return if self.products.where(state: "active").count > 0
+    return if state != "active"
+    return if products.where(state: "active").count > 0
 
     @any_child_active = false
-    self.children.each do |child|
+    children.each do |child|
       child.try_deprecation
       @any_child_active = true if child.state == "active"
     end
     return if @any_child_active == true
 
-    self.lifecycle.deactivate!(User.where(administrator: true).first)
-    JobLogger.info("Category " + self.name_de + " deactivated.")
+    lifecycle.deactivate!(User.where(administrator: true).first)
+    JobLogger.info("Category " + name_de + " deactivated.")
   end
 
   def property_groups_hash
-    product_ids = self.products.includes(:values).active.*.id
+    product_ids = products.includes(:values).active.*.id
     values = Value.where(product_id: product_ids).includes(:property_group).includes(:property)
     property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
     property_groups = property_pairs.group_by { |pair| pair[0]}
@@ -116,17 +116,17 @@ class Category < ActiveRecord::Base
   end
 
   def update_property_hash
-    self.update( filters: self.property_groups_hash)
+    update( filters: property_groups_hash)
   end
 
   def starting_from
-    filtermins = (self.descendants.active.*.filtermin << self.filtermin).uniq
+    filtermins = (descendants.active.*.filtermin << filtermin).uniq
     filtermins.delete(0.0)
     return filtermins.min
   end
 
   def up_to
-    filtermaxs = (self.descendants.active.*.filtermax << self.filtermax).uniq
+    filtermaxs = (descendants.active.*.filtermax << filtermax).uniq
     filtermaxs.delete(1000.0)
     return filtermaxs.max
   end
@@ -152,71 +152,71 @@ class Category < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.find_by_name(param)
-    self.find_by_name_de(param)
+    find_by_name_de(param)
   end
 
   def self.auto
     @auto = Category.where(name_de: "automatisch").first
-    @auto = self.create(name_de: "automatisch",
-                        name_en: "automatic",
-                        description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
-                        description_en: "automatically created froducts from ERP import Job",
-                        long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
-                        long_description_en: "Please complete products and put them into categories",
-                        parent: nil,
-                        position: 1) unless @auto
+    @auto = create(name_de: "automatisch",
+                   name_en: "automatic",
+                   description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
+                   description_en: "automatically created froducts from ERP import Job",
+                   long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
+                   long_description_en: "Please complete products and put them into categories",
+                   parent: nil,
+                   position: 1) unless @auto
     return @auto
   end
 
   def self.discounts
     @discounts = Category.where(name_de: "Aktionen").first
-    @discounts = self.create(name_de: "Aktionen",
-                             name_en: "Discounts",
-                             description_de: "Aktionsartikel",
-                             description_en: "Dicounted Articles",
-                             long_description_de: "Aktionsartikel",
-                             long_description_en: "Dicounted Articles",
-                             parent: nil,
-                             position: 1) unless @discounts
+    @discounts = create(name_de: "Aktionen",
+                        name_en: "Discounts",
+                        description_de: "Aktionsartikel",
+                        description_en: "Dicounted Articles",
+                        long_description_de: "Aktionsartikel",
+                        long_description_en: "Dicounted Articles",
+                        parent: nil,
+                        position: 1) unless @discounts
     return @discounts
   end
 
   def self.novelties
     @novelties = Category.where(name_de: "Neuheiten").first
-    @novelties = self.create(name_de: "Neuheiten",
-                             name_en: "New",
-                             description_de: "Neuheiten",
-                             description_en: "New",
-                             long_description_de: "Neuheiten",
-                             long_description_en: "Novelties",
-                             parent: nil,
-                             position: 1) unless @novelties
+    @novelties = create(name_de: "Neuheiten",
+                        name_en: "New",
+                        description_de: "Neuheiten",
+                        description_en: "New",
+                        long_description_de: "Neuheiten",
+                        long_description_en: "Novelties",
+                        parent: nil,
+                        position: 1) unless @novelties
     return @novelties
   end
 
   def self.topseller
     @topseller = Category.where(name_de: "Topseller").first
-    @topseller = self.create(name_de: "Topseller",
-                             name_en: "Topseller",
-                             description_de: "Topseller",
-                             description_en: "Topseller",
-                             long_description_de: "Topseller",
-                             long_description_en: "Topseller",
-                             parent: nil,
-                             position: 1) unless @topseller
+    @topseller = create(name_de: "Topseller",
+                        name_en: "Topseller",
+                        description_de: "Topseller",
+                        description_en: "Topseller",
+                        long_description_de: "Topseller",
+                        long_description_en: "Topseller",
+                        parent: nil,
+                        position: 1) unless @topseller
     return @topseller
   end
 
   def self.orphans
     @orphans = Category.where(name_de: "verwaiste Produkte").first
-    @orphans = self.create(name_de: "verwaiste Produkte",
-                           name_en: "Orphans",
-                           description_de: "verwaiste Produkte",
-                           description_en: "Orphans",
-                           long_description_de: "verwaiste Produkte",
-                           long_description_en: "Orphans",
-                           parent: nil,
-                           position: 1) unless @orphans
+    @orphans = create(name_de: "verwaiste Produkte",
+                      name_en: "Orphans",
+                      description_de: "verwaiste Produkte",
+                      description_en: "Orphans",
+                      long_description_de: "verwaiste Produkte",
+                      long_description_en: "Orphans",
+                      parent: nil,
+                      position: 1) unless @orphans
     return @orphans
   end
 

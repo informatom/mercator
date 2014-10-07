@@ -34,15 +34,15 @@ class PageTemplate < ActiveRecord::Base
   end
 
   def save_to_disk
-    extension = self.dryml? ? ".dryml" : ".html.erb"
-    wrong_extension = self.dryml? ? ".html.erb" : ".dryml"
+    extension = dryml? ? ".dryml" : ".html.erb"
+    wrong_extension = dryml? ? ".html.erb" : ".dryml"
 
-    filename = Rails.root.to_s + "/app/views/page_templates/" + self.name + extension
+    filename = Rails.root.to_s + "/app/views/page_templates/" + name + extension
     File.open(filename, "w+") do |f|
-      f.write(self.content)
+      f.write(content)
     end
 
-    legacy_file = Rails.root.to_s + "/app/views/page_templates/" + self.name + wrong_extension
+    legacy_file = Rails.root.to_s + "/app/views/page_templates/" + name + wrong_extension
     File.delete(legacy_file) if File.exists?(legacy_file)
   end
 end

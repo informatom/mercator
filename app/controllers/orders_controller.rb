@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
       # A quick ckeck, if erp_account_number is current (User could have been changed since last job run)
       current_user.update_erp_account_nr()
 
-      unless self.this.push_to_mesonic()
+      unless this.push_to_mesonic()
         flash[:error] = I18n.t "mercator.messages.order.place.failure"
         flash[:notice] = nil
 
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
     end
 
     if Rails.application.config.try(:payment) == "mpay24"
-      unless self.payment
+      unless payment
         flash[:error] = I18n.t "mercator.messages.order.payment.failure"
         flash[:notice] = nil
 

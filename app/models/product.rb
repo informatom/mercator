@@ -107,11 +107,11 @@ class Product < ActiveRecord::Base
   def determine_price(amount: 1, date: Time.now(), incl_vat: false, customer_id: nil)
     customer_id ||= current_user.id if try(:current_user)
 
-    inventory = self.determine_inventory(amount: amount)
+    inventory = determine_inventory(amount: amount)
     if inventory
-      return inventory.determine_price(amount: amount,
-                                       date: date,
-                                       incl_vat: incl_vat,
+      return inventory.determine_price(amount:      amount,
+                                       date:        date,
+                                       incl_vat:    incl_vat,
                                        customer_id: customer_id)
     else
       return nil
@@ -119,7 +119,7 @@ class Product < ActiveRecord::Base
   end
 
   def delivery_time(amount: 1, date: Time.now())
-    inventory = self.determine_inventory(amount: amount)
+    inventory = determine_inventory(amount: amount)
     delivery_time = inventory ? inventory.delivery_time : I18n.t("mercator.on_request")
     return delivery_time
   end
@@ -138,19 +138,16 @@ class Product < ActiveRecord::Base
   def determine_inventory(amount: 1)
     amount_requested = amount
     if Constant.find_by_key("fifo").value == "true"
-      # FIFO
-      self.inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first
+      inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # FIFO
     else
-      # LIFO
-      self.inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first
+      inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # LIFO
     end
   end
 
   # --- Searchkick Instance Methods --- #
 
   def search_data
-    {
-      title:            title_de,
+    { title:            title_de,
       title_de:         title_de,
       title_en:         title_en,
       number:           number,
@@ -161,20 +158,19 @@ class Product < ActiveRecord::Base
       warranty:         warranty_de,
       category_ids:     categories.pluck(:id),
       state:            state,
-      price:            determine_price
-    }.merge(property_hash)
+      price:            determine_price }.merge(property_hash)
   end
 
   def property_hash
-    JobLogger.info("Product " + self.id.to_s + " reindexed.")
-    Hash[self.values.includes(:property).map { |value| [value.property.name_de, value.display.rstrip]}]
+    JobLogger.info("Product " + id.to_s + " reindexed.")
+    Hash[values.includes(:property).map { |value| [value.property.name_de, value.display.rstrip]}]
   end
 
 
   #--- Class Methods --- #
 
   def self.find_by_name(param)
-    self.find_by_number(param)
+    find_by_number(param)
   end
 
   def self.create_in_auto(number: nil, title: nil, description: nil)
@@ -187,11 +183,11 @@ class Product < ActiveRecord::Base
     end
 
     description = title if description.blank?
-    @product = self.new(number: number,
-                        title_de: title,
-                        description_de: description)
+    @product = new(number:         number,
+                   title_de:       title,
+                   description_de: description)
     @product.categorizations.new(category_id: @auto_category.id,
-                                 position: newposition)
+                                 position:    newposition)
     if @product.save
       ::JobLogger.info("Product " + @product.number + " saved in Auto Category.")
     else

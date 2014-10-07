@@ -84,38 +84,38 @@ class Order < ActiveRecord::Base
 
     transition :cash_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
-      self.update(billing_method: "cash_payment")
+      update(billing_method: "cash_payment")
     end
     transition :cash_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
-      self.update(billing_method: "cash_payment")
+      update(billing_method: "cash_payment")
     end
 
     transition :atm_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
-      self.update(billing_method: "atm_payment")
+      update(billing_method: "atm_payment")
     end
     transition :atm_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
-      self.update(billing_method: "atm_payment")
+      update(billing_method: "atm_payment")
     end
 
     transition :pre_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='pre_payment'" do
-      self.update(billing_method: "pre_payment")
+      update(billing_method: "pre_payment")
     end
     transition :pre_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='pre_payment'" do
-      self.update(billing_method: "pre_payment")
+      update(billing_method: "pre_payment")
     end
 
     transition :e_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='e_payment'" do
-      self.update(billing_method: "e_payment")
+      update(billing_method: "e_payment")
     end
     transition :e_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='e_payment'" do
-      self.update(billing_method: "e_payment")
+      update(billing_method: "e_payment")
     end
 
 
@@ -155,16 +155,16 @@ class Order < ActiveRecord::Base
 
     transition :parcel_service_shipment, {:basket => :basket},
                available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
-      self.update(shipping_method: "parcel_service_shipment")
-      self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(self.billing_method)
-      self.add_shipment_costs
+      update(shipping_method: "parcel_service_shipment")
+      update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(billing_method)
+      add_shipment_costs
     end
 
     transition :parcel_service_shipment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
-      self.update(shipping_method: "parcel_service_shipment")
-      self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(self.billing_method)
-      self.add_shipment_costs
+      update(shipping_method: "parcel_service_shipment")
+      update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(billing_method)
+      add_shipment_costs
     end
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do
@@ -211,13 +211,13 @@ class Order < ActiveRecord::Base
   end
 
   def discount
-    self.discount_rel = 0 unless self.discount_rel
-    lineitems.any? ? self.discount_rel * self.lineitems.sum('value') / 100 : 0
+    self.discount_rel = 0 unless discount_rel
+    lineitems.any? ? discount_rel * lineitems.sum('value') / 100 : 0
   end
 
   def sum_incl_vat
     if lineitems.any?
-      self.sum + self.lineitems.*.calculate_vat_value(discount_rel: self.discount_rel).sum
+      sum + lineitems.*.calculate_vat_value(discount_rel: discount_rel).sum
     else
       0
     end
@@ -225,10 +225,10 @@ class Order < ActiveRecord::Base
 
   def vat_items
     vat_items = Hash.new
-    grouped_lineitems = self.lineitems.group_by{|lineitem| lineitem.vat}
+    grouped_lineitems = lineitems.group_by{|lineitem| lineitem.vat}
     grouped_lineitems.each_pair do |percentage, itemgroup|
       vat_items[percentage] = itemgroup.reduce(0) do |sum, lineitem|
-        sum + lineitem.calculate_vat_value(discount_rel: self.discount_rel)
+        sum + lineitem.calculate_vat_value(discount_rel: discount_rel)
       end
     end
     return vat_items
@@ -243,12 +243,12 @@ class Order < ActiveRecord::Base
   end
 
   def add_product(product: nil, amount: 1)
-    if lineitem = self.lineitems.where(product_number: product.number, state: "active").first
-      lineitem.increase_amount(user_id: self.user_id, amount: amount)
+    if lineitem = lineitems.where(product_number: product.number, state: "active").first
+      lineitem.increase_amount(user_id: user_id, amount: amount)
     else
-      last_position = self.lineitems.*.position.max || 0
-      Lineitem.create_from_product(order_id: self.id, product: product, amount: amount,
-                                   position: last_position + 10, user_id: self.user_id)
+      last_position = lineitems.*.position.max || 0
+      Lineitem.create_from_product(order_id: id, product: product, amount: amount,
+                                   position: last_position + 10, user_id: user_id)
     end
   end
 
@@ -256,7 +256,7 @@ class Order < ActiveRecord::Base
     if basket.id !=id #first run or second run?
       positions_merged = "merged" if lineitems.present? && basket.lineitems.present?
       basket.lineitems.each do |lineitem|
-        duplicate = self.lineitems.where(product_id: lineitem.product_id).first
+        duplicate = lineitems.where(product_id: lineitem.product_id).first
         if duplicate.present?
           duplicate.merge(lineitem: lineitem)
         else
@@ -265,9 +265,9 @@ class Order < ActiveRecord::Base
       end
 
       # Saving the latest confirmmation of GTC
-      if basket.gtc_version_of && basket.gtc_version_of > self.gtc_version_of
-        self.update(gtc_version_of: basket.gtc_version_of,
-                    gtc_confirmed_at: basket.gtc_confirmed_at)
+      if basket.gtc_version_of && basket.gtc_version_of > gtc_version_of
+        update(gtc_version_of:   basket.gtc_version_of,
+               gtc_confirmed_at: basket.gtc_confirmed_at)
       end
 
       basket.delete
@@ -277,8 +277,7 @@ class Order < ActiveRecord::Base
 
   def billing_address_filled?
     # all obligatory fields in billing address are filled?
-    self.billing_surname && self.billing_street &&  self.billing_postalcode &&
-    self.billing_city && self.billing_country
+    billing_surname && billing_street &&  billing_postalcode && billing_city && billing_country
   end
 
   def add_shipment_costs
@@ -294,32 +293,32 @@ class Order < ActiveRecord::Base
       # non user-specific derivation
       shipping_cost_value ||= webartikel_versandspesen.Preis
 
-      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
-                                                       user_id: acting_user.id,
-                                                       position: 10000,
+      Lineitem::Lifecycle.insert_shipping(acting_user, order_id:       id,
+                                                       user_id:        acting_user.id,
+                                                       position:       10000,
                                                        product_number: shipping_cost_product_number,
                                                        description_de: "Versandkostenanteil",
                                                        description_en: "Shipping Costs",
-                                                       amount: 1,
-                                                       unit: "Pau.",
-                                                       product_price: shipping_cost_value,
-                                                       vat: webartikel_versandspesen.Steuersatzzeile * 10 ,
-                                                       value: shipping_cost_value,
-                                                       product_id: product_versandspesen.id)
+                                                       amount:         1,
+                                                       unit:           "Pau.",
+                                                       product_price:  shipping_cost_value,
+                                                       vat:            webartikel_versandspesen.Steuersatzzeile * 10 ,
+                                                       value:          shipping_cost_value,
+                                                       product_id:     product_versandspesen.id)
     else
       shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
 
-      Lineitem::Lifecycle.insert_shipping(acting_user, order_id: self.id,
-                                                       user_id: acting_user.id,
-                                                       position: 10000,
+      Lineitem::Lifecycle.insert_shipping(acting_user, order_id:       id,
+                                                       user_id:        acting_user.id,
+                                                       position:       10000,
                                                        product_number: shipping_cost_product_number,
                                                        description_de: "Versandkostenanteil",
                                                        description_en: "Shipping Costs",
-                                                       amount: 1,
-                                                       unit: "Pau.",
+                                                       amount:         1,
+                                                       unit:          "Pau.",
                                                        product_price: shipping_cost.value,
-                                                       vat: shipping_cost.vat,
-                                                       value: shipping_cost.value)
+                                                       vat:           shipping_cost.vat,
+                                                       value:         shipping_cost.value)
     end
   end
 

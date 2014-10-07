@@ -37,9 +37,9 @@ class Sales::ConversationsController < Sales::SalesSiteController
       data.class.class_eval { attr_accessor :original_filename }
       data.original_filename = params[:qqfilename]
       if params[:qqfile].content_type.split("/")[0] == "image"
-        self.this.downloads.create(name: params[:qqfilename].split(".")[0], photo: data)
+        this.downloads.create(name: params[:qqfilename].split(".")[0], photo: data)
       else
-        self.this.downloads.create(name: params[:qqfilename].split(".")[0], document: data)
+        this.downloads.create(name: params[:qqfilename].split(".")[0], document: data)
       end
       render :json => { :success => "true" }
       PrivatePub.publish_to("/conversations/"+ this.id.to_s, type: "downloads")

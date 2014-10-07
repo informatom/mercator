@@ -63,17 +63,17 @@ class Offer < ActiveRecord::Base
                    subsite: "sales"
 
     transition :add_position, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
-      last_position = self.offeritems.*.position.max || 0
+      last_position = offeritems.*.position.max || 0
       Offeritem::Lifecycle.add(acting_user,
-                               position: last_position + 10 ,
-                               vat: 20,
-                               offer_id: self.id,
-                               user_id: self.user_id,
+                               position:       last_position + 10 ,
+                               vat:            20,
+                               offer_id:       id,
+                               user_id:        user_id,
                                description_de: "dummy",
-                               amount: 1,
-                               product_price: 0,
-                               value: 0,
-                               unit: "Stk.",
+                               amount:         1,
+                               product_price:  0,
+                               value:          0,
+                               unit:           "Stk.",
                                product_number: "manuell" )
     end
 
@@ -138,13 +138,13 @@ class Offer < ActiveRecord::Base
   end
 
   def discount
-    self.discount_rel = 0 unless self.discount_rel
-    offeritems.any? ? self.discount_rel * self.offeritems.sum('value') / 100 : 0
+    self.discount_rel = 0 unless discount_rel
+    offeritems.any? ? discount_rel * offeritems.sum('value') / 100 : 0
   end
 
   def sum_incl_vat
     if offeritems.any?
-      self.sum + self.offeritems.*.calculate_vat_value(discount_rel: self.discount_rel).sum
+      sum + offeritems.*.calculate_vat_value(discount_rel: discount_rel).sum
     else
       0
     end
@@ -152,10 +152,10 @@ class Offer < ActiveRecord::Base
 
   def vat_items
     vat_items = Hash.new
-    grouped_offeritems = self.offeritems.group_by{|offeritem| offeritem.vat}
+    grouped_offeritems = offeritems.group_by{|offeritem| offeritem.vat}
     grouped_offeritems.each_pair do |percentage, itemgroup|
       vat_items[percentage] = itemgroup.reduce(0) do |sum, offeritem|
-        sum + offeritem.calculate_vat_value(discount_rel: self.discount_rel)
+        sum + offeritem.calculate_vat_value(discount_rel: discount_rel)
       end
     end
     return vat_items

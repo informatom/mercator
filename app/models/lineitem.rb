@@ -61,56 +61,56 @@ class Lineitem < ActiveRecord::Base
 
     transition :delete_from_basket, {:active => :active},
                                     if: "acting_user.basket == order", available_to: :all do
-      self.delete
+      delete
     end
 
     transition :transfer_to_basket, {:active => :active},
                                     if: "acting_user == order.user", available_to: :all do
-      self.update(order: acting_user.basket)
+      update(order: acting_user.basket)
     end
 
     transition :enable_upselling, {:active => :active},
                                   if: "acting_user.basket == order && !upselling && product.supplies.any?",
                                   available_to: :all do
-      self.update(upselling: true)
+      update(upselling: true)
     end
 
     transition :enable_upselling, {:blocked => :blocked},
                                   if: "acting_user.basket == order && !upselling && product_number && product.supplies.any?",
                                   available_to: :all do
-      self.update(upselling: true)
+      update(upselling: true)
     end
 
     transition :disable_upselling, {:active => :active},
                                    if: "acting_user.basket == order && upselling", available_to: :all do
-      self.update(upselling: false)
+      update(upselling: false)
     end
 
     transition :disable_upselling, {:blocked => :blocked},
                                    if: "acting_user.basket == order && upselling", available_to: :all do
-      self.update(upselling: false)
+      update(upselling: false)
     end
 
     transition :add_one, {:active => :active}, if: "acting_user.basket == order",
                available_to: :all do
-      amount = self.amount + 1
-      price = product.determine_price(amount: amount, customer_id: self.user.id)
-      self.update(amount: amount,
-                  product_price: price)
-      self.update(value: self.calculate_value)
+      amount = amount + 1
+      price = product.determine_price(amount: amount, customer_id: user.id)
+      update(amount: amount,
+             product_price: price)
+      update(value: calculate_value)
       PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
 
     transition :remove_one, {:active => :active}, if: "acting_user.basket == order",
                available_to: :all do
       if amount == 1
-        self.delete
+        delete
       else
-        amount = self.amount - 1
-        price = product.determine_price(amount: amount, customer_id: self.user.id)
-        self.update(amount: amount,
-                    product_price: price)
-        self.update(value: self.calculate_value)
+        amount = amount - 1
+        price = product.determine_price(amount: amount, customer_id: user.id)
+        update(amount: amount,
+               product_price: price)
+        update(value: calculate_value)
       end
       PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
@@ -145,8 +145,8 @@ class Lineitem < ActiveRecord::Base
   def increase_amount(user_id: nil, amount: 1)
     self.amount += amount
 
-    product = Product.find(self.product_id)
-    self.value = product.determine_price(amount: self.amount, customer_id: user_id) * self.amount
+    product = Product.find(product_id)
+    self.value = product.determine_price(amount: amount, customer_id: user_id) * amount
     raise unless self.save
   end
 
@@ -156,11 +156,11 @@ class Lineitem < ActiveRecord::Base
   end
 
   def calculate_vat_value(discount_rel: 0)
-    self.vat * self.value * ( 100 - discount_rel) / 100 / 100
+    vat * value * ( 100 - discount_rel) / 100 / 100
   end
 
   def calculate_value(discount_abs: self.discount_abs)
-    (self.product_price - discount_abs) * self.amount
+    (product_price - discount_abs) * amount
   end
 
   #--- Class Methods --- #

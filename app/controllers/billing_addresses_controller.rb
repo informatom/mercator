@@ -17,7 +17,7 @@ class BillingAddressesController < ApplicationController
   def update
     hobo_update do
       if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
-        current_user.update_mesonic(billing_address: self.this)
+        current_user.update_mesonic(billing_address: this)
       end
 
       if params[:billing_address][:order_id].present?
@@ -59,17 +59,17 @@ class BillingAddressesController < ApplicationController
             UserMailer.activation(current_user, current_user.lifecycle.key).deliver
           else
             self.this.email_address = nil
-            self.this.errors.clear
-            self.this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))
+            this.errors.clear
+            this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))
             render action: :enter, order_id: order.id and return
           end
         end
       end
 
-      if self.this.save
+      if this.save
         if Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production"
           if current_user.erp_account_nr.present?
-            current_user.update_mesonic(billing_address: self.this)
+            current_user.update_mesonic(billing_address: this)
           else
             current_user.push_to_mesonic
           end
@@ -99,7 +99,7 @@ class BillingAddressesController < ApplicationController
                                 :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"))
 
       if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
-        current_user.update_mesonic(billing_address: self.this)
+        current_user.update_mesonic(billing_address: this)
       end
 
       order.lifecycle.e_payment!(current_user) unless order.shipping_method
@@ -117,7 +117,7 @@ class BillingAddressesController < ApplicationController
 
   def do_trash
     do_transition_action :trash do
-      self.this.delete
+      this.delete
       redirect_to enter_billing_addresses_path({:order_id => params[:order_id]})
     end
   end

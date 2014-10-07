@@ -29,17 +29,17 @@ class Value < ActiveRecord::Base
   validate :data_meets_state
 
   def data_meets_state
-    case self.state
+    case state
       when "textual"
-        unless self.title_de.present? && self.amount.blank? && self.flag.nil?
+        unless title_de.present? && amount.blank? && flag.nil?
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
       when "numeric"
-        unless self.amount.present? && self.title_de.blank? && self.title_en.blank? && self.flag.nil?
+        unless amount.present? && title_de.blank? && title_en.blank? && flag.nil?
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
       when "flag"
-        unless !self.flag.nil? && self.title_de.blank? && self.title_en.blank? && self.amount.blank? && self.unit_de.blank? && self.unit_en.blank?
+        unless !flag.nil? && title_de.blank? && title_en.blank? && amount.blank? && unit_de.blank? && unit_en.blank?
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
     end
