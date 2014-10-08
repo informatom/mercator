@@ -486,6 +486,8 @@ en:
   no_info: ""
 
   mercator:
+    actions:
+      edit_properties: Edit Properties
     admin_subsite_name: Administration
     admin_subheading: This is the administration page for the Mercator Guided Selling System
     account: My Account

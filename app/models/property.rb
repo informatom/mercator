@@ -26,6 +26,14 @@ class Property < ActiveRecord::Base
   has_many :products, :through => :values
   has_many :values, dependent: :destroy, :inverse_of => :property, :accessible => true
 
+  lifecycle do
+    state :filterable, :default => true
+    state :unfilterable
+
+    transition :dont_filter, {:filterable => :unfilterable}, :available_to => "User.administrator", :subsite => "admin"
+    transition :filter, {:unfilterable => :filterable}, :available_to => "User.administrator", :subsite => "admin"
+  end
+
   # --- Permissions --- #
 
   def create_permitted?

@@ -1,9 +1,16 @@
 <index-page>
   <collection: replace>
-    <div class="dd">
-      <ol class="dd-list">
-        <treeview with="&this" />
-      </ol>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="dd">
+          <ol class="dd-list">
+            <treeview with="&this" action="edit_properties" />
+          </ol>
+        </div>
+      </div>
+      <div class="col-md-6" part="configarea">
+        Click on Category to edit properties.
+      </div>
     </div>
   </collection:>
 </index-page>

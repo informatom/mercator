@@ -493,6 +493,8 @@ de:
   no_info: ""
 
   mercator:
+    actions:
+      edit_properties: Eigenschaften bearbeiten
     admin_subsite_name: Administration
     admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
     account: Mein Account

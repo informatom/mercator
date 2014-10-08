@@ -21,6 +21,8 @@ class Value < ActiveRecord::Base
   belongs_to :property
   validates :property, :presence => true
 
+  default_scope { order('values.id ASC') }
+
   belongs_to :product
   validates :product, :presence => true
 

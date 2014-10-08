@@ -63,7 +63,6 @@ Mercator::Application.routes.draw do
   post 'sales' => 'sales/front#index'
   post 'sales/conversations/:id/do_upload' => 'sales/conversations#do_upload'
 
-
   post 'login(.:format)' => 'users#login'
   get 'login(.:format)' => 'users#login'
   get 'logout(.:format)' => 'users#logout'

@@ -1,0 +1,9 @@
+<h1> Category <name/> </h1>
+
+<repeat with="&@properties">
+  <p><name /></p>
+</repeat>
+
+<else>
+  No properties found
+</else>

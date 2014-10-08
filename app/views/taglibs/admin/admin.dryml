@@ -28,13 +28,37 @@
       ["active","published", "draft", "published_but_hidden", "archived", "new", "deprecated"].include? this.state %>
 </def>
 
-<def tag="treeview" attrs="title">
+<def tag="treeview" attrs="title, action">
   <li repeat data-id="#{h this.id}" class="dd-item dd3-item">
     <div class="dd-handle dd3-handle"></div>
-    <div class="dd3-content"><state-icon/> <a><%= h this.name %></a></div>
+
+    <if test="&action">
+      <div class="dd3-content">
+        <state-icon/> <a><%= h this.name %></a>
+        <%= fa_icon "edit", class: "pull-right fa-lg", id: "link" + this.id.to_s %>
+      </div>
+
+      <script>
+        $( "#link#{this.id}" ).click(function() {
+          jQuery("#configarea").html('<i class="fa fa-circle-o-notch fa-spin"></i>')
+          jQuery.ajax({
+            url: "#{this.id}/edit_properties",
+            type: "GET",
+            success: function(result){
+              jQuery("#configarea").html(result)
+            }
+          })
+        })
+      </script>
+    </if>
+
+    <else>
+      <div class="dd3-content"><state-icon/> <a><%= h this.name %></a></div>
+    </else>
+
     <if test="&this.children">
       <ol class="dd-list">
-        <treeview with="&this.children" />
+        <treeview with="&this.children" merge-atts />
       </ol>
     </if>
   </li>

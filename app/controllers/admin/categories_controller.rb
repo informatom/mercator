@@ -11,9 +11,15 @@ class Admin::CategoriesController < Admin::AdminSiteController
     @this = Category.roots.paginate(:page => 1, :per_page => Category.count)
   end
 
+  show_action :edit_properties do
+    @this = Category.find(params[:id])
+    @properties = @this.products.*.values.flatten.*.property.uniq
+  end
+
   index_action :do_treereorder do
     categories_array = ActiveSupport::JSON.decode(params[:categories])
     @categories = Category.all
+    @properties = []
     parse_categories(categories_array, nil)
     if request.xhr?
       hobo_ajax_response

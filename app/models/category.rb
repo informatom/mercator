@@ -48,11 +48,25 @@ class Category < ActiveRecord::Base
     state :new, :default => true
     state :active, :deprecated
 
-    transition :activate, {:new => :active}, :available_to => "User.administrator", :subsite => "admin"
-    transition :deactivate, { :active => :deprecated },
-               :available_to => "User.administrator", :subsite => "admin"
-    transition :reactivate, { :deprecated => :active },
-               :available_to => "User.administrator", :subsite => "admin"
+    transition :activate,
+               {:new => :active},
+               :available_to => "User.administrator",
+               :subsite => "admin"
+
+    transition :deactivate,
+               { :active => :deprecated },
+               :available_to => "User.administrator",
+               :subsite => "admin"
+
+    transition :deactivate,
+               { :new => :deprecated },
+               :available_to => "User.administrator",
+               :subsite => "admin"
+
+    transition :reactivate,
+               { :deprecated => :active },
+               :available_to => "User.administrator",
+               :subsite => "admin"
   end
 
   # --- Permissions --- #
@@ -92,7 +106,7 @@ class Category < ActiveRecord::Base
   end
 
   def try_deprecation
-    return if state != "active"
+    return if state != "active" && state != "new"
     return if products.where(state: "active").count > 0
 
     @any_child_active = false
@@ -108,8 +122,13 @@ class Category < ActiveRecord::Base
 
   def property_groups_hash
     product_ids = products.includes(:values).active.*.id
-    values = Value.where(product_id: product_ids).includes(:property_group).includes(:property)
-    property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }.uniq
+    values = Value.where(product_id: product_ids)
+                  .includes(:property_group)
+                  .includes(:property)
+                  .select{ |value| value.property.state == "filterable"}
+
+    property_pairs = values.map {|value| [value.property_group.name_de, value.property.name_de] }
+                           .uniq
     property_groups = property_pairs.group_by { |pair| pair[0]}
     property_groups.each {|key,value| property_groups[key] = value.map{|pair| pair[1]} }
     return property_groups
