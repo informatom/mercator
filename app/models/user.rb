@@ -161,7 +161,21 @@ class User < ActiveRecord::Base
   end
 
   def basket
-    Order.user_is(self).basket.first
+    Order.user_is(self).basket.last
+  end
+
+  def parked_basket
+    parked_baskets = orders.parked
+
+    # A bit of cleanup here...
+    if parked_baskets.any?
+      parked_baskets.each do |parked_basket|
+        parked_basket.delete_if_obsolete
+      end
+    end
+
+    parked_baskets = orders.parked
+    return parked_baskets.last
   end
 
   def sync_agb_with_basket

@@ -62,6 +62,7 @@ gem "daemons"                                         # to daemonize delayed_job
 gem "delayed_job_web"                                 # Web interface for delayed job
 
 gem "holidays"                                        # Determine if there is a public holiday
+gem "naught"                                          # Null Object library
 
 gem "mercator_icecat", path:"vendor/engines/mercator_icecat"   # Engine for importing Icecat Data
 gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"   # Engine for MPay24 interface

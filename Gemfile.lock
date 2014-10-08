@@ -318,6 +318,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
+    naught (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -529,6 +530,7 @@ DEPENDENCIES
   mercator_mpay24!
   messengerjs-rails
   mysql2
+  naught
   paper_trail (~> 3.0.0)
   paperclip
   private_pub

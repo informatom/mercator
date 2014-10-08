@@ -57,6 +57,7 @@ class OrdersController < ApplicationController
 
   def show
     @current_gtc = Gtc.order(version_of: :desc).first
+    @parked_basket = current_user.parked_basket
     hobo_show do
       @current_user = current_user
       @current_user.confirmation = false

@@ -176,7 +176,7 @@
           <t key="mercator.no_order_positions_yet" />
         </else>
 
-        <if with="&current_user.orders.parked.try(:first)">
+        <if with="&@parked_basket">
           <br/><br/>
           <h3><t key="mercator.parked" /> <view/></h3>
           <table class="table well table-striped">

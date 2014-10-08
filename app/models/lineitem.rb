@@ -59,39 +59,53 @@ class Lineitem < ActiveRecord::Base
                     :description_en, :amount, :unit, :product_price, :vat, :discount_abs,
                     :value, :order_id, :user_id, :delivery_time]
 
-    transition :delete_from_basket, {:active => :active},
-                                    if: "acting_user.basket == order", available_to: :all do
+    transition :delete_from_basket,
+               {:active => :active},
+               if: "acting_user.basket == order",
+               available_to: :all do
       delete
     end
 
-    transition :transfer_to_basket, {:active => :active},
-                                    if: "acting_user == order.user", available_to: :all do
+    transition :transfer_to_basket,
+               {:active => :active},
+               if: "acting_user == order.user",
+               available_to: :all do
+      parked_basket = order
       update(order: acting_user.basket)
+      parked_basket.delete_if_obsolete
     end
 
-    transition :enable_upselling, {:active => :active},
-                                  if: "acting_user.basket == order && !upselling && product.supplies.any?",
-                                  available_to: :all do
+    transition :enable_upselling,
+               {:active => :active},
+               if: "acting_user.basket == order && !upselling && product.supplies.any?",
+               available_to: :all do
       update(upselling: true)
     end
 
-    transition :enable_upselling, {:blocked => :blocked},
-                                  if: "acting_user.basket == order && !upselling && product_number && product.supplies.any?",
-                                  available_to: :all do
+    transition :enable_upselling,
+               {:blocked => :blocked},
+               if: "acting_user.basket == order && !upselling && product_number && product.supplies.any?",
+               available_to: :all do
       update(upselling: true)
     end
 
-    transition :disable_upselling, {:active => :active},
-                                   if: "acting_user.basket == order && upselling", available_to: :all do
+    transition :disable_upselling,
+               {:active => :active},
+               if: "acting_user.basket == order && upselling",
+               available_to: :all do
       update(upselling: false)
     end
 
-    transition :disable_upselling, {:blocked => :blocked},
-                                   if: "acting_user.basket == order && upselling", available_to: :all do
+    transition :disable_upselling,
+               {:blocked => :blocked},
+               if: "acting_user.basket == order && upselling",
+               available_to: :all do
       update(upselling: false)
     end
 
-    transition :add_one, {:active => :active}, if: "acting_user.basket == order",
+    transition :add_one,
+               {:active => :active},
+               if: "acting_user.basket == order",
                available_to: :all do
       amount = amount + 1
       price = product.determine_price(amount: amount, customer_id: user.id)
@@ -101,7 +115,9 @@ class Lineitem < ActiveRecord::Base
       PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
     end
 
-    transition :remove_one, {:active => :active}, if: "acting_user.basket == order",
+    transition :remove_one,
+               {:active => :active},
+               if: "acting_user.basket == order",
                available_to: :all do
       if amount == 1
         delete
@@ -186,6 +202,12 @@ class Lineitem < ActiveRecord::Base
 
     unless lineitem.save
       raise "Lineitem connot be created"
+    end
+  end
+
+  def self.cleanup_orphaned
+    Lineitem.all.each do |lineitem|
+      lineitem.delete unless lineitem.order
     end
   end
 end

@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = params[:locale] || session[:locale] || current_user.locale || I18n.default_locale
     session[:locale] = I18n.locale
-    current_user.update(locale: I18n.locale) if current_user.class != Guest && current_user.locale != I18n.locale.to_s
+    current_user.update(locale: I18n.locale) if current_user.class != Guest &&
+                                                current_user.locale != I18n.locale.to_s
   end
 
   def remember_uri
@@ -42,7 +43,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_basket
-    current_user.basket if current_user
+    if current_user && current_user.basket
+      current_user.basket
+    else
+      NullObject.new()
+    end
   end
 
 # Domainseperation

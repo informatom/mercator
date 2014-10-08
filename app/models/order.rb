@@ -322,6 +322,20 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def delete_if_obsolete
+    case lineitems.count
+    when 0 # empty?
+      delete
+    when 1 # only shipping cost?
+      if lineitems[0].product_number == Constant.find_by_key("shipping_cost_article").value
+        lineitems[0].delete
+        delete
+      end
+    else
+      false
+    end
+  end
+
   #--- Class Methods --- #
 
   def self.cleanup_deprecated

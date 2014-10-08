@@ -26,34 +26,24 @@ class UsersController < ApplicationController
 
   def login
     hobo_login
-
     if logged_in?
       current_user.update(logged_in: true)
 
-      last_user = User.find(session[:last_user]) if session[:last_user]
-      last_basket = last_user.basket if last_user
+      last_user = session[:last_user] ? User.find(session[:last_user]) : NullObject.new()
+      last_basket = last_user.basket || NullObject.new()
 
-      if last_basket
-        if current_basket.present?
-          current_basket.lifecycle.park!(current_user)
-        end
-        current_user.orders << last_basket
-        last_basket.lineitems.each do |lineitem|
-          lineitem.update(user_id: current_user.id)
-        end
+      current_basket.delete_if_obsolete
+      last_basket.delete_if_obsolete
+
+      if last_basket && !last_basket.frozen?
+        current_basket.lifecycle.park!(current_user)
+        last_basket.update(user_id: current_user.id)
+        last_basket.lineitems.update_all(user_id: current_user.id)
       end
 
-      unless current_user.basket
-        Order.create(user: current_user)
-      end
-
+      Order.create(user: current_user) unless current_user.basket
       current_user.sync_agb_with_basket
-
-      if last_user && last_user.conversations.any?
-        last_user.conversations.each do |conversation|
-          conversation.update(customer_id: current_user.id)
-        end
-      end
+      last_user.conversations.update_all(customer_id: current_user.id)
     end
   end
 
@@ -67,6 +57,7 @@ class UsersController < ApplicationController
   end
 
   def logout
+    current_basket.delete_if_obsolete
     current_user.update(logged_in: false) unless current_user.class == Guest
     hobo_logout
   end
@@ -74,6 +65,7 @@ class UsersController < ApplicationController
   def switch
     last_user_id = current_user.id
     current_user.update(logged_in: false)
+    current_basket.delete_if_obsolete
     hobo_logout do
       session[:last_user] = last_user_id
       redirect_to :user_login
@@ -124,5 +116,4 @@ class UsersController < ApplicationController
       end
     end
   end
-
 end
