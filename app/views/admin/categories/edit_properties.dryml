@@ -1,9 +1,47 @@
 <h1> Category <name/> </h1>
+<set category-id="&this.id"/>
 
-<repeat with="&@properties">
-  <p><name /></p>
-</repeat>
+<if test="&@count == 0" >
+  No properties found
+</if>
 
 <else>
-  No properties found
+  <h2> Filterable Properties </h2>
+  <repeat with="&@filterable_properties">
+    <name class="btn btn-default btn-xs" id="property#{this.id}"/>
+
+    <script>
+      $( "#property#{this.id}" ).click(function() {
+        jQuery("#configarea").html('<i class="fa fa-circle-o-notch fa-spin"></i>')
+        jQuery.ajax({
+          url: "/admin/properties/#{this.id}/dont_filter",
+          data: { category_id: "#{category_id}" },
+          type: "PUT",
+          success: function(result){
+            jQuery("#configarea").html(result)
+          }
+        })
+      })
+    </script>
+  </repeat>
+
+
+  <h2> Unfilterable Properties </h2>
+  <repeat with="&@unfilterable_properties">
+    <name class="btn btn-default btn-xs" id="property#{this.id}"/>
+
+    <script>
+      $( "#property#{this.id}" ).click(function() {
+        jQuery("#configarea").html('<i class="fa fa-circle-o-notch fa-spin"></i>')
+        jQuery.ajax({
+          url: "/admin/properties/#{this.id}/filter",
+          data: { category_id: "#{category_id}" },
+          type: "PUT",
+          success: function(result){
+            jQuery("#configarea").html(result)
+          }
+        })
+      })
+    </script>
+  </repeat>
 </else>

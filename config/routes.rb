@@ -54,7 +54,10 @@ Mercator::Application.routes.draw do
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
 
-  post 'categories/sort' => 'categories#sort'
+  post 'admin/categories/do_treereorder' => 'admin/categories#do_treereorder'
+
+  put 'admin/categories/:id/edit_properties' => 'admin/categories#edit_properties'
+
   post 'conversations/refresh' => 'conversations#refresh'
   post 'offers/refresh' => 'offers#refresh'
   post 'orders/refresh' => 'orders#refresh'

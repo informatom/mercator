@@ -13,7 +13,10 @@ class Admin::CategoriesController < Admin::AdminSiteController
 
   show_action :edit_properties do
     @this = Category.find(params[:id])
-    @properties = @this.products.*.values.flatten.*.property.uniq
+    properties = @this.products.*.values.flatten.*.property.uniq
+    @count = properties.count
+    @filterable_properties = properties.select { |property| property.state == "filterable"}
+    @unfilterable_properties = properties.select { |property| property.state == "unfilterable"}
   end
 
   index_action :do_treereorder do

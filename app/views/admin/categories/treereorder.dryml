@@ -26,6 +26,7 @@
       hideAfter: 3
     },{
       url:"/admin/categories/do_treereorder",
+      method: "POST",
       data: 'categories=' + JSON.stringify($('.dd').nestable('serialize')),
       dataType: 'script'
     });

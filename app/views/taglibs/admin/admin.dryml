@@ -19,11 +19,11 @@
 </def>
 
 <def tag="state-icon">
-  <if test="&this.state == 'archived'"><%= fa_icon "archive" %></if>
-  <if test="&this.state == 'new'"><%= fa_icon "certificate" %></if>
-  <if test="&this.state == 'draft'"><%= fa_icon "wrench" %></if>
-  <if test="&this.state == 'published_but_hidden'"><%= fa_icon "eye-slash" %></if>
-  <if test="&this.state == 'deprecated'"><%= fa_icon "archive" %></if>
+  <if test="&this.state == 'archived'"><%= fa_icon "archive", class: "fa-lg" %></if>
+  <if test="&this.state == 'new'"><%= fa_icon "certificate", class: "fa-lg" %></if>
+  <if test="&this.state == 'draft'"><%= fa_icon "wrench", class: "fa-lg" %></if>
+  <if test="&this.state == 'published_but_hidden'"><%= fa_icon "eye-slash", class: "fa-lg" %></if>
+  <if test="&this.state == 'deprecated'"><%= fa_icon "archive", class: "fa-lg" %></if>
     <%= "(" + (h this.state) + ")" unless
       ["active","published", "draft", "published_but_hidden", "archived", "new", "deprecated"].include? this.state %>
 </def>
@@ -35,7 +35,7 @@
     <if test="&action">
       <div class="dd3-content">
         <state-icon/> <a><%= h this.name %></a>
-        <%= fa_icon "edit", class: "pull-right fa-lg", id: "link" + this.id.to_s %>
+        <%= fa_icon "edit", class: "pull-right fa-2x text-warning", id: "link" + this.id.to_s %>
       </div>
 
       <script>

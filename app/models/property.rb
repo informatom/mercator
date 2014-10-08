@@ -30,7 +30,10 @@ class Property < ActiveRecord::Base
     state :filterable, :default => true
     state :unfilterable
 
-    transition :dont_filter, {:filterable => :unfilterable}, :available_to => "User.administrator", :subsite => "admin"
+    transition :dont_filter,
+               {:filterable => :unfilterable},
+               :available_to => "User.administrator",
+               :subsite => "admin"
     transition :filter, {:unfilterable => :filterable}, :available_to => "User.administrator", :subsite => "admin"
   end
 
