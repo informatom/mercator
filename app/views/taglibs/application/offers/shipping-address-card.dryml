@@ -1,6 +1,6 @@
 <def tag="shipping-address-card" for="Offer">
   <h3><t key="activerecord.models.address.one" /></h3>
-  <div class="well">
+  <div class="well order-lightgrey">
     <view:shipping-company/><br/>
     <view:shipping-detail/><br/>
     <view:shipping-gender/> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
