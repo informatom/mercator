@@ -3,7 +3,7 @@
     <%= Constant.find_by_key('site_name').value %>
   </title:>
 
-  <content-header: />
+  <content-header: replace/>
 
   <content-body:>
     <div class="row">
