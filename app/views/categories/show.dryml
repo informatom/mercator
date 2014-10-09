@@ -3,11 +3,10 @@
     <%= Constant.find_by_key('site_name').value + " - " + @category.name %>
   </title:>
 
-  <content-header: >
-  </content-header: >
+  <content-header: />
 
   <content-body:>
-    <div class="row glow">
+    <div class="row">
       <div class="col-md-4">
         <category-list-nav category-id="&this.id"/>
       </div>
@@ -19,7 +18,6 @@
         <card repeat="&this.children.active"/>
         <card repeat="&@products"/>
       </div>
-      <partner-logos/>
     </div>
   </content-body:>
 </show-page>
