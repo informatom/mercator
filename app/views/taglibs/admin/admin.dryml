@@ -58,7 +58,7 @@
 
     <if test="&this.children">
       <ol class="dd-list">
-        <treeview with="&this.children" merge-atts />
+        <treeview with="&this.children" title action />
       </ol>
     </if>
   </li>
