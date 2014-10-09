@@ -615,6 +615,12 @@ en:
     printer_series: Printer Series
     product_suggestion: Product Suggestion
     products_available: products available
+    properties:
+      click_on_category: Click on an Edit-Icon at a Category to edit it's properties.
+      click_to_move: Klick on a property button to move it between the filterable properties and the non filtarable properties.
+      filterable_properties: Filterable Properties
+      no_properties_found: No properties found!
+      unfilterable_properties: Non-Filterable Properties
     protocol:
       one: Protocol
       data_to_be_stored: I want the follewing data to be saved

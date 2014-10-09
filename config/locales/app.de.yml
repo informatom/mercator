@@ -622,6 +622,12 @@ de:
     printer_series: Druckerserien
     product_suggestion: Produktvorschlag
     products_available: Produkte zur Auswahl
+    properties:
+      click_on_category: "Klicken Sie das Bearbeiten-Icon bei einer Kategorie an, um ihre Eigenschaften zu editieren."
+      click_to_move: "Klicken Sie auf den Button einer Eigenschaft, um Sie zwischen filterbar und nicht-filterbar zu verschieben."
+      filterable_properties: Filterbare Eigenschaften
+      no_properties_found: keine Eugenschaften gefunden
+      unfilterable_properties: Nicht filterbare Eigenschaften
     protocol:
       one: Protokoll
       data_to_be_stored: Es sollon folgende Daten protokolliert werden

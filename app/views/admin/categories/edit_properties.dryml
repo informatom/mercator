@@ -1,12 +1,14 @@
-<h1> Category <name/> </h1>
+<h1><t key="activerecord.models.property.other" /> <name/> </h1>
 <set category-id="&this.id"/>
 
 <if test="&@count == 0" >
-  No properties found
+  <t key="mercator.properties.no_properties_found" />
 </if>
 
 <else>
-  <h2> Filterable Properties </h2>
+  <t key="mercator.properties.click_to_move" />
+
+  <h2><t key="mercator.properties.filterable_properties" /></h2>
   <repeat with="&@filterable_properties">
     <name class="btn btn-default btn-xs" id="property#{this.id}"/>
 
@@ -26,7 +28,7 @@
   </repeat>
 
 
-  <h2> Unfilterable Properties </h2>
+  <h2><t key="mercator.properties.unfilterable_properties" /></h2>
   <repeat with="&@unfilterable_properties">
     <name class="btn btn-default btn-xs" id="property#{this.id}"/>
 

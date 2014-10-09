@@ -15,6 +15,7 @@
       <div class="col-md-8">
         <h1><view /></h1>
         <p><i><view:long-description/></i></p>
+        <filter-nav />
         <card repeat="&this.children.active"/>
         <card repeat="&@products"/>
       </div>

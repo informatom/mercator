@@ -5,13 +5,17 @@ class Admin::PropertiesController < Admin::AdminSiteController
 
   def do_filter
     do_transition_action :filter do
-      redirect_to edit_properties_admin_category_path(params[:category_id])
+      category = Category.find(params[:category_id])
+      category.update_property_hash
+      redirect_to edit_properties_admin_category_path(category)
     end
   end
 
   def do_dont_filter
     do_transition_action :dont_filter do
-      redirect_to edit_properties_admin_category_path(params[:category_id])
+      category = Category.find(params[:category_id])
+      category.update_property_hash
+      redirect_to edit_properties_admin_category_path(category)
     end
   end
 end

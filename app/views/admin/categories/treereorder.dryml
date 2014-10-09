@@ -9,7 +9,8 @@
         </div>
       </div>
       <div class="col-md-6" part="configarea">
-        Click on Category to edit properties.
+        <h1><t key="activerecord.models.property.other" /> </h1>
+        <t key="mercator.properties.click_on_category" />
       </div>
     </div>
   </collection:>
