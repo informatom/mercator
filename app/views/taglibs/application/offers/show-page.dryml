@@ -1,7 +1,5 @@
 <extend tag="show-page" for="Offer">
   <old-show-page merge>
-    <container: class="glow"/>
-
     <content-header: class="nopadding nomargin">
       <h2><view:name/></h2>
     </content-header:>

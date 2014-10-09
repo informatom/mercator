@@ -1,8 +1,5 @@
 <extend tag="show-page" for="Order">
   <old-show-page merge>
-
-    <container: class="glow"/>
-
     <content-header:>
       <h2><view:name/></h2>
     </content-header:>

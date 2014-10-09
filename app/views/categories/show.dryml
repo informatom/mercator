@@ -19,6 +19,7 @@
         <card repeat="&this.children.active"/>
         <card repeat="&@products"/>
       </div>
+      <partner-logos/>
     </div>
   </content-body:>
 </show-page>

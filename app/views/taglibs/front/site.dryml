@@ -1,5 +1,10 @@
 <extend tag="page">
   <old-page merge nav-location="sub">
+    <container: class="glow"/>
+
+    <append-main-row:>
+      <partner-logos/>
+    </append-main-row:>
     <navbar: param>
       <div class="container">
         <br/>
@@ -29,3 +34,9 @@
     </navbar:>
   </old-page>
 </extend>
+
+<def tag="partner-logos">
+  <div class="partner-logos">
+    <photo name='partner-logos' />
+  </div>
+</def>
