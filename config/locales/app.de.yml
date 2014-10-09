@@ -647,12 +647,13 @@ de:
     sales_subsite_name: Vertriebswesen
     sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
     salutation:
-      success: "Guten Tag! Mein Name ist %{first_name} %{surname}. Wie kann ich Ihnen helfen?"
       call: "Guten Tag! Mein Name ist %{first_name} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
-      sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
+      callback: "Bitten rufen Sie mich zurück, meine Telefonnummer ist:"
+      holidays: "Wir haben heute einen Feiertag. Sie können uns aber gerne eine Nachricht hinterlassen."
       new_conversation: "Haben Sie Zeit, eine Anfrage anzunehmen?"
       out_of_office_hours: "Sie kontaktieren uns außerhalb unserer Geschäftszeiten. Unsere Geschäftszeiten sind "
-      callback: "Bitten rufen Sie mich zurück, meine Telefonnummer ist:"
+      sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
+      success: "Guten Tag! Mein Name ist %{first_name} %{surname}. Wie kann ich Ihnen helfen?"
     select_a_category: Bitte wählen Sie eine Kategorie!
     set_password: Kennwort festlegen
     shipping_method:

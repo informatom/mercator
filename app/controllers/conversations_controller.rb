@@ -30,8 +30,12 @@ class ConversationsController < ApplicationController
     current_basket.update(conversation_id: this.id)
     creator_page_action :initiate
 
+    holiday_country_code = Constant.find_by_key('holiday_country_code').try(:value).try(:to_sym) || :at
+
     message_content =
-      if Constant.office_hours?
+      if Holidays.on(Date.today, holiday_country_code).any?
+        I18n.t('mercator.salutation.holidays')
+      elsif Constant.office_hours?
         I18n.t('mercator.salutation.call', first_name: User.robot.first_name, surname: User.robot.surname)
       else
         I18n.t('mercator.salutation.out_of_office_hours') + Constant.pretty_office_hours
