@@ -10,12 +10,10 @@ class PropertyGroup < ActiveRecord::Base
     timestamps
   end
 
-  default_scope { order(position: :asc) }
-
   attr_accessible :name_de, :name_en, :position, :icecat_id
   translates :name
   has_paper_trail
-  acts_as_list
+  default_scope { order('property_groups.position ASC') }
 
   validates :position, numericality: { only_integer: true }
 
