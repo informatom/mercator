@@ -6,12 +6,13 @@ class Admin::WebpagesController < Admin::AdminSiteController
   autocomplete :name, :query_scope => [:title_de_contains]
 
   index_action :treereorder do
-    @this = Webpage.roots.paginate(:page => 1, :per_page => Webpage.count)
+    @this = @webpages = Webpage.roots.paginate(:page => 1, :per_page => Webpage.count)
+    @webpagesarray = childrenarray(webpages: @webpages).to_json
   end
 
   index_action :do_treereorder do
-    webpages_array = ActiveSupport::JSON.decode(params[:webpages])
-    parse_webpages(webpages_array, nil)
+    @webpgaes = Webpage.all
+    parse_webpages(webpages: params[:webpages], parent_id: nil)
     if request.xhr?
       hobo_ajax_response
     end
@@ -53,13 +54,25 @@ class Admin::WebpagesController < Admin::AdminSiteController
   end
 
 protected
-  def parse_webpages(webpages_array, parent)
-    webpages_array.each_with_index do |webpage_hash, position|
-      webpage = Webpage.find(webpage_hash["id"])
-      if webpage.position.to_i != position || webpage.parent_id != parent
-        webpage.update(position: position, parent_id: parent)
+  def parse_webpages(webpages: nil, parent_id: nil)
+    webpages.each do |position, webpages|
+      webpage = Webpage.find(webpages["key"])
+      if webpage.position != position.to_i || webpage.parent_id != parent_id
+        webpage.update(position: position, parent_id: parent_id)
       end
-      parse_webpages(webpage_hash["children"], webpage.id) if webpage_hash["children"]
+      parse_webpages(webpages: webpages["children"], parent_id: webpage.id) if webpages["children"]
     end
+  end
+
+  def childrenarray(webpages: nil)
+    childrenarray = []
+    webpages.each do |webpage|
+      childhash = Hash["title"  => webpage.name, "key" => webpage.id, "folder" => true]
+      if webpage.children.any?
+        childhash["children"] = childrenarray(webpages: webpage.children)
+      end
+      childrenarray << childhash
+    end
+    return childrenarray
   end
 end

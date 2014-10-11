@@ -1,47 +1,35 @@
 <index-page>
   <collection: replace>
-    <div id="tree">
-      <ul  id="treeData" style="display: none;">
-        <treeview with="&categoriesarray" />
-      </ul>
-    </div>
+        <div id="tree"></div>
   </collection:>
 </index-page>
 
- <script type="text/javascript">
-    $(function(){
+<script type="text/javascript">
+  $(function(){
     $("#tree").fancytree({
-      extensions: ["dnd", "edit"],
+      source: <%= raw @webpagesarray %>,
+      extensions: ["dnd"],
       dnd: {
-        autoExpandMS: 400,
-        focusOnClick: true,
-        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
-        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
-        dragStart: function(node, data) {
-          return true;
-        },
-        dragEnter: function(node, data) {
-           return true;
-        },
+        dragStart: function(node, data) { return true },
+        dragEnter: function(node, data) { return true },
         dragDrop: function(node, data) {
-          data.otherNode.moveTo(node, data.hitMode);
-        }
-      },
-      activate: function(event, data) {
-      },
-    });
-  });
+          data.otherNode.moveTo(node, data.hitMode)
 
-  // $('.dd').on('change', function() {
-  //   Messenger().run({
-  //     progressMessage: '<%= t "activerecord.attribute_help.webpage.updating" %> ...',
-  //     successMessage: '<%= t "activerecord.attribute_help.webpage.updated" %>',
-  //     errorMessage: '<%= t "activerecord.attribute_help.webpage.update_failed" %>',
-  //     hideAfter: 3
-  //   },{
-  //     url:"/admin/webpages/do_treereorder",
-  //     data: 'webpages=' + JSON.stringify($('.dd').nestable('serialize')),
-  //     dataType: 'script'
-  //   });
-  // });
+          Messenger().run({
+            progressMessage: '<%= t "activerecord.attribute_help.category.updating" %> ...',
+            successMessage: '<%= t "activerecord.attribute_help.category.updated" %>',
+            errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>',
+            hideAfter: 3
+          },{
+            url:"/admin/webpages/do_treereorder",
+            method: "POST",
+            data: {
+              webpages: $("#tree").fancytree("getTree").toDict()
+            },
+            dataType: 'script'
+          })
+        }
+      }
+    })
+  })
 </script>

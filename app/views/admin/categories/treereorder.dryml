@@ -2,11 +2,7 @@
   <collection: replace>
     <div class="row">
       <div class="col-md-6">
-        <div id="tree">
-          <!--ul  id="treeData" style="display: none;"-->
-            <!--treeview with="&this" action="edit_properties" /-->
-          <!-- /ul -->
-        </div>
+        <div id="tree"></div>
       </div>
       <div class="col-md-6" part="configarea">
         <h1><t key="activerecord.models.property.other" /> </h1>
@@ -16,18 +12,14 @@
   </collection:>
 </index-page>
 
-<script>
+<script type="text/javascript">
   $(function(){
     $("#tree").fancytree({
       source: <%= raw @categoriesarray %>,
       extensions: ["dnd"],
       dnd: {
-        dragStart: function(node, data) {
-          return true
-        },
-        dragEnter: function(node, data) {
-           return true
-        },
+        dragStart: function(node, data) { return true },
+        dragEnter: function(node, data) { return true },
         dragDrop: function(node, data) {
           data.otherNode.moveTo(node, data.hitMode)
 

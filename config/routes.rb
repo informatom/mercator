@@ -55,6 +55,7 @@ Mercator::Application.routes.draw do
   get 'search' => 'front#search', :as => 'site_search'
 
   post 'admin/categories/do_treereorder' => 'admin/categories#do_treereorder'
+  post 'admin/webpages/do_treereorder' => 'admin/webpages#do_treereorder'
 
   put 'admin/categories/:id/edit_properties' => 'admin/categories#edit_properties'
 
