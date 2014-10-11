@@ -8,7 +8,8 @@ class Admin::CategoriesController < Admin::AdminSiteController
   autocomplete :name, :query_scope => [:name_de_contains]
 
   index_action :treereorder do
-    @this = Category.roots.paginate(:page => 1, :per_page => Category.count)
+    @this = @categories = Category.roots.paginate(:page => 1, :per_page => Category.count)
+    @categoriesarray = childrenarray(categories: @categories).to_json
   end
 
   show_action :edit_properties do
@@ -20,10 +21,8 @@ class Admin::CategoriesController < Admin::AdminSiteController
   end
 
   index_action :do_treereorder do
-    categories_array = ActiveSupport::JSON.decode(params[:categories])
     @categories = Category.all
-    @properties = []
-    parse_categories(categories_array, nil)
+    parse_categories(categories: params[:categories], parent_id: nil)
     if request.xhr?
       hobo_ajax_response
     end
@@ -47,14 +46,25 @@ class Admin::CategoriesController < Admin::AdminSiteController
   end
 
 protected
-
-  def parse_categories(categories_array, parent)
-    categories_array.each_with_index do |category_hash, position|
-      category = @categories.find(category_hash["id"])
-      if category.position.to_i != position || category.parent_id != parent
-        category.update(position: position, parent_id: parent)
+  def parse_categories(categories: nil, parent_id: nil)
+    categories.each do |position, categories|
+      category = @categories.find(categories["key"])
+      if category.position != position.to_i || category.parent_id != parent_id
+        category.update(position: position, parent_id: parent_id)
       end
-      parse_categories(category_hash["children"], category.id) if category_hash["children"]
+      parse_categories(categories: categories["children"], parent_id: category.id) if categories["children"]
     end
+  end
+
+  def childrenarray(categories: nil)
+    childrenarray = []
+    categories.each do |category|
+      childhash = Hash["title"  => category.name, "key" => category.id, "folder" => true]
+      if category.children.any?
+        childhash["children"] = childrenarray(categories: category.children)
+      end
+      childrenarray << childhash
+    end
+    return childrenarray
   end
 end

@@ -7,8 +7,8 @@
  *= require application
  *= require jquery-ui/redmond
  *= require codemirror
+ *= require admin/ui.fancytree.min
  *= require overrides
- *= require_tree ./admin
+ *= require admin/overrides
  *= require codemirror/themes/solarized
- */
- 
+  */

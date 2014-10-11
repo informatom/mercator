@@ -1,26 +1,47 @@
 <index-page>
   <collection: replace>
-    <div class="dd">
-      <ol class="dd-list">
-        <treeview with="&this" />
-      </ol>
+    <div id="tree">
+      <ul  id="treeData" style="display: none;">
+        <treeview with="&categoriesarray" />
+      </ul>
     </div>
   </collection:>
 </index-page>
 
-<script>
-  $('.dd').nestable({ maxDepth: 99, distance: 5 });
-  $('.dd').nestable('collapseAll');
-  $('.dd').on('change', function() {
-    Messenger().run({
-      progressMessage: '<%= t "activerecord.attribute_help.webpage.updating" %> ...',
-      successMessage: '<%= t "activerecord.attribute_help.webpage.updated" %>',
-      errorMessage: '<%= t "activerecord.attribute_help.webpage.update_failed" %>',
-      hideAfter: 3
-    },{
-      url:"/admin/webpages/do_treereorder",
-      data: 'webpages=' + JSON.stringify($('.dd').nestable('serialize')),
-      dataType: 'script'
+ <script type="text/javascript">
+    $(function(){
+    $("#tree").fancytree({
+      extensions: ["dnd", "edit"],
+      dnd: {
+        autoExpandMS: 400,
+        focusOnClick: true,
+        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
+        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
+        dragStart: function(node, data) {
+          return true;
+        },
+        dragEnter: function(node, data) {
+           return true;
+        },
+        dragDrop: function(node, data) {
+          data.otherNode.moveTo(node, data.hitMode);
+        }
+      },
+      activate: function(event, data) {
+      },
     });
   });
+
+  // $('.dd').on('change', function() {
+  //   Messenger().run({
+  //     progressMessage: '<%= t "activerecord.attribute_help.webpage.updating" %> ...',
+  //     successMessage: '<%= t "activerecord.attribute_help.webpage.updated" %>',
+  //     errorMessage: '<%= t "activerecord.attribute_help.webpage.update_failed" %>',
+  //     hideAfter: 3
+  //   },{
+  //     url:"/admin/webpages/do_treereorder",
+  //     data: 'webpages=' + JSON.stringify($('.dd').nestable('serialize')),
+  //     dataType: 'script'
+  //   });
+  // });
 </script>
