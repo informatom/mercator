@@ -10,3 +10,5 @@
 //= require contentmanager/w2ui-1.4.2.min
 //= require contentmanager/jquery-ui.min
 //= require contentmanager/jquery.fancytree-all.min
+//= require messenger
+//= require messenger-theme-future

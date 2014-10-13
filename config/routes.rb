@@ -45,6 +45,11 @@ Mercator::Application.routes.draw do
     end
   end
 
+  namespace :contentmanager do
+    post 'front/update_webpages' => 'front#update_webpages'
+    get 'front/show_webpage/:id' => 'front#show_webpage'
+  end
+
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
   get 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
   get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'

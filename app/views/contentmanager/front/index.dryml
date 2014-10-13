@@ -3,17 +3,18 @@
     <script>
       $(function () {
         $('#myLayout').w2layout({
-          name: 'main',
+          name: 'contentmanager',
           panels: [
             { type: 'top', size: 60, title: 'Content Manager' },
             { type: 'left', size: 250, resizable: true, title: 'Website Structure' },
+            { type: 'main', content: 'main', title: 'Website' },
             { type: 'right', size: 150, resizable: true, content: 'right' }
           ]
         })
 
-        w2ui['main'].content('left', "<div id='tree'></div>")
+        w2ui['contentmanager'].content('left', "<div id='pagetree'></div>")
 
-        $("#tree").fancytree({
+        $("#pagetree").fancytree({
           source: <%= raw @webpagesarray %>,
           extensions: ["dnd"],
           dnd: {
@@ -28,16 +29,53 @@
                 errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>',
                 hideAfter: 3
               },{
-                url:"/admin/webpages/do_treereorder",
+                url:"/contentmanager/front/update_webpages",
                 method: "POST",
                 data: {
-                  webpages: $("#tree").fancytree("getTree").toDict()
+                  authenticity_token: "<%= form_authenticity_token %>",
+                  webpages: $("#pagetree").fancytree("getTree").toDict()
                 },
                 dataType: 'script'
               })
             }
-          }
+          },
+          click: function(event, data) {
+            var node = data.node
+            $.ajax({
+              url: "/contentmanager/front/show_webpage/" + node.key,
+              method: "GET",
+            }).done(function(data) {
+              w2ui['webpageform'].record['webpage_title_de'] = data[0].webpage.title_de
+              w2ui['webpageform'].record['webpage_title_en'] = data[0].webpage.title_en
+              w2ui['webpageform'].record['webpage_url'] = data[0].webpage.url
+              w2ui['webpageform'].record['webpage_slug'] = data[0].webpage.slug
+              w2ui['webpageform'].record['webpage_menu'] = data[0].webpage.menu
+              w2ui['webpageform'].record['page_template_name'] = data[1].page_template.name
+              w2ui['webpageform'].refresh()
+            });
+            node.key
+          },
         })
+
+        w2ui['contentmanager'].content('main', "<div id='maingrid'></div>")
+
+        $('#maingrid').w2form({
+          name   : 'webpageform',
+          fields : [
+            { name: 'webpage_title_de',    type: 'text',     html: { caption: 'Titel DE' }},
+            { name: 'webpage_title_en',    type: 'text',     html: { caption: 'Titel EN' }},
+            { name: 'webpage_url',         type: 'text',     html: { caption: 'URL' }},
+            { name: 'webpage_slug',        type: 'text',     html: { caption: 'Slug' }},
+            { name: 'webpage_menu',        type: 'checkbox', html: { caption: 'Menü' }},
+            { name: 'page_template_name',  type: 'text',     html: { caption: 'Template' }}
+          ]
+        })
+        $(w2ui['webpageform'].get('webpage_title_de').el).prop('readonly', true)
+        $(w2ui['webpageform'].get('webpage_title_en').el).prop('readonly', true)
+        $(w2ui['webpageform'].get('webpage_url').el).prop('readonly', true)
+        $(w2ui['webpageform'].get('webpage_slug').el).prop('readonly', true)
+        $(w2ui['webpageform'].get('webpage_menu').el).prop('readonly', true)
+        $(w2ui['webpageform'].get('page_template_name').el).prop('readonly', true)
       })
     </script>
   </config:>
