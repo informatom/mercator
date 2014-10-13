@@ -4,11 +4,10 @@
  * directory will be included.
  *
  *= require_self
- *= require application
- *= require hobo_rapid
- *= require hobo_jquery
- *= require hobo_clean_admin
- *= require hobo_jquery_ui
- *= require jquery-ui/flick
- *= require_tree ./contentmanager
+ *= require contentmanager/w2ui-1.4.2.min
+ *= require contentmanager/jquery-ui.min
+ *= require contentmanager/jquery-ui.structure.min
+ *= require contentmanager/jquery-ui.theme.min
+ *= require contentmanager/ui.fancytree.min
+ *= require contentmanager/overrides
 */

@@ -6,9 +6,7 @@
 // not advisable to add code directly here, but if you do, it'll
 // appear at the bottom of the the compiled file.
 //
-//= require application
-//= require hobo_rapid
-//= require hobo_jquery
-//= require hobo_clean_admin
-//= require hobo_jquery_ui
-//= require_tree ./contentmanager
+//= require contentmanager/jquery-2.1.1.min
+//= require contentmanager/w2ui-1.4.2.min
+//= require contentmanager/jquery-ui.min
+//= require contentmanager/jquery.fancytree-all.min

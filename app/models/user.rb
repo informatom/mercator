@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   include UserExtensions if Rails.application.config.try(:erp) == "mesonic"
 
   attr_accessible :gender, :title, :first_name, :surname, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator, :legacy_id, :sales, :sales_manager,
+                  :current_password, :administrator, :legacy_id, :sales, :sales_manager, :contentmanager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
                   :order_id, :phone

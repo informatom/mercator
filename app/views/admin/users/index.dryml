@@ -1,7 +1,7 @@
 <index-page>
   <collection: replace>
     <table-plus without-page-nav
-                fields="this, email_address, sales, sales_manager, administrator, last_login_at, logged_in, login_count, actions">
+                fields="this, email_address, sales, sales_manager, contentmanager, administrator, last_login_at, logged_in, login_count, actions">
       <actions-heading:></actions-heading:>
       <actions-view:><bootstrap-table-actions/></actions-view:>
     </table-plus>

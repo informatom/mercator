@@ -18,6 +18,7 @@ Mercator::Application.routes.draw do
   get 'admin' => 'admin/front#index', :as => 'admin_front'
   get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
   get 'sales' => 'sales/front#index', :as => 'sales_front'
+  get 'contentmanager' => 'contentmanager/front#index', :as => 'contentmanager_front'
 
   namespace :sales do
     resources :conversations do
