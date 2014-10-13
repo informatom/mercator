@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     administrator    :boolean, default: false
     sales            :boolean, default: false
     sales_manager    :boolean, default: false
+    contentmanager   :boolean, default: false
     legacy_id        :integer
     last_login_at    :datetime
     logged_in        :boolean, default: false

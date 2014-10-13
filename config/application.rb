@@ -12,6 +12,8 @@ Bundler.require(:default, Rails.env)
 
 module Mercator
   class Application < Rails::Application
+    # Hobo: the contentmanager subsite loads contentmanager.css & contentmanager.js
+    config.assets.precompile += %w(contentmanager.css contentmanager.js)
     # Hobo: the sales subsite loads sales.css & sales.js
     config.assets.precompile += %w(sales.css sales.js)
     # HAS 20131222 deprecation warning in rails 4
