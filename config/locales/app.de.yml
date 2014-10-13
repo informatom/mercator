@@ -24,7 +24,6 @@ de:
     billing_addresses: Rechnungsadressen
     Category: Kategorie
     category: Kategorie
-    category_tree: Kategorienbaum
     categories: Kategorien
     Categorization: Kategorisierung
     categorizations: Kategorisierungen
@@ -102,6 +101,7 @@ de:
     prices: Preise
     Product: Artikel
     product: Artikel
+    product_catalog: Produktkatalog
     product_number: Artikelnummer
     product_price: Preis
     productrelations: Produktzuordnungen

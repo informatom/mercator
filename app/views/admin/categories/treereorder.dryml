@@ -1,11 +1,14 @@
 <index-page>
+  <heading:>
+    <h1><t key="attributes.product_catalog" /></h1>
+  </heading:>
   <collection: replace>
     <div class="row">
       <div class="col-md-6">
         <div id="tree"></div>
       </div>
       <div class="col-md-6" part="configarea">
-        <h1><t key="activerecord.models.property.other" /> </h1>
+        <h1><t key="activerecord.models.property.other" /></h1>
         <t key="mercator.properties.click_on_category" />
       </div>
     </div>

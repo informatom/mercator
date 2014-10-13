@@ -20,7 +20,6 @@ en:
     billing_addresses: Billing Addresses
     Category: Category
     category: Category
-    category_tree: Category Tree
     categories: Categories
     Categorization: Categorization
     categorizations: Categorizations
@@ -98,6 +97,7 @@ en:
     prices: Prices
     Product: Product
     product: Product
+    product_catalog: Product Catalog
     product_price: Price
     product_number: Product Number
     productrelations: Product Relations
