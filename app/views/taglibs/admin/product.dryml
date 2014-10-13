@@ -70,7 +70,7 @@
       </div>
 
       <div class="form-horizontal">
-        <div class="control-group   photo-url-field">
+        <div class="control-group photo-url-field">
           <label class="control-label photo-url-label"><t key="mercator.image.original_version" /></label>
           <div class="controls">
             <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url %></span>
