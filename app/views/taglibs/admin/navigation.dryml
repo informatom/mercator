@@ -38,9 +38,6 @@
         <nav-item with="&Category" action="treereorder">
           <ht key="category.nav_item" count="100"><t key="attributes.category_tree" /></ht>
         </nav-item>
-        <nav-item with="&Categorization">
-          <ht key="categorization.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
         <li class="divider"></li>
         <nav-item with="&Product">
           <ht key="product.nav_item" count="100"><model-name-human count="100"/></ht>
