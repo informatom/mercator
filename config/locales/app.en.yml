@@ -285,6 +285,12 @@ en:
         male: Mr.
         female: Mrs.
         no_info: not provided
+      category:
+        lifecycle:
+          transitions:
+            activate: Activate
+            deactivate: Deactivate
+            reactivate: Reactivate
       contentelement/markups:
         html: "HTML Page"
         markdown: "Markdown Page"

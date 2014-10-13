@@ -18,6 +18,7 @@ class Property < ActiveRecord::Base
                   :position, :legacy_id, :datatype, :icecat_id
   has_paper_trail
   translates :name, :description, :unit
+  acts_as_list
 
   validates :position, numericality: true
   validates :datatype,inclusion: { in: %w(textual numeric flag) }

@@ -292,6 +292,12 @@ de:
         male: Herr
         female: Frau
         no_info: keine Angabe
+      category:
+        lifecycle:
+          transitions:
+            activate: Aktiverien
+            deactivate: Deaktivieren
+            reactivate: Reaktivieren
       contentelement/markups:
         html: "HTML-Seite"
         markdown: "Markdown Seite"
