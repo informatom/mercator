@@ -1,6 +1,7 @@
 class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteController
 
   hobo_controller
+  respond_to :html, :json, :js
 
   def index
     @webpagesarray = childrenarray(objects: Webpage.arrange, name_method: :title).to_json
@@ -25,6 +26,12 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     if request.xhr?
       hobo_ajax_response
     end
+  end
+
+  def show_content_elements
+    @content_elements = ContentElement.all
+    @serialized_content_elements = ActiveModel::ArraySerializer.new(@content_elements).as_json
+    render json: { status: "success", total: @content_elements.count, records: @serialized_content_elements }
   end
 
 protected
