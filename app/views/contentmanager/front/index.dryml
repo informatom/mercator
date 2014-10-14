@@ -8,9 +8,10 @@
             { type: 'top', size: 60, title: 'Content Manager' },
             { type: 'left', size: 250, resizable: true, title: 'Website Structure' },
             { type: 'main', content: 'main', title: 'Website' },
-            { type: 'right', size: 150, resizable: true, content: 'right' }
+            { type: 'right', size: 250, resizable: true, title: 'Folder Structure' }
           ]
         })
+
 
         w2ui['contentmanager'].content('left', "<div id='pagetree'></div>")
 
@@ -54,8 +55,9 @@
               w2ui['webpageform'].refresh()
             });
             node.key
-          },
+          }
         })
+
 
         w2ui['contentmanager'].content('main', "<div id='maingrid'></div>")
 
@@ -76,6 +78,36 @@
         $(w2ui['webpageform'].get('webpage_slug').el).prop('readonly', true)
         $(w2ui['webpageform'].get('webpage_menu').el).prop('readonly', true)
         $(w2ui['webpageform'].get('page_template_name').el).prop('readonly', true)
+
+
+        w2ui['contentmanager'].content('right', "<div id='foldertree'></div>")
+
+        $("#foldertree").fancytree({
+          source: <%= raw @foldersarray %>,
+          extensions: ["dnd"],
+          dnd: {
+            dragStart: function(node, data) { return true },
+            dragEnter: function(node, data) { return true },
+            dragDrop: function(node, data) {
+              data.otherNode.moveTo(node, data.hitMode)
+
+              Messenger().run({
+                progressMessage: '<%= t "activerecord.attribute_help.folder.updating" %> ...',
+                successMessage: '<%= t "activerecord.attribute_help.folder.updated" %>',
+                errorMessage: '<%= t "activerecord.attribute_help.folder.update_failed" %>',
+                hideAfter: 3
+              },{
+                url:"/contentmanager/front/update_folders",
+                method: "POST",
+                data: {
+                  authenticity_token: "<%= form_authenticity_token %>",
+                  folders: $("#foldertree").fancytree("getTree").toDict()
+                },
+                dataType: 'script'
+              })
+            }
+          }
+        })
       })
     </script>
   </config:>

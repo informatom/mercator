@@ -9,7 +9,7 @@ class Folder < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name, :ancestry, :position
+  attr_accessible :name, :ancestry, :position, :parent_id, :parent
   has_ancestry orphan_strategy: :adopt
 
   has_paper_trail
@@ -22,15 +22,18 @@ class Folder < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def view_permitted?(field)

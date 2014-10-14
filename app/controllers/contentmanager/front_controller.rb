@@ -3,11 +3,11 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   hobo_controller
 
   def index
-    @webpagesarray = childrenarray(webpages: Webpage.roots).to_json
+    @webpagesarray = childrenarray(objects: Webpage.arrange, name_method: :title).to_json
+    @foldersarray = childrenarray(objects: Folder.arrange, name_method: :name).to_json
   end
 
   def update_webpages
-    @webpgaes = Webpage.all
     reorder_webpages(webpages: params[:webpages], parent_id: nil)
     if request.xhr?
       hobo_ajax_response
@@ -18,6 +18,13 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     @webpage = Webpage.find(params[:id])
     @page_template = @webpage.page_template
     render json: [@webpage, @page_template]
+  end
+
+  def update_folders
+    reorder_folders(folders: params[:folders], parent_id: nil)
+    if request.xhr?
+      hobo_ajax_response
+    end
   end
 
 protected
@@ -32,12 +39,22 @@ protected
     end
   end
 
-  def childrenarray(webpages: nil)
+  def reorder_folders(folders: nil, parent_id: nil)
+    folders.each do |position, folders|
+      folder = Folder.find(folders["key"])
+      if folder.position != position.to_i || folder.parent_id != parent_id
+        folder.update(position: position, parent_id: parent_id)
+      end
+      reorder_folders(folders: folders["children"], parent_id: folder.id) if folders["children"]
+    end
+  end
+
+  def childrenarray(objects: nil, name_method: nil)
     childrenarray = []
-    webpages.each do |webpage|
-      childhash = Hash["title"  => webpage.name, "key" => webpage.id, "folder" => false]
-      if webpage.children.any?
-        childhash["children"] = childrenarray(webpages: webpage.children)
+    objects.each do |object, children|
+      childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => true]
+      if children.any?
+        childhash["children"] = childrenarray(objects: children, name_method: name_method)
       end
       childrenarray << childhash
     end

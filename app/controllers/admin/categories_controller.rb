@@ -9,7 +9,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
 
   index_action :treereorder do
     @this = @categories = Category.roots.paginate(:page => 1, :per_page => Category.count)
-    @categoriesarray = childrenarray(categories: @categories).to_json
+    @categoriesarray = childrenarray(categories: Category.arrange).to_json
   end
 
   show_action :edit_properties do
@@ -58,10 +58,10 @@ protected
 
   def childrenarray(categories: nil)
     childrenarray = []
-    categories.each do |category|
+    categories.each do |category, children|
       childhash = Hash["title"  => category.name, "key" => category.id, "folder" => true]
-      if category.children.any?
-        childhash["children"] = childrenarray(categories: category.children)
+      if children.any?
+        childhash["children"] = childrenarray(categories: children)
       end
       childrenarray << childhash
     end

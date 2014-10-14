@@ -48,6 +48,7 @@ Mercator::Application.routes.draw do
   namespace :contentmanager do
     post 'front/update_webpages' => 'front#update_webpages'
     get 'front/show_webpage/:id' => 'front#show_webpage'
+    post 'front/update_folders' => 'front#update_folders'
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'

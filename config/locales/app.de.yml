@@ -424,6 +424,11 @@ de:
         name: "Dient auch dazu, dass sie später diese Konversation wiederfinden können."
       country:
         code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
+      folder:
+        position: Reihung innerhalb der Überkategorie im Verzeichnisbaum
+        updated: Verzeichnisbaum erfolgreich aktualisiert!
+        updating: Verzeichnisbaum wird aktualisiert
+        update_failed: Verzeichnisbaum konnte nicht aktualisiert werden!
       inventory:
         number: "Geben Sie die Artikelnummer auch dann ein, wenn Sie nicht von der Artikelnummer des Artikels abweicht."
         unit: "Verwenden Sie einheitliche Einheiten, z.B. Stk., Std., Pau."

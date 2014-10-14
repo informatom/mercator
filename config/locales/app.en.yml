@@ -417,6 +417,11 @@ en:
         name: "For your personal reference to this conversation in future times."
       country:
         code: "ISO country code 3166 ALPHA2 according to http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
+      folder:
+        position: Position within Parent Category in the Folder Tree
+        updated: Folder tree updated successfully!
+        updating: Folder tree updating ...
+        update_failed: Folder tree update failed!
       inventory:
         number: "Please enter article number here even when it does not deviate from the article number of the products"
         unit: "Use consistent units across all products, e.g. pc., h, unit"
