@@ -31,6 +31,8 @@ class ContentElement < ActiveRecord::Base
   has_many :page_content_element_assignments, :accessible => true
   has_many :webpages, :through => :page_content_element_assignments
 
+  belongs_to :folder
+
   # --- Permissions --- #
 
   def create_permitted?

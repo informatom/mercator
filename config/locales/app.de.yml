@@ -209,6 +209,9 @@ de:
       feedback:
         one: Feedback
         other: Feedback
+      folder:
+        one: Verzeichnis
+        other: Verzeichnisse
       gtc:
         one: AGB
         other: AGBs
