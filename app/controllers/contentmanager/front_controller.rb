@@ -5,7 +5,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def index
     @webpagesarray = childrenarray(objects: Webpage.arrange, name_method: :title).to_json
-    @foldersarray = childrenarray(objects: Folder.arrange, name_method: :name).to_json
+    @foldersarray = childrenarray(objects: Folder.arrange, name_method: :name, folder: true).to_json
   end
 
   def update_webpages
@@ -56,10 +56,10 @@ protected
     end
   end
 
-  def childrenarray(objects: nil, name_method: nil)
+  def childrenarray(objects: nil, name_method: nil, folder: false)
     childrenarray = []
     objects.each do |object, children|
-      childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => true]
+      childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => folder]
       if children.any?
         childhash["children"] = childrenarray(objects: children, name_method: name_method)
       end

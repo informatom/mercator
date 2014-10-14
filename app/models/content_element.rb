@@ -18,6 +18,8 @@ class ContentElement < ActiveRecord::Base
   translates :name, :content
   has_paper_trail
 
+  alias_attribute :recid, :id
+
   default_scope { order('content_elements.name_de ASC') }
 
   has_attached_file :document, :default_url => "/images/:style/missing.png"
@@ -58,5 +60,10 @@ class ContentElement < ActiveRecord::Base
 
   def self.image(name: nil)
     where(name_de: name).first.try(:photo) || where(name_en: name).first.try(:photo)
+  end
+
+  # --- Instance Methods --- #
+  def thumb_url
+    photo.url(:thumb)
   end
 end

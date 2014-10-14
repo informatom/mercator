@@ -6,9 +6,10 @@
         $().w2layout({
           name: 'elementexplorer',
           panels: [
-            { type: 'left', size: 250, resizable: true, title: 'Folder Structure', content: "<div id='foldertree'></div>" },
-            { type: 'main', title: 'Content Elements',
-              content: "<div id='contentelementsgrid' style='width: 100%; height: 100%; overflow: hidden'></div>" }
+            { type: 'main', resizable: true, title: 'Folder Structure', content: "<div id='foldertree'></div>" },
+            { type: 'right', size: 1100, title: 'Content Elements',
+              content: "<div id='contentelementsgrid' style='width: 100%; height:700px; overflow: hidden'></div>" },
+            { type: 'preview', size: 200, resizable: true, title: 'Preview', content: "<div id='preview'></div>" }
           ],
           onRender: function(event) {
             event.onComplete = function () {
@@ -128,23 +129,33 @@
           $('#contentelementsgrid').w2grid({
             name: 'contentelementsgrid',
             header: 'List of Content Elements',
-            fixedBody : true,
             method: 'GET',
             show: {
                 toolbar: true,
-                footer: true
+                footer: true,
+                selectColumn: true
+            },
+            onClick: function(event) {
+              event.onComplete = function () {
+                var sel = this.getSelection()
+                preview_image(this.get(sel).thumb_url)
+              }
             },
             columns: [
+                { field: 'recid', caption: 'ID', size: '50px', sortable: true, attr: "align=center" },
                 { field: 'name_de', caption: 'Name DE', size: '150px', sortable: true },
-                { field: 'name_en', caption: 'Name EN', size: '150px', sortable: true },
+                { field: 'name_en', caption: 'Name EN', size: '150px', sortable: true, hidden: true },
 
-                { field: 'markup', caption: 'Markup', size: '40px', sortable: true, resizable: true },
-                { field: 'content_de', caption: 'Inhalt DE', size: '120px', resizable: true },
-                { field: 'content_en', caption: 'Inhalt EN', size: '120px', resizable: true },
-                { field: 'created_at', caption: 'erzeugt', size: '120px', resizable: true },
-                { field: 'updated_at', caption: 'geändert', size: '120px', resizable: true },
-                { field: 'document_file_name', caption: 'Dokument', size: '120px', resizable: true },
-                { field: 'photo_file_name', caption: 'Photo', size: '120px', resizable: true },
+                { field: 'markup', caption: 'Markup', size: '40px', sortable: true, resizable: true, hidden: true },
+                { field: 'content_de', caption: 'Inhalt DE', size: '400px', resizable: true },
+                { field: 'content_en', caption: 'Inhalt EN', size: '300px', resizable: true, hidden: true },
+                { field: 'created_at', caption: 'erzeugt', size: '130px', resizable: true, hidden: true,
+                  render: function (record) { return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss") } },
+                { field: 'updated_at', caption: 'geändert', size: '130px', resizable: true ,
+                  render: function (record) { return moment(record.updated_at).format("YYYY-MM-DD HH:mm:ss") } },
+                { field: 'document_file_name', caption: 'Dokument', size: '150px', resizable: true },
+                { field: 'photo_file_name', caption: 'Photo', size: '150px', resizable: true },
+                { field: 'thumb_url', caption: 'Photo Path', size: '150px', resizable: true, hidden: true },
             ],
             searches: [
                 { field: 'name_de', caption: 'Name DE', type: 'text' },
@@ -158,6 +169,13 @@
           w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements')
         }
 
+        function preview_image(path) {
+          if (path) {
+            $("#preview").html("<br/><br/><center><img src=" + path + " /></center>")
+          } else {
+            $("#preview").html("")
+          }
+        }
       })
     </script>
   </config:>
