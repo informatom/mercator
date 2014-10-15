@@ -1,1 +1,6 @@
-.ui-draggable-handle, .fancytree-container { height: 100% }
+.w2ui-panel-content>.ui-draggable-handle, .fancytree-container { height: 100% }
+.draggable { background-color: #CEDDF0;
+             border: 1px solid #99BBE8 }
+.ui-draggable-dragging { padding: 3px;
+                         font-size: 11px;
+                         min-width: 150px;}
