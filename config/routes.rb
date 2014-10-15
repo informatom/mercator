@@ -48,6 +48,7 @@ Mercator::Application.routes.draw do
   namespace :contentmanager do
     post 'front/update_webpages' => 'front#update_webpages'
     get 'front/show_webpage/:id' => 'front#show_webpage'
+    get 'front/show_assignments/:id' => 'front#show_assignments'
     post 'front/update_folders' => 'front#update_folders'
     get 'front/show_content_elements' => 'front#show_content_elements'
   end

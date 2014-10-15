@@ -3,179 +3,180 @@
     <script>
       $(function () {
 
-        $().w2layout({
-          name: 'elementexplorer',
-          panels: [
-            { type: 'main', resizable: true, title: 'Folder Structure', content: "<div id='foldertree'></div>" },
-            { type: 'right', size: 1100, title: 'Content Elements',
-              content: "<div id='contentelementsgrid' style='width: 100%; height:700px; overflow: hidden'></div>" },
-            { type: 'preview', size: 200, resizable: true, title: 'Preview', content: "<div id='preview'></div>" }
-          ],
-          onRender: function(event) {
-            event.onComplete = function () {
-              display_foldertree()
-              display_contentelementsgrid()
-            }
-          }
-        })
+// Layout
+w2utils.locale('<%= font_path "contentmanager/de-de.json" %>')
 
-        $('#myLayout').w2layout({
-          name: 'contentmanager',
-          panels: [
-            { type: 'top', size: 60, title: 'Content Manager' },
-            { type: 'left', size: 250, resizable: true, title: 'Website Structure', content: "<div id='pagetree'></div>" },
-            { type: 'main', title: 'Webpage', content: "<div id='webpageform'></div>" },
-            { type: 'right', size: 1300, resizable: true, content: w2ui['elementexplorer']},
-          ]
-        })
+$('#myLayout').w2layout({
+  name: 'contentmanager',
+  panels: [
+    { type: 'top', size: 60, resizable: true, title: 'Content Manager' },
+    { type: 'left', size: 250, resizable: true, title: 'Website Structure', content: "<div id='pagetree'></div>" },
+    { type: 'main', title: 'Webpage', resizable: true, content: "<div id='webpage' style='height:100%;'></div>" },
+    { type: 'preview', size: 400, resizable: true, title: 'Assignments', content: "<div id='assignments' style='height:100%' ></div>" },
+    { type: 'right', size: 1300, resizable: true}
+  ],
+  onRender: function(event) {
+    event.onComplete = function () {
+      display_webpage()
+      display_assignmentsgrid()
+    }
+  }
+})
 
-        $("#pagetree").fancytree({
-          source: <%= raw @webpagesarray %>,
-          extensions: ["dnd"],
-          dnd: {
-            dragStart: function(node, data) { return true },
-            dragEnter: function(node, data) { return true },
-            dragDrop: function(node, data) {
-              data.otherNode.moveTo(node, data.hitMode)
+$().w2layout({
+  name: 'elementexplorer',
+  panels: [
+    { type: 'main', resizable: true, title: 'Folder Structure', content: "<div id='foldertree'></div>" },
+    { type: 'right', resizable: true, size: 1100, title: 'Content Elements',
+      content: "<div id='contentelementsgrid' style='height:100%'></div>" },
+    { type: 'preview', size: 200, resizable: true, title: 'Preview', content: "<div id='preview'></div>" }
+  ],
+  onRender: function(event) {
+    event.onComplete = function () {
+      display_foldertree()
+      display_contentelementsgrid()
+    }
+  }
+})
 
-              Messenger().run({
-                progressMessage: '<%= t "activerecord.attribute_help.category.updating" %> ...',
-                successMessage: '<%= t "activerecord.attribute_help.category.updated" %>',
-                errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>',
-                hideAfter: 3
-              },{
-                url:"/contentmanager/front/update_webpages",
-                method: "POST",
-                data: {
-                  authenticity_token: "<%= form_authenticity_token %>",
-                  webpages: $("#pagetree").fancytree("getTree").toDict()
-                },
-                dataType: 'script'
-              })
-            }
+w2ui['contentmanager'].content('right', w2ui['elementexplorer'])
+
+// Webpagetree
+$("#pagetree").fancytree({
+  source: <%= raw @webpagesarray %>,
+  extensions: ["dnd"],
+  dnd: {
+    dragStart: function(node, data) { return true },
+    dragEnter: function(node, data) { return true },
+    dragDrop: function(node, data) {
+      data.otherNode.moveTo(node, data.hitMode)
+
+      Messenger().run({
+        progressMessage: '<%= t "activerecord.attribute_help.category.updating" %> ...',
+        successMessage: '<%= t "activerecord.attribute_help.category.updated" %>',
+        errorMessage: '<%= t "activerecord.attribute_help.category.update_failed" %>',
+        hideAfter: 3
+      },{
+        url:"/contentmanager/front/update_webpages",
+        method: "POST",
+        data: {
+          authenticity_token: "<%= form_authenticity_token %>",
+          webpages: $("#pagetree").fancytree("getTree").toDict()
+        },
+        dataType: 'script'
+      })
+    }
+  },
+  click: function(event, data) {
+    var node = data.node
+    w2ui['assignments'].load('/contentmanager/front/show_assignments/' + node.key)
+    w2ui['webpage'].load('/contentmanager/front/show_webpage/' + node.key)
+  }
+})
+
+// Sigle Webpage Grid
+function display_webpage() {
+  $('#webpage').w2grid({
+    name: 'webpage',
+    method: 'GET',
+    columns : [
+      { field: 'attribute', caption: 'Attribut', size: '150px' },
+      { field: 'value', caption: 'Wert', size: '180px'}
+    ]
+  })
+}
+
+// Assignments
+function display_assignmentsgrid() {
+  $('#assignments').w2grid({
+    name: 'assignments',
+    method: 'GET',
+    show: { selectColumn: true },
+    columns: [
+      { field: 'used_as', caption: 'used as', size: '100px', sortable: true },
+      { field: 'content_element_name', caption: 'Content Element', size: '210px'}
+    ],
+    sortData: [ { field: 'used_as', direction: 'ASC' } ]
+  })
+}
+
+// Foldertree
+function display_foldertree() {
+  $("#foldertree").fancytree({
+    source: <%= raw @foldersarray %>,
+    extensions: ["dnd"],
+    dnd: {
+      dragStart: function(node, data) { return true },
+      dragEnter: function(node, data) { return true },
+      dragDrop: function(node, data) {
+        data.otherNode.moveTo(node, data.hitMode)
+
+        Messenger().run({
+          progressMessage: '<%= t "activerecord.attribute_help.folder.updating" %> ...',
+          successMessage: '<%= t "activerecord.attribute_help.folder.updated" %>',
+          errorMessage: '<%= t "activerecord.attribute_help.folder.update_failed" %>',
+          hideAfter: 3
+        },{
+          url:"/contentmanager/front/update_folders",
+          method: "POST",
+          data: {
+            authenticity_token: "<%= form_authenticity_token %>",
+            folders: $("#foldertree").fancytree("getTree").toDict()
           },
-          click: function(event, data) {
-            var node = data.node
-            $.ajax({
-              url: "/contentmanager/front/show_webpage/" + node.key,
-              method: "GET",
-            }).done(function(data) {
-              w2ui['webpageform'].record['webpage_title_de'] = data[0].webpage.title_de
-              w2ui['webpageform'].record['webpage_title_en'] = data[0].webpage.title_en
-              w2ui['webpageform'].record['webpage_url'] = data[0].webpage.url
-              w2ui['webpageform'].record['webpage_slug'] = data[0].webpage.slug
-              w2ui['webpageform'].record['webpage_menu'] = data[0].webpage.menu
-              w2ui['webpageform'].record['page_template_name'] = data[1].page_template.name
-              w2ui['webpageform'].refresh()
-            });
-            node.key
-          }
+          dataType: 'script'
         })
+      }
+    }
+  })
+}
 
-        $('#webpageform').w2form({
-          name   : 'webpageform',
-          fields : [
-            { name: 'webpage_title_de',    type: 'text',     html: { caption: 'Titel DE' }},
-            { name: 'webpage_title_en',    type: 'text',     html: { caption: 'Titel EN' }},
-            { name: 'webpage_url',         type: 'text',     html: { caption: 'URL' }},
-            { name: 'webpage_slug',        type: 'text',     html: { caption: 'Slug' }},
-            { name: 'webpage_menu',        type: 'checkbox', html: { caption: 'Menü' }},
-            { name: 'page_template_name',  type: 'text',     html: { caption: 'Template' }}
-          ]
-        })
-        $(w2ui['webpageform'].get('webpage_title_de').el).prop('readonly', true)
-        $(w2ui['webpageform'].get('webpage_title_en').el).prop('readonly', true)
-        $(w2ui['webpageform'].get('webpage_url').el).prop('readonly', true)
-        $(w2ui['webpageform'].get('webpage_slug').el).prop('readonly', true)
-        $(w2ui['webpageform'].get('webpage_menu').el).prop('readonly', true)
-        $(w2ui['webpageform'].get('page_template_name').el).prop('readonly', true)
+// Content Elements Grid
+function display_contentelementsgrid() {
+  $('#contentelementsgrid').w2grid({
+    name: 'contentelementsgrid',
+    header: 'List of Content Elements',
+    method: 'GET',
+    url: '/contentmanager/front/show_content_elements',
+    show: { toolbar: true,
+            footer: true,
+            selectColumn: true },
+    onClick: function(event) {
+      event.onComplete = function () {
+        var sel = this.getSelection()
+        preview_image(this.get(sel).thumb_url)
+      }
+    },
+    columns: [
+      { field: 'recid', caption: 'ID', size: '50px', sortable: true, attr: "align=center" },
+      { field: 'name_de', caption: 'Name DE', size: '150px', sortable: true },
+      { field: 'name_en', caption: 'Name EN', size: '150px', sortable: true, hidden: true },
+      { field: 'markup', caption: 'Markup', size: '40px', hidden: true },
+      { field: 'content_de', caption: 'Inhalt DE', size: '400px' },
+      { field: 'content_en', caption: 'Inhalt EN', size: '300px', hidden: true },
+      { field: 'created_at', caption: 'erzeugt', size: '130px', hidden: true,
+        render: function (record) { return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss") } },
+      { field: 'updated_at', caption: 'geändert', size: '130px' ,
+        render: function (record) { return moment(record.updated_at).format("YYYY-MM-DD HH:mm:ss") } },
+      { field: 'document_file_name', caption: 'Dokument', size: '150px' },
+      { field: 'photo_file_name', caption: 'Photo', size: '150px' },
+      { field: 'thumb_url', caption: 'Photo Path', size: '150px', hidden: true } ],
+    searches: [
+      { field: 'name_de', caption: 'Name DE', type: 'text' },
+      { field: 'name_en', caption: 'Name EN', type: 'text' },
+      { field: 'content_de', caption: 'Inhalt DE', type: 'text' },
+      { field: 'content_en', caption: 'Inhalt EN', type: 'text' } ],
+    sortData: [{ field: 'name_de', direction: 'ASC' } ]
+  })
+}
 
-        w2ui['elementexplorer'].on('render', function(event) {
-          event.onComplete = function () {
-            alert('object '+ event.panel + ' is shown')
-          }
-        })
-
-        function display_foldertree() {
-          $("#foldertree").fancytree({
-            source: <%= raw @foldersarray %>,
-            extensions: ["dnd"],
-            dnd: {
-              dragStart: function(node, data) { return true },
-              dragEnter: function(node, data) { return true },
-              dragDrop: function(node, data) {
-                data.otherNode.moveTo(node, data.hitMode)
-
-                Messenger().run({
-                  progressMessage: '<%= t "activerecord.attribute_help.folder.updating" %> ...',
-                  successMessage: '<%= t "activerecord.attribute_help.folder.updated" %>',
-                  errorMessage: '<%= t "activerecord.attribute_help.folder.update_failed" %>',
-                  hideAfter: 3
-                },{
-                  url:"/contentmanager/front/update_folders",
-                  method: "POST",
-                  data: {
-                    authenticity_token: "<%= form_authenticity_token %>",
-                    folders: $("#foldertree").fancytree("getTree").toDict()
-                  },
-                  dataType: 'script'
-                })
-              }
-            }
-          })
-        }
-
-        function display_contentelementsgrid() {
-          $('#contentelementsgrid').w2grid({
-            name: 'contentelementsgrid',
-            header: 'List of Content Elements',
-            method: 'GET',
-            show: {
-                toolbar: true,
-                footer: true,
-                selectColumn: true
-            },
-            onClick: function(event) {
-              event.onComplete = function () {
-                var sel = this.getSelection()
-                preview_image(this.get(sel).thumb_url)
-              }
-            },
-            columns: [
-                { field: 'recid', caption: 'ID', size: '50px', sortable: true, attr: "align=center" },
-                { field: 'name_de', caption: 'Name DE', size: '150px', sortable: true },
-                { field: 'name_en', caption: 'Name EN', size: '150px', sortable: true, hidden: true },
-
-                { field: 'markup', caption: 'Markup', size: '40px', sortable: true, resizable: true, hidden: true },
-                { field: 'content_de', caption: 'Inhalt DE', size: '400px', resizable: true },
-                { field: 'content_en', caption: 'Inhalt EN', size: '300px', resizable: true, hidden: true },
-                { field: 'created_at', caption: 'erzeugt', size: '130px', resizable: true, hidden: true,
-                  render: function (record) { return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss") } },
-                { field: 'updated_at', caption: 'geändert', size: '130px', resizable: true ,
-                  render: function (record) { return moment(record.updated_at).format("YYYY-MM-DD HH:mm:ss") } },
-                { field: 'document_file_name', caption: 'Dokument', size: '150px', resizable: true },
-                { field: 'photo_file_name', caption: 'Photo', size: '150px', resizable: true },
-                { field: 'thumb_url', caption: 'Photo Path', size: '150px', resizable: true, hidden: true },
-            ],
-            searches: [
-                { field: 'name_de', caption: 'Name DE', type: 'text' },
-                { field: 'name_en', caption: 'Name EN', type: 'text' },
-                { field: 'content_de', caption: 'Inhalt DE', type: 'text' },
-                { field: 'content_en', caption: 'Inhalt EN', type: 'text' },
-            ],
-            sortData: [{ field: 'name_de', direction: 'ASC' }],
-          })
-
-          w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements')
-        }
-
-        function preview_image(path) {
-          if (path) {
-            $("#preview").html("<br/><br/><center><img src=" + path + " /></center>")
-          } else {
-            $("#preview").html("")
-          }
-        }
+// Preview Image
+function preview_image(path) {
+  if (path) {
+    $("#preview").html("<br/><br/><center><img src=" + path + " /></center>")
+  } else {
+    $("#preview").html("")
+  }
+}
       })
     </script>
   </config:>

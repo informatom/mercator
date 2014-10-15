@@ -16,9 +16,25 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
   def show_webpage
-    @webpage = Webpage.find(params[:id])
-    @page_template = @webpage.page_template
-    render json: [@webpage, @page_template]
+    webpage = Webpage.find(params[:id])
+    render json: { status: "success",
+                   total: 6,
+                   records: [{ recid: 1, attribute: "Titel DE", value: webpage.title_de },
+                             { recid: 2, attribute: "Titel EN", value: webpage.title_en },
+                             { recid: 3, attribute: "URL", value: webpage.url },
+                             { recid: 4, attribute: "Slug", value: webpage.slug },
+                             { recid: 5, attribute: "Menü", value: webpage.menu },
+                             { recid: 6, attribute: "Template", value: webpage.page_template.name } ] }
+  end
+
+  def show_assignments
+    assignments = Webpage.find(params[:id]).page_content_element_assignments
+    render json: { status: "success",
+                   total: assignments.count,
+                   records: assignments.collect { |assignment| { recid: assignment.id,
+                                                                 used_as: assignment.used_as,
+                                                                 content_element_name: assignment.content_element.name } }
+                 }
   end
 
   def update_folders
