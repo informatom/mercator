@@ -315,7 +315,7 @@ function displayContentelementsgrid() {
     onClick: function(event) {
       event.onComplete = function () {
         var sel = this.getSelection()
-        preview_image(this.get(sel).thumb_url)
+        previewImage(this.get(sel).thumb_url)
       }
     },
     onRefresh: function(event) {
