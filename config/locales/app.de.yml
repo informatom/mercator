@@ -438,6 +438,10 @@ de:
         price: Netto (ohne Steuern)
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
+      page_content_element_assignment:
+        updated: Baustein erfolgreich zugeordnet!
+        updating: Baustein wird zugeordnet
+        update_failed:  Baustein konnte nicht zugeordnet werden!
       price:
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"

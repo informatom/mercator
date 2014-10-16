@@ -94,9 +94,45 @@ function display_assignmentsgrid() {
     show: { selectColumn: true },
     columns: [
       { field: 'used_as', caption: 'used as', size: '50%', sortable: true },
-      { field: 'content_element_name', caption: 'Content Element', size: '50%'}
+      { field: 'content_element_name', caption: 'Content Element', size: '50%',
+        render: function (record) {
+          return '<div id="assignment-' + record.recid + '" class="droppable">' +
+                  (record.content_element_name || '<span style="color: #ff0000"> not assigned</span>') + '</div>'
+      }}
     ],
-    sortData: [ { field: 'used_as', direction: 'ASC' } ]
+    sortData: [ { field: 'used_as', direction: 'ASC' } ],
+
+    onRefresh: function(event) {
+      event.onComplete = function () {
+        $( ".droppable" ).droppable({
+          activeClass: "ui-state-default",
+          hoverClass: "ui-state-hover",
+          drop: function( event, ui ) {
+            var draggable = ui.draggable[0]
+            var contentElementId = parseInt(draggable.id.split("-")[2])
+            var associationID = parseInt(this.id.split("-")[1])
+
+            Messenger().run({
+              progressMessage: '<%= t "activerecord.attribute_help.page_content_element_assignment.updating" %> ...',
+              successMessage: '<%= t "activerecord.attribute_help.page_content_element_assignment.updated" %>',
+              errorMessage: '<%= t "activerecord.attribute_help.page_content_element_assignment.update_failed" %>',
+              hideAfter: 3
+            },{
+              url:"/contentmanager/front/update_page_content_element_assignment/" + associationID,
+              method: "POST",
+              data: {
+                authenticity_token: "<%= form_authenticity_token %>",
+                content_element_id: contentElementId
+              },
+              dataType: 'script',
+              success: function(response){
+                w2ui['assignments'].load('/contentmanager/front/show_assignments/' + response)
+              }
+            })
+          }
+        })
+      }
+    }
   })
 }
 
@@ -140,28 +176,11 @@ function display_contentelementsgrid() {
     show: { toolbar: true,
             footer: true,
             selectColumn: true },
-    onClick: function(event) {
-      event.onComplete = function () {
-        var sel = this.getSelection()
-        preview_image(this.get(sel).thumb_url)
-      }
-    },
-    onRefresh: function(event) {
-      event.onComplete = function () {
-        $('.draggable').draggable({ cursor: 'crosshair',
-                                    opacity: 0.9,
-                                    helper: "clone",
-                                    containment: ".myLayout",
-                                    zIndex: 10000,
-                                    appendTo: "body" })
-      }
-    },
-
     columns: [
       { field: 'recid', caption: 'ID', size: '50px', sortable: true, attr: "align=center", hidden: true },
       { field: 'name_de', caption: 'Name DE', size: '150px', sortable: true,
         render: function (record) {
-          return '<div class="draggable">' + record.name_de + '</div>'
+          return '<div id ="content-element-' + record.recid + '" class="draggable">' + record.name_de + '</div>'
         }},
       { field: 'name_en', caption: 'Name EN', size: '150px', sortable: true, hidden: true },
       { field: 'markup', caption: 'Markup', size: '40px', hidden: true },
@@ -179,7 +198,26 @@ function display_contentelementsgrid() {
       { field: 'name_en', caption: 'Name EN', type: 'text' },
       { field: 'content_de', caption: 'Inhalt DE', type: 'text' },
       { field: 'content_en', caption: 'Inhalt EN', type: 'text' } ],
-    sortData: [{ field: 'name_de', direction: 'ASC' } ]
+    sortData: [{ field: 'name_de', direction: 'ASC' } ],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var sel = this.getSelection()
+        preview_image(this.get(sel).thumb_url)
+      }
+    },
+    onRefresh: function(event) {
+      event.onComplete = function () {
+        $('.draggable').draggable({
+          cursor: 'crosshair',
+          opacity: 0.9,
+          helper: "clone",
+          containment: ".myLayout",
+          zIndex: 10000,
+          appendTo: "body"
+        })
+      }
+    }
   })
 }
 

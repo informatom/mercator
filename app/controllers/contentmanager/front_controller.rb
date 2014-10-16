@@ -56,6 +56,11 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     render json: { status: "success", total: @content_elements.count, records: @serialized_content_elements }
   end
 
+  def update_page_content_element_assignment
+    @page_content_element_assignment = PageContentElementAssignment.find(params[:id])
+    @page_content_element_assignment.update(content_element_id: params[:content_element_id])
+  end
+
 protected
 
   def reorder_webpages(webpages: nil, parent_id: nil)

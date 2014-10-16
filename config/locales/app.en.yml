@@ -431,6 +431,10 @@ en:
         price: excl. VAT
         value: excl. VAT
         vat: "in %, e.g. 19.5"
+      page_content_element_assignment:
+        updated: Content element assigned successfully!
+        updating: Assigning content element  ...
+        update_failed: Content element assignment failed!
       price:
         value: excl. VAT
         vat: "in %, e.g. 19.5"
