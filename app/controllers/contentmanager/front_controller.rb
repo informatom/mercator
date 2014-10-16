@@ -17,6 +17,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def show_webpage
     webpage = Webpage.find(params[:id])
+
     render json: { status: "success",
                    total: 6,
                    records: [{ recid: 1, attribute: "Titel DE", value: webpage.title_de },
@@ -28,12 +29,17 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
   def show_assignments
-    assignments = Webpage.find(params[:id]).page_content_element_assignments
+    webpage = Webpage.find(params[:id])
+
+    webpage.add_missing_page_content_element_assignments
+    webpage.reload
+
+    assignments = webpage.page_content_element_assignments
     render json: { status: "success",
                    total: assignments.count,
                    records: assignments.collect { |assignment| { recid: assignment.id,
                                                                  used_as: assignment.used_as,
-                                                                 content_element_name: assignment.content_element.name } }
+                                                                 content_element_name: assignment.content_element.try(:name) } }
                  }
   end
 

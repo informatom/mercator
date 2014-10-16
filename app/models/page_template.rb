@@ -15,6 +15,8 @@ class PageTemplate < ActiveRecord::Base
 
   has_many :webpages
 
+  acts_as_taggable_on :placeholder
+
   # --- Permissions --- #
 
   def create_permitted?

@@ -18,7 +18,6 @@ class PageContentElementAssignment < ActiveRecord::Base
   validates :webpage, :presence => true
 
   belongs_to :content_element
-  validates :content_element, :presence => true
 
   # --- Permissions --- #
 

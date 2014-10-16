@@ -37,6 +37,7 @@ gem "hobo_ckeditor"                                   # CKEditor integration
 gem "paper_trail", '~> 3.0.0'                         # historization on object level
 gem "ancestry"                                        # hierarchical data structures
 gem "acts_as_list"                                    # list structures
+gem 'acts-as-taggable-on', '~> 3.4'                   # tagging
 
 gem "messengerjs-rails"                               # Messenger Javascript Framework assets
 gem 'traco'                                           # model attribute translations

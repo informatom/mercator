@@ -86,5 +86,4 @@ class Value < ActiveRecord::Base
       flag == true ? "ja" : "nein"
     end
   end
-
 end

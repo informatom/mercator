@@ -74,6 +74,15 @@ class Webpage < ActiveRecord::Base
     PageContentElementAssignment.where(webpage_id: id, used_as: used_as).first.try(:content_element)
   end
 
+  def add_missing_page_content_element_assignments
+    page_template.placeholder_list.each do |placeholder|
+      unless page_content_element_assignments.where(used_as: placeholder).count > 0
+        page_content_element_assignments.new(used_as: placeholder)
+        self.save
+      end
+    end
+  end
+
   def element_name(used_as)
     if content_element = content_element(used_as)
       content_element.name.html_safe
@@ -88,7 +97,6 @@ class Webpage < ActiveRecord::Base
     else
       I18n.t("mercator.messages.content_element.no_assignment") + " " + used_as
     end
-
   end
 
   def image(used_as)

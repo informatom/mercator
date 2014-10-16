@@ -1,0 +1,5 @@
+set autoeval true
+set autoirb false
+set autolist true
+set basename false
+set testing false
