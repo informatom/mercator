@@ -55,6 +55,7 @@ Mercator::Application.routes.draw do
     post 'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
     post 'front/update_content_element/:id' => 'front#update_content_element'
     post 'front/update_or_create_folder' => 'front#update_or_create_folder'
+    post 'front/delete_folder/:id' => 'front#delete_folder'
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'

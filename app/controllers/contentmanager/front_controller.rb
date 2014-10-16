@@ -78,6 +78,10 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     end
   end
 
+  def delete_folder
+    Folder.find(params[:id]).delete
+  end
+
 protected
 
   def reorder_webpages(webpages: nil, parent_id: nil)
