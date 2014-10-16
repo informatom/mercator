@@ -4,11 +4,11 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   respond_to :html, :json, :js
 
   def index
-    @webpagesarray = childrenarray(objects: Webpage.arrange, name_method: :title).to_json
+    @webpagesarray = childrenarray(objects: Webpage.arrange(order: :position), name_method: :title).to_json
   end
 
   def show_foldertree
-    render json: childrenarray(objects: Folder.arrange, name_method: :name, folder: true).to_json
+    render json: childrenarray(objects: Folder.arrange(order: :position), name_method: :name, folder: true).to_json
   end
 
   def update_webpages
@@ -72,7 +72,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def update_or_create_folder
     if params[:recid] == "0"
-      Folder.create(name: params[:record][:name], position: 0)
+      Folder.create(name: params[:record][:name], position: 9999)
     else
       #FIXME!
     end
