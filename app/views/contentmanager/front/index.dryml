@@ -3,7 +3,9 @@
     <script>
       $(function () {
 
-// Layout
+
+// Layout //
+
 w2utils.locale('<%= font_path "contentmanager/de-de.json" %>')
 
 $('#myLayout').w2layout({
@@ -17,8 +19,8 @@ $('#myLayout').w2layout({
   ],
   onRender: function(event) {
     event.onComplete = function () {
-      display_webpage()
-      display_assignmentsgrid()
+      displayWebpage()
+      displayAssignmentsgrid()
     }
   }
 })
@@ -26,22 +28,26 @@ $('#myLayout').w2layout({
 $().w2layout({
   name: 'elementexplorer',
   panels: [
-    { type: 'main', resizable: true, title: 'Folder Structure', content: "<div id='foldertree'></div>" },
+    { type: 'main', resizable: true, title: 'Folder Structure',
+      content: "<div id='foldertree-toolbar' style='height:5%'></div><div id='foldertree' style='height:95%'></div>" },
     { type: 'right', resizable: true, size: 1100, title: 'Content Elements',
       content: "<div id='contentelementsgrid' style='height:100%'></div>" },
     { type: 'preview', size: 200, resizable: true, title: 'Preview', content: "<div id='preview'></div>" }
   ],
   onRender: function(event) {
     event.onComplete = function () {
-      display_foldertree()
-      display_contentelementsgrid()
+      displayFoldertreeToolbar()
+      displayFoldertree()
+      displayContentelementsgrid()
     }
   }
 })
 
 w2ui['contentmanager'].content('right', w2ui['elementexplorer'])
 
-// Webpagetree
+
+// Webpagetree //
+
 $("#pagetree").fancytree({
   source: <%= raw @webpagesarray %>,
   extensions: ["dnd"],
@@ -73,8 +79,10 @@ $("#pagetree").fancytree({
   }
 })
 
-// Sigle Webpage Grid
-function display_webpage() {
+
+// Sigle Webpage Grid //
+
+function displayWebpage() {
   $('#webpage').w2grid({
     name: 'webpage',
     method: 'GET',
@@ -85,8 +93,10 @@ function display_webpage() {
   })
 }
 
-// Assignments
-function display_assignmentsgrid() {
+
+// Assignments //
+
+function displayAssignmentsgrid() {
   $('#assignments').w2grid({
     name: 'assignments',
     method: 'GET',
@@ -135,10 +145,12 @@ function display_assignmentsgrid() {
   })
 }
 
-// Foldertree
-function display_foldertree() {
+
+// Foldertree //
+
+function displayFoldertree() {
   $("#foldertree").fancytree({
-    source: <%= raw @foldersarray %>,
+    source: { url: "/contentmanager/front/show_foldertree" },
     extensions: ["dnd"],
     dnd: {
       droppable: {
@@ -198,8 +210,57 @@ function display_foldertree() {
   })
 }
 
-// Content Elements Grid
-function display_contentelementsgrid() {
+
+// Folder Tree Toolbar //
+
+function displayFoldertreeToolbar() {
+  $('#foldertree-toolbar').w2toolbar({
+    name: 'foldertree-toolbar',
+    items: [
+      { type: 'button',  id: 'add',  caption: 'Add', icon: 'fa fa-folder' }
+    ],
+    onClick: function (event) {
+      switch (event.target) {
+      case 'add':
+        w2popup.open({
+          title: 'Create Folder',
+          body: '<div id="folder-form"></div>',
+          onOpen  : function (event) {
+            event.onComplete = function () {
+              $('#folder-form').w2render('folder-form');
+            }
+          }
+        })
+
+      }
+    }
+  })
+}
+
+
+// Folder Form
+$().w2form({
+    name   : 'folder-form',
+    url: 'contentmanager/front/update_or_create_folder',
+    fields : [
+      { field: 'name', type: 'text', required: true, html: { caption: 'Name' } }
+    ],
+    actions: {
+      'Cancel': function () { w2popup.close() },
+      'Clear': function () { this.clear() },
+      'Save': function (event) { this.save() }
+    },
+    postData: { authenticity_token: "<%= form_authenticity_token %>" },
+    onSave: function(event) {
+      w2popup.close()
+      $("#foldertree").fancytree("getTree").reload()
+    }
+})
+
+
+// Content Elements Grid //
+
+function displayContentelementsgrid() {
   $('#contentelementsgrid').w2grid({
     name: 'contentelementsgrid',
     header: 'List of Content Elements',
@@ -255,7 +316,7 @@ function display_contentelementsgrid() {
 }
 
 // Preview Image
-function preview_image(path) {
+function previewImage(path) {
   if (path) {
     $("#preview").html("<br/><br/><center><img src=" + path + " /></center>")
   } else {

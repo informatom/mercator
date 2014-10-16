@@ -46,6 +46,7 @@ Mercator::Application.routes.draw do
   end
 
   namespace :contentmanager do
+    get 'front/show_foldertree' => 'front#show_foldertree'
     post 'front/update_webpages' => 'front#update_webpages'
     get 'front/show_webpage/:id' => 'front#show_webpage'
     get 'front/show_assignments/:id' => 'front#show_assignments'
@@ -53,7 +54,7 @@ Mercator::Application.routes.draw do
     get 'front/show_content_elements/:id' => 'front#show_content_elements'
     post 'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
     post 'front/update_content_element/:id' => 'front#update_content_element'
-
+    post 'front/update_or_create_folder' => 'front#update_or_create_folder'
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'

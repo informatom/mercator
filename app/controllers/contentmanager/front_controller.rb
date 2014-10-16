@@ -5,7 +5,10 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def index
     @webpagesarray = childrenarray(objects: Webpage.arrange, name_method: :title).to_json
-    @foldersarray = childrenarray(objects: Folder.arrange, name_method: :name, folder: true).to_json
+  end
+
+  def show_foldertree
+    render json: childrenarray(objects: Folder.arrange, name_method: :name, folder: true).to_json
   end
 
   def update_webpages
@@ -65,6 +68,14 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   def update_page_content_element_assignment
     @page_content_element_assignment = PageContentElementAssignment.find(params[:id])
     @page_content_element_assignment.update(content_element_id: params[:content_element_id])
+  end
+
+  def update_or_create_folder
+    if params[:recid] == "0"
+      Folder.create(name: params[:record][:name], position: 0)
+    else
+      #FIXME!
+    end
   end
 
 protected
