@@ -13,7 +13,7 @@ class ContentElement < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name_de, :name_en, :content_de, :content_en, :markup,
+  attr_accessible :name_de, :name_en, :content_de, :content_en, :markup, :folder, :folder_id,
                   :webpages, :page_content_element_assignments, :legacy_id, :photo, :document
   translates :name, :content
   has_paper_trail

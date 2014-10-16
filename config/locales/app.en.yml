@@ -413,6 +413,10 @@ en:
       constant:
         key: "Create only keys that are actually used by the application."
         markup: "For HTML input, yout are supported by an WYSIWYG editor, please use the editors code view for markdown."
+      content_element:
+        moved: Content element moved successfully!
+        moving: Moving content element ...
+        move_failed: Content element could not be moved!
       conversation:
         name: "For your personal reference to this conversation in future times."
       country:

@@ -51,9 +51,15 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
   def show_content_elements
-    @content_elements = ContentElement.all
+    @content_elements = ContentElement.where(folder_id: params[:id])
     @serialized_content_elements = ActiveModel::ArraySerializer.new(@content_elements).as_json
     render json: { status: "success", total: @content_elements.count, records: @serialized_content_elements }
+  end
+
+  def update_content_element
+    content_element = ContentElement.find(params[:id])
+    @old_folder_id = content_element.folder_id
+    content_element.update(folder_id: params[:folder_id])
   end
 
   def update_page_content_element_assignment
@@ -88,7 +94,7 @@ protected
     objects.each do |object, children|
       childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => folder]
       if children.any?
-        childhash["children"] = childrenarray(objects: children, name_method: name_method)
+        childhash["children"] = childrenarray(objects: children, name_method: name_method, folder: folder)
       end
       childrenarray << childhash
     end

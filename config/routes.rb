@@ -50,8 +50,10 @@ Mercator::Application.routes.draw do
     get 'front/show_webpage/:id' => 'front#show_webpage'
     get 'front/show_assignments/:id' => 'front#show_assignments'
     post 'front/update_folders' => 'front#update_folders'
-    get 'front/show_content_elements' => 'front#show_content_elements'
+    get 'front/show_content_elements/:id' => 'front#show_content_elements'
     post 'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
+    post 'front/update_content_element/:id' => 'front#update_content_element'
+
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'

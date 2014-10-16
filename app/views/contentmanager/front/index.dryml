@@ -68,9 +68,8 @@ $("#pagetree").fancytree({
     }
   },
   click: function(event, data) {
-    var node = data.node
-    w2ui['assignments'].load('/contentmanager/front/show_assignments/' + node.key)
-    w2ui['webpage'].load('/contentmanager/front/show_webpage/' + node.key)
+    w2ui['assignments'].load('/contentmanager/front/show_assignments/' +  data.node.key)
+    w2ui['webpage'].load('/contentmanager/front/show_webpage/' +  data.node.key)
   }
 })
 
@@ -142,26 +141,59 @@ function display_foldertree() {
     source: <%= raw @foldersarray %>,
     extensions: ["dnd"],
     dnd: {
+      droppable: {
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover"
+      },
       dragStart: function(node, data) { return true },
       dragEnter: function(node, data) { return true },
       dragDrop: function(node, data) {
-        data.otherNode.moveTo(node, data.hitMode)
+        if( !data.otherNode ){
+          // It's a non-tree draggable
+          var draggable = data.draggable.element[0]
+          var contentElementId = parseInt(draggable.id.split("-")[2])
 
-        Messenger().run({
-          progressMessage: '<%= t "activerecord.attribute_help.folder.updating" %> ...',
-          successMessage: '<%= t "activerecord.attribute_help.folder.updated" %>',
-          errorMessage: '<%= t "activerecord.attribute_help.folder.update_failed" %>',
-          hideAfter: 3
-        },{
-          url:"/contentmanager/front/update_folders",
-          method: "POST",
-          data: {
-            authenticity_token: "<%= form_authenticity_token %>",
-            folders: $("#foldertree").fancytree("getTree").toDict()
-          },
-          dataType: 'script'
-        })
+          Messenger().run({
+            progressMessage: '<%= t "activerecord.attribute_help.content_element.moving" %> ...',
+            successMessage: '<%= t "activerecord.attribute_help.content_element.moved" %>',
+            errorMessage: '<%= t "activerecord.attribute_help.content_element.move_failed" %>',
+            hideAfter: 3
+          },{
+            url:"/contentmanager/front/update_content_element/" + contentElementId,
+            method: "POST",
+            data: {
+              authenticity_token: "<%= form_authenticity_token %>",
+              folder_id: data.node.key
+            },
+            dataType: 'script',
+            success: function(response){
+              w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + response)
+            }
+          })
+
+        } else {
+          // It's a tree draggable
+          data.otherNode.moveTo(node, data.hitMode)
+
+          Messenger().run({
+            progressMessage: '<%= t "activerecord.attribute_help.folder.updating" %> ...',
+            successMessage: '<%= t "activerecord.attribute_help.folder.updated" %>',
+            errorMessage: '<%= t "activerecord.attribute_help.folder.update_failed" %>',
+            hideAfter: 3
+          },{
+            url:"/contentmanager/front/update_folders",
+            method: "POST",
+            data: {
+              authenticity_token: "<%= form_authenticity_token %>",
+              folders: $("#foldertree").fancytree("getTree").toDict()
+            },
+            dataType: 'script'
+          })
+        }
       }
+    },
+    click: function(event, data) {
+      w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + data.node.key)
     }
   })
 }
@@ -172,7 +204,6 @@ function display_contentelementsgrid() {
     name: 'contentelementsgrid',
     header: 'List of Content Elements',
     method: 'GET',
-    url: '/contentmanager/front/show_content_elements',
     show: { toolbar: true,
             footer: true,
             selectColumn: true },
@@ -214,7 +245,9 @@ function display_contentelementsgrid() {
           helper: "clone",
           containment: ".myLayout",
           zIndex: 10000,
-          appendTo: "body"
+          appendTo: "body",
+          connectToFancytree: true,
+          cursorAt: { top: -5, left: -5 }
         })
       }
     }
