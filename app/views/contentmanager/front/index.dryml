@@ -80,8 +80,8 @@ function display_webpage() {
     name: 'webpage',
     method: 'GET',
     columns : [
-      { field: 'attribute', caption: 'Attribut', size: '150px' },
-      { field: 'value', caption: 'Wert', size: '180px'}
+      { field: 'attribute', caption: 'Attribut', size: '50%' },
+      { field: 'value', caption: 'Wert', size: '50%'}
     ]
   })
 }
@@ -93,8 +93,8 @@ function display_assignmentsgrid() {
     method: 'GET',
     show: { selectColumn: true },
     columns: [
-      { field: 'used_as', caption: 'used as', size: '100px', sortable: true },
-      { field: 'content_element_name', caption: 'Content Element', size: '210px'}
+      { field: 'used_as', caption: 'used as', size: '50%', sortable: true },
+      { field: 'content_element_name', caption: 'Content Element', size: '50%'}
     ],
     sortData: [ { field: 'used_as', direction: 'ASC' } ]
   })
@@ -165,7 +165,7 @@ function display_contentelementsgrid() {
         }},
       { field: 'name_en', caption: 'Name EN', size: '150px', sortable: true, hidden: true },
       { field: 'markup', caption: 'Markup', size: '40px', hidden: true },
-      { field: 'content_de', caption: 'Inhalt DE', size: '400px' },
+      { field: 'content_de', caption: 'Inhalt DE', size: '50%' },
       { field: 'content_en', caption: 'Inhalt EN', size: '300px', hidden: true },
       { field: 'created_at', caption: 'erzeugt', size: '130px', hidden: true,
         render: function (record) { return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss") } },
