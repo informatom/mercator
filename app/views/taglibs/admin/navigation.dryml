@@ -82,7 +82,7 @@
         <nav-item with="&Webpage">
           <ht key="webpage.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
-        <nav-item with="&Webpage" action="treereorder">
+        <nav-item href="/contentmanager">
           <ht key="webpage.nav_item" count="100"><t key="attributes.page_tree" /></ht>
         </nav-item>
         <nav-item with="&Folder">
