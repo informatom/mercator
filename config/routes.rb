@@ -47,6 +47,7 @@ Mercator::Application.routes.draw do
 
   namespace :contentmanager do
     get 'front/show_foldertree' => 'front#show_foldertree'
+    get 'front/show_webpagestree' => 'front#show_webpagestree'
     post 'front/update_webpages' => 'front#update_webpages'
     get 'front/show_webpage/:id' => 'front#show_webpage'
     get 'front/show_assignments/:id' => 'front#show_assignments'

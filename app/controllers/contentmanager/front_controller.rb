@@ -3,12 +3,14 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   hobo_controller
   respond_to :html, :json, :js
 
-  def index
-    @webpagesarray = childrenarray(objects: Webpage.arrange(order: :position), name_method: :title).to_json
-  end
+  def index; end
 
   def show_foldertree
     render json: childrenarray(objects: Folder.arrange(order: :position), name_method: :name, folder: true).to_json
+  end
+
+  def show_webpagestree
+    render json: childrenarray(objects: Webpage.arrange(order: :position), name_method: :title).to_json
   end
 
   def update_webpages
