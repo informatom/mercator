@@ -14,6 +14,7 @@ function displayFoldertreeToolbar() {
           body: '<div id="folder-form"></div>',
           onOpen  : function (event) {
             event.onComplete = function () {
+              w2ui['folder-form'].recid = null
               $('#folder-form').w2render('folder-form')
             }
           }

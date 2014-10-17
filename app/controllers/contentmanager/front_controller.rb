@@ -73,7 +73,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
   def folder
-    folder = Folder.find(params[:recid])
+    folder = params[:recid] == "0" ? NullObject.new() : Folder.find(params[:recid]) 
 
     if params[:cmd] == "save-record"
       if params[:recid] == "0"
