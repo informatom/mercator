@@ -17,7 +17,7 @@ function displayWebpageTree() {
           url:"/contentmanager/front/update_webpages",
           method: "POST",
           data: {
-            authenticity_token: "jAKl2wsqpvqYwBKZx5sT4Isf+mQXAy46ONBd2xVrw7E=",
+            authenticity_token: csrf_token,
             webpages: $("#pagetree").fancytree("getTree").toDict()
           },
           dataType: 'script'

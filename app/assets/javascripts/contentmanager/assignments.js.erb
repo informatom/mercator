@@ -32,7 +32,7 @@ function displayAssignmentsgrid() {
               url:"/contentmanager/front/update_page_content_element_assignment/" + associationID,
               method: "POST",
               data: {
-                authenticity_token: "jAKl2wsqpvqYwBKZx5sT4Isf+mQXAy46ONBd2xVrw7E=",
+                authenticity_token: csrf_token,
                 content_element_id: contentElementId
               },
               dataType: 'script',

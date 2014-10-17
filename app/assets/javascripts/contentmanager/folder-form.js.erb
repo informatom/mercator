@@ -1,0 +1,19 @@
+function generateFolderForm() {
+  $().w2form({
+      name   : 'folder-form',
+      url: 'contentmanager/front/folder',
+      fields : [
+        { field: 'name', type: 'text', required: true, html: { caption: 'Name' } }
+      ],
+      actions: {
+        'Cancel': function () { w2popup.close() },
+        'Clear': function () { this.clear() },
+        'Save': function (event) { this.save() }
+      },
+      postData: { authenticity_token: csrf_token },
+      onSave: function(event) {
+        w2popup.close()
+        $("#foldertree").fancytree("getTree").reload()
+      }
+  })
+}

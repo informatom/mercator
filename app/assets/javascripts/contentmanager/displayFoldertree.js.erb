@@ -24,7 +24,7 @@ function displayFoldertree() {
             url:"/contentmanager/front/update_content_element/" + contentElementId,
             method: "POST",
             data: {
-              authenticity_token: "jAKl2wsqpvqYwBKZx5sT4Isf+mQXAy46ONBd2xVrw7E=",
+              authenticity_token: csrf_token,
               folder_id: data.node.key
             },
             dataType: 'script',
@@ -46,7 +46,7 @@ function displayFoldertree() {
             url:"/contentmanager/front/update_folders",
             method: "POST",
             data: {
-              authenticity_token: "jAKl2wsqpvqYwBKZx5sT4Isf+mQXAy46ONBd2xVrw7E=",
+              authenticity_token: csrf_token,
               folders: $("#foldertree").fancytree("getTree").toDict()
             },
             dataType: 'script'

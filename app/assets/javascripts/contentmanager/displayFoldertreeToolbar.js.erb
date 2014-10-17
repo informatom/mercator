@@ -33,7 +33,7 @@ function displayFoldertreeToolbar() {
               },{
                 url:"/contentmanager/front/delete_folder/" + active_node.key,
                 method: "POST",
-                data: { authenticity_token: "jAKl2wsqpvqYwBKZx5sT4Isf+mQXAy46ONBd2xVrw7E=" },
+                data: { authenticity_token: csrf_token },
                 dataType: 'script',
                 success: function(response){
                   $("#foldertree").fancytree("getTree").reload()

@@ -1,0 +1,9 @@
+//= require contentmanager/layout
+//= require contentmanager/webpagetree
+//= require contentmanager/displayWebpage
+//= require contentmanager/assignments
+//= require contentmanager/displayFoldertree
+//= require contentmanager/displayFoldertreeToolbar
+//= require contentmanager/folder-form
+//= require contentmanager/displayContentelementsgrid
+//= require contentmanager/previewImage
