@@ -426,6 +426,9 @@ en:
         updated: Folder tree updated successfully!
         updating: Folder tree updating ...
         update_failed: Folder tree update failed!
+        deleted: Folder deleted successfully!
+        deleting: Deleting folder ...
+        delete_failed: Folder could not be deleted!
       inventory:
         number: "Please enter article number here even when it does not deviate from the article number of the products"
         unit: "Use consistent units across all products, e.g. pc., h, unit"

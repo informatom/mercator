@@ -79,7 +79,14 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
   def delete_folder
-    Folder.find(params[:id]).delete
+    @folder = Folder.find(params[:id])
+    if @folder.content_elements.any?
+      render :text => 'Verzeichnis kann nicht gelöscht werden: Es enthält Bausteine!', :status => 403 and return
+    elsif @folder.children.any?
+      render :text =>  'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!', :status => 403 and return
+    else
+      @folder.delete
+    end
   end
 
 protected

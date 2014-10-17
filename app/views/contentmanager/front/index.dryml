@@ -236,15 +236,27 @@ function displayFoldertreeToolbar() {
       case 'delete':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
-          w2confirm('Are you sure?', function (btn) {
-            if (btn =='Yes') {
-              $.ajax({
+          w2confirm('Are you sure?', function (button) {
+            if (button =='Yes') {
+
+              Messenger().run({
+                progressMessage: '<%= t "activerecord.attribute_help.folder.deleting" %> ...',
+                successMessage: '<%= t "activerecord.attribute_help.folder.deleted" %>',
+                errorMessage: '<%= t "activerecord.attribute_help.folder.delete_failed" %>',
+                hideAfter: 3
+              },{
                 url:"/contentmanager/front/delete_folder/" + active_node.key,
                 method: "POST",
-                data: { authenticity_token: "<%= form_authenticity_token %>" },
-                dataType: 'script'
-              }).done(function() {
-                $("#foldertree").fancytree("getTree").reload()
+                data: {
+                  authenticity_token: "<%= form_authenticity_token %>"
+                },
+                dataType: 'script',
+                success: function(response){
+                  $("#foldertree").fancytree("getTree").reload()
+                },
+                error: function(response){
+                  return response.responseText
+                }
               })
             }
           })

@@ -433,6 +433,9 @@ de:
         updated: Verzeichnisbaum erfolgreich aktualisiert!
         updating: Verzeichnisbaum wird aktualisiert
         update_failed: Verzeichnisbaum konnte nicht aktualisiert werden!
+        deleted: Verzeichnis erfolgreich gelöscht!
+        deleting: Verzeichnis wird gelöscht ...
+        delete_failed: Verzeichnis konnte nicht gelöscht werden!
       inventory:
         number: "Geben Sie die Artikelnummer auch dann ein, wenn Sie nicht von der Artikelnummer des Artikels abweicht."
         unit: "Verwenden Sie einheitliche Einheiten, z.B. Stk., Std., Pau."
