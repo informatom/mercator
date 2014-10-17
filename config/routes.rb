@@ -54,7 +54,7 @@ Mercator::Application.routes.draw do
     get 'front/show_content_elements/:id' => 'front#show_content_elements'
     post 'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
     post 'front/update_content_element/:id' => 'front#update_content_element'
-    post 'front/update_or_create_folder' => 'front#update_or_create_folder'
+    post 'front/folder' => 'front#folder'
     post 'front/delete_folder/:id' => 'front#delete_folder'
   end
 

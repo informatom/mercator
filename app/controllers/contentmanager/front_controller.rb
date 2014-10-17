@@ -70,12 +70,18 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     @page_content_element_assignment.update(content_element_id: params[:content_element_id])
   end
 
-  def update_or_create_folder
-    if params[:recid] == "0"
-      Folder.create(name: params[:record][:name], position: 9999)
-    else
-      #FIXME!
+  def folder
+    folder = Folder.find(params[:recid])
+
+    if params[:cmd] == "save-record"
+      if params[:recid] == "0"
+        folder = Folder.create(name: params[:record][:name], position: 9999)
+      else
+        folder.update(name: params[:record][:name])
+      end
     end
+
+    render json: { status: "success", record: { recid: folder.id, name: folder.name} }
   end
 
   def delete_folder

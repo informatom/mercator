@@ -218,6 +218,7 @@ function displayFoldertreeToolbar() {
     name: 'foldertree-toolbar',
     items: [
       { type: 'button',  id: 'add',     caption: 'Add',    icon: 'fa fa-folder' },
+      { type: 'button',  id: 'edit',  caption: 'Edit', icon: 'fa fa-edit' },
       { type: 'button',  id: 'delete',  caption: 'Delete', icon: 'fa fa-close' }
     ],
     onClick: function (event) {
@@ -228,7 +229,7 @@ function displayFoldertreeToolbar() {
           body: '<div id="folder-form"></div>',
           onOpen  : function (event) {
             event.onComplete = function () {
-              $('#folder-form').w2render('folder-form');
+              $('#folder-form').w2render('folder-form')
             }
           }
         })
@@ -264,6 +265,23 @@ function displayFoldertreeToolbar() {
           w2alert('No folder selected')
         }
         break
+      case 'edit':
+        var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
+        if (active_node) {
+          w2popup.open({
+            title: 'Create Folder',
+            body: '<div id="folder-form"></div>',
+            onOpen  : function (event) {
+              event.onComplete = function () {
+                w2ui['folder-form'].recid = active_node.key
+                $('#folder-form').w2render('folder-form')
+              }
+            }
+          })
+        } else {
+          w2alert('No folder selected')
+        }
+        break
       }
     }
   })
@@ -273,7 +291,7 @@ function displayFoldertreeToolbar() {
 // Folder Form
 $().w2form({
     name   : 'folder-form',
-    url: 'contentmanager/front/update_or_create_folder',
+    url: 'contentmanager/front/folder',
     fields : [
       { field: 'name', type: 'text', required: true, html: { caption: 'Name' } }
     ],
@@ -288,7 +306,6 @@ $().w2form({
       $("#foldertree").fancytree("getTree").reload()
     }
 })
-
 
 // Content Elements Grid //
 
