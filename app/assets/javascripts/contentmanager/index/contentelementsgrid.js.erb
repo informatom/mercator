@@ -2,6 +2,7 @@ function contentelementsgrid() {
   $('#contentelementsgrid').w2grid({
     name: 'contentelementsgrid',
     header: 'List of Content Elements',
+    multiSelect : false,
     method: 'GET',
     show: {
       toolbar: true,
@@ -40,21 +41,14 @@ function contentelementsgrid() {
     onClick: function(event) {
       event.onComplete = function () {
         var sel = this.getSelection()
-        previewImage(this.get(sel).recid)
+        if (this.get(sel)) {
+          previewImage(this.get(sel).recid)
+        }
       }
     },
-    onRefresh: function(event) {
+    onSelect: function(event) {
       event.onComplete = function () {
-        $('.draggable').draggable({
-          cursor: 'crosshair',
-          opacity: 0.9,
-          helper: "clone",
-          containment: ".myLayout",
-          zIndex: 10000,
-          appendTo: "body",
-          connectToFancytree: true,
-          cursorAt: { top: -5, left: -5 }
-        })
+        registerDraggables()
       }
     }
   })

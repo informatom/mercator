@@ -1,10 +1,14 @@
 function registerGallery() {
   $('.thumbnail').click( function () {
     var content_element_id = parseInt(this.id.split("-")[2])
-    w2ui['contentelementsgrid'].selectNone()
-    w2ui['contentelementsgrid'].select(content_element_id)
     previewImage(content_element_id)
     var index = w2ui.contentelementsgrid.get(content_element_id, true)
     w2ui.contentelementsgrid.scrollIntoView(index)
+    w2ui['contentelementsgrid'].selectNone()
+    setTimeout(
+      function(){
+        w2ui['contentelementsgrid'].select(content_element_id)
+      },
+    1000 )
   })
 }

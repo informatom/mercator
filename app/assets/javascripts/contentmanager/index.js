@@ -8,3 +8,4 @@
 //= require contentmanager/index/contentelementsgrid
 //= require contentmanager/index/previewImage
 //= require contentmanager/index/gallery
+//= require contentmanager/index/registerDraggables
