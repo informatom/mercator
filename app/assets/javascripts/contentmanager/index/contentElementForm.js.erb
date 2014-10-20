@@ -1,0 +1,25 @@
+function contentElementForm() {
+  $().w2form({
+      name: 'contentElementForm',
+      url: 'contentmanager/front/content_element',
+      fields : [
+        { field: 'name_de',    type: 'text', required: true, html: { caption: 'Name DE' } },
+        { field: 'name_en',    type: 'text',                 html: { caption: 'Name EN' } },
+        { field: 'markup',     type: 'text',                 html: { caption: 'Name EN' } },
+        { field: 'content_de', type: 'textarea',             html: { caption: 'Inhalt DE' } },
+        { field: 'content_en', type: 'textarea',             html: { caption: 'Inhalt EN' } },
+        { field: 'document',   type: 'file',                 html: { caption: 'Dokument' } },
+        { field: 'photo',      type: 'file', width: 250,  html: { caption: 'Photo' } },
+      ],
+      actions: {
+        'Cancel': function () { w2popup.close() },
+        'Clear':  function () { this.clear() },
+        'Save':   function (event) { this.save() }
+      },
+      postData: { authenticity_token: csrf_token },
+      onSave: function(event) {
+        w2popup.close()
+        // grid reload
+      }
+  })
+}

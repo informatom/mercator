@@ -9,6 +9,36 @@ function contentelementsgrid() {
       footer: true,
       selectColumn: true
     },
+    toolbar: {
+        items: [
+          { type: 'button', id: 'edit', caption: w2utils.lang('Edit'), img: 'fa fa-edit' }
+        ],
+        onClick: function (target, data) {
+          if (target == "edit") {
+            w2popup.open({
+              title: 'Edit Content Element',
+              width: 800,
+              height: 600,
+              body: '<div id="contentElementForm"></div>',
+              onOpen  : function (event) {
+                event.onComplete = function () {
+                  $('#contentElementForm').w2render('contentElementForm')
+                  var selection = w2ui['contentelementsgrid'].getSelection()
+                  if (selection.length == 1) {
+                    w2ui['contentElementForm'].recid  = selection[0]
+
+                    // Data should not be merged, it will be read from the database
+                    // w2ui['contentElementForm'].record = $.extend(true, {}, w2ui['contentelementsgrid'].get(selection[0])) // merges data in
+                    w2ui['contentElementForm'].refresh()
+                  } else {
+                    w2ui['contentElementForm'].clear();
+                  }
+                }
+              }
+            })
+          }
+        }
+    },
     columns: [
       { field: 'recid',              caption: 'ID',             size: '50px',  sortable: true, hidden: true , attr: "align=center"},
       { field: 'name_de',            caption: 'Name DE',        size: '150px', sortable: true,

@@ -11,11 +11,11 @@ function foldertreeToolbar() {
       case 'add':
         w2popup.open({
           title: 'Create Folder',
-          body: '<div id="folder-form"></div>',
+          body: '<div id="folderForm"></div>',
           onOpen  : function (event) {
             event.onComplete = function () {
-              w2ui['folder-form'].recid = null
-              $('#folder-form').w2render('folder-form')
+              w2ui['folderForm'].recid = null
+              $('#folderForm').w2render('folderForm')
             }
           }
         })
@@ -55,11 +55,11 @@ function foldertreeToolbar() {
         if (active_node) {
           w2popup.open({
             title: 'Create Folder',
-            body: '<div id="folder-form"></div>',
+            body: '<div id="folderForm"></div>',
             onOpen  : function (event) {
               event.onComplete = function () {
-                w2ui['folder-form'].recid = active_node.key
-                $('#folder-form').w2render('folder-form')
+                w2ui['folderForm'].recid = active_node.key
+                $('#folderForm').w2render('folderForm')
               }
             }
           })

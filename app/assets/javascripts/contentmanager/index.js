@@ -6,6 +6,7 @@
 //= require contentmanager/index/foldertreeToolbar
 //= require contentmanager/index/folderForm
 //= require contentmanager/index/contentelementsgrid
+//= require contentmanager/index/contentElementForm
 //= require contentmanager/index/previewImage
 //= require contentmanager/index/gallery
 //= require contentmanager/index/registerDraggables
