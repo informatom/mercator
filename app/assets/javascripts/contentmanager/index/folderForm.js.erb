@@ -1,4 +1,4 @@
-function generateFolderForm() {
+function folderForm() {
   $().w2form({
       name: 'folder-form',
       url: 'contentmanager/front/folder',
@@ -7,8 +7,8 @@ function generateFolderForm() {
       ],
       actions: {
         'Cancel': function () { w2popup.close() },
-        'Clear': function () { this.clear() },
-        'Save': function (event) { this.save() }
+        'Clear':  function () { this.clear() },
+        'Save':   function (event) { this.save() }
       },
       postData: { authenticity_token: csrf_token },
       onSave: function(event) {

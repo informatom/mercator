@@ -1,10 +1,10 @@
-function displayFoldertreeToolbar() {
+function foldertreeToolbar() {
   $('#foldertree-toolbar').w2toolbar({
     name: 'foldertree-toolbar',
     items: [
-      { type: 'button',  id: 'add',     caption: 'Add',    icon: 'fa fa-folder' },
-      { type: 'button',  id: 'edit',  caption: 'Edit', icon: 'fa fa-edit' },
-      { type: 'button',  id: 'delete',  caption: 'Delete', icon: 'fa fa-close' }
+      { type: 'button',  id: 'add',    caption: 'Add',    icon: 'fa fa-folder' },
+      { type: 'button',  id: 'edit',   caption: 'Edit',   icon: 'fa fa-edit' },
+      { type: 'button',  id: 'delete', caption: 'Delete', icon: 'fa fa-close' }
     ],
     onClick: function (event) {
       switch (event.target) {
@@ -20,12 +20,12 @@ function displayFoldertreeToolbar() {
           }
         })
         break
+
       case 'delete':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
           w2confirm('Are you sure?', function (button) {
             if (button =='Yes') {
-
               Messenger().run({
                 progressMessage: 'Verzeichnis wird gelöscht ... ...',
                 successMessage: 'Verzeichnis erfolgreich gelöscht!',
@@ -49,6 +49,7 @@ function displayFoldertreeToolbar() {
           w2alert('No folder selected')
         }
         break
+
       case 'edit':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
@@ -62,10 +63,10 @@ function displayFoldertreeToolbar() {
               }
             }
           })
+
         } else {
           w2alert('No folder selected')
         }
-        break
       }
     }
   })

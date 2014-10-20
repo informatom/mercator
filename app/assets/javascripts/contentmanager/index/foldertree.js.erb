@@ -1,4 +1,4 @@
-function displayFoldertree() {
+function foldertree() {
   $("#foldertree").fancytree({
     source: { url: "/contentmanager/front/show_foldertree" },
     extensions: ["dnd"],
@@ -9,7 +9,7 @@ function displayFoldertree() {
       },
       dragStart: function(node, data) { return true },
       dragEnter: function(node, data) { return true },
-      dragDrop: function(node, data) {
+      dragDrop:  function(node, data) {
         if( !data.otherNode ){
           // It's a non-tree draggable
           var draggable = data.draggable.element[0]

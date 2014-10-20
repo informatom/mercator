@@ -1,14 +1,14 @@
-/.bundle
+.bundle
 db/schema.rb
 
-/log/*.log
-/tmp
+log/*
+tmp
 
-/config/hobo_routes.rb
-/config/application.yml
-/config/private_pub.yml
-/config/database.yml
-/config/delayed_job.sh
+config/hobo_routes.rb
+config/application.yml
+config/private_pub.yml
+config/database.yml
+config/delayed_job.sh
 
 log/*
 public/assets/*

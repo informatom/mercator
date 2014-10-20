@@ -1,4 +1,4 @@
-function displayWebpageTree() {
+function webpageTree() {
   $("#pagetree").fancytree({
     source: { url: "/contentmanager/front/show_webpagestree" },
     extensions: ["dnd"],
@@ -7,7 +7,6 @@ function displayWebpageTree() {
       dragEnter: function(node, data) { return true },
       dragDrop: function(node, data) {
         data.otherNode.moveTo(node, data.hitMode)
-
         Messenger().run({
           progressMessage: 'Kategoriebaum wird aktualisiert ...',
           successMessage: 'Kategoriebaum erfolgreich aktualisiert!',
@@ -25,8 +24,8 @@ function displayWebpageTree() {
       }
     },
     click: function(event, data) {
-      w2ui['assignments'].load('/contentmanager/front/show_assignments/' +  data.node.key)
-      w2ui['webpage'].load('/contentmanager/front/show_webpage/' +  data.node.key)
+      w2ui['assignments'].load('/contentmanager/front/show_assignments/' + data.node.key)
+      w2ui['webpage'].load('/contentmanager/front/show_webpage/' + data.node.key)
     }
   })
 }

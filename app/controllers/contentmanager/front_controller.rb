@@ -15,9 +15,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def update_webpages
     reorder_webpages(webpages: params[:webpages], parent_id: nil)
-    if request.xhr?
-      hobo_ajax_response
-    end
+    render nothing: true
   end
 
   def show_webpage
@@ -50,9 +48,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def update_folders
     reorder_folders(folders: params[:folders], parent_id: nil)
-    if request.xhr?
-      hobo_ajax_response
-    end
+    render nothing: true
   end
 
   def show_content_elements
@@ -65,15 +61,17 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     content_element = ContentElement.find(params[:id])
     @old_folder_id = content_element.folder_id
     content_element.update(folder_id: params[:folder_id])
+    render text: @old_folder_id
   end
 
   def update_page_content_element_assignment
-    @page_content_element_assignment = PageContentElementAssignment.find(params[:id])
-    @page_content_element_assignment.update(content_element_id: params[:content_element_id])
+    page_content_element_assignment = PageContentElementAssignment.find(params[:id])
+    page_content_element_assignment.update(content_element_id: params[:content_element_id])
+    render text: page_content_element_assignment.webpage_id
   end
 
   def folder
-    folder = params[:recid] == "0" ? NullObject.new() : Folder.find(params[:recid]) 
+    folder = params[:recid] == "0" ? NullObject.new() : Folder.find(params[:recid])
 
     if params[:cmd] == "save-record"
       if params[:recid] == "0"
@@ -94,6 +92,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
       render :text =>  'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!', :status => 403 and return
     else
       @folder.delete
+      render nothing: true
     end
   end
 
