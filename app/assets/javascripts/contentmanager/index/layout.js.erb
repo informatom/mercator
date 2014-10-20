@@ -1,14 +1,15 @@
 $(function () {
   w2utils.locale('/assets/contentmanager/de-de.json')
 
-  $('#myLayout').w2layout({
+  $('#contentmanager').w2layout({
     name: 'contentmanager',
     panels: [
       { type: 'top',     title: 'Content Manager',   size: 60,   resizable: true },
       { type: 'left',    title: 'Website Structure', size: 250,  resizable: true, content: "<div id='pagetree'></div>" },
       { type: 'main',    title: 'Webpage',                       resizable: true, content: "<div id='webpage' style='height:100%;'></div>" },
       { type: 'preview', title: 'Assignments',       size: 400,  resizable: true, content: "<div id='assignments' style='height:100%' ></div>" },
-      { type: 'right',                               size: 1300, resizable: true}
+      { type: 'right',                               size: 1300, resizable: true},
+      { type: 'bottom',  title: 'Image Gallery',     size: 150,  resizable: true, content: "<div id='gallery'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {

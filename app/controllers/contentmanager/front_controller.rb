@@ -96,6 +96,10 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     end
   end
 
+  def get_thumbnails
+    @content_elements = ContentElement.where(folder_id: params[:id]).where.not(photo_file_name: nil)
+  end
+
 protected
 
   def reorder_webpages(webpages: nil, parent_id: nil)

@@ -53,6 +53,7 @@ Mercator::Application.routes.draw do
     get 'front/show_assignments/:id' => 'front#show_assignments'
     post 'front/update_folders' => 'front#update_folders'
     get 'front/show_content_elements/:id' => 'front#show_content_elements'
+    get 'front/get_thumbnails/:id' => 'front#get_thumbnails'
     post 'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
     post 'front/update_content_element/:id' => 'front#update_content_element'
     post 'front/folder' => 'front#folder'

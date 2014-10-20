@@ -56,6 +56,13 @@ function foldertree() {
     },
     click: function(event, data) {
       w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + data.node.key)
+      $.ajax({
+        url: "/contentmanager/front/get_thumbnails/" + data.node.key,
+        context: document.body
+      }).done(function(response) {
+        $("#gallery").html(response)
+      });
+
     }
   })
 }

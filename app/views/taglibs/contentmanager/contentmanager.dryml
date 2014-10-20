@@ -18,7 +18,7 @@
     </head>
 
     <body param>
-      <div id="myLayout" style="height: 800px"></div>
+      <div id="contentmanager" style="height: 100%"></div>
     </body>
 
     <do param="config"/>
