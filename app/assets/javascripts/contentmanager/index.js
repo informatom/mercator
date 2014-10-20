@@ -7,3 +7,4 @@
 //= require contentmanager/index/folderForm
 //= require contentmanager/index/contentelementsgrid
 //= require contentmanager/index/previewImage
+//= require contentmanager/index/gallery

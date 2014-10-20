@@ -1,6 +1,17 @@
-function previewImage(path) {
-  if (path) {
-    $("#preview").html("<br><br><center><img src=" + path + "></center>")
+function previewImage(recid) {
+  var thumbpath = w2ui['contentelementsgrid'].get(recid).thumb_url
+
+  if (thumbpath) {
+    $("#preview").html("<img src=" + thumbpath + " class='preview' id='preview" + recid + "'>")
+    $(".preview").click( function() {
+      var fullpath = w2ui['contentelementsgrid'].get(recid).photo_url
+      w2popup.open({
+        title: 'Preview Image',
+        width: 1200,
+        height: 800,
+        body: "<div class='preview-container'><img src=" + fullpath + " class='preview'></div>"
+      })
+    })
   } else {
     $("#preview").html("")
   }

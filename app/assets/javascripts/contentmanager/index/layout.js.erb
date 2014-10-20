@@ -24,10 +24,10 @@ $(function () {
     name: 'elementexplorer',
     panels: [
       { type: 'main',    resizable: true, title: 'Folder Structure',
-        content: "<div id='foldertree-toolbar' style='height:5%'></div><div id='foldertree' style='height:95%'></div>" },
+        content: "<div id='foldertree-toolbar' style='height:20'></div><div id='foldertree' style='height:calc(100% - 28px);'></div>" },
       { type: 'right',   resizable: true, title: 'Content Elements', size: 1100,
         content: "<div id='contentelementsgrid' style='height:100%'></div>" },
-      { type: 'preview', resizable: true, title: 'Preview',          size: 200,
+      { type: 'preview', resizable: true, title: 'Preview',          size: 250,
         content: "<div id='preview'></div>" }
     ],
     onRender: function(event) {

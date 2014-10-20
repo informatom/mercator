@@ -9,22 +9,23 @@ function contentelementsgrid() {
       selectColumn: true
     },
     columns: [
-      { field: 'recid',              caption: 'ID',         size: '50px',  sortable: true, hidden: true , attr: "align=center"},
-      { field: 'name_de',            caption: 'Name DE',    size: '150px', sortable: true,
+      { field: 'recid',              caption: 'ID',             size: '50px',  sortable: true, hidden: true , attr: "align=center"},
+      { field: 'name_de',            caption: 'Name DE',        size: '150px', sortable: true,
         render: function (record) {
           return '<div id ="content-element-' + record.recid + '" class="draggable">' + record.name_de + '</div>'
         }},
-      { field: 'name_en',            caption: 'Name EN',    size: '150px', sortable: true, hidden: true },
-      { field: 'markup',             caption: 'Markup',     size: '40px',                  hidden: true },
-      { field: 'content_de',         caption: 'Inhalt DE',  size: '50%',   sortable: true},
-      { field: 'content_en',         caption: 'Inhalt EN',  size: '300px', sortable: true, hidden: true },
-      { field: 'created_at',         caption: 'erzeugt',    size: '130px', sortable: true, hidden: true,
+      { field: 'name_en',            caption: 'Name EN',        size: '150px', sortable: true, hidden: true },
+      { field: 'markup',             caption: 'Markup',         size: '40px',                  hidden: true },
+      { field: 'content_de',         caption: 'Inhalt DE',      size: '50%',   sortable: true},
+      { field: 'content_en',         caption: 'Inhalt EN',      size: '300px', sortable: true, hidden: true },
+      { field: 'created_at',         caption: 'erzeugt',        size: '130px', sortable: true, hidden: true,
         render: function (record) { return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss") } },
-      { field: 'updated_at',         caption: 'geändert',   size: '130px', sortable: true,
+      { field: 'updated_at',         caption: 'geändert',       size: '130px', sortable: true,
         render: function (record) { return moment(record.updated_at).format("YYYY-MM-DD HH:mm:ss") } },
-      { field: 'document_file_name', caption: 'Dokument',   size: '150px', sortable: true },
-      { field: 'photo_file_name',    caption: 'Photo',      size: '150px', sortable: true },
-      { field: 'thumb_url',          caption: 'Photo Path', size: '150px',                 hidden: true }
+      { field: 'document_file_name', caption: 'Dokument',       size: '150px', sortable: true },
+      { field: 'photo_file_name',    caption: 'Photo',          size: '150px', sortable: true },
+      { field: 'thumb_url',          caption: 'Thumbnail Path', size: '150px',                 hidden: true },
+      { field: 'photo_url',          caption: 'Photo Path',     size: '150px',                 hidden: true }
     ],
     searches: [
       { field: 'name_de',    caption: 'Name DE',   type: 'text' },
@@ -39,7 +40,7 @@ function contentelementsgrid() {
     onClick: function(event) {
       event.onComplete = function () {
         var sel = this.getSelection()
-        previewImage(this.get(sel).thumb_url)
+        previewImage(this.get(sel).recid)
       }
     },
     onRefresh: function(event) {

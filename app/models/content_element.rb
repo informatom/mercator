@@ -64,6 +64,10 @@ class ContentElement < ActiveRecord::Base
 
   # --- Instance Methods --- #
   def thumb_url
-    photo.url(:thumb)
+    photo.url(:small)
+  end
+
+  def photo_url
+    photo.url
   end
 end

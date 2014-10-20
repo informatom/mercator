@@ -61,6 +61,7 @@ function foldertree() {
         context: document.body
       }).done(function(response) {
         $("#gallery").html(response)
+        registerGallery()
       });
 
     }
