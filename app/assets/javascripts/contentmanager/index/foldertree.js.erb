@@ -8,8 +8,12 @@ function foldertree() {
         activeClass: "ui-state-default",
         hoverClass: "ui-state-hover"
       },
-      dragStart: function(node, data) { return true },
-      dragEnter: function(node, data) { return true },
+      dragStart: function() {
+        return true
+      },
+      dragEnter: function() {
+        return true
+      },
       dragDrop:  function(node, data) {
         if( !data.otherNode ){
           // It's a non-tree draggable
@@ -17,9 +21,9 @@ function foldertree() {
           var contentElementId = parseInt(draggable.id.split("-")[2])
 
           Messenger().run({
-            progressMessage: 'Baustein wird verschoben ...',
-            successMessage: 'Baustein erfolgreich verschoben!',
-            errorMessage: 'Baustein konnte nicht verschoben werden!',
+            progressMessage: '<%= I18n.t("activerecord.attribute_help.content_element.moving") %>',
+            successMessage: '<%= I18n.t("activerecord.attribute_help.content_element.moved") %>',
+            errorMessage: '<%= I18n.t("activerecord.attribute_help.content_element.move_failed") %>',
             hideAfter: 3
           },{
             url:"/contentmanager/front/update_content_element/" + contentElementId,
@@ -29,7 +33,7 @@ function foldertree() {
               folder_id: data.node.key
             },
             dataType: 'script',
-            success: function(response){
+            success: function(response) {
               w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + response)
             }
           })
@@ -39,9 +43,9 @@ function foldertree() {
           data.otherNode.moveTo(node, data.hitMode)
 
           Messenger().run({
-            progressMessage: 'Verzeichnisbaum wird aktualisiert ...',
-            successMessage: 'Verzeichnisbaum erfolgreich aktualisiert!',
-            errorMessage: 'Verzeichnisbaum konnte nicht aktualisiert werden!',
+            progressMessage: '<%= I18n.t("activerecord.attribute_help.folder.updating") %>',
+            successMessage: '<%= I18n.t("activerecord.attribute_help.folder.updated") %>',
+            errorMessage: '<%= I18n.t("activerecord.attribute_help.folder.update_failed") %>',
             hideAfter: 3
           },{
             url:"/contentmanager/front/update_folders",
@@ -60,19 +64,21 @@ function foldertree() {
     }
   })
 
-  setTimeout(
-    function(){
-      $("#foldertree").fancytree("getTree").getNodeByKey(selected_folder_id).setActive();
-      loadGridAndGallery(selected_folder_id)
-      setTimeout(
-        function(){
-          var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
-          w2ui.contentelementsgrid.scrollIntoView(index)
-          w2ui['contentelementsgrid'].select(selected_content_element_id)
-        },
-      4000 )
-    },
-  1000 )
+  if (selected_folder_id) {
+    setTimeout(
+      function(){
+        $("#foldertree").fancytree("getTree").getNodeByKey(selected_folder_id).setActive();
+        loadGridAndGallery(selected_folder_id)
+        setTimeout(
+          function(){
+            var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
+            w2ui.contentelementsgrid.scrollIntoView(index)
+            w2ui['contentelementsgrid'].select(selected_content_element_id)
+          },
+        4000 )
+      },
+    1000 )
+  }
 
   function loadGridAndGallery(content_element_id, set_element) {
     w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + content_element_id)

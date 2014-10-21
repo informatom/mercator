@@ -6,11 +6,14 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   def index; end
 
   def show_foldertree
-    render json: childrenarray(objects: Folder.arrange(order: :position), name_method: :name, folder: true).to_json
+    render json: childrenarray(objects: Folder.arrange(order: :position),
+                               name_method: :name,
+                               folder: true).to_json
   end
 
   def show_webpagestree
-    render json: childrenarray(objects: Webpage.arrange(order: :position), name_method: :title).to_json
+    render json: childrenarray(objects: Webpage.arrange(order: :position),
+                               name_method: :title).to_json
   end
 
   def update_webpages
@@ -23,12 +26,12 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
     render json: { status: "success",
                    total: 6,
-                   records: [{ recid: 1, attribute: "Titel DE", value: webpage.title_de },
-                             { recid: 2, attribute: "Titel EN", value: webpage.title_en },
-                             { recid: 3, attribute: "URL", value: webpage.url },
-                             { recid: 4, attribute: "Slug", value: webpage.slug },
-                             { recid: 5, attribute: "Menü", value: webpage.menu },
-                             { recid: 6, attribute: "Template", value: webpage.page_template.name } ] }
+                   records: [{ recid: 1, attribute: "title_de", value: webpage.title_de },
+                             { recid: 2, attribute: "title_en", value: webpage.title_en },
+                             { recid: 3, attribute: "url",      value: webpage.url },
+                             { recid: 4, attribute: "slug",     value: webpage.slug },
+                             { recid: 5, attribute: "menu",     value: webpage.menu },
+                             { recid: 6, attribute: "template", value: webpage.page_template.name } ] }
   end
 
   def show_assignments
@@ -87,9 +90,11 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   def delete_folder
     @folder = Folder.find(params[:id])
     if @folder.content_elements.any?
-      render :text => 'Verzeichnis kann nicht gelöscht werden: Es enthält Bausteine!', :status => 403 and return
+      render :text => I18n.t("mercator.contentmanager.cannot_delete_folder.content_elements"),
+             :status => 403 and return
     elsif @folder.children.any?
-      render :text =>  'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!', :status => 403 and return
+      render :text => I18n.t("mercator.contentmanager.cannot_delete_folder.subfolders"),
+      :status => 403 and return
     else
       @folder.delete
       render nothing: true

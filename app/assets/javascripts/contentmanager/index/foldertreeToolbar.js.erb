@@ -2,9 +2,24 @@ function foldertreeToolbar() {
   $('#foldertree-toolbar').w2toolbar({
     name: 'foldertree-toolbar',
     items: [
-      { type: 'button',  id: 'add',    caption: 'Add',    icon: 'fa fa-folder' },
-      { type: 'button',  id: 'edit',   caption: 'Edit',   icon: 'fa fa-edit' },
-      { type: 'button',  id: 'delete', caption: 'Delete', icon: 'fa fa-close' }
+      {
+        type: 'button',
+        id: 'add',
+        caption: '<%= I18n.t("hobo.actions.add") %>',
+        icon: 'fa fa-plus'
+      },
+      {
+        type: 'button',
+        id: 'edit',
+        caption: '<%= I18n.t("mercator.actions.edit") %>',
+        icon: 'fa fa-edit'
+      },
+      {
+        type: 'button',
+        id: 'delete',
+        caption: '<%= I18n.t("mercator.actions.delete") %>',
+        icon: 'fa fa-close'
+      }
     ],
     onClick: function (event) {
       switch (event.target) {
@@ -24,12 +39,12 @@ function foldertreeToolbar() {
       case 'delete':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
-          w2confirm('Are you sure?', function (button) {
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
             if (button =='Yes') {
               Messenger().run({
-                progressMessage: 'Verzeichnis wird gelöscht ... ...',
-                successMessage: 'Verzeichnis erfolgreich gelöscht!',
-                errorMessage: 'Verzeichnis konnte nicht gelöscht werden!',
+                progressMessage: '<%= I18n.t("activerecord.attribute_help.folder.deleting") %>',
+                successMessage: '<%= I18n.t("activerecord.attribute_help.folder.deleted") %>',
+                errorMessage: '<%= I18n.t("activerecord.attribute_help.folder.delete_failed") %>',
                 hideAfter: 3
               },{
                 url:"/contentmanager/front/delete_folder/" + active_node.key,
@@ -46,7 +61,7 @@ function foldertreeToolbar() {
             }
           })
         } else {
-          w2alert('No folder selected')
+          w2alert('<%= I18n.t("mercator.contentmanager.no_folder_selected") %>')
         }
         break
 
@@ -54,7 +69,7 @@ function foldertreeToolbar() {
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
           w2popup.open({
-            title: 'Create Folder',
+            title: '<%= I18n.t("mercator.contentmanager.create_folder") %>',
             body: '<div id="folderForm"></div>',
             onOpen  : function (event) {
               event.onComplete = function () {
@@ -65,7 +80,7 @@ function foldertreeToolbar() {
           })
 
         } else {
-          w2alert('No folder selected')
+          w2alert('<%= I18n.t("mercator.contentmanager.no_folder_selected") %>')
         }
       }
     }

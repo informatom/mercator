@@ -1,10 +1,18 @@
 function webpage() {
   $('#webpage').w2grid({
-    name: 'webpage',
+    name: '<%= I18n.t("attributes.webpage") %>',
     method: 'GET',
     columns : [
-      { field: 'attribute', caption: 'Attribut', size: '50%' },
-      { field: 'value',     caption: 'Wert',     size: '50%' }
+      {
+        field: 'attribute',
+        caption: '<%= I18n.t("attributes.attrib") %>',
+        size: '50%'
+      },
+      {
+        field: 'value',
+        caption: '<%= I18n.t("attributes.value") %>',
+        size: '50%'
+      }
     ]
   })
 }

@@ -20,7 +20,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, last_login_at, login_count, state" param/>
+      <field-list fields="email_address, last_login_at, login_count, state, locale" param/>
       <%#, mesonic_kontakte_stamm, mesonic_kontenstamm, mesonic_kontenstamm_fakt, mesonic_kontenstamm_fibu, mesonic_kontenstamm_adresse" param/ /%>
       <section param="collection-section">
         <h3 param="collection-heading">
@@ -56,7 +56,7 @@
 <extend tag="form" for="User">
   <old-form merge multipart>
     <field-list: fields="name, email_address, sales, sales_manager, contentmanager, administrator,
-                         logged_in, photo, addresses, billing_addresses" param>
+                         logged_in, photo, locale, addresses, billing_addresses" param>
     </field-list:>
   </old-form>
 </extend>

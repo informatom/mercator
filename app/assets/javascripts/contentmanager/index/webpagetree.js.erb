@@ -3,14 +3,14 @@ function webpageTree() {
     source: { url: "/contentmanager/front/show_webpagestree" },
     extensions: ["dnd"],
     dnd: {
-      dragStart: function(node, data) { return true },
-      dragEnter: function(node, data) { return true },
+      dragStart: function() { return true },
+      dragEnter: function() { return true },
       dragDrop: function(node, data) {
         data.otherNode.moveTo(node, data.hitMode)
         Messenger().run({
-          progressMessage: 'Kategoriebaum wird aktualisiert ...',
-          successMessage: 'Kategoriebaum erfolgreich aktualisiert!',
-          errorMessage: 'Kategoriebaum konnte nicht aktualisiert werden!',
+          progressMessage: '<%= I18n.t("activerecord.attribute_help.category.updating") %>',
+          successMessage: '<%= I18n.t("activerecord.attribute_help.category.updated") %>',
+          errorMessage: '<%= I18n.t("activerecord.attribute_help.category.update_failed") %>',
           hideAfter: 3
         },{
           url:"/contentmanager/front/update_webpages",

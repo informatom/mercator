@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager, :contentmanager,
                   :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
-                  :order_id, :phone
+                  :order_id, :phone, :locale
 
   attr_accessor :confirmation, :type => :boolean
   attr_accessor :order_id, :type => :integer

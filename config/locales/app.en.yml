@@ -6,6 +6,7 @@ en:
     addresses: Adresses
     amount: Amount
     ancestry: Ancestry String
+    attrib: Attribute
     basket: Basket
     baskets: Baskets
     billing_country: Billing Country
@@ -35,6 +36,8 @@ en:
     consultant: Consultant
     consultant_id: Consultant ID
     content: Content
+    content_de: Content GER
+    content_en: Content EN
     content_element: Content Element
     Contract: Contract
     Conversation: Conversation
@@ -62,6 +65,7 @@ en:
     email_address: Email Address
     first_name: First Name
     gender: Salutation
+    id: ID
     inventories: Inventories
     Inventory: Inventory
     key: Key
@@ -73,6 +77,8 @@ en:
     messages: Messages
     miscellaneous: Miscellaneous
     name: Name
+    name_de: Name GER
+    name_en: Name EN
     number: Number
     offers: Offers
     order: Order
@@ -83,6 +89,7 @@ en:
     page_template: Page Template
     page_tree: Site Structure
     parent: Parent Element
+    path: Path
     password: Password
     password_confirmation: Password Confirmation
     phone: Phone Number
@@ -138,6 +145,8 @@ en:
     supplyrelations: Supply Relations
     supplies: Supplies
     symbolic_image: Symbolic Photo
+    template: Website Template
+    thumbnail: Vorschau
     title: Title
     unit: Unit
     upload: Upload
@@ -512,6 +521,8 @@ en:
 
   mercator:
     actions:
+      delete: Delete
+      edit: Edit
       edit_properties: Edit Properties
     admin_subsite_name: Administration
     admin_subheading: This is the administration page for the Mercator Guided Selling System
@@ -526,9 +537,19 @@ en:
     coming_from: from
     consumeables: Consumeables
     consumeable_search_help: You can search for consumeables for your printer here. Select a printer series and / or enter some characters of the type of your HP printer.
-    conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
+    content_manager:
+      cannot_delete_folder:
+        content_elements: This folder cannot be deleted. It contains content elements.
+        subfolders: This folder cannot be deleted. It contains content subfolders.
+      create_folder: Create Folder
+      folder_structure: Folder Structure
+      image_gallery: Image Gallery
+      no_folder_selected: No folder selected.
+      title: Mercator - Content Manager
+      website_structure: Website Sructure
     contracting_subsite_name: Contracting
     contracting_subheading: Contracting Management for the Mercator Guided Selling System
+    conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
     customer_number: Customer Number
     delete: Delete
     deliveries_and_payments: Deliveries and Payments
@@ -554,6 +575,7 @@ en:
       number: Invoice Number
       one: Invoice
       other: Invoices
+    image_preview: Image Preview
     images:
       original_version: Original Version
       thumbnail_version: Thumbnail Version
@@ -623,6 +645,7 @@ en:
     no_open_payments: No open payments found.
     no_products_available: No products Available
     no_product_with_this_name: No product found with this name.
+    not_assigned: Not assigned
     offer_email_login: "If you are registered already and want to login using your E-Mail, we can send you a login link."
     on_request: On request
     open(pl): open

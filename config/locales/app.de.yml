@@ -6,6 +6,7 @@ de:
     addresses: Adressen
     amount: Menge
     ancestry: Ancestry-String
+    attrib: Attribut
     basket: Warenkorb
     baskets: Warenkörbe
     billing_country: Land (Rechnung)
@@ -41,6 +42,8 @@ de:
     consultant: Berater
     consultant_id: Berater
     content: Inhalt
+    content_de: Inhalt DE
+    content_en: Inhalt EN
     content_element: Baustein
     Contract: Vertrag
     Conversation: Konversation
@@ -66,6 +69,7 @@ de:
     email_address: E-Mail Adresse
     first_name: Vorname
     gender: Anrede
+    id: ID
     inventories: Bestände
     Inventory: Bestand
     key: Schlüssel
@@ -77,6 +81,8 @@ de:
     messages: Nachrichten
     miscellaneous: Diverses
     name: Name
+    name_de: Name DE
+    name_en: Name EN
     number: Nummer
     offers: Angebote
     order: Bestellung
@@ -89,6 +95,7 @@ de:
     parent: Elternelement
     password: Kennwort
     password_confirmation: Kennwortbestätigung
+    path: Pfad
     phone: Telefonnummer
     photo: Foto
     photo_file_name: Dateiname Foto
@@ -145,6 +152,8 @@ de:
     supplies: Zubehör
     surname: Familienname
     symbolic_image: Symbolfoto
+    template: Vorlage
+    thumbnail: Thumbnail
     title: Titel
     unit: Einheit
     upload: Hochladen
@@ -519,6 +528,8 @@ de:
 
   mercator:
     actions:
+      delete: Löschen
+      edit: " "
       edit_properties: Eigenschaften bearbeiten
     admin_subsite_name: Administration
     admin_subheading: Die Administrationsseite zum Mercator Guided Selling System
@@ -533,9 +544,19 @@ de:
     coming_from: aus
     consumeables: Verbrauchsmaterialien
     consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
-    conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
+    content_manager:
+      cannot_delete_folder:
+        content_elements: 'Verzeichnis kann nicht gelöscht werden: Es enthält Bausteine!'
+        subfolders: 'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!'
+      create_folder: Verzeichnis erstellen
+      folder_structure: Verzeichnisstruktur
+      image_gallery: Bildergallerie
+      no_folder_selected: Kein Verzeichnis ausgewählt.
+      title: Mercator - Content Manager
+      website_structure: Webseitenstruktur
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
+    conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     customer_number: Kundennummer
     delete: Löschen
     deliveries_and_payments: Lieferungen und Zahlungen
@@ -561,6 +582,7 @@ de:
       number: Rechnungsnummer
       one: Rechnung
       other: Rechnungen
+    image_preview: Bildvorschau
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -630,6 +652,7 @@ de:
     no_open_payments: keine offenen Zahlungen
     no_products_available: keine Produkte lieferbar
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
+    not_assigned: Nicht zugeordnet
     offer_email_login: "Wenn Sie bereits registriert sind und sich per E-Mail anmelden möchten, senden wir Ihnen gerne einen Anmelde-Link zu."
     on_request: Auf Anfrage
     open(pl): offene

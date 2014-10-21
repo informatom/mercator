@@ -4,11 +4,11 @@ function assignmentsgrid() {
     method: 'GET',
     show: { selectColumn: true },
     columns: [
-      { field: 'used_as', caption: 'used as', size: '50%', sortable: true },
-      { field: 'content_element_name', caption: 'Content Element', size: '50%',
+      { field: 'used_as', caption: '<%= I18n.t("attributes.used_as") %>', size: '50%', sortable: true },
+      { field: 'content_element_name', caption: '<%= I18n.t("attributes.content_element") %>', size: '50%',
         render: function (record) {
           return '<div id="assignment-' + record.recid + '" class="droppable">' +
-                  (record.content_element_name || '<span style="color: #ff0000"> not assigned</span>') + '</div>'
+                  (record.content_element_name || '<span style="color: #ff0000"> <%= I18n.t("mercator.not_assigned") %></span>') + '</div>'
       }}
     ],
     sortData: [ { field: 'used_as', direction: 'ASC' } ],
@@ -24,9 +24,9 @@ function assignmentsgrid() {
             var associationID = parseInt(this.id.split("-")[1])
 
             Messenger().run({
-              progressMessage: 'Baustein wird zugeordnet ...',
-              successMessage: 'Baustein erfolgreich zugeordnet!',
-              errorMessage: 'Baustein konnte nicht zugeordnet werden!',
+              progressMessage: '<%= I18n.t("activerecord.attribute_help.page_content_element_assignment.updating") %>',
+              successMessage: '<%= I18n.t("activerecord.attribute_help.page_content_element_assignment.updated") %>',
+              errorMessage: '<%= I18n.t("activerecord.attribute_help.page_content_element_assignment.update_failed") %>',
               hideAfter: 3
             },{
               url:"/contentmanager/front/update_page_content_element_assignment/" + associationID,
