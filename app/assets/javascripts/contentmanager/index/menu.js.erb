@@ -1,0 +1,21 @@
+function menu() {
+  $('#menu').w2toolbar({
+    name: 'foldertree-toolbar',
+    items: [
+      { type: 'button', id:'home', caption: "<%= I18n.t('mercator.frontend_subsite_name') %>", icon: 'fa fa-external-link' },
+      { type: 'button', id:'admin', caption: "<%= I18n.t('mercator.admin_subsite_name') %>", icon: 'fa fa-external-link' },
+      { type: 'button', id:'contracting', caption: "<%= I18n.t('mercator.contracting_subsite_name') %>", icon: 'fa fa-external-link' },
+      { type: 'button', id:'sales', caption: "<%= I18n.t('mercator.sales_subsite_name') %>", icon: 'fa fa-external-link' },
+      { type: 'break' },
+      { type: 'button', id:'admin/webpages', caption: "<%= I18n.t('activerecord.models.webpage.other') %>", icon: 'fa fa-external-link' },
+      { type: 'button', id:'admin/folders', caption: "<%= I18n.t('activerecord.models.folder.other') %>", icon: 'fa fa-external-link' },
+      { type: 'button', id:'admin/content_elements', caption: "<%= I18n.t('activerecord.models.content_element.other') %>", icon: 'fa fa-external-link' },
+      { type: 'button', id:'admin/page_templates', caption: "<%= I18n.t('activerecord.models.page_template.other') %>", icon: 'fa fa-external-link' },
+      { type: 'spacer' },
+      { type: 'button', id:'chat.html', caption: "<%= I18n.t('mercator.video_chat') %>", icon: 'fa fa-external-link' },
+    ],
+    onClick: function (event) {
+      document.location = event.target
+    }
+  })
+}
