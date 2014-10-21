@@ -18,4 +18,12 @@ class Admin::ContentElementsController < Admin::AdminSiteController
     end
     hobo_index
   end
+
+  def update
+    hobo_update do
+      redirect_to contentmanager_front_path
+      session[:selected_content_element_id] = this.id
+      session[:selected_folder_id] = this.folder.id
+    end
+  end
 end

@@ -18,11 +18,6 @@
           </field-list>
         </input-many>
       </categorizations-view:>
-
-      <photo-view: replace>
-        <img src="&this.url(:thumb)" />
-        <photo-view: restore />
-      </photo-view:>
     </field-list:>
   </old-form>
 </extend>

@@ -2,6 +2,7 @@ function foldertree() {
   $("#foldertree").fancytree({
     source: { url: "/contentmanager/front/show_foldertree" },
     extensions: ["dnd"],
+    selectMode: 1,
     dnd: {
       droppable: {
         activeClass: "ui-state-default",
@@ -55,15 +56,32 @@ function foldertree() {
       }
     },
     click: function(event, data) {
-      w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + data.node.key)
-      $.ajax({
-        url: "/contentmanager/front/get_thumbnails/" + data.node.key,
-        context: document.body
-      }).done(function(response) {
-        $("#gallery").html(response)
-        registerGallery()
-      });
-
+      loadGridAndGallery(data.node.key)
     }
   })
+
+  setTimeout(
+    function(){
+      $("#foldertree").fancytree("getTree").getNodeByKey(selected_folder_id).setActive();
+      loadGridAndGallery(selected_folder_id)
+      setTimeout(
+        function(){
+          var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
+          w2ui.contentelementsgrid.scrollIntoView(index)
+          w2ui['contentelementsgrid'].select(selected_content_element_id)
+        },
+      4000 )
+    },
+  1000 )
+
+  function loadGridAndGallery(content_element_id, set_element) {
+    w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + content_element_id)
+    $.ajax({
+      url: "/contentmanager/front/get_thumbnails/" + content_element_id,
+      context: document.body
+    }).done(function(response) {
+      $("#gallery").html(response)
+      registerGallery()
+    })
+  }
 }

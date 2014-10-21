@@ -8,8 +8,8 @@ function contentElementForm() {
         { field: 'markup',     type: 'text',                 html: { caption: 'Name EN' } },
         { field: 'content_de', type: 'textarea',             html: { caption: 'Inhalt DE' } },
         { field: 'content_en', type: 'textarea',             html: { caption: 'Inhalt EN' } },
-        { field: 'document',   type: 'file',                 html: { caption: 'Dokument' } },
-        { field: 'photo',      type: 'file', width: 250,  html: { caption: 'Photo' } },
+        { field: 'document',   type: 'file',                 html: { caption: 'Dokument' }, options: { max: 1 } },
+        { field: 'photo',      type: 'file', width: 250,     html: { caption: 'Photo' },    options: { max: 1 } },
       ],
       actions: {
         'Cancel': function () { w2popup.close() },

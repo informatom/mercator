@@ -5,10 +5,6 @@ function registerGallery() {
     var index = w2ui.contentelementsgrid.get(content_element_id, true)
     w2ui.contentelementsgrid.scrollIntoView(index)
     w2ui['contentelementsgrid'].selectNone()
-    setTimeout(
-      function(){
-        w2ui['contentelementsgrid'].select(content_element_id)
-      },
-    1000 )
+    w2ui['contentelementsgrid'].select(content_element_id)
   })
 }

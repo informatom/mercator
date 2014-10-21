@@ -15,27 +15,25 @@ function contentelementsgrid() {
         ],
         onClick: function (target, data) {
           if (target == "edit") {
-            w2popup.open({
-              title: 'Edit Content Element',
-              width: 800,
-              height: 600,
-              body: '<div id="contentElementForm"></div>',
-              onOpen  : function (event) {
-                event.onComplete = function () {
-                  $('#contentElementForm').w2render('contentElementForm')
-                  var selection = w2ui['contentelementsgrid'].getSelection()
-                  if (selection.length == 1) {
-                    w2ui['contentElementForm'].recid  = selection[0]
-
-                    // Data should not be merged, it will be read from the database
-                    // w2ui['contentElementForm'].record = $.extend(true, {}, w2ui['contentelementsgrid'].get(selection[0])) // merges data in
-                    w2ui['contentElementForm'].refresh()
-                  } else {
-                    w2ui['contentElementForm'].clear();
-                  }
-                }
-              }
-            })
+            // w2popup.open({
+            //   title: 'Edit Content Element',
+            //   width: 800,
+            //   height: 600,
+            //   body: '<div id="contentElementForm"></div>',
+            //   onOpen  : function (event) {
+            //     event.onComplete = function () {
+            //       $('#contentElementForm').w2render('contentElementForm')
+                    var selection = w2ui['contentelementsgrid'].getSelection()
+            //       if (selection.length == 1) {
+            //         w2ui['contentElementForm'].recid  = selection[0]
+            //         w2ui['contentElementForm'].refresh()
+            //       } else {
+            //         w2ui['contentElementForm'].clear();
+            //       }
+            //     }
+            //   }
+            // })
+            document.location = "/admin/content_elements/" + selection[0] + "/edit"
           }
         }
     },

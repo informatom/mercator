@@ -617,6 +617,7 @@ en:
     more_info: more info
     new_message: New Message
     no_deliveries: No deliveries found.
+    no_file: No file uploaded.
     no_invoices: No invoices found.
     no_order_positions_yet: There aro no order items yet.
     no_open_payments: No open payments found.

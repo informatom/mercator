@@ -2,12 +2,6 @@
   <old-input merge class="input-xlarge" rows="7" />
 </extend>
 
-<extend tag="show-page">
-  <old-show-page merge>
-   <field-list: tag="click-editor" />
-  </old-show-page>
-</extend>
-
 <def tag="input" for="cktext" attribs="name, ckeditor">
   <%
     editor_settings = attributes['ckeditor'] || HoboCkeditor.default_editor_settings

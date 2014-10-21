@@ -5,3 +5,19 @@
     </field-list:>
   </old-form>
 </extend>
+
+<def tag='input' for='Paperclip::Attachment'>
+  <if test="&this.name == :photo && this.instance.photo_file_name">
+    <img src="&this.instance.photo(:thumb)"/> &nbsp;
+  </if>
+
+  <if test="&this.path">
+    <%= this.path.split("/").last %>
+  </if>
+  <else>
+    <t key="mercator.no_file"/>
+  </else>
+
+  <br/> <br/>
+  <%= file_field_tag param_name_for_this, attributes  %>
+</def>

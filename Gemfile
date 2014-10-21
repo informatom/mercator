@@ -85,8 +85,6 @@ gem 'exception_notification'                          # exception_notification v
 gem 'awesome_print'
 
 group :development, :test  do
-#  gem "puma"                                         # web server, replacement for webrick
-  gem "spring"                                        # Application preloader
   gem 'byebug'                                        # Command line debugger
   gem "quiet_assets"                                  # leaner log output
   gem "better_errors"                                 # Debug messages im Browser

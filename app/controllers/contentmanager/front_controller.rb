@@ -96,6 +96,34 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     end
   end
 
+  def content_element
+    content_element = (params[:recid] == "0") ? NullObject.new() : ContentElement.find(params[:recid])
+
+    # if params[:cmd] == "save-record"
+    #   if params[:recid] == "0"
+    #     content_element = ContentElement.create(params[:record].except("recid"))
+    #   else
+    #     params[:record][:photo] = params[:record][:photo]["0"][:content] if params[:record][:photo]["0"]
+    #     params[:record][:document] = params[:record][:document]["0"][:content] if params[:record][:document]["0"]
+    #     content_element.update_attributes(params[:record].except("recid"))
+    #   end
+    # end
+
+    render json: {
+      status: "success",
+      record: {
+        recid:      content_element.id,
+        name_de:    content_element.name_de,
+        name_en:    content_element.name_en,
+        markup:     content_element.markup,
+        content_de: content_element.content_de,
+        content_en: content_element.content_en,
+        photo:      content_element.photo_file_name,
+        document:   content_element.photo_file_name
+      }
+    }
+  end
+
   def get_thumbnails
     @content_elements = ContentElement.where(folder_id: params[:id]).where.not(photo_file_name: nil)
   end
