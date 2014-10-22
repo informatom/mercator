@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::AdminSiteController
   hobo_model_controller
   auto_actions :all
 
-  autocomplete :name
+  autocomplete :email_address
 
   def index
     self.this = User.paginate(:page => params[:page])

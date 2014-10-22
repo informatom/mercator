@@ -1,11 +1,19 @@
 <extend tag="form" for="Inventory">
   <old-form merge multipart>
-    <field-list: fields="name_de, name_en, number, amount, unit, comment_de, comment_en, weight, charge, storage, product, delivery_time, photo">
+    <field-list: fields="name_de, name_en, number, amount, unit,
+                         comment_de, comment_en, weight, charge, storage,
+                         product, delivery_time, photo">
       <product-view:>
-        <name-one complete-target="&Product.new()" completer="number_admin" autocomplete="off"/>
+        <name-one class="form-control"
+                  complete-target="&Product.new()"
+                  completer="number_admin"
+                  autocomplete="off"/>
       </product-view:>
+
       <delivery-time-view:>
-        <select-menu name="inventory[delivery_time]" options="&Constant.where(key: 'delivery_times_de').first.value.split(',')"/>
+        <select-menu class="form-control"
+                     name="inventory[delivery_time]"
+                    options="&Constant.where(key: 'delivery_times_de').first.value.split(',')"/>
       </delivery-time-view:>
     </field-list>
   </old-form>

@@ -4,16 +4,14 @@
                          long_description_de, long_description_en, position, parent, categorizations,
                          document, photo'>
       <parent-view:>
-          <select-menu options="&Category.all" first-option="&t('mercator.root_category')"/>
+          <select-menu class="form-control" options="&Category.all" first-option="&t('mercator.root_category')"/>
       </parent-view:>
 
       <categorizations-view:>
         <input-many>
-          <field-list fields="product" size="5">
-            <product-label: replace/>
+          <field-list fields="position, product">
             <product-view:>
-              <name-one complete-target="&@product" completer="number_admin" autocomplete="off"/>
-              <input with="&this_parent" field="position" class="col-md-2"/>
+              <name-one class="form-control" complete-target="&@product" completer="number_admin" autocomplete="off"/>
             </product-view:>
           </field-list>
         </input-many>

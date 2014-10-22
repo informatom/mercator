@@ -5,10 +5,9 @@
                          document, photo" param>
       <productrelations-view:>
         <input-many>
-          <field-list fields="related_product" size="5">
-            <related-product-label: replace/>
+          <field-list fields="related_product">
             <related-product-view:>
-              <name-one complete-target="&@related_product" completer="number_admin" autocomplete="off" />
+              <name-one class="form-control" complete-target="&@related_product" completer="number_admin" autocomplete="off" />
             </related-product-view:>
           </field-list>
         </input-many>
@@ -16,11 +15,9 @@
 
       <recommendations-view:>
         <input-many>
-          <field-list fields="recommended_product" size="5">
-            <recommended-product-label: replace/>
+          <field-list fields="reason_de, recommended_product">
             <recommended-product-view:>
-              <name-one complete-target="&@recommended_product" completer="number_admin" autocomplete="off"/>
-               <input with="&this_parent" field="reason_de" class="col-md-2"/>
+              <name-one class="form-control" complete-target="&@recommended_product" completer="number_admin" autocomplete="off"/>
             </recommended-product-view:>
           </field-list>
         </input-many>
@@ -28,10 +25,9 @@
 
       <supplyrelations-view:>
         <input-many>
-          <field-list fields="supply" size="5">
-            <supply-label: replace/>
+          <field-list fields="supply">
             <supply-view:>
-              <name-one complete-target="&@supplied_product" completer="number_admin" autocomplete="off"/>
+              <name-one class="form-control" complete-target="&@supplied_product" completer="number_admin" autocomplete="off"/>
             </supply-view:>
           </field-list>
         </input-many>
@@ -39,11 +35,9 @@
 
       <categorizations-view:>
         <input-many>
-          <field-list fields="category" size="5">
-            <category-label: replace/>
+          <field-list fields="position, category">
             <category-view:>
               <name-one complete-target="&@category" completer="name_admin" autocomplete="off"/>
-               <input with="&this_parent" field="position" class="col-md-2"/>
             </category-view:>
           </field-list>
         </input-many>

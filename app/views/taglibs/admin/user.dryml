@@ -55,8 +55,8 @@
 
 <extend tag="form" for="User">
   <old-form merge multipart>
-    <field-list: fields="name, email_address, sales, sales_manager, contentmanager, administrator,
-                         logged_in, photo, locale, addresses, billing_addresses" param>
+    <field-list: fields="gender, title, first_name, surname, email_address, phone, sales, sales_manager, contentmanager, administrator,
+                         logged_in, locale, addresses, billing_addresses, photo" param>
     </field-list:>
   </old-form>
 </extend>

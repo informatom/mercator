@@ -67,6 +67,7 @@ en:
     gender: Salutation
     id: ID
     inventories: Inventories
+    inventory: Inventory
     Inventory: Inventory
     key: Key
     Lineitem: Order Item

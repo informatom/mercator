@@ -16,7 +16,7 @@
         <input-many>
           <field-list fields="used-as, content-element">
             <content-element-view: replace>
-              <name-one complete-target="&ContentElement.new()" completer="name_de_admin" autocomplete="off"/>
+              <name-one class="form-control" complete-target="&ContentElement.new()" completer="name_de_admin" autocomplete="off"/>
             </content-element-view:>
           </field-list>
         </input-many>

@@ -14,7 +14,6 @@ class PropertyGroup < ActiveRecord::Base
   translates :name
   has_paper_trail
   default_scope { order('property_groups.position ASC') }
-  acts_as_list
 
   validates :position, numericality: { only_integer: true }
 

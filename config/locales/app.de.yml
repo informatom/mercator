@@ -71,6 +71,7 @@ de:
     gender: Anrede
     id: ID
     inventories: Bestände
+    inventory: Bestand
     Inventory: Bestand
     key: Schlüssel
     Lineitem: Bestellposition
