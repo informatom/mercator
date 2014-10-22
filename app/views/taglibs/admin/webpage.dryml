@@ -22,5 +22,12 @@
         </input-many>
       </page-content-element-assignments-view:>
     </field-list:>
+    <actions:>
+      <submit label="#{ht 'webpage.actions.save', :default=>['Save']}"/> &nbsp;
+      <t key="hobo.support.or" /> &nbsp;
+      <a href="/contentmanager">
+        <t key="hobo.actions.cancel" />
+      </a>
+    </actions:>
   </old-form>
 </extend>

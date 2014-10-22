@@ -5,8 +5,7 @@ function contentelementsgrid() {
     method: 'GET',
     show: {
       toolbar: true,
-      footer: true,
-      selectColumn: true
+      footer: true
     },
     toolbar: {
         items: [
@@ -20,7 +19,11 @@ function contentelementsgrid() {
         onClick: function (target, data) {
           if (target == "editContentElement") {
             var selection = w2ui['contentelementsgrid'].getSelection()
-            document.location = "/admin/content_elements/" + selection[0] + "/edit"
+            if (selection[0]) {
+              document.location = "/admin/content_elements/" + selection[0] + "/edit"
+            } else {
+              w2alert('<%= I18n.t("mercator.content_manager.no_content_element_selected") %>')
+            }
           }
         }
     },

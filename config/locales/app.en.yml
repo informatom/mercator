@@ -545,7 +545,9 @@ en:
       edit_folder: Edit Folder
       folder_structure: Folder Structure
       image_gallery: Image Gallery
+      no_content_element_selected: No content element selected.
       no_folder_selected: No folder selected.
+      no_webpage_selected: No webpage selected.
       title: Mercator - Content Manager
       website_structure: Website Sructure
     contracting_subsite_name: Contracting

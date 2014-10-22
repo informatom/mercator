@@ -30,7 +30,10 @@ class Admin::WebpagesController < Admin::AdminSiteController
 
   def update
     self.this = Webpage.friendly.find(params[:id])
-    hobo_update
+    hobo_update do
+      redirect_to contentmanager_front_path
+      session[:selected_webpage_id] = this.id
+    end
   end
 
   def destroy

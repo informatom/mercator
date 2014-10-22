@@ -552,7 +552,9 @@ de:
       edit_folder: Verzeichnis bearbeiten
       folder_structure: Verzeichnisstruktur
       image_gallery: Bildergallerie
+      no_content_element_selected: Kein Baustein ausgewählt.
       no_folder_selected: Kein Verzeichnis ausgewählt.
+      no_weppage_selected: Keine Webseite ausgewählt.
       title: Mercator - Content Manager
       website_structure: Webseitenstruktur
     contracting_subsite_name: Vertragswesen

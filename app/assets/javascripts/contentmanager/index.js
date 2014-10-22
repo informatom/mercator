@@ -1,6 +1,7 @@
 //= require contentmanager/index/layout
 //= require contentmanager/index/menu
-//= require contentmanager/index/webpagetree
+//= require contentmanager/index/webpageTreeToolbar
+//= require contentmanager/index/webpageTree
 //= require contentmanager/index/webpage
 //= require contentmanager/index/assignments
 //= require contentmanager/index/foldertree

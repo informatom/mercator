@@ -2,7 +2,6 @@ function assignmentsgrid() {
   $('#assignments').w2grid({
     name: 'assignments',
     method: 'GET',
-    show: { selectColumn: true },
     columns: [
       { field: 'used_as', caption: '<%= I18n.t("attributes.used_as") %>', size: '50%', sortable: true },
       { field: 'content_element_name', caption: '<%= I18n.t("attributes.content_element") %>', size: '50%',

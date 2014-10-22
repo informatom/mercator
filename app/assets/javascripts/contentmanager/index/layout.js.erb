@@ -19,7 +19,7 @@ $(function () {
         title: '<%= I18n.t("mercator.content_manager.website_structure") %>',
         size: 250,
         resizable: true,
-        content: "<div id='pagetree'></div>"
+        content: "<div id='webpageTreeToolbar' style='height:20'></div><div id='webpageTree' style='height:calc(100% - 28px);'></div>"
       },
       {
         type: 'main',
@@ -45,6 +45,7 @@ $(function () {
     ],
     onRender: function(event) {
       event.onComplete = function () {
+        webpageTreeToolbar()
         webpageTree()
         webpage()
         assignmentsgrid()

@@ -1,5 +1,5 @@
 function webpageTree() {
-  $("#pagetree").fancytree({
+  $("#webpageTree").fancytree({
     source: { url: "/contentmanager/front/show_webpagestree" },
     extensions: ["dnd"],
     dnd: {
@@ -17,7 +17,7 @@ function webpageTree() {
           method: "POST",
           data: {
             authenticity_token: csrf_token,
-            webpages: $("#pagetree").fancytree("getTree").toDict()
+            webpages: $("#webpageTree").fancytree("getTree").toDict()
           },
           dataType: 'script'
         })
@@ -28,4 +28,12 @@ function webpageTree() {
       w2ui['webpage'].load('/contentmanager/front/show_webpage/' + data.node.key)
     }
   })
+
+  if (selected_webpage_id) {
+    setTimeout(
+      function(){
+        $("#webpageTree").fancytree("getTree").getNodeByKey(selected_webpage_id).setActive();
+      },
+    1000 )
+  }
 }
