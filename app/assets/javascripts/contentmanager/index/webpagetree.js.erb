@@ -3,8 +3,8 @@ function webpageTree() {
     source: { url: "/contentmanager/front/show_webpagestree" },
     extensions: ["dnd"],
     dnd: {
-      dragStart: function() { return true },
-      dragEnter: function() { return true },
+      dragStart: function(node, data) { return true },
+      dragEnter: function(node, data) { return true },
       dragDrop: function(node, data) {
         data.otherNode.moveTo(node, data.hitMode)
         Messenger().run({
