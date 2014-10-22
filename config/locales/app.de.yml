@@ -549,6 +549,7 @@ de:
         content_elements: 'Verzeichnis kann nicht gelöscht werden: Es enthält Bausteine!'
         subfolders: 'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!'
       create_folder: Verzeichnis erstellen
+      edit_folder: Verzeichnis bearbeiten
       folder_structure: Verzeichnisstruktur
       image_gallery: Bildergallerie
       no_folder_selected: Kein Verzeichnis ausgewählt.

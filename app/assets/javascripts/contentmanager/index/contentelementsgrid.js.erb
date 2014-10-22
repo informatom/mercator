@@ -10,7 +10,12 @@ function contentelementsgrid() {
     },
     toolbar: {
         items: [
-          { type: 'button', id: 'editContentElement', caption: "<%= I18n.t('hobo.actions.edit') %>", img: 'fa fa-edit' }
+          {
+            type: 'button',
+            id: 'editContentElement',
+            caption: "<%= I18n.t('activerecord.models.content_element.one') %> <%= I18n.t('hobo.actions.edit', model: '') %>",
+            img: 'fa fa-edit'
+          }
         ],
         onClick: function (target, data) {
           if (target == "editContentElement") {

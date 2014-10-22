@@ -5,19 +5,19 @@ function foldertreeToolbar() {
       {
         type: 'button',
         id: 'add',
-        caption: '<%= I18n.t("hobo.actions.add") %>',
+        caption: '',
         icon: 'fa fa-plus'
       },
       {
         type: 'button',
         id: 'edit',
-        caption: '<%= I18n.t("mercator.actions.edit") %>',
+        caption: '',
         icon: 'fa fa-edit'
       },
       {
         type: 'button',
         id: 'delete',
-        caption: '<%= I18n.t("mercator.actions.delete") %>',
+        caption: '',
         icon: 'fa fa-close'
       }
     ],
@@ -61,7 +61,7 @@ function foldertreeToolbar() {
             }
           })
         } else {
-          w2alert('<%= I18n.t("mercator.contentmanager.no_folder_selected") %>')
+          w2alert('<%= I18n.t("mercator.content_manager.no_folder_selected") %>')
         }
         break
 
@@ -69,7 +69,7 @@ function foldertreeToolbar() {
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
           w2popup.open({
-            title: '<%= I18n.t("mercator.contentmanager.create_folder") %>',
+            title: '<%= I18n.t("mercator.content_manager.edit_folder") %>',
             body: '<div id="folderForm"></div>',
             onOpen  : function (event) {
               event.onComplete = function () {
@@ -80,7 +80,7 @@ function foldertreeToolbar() {
           })
 
         } else {
-          w2alert('<%= I18n.t("mercator.contentmanager.no_folder_selected") %>')
+          w2alert('<%= I18n.t("mercator.content_manager.no_folder_selected") %>')
         }
       }
     }

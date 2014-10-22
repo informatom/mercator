@@ -3,6 +3,13 @@
     <field-list: fields="name_de, name_en, markup, content_de, content_en,
                          document, photo" param>
     </field-list:>
+    <actions:>
+      <submit label="#{ht 'content_element.actions.save', :default=>['Save']}"/> &nbsp;
+      <t key="hobo.support.or" /> &nbsp;
+      <a href="/contentmanager">
+        <t key="hobo.actions.cancel" />
+      </a>
+    </actions:>
   </old-form>
 </extend>
 
