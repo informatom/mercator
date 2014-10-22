@@ -37,7 +37,7 @@
         <input-many>
           <field-list fields="position, category">
             <category-view:>
-              <name-one complete-target="&@category" completer="name_admin" autocomplete="off"/>
+              <name-one class="form-control" complete-target="&@category" completer="name_admin" autocomplete="off"/>
             </category-view:>
           </field-list>
         </input-many>
