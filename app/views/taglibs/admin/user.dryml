@@ -57,13 +57,6 @@
   <old-form merge multipart>
     <field-list: fields="gender, title, first_name, surname, email_address, phone, sales, sales_manager, contentmanager, administrator,
                          logged_in, locale, addresses, billing_addresses, photo" param>
-    <addresses-view:>
-      <input-many/>
-    </addresses-view:>
-
-    <billing-addresses-view:>
-      <input-many/>
-    </billing-addresses-view:>
     </field-list:>
   </old-form>
 </extend>
