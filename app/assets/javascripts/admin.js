@@ -15,3 +15,4 @@
 //= require codemirror/modes/css
 //= require codemirror/modes/ruby
 //= require codemirror/modes/htmlembedded
+//= require hobo_w2ui

@@ -1,0 +1,9 @@
+<page>
+  <content-body: replace>
+    <w2ui-index-table model="Property"
+                      columns="name_de, name_en, datatype, position, icecat_id, created_at, updated_at"
+                      sizes ="100, 100, 50, 50, 50, 100, 100"
+                      searches="name_de, name_en"
+                      subsite="admin" />
+  </content-body:>
+</page>

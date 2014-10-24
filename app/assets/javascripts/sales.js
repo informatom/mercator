@@ -7,4 +7,5 @@
 // appear at the bottom of the the compiled file.
 //
 //= require application
+//= require hobo_data_tables
 //= require_tree ./sales

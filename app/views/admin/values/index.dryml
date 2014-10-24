@@ -1,0 +1,9 @@
+<page>
+  <content-body: replace>
+    <w2ui-index-table model="Value"
+                      columns="title_de, title_en, amount, unit_de, unit_en, flag, created_at, updated_at"
+                      sizes ="80, 80, 50, 30, 30, 20, 100, 100"
+                      searches="title_de, title_en"
+                      subsite="admin" />
+  </content-body:>
+</page>

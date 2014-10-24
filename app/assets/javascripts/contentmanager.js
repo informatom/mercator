@@ -12,4 +12,5 @@
 //= require contentmanager/jquery.fancytree-all.min
 //= require messenger
 //= require messenger-theme-future
+//= require hobo_data_tables
 //= require contentmanager/moment-with-langs-2.6.0

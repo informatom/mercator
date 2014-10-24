@@ -1,0 +1,9 @@
+<page>
+  <content-body: replace>
+    <w2ui-index-table model="PropertyGroup"
+                      columns="name_de, name_en, position, created_at, updated_at"
+                      sizes ="100, 100, 100, 100, 100"
+                      searches="name_de, name_en"
+                      url="/admin/property_groups.json" />
+  </content-body:>
+</page>

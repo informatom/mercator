@@ -24,6 +24,9 @@ gem "hobo_jquery_ui", "2.1.1"                         # JQuery UI asser handling
 
 # gem "hobo_bootstrap_ui", "2.1.1"                      # additional Bootstrap features
 gem "hobo_bootstrap_ui", path:"vendor/gems/hobo_bootstrap_ui"
+gem "hobo_w2ui", path:"vendor/gems/hobo_w2ui"         # w2ui integration
+gem 'yajl-ruby', require: 'yajl'                      # faster  json parser
+
 gem "bootstrap-slider-rails"
 
 gem "jquery-ui-themes", "~> 0.0.4"                    # JQury Ui theming

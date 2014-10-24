@@ -97,6 +97,13 @@ PATH
       bootstrap-datepicker-rails
       hobo_bootstrap (>= 2.0)
 
+PATH
+  remote: vendor/gems/hobo_w2ui
+  specs:
+    hobo_w2ui (0.1)
+      hobo_jquery (>= 2.0)
+      rails (~> 4.0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -485,6 +492,7 @@ GEM
     wkhtmltopdf-binary (0.9.9.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
@@ -525,6 +533,7 @@ DEPENDENCIES
   hobo_clean_admin (= 2.1.1)
   hobo_jquery_ui (= 2.1.1)
   hobo_paperclip!
+  hobo_w2ui!
   hobo_will_paginate
   holidays
   jbuilder (~> 1.2)
@@ -566,3 +575,4 @@ DEPENDENCIES
   whenever
   wicked_pdf
   wkhtmltopdf-binary
+  yajl-ruby

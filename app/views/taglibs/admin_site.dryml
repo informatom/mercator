@@ -11,3 +11,5 @@
 
 <include if="&Rails.application.config.try(:icecat) == true"
          src="../../../vendor/engines/mercator_icecat/app/views/taglibs/admin/*"/>
+
+<include gem='hobo_w2ui'/>
