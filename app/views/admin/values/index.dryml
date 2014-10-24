@@ -1,9 +1,11 @@
 <page>
   <content-body: replace>
     <w2ui-index-table model="Value"
-                      columns="title_de, title_en, amount, unit_de, unit_en, flag, created_at, updated_at"
-                      sizes ="80, 80, 50, 30, 30, 20, 100, 100"
+                      columns="title_de, title_en, product_number, property, property_group, amount, unit_de, unit_en, flag, created_at, updated_at"
+                      sizes ="50, 50, 50, 50, 50,20, 30, 30, 20, 80, 80"
                       searches="title_de, title_en"
-                      subsite="admin" />
+                      sort="title_de"
+                      subsite="admin"
+                      async />
   </content-body:>
 </page>

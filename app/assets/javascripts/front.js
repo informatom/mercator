@@ -21,5 +21,4 @@
 //= require ckeditor/init
 //= require private_pub
 //= require messenger
-//= require hobo_data_tables
 //= require messenger-theme-future
