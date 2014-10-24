@@ -4,18 +4,16 @@ class Admin::ValuesController < Admin::AdminSiteController
   auto_actions :all
 
   def index
-    values = Value
-    if params[:sort] # sorting is requested
+    values = Value.includes(:property).includes(:product).includes(:property_group)
+    if params[:sort]
       values = values.order(params[:sort]["0"][:field] || :title_de => params[:sort]["0"][:direction].downcase.to_sym)
     end
     if params[:search]
-      params[:search].each do |key, value|
-        values = values.offset(params[:offset] || 0)
-                       .where("#{value[:field]} LIKE '#{value[:value]}%'")
-      end
+        values = values.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
     end
     total = values.count
     values = values.limit(params[:limit] || 100)
+                   .offset(params[:offset] || 0)
 
     respond_to do |format|
       format.html { respond_with [] }
