@@ -14,7 +14,7 @@ function foldertree() {
       dragEnter: function() {
         return true
       },
-      dragDrop:  function(node, data) {
+      dragDrop: function(node, data) {
         if( !data.otherNode ){
           // It's a non-tree draggable
           var draggable = data.draggable.element[0]
@@ -79,15 +79,15 @@ function foldertree() {
       },
     1000 )
   }
+}
 
-  function loadGridAndGallery(content_element_id, set_element) {
-    w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + content_element_id)
-    $.ajax({
-      url: "/contentmanager/front/get_thumbnails/" + content_element_id,
-      context: document.body
-    }).done(function(response) {
-      $("#gallery").html(response)
-      registerGallery()
-    })
-  }
+function loadGridAndGallery(content_element_id, set_element) {
+  w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + content_element_id)
+  $.ajax({
+    url: "/contentmanager/front/get_thumbnails/" + content_element_id,
+    context: document.body
+  }).done(function(response) {
+    $("#gallery").html(response)
+    registerGallery()
+  })
 }

@@ -9,7 +9,7 @@ class Folder < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name, :ancestry, :position, :parent_id, :parent
+  attr_accessible :name, :ancestry, :position, :parent_id, :parent, :content_elements
   has_ancestry orphan_strategy: :adopt
 
   has_paper_trail
@@ -17,7 +17,7 @@ class Folder < ActiveRecord::Base
   default_scope { order('folders.position ASC') }
 
   validates :position, numericality: true
-  has_many :content_elements
+  has_many :content_elements, :accessible => true
 
   # --- Permissions --- #
 
@@ -39,5 +39,4 @@ class Folder < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
-
 end

@@ -33,7 +33,8 @@ class ContentElement < ActiveRecord::Base
   has_many :page_content_element_assignments, :accessible => true
   has_many :webpages, :through => :page_content_element_assignments
 
-  belongs_to :folder
+  belongs_to :folder, :accessible => true
+  validates :folder, :presence => true
 
   # --- Permissions --- #
 

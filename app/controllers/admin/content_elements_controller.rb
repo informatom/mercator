@@ -20,10 +20,21 @@ class Admin::ContentElementsController < Admin::AdminSiteController
   end
 
   def update
-    hobo_update do
-      redirect_to contentmanager_front_path
+    hobo_update(redirect: contentmanager_front_path) do
       session[:selected_content_element_id] = this.id
       session[:selected_folder_id] = this.folder.id
+    end
+  end
+
+  def create
+    hobo_create(redirect: contentmanager_front_path) do
+      session[:selected_content_element_id] = this.id
+    end
+  end
+
+  def destroy
+    hobo_destroy do
+      render nothing: true if request.xhr?
     end
   end
 end

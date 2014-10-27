@@ -68,6 +68,7 @@ de:
     downloads: Downloads
     email_address: E-Mail Adresse
     first_name: Vorname
+    folder: Verzeichnis
     gender: Anrede
     id: ID
     inventories: Bestände
@@ -431,6 +432,9 @@ de:
         key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
         markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
       content_element:
+        deleted: Baustein erfolgreich gelöscht!
+        deleting: Baustein wird gelöscht ...
+        delete_failed: Baustein konnte nicht gelöscht werden!
         moved: Baustein erfolgreich verschoben!
         moving: Baustein wird verschoben
         move_failed: Baustein konnte nicht verschoben werden!

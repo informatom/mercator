@@ -2,24 +2,9 @@ function foldertreeToolbar() {
   $('#foldertree-toolbar').w2toolbar({
     name: 'foldertree-toolbar',
     items: [
-      {
-        type: 'button',
-        id: 'add',
-        caption: '',
-        icon: 'fa fa-plus'
-      },
-      {
-        type: 'button',
-        id: 'edit',
-        caption: '',
-        icon: 'fa fa-edit'
-      },
-      {
-        type: 'button',
-        id: 'delete',
-        caption: '',
-        icon: 'fa fa-close'
-      }
+      { type: 'button', id: 'add', caption: '', icon: 'fa fa-plus' },
+      { type: 'button', id: 'edit', caption: '', icon: 'fa fa-edit' },
+      { type: 'button', id: 'delete', caption: '', icon: 'fa fa-trash'}
     ],
     onClick: function (event) {
       switch (event.target) {

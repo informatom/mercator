@@ -1,0 +1,11 @@
+<def attrs='include-none' tag='tree-select-one'><%
+  options = this_field_reflection.klass.sort_by_ancestry(this_field_reflection.klass.all) {|a, b| a.position <=> b.position}
+  select_options = options.map { |x| [("&nbsp; &nbsp; &nbsp;" * x.depth + "‣ " + name(:with => x, :no_wrapper => true)).html_safe,
+                                       x.id] }
+  attributes = add_classes(attributes, "input", "belongs_to", type_and_field)
+  -%>
+
+  <select name='#{param_name_for_this(true)}' merge-attrs='&amp;attributes.except :name'>
+    <%= options_for_select(select_options, this ? this.id : "") %>
+  </select>
+</def>

@@ -3,144 +3,103 @@ function contentelementsgrid() {
     name: 'contentelementsgrid',
     multiSelect : false,
     method: 'GET',
-    show: {
-      toolbar: true,
-      footer: true
-    },
+    show: { toolbar: true, footer: true },
+
     toolbar: {
         items: [
-          {
-            type: 'button',
-            id: 'editContentElement',
-            caption: "<%= I18n.t('activerecord.models.content_element.one') %> <%= I18n.t('hobo.actions.edit', model: '') %>",
-            img: 'fa fa-edit'
-          }
+          { type: 'button', id: 'newContentElement', img: 'fa fa-plus',
+            caption: "<%= I18n.t('hobo.actions.create', model: ContentElement.model_name.human) %>" },
+          { type: 'button', id: 'editContentElement', img: 'fa fa-edit',
+            caption: "<%= I18n.t('hobo.actions.edit', model: ContentElement.model_name.human) %>" },
+          { type: 'button', id: 'deleteContentElement', img: 'fa fa-trash',
+            caption: "<%= I18n.t('hobo.actions.delete', model: ContentElement.model_name.human) %>" }
         ],
         onClick: function (target, data) {
-          if (target == "editContentElement") {
-            var selection = w2ui['contentelementsgrid'].getSelection()
-            if (selection[0]) {
-              document.location = "/admin/content_elements/" + selection[0] + "/edit"
-            } else {
-              w2alert('<%= I18n.t("mercator.content_manager.no_content_element_selected") %>')
-            }
+          switch (target) {
+            case 'newContentElement':
+              document.location = "/admin/content_elements/new"
+              break
+            case 'editContentElement':
+              var selection = w2ui['contentelementsgrid'].getSelection()
+              if (selection[0]) {
+                document.location = "/admin/content_elements/" + selection[0] + "/edit"
+              } else {
+                w2alert('<%= I18n.t("mercator.content_manager.no_content_element_selected") %>')
+              }
+              break
+            case 'deleteContentElement':
+              var selection = w2ui['contentelementsgrid'].getSelection()
+              if (selection[0]) {
+                w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+                  if (button =='Yes') {
+                    Messenger().run({
+                      action: $.ajax,
+                      progressMessage: '<%= I18n.t("activerecord.attribute_help.content_element.deleting") %>',
+                      successMessage: '<%= I18n.t("activerecord.attribute_help.content_element.deleted") %>',
+                      errorMessage: '<%= I18n.t("activerecord.attribute_help.content_element.delete_failed") %>',
+                      hideAfter: 3
+                    },{
+                      url:"/admin/content_elements/" + selection[0],
+                      method: "DELETE",
+                      data: { authenticity_token: csrf_token },
+                      dataType: 'script',
+                      success: function(response){
+                        var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
+                        loadGridAndGallery(active_node.key)
+                      },
+                      error: function(response){
+                        return response.responseText
+                      }
+                    })
+                  }
+                })
+              } else {
+                w2alert('<%= I18n.t("mercator.content_manager.no_content_element_selected") %>')
+              }
+              break
           }
         }
     },
+
     columns: [
+      { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
       {
-        field: 'recid',
-        caption: '<%= I18n.t("attributes.id") %>',
-        size: '50px',
-        sortable: true,
-        hidden: true ,
-        attr: "align=center"
-      },
-      {
-        field: 'name_de',
-        caption: '<%= I18n.t("attributes.name_de") %>',
-        size: '150px',
-        sortable: true,
+        field: 'name_de', caption: '<%= I18n.t("attributes.name_de") %>', size: '150px', sortable: true,
         render: function (record) {
           return '<div id ="content-element-' + record.recid + '" class="draggable">' + record.name_de + '</div>'
         }
       },
+      { field: 'name_en', caption: '<%= I18n.t("attributes.name_en") %>', size: '150px', sortable: true, hidden: true },
+      { field: 'markup', caption: '<%= I18n.t("attributes.markup") %>', size: '40px', hidden: true },
+      { field: 'content_de', caption: '<%= I18n.t("attributes.content_de") %>', size: '50%', sortable: true },
+      { field: 'content_en', caption: '<%= I18n.t("attributes.content_en") %>', size: '300px', sortable: true, hidden: true },
       {
-        field: 'name_en',
-        caption: '<%= I18n.t("attributes.name_en") %>',
-        size: '150px',
-        sortable: true,
-        hidden: true
-      },
-      {
-        field: 'markup',
-        caption: '<%= I18n.t("attributes.markup") %>',
-        size: '40px',
-        hidden: true
-      },
-      {
-        field: 'content_de',
-        caption: '<%= I18n.t("attributes.content_de") %>',
-        size: '50%',
-        sortable: true
-      },
-      {
-        field: 'content_en',
-        caption: '<%= I18n.t("attributes.content_en") %>',
-        size: '300px',
-        sortable: true,
-        hidden: true
-      },
-      {
-        field: 'created_at',
-        caption: '<%= I18n.t("attributes.created_at") %>',
-        size: '130px',
-        sortable: true,
-        hidden: true,
+        field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
         render: function (record) {
           return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss")
         }
       },
       {
-        field: 'updated_at',
-        caption: '<%= I18n.t("attributes.updated_at") %>',
-        size: '130px',
-        sortable: true,
+        field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,
         render: function (record) {
           return moment(record.updated_at).format("YYYY-MM-DD HH:mm:ss")
         }
       },
-      {
-        field: 'document_file_name',
-        caption: '<%= I18n.t("attributes.document") %>',
-        size: '150px',
-        sortable: true
-      },
-      {
-        field: 'photo_file_name',
-        caption: '<%= I18n.t("attributes.photo") %>',
-        size: '150px',
-        sortable: true
-      },
-      {
-        field: 'thumb_url',
-        caption: '<%= I18n.t("attributes.thumbnail") %> <%= I18n.t("attributes.path") %>',
-        size: '150px',
-        hidden: true
-      },
-      {
-        field: 'photo_url',
-        caption: '<%= I18n.t("attributes.photo") %> <%= I18n.t("attributes.path") %>',
-        size: '150px',
-        hidden: true
-      }
+      { field: 'document_file_name', caption: '<%= I18n.t("attributes.document") %>', size: '150px', sortable: true },
+      { field: 'photo_file_name', caption: '<%= I18n.t("attributes.photo") %>', size: '150px', sortable: true },
+      { field: 'thumb_url', caption: '<%= I18n.t("attributes.thumbnail") %> <%= I18n.t("attributes.path") %>', size: '150px', hidden: true },
+      { field: 'photo_url', caption: '<%= I18n.t("attributes.photo") %> <%= I18n.t("attributes.path") %>', size: '150px', hidden: true }
     ],
+
     searches: [
-      {
-        field: 'name_de',
-        caption: '<%= I18n.t("attributes.name_de") %>',
-        type: 'text' },
-      {
-        field: 'name_en',
-        caption: '<%= I18n.t("attributes.name_en") %>',
-        type: 'text' },
-      {
-        field: 'content_de',
-        caption: '<%= I18n.t("attributes.content_de") %>',
-        type: 'text' },
-      {
-        field: 'content_en',
-        caption: '<%= I18n.t("attributes.content_en") %>',
-        type: 'text' },
-      {
-        field: 'photo_file_name',
-        caption: '<%= I18n.t("attributes.photo") %>',
-        type: 'text' }
+      { field: 'name_de', caption: '<%= I18n.t("attributes.name_de") %>', type: 'text' },
+      { field: 'name_en', caption: '<%= I18n.t("attributes.name_en") %>', type: 'text' },
+      { field: 'content_de', caption: '<%= I18n.t("attributes.content_de") %>', type: 'text' },
+      { field: 'content_en', caption: '<%= I18n.t("attributes.content_en") %>', type: 'text' },
+      { field: 'photo_file_name', caption: '<%= I18n.t("attributes.photo") %>', type: 'text' }
     ],
-    sortData: [{
-      field: 'name_de',
-      direction: 'ASC'
-    }],
+    sortData: [{ field: 'name_de', direction: 'ASC' }],
+
     onClick: function(event) {
       event.onComplete = function () {
         var sel = this.getSelection()

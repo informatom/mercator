@@ -64,6 +64,7 @@ en:
     downloads: Downloads
     email_address: Email Address
     first_name: First Name
+    folder: Verzeichnis
     gender: Salutation
     id: ID
     inventories: Inventories
@@ -424,6 +425,9 @@ en:
         key: "Create only keys that are actually used by the application."
         markup: "For HTML input, yout are supported by an WYSIWYG editor, please use the editors code view for markdown."
       content_element:
+        deleted: Content element deleted successfully!
+        deleting: Deleting content element ...
+        delete_failed: Content element could not be deleted!
         moved: Content element moved successfully!
         moving: Moving content element ...
         move_failed: Content element could not be moved!
