@@ -553,6 +553,7 @@ de:
       cannot_delete_folder:
         content_elements: 'Verzeichnis kann nicht gelöscht werden: Es enthält Bausteine!'
         subfolders: 'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!'
+        record_not_found: 'Das Verzeichnis existiert nicht.'
       create_folder: Verzeichnis erstellen
       edit_folder: Verzeichnis bearbeiten
       folder_structure: Verzeichnisstruktur

@@ -9,16 +9,7 @@ function foldertreeToolbar() {
     onClick: function (event) {
       switch (event.target) {
       case 'add':
-        w2popup.open({
-          title: 'Create Folder',
-          body: '<div id="folderForm"></div>',
-          onOpen  : function (event) {
-            event.onComplete = function () {
-              w2ui['folderForm'].recid = null
-              $('#folderForm').w2render('folderForm')
-            }
-          }
-        })
+        document.location = "/admin/folders/new"
         break
 
       case 'delete':
@@ -26,22 +17,15 @@ function foldertreeToolbar() {
         if (active_node) {
           w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
             if (button =='Yes') {
-              Messenger().run({
-                progressMessage: '<%= I18n.t("activerecord.attribute_help.folder.deleting") %>',
-                successMessage: '<%= I18n.t("activerecord.attribute_help.folder.deleted") %>',
-                errorMessage: '<%= I18n.t("activerecord.attribute_help.folder.delete_failed") %>',
-                hideAfter: 3
-              },{
-                url:"/contentmanager/front/delete_folder/" + active_node.key,
-                method: "POST",
+              $.ajax({
+                url: "/admin/folders/" + active_node.key,
+                method: "DELETE",
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
-                success: function(response){
-                  $("#foldertree").fancytree("getTree").reload()
-                },
-                error: function(response){
-                  return response.responseText
-                }
+              }).done(function() {
+                $("#foldertree").fancytree("getTree").reload()
+              }).fail(function( jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
               })
             }
           })
@@ -53,17 +37,7 @@ function foldertreeToolbar() {
       case 'edit':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
         if (active_node) {
-          w2popup.open({
-            title: '<%= I18n.t("mercator.content_manager.edit_folder") %>',
-            body: '<div id="folderForm"></div>',
-            onOpen  : function (event) {
-              event.onComplete = function () {
-                w2ui['folderForm'].recid = active_node.key
-                $('#folderForm').w2render('folderForm')
-              }
-            }
-          })
-
+          document.location = "/admin/folders/" + active_node.key + "/edit"
         } else {
           w2alert('<%= I18n.t("mercator.content_manager.no_folder_selected") %>')
         }

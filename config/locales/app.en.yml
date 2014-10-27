@@ -546,6 +546,7 @@ en:
       cannot_delete_folder:
         content_elements: This folder cannot be deleted. It contains content elements.
         subfolders: This folder cannot be deleted. It contains content subfolders.
+        record_not_found: The folder cannot be found any more.
       create_folder: Create Folder
       edit_folder: Edit Folder
       folder_structure: Folder Structure

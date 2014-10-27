@@ -73,46 +73,8 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     render text: page_content_element_assignment.webpage_id
   end
 
-  def folder
-    folder = params[:recid] == "0" ? NullObject.new() : Folder.find(params[:recid])
-
-    if params[:cmd] == "save-record"
-      if params[:recid] == "0"
-        folder = Folder.create(name: params[:record][:name], position: 9999)
-      else
-        folder.update(name: params[:record][:name])
-      end
-    end
-
-    render json: { status: "success", record: { recid: folder.id, name: folder.name} }
-  end
-
-  def delete_folder
-    @folder = Folder.find(params[:id])
-    if @folder.content_elements.any?
-      render :text => I18n.t("mercator.contentmanager.cannot_delete_folder.content_elements"),
-             :status => 403 and return
-    elsif @folder.children.any?
-      render :text => I18n.t("mercator.contentmanager.cannot_delete_folder.subfolders"),
-      :status => 403 and return
-    else
-      @folder.delete
-      render nothing: true
-    end
-  end
-
   def content_element
     content_element = (params[:recid] == "0") ? NullObject.new() : ContentElement.find(params[:recid])
-
-    # if params[:cmd] == "save-record"
-    #   if params[:recid] == "0"
-    #     content_element = ContentElement.create(params[:record].except("recid"))
-    #   else
-    #     params[:record][:photo] = params[:record][:photo]["0"][:content] if params[:record][:photo]["0"]
-    #     params[:record][:document] = params[:record][:document]["0"][:content] if params[:record][:document]["0"]
-    #     content_element.update_attributes(params[:record].except("recid"))
-    #   end
-    # end
 
     render json: {
       status: "success",
