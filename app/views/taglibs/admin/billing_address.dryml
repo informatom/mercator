@@ -1,14 +1,6 @@
 <extend tag="form" for="BillingAddress">
   <old-form merge>
-   <field-list: fields="user, gender, title, first_name, surname,
-                        company, detail, street, postalcode, city,
-                        country, phone, email_address, vat_number" param>
-      <user-view:>
-        <name-one class="form-control"
-                  complete-target="&User.new()"
-                  completer="email_address_admin"
-                  autocomplete="off"/>
-      </user-view:>
+   <field-list: >
       <country-view:>
         <name-one class="form-control"
                   complete-target="&Country.new()"

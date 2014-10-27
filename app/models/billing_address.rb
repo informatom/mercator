@@ -21,8 +21,8 @@ class BillingAddress < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
-                  :detail, :street, :postalcode, :city, :user, :country, :phone, :email_address, :vat_number
+  attr_accessible :gender, :title, :first_name, :surname, :company,
+                  :detail, :street, :postalcode, :city, :country, :phone, :email_address, :vat_number
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 
@@ -55,22 +55,24 @@ class BillingAddress < ActiveRecord::Base
   end
 
   def update_permitted?
-    user_is?(acting_user) ||
+    # Order matters, because user_is? causes
+    # Hobo::UndefinedAccessError Exception: Hobo::UndefinedAccessError
     acting_user.administrator? ||
-    acting_user.sales?
+    acting_user.sales? ||
+    user_is?(acting_user)
   end
 
   def destroy_permitted?
-    user_is?(acting_user) ||
     acting_user.administrator? ||
-    acting_user.sales?
+    acting_user.sales? ||
+    user_is?(acting_user)
   end
 
   def view_permitted?(field)
     acting_user.administrator? ||
     acting_user.sales? ||
-    user_is?(acting_user) ||
-    new_record?
+    new_record? ||
+    user_is?(acting_user)
   end
 
   #--- Class Methods ---#

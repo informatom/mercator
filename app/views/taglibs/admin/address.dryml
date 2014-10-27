@@ -2,11 +2,11 @@
   <old-form merge>
    <field-list:>
       <country-view:>
-        <name-one complete-target="&Country.new()" completer="name_de_admin" autocomplete="off"/>
+        <name-one class="form-control"
+                  complete-target="&Country.new()"
+                  completer="name_de_admin"
+                  autocomplete="off"/>
       </country-view:>
-      <user-view:>
-        <name-one complete-target="&User.new()" completer="name_admin"/>
-      </user-view:>
    </field-list:>
   </old-form>
 </extend>

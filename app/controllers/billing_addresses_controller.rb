@@ -6,7 +6,6 @@ class BillingAddressesController < ApplicationController
   auto_actions :edit, :update, :lifecycle
   auto_actions_for :user, [ :index, :new, :create ]
 
-
   def edit
     hobo_edit do
       self.this.order_id = params[:order_id]

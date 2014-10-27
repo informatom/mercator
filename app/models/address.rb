@@ -19,8 +19,8 @@ class Address < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :user_id, :gender, :title, :first_name, :surname, :company,
-                  :detail, :street, :postalcode, :city, :user, :country, :phone
+  attr_accessible :gender, :title, :first_name, :surname, :company,
+                  :detail, :street, :postalcode, :city, :country, :phone
   attr_accessor :order_id, :type => :integer
   has_paper_trail
 
