@@ -10,3 +10,11 @@
     </actions:>
   </old-form>
 </extend>
+
+<extend tag="edit-page" for="Webpage">
+  <old-edit-page merge>
+    <prepend-content-body:>
+      <my-transition-links/>
+    </prepend-content-body:>
+  </old-edit-page>
+</extend>

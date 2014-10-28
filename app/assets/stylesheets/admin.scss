@@ -3,8 +3,7 @@
  * Files or plugins referenced from here or placed in the admin/
  * directory will be included.
  *
- *= require_self
- *= require application
+  *= require application
  *= require jquery-ui/redmond
  *= require codemirror
  *= require admin/ui.fancytree.min
@@ -12,4 +11,5 @@
  *= require admin/overrides
  *= require codemirror/themes/solarized
  *= require hobo_w2ui
+ *= require_self
  */

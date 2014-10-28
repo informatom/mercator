@@ -2,7 +2,9 @@
   <collection: replace>
     <table-plus without-page-nav fields="this, title_en, url, position, slug, state, actions">
       <actions-heading:></actions-heading:>
-      <actions-view:><bootstrap-table-actions/></actions-view:>
+      <actions-view:>
+        <bootstrap-table-actions/>
+      </actions-view:>
     </table-plus>
   </collection:>
 </index-page>

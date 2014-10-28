@@ -1,5 +1,5 @@
 <show-page>
   <prepend-content-body:>
-    <transition-buttons/>
+    <my-transition-links/>
   </prepend-content-body:>
 </show-page>

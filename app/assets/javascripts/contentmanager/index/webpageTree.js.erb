@@ -41,6 +41,10 @@ function webpageTree() {
     setTimeout(
       function(){
         $("#webpageTree").fancytree("getTree").getNodeByKey(selected_webpage_id).setActive();
+        w2ui.assignments.load('/contentmanager/front/show_assignments/' + selected_webpage_id)
+        w2ui.webpage.load('/contentmanager/front/show_webpage/' + selected_webpage_id)
+        w2ui.webpageTreeToolbar.enable('edit')
+        w2ui.webpageTreeToolbar.enable('delete')
       },
     1000 )
   }

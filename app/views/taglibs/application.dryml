@@ -38,9 +38,17 @@
 </def>
 
 <def tag="my-transition-link" attrs="transition">
-  <transition-link transition="#{transition}" method="put" class="btn" merge-attrs>
+  <transition-link transition="#{transition}" method="put" class="btn btn-primary" merge-attrs>
     <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
   </transition-link>
+</def>
+
+<def tag='my-transition-links'>
+  <p>
+    <% this.lifecycle.publishable_transitions_for(current_user).each do |t| %>
+       <my-transition-link transition='&t.name'/> &nbsp; &nbsp;
+    <% end %>
+  </p>
 </def>
 
 <def tag="my-creator-link" attrs="creator">
@@ -60,7 +68,3 @@
   </if>
 </def>
 
-  <collection: replace>
-  <data-table bJqueryUI fields="this,body,updated_at" data-rapid='{"data-table":{"options":{"sPaginationType":"full_numbers","bProcessing":true,"bServerSide":true,"sAjaxSource":""},"event":{}}}' />
-  </collection:>
-    <bottom-page-nav: replace />

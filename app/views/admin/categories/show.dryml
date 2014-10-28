@@ -1,5 +1,11 @@
 <show-page>
   <prepend-content-body:>
-    <transition-buttons/>
+    <my-transition-links/>
   </prepend-content-body:>
 </show-page>
+
+<edit-page>
+  <prepend-content-body:>
+    <my-transition-links/>
+  </prepend-content-body:>
+</edit-page>
