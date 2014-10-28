@@ -17,27 +17,24 @@ function assignmentsgrid() {
         $( ".droppable" ).droppable({
           activeClass: "ui-state-default",
           hoverClass: "ui-state-hover",
+
           drop: function( event, ui ) {
             var draggable = ui.draggable[0]
             var contentElementId = parseInt(draggable.id.split("-")[2])
             var associationID = parseInt(this.id.split("-")[1])
 
-            Messenger().run({
-              progressMessage: '<%= I18n.t("activerecord.attribute_help.page_content_element_assignment.updating") %>',
-              successMessage: '<%= I18n.t("activerecord.attribute_help.page_content_element_assignment.updated") %>',
-              errorMessage: '<%= I18n.t("activerecord.attribute_help.page_content_element_assignment.update_failed") %>',
-              hideAfter: 3
-            },{
+            w2ui['contentmanager'].lock('preview', w2utils.lang('Refreshing...'), true)
+            $.ajax({
               url:"/contentmanager/front/update_page_content_element_assignment/" + associationID,
               method: "POST",
-              data: {
-                authenticity_token: csrf_token,
-                content_element_id: contentElementId
-              },
+              data: { authenticity_token: csrf_token, content_element_id: contentElementId },
               dataType: 'script',
-              success: function(response){
-                w2ui['assignments'].load('/contentmanager/front/show_assignments/' + response)
-              }
+            }).done(function(response, textStatus, jqXHR) {
+              w2ui['assignments'].load('/contentmanager/front/show_assignments/' + response)
+              w2ui['contentmanager'].unlock('preview')
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+              w2alert(jqXHR.responseText)
+              w2ui['contentmanager'].unlock('preview')
             })
           }
         })

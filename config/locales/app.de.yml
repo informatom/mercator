@@ -431,25 +431,12 @@ de:
       constant:
         key: "Erstellen Sie nur Schlüssel, die von der Anwendung auch verwendet werden."
         markup: "Bei HTML hilft Ihnen der WYSIWYG-Editor, für Markdown verwenden Sie bitte die Codeansicht im Editor."
-      content_element:
-        deleted: Baustein erfolgreich gelöscht!
-        deleting: Baustein wird gelöscht ...
-        delete_failed: Baustein konnte nicht gelöscht werden!
-        moved: Baustein erfolgreich verschoben!
-        moving: Baustein wird verschoben
-        move_failed: Baustein konnte nicht verschoben werden!
       conversation:
         name: "Dient auch dazu, dass sie später diese Konversation wiederfinden können."
       country:
         code: "ISO-Ländercode 3166 ALPHA2 gem. http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
       folder:
         position: Reihung innerhalb der Überkategorie im Verzeichnisbaum
-        updated: Verzeichnisbaum erfolgreich aktualisiert!
-        updating: Verzeichnisbaum wird aktualisiert
-        update_failed: Verzeichnisbaum konnte nicht aktualisiert werden!
-        deleted: Verzeichnis erfolgreich gelöscht!
-        deleting: Verzeichnis wird gelöscht ...
-        delete_failed: Verzeichnis konnte nicht gelöscht werden!
       inventory:
         number: "Geben Sie die Artikelnummer auch dann ein, wenn Sie nicht von der Artikelnummer des Artikels abweicht."
         unit: "Verwenden Sie einheitliche Einheiten, z.B. Stk., Std., Pau."
@@ -459,10 +446,6 @@ de:
         price: Netto (ohne Steuern)
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
-      page_content_element_assignment:
-        updated: Baustein erfolgreich zugeordnet!
-        updating: Baustein wird zugeordnet
-        update_failed:  Baustein konnte nicht zugeordnet werden!
       price:
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
@@ -486,9 +469,6 @@ de:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
       webpage:
-        updated: Webseitenbaum erfolgreich aktualisiert!
-        updating: Webseitenbaum wird aktualisiert
-        update_failed: Webseitenbaum konnte nicht aktualisiert werden!
         lifecycle:
           transitions:
             archive: Kann jederzeit wieder aktiviert werden
@@ -551,9 +531,12 @@ de:
     consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
     content_manager:
       cannot_delete_folder:
-        content_elements: 'Verzeichnis kann nicht gelöscht werden: Es enthält Bausteine!'
+        content_elements: 'Dieses Verzeichnis kann nicht gelöscht werden, denn es enthält Bausteine.'
         subfolders: 'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!'
-        record_not_found: 'Das Verzeichnis existiert nicht.'
+        record_not_found: 'Das Verzeichnis existiert nicht mehr.'
+      cannot_delete_webpage:
+        subpages: 'Diese Webseite kann nicht gelöscht werden, denn es gibt Unterseiten!'
+        record_not_found: 'Die Webseite existiert nicht mehr.'
       create_folder: Verzeichnis erstellen
       edit_folder: Verzeichnis bearbeiten
       folder_structure: Verzeichnisstruktur

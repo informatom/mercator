@@ -15,17 +15,12 @@ function foldertree() {
         return true
       },
       dragDrop: function(node, data) {
-        if( !data.otherNode ){
-          // It's a non-tree draggable
+        if( !data.otherNode ){ // It's a draggable not from the tree - so it's from the elementsgrid
           var draggable = data.draggable.element[0]
           var contentElementId = parseInt(draggable.id.split("-")[2])
 
-          Messenger().run({
-            progressMessage: '<%= I18n.t("activerecord.attribute_help.content_element.moving") %>',
-            successMessage: '<%= I18n.t("activerecord.attribute_help.content_element.moved") %>',
-            errorMessage: '<%= I18n.t("activerecord.attribute_help.content_element.move_failed") %>',
-            hideAfter: 3
-          },{
+          w2ui.elementexplorer.lock('main', w2utils.lang('Refreshing...'), true)
+          $.ajax({
             url:"/contentmanager/front/update_content_element/" + contentElementId,
             method: "POST",
             data: {
@@ -33,21 +28,18 @@ function foldertree() {
               folder_id: data.node.key
             },
             dataType: 'script',
-            success: function(response) {
-              w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + response)
-            }
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.contentelementsgrid.load('/contentmanager/front/show_content_elements/' + response)
+            w2ui.elementexplorer.unlock('main')
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+            w2ui.elementexplorer.unlock('main')
           })
-
-        } else {
-          // It's a tree draggable
+        } else { // It's a draggable from the tree itself
           data.otherNode.moveTo(node, data.hitMode)
 
-          Messenger().run({
-            progressMessage: '<%= I18n.t("activerecord.attribute_help.folder.updating") %>',
-            successMessage: '<%= I18n.t("activerecord.attribute_help.folder.updated") %>',
-            errorMessage: '<%= I18n.t("activerecord.attribute_help.folder.update_failed") %>',
-            hideAfter: 3
-          },{
+          w2ui.elementexplorer.lock('main', w2utils.lang('Refreshing...'), true)
+          $.ajax({
             url:"/contentmanager/front/update_folders",
             method: "POST",
             data: {
@@ -55,12 +47,24 @@ function foldertree() {
               folders: $("#foldertree").fancytree("getTree").toDict()
             },
             dataType: 'script'
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.elementexplorer.unlock('main')
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+            w2ui.elementexplorer.unlock('main')
           })
         }
       }
     },
     click: function(event, data) {
-      loadGridAndGallery(data.node.key)
+      if (data.node.key) {
+        loadGridAndGallery(data.node.key)
+        w2ui.foldertreeToolbar.enable('edit')
+        w2ui.foldertreeToolbar.enable('delete')
+      } else {
+        w2ui.foldertreeToolbar.disable('edit')
+        w2ui.foldertreeToolbar.disable('delete')
+      }
     }
   })
 
@@ -73,7 +77,7 @@ function foldertree() {
           function(){
             var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
             w2ui.contentelementsgrid.scrollIntoView(index)
-            w2ui['contentelementsgrid'].select(selected_content_element_id)
+            w2ui.contentelementsgrid.select(selected_content_element_id)
           },
         4000 )
       },
@@ -82,12 +86,18 @@ function foldertree() {
 }
 
 function loadGridAndGallery(content_element_id, set_element) {
-  w2ui['contentelementsgrid'].load('/contentmanager/front/show_content_elements/' + content_element_id)
+  w2ui.contentelementsgrid.load('/contentmanager/front/show_content_elements/' + content_element_id)
+
+  w2ui.contentmanager.lock('bottom', w2utils.lang('Refreshing...'), true)
   $.ajax({
     url: "/contentmanager/front/get_thumbnails/" + content_element_id,
     context: document.body
   }).done(function(response) {
     $("#gallery").html(response)
     registerGallery()
+    w2ui.contentmanager.unlock('bottom')
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    w2alert(jqXHR.responseText)
+    w2ui.contentmanager.unlock('bottom')
   })
 }

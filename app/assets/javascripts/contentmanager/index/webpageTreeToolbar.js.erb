@@ -2,22 +2,36 @@ function webpageTreeToolbar() {
   $('#webpageTreeToolbar').w2toolbar({
     name: 'webpageTreeToolbar',
     items: [
-      {
-        type: 'button',
-        id: 'edit',
-        caption: '',
-        icon: 'fa fa-edit'
-      },
+      { type: 'button', id: 'new', caption: '', icon: 'fa fa-plus'},
+      { type: 'button', id: 'edit', caption: '', icon: 'fa fa-edit', disabled: true},
+      { type: 'button', id: 'delete', caption: '', icon: 'fa fa-trash', disabled: true},
     ],
+
     onClick: function (event) {
       switch (event.target) {
+      case 'new':
+        document.location = "/admin/webpages/new"
+      break
       case 'edit':
         var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
-        if (active_node) {
-          document.location = "/admin/webpages/" + active_node.key + "/edit"
-        } else {
-          w2alert('<%= I18n.t("mercator.content_manager.no_weppage_selected") %>')
-        }
+        document.location = "/admin/webpages/" + active_node.key + "/edit"
+      break
+      case 'delete':
+        var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
+        w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          if (button =='Yes') {
+            $.ajax({
+              url: "/admin/webpages/" + active_node.key,
+              method: "DELETE",
+              data: { authenticity_token: csrf_token },
+              dataType: 'script',
+            }).done(function() {
+              $("#webpageTree").fancytree("getTree").reload()
+            }).fail(function( jqXHR, textStatus, errorThrown) {
+              w2alert(jqXHR.responseText)
+            })
+          }
+        })
       }
     }
   })

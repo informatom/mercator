@@ -7,12 +7,8 @@ function webpageTree() {
       dragEnter: function(node, data) { return true },
       dragDrop: function(node, data) {
         data.otherNode.moveTo(node, data.hitMode)
-        Messenger().run({
-          progressMessage: '<%= I18n.t("activerecord.attribute_help.category.updating") %>',
-          successMessage: '<%= I18n.t("activerecord.attribute_help.category.updated") %>',
-          errorMessage: '<%= I18n.t("activerecord.attribute_help.category.update_failed") %>',
-          hideAfter: 3
-        },{
+        w2ui.contentmanager.lock('left', w2utils.lang('Refreshing...'), true)
+        $.ajax({
           url:"/contentmanager/front/update_webpages",
           method: "POST",
           data: {
@@ -20,12 +16,24 @@ function webpageTree() {
             webpages: $("#webpageTree").fancytree("getTree").toDict()
           },
           dataType: 'script'
+        }).done(function(response, textStatus, jqXHR) {
+          w2ui.contentmanager.unlock('left')
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          w2alert(jqXHR.responseText)
+          w2ui.contentmanager.unlock('left')
         })
       }
     },
     click: function(event, data) {
-      w2ui['assignments'].load('/contentmanager/front/show_assignments/' + data.node.key)
-      w2ui['webpage'].load('/contentmanager/front/show_webpage/' + data.node.key)
+      if (data.node.key) {
+        w2ui.assignments.load('/contentmanager/front/show_assignments/' + data.node.key)
+        w2ui.webpage.load('/contentmanager/front/show_webpage/' + data.node.key)
+        w2ui.webpageTreeToolbar.enable('edit')
+        w2ui.webpageTreeToolbar.enable('delete')
+      } else {
+        w2ui.webpageTreeToolbar.disable('edit')
+        w2ui.webpageTreeToolbar.disable('delete')
+      }
     }
   })
 

@@ -17,7 +17,7 @@ class Folder < ActiveRecord::Base
   default_scope { order('folders.position ASC') }
 
   validates :position, numericality: true
-  has_many :content_elements, :accessible => true
+  has_many :content_elements
 
   # --- Permissions --- #
 

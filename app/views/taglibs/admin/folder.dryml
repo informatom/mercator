@@ -1,0 +1,12 @@
+<extend tag="form" for="Folder">
+  <old-form merge multipart>
+    <field-list: fields="name, position" param/>
+    <actions:>
+      <submit label="#{ht 'folder.actions.save', :default=>['Save']}"/> &nbsp;
+      <t key="hobo.support.or" /> &nbsp;
+      <a href="/contentmanager">
+        <t key="hobo.actions.cancel" />
+      </a>
+    </actions:>
+  </old-form>
+</extend>

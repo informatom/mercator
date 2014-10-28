@@ -424,25 +424,12 @@ en:
       constant:
         key: "Create only keys that are actually used by the application."
         markup: "For HTML input, yout are supported by an WYSIWYG editor, please use the editors code view for markdown."
-      content_element:
-        deleted: Content element deleted successfully!
-        deleting: Deleting content element ...
-        delete_failed: Content element could not be deleted!
-        moved: Content element moved successfully!
-        moving: Moving content element ...
-        move_failed: Content element could not be moved!
       conversation:
         name: "For your personal reference to this conversation in future times."
       country:
         code: "ISO country code 3166 ALPHA2 according to http://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste"
       folder:
         position: Position within Parent Category in the Folder Tree
-        updated: Folder tree updated successfully!
-        updating: Folder tree updating ...
-        update_failed: Folder tree update failed!
-        deleted: Folder deleted successfully!
-        deleting: Deleting folder ...
-        delete_failed: Folder could not be deleted!
       inventory:
         number: "Please enter article number here even when it does not deviate from the article number of the products"
         unit: "Use consistent units across all products, e.g. pc., h, unit"
@@ -452,10 +439,6 @@ en:
         price: excl. VAT
         value: excl. VAT
         vat: "in %, e.g. 19.5"
-      page_content_element_assignment:
-        updated: Content element assigned successfully!
-        updating: Assigning content element  ...
-        update_failed: Content element assignment failed!
       price:
         value: excl. VAT
         vat: "in %, e.g. 19.5"
@@ -479,9 +462,6 @@ en:
         name: Please enter your full name including title here.
         email_address: We will never share your address with third parties.
       webpage:
-        updated: Tree of web pages updated successfully!
-        updating: Tree of web pages updating ...
-        update_failed: Tree of web pages could not be updated!
         lifecycle:
           transitions:
             archive: Can be reactivated at any time in the future
@@ -547,6 +527,9 @@ en:
         content_elements: This folder cannot be deleted. It contains content elements.
         subfolders: This folder cannot be deleted. It contains content subfolders.
         record_not_found: The folder cannot be found any more.
+      cannot_delete_webpage:
+        subpages: This webpage cannot be deleted. It contains subpages.
+        record_not_found: The webpage cannot be found any more.
       create_folder: Create Folder
       edit_folder: Edit Folder
       folder_structure: Folder Structure

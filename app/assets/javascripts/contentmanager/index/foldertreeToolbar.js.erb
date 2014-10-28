@@ -1,46 +1,36 @@
 function foldertreeToolbar() {
-  $('#foldertree-toolbar').w2toolbar({
-    name: 'foldertree-toolbar',
+  $('#foldertreetoolbar').w2toolbar({
+    name: 'foldertreeToolbar',
     items: [
-      { type: 'button', id: 'add', caption: '', icon: 'fa fa-plus' },
-      { type: 'button', id: 'edit', caption: '', icon: 'fa fa-edit' },
-      { type: 'button', id: 'delete', caption: '', icon: 'fa fa-trash'}
+      { type: 'button', id: 'new', caption: '', icon: 'fa fa-plus' },
+      { type: 'button', id: 'edit', caption: '', icon: 'fa fa-edit', disabled: true },
+      { type: 'button', id: 'delete', caption: '', icon: 'fa fa-trash', disabled: true}
     ],
     onClick: function (event) {
       switch (event.target) {
-      case 'add':
+      case 'new':
         document.location = "/admin/folders/new"
-        break
-
+      break
       case 'delete':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
-        if (active_node) {
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
-            if (button =='Yes') {
-              $.ajax({
-                url: "/admin/folders/" + active_node.key,
-                method: "DELETE",
-                data: { authenticity_token: csrf_token },
-                dataType: 'script',
-              }).done(function() {
-                $("#foldertree").fancytree("getTree").reload()
-              }).fail(function( jqXHR, textStatus, errorThrown) {
-                w2alert(jqXHR.responseText)
-              })
-            }
-          })
-        } else {
-          w2alert('<%= I18n.t("mercator.content_manager.no_folder_selected") %>')
-        }
-        break
-
+        w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          if (button =='Yes') {
+            $.ajax({
+              url: "/admin/folders/" + active_node.key,
+              method: "DELETE",
+              data: { authenticity_token: csrf_token },
+              dataType: 'script',
+            }).done(function() {
+              $("#foldertree").fancytree("getTree").reload()
+            }).fail(function( jqXHR, textStatus, errorThrown) {
+              w2alert(jqXHR.responseText)
+            })
+          }
+        })
+      break
       case 'edit':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
-        if (active_node) {
-          document.location = "/admin/folders/" + active_node.key + "/edit"
-        } else {
-          w2alert('<%= I18n.t("mercator.content_manager.no_folder_selected") %>')
-        }
+        document.location = "/admin/folders/" + active_node.key + "/edit"
       }
     }
   })

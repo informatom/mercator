@@ -1,27 +1,6 @@
-<def tag="form" for="PageContentElementAssignment">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="webpage, used_as, content_element" param/>
-    <div param="actions">
-      <submit label="#{ht 'content_element.actions.save', :default=>['Save']}" param/>
-      <or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
 <extend tag="form" for="Webpage">
   <old-form merge>
-    <field-list: fields="title_de, title_en, menu, url, position, slug, state, page_content_element_assignments, page_template" param>
-      <page-content-element-assignments-view:>
-        <input-many>
-          <field-list fields="used-as, content-element">
-            <content-element-view: replace>
-              <name-one class="form-control" complete-target="&ContentElement.new()" completer="name_de_admin" autocomplete="off"/>
-            </content-element-view:>
-          </field-list>
-        </input-many>
-      </page-content-element-assignments-view:>
-    </field-list:>
+    <field-list: fields="title_de, title_en, menu, url, position, slug, state, page_template" param />
     <actions:>
       <submit label="#{ht 'webpage.actions.save', :default=>['Save']}"/> &nbsp;
       <t key="hobo.support.or" /> &nbsp;

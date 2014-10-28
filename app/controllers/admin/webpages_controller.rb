@@ -25,20 +25,40 @@ class Admin::WebpagesController < Admin::AdminSiteController
 
   def edit
     @this = Webpage.friendly.find(params[:id])
-    hobo_edit
+    hobo_edit(redirect: contentmanager_front_path) do
+      session[:selected_webpege_id] = this.id
+    end
+  end
+
+  def create
+    hobo_create(redirect: contentmanager_front_path) do
+      session[:selected_webpage_id] = this.id
+    end
   end
 
   def update
     self.this = Webpage.friendly.find(params[:id])
-    hobo_update do
-      redirect_to contentmanager_front_path
+    hobo_update(redirect: contentmanager_front_path) do
       session[:selected_webpage_id] = this.id
     end
   end
 
   def destroy
-    @this = Webpage.friendly.find(params[:id])
-    hobo_destroy
+    begin
+      self.this = @webpage = Webpage.friendly.find(params[:id])
+    rescue
+      render :text => I18n.t("mercator.content_manager.cannot_delete_webpage.record_not_found"),
+             :status => 403 and return
+    end
+
+    if @webpage.children.any?
+      render :text => I18n.t("mercator.content_manager.cannot_delete_webpage.subpages"),
+      :status => 403 and return
+    end
+
+    hobo_destroy do
+      render nothing: true if request.xhr?
+    end
   end
 
   def index

@@ -61,7 +61,7 @@ $(function () {
         type: 'main',
         resizable: true,
         title: '<%= I18n.t("mercator.content_manager.folder_structure") %>',
-        content: "<div id='foldertree-toolbar' style='height:20'></div><div id='foldertree' style='height:calc(100% - 28px);'></div>"
+        content: "<div id='foldertreetoolbar' style='height:20'></div><div id='foldertree' style='height:calc(100% - 28px);'></div>"
       },
       {
         type: 'right',
@@ -89,5 +89,5 @@ $(function () {
     }
   })
 
-  w2ui['contentmanager'].content('right', w2ui['elementexplorer'])
+  w2ui.contentmanager.content('right', w2ui['elementexplorer'])
 })

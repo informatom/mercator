@@ -6,59 +6,44 @@ function contentelementsgrid() {
     show: { toolbar: true, footer: true },
 
     toolbar: {
-        items: [
-          { type: 'button', id: 'newContentElement', img: 'fa fa-plus',
-            caption: "<%= I18n.t('hobo.actions.create', model: ContentElement.model_name.human) %>" },
-          { type: 'button', id: 'editContentElement', img: 'fa fa-edit',
-            caption: "<%= I18n.t('hobo.actions.edit', model: ContentElement.model_name.human) %>" },
-          { type: 'button', id: 'deleteContentElement', img: 'fa fa-trash',
-            caption: "<%= I18n.t('hobo.actions.delete', model: ContentElement.model_name.human) %>" }
-        ],
-        onClick: function (target, data) {
-          switch (target) {
-            case 'newContentElement':
-              document.location = "/admin/content_elements/new"
-              break
-            case 'editContentElement':
-              var selection = w2ui['contentelementsgrid'].getSelection()
-              if (selection[0]) {
-                document.location = "/admin/content_elements/" + selection[0] + "/edit"
-              } else {
-                w2alert('<%= I18n.t("mercator.content_manager.no_content_element_selected") %>')
-              }
-              break
-            case 'deleteContentElement':
-              var selection = w2ui['contentelementsgrid'].getSelection()
-              if (selection[0]) {
-                w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
-                  if (button =='Yes') {
-                    Messenger().run({
-                      action: $.ajax,
-                      progressMessage: '<%= I18n.t("activerecord.attribute_help.content_element.deleting") %>',
-                      successMessage: '<%= I18n.t("activerecord.attribute_help.content_element.deleted") %>',
-                      errorMessage: '<%= I18n.t("activerecord.attribute_help.content_element.delete_failed") %>',
-                      hideAfter: 3
-                    },{
-                      url:"/admin/content_elements/" + selection[0],
-                      method: "DELETE",
-                      data: { authenticity_token: csrf_token },
-                      dataType: 'script',
-                      success: function(response){
-                        var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
-                        loadGridAndGallery(active_node.key)
-                      },
-                      error: function(response){
-                        return response.responseText
-                      }
-                    })
-                  }
-                })
-              } else {
-                w2alert('<%= I18n.t("mercator.content_manager.no_content_element_selected") %>')
-              }
-              break
-          }
+      items: [
+        { type: 'button', id: 'newContentElement', img: 'fa fa-plus',
+          caption: "<%= I18n.t('hobo.actions.create', model: ContentElement.model_name.human) %>" },
+        { type: 'button', id: 'editContentElement', img: 'fa fa-edit', disabled: true,
+          caption: "<%= I18n.t('hobo.actions.edit', model: ContentElement.model_name.human) %>" },
+        { type: 'button', id: 'deleteContentElement', img: 'fa fa-trash', disabled: true,
+          caption: "<%= I18n.t('hobo.actions.delete', model: ContentElement.model_name.human) %>" }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.contentelementsgrid.getSelection()
+        switch (target) {
+        case 'newContentElement':
+          document.location = "/admin/content_elements/new"
+        break
+        case 'editContentElement':
+          document.location = "/admin/content_elements/" + selection[0] + "/edit"
+        break
+        case 'deleteContentElement':
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+            if (button =='Yes') {
+              w2popup.lock(w2utils.lang('Refreshing...'), true)
+              $.ajax({
+                url:"/admin/content_elements/" + selection[0],
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
+                loadGridAndGallery(active_node.key)
+                w2popup.lock.unlock()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+                w2popup.lock.unlock()
+              })
+            }
+          })
         }
+      }
     },
 
     columns: [
@@ -102,9 +87,14 @@ function contentelementsgrid() {
 
     onClick: function(event) {
       event.onComplete = function () {
-        var sel = this.getSelection()
-        if (this.get(sel)) {
-          previewImage(this.get(sel).recid)
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('editContentElement')
+          this.toolbar.enable('deleteContentElement')
+          previewImage(this.get(selection).recid)
+        } else {
+          this.toolbar.disable('editContentElement')
+          this.toolbar.disable('deleteContentElement')
         }
       }
     },
