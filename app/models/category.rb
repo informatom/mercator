@@ -176,66 +176,81 @@ class Category < ActiveRecord::Base
 
   def self.auto
     @auto = Category.where(name_de: "automatisch").first
-    @auto = create(name_de: "automatisch",
-                   name_en: "automatic",
-                   description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
-                   description_en: "automatically created froducts from ERP import Job",
-                   long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
-                   long_description_en: "Please complete products and put them into categories",
-                   parent: nil,
-                   position: 1) unless @auto
+    @auto = create(
+      name_de: "automatisch",
+      name_en: "automatic",
+      description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
+      description_en: "automatically created froducts from ERP import Job",
+      long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
+      long_description_en: "Please complete products and put them into categories",
+      parent: nil,
+      position: 1,
+      filtermin: 1,
+      filtermax: 1 ) unless @auto
     return @auto
   end
 
   def self.discounts
     @discounts = Category.where(name_de: "Aktionen").first
-    @discounts = create(name_de: "Aktionen",
-                        name_en: "Discounts",
-                        description_de: "Aktionsartikel",
-                        description_en: "Dicounted Articles",
-                        long_description_de: "Aktionsartikel",
-                        long_description_en: "Dicounted Articles",
-                        parent: nil,
-                        position: 1) unless @discounts
+    @discounts = create(
+      name_de: "Aktionen",
+      name_en: "Discounts",
+      description_de: "Aktionsartikel",
+      description_en: "Dicounted Articles",
+      long_description_de: "Aktionsartikel",
+      long_description_en: "Dicounted Articles",
+      parent: nil,
+      position: 1,
+      filtermin: 1,
+      filtermax: 1) unless @discounts
     return @discounts
   end
 
   def self.novelties
     @novelties = Category.where(name_de: "Neuheiten").first
-    @novelties = create(name_de: "Neuheiten",
-                        name_en: "New",
-                        description_de: "Neuheiten",
-                        description_en: "New",
-                        long_description_de: "Neuheiten",
-                        long_description_en: "Novelties",
-                        parent: nil,
-                        position: 1) unless @novelties
+    @novelties = create(
+      name_de: "Neuheiten",
+      name_en: "New",
+      description_de: "Neuheiten",
+      description_en: "New",
+      long_description_de: "Neuheiten",
+      long_description_en: "Novelties",
+      parent: nil,
+      position: 1,
+      filtermin: 1,
+      filtermax: 1) unless @novelties
     return @novelties
   end
 
   def self.topseller
     @topseller = Category.where(name_de: "Topseller").first
-    @topseller = create(name_de: "Topseller",
-                        name_en: "Topseller",
-                        description_de: "Topseller",
-                        description_en: "Topseller",
-                        long_description_de: "Topseller",
-                        long_description_en: "Topseller",
-                        parent: nil,
-                        position: 1) unless @topseller
+    @topseller = create(
+      name_de: "Topseller",
+      name_en: "Topseller",
+      description_de: "Topseller",
+      description_en: "Topseller",
+      long_description_de: "Topseller",
+      long_description_en: "Topseller",
+      parent: nil,
+      position: 1,
+      filtermin: 1,
+      filtermax: 1) unless @topseller
     return @topseller
   end
 
   def self.orphans
     @orphans = Category.where(name_de: "verwaiste Produkte").first
-    @orphans = create(name_de: "verwaiste Produkte",
-                      name_en: "Orphans",
-                      description_de: "verwaiste Produkte",
-                      description_en: "Orphans",
-                      long_description_de: "verwaiste Produkte",
-                      long_description_en: "Orphans",
-                      parent: nil,
-                      position: 1) unless @orphans
+    @orphans = create(
+      name_de: "verwaiste Produkte",
+      name_en: "Orphans",
+      description_de: "verwaiste Produkte",
+      description_en: "Orphans",
+      long_description_de: "verwaiste Produkte",
+      long_description_en: "Orphans",
+      parent: nil,
+      position: 1,
+      filtermin: 1,
+      filtermax: 1) unless @orphans
     return @orphans
   end
 

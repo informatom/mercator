@@ -38,17 +38,10 @@ demo:
 
 ### Lecgacy (Opensteam) ###
 
-import_development:
+legacy_import:
   adapter: mysql2
   host: localhost
   database: ivellio_vellin_development
-  username: <%= CONFIG[:legacy_database_user] %>
-  password: <%= CONFIG[:legacy_database_password] %>
-
-import_production:
-  adapter: mysql2
-  host: localhost
-  database: ivellio_vellin_production
   username: <%= CONFIG[:legacy_database_user] %>
   password: <%= CONFIG[:legacy_database_password] %>
 
