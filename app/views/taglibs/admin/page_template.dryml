@@ -1,6 +1,6 @@
 <extend tag="form" for="PageTemplate">
   <old-form merge>
-    <field-list fields="name, dryml, content">
+    <field-list fields="name, dryml, content, placeholder-list">
       <content-view:>
         <input id="editor" />
         <script>
@@ -21,12 +21,21 @@
 <extend tag="show-page" for="PageTemplate">
   <old-show-page merge>
     <content-body: param>
-      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/solarized_light.min.css"/>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/tomorrow.min.css"/>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
-      <pre>
-        <code class="html" style="font-size: 15px;"><%= this.content -%></code>
-      </pre>
+
+      <field-list fields="name, dryml, content, placeholder-list" param>
+        <content-field: replace />
+        <placeholder-list-view:>
+          <span class="form-control dryml-tag view page-template-dryml " disabled="disabled"><view/></span>
+        </placeholder-list-view:>
+      </field-list>
+      <pre style="background-color: white"><code class="xhtml"><%= this.content %></code></pre>
     </content-body:>
   </old-show-page>
 </extend>
+
+<def attrs='name' tag='input' for='ActsAsTaggableOn::TagList'>
+  <%= text_field_tag(name, this.to_s, deunderscore_attributes(attributes)) %>
+</def>

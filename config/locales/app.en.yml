@@ -100,6 +100,7 @@ en:
     photo_content_type: Photo Content Type
     photo_file_size: Photo File Size
     photo_updated_at: Photo Updated at
+    placeholder_list: Placeholder List
     position: Position
     postalcode: Postal Code
     Price: Price
@@ -446,6 +447,9 @@ en:
         valid_to: "valid until 0:00 in the morning of the day given"
         scale_from: "valid from including this decimal number, e.g. 0.5"
         scale_to: "valid to including this decimal number, e.g. 9999"
+      page_template:
+        dryml: "Check to use DRYML, leave unchecked to use ERB"
+        placeholder_list: "Please enter all used placeholders comma-seperated. This generates automatic empty assignments for the web pages using this template in the content manager."
       product:
         productrelations: Enter at least 3 characters of the article number for autocompletion
         recommendations: Enter at least 3 characters of the article number for autocompletion

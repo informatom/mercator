@@ -59,7 +59,7 @@ gem "squeel"                                          # active record improvemen
 gem 'whenever', :require => false                     # cronjob management
 gem 'private_pub'                                     # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                      # Pdf Generation
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary'                              # Pdf Generation
 gem "searchkick"                                      # Elastic Search integration
 gem 'delayed_job_active_record'                       # asynchronous Jobs
 gem "daemons"                                         # to daemonize delayed_job
@@ -85,7 +85,7 @@ gem "ember-source"                                    # Ember Asset Handling
 gem "active_model_serializers"                        # JSON serialization, easy configuration for Ember
 
 gem 'exception_notification'                          # exception_notification via e-mail
-gem 'awesome_print'
+gem 'awesome_print'                                   # nice, colored object representations
 
 group :development, :test  do
   gem 'byebug'                                        # Command line debugger
@@ -111,5 +111,3 @@ group :test do
   gem 'selenium-webdriver', '~> 2.35.1'               # front end testing framework
   gem 'shoulda'                                       # additional matchers
 end
-
-gem "hobo_clean_admin", "2.1.1"

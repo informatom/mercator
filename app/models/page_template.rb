@@ -9,7 +9,7 @@ class PageTemplate < ActiveRecord::Base
     dryml     :boolean
     timestamps
   end
-  attr_accessible :name, :content, :legacy_id, :dryml
+  attr_accessible :name, :content, :legacy_id, :dryml, :placeholder_list
 
   has_paper_trail
 

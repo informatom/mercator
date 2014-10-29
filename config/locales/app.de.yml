@@ -104,6 +104,7 @@ de:
     photo_content_type: Dateityp Foto
     photo_file_size: Dateigröße Foto
     photo_updated_at: Aktualisiert Foto
+    placeholder_list: Liste der Platzhalter
     position: Reihung
     postalcode: Postleitzahl
     Price: Preis
@@ -446,6 +447,9 @@ de:
         price: Netto (ohne Steuern)
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"
+      page_template:
+        dryml: "Ankreuzen, um DRYML zu venwenden; nicht ankeuzen, um ERB zu verwenden"
+        placeholder_list: "Bitte geben Sie die verwendeten Platzhalter Komma-getrennt ein. Der Content Manager erzeugt dann automatisch leere Zuordungen in den Webseiten, die diese Vorlage verwenden."
       price:
         value: Netto (ohne Steuern)
         vat: "in Prozent, z.B. 19.5"

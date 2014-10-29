@@ -10,11 +10,6 @@ GIT
       hobo_fields (= 2.1.1)
       hobo_support (= 2.1.1)
       hobo_will_paginate
-    hobo_clean (2.1.1)
-      hobo (= 2.1.1)
-      hobo_jquery (= 2.1.1)
-    hobo_clean_admin (2.1.1)
-      hobo_clean (= 2.1.1)
     hobo_fields (2.1.1)
       hobo_support (= 2.1.1)
     hobo_jquery (2.1.1)
@@ -530,7 +525,6 @@ DEPENDENCIES
   hobo_bootstrap!
   hobo_bootstrap_ui!
   hobo_ckeditor
-  hobo_clean_admin (= 2.1.1)
   hobo_jquery_ui (= 2.1.1)
   hobo_paperclip!
   hobo_w2ui!
