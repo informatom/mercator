@@ -697,6 +697,11 @@ en:
     size: Size
     start_conversation: Online Advice
     starting_from: starting from
+    states:
+      draft: draft
+      published: published
+      published_but_hidden: hidden
+      archived: archived
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories

@@ -13,7 +13,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def show_webpagestree
     render json: childrenarray(objects: Webpage.arrange(order: :position),
-                               name_method: :title).to_json
+                               name_method: :title_with_status).to_json
   end
 
   def update_webpages

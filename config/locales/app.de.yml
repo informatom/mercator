@@ -704,6 +704,11 @@ de:
     size: Größe
     start_conversation: Online Beratung
     starting_from: von
+    states:
+      draft: Entwurf
+      published: veröffentlicht
+      published_but_hidden: verborgen
+      archived: archivert
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
     subcategories: Unterkategorien

@@ -106,4 +106,12 @@ class Webpage < ActiveRecord::Base
       ContentElement.where(name_de: used_as).first.try(:photo)
     end
   end
+
+  def title_with_status
+    if state == "published"
+      title
+    else
+      (title + " <em style='color: green'>" + I18n.t("mercator.states.#{state}") + "</em>").html_safe
+    end
+  end
 end
