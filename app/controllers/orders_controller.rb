@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       end
     end
 
-    if Rails.application.config.try(:payment) == "mpay24"
+    if Rails.application.config.try(:payment) == "mpay24" && Rails.env == "production"
       unless payment
         flash[:error] = I18n.t "mercator.messages.order.payment.failure"
         flash[:notice] = nil
