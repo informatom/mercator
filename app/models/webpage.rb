@@ -9,7 +9,6 @@ class Webpage < ActiveRecord::Base
     position   :integer, :required
     legacy_id  :integer
     slug       :string, :unique, :name => true
-    menu       :boolean
     timestamps
   end
 
@@ -69,6 +68,10 @@ class Webpage < ActiveRecord::Base
   end
 
   # --- Instance Methods --- #
+
+  def menu
+    state == "published" && children.published.any?
+  end
 
   def content_element(used_as)
     PageContentElementAssignment.where(webpage_id: id, used_as: used_as).first.try(:content_element)

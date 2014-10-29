@@ -76,6 +76,30 @@ class Admin::WebpagesController < Admin::AdminSiteController
     hobo_index
   end
 
+  def do_publish
+    do_transition_action :publish, redirect: contentmanager_front_path do
+      session[:selected_webpage_id] = this.id
+    end
+  end
+
+  def do_archive
+    do_transition_action :archive, redirect: contentmanager_front_path do
+      session[:selected_webpage_id] = this.id
+    end
+  end
+
+  def do_hide
+    do_transition_action :hide, redirect: contentmanager_front_path do
+      session[:selected_webpage_id] = this.id
+    end
+  end
+
+  def do_unhide
+    do_transition_action :unhide, redirect: contentmanager_front_path do
+      session[:selected_webpage_id] = this.id
+    end
+  end
+
 protected
   def parse_webpages(webpages: nil, parent_id: nil)
     webpages.each do |position, webpages|
