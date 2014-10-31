@@ -21,7 +21,7 @@ module Mercator
     I18n.available_locales = [:en, :de]
 
     # Hobo: the contracting subsite loads contracting.css & contracting.js
-    config.assets.precompile += %w(contracting.css contracting.js contracting2.css contentmanager.js contentmanager_index.js)
+    config.assets.precompile += %w(contracting.css contracting.js contracting2.css contentmanager.js contentmanager/index.js)
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js contracting2.js)
     # Codemirror
