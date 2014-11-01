@@ -12,7 +12,7 @@
 <def tag="container" attrs="name, size" polymorphic />
 <def tag="container" for="Webpage" attrs="name, size" >
   <if test="&content_element = this.content_element(name)">
-    <view with="&content_element.content" />
+    <view if="&content_element.content" with="&content_element.content" />
     <if test="&photo = content_element.photo">
       <img if="&size"  src="&content_element.photo(size.to_sym)" />
       <img unless="&size" src="&content_element.photo" />
@@ -28,7 +28,7 @@
   <% content_element ||= ContentElement.find_by(name_en: name) %>
   
   <if test="&content_element">
-    <view with="&content_element.content" />
+    <view if="&content_element.content" with="&content_element.content" />
     <if test="&photo = content_element.photo">
       <img if="&size" src="&content_element.photo(size.to_sym)" />
       <img unless="&size" src="&content_element.photo" />
