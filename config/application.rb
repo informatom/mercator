@@ -12,6 +12,8 @@ Bundler.require(:default, Rails.env)
 
 module Mercator
   class Application < Rails::Application
+    # Hobo: the content_manager subsite loads content_manager.css & content_manager.js
+    config.assets.precompile += %w(content_manager.css content_manager.js)
     # Hobo: the contentmanager subsite loads contentmanager.css & contentmanager.js
     config.assets.precompile += %w(contentmanager.css contentmanager.js)
     # Hobo: the sales subsite loads sales.css & sales.js

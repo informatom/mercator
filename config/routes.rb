@@ -19,6 +19,7 @@ Mercator::Application.routes.draw do
   get 'contracting' => 'contracting/front#index', :as => 'contracting_front'
   get 'sales' => 'sales/front#index', :as => 'sales_front'
   get 'contentmanager' => 'contentmanager/front#index', :as => 'contentmanager_front'
+  get 'productmanager' => 'productmanager/front#index', :as => 'productmanager_front'
 
   namespace :sales do
     resources :conversations do
@@ -43,6 +44,10 @@ Mercator::Application.routes.draw do
         post 'restart'
       end
     end
+  end
+
+  namespace :contentmanager do
+
   end
 
   namespace :contentmanager do

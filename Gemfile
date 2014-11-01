@@ -111,3 +111,5 @@ group :test do
   gem 'selenium-webdriver', '~> 2.35.1'               # front end testing framework
   gem 'shoulda'                                       # additional matchers
 end
+
+gem "hobo_clean_admin", "2.1.1"
