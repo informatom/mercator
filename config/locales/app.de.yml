@@ -116,6 +116,7 @@ de:
     product_price: Preis
     productrelations: Produktzuordnungen
     products: Artikel
+    property: Eigenschaft
     Property: Eigenschaft
     properties: Eigenschaften
     PropertyGroup: Eigenschaftsgruppe
@@ -284,6 +285,9 @@ de:
       user:
         one: Benutzer
         other: Benutzer
+      value:
+        one: Wert
+        other: Werte
       webpage:
         one: Webseite
         other: Webseiten

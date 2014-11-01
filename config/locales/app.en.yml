@@ -112,6 +112,7 @@ en:
     product_number: Product Number
     productrelations: Product Relations
     products: Products
+    property: Property
     Property: Property
     properties: Properties
     PropertyGroup: Property Group
@@ -277,6 +278,9 @@ en:
       user:
         one: User
         other: Users
+      value:
+        one: Value
+        other: Values
       webpage:
         one: Web Page
         other: Web Pages
