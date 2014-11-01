@@ -620,6 +620,8 @@ en:
           error: "Your order could not be processed. We will analyze the problem shortly."
         payment:
           failure: "The payment transaction failed."
+      photo: 
+        missing: "The photo is missing: "
       product:
         add_to_basket:
           success: The product was added to the basket.
