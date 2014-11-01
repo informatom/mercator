@@ -60,7 +60,7 @@ class ContentElement < ActiveRecord::Base
   end
 
   def self.image(name: nil)
-    where(name_de: name).first.try(:photo) || where(name_en: name).first.try(:photo)
+    find_by(name_de: name).try(:photo) || find_by(name_en: name).try(:photo)
   end
 
   # --- Instance Methods --- #

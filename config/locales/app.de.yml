@@ -627,6 +627,8 @@ de:
           error: "Ihre Bestellung konnte nicht übernommen werden. Wir werden das Problem in Kürze analysieren."
         payment:
           failure: "Die Zahlungstransaktion war nicht erfolgreich."
+      photo:
+        missing: Hier fehlt das Photo
       product:
         add_to_basket:
           success: "Das Produkt wurde zum Warenkorb hinzugefügt."

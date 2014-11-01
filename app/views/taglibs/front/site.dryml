@@ -37,6 +37,6 @@
 
 <def tag="partner-logos">
   <div class="partner-logos">
-    <photo name='partner-logos' />
+    <photo name="partner-logos" />
   </div>
 </def>
