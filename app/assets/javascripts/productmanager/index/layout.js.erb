@@ -1,0 +1,37 @@
+$(function () {
+  w2utils.locale('/assets/contentmanager/de-de.json')
+
+  $('#productmanager').w2layout({
+    name: 'productmanager',
+    panels: [
+      {
+        type: 'top',
+        title: '<%= I18n.t("mercator.product_manager.title") %>',
+        size: 58,
+        resizable: true,
+        content: "Top"
+      },
+      {
+        type: 'left',
+        size: '20%',
+        resizable: true,
+        content: "<div id='categoryTree'></div>"
+      },
+      {
+        type: 'main',
+        resizable: true,
+        content: "<div id='productsgrid' style='height: 100%'></div>" },
+      {
+        type: 'right',
+        size: '20%',
+        resizable: true,
+        content: "Right" }
+    ],
+    onRender: function(event) {
+      event.onComplete = function () {
+        categoryTree()
+        productsGrid()
+      }
+    }
+  })
+})
