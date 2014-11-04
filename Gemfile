@@ -59,7 +59,7 @@ gem "squeel"                                          # active record improvemen
 gem 'whenever', :require => false                     # cronjob management
 gem 'private_pub'                                     # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                      # Pdf Generation
-# gem 'wkhtmltopdf-binary'                              # Pdf Generation
+gem 'wkhtmltopdf-binary'                              # Pdf Generation
 # FIXME: Doku: Ubuntu Package is more current! install sudo apt-get install wkhtmltopdf
 gem "searchkick"                                      # Elastic Search integration
 gem 'delayed_job_active_record'                       # asynchronous Jobs
