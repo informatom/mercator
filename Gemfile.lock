@@ -489,6 +489,7 @@ GEM
       chronic (>= 0.6.3)
     wicked_pdf (0.11.0)
       rails
+    wkhtmltopdf-binary (0.9.9.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yajl-ruby (1.2.1)
@@ -573,4 +574,5 @@ DEPENDENCIES
   valvat
   whenever
   wicked_pdf
+  wkhtmltopdf-binary
   yajl-ruby
