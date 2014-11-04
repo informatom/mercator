@@ -104,6 +104,18 @@ sudo update-rc.d elasticsearch defaults 95 10
 sudo /etc/init.d/elasticsearch start
 ```
 
+### Installing a font for wkhtmltopdf
+
+* Install wkhtmltopdf not from the gem but from the Ubuntu Repos:
+  `sudo apt-get install wkhtmltopdf`
+* Install a virtual x-Server
+  `sudo apt-get install xvfb`
+* Copy font to /usr/local/share/fonts/
+* Update font cache
+  `sudo fc-cache`
+* Use font with correct font-family name in CSS file (this might be different than the file name)
+
+
 ### Icecat Integration
 
 If Using MercatorIcecat for Icecat Integration you need one import like
@@ -123,7 +135,9 @@ in admin.dryml per Subsite.
 #### Updating Inventories daily
 ```bash
 30 4 * * * /bin/bash -l -c 'cd /var/rails/mercator && RAILS_ENV=production bundle exec rake webartikel:update --silent >> /var/rails/mercator/log/cron.log 2>&1'
+
 ```
+
 
 ## Sources
 
