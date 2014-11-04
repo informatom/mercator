@@ -17,7 +17,7 @@ $(function () {
       {
         type: 'left',
         title: '<%= I18n.t("mercator.content_manager.website_structure") %>',
-        size: 250,
+        size: '13%',
         resizable: true,
         content: "<div id='webpageTreeToolbar' style='height:20'></div><div id='webpageTree' style='height:calc(100% - 28px);'></div>"
       },
@@ -29,12 +29,12 @@ $(function () {
       {
         type: 'preview',
         title: '<%= I18n.t("activerecord.models.page_content_element_assignment.other") %>',
-        size: 400,
+        size: '50%',
         resizable: true,
         content: "<div id='assignments' style='height:100%'></div>" },
       {
         type: 'right',
-        size: 1300,
+        size: '67%',
         resizable: true},
       {
         type: 'bottom',
@@ -67,14 +67,14 @@ $(function () {
         type: 'right',
         resizable: true,
         title: '<%= I18n.t("activerecord.models.content_element.other") %>',
-        size: 1100,
+        size: '85%',
         content: "<div id='contentelementsgrid' style='height:100%'></div>"
       },
       {
         type: 'preview',
         resizable: true,
         title: '<%= I18n.t("mercator.image_preview") %>',
-        size: 250,
+        size: '30%',
         content: "<div id='preview'></div>"
       }
     ],

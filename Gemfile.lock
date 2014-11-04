@@ -10,6 +10,11 @@ GIT
       hobo_fields (= 2.1.1)
       hobo_support (= 2.1.1)
       hobo_will_paginate
+    hobo_clean (2.1.1)
+      hobo (= 2.1.1)
+      hobo_jquery (= 2.1.1)
+    hobo_clean_admin (2.1.1)
+      hobo_clean (= 2.1.1)
     hobo_fields (2.1.1)
       hobo_support (= 2.1.1)
     hobo_jquery (2.1.1)
@@ -133,7 +138,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.4.2)
       activerecord (>= 3.2, < 5)
-    acts_as_list (0.4.0)
+    acts_as_list (0.5.0)
       activerecord (>= 3.0)
     addressable (2.3.6)
     akami (1.2.2)
@@ -143,10 +148,10 @@ GEM
       activerecord (>= 3.0.0)
     arel (4.0.2)
     awesome_print (1.2.0)
-    barber (0.4.2)
+    barber (0.5.0)
       ember-source
       execjs
-      handlebars-source
+      handlebars-source (>= 1.0.0.rc.4)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -155,7 +160,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-datepicker-rails (1.3.0.2)
       railties (>= 3.0)
-    bootstrap-sass (3.2.0.2)
+    bootstrap-sass (3.3.0.1)
       sass (~> 3.2)
     bootstrap-slider-rails (1.9.0)
       railties (>= 3.2, < 5.0)
@@ -217,12 +222,12 @@ GEM
       delayed_job (> 2.0.3)
       sinatra (>= 1.4.4)
     diff-lcs (1.2.5)
-    elasticsearch (1.0.5)
-      elasticsearch-api (= 1.0.5)
-      elasticsearch-transport (= 1.0.5)
-    elasticsearch-api (1.0.5)
+    elasticsearch (1.0.6)
+      elasticsearch-api (= 1.0.6)
+      elasticsearch-transport (= 1.0.6)
+    elasticsearch-api (1.0.6)
       multi_json
-    elasticsearch-transport (1.0.5)
+    elasticsearch-transport (1.0.6)
       faraday
       multi_json
     em-http-request (1.1.2)
@@ -244,7 +249,7 @@ GEM
       handlebars-source (> 1.0.0)
       jquery-rails (>= 1.0.17)
       railties (>= 3.1)
-    ember-source (1.7.0)
+    ember-source (1.8.0)
       handlebars-source (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -303,7 +308,7 @@ GEM
     jquery-rails (2.3.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (5.0.1)
+    jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
     jquery-ui-themes (0.0.11)
       httparty
@@ -352,8 +357,8 @@ GEM
       faye
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
-    quiet_assets (1.0.3)
-      railties (>= 3.1, < 5.0)
+    puma (2.9.0)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -396,10 +401,10 @@ GEM
     rvm-capistrano (1.5.0)
       capistrano (>= 2.15.4)
     sass (3.2.19)
-    sass-rails (4.0.3)
+    sass-rails (4.0.4)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.0)
-      sprockets (~> 2.8, <= 2.11.0)
+      sass (~> 3.2.2)
+      sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
     savon (2.7.2)
       akami (~> 1.2.0)
@@ -434,7 +439,7 @@ GEM
     slop (3.6.0)
     spreadsheet (1.0.0)
       ruby-ole (>= 1.0)
-    sprockets (2.11.0)
+    sprockets (2.11.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -465,9 +470,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     try_to (1.0)
-    turbolinks (2.4.0)
+    turbolinks (2.5.1)
       coffee-rails
-    tzinfo (0.3.41)
+    tzinfo (0.3.42)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -480,11 +485,10 @@ GEM
       nokogiri (>= 1.4.0)
     websocket (1.0.7)
     websocket-driver (0.3.5)
-    whenever (0.9.3)
+    whenever (0.9.4)
       chronic (>= 0.6.3)
     wicked_pdf (0.11.0)
       rails
-    wkhtmltopdf-binary (0.9.9.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yajl-ruby (1.2.1)
@@ -525,6 +529,7 @@ DEPENDENCIES
   hobo_bootstrap!
   hobo_bootstrap_ui!
   hobo_ckeditor
+  hobo_clean_admin (= 2.1.1)
   hobo_jquery_ui (= 2.1.1)
   hobo_paperclip!
   hobo_w2ui!
@@ -548,7 +553,7 @@ DEPENDENCIES
   paperclip
   private_pub
   protected_attributes
-  quiet_assets
+  puma
   railroady
   rails (= 4.0.9)
   roo
@@ -568,5 +573,4 @@ DEPENDENCIES
   valvat
   whenever
   wicked_pdf
-  wkhtmltopdf-binary
   yajl-ruby

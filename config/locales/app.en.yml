@@ -81,6 +81,7 @@ en:
     name: Name
     name_de: Name GER
     name_en: Name EN
+    novelty: Novelty
     number: Number
     offers: Offers
     order: Order
@@ -112,6 +113,7 @@ en:
     product_number: Product Number
     productrelations: Product Relations
     products: Products
+    property: Property
     Property: Property
     properties: Properties
     PropertyGroup: Property Group
@@ -151,6 +153,7 @@ en:
     template: Website Template
     thumbnail: Vorschau
     title: Title
+    topseller: Topseller
     unit: Unit
     upload: Upload
     usage: Usage
@@ -277,6 +280,9 @@ en:
       user:
         one: User
         other: Users
+      value:
+        one: Value
+        other: Values
       webpage:
         one: Web Page
         other: Web Pages
@@ -620,7 +626,7 @@ en:
           error: "Your order could not be processed. We will analyze the problem shortly."
         payment:
           failure: "The payment transaction failed."
-      photo: 
+      photo:
         missing: "The photo is missing: "
       product:
         add_to_basket:
@@ -660,6 +666,8 @@ en:
     place_offer: Place Offer
     printer: Printer
     printer_series: Printer Series
+    product_manager:
+      title: Produktmanager
     product_suggestion: Product Suggestion
     products_available: products available
     properties:
@@ -704,7 +712,10 @@ en:
     start_conversation: Online Advice
     starting_from: starting from
     states:
+      active: active
+      deprecated: deprecated
       draft: draft
+      new: new
       published: published
       published_but_hidden: hidden
       archived: archived

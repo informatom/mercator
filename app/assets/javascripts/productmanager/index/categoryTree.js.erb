@@ -1,0 +1,10 @@
+function categoryTree() {
+  $("#categoryTree").fancytree({
+    source: { url: "/productmanager/front/show_categorytree" },
+    click: function(event, data) {
+      if (data.node.key) {
+        w2ui.productsgrid.load('/productmanager/front/show_products/' + data.node.key)
+      }
+    }
+  })
+}

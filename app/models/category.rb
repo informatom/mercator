@@ -150,6 +150,14 @@ class Category < ActiveRecord::Base
     return filtermaxs.max
   end
 
+  def name_with_status
+    if state == "active"
+      name
+    else
+      (name + " <em style='color: green'>" + I18n.t("mercator.states.#{state}") + "</em>").html_safe
+    end
+  end
+
 
   # --- Searchkick Instance Methods --- #
 

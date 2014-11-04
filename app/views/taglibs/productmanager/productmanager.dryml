@@ -1,0 +1,21 @@
+<def tag='page'>
+  <html>
+    <head>
+      <title><%= strip_tags app_name %></title>
+
+      <%= csrf_meta_tag %>
+      <stylesheet name='#{subsite}'/>
+
+      <javascript name='#{subsite}'/>
+      <javascript name="productmanager/index.js" />
+    </head>
+
+    <body param>
+      <div id="productmanager" style="height: 100%"></div>
+    </body>
+
+    <script>
+      var csrf_token = "<%= form_authenticity_token %>"
+    </script>
+  </html>
+</def>

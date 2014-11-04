@@ -59,7 +59,8 @@ gem "squeel"                                          # active record improvemen
 gem 'whenever', :require => false                     # cronjob management
 gem 'private_pub'                                     # Private Pub Sub System using Faye
 gem 'wicked_pdf'                                      # Pdf Generation
-gem 'wkhtmltopdf-binary'                              # Pdf Generation
+# gem 'wkhtmltopdf-binary'                              # Pdf Generation
+# FIXME: Doku: Ubuntu Package is more current! install sudo apt-get install wkhtmltopdf
 gem "searchkick"                                      # Elastic Search integration
 gem 'delayed_job_active_record'                       # asynchronous Jobs
 gem "daemons"                                         # to daemonize delayed_job
@@ -88,8 +89,9 @@ gem 'exception_notification'                          # exception_notification v
 gem 'awesome_print'                                   # nice, colored object representations
 
 group :development, :test  do
+  gem 'puma'                                          # Multi threaded web server
   gem 'byebug'                                        # Command line debugger
-  gem "quiet_assets"                                  # leaner log output
+#  gem "quiet_assets"                                  # leaner log output
   gem "better_errors"                                 # Debug messages im Browser
   gem "binding_of_caller"                             # Repl for better_errors
   gem "railroady"                                     # ER-Diagrams
@@ -111,3 +113,5 @@ group :test do
   gem 'selenium-webdriver', '~> 2.35.1'               # front end testing framework
   gem 'shoulda'                                       # additional matchers
 end
+
+gem "hobo_clean_admin", "2.1.1"

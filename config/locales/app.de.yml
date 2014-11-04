@@ -85,6 +85,7 @@ de:
     name: Name
     name_de: Name DE
     name_en: Name EN
+    novelty: Neuheit
     number: Nummer
     offers: Angebote
     order: Bestellung
@@ -116,6 +117,7 @@ de:
     product_price: Preis
     productrelations: Produktzuordnungen
     products: Artikel
+    property: Eigenschaft
     Property: Eigenschaft
     properties: Eigenschaften
     PropertyGroup: Eigenschaftsgruppe
@@ -158,6 +160,7 @@ de:
     template: Vorlage
     thumbnail: Thumbnail
     title: Titel
+    topseller: Topseller
     unit: Einheit
     upload: Hochladen
     usage: Verwendung
@@ -284,6 +287,9 @@ de:
       user:
         one: Benutzer
         other: Benutzer
+      value:
+        one: Wert
+        other: Werte
       webpage:
         one: Webseite
         other: Webseiten
@@ -667,6 +673,8 @@ de:
     place_offer: Angebot legen
     printer: Drucker
     printer_series: Druckerserien
+    product_manager:
+      title: Produktmanager
     product_suggestion: Produktvorschlag
     products_available: Produkte zur Auswahl
     properties:
@@ -711,7 +719,10 @@ de:
     start_conversation: Online Beratung
     starting_from: von
     states:
+      active: aktiv
+      deprecated: veraltet
       draft: Entwurf
+      new: neu
       published: veröffentlicht
       published_but_hidden: verborgen
       archived: archivert

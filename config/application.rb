@@ -12,6 +12,8 @@ Bundler.require(:default, Rails.env)
 
 module Mercator
   class Application < Rails::Application
+    # Hobo: the content_manager subsite loads content_manager.css & content_manager.js
+    config.assets.precompile += %w(content_manager.css content_manager.js)
     # Hobo: the contentmanager subsite loads contentmanager.css & contentmanager.js
     config.assets.precompile += %w(contentmanager.css contentmanager.js)
     # Hobo: the sales subsite loads sales.css & sales.js
@@ -21,9 +23,9 @@ module Mercator
     I18n.available_locales = [:en, :de]
 
     # Hobo: the contracting subsite loads contracting.css & contracting.js
-    config.assets.precompile += %w(contracting.css contracting.js contracting2.css contentmanager.js contentmanager/index.js)
+    config.assets.precompile += %w(contracting.css contracting.js contracting2.css contentmanager/index.js)
     # Hobo: the admin subsite loads admin.css & admin.js
-    config.assets.precompile += %w(admin.css admin.js contracting2.js)
+    config.assets.precompile += %w(admin.css front-pdf.css admin.js contracting2.js)
     # Codemirror
     config.assets.precompile += ["codemirror*", "codemirror/**/*"]
 
