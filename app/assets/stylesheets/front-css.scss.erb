@@ -1,0 +1,18 @@
+/*
+ *= require_self
+*/
+
+$darkgrey: #ECECEC;
+$lightgrey: #F9F9F9;
+
+.white-border { border: 10px solid white; }
+
+@font-face { font-family: Glypha LT;
+             src: url(<%= asset_url "glypha.ttf" %>) format('truetype'); }
+body { font-family: Glypha LT; }
+
+.header.well { border: none;
+               box-shadow: none }
+
+.order-darkgrey { background-color: $darkgrey }
+.order-lightgrey { background-color: $lightgrey }

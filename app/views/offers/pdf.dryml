@@ -1,94 +1,94 @@
 <show-page>
   <stylesheets:>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <%= wicked_pdf_stylesheet_link_tag "front" %>
+    <%= wicked_pdf_stylesheet_link_tag "front-css" %>
   </stylesheets:>
-  <scripts:>
-    <%= wicked_pdf_javascript_include_tag "front" %>
-  </scripts:>
+  <scripts: />
 
   <navbar: replace/>
   <nav-container: replace/>
 
     <content-header:>
-      <h1><app-name/></h1>
-      <h3><view:name/></h3>
+      <%= image_tag request.protocol + request.host_with_port + ContentElement.find_by(name_de: "ivellio-logo").photo.url(:small) %>
+      <h3><view:name /></h3>
     </content-header:>
 
     <field-list: replace >
-      <div class="row">
-        <div class="col-md-4">
-          <if test="&this.billing_company"><billing-address-card /></if>
+      <if test="&this.billing_company">
+        <h3><t key="activerecord.models.billing_address.one" /></h3>
+        <div class="order-darkgrey" style="width:50%;">
+          <view:billing-company/><br/>
+          <view:billing-detail/><br/>
+          <t key="&this.billing_gender" /> <view:billing-title/> <view:billing-first-name/> <strong><view:billing-surname/></strong><br/>
+          <view:billing-street/><br/>
+          <view:billing-postalcode/> <view:billing-city/>, <view:billing-country/><br/>
+          <view:billing-phone/>
         </div>
-        <div class="col-md-4">
-          <if test="&this.shipping_company"><shipping-address-card /></if>
+      </if>
+      <if test="&this.shipping_company">
+        <h3><t key="activerecord.models.address.one" /></h3>
+        <div class="order-lightgrey" style="width:50%;">
+          <view:shipping-company/><br/>
+          <view:shipping-detail/><br/>
+          <t key="&this.shipping_gender" /> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
+          <view:shipping-street/><br/>
+          <view:shipping-postalcode/> <view:shipping-city/>, <view:shipping-country/><br/>
+          <view:shipping-phone/>
         </div>
-        <div class="col-md-4">
-          <div>
-            <strong><t key='attributes.valid_to'/>:</strong>
-            <view:valid-until/>
-            <br/><br/>
-            <strong><t key='activerecord.attributes.offer.complete'/>:</strong>
-            <view:complete/>
-            <br/><br/>
-          </div>
-        </div>
-      </div>
+      </if>
 
-      <div part="offeritems">
-        <table class="table well table-striped">
-          <thead>
-            <tr>
-              <th><t key='activerecord.attributes.offer.position'/></th>
-              <th><t key='attributes.photo'/></th>
-              <th><div class="text-right"><t key='attributes.amount'/></div></th>
-              <th><t key='attributes.product_number'/></th>
-              <th><t key='attributes.description'/></th>
-              <th><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
-              <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
-            </tr>
-          </thead>
-          <tbody>
-            <repeat with="&this.offeritems.order_by(:position)">
-              <tr part="offeritem" id="&this.id">
-                <td> <view:position/> </td>
-                <td><if:product><%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %></if></td>
-                <td><div class="text-right"> <view:amount/><view:unit/></div></td>
-                <td><view:product-number/></td>
-                <td>
-                  <view:description-de/><br/>
-                  <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
-                </td>
-                <td>
-                  <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
-                  <if test="&this.discount_abs != 0">
-                    <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
+      <br/><br/>
+      <strong><t key='attributes.valid_to'/>:</strong> <view:valid-until/><br/>
+      <strong><t key='activerecord.attributes.offer.complete'/>:</strong> <view:complete/>
+      <br/><br/>
+
+      <table class="table well table-striped">
+        <thead>
+          <tr class="order-darkgrey">
+            <th><t key='activerecord.attributes.offer.position'/></th>
+            <th><t key='attributes.photo'/></th>
+            <th><div class="text-right"><t key='attributes.amount'/></div></th>
+            <th><t key='attributes.product_number'/></th>
+            <th><t key='attributes.description'/></th>
+            <th><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
+            <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <repeat with="&this.offeritems.order_by(:position)">
+            <tr class="order-lightgrey">
+              <td> <view:position/> </td>
+              <td><if:product><%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %></if></td>
+              <td><div class="text-right"> <view:amount/><view:unit/></div></td>
+              <td><view:product-number/></td>
+              <td>
+                <view:description-de/><br/>
+                <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
+              </td>
+              <td>
+                <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
+                <if test="&this.discount_abs != 0">
+                  <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
+                </if>
+              </td>
+              <td>
+                <if test="&this.discount_abs != 0">
+                  <div class="text-right">
+                    <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
+                    </div>
                   </if>
-                </td>
-                <td>
-                  <if test="&this.discount_abs != 0">
-                    <div class="text-right">
-                      <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
-                      </div>
-                    </if>
-                  <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
-                </td>
-              </tr>
-            </repeat>
-          </tbody>
-        </table>
+                <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
+              </td>
+            </tr>
+          </repeat>
+        </tbody>
+      </table>
 
-        <div class="row">
-          <div class="col-md-3 col-md-offset-9"><summary-card/></div>
-        </div>
+      <summary-card/>
 
-        <div class="row pull-right">
-          <if test="&this.state == 'in_progress'"><p class="text-info"><t key='mercator.messages.offer.in_progress'/></p></if>
-          <if test="&this.state == 'pending_approval'"><p class="text-info"><t key='mercator.messages.offer.pending_approval'/></p></if>
-          <if test="&this.state == 'invalid'"><p class="text-info"><t key='mercator.messages.offer.invalid'/></p></if>
-          <if test="&Date.today > this.valid_until"><p class="text-info"><t key='mercator.messages.offer.expired'/></p></if>
-        </div>
-
-      </div>
+      <if test="&this.state == 'in_progress'"><p class="text-info"><t key='mercator.messages.offer.in_progress'/></p></if>
+      <if test="&this.state == 'pending_approval'"><p class="text-info"><t key='mercator.messages.offer.pending_approval'/></p></if>
+      <if test="&this.state == 'invalid'"><p class="text-info"><t key='mercator.messages.offer.invalid'/></p></if>
+      <if test="&Date.today > this.valid_until"><p class="text-info"><t key='mercator.messages.offer.expired'/></p></if>
     </field-list:>
 </show-page>

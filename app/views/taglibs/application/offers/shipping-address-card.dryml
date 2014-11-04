@@ -3,7 +3,7 @@
   <div class="well order-lightgrey">
     <view:shipping-company/><br/>
     <view:shipping-detail/><br/>
-    <view:shipping-gender/> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
+    <t key="&this.shipping_gender" /> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
     <view:shipping-street/><br/>
     <view:shipping-postalcode/> <view:shipping-city/>, <view:shipping-country/><br/>
     <view:shipping-phone/>

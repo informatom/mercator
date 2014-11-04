@@ -9,7 +9,21 @@
   </h4>
 </def>
 
-<def tag="container" attrs="name, size, including-photo" polymorphic />
+<def tag="container" attrs="name, size, including-photo" polymorphic >
+  <% content_element = ContentElement.find_by(name_de: name) %>
+  <% content_element ||= ContentElement.find_by(name_en: name) %>
+
+  <if test="&content_element">
+    <view if="&content_element.content" with="&content_element.content" />
+    <if test="&including_photo">
+      <img if="&size" src="&content_element.photo(size.to_sym)" />
+      <img unless="&size" src="&content_element.photo" />
+    </if>
+  </if>
+  <else>
+    <view with="<!--" /> <t key="mercator.messages.content_element.missing" /> <name/> <view with="-->"/>
+  </else>
+</def>
 
 <def tag="container" for="Webpage" attrs="name, size, including-photo" >
   <if test="&content_element = this.content_element(name)">
@@ -24,41 +38,24 @@
   </else>
 </def>
 
-<def tag="container" for="NilClass" attrs="name, size, including-photo" >
+<def tag="photo" attrs="name, size" polymorphic>
   <% content_element = ContentElement.find_by(name_de: name) %>
   <% content_element ||= ContentElement.find_by(name_en: name) %>
-  
+
   <if test="&content_element">
-    <view if="&content_element.content" with="&content_element.content" />
-    <if test="&including_photo">
-      <img if="&size" src="&content_element.photo(size.to_sym)" />
-      <img unless="&size" src="&content_element.photo" />
-    </if>
-  </if>
-  <else>
-    <view with="<!--" /> <t key="mercator.messages.content_element.missing" /> <name/> <view with="-->"/>
-  </else>
-</def>
-
-<def tag="photo" attrs="name, size" polymorphic />
-
-<def tag="photo" for="Webpage" attrs="name, size" >
-  <if test="&content_element = this.content_element(name)">
     <img if="&size" src="&content_element.photo(size.to_sym)" merge-attrs/>
-    <img unless="&size" src="&content_element.photo" merge-attrs/>
+    <img nless="&size" src="&content_element.photo" merge-attrs/>
   </if>
   <else>
     <view with="<!--" /> <t key="mercator.messages.photo.missing" /> <name/> <view with="-->"/>
   </else>
 </def>
 
-<def tag="photo" for="NilClass" attrs="name, size" >
-  <% content_element = ContentElement.find_by(name_de: name) %>
-  <% content_element ||= ContentElement.find_by(name_en: name) %>
-  
-  <if test="&content_element">
+
+<def tag="photo" for="Webpage" attrs="name, size" >
+  <if test="&content_element = this.content_element(name)">
     <img if="&size" src="&content_element.photo(size.to_sym)" merge-attrs/>
-    <img nless="&size" src="&content_element.photo" merge-attrs/>
+    <img unless="&size" src="&content_element.photo" merge-attrs/>
   </if>
   <else>
     <view with="<!--" /> <t key="mercator.messages.photo.missing" /> <name/> <view with="-->"/>
