@@ -64,7 +64,7 @@
               <td class="lightgrey vtop">
                 <view:position/>
                 <if:product>
-                  <%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %>
+                  <%= image_tag url_prefix + this.photo.url(:thumb) %>
                 </if>
               </td>
               <td class="lightgrey vtop text-right nobr"><view:amount/> <view:unit/></td>
