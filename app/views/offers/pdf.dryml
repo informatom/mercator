@@ -64,6 +64,11 @@
               <td class="lightgrey vtop">
                 <view:position/>
                 <if:product>
+                  <% if request.port == 3000
+                       url_prefix = request.protocol + request.host_with_port
+                     else
+                       url_prefix = request.protocol + request.host
+                     end %>
                   <%= image_tag url_prefix + this.photo.url(:thumb) %>
                 </if>
               </td>
