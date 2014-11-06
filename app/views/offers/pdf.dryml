@@ -9,14 +9,19 @@
   <nav-container: replace/>
 
     <content-header:>
-      <%= image_tag request.protocol + request.host + ContentElement.find_by(name_de: "ivellio-logo").photo.url(:small) %>
-      <h3><view:name /></h3>
+      <% if request.port == 3000
+           url_prefix = request.protocol + request.host_with_port
+         else
+           url_prefix = request.protocol + request.host
+         end %>
+      <%= image_tag url_prefix + ContentElement.find_by(name_de: "ivellio-logo").photo.url %>
+      <h1 class="heading"><view:name /></h1>
     </content-header:>
 
     <field-list: replace >
       <if test="&this.billing_company">
-        <h3><t key="activerecord.models.billing_address.one" /></h3>
-        <div class="order-darkgrey" style="width:50%;">
+        <h2><t key="activerecord.models.billing_address.one" /></h2>
+        <div class="darkgrey" style="width:50%;">
           <view:billing-company/><br/>
           <view:billing-detail/><br/>
           <t key="&this.billing_gender" /> <view:billing-title/> <view:billing-first-name/> <strong><view:billing-surname/></strong><br/>
@@ -26,8 +31,8 @@
         </div>
       </if>
       <if test="&this.shipping_company">
-        <h3><t key="activerecord.models.address.one" /></h3>
-        <div class="order-lightgrey" style="width:50%;">
+        <h2><t key="activerecord.models.address.one" /></h2>
+        <div class="lightgrey" style="width:50%;">
           <view:shipping-company/><br/>
           <view:shipping-detail/><br/>
           <t key="&this.shipping_gender" /> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
@@ -37,54 +42,79 @@
         </div>
       </if>
 
-      <br/><br/>
-      <strong><t key='attributes.valid_to'/>:</strong> <view:valid-until/><br/>
-      <strong><t key='activerecord.attributes.offer.complete'/>:</strong> <view:complete/>
+      <br/>
+      <b><t key='attributes.valid_to'/>:</b> <view:valid-until/><br/>
+      <b><t key='activerecord.attributes.offer.complete'/>:</b> <view:complete/>
       <br/><br/>
 
       <table class="table well table-striped">
         <thead>
-          <tr class="order-darkgrey">
-            <th><t key='activerecord.attributes.offer.position'/></th>
-            <th><t key='attributes.photo'/></th>
-            <th><div class="text-right"><t key='attributes.amount'/></div></th>
-            <th><t key='attributes.product_number'/></th>
-            <th><t key='attributes.description'/></th>
-            <th><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
-            <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
+          <tr>
+            <th class="darkgrey"><t key='activerecord.attributes.offer.position'/></th>
+            <th class="darkgrey"><div class="text-right"><t key='attributes.amount'/></div></th>
+            <th class="darkgrey"><t key='attributes.product_number'/></th>
+            <th class="darkgrey"><t key='attributes.description'/></th>
+            <th class="darkgrey"><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
+            <th class="darkgrey"><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
           </tr>
         </thead>
         <tbody>
           <repeat with="&this.offeritems.order_by(:position)">
-            <tr class="order-lightgrey">
-              <td> <view:position/> </td>
-              <td><if:product><%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %></if></td>
-              <td><div class="text-right"> <view:amount/><view:unit/></div></td>
-              <td><view:product-number/></td>
-              <td>
+            <tr>
+              <td class="lightgrey vtop">
+                <view:position/>
+                <if:product>
+                  <%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %>
+                </if>
+              </td>
+              <td class="lightgrey vtop text-right nobr"><view:amount/> <view:unit/></td>
+              <td class="lightgrey vtop"><view:product-number/></td>
+              <td class="lightgrey vtop">
                 <view:description-de/><br/>
                 <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
               </td>
-              <td>
-                <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
+              <td class="lightgrey vtop">
+                <div class="text-right nobr">
+                  <view with="&number_to_currency(this.product_price)"/>
+                </div>
                 <if test="&this.discount_abs != 0">
                   <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
                 </if>
               </td>
-              <td>
+              <td class="lightgrey text-right vtop">
                 <if test="&this.discount_abs != 0">
-                  <div class="text-right">
-                    <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
-                    </div>
-                  </if>
-                <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
+                  <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
+                </if>
+                <view with="&number_to_currency(this.value)"/>
               </td>
             </tr>
           </repeat>
+
+          <if test="&this.discount_rel != 0">
+            <tr colspan="5">
+              <td class="darkgrey">- <view:discount-rel/>% <t key='attributes.discount'/></td>
+              <td class="darkgrey text-right"> <view with="&number_to_currency(this.discount)"/> </td>
+            </tr>
+          </if>
+
+          <tr>
+            <td class="lightgrey" colspan="5"><t key='mercator.sum_excl_vat'/></td>
+            <td class="lightgrey text-right"> <view with="&number_to_currency(this.sum)"/> </td>
+          </tr>
+
+          <repeat:vat-items>
+            <tr>
+              <td class="darkgrey" colspan="5"><t key='attributes.vat'/> <view: with="&this[0]" />%</td>
+              <td class="darkgrey text-right"> <view with="&number_to_currency(this[1])" /> </td>
+            </tr>
+          </repeat>
+
+          <tr>
+            <td class="green" colspan="5"><t key='mercator.sum_incl_vat'/></td>
+            <td class="green text-right"> <view with="& number_to_currency(this.sum_incl_vat)"/> </td>
+          </tr>
         </tbody>
       </table>
-
-      <summary-card/>
 
       <if test="&this.state == 'in_progress'"><p class="text-info"><t key='mercator.messages.offer.in_progress'/></p></if>
       <if test="&this.state == 'pending_approval'"><p class="text-info"><t key='mercator.messages.offer.pending_approval'/></p></if>
