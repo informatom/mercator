@@ -9,13 +9,18 @@
   <nav-container: replace/>
 
     <content-header:>
-      <%= image_tag request.protocol + request.host + ContentElement.find_by(name_de: "ivellio-logo").photo.url(:small) %>
-      <h3><view:name /></h3>
+      <% if request.port == 3000
+           url_prefix = request.protocol + request.host_with_port
+         else
+           url_prefix = request.protocol + request.host
+         end %>
+      <%= image_tag url_prefix + ContentElement.find_by(name_de: "ivellio-logo").photo.url(:small) %>
+      <h1 class="heading"><view:name /></h1>
     </content-header:>
 
     <field-list: replace >
       <if test="&this.billing_company">
-        <h3><t key="activerecord.models.billing_address.one" /></h3>
+        <h2><t key="activerecord.models.billing_address.one" /></h2>
         <div class="order-darkgrey" style="width:50%;">
           <view:billing-company/><br/>
           <view:billing-detail/><br/>
@@ -26,7 +31,7 @@
         </div>
       </if>
       <if test="&this.shipping_company">
-        <h3><t key="activerecord.models.address.one" /></h3>
+        <h2><t key="activerecord.models.address.one" /></h2>
         <div class="order-lightgrey" style="width:50%;">
           <view:shipping-company/><br/>
           <view:shipping-detail/><br/>
@@ -37,41 +42,44 @@
         </div>
       </if>
 
-      <br/><br/>
-      <strong><t key='attributes.valid_to'/>:</strong> <view:valid-until/><br/>
-      <strong><t key='activerecord.attributes.offer.complete'/>:</strong> <view:complete/>
+      <br/>
+      <b><t key='attributes.valid_to'/>:</b> <view:valid-until/><br/>
+      <b><t key='activerecord.attributes.offer.complete'/>:</b> <view:complete/>
       <br/><br/>
 
       <table class="table well table-striped">
         <thead>
-          <tr class="order-darkgrey">
-            <th><t key='activerecord.attributes.offer.position'/></th>
-            <th><t key='attributes.photo'/></th>
-            <th><div class="text-right"><t key='attributes.amount'/></div></th>
-            <th><t key='attributes.product_number'/></th>
-            <th><t key='attributes.description'/></th>
-            <th><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
-            <th><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
+          <tr>
+            <th class="order-darkgrey"><t key='activerecord.attributes.offer.position'/></th>
+            <th class="order-darkgrey"><div class="text-right"><t key='attributes.amount'/></div></th>
+            <th class="order-darkgrey"><t key='attributes.product_number'/></th>
+            <th class="order-darkgrey"><t key='attributes.description'/></th>
+            <th class="order-darkgrey"><div class="text-right"><t key='activerecord.attributes.lineitem.product_price'/></div></th>
+            <th class="order-darkgrey"><div class="text-right"><t key='activerecord.attributes.lineitem.value'/></div></th>
           </tr>
         </thead>
         <tbody>
           <repeat with="&this.offeritems.order_by(:position)">
-            <tr class="order-lightgrey">
-              <td> <view:position/> </td>
-              <td><if:product><%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %></if></td>
-              <td><div class="text-right"> <view:amount/><view:unit/></div></td>
-              <td><view:product-number/></td>
-              <td>
+            <tr>
+              <td class="order-lightgrey">
+                <view:position/>
+                <if:product>
+                  <%= image_tag request.protocol + request.host_with_port + this.photo.url(:thumb) %>
+                </if>
+              </td>
+              <td class="order-lightgrey"><div class="text-right"> <view:amount/><view:unit/></div></td>
+              <td class="order-lightgrey"><view:product-number/></td>
+              <td class="order-lightgrey">
                 <view:description-de/><br/>
                 <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
               </td>
-              <td>
+              <td class="order-lightgrey">
                 <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
                 <if test="&this.discount_abs != 0">
                   <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
                 </if>
               </td>
-              <td>
+              <td class="order-lightgrey">
                 <if test="&this.discount_abs != 0">
                   <div class="text-right">
                     <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
