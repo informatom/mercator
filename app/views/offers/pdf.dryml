@@ -9,7 +9,7 @@
   <nav-container: replace/>
 
     <content-header:>
-      <%= image_tag request.protocol + request.host_with_port + ContentElement.find_by(name_de: "ivellio-logo").photo.url(:small) %>
+      <%= image_tag request.protocol + request.host + ContentElement.find_by(name_de: "ivellio-logo").photo.url(:small) %>
       <h3><view:name /></h3>
     </content-header:>
 
