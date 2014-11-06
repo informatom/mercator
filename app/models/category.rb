@@ -273,4 +273,27 @@ class Category < ActiveRecord::Base
       category.update_property_hash
     end
   end
+
+  def self.reindexing_and_filter_updates
+    Category.reindex
+
+    Category.order(:id).each do |category|
+      category.reindex
+      category.update_property_hash
+
+      # determine_price returns nil, if no price can be found
+      category_prices = category.products.*.determine_price.compact
+
+      if category_prices.any?
+        category.update(filtermin: category_prices.min.round,
+                        filtermax: (category_prices.max + 0.5).round )
+      else
+        category.update(filtermin: 0,
+                        filtermax: 1000)
+      end
+
+      JobLogger.info("Reindexed Category: " + category.id.to_s)
+    end
+
+  end
 end
