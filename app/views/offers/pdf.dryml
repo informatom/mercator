@@ -24,7 +24,7 @@
         <div class="darkgrey" style="width:50%;">
           <view:billing-company/><br/>
           <view:billing-detail/><br/>
-          <t key="&this.billing_gender" /> <view:billing-title/> <view:billing-first-name/> <strong><view:billing-surname/></strong><br/>
+          <view:billing-gender/> <view:billing-title/> <view:billing-first-name/> <strong><view:billing-surname/></strong><br/>
           <view:billing-street/><br/>
           <view:billing-postalcode/> <view:billing-city/>, <view:billing-country/><br/>
           <view:billing-phone/>
@@ -35,7 +35,7 @@
         <div class="lightgrey" style="width:50%;">
           <view:shipping-company/><br/>
           <view:shipping-detail/><br/>
-          <t key="&this.shipping_gender" /> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
+          <view:shipping-gender/> <view:shipping-title/> <view:shipping-first-name/> <strong><view:shipping-surname/></strong><br/>
           <view:shipping-street/><br/>
           <view:shipping-postalcode/> <view:shipping-city/>, <view:shipping-country/><br/>
           <view:shipping-phone/>
