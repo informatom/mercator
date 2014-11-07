@@ -63,6 +63,7 @@ en:
     document_updated_at: Updated at
     downloads: Downloads
     email_address: Email Address
+    filter: Filter
     first_name: First Name
     folder: Verzeichnis
     gender: Salutation

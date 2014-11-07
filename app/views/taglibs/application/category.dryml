@@ -144,15 +144,16 @@
 
 <def tag="filter-nav">
   <set category="&this"/>
-
-  <p><strong>Preisfilter: </strong></p>
+  <br/><br/>
+  <h3 class="blue"><t key="attributes.filter"/></h3>
+  <h5><t key="attributes.Price"/></h5>
   <p>
     <%= @min %> EUR &nbsp; &nbsp; &nbsp;
     <input id="ex1" class="slider" data-slider-id='ex1Slider' type="text"
            data-slider-min="&@min" data-slider-max="&@max" data-slider-step="1"
            data-slider-value="&'[' + @minslider.to_s + ', '  + @maxslider.to_s + ']'" />
     &nbsp; &nbsp; &nbsp; <%= @max %> EUR
-  </p><br/> <br/>
+  </p><br/>
 
   <script>
     var pricefilter = function() {
@@ -160,43 +161,38 @@
       var higher = priceslider.getValue()[1];
       window.location.href = "<%= category_path(category.id, filter: @filter) -%>&amp;pricelow=" + lower + "&amp;pricehigh=" + higher
     };
-
     var priceslider = $("input.slider").slider().on('slideStop', pricefilter).data('slider');
   </script>
 
-
-  <%= this.filters.to_a.in_groups_of(3) do |group| %>
-    <div class="row">
-      <div repeat="&group" class="col-md-4">
-        <if>
-          <strong><view with="&this[0]"/></strong><br/>
-          <repeat with="&this[1]">
-            <set myfacet="&this"/>
-            <if test="&@facets.facets[this]['terms']">
-              <view/>:
-              <repeat with="&@facets.facets[this]['terms']">
-                <set term="&this['term']"/>
-                <if test="&@filter[u(myfacet)] == u(term)">
-                  <strong>
-                    <view with="&term"/>
-                  </strong>
-                  <a with="&category" params="&{:filter => @filter.except(u(myfacet))}">
-                    <%= fa_icon "trash-o" %>
-                  </a>
-                </if>
-                <else>
-                  <a with="&category" params="&{:filter => @filter.merge({u(myfacet) => u(term)})}">
-                    <view with="&term"/>
-                  </a>
-                </else>
-                (<view with="&this['count']"/>)
-              </repeat>
-              <br/>
+  <div class="twocolumned">
+    <div repeat="&this.filters" class="dontbreak">
+      <h5><view with="&this[0]"/></h5><br/>
+      <repeat with="&this[1]">
+        <set myfacet="&this"/>
+        <if test="&@facets.facets[this]['terms']">
+          <view/>:
+          <repeat with="&@facets.facets[this]['terms']">
+            <set term="&this['term']"/>
+            <if test="&@filter[u(myfacet)] == u(term)">
+              <strong>
+                <view with="&term"/>
+              </strong>
+              <a with="&category" params="&{:filter => @filter.except(u(myfacet))}">
+                <%= fa_icon "trash-o" %>
+              </a>
             </if>
+            <else>
+              <a with="&category" params="&{:filter => @filter.merge({u(myfacet) => u(term)})}">
+                <view with="&term.upcase"/>
+              </a>
+            </else>
+            (<view with="&this['count']"/>)
           </repeat>
+          <br/>
         </if>
-        <br/>
-      </div>
+      </repeat>
+      <br/>
     </div>
-  <% end %>
+  </div>
+
 </def>
