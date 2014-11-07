@@ -16,7 +16,7 @@
         <p><i><view:long-description/></i></p>
         <filter-nav />
         <card repeat="&this.children.active"/>
-        <card repeat="&@products"/>
+        <overview-card repeat="&@products"/>
       </div>
     </div>
   </content-body:>

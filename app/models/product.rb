@@ -6,8 +6,8 @@ class Product < ActiveRecord::Base
     title_de            :string, :required
     title_en            :string
     number              :string, :required, :unique, name: true
-    description_de      :cktext, :required
-    description_en      :cktext
+    description_de      :text, :required
+    description_en      :text
     long_description_de :cktext
     long_description_en :cktext
     warranty_de         :cktext
@@ -22,6 +22,7 @@ class Product < ActiveRecord::Base
   include ProductExtensions if Rails.application.config.try(:icecat) == true
 
   attr_accessible :title_de, :title_en, :number, :description_de, :description_en,
+                  :long_description_de, :long_description_en,
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
                   :novelty, :topseller

@@ -1,5 +1,58 @@
 <def tag="card" for="Product">
   <set inventory="&this.determine_inventory"/>
+
+  <h2>
+    <if test="&inventory">
+      <%= link_to this.determine_inventory.name, product_path(this), class: "blue" %>
+    </if>
+    <else>
+      <%= link_to this.title, product_path(this), class: "blue" %>
+    </else>
+  </h2>
+
+  <div class="row" param="default" merge>
+    <div class="col-md-3 text-center product-card">
+      <br/><br/>
+      <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+      <transition-link transition="add_to_basket" method="put">
+        <photo name="in-den-warenkorb" class="card-button pull-left"/>
+      </transition-link>
+      <if test="&session[:compared].include?(this.id)">
+        <transition-button transition="dont_compare" class="btn btn-info" />
+      </if>
+      <else>
+        <transition-link transition="compare" method="put">
+          <photo name="produkt-vergleichen" class="card-button pull-right"/>
+        </transition-link>
+      </else>
+    </div>
+
+    <div class="col-md-5">
+      <span class="h3 text-right"> <%= number_to_currency( inventory.determine_price(customer_id: current_user.id) ) %> </span>
+      <t key="mercator.excl_vat" /><br/>
+      <%= number_to_currency(inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
+      <small><t key="mercator.incl_vat" /></small>
+
+      <h4><t key="attributes.description" />:</h4>
+      <view:long-description />
+    </div>
+
+    <div class="col-md-4">
+      <p><small><view:warranty/></small></p>
+      <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
+
+      <if test="&this.features">
+        <ul>
+          <li repeat="&this.features"><view:text/></li>
+        </ul>
+      </if>
+    </div>
+  </div>
+</def>
+
+<def tag="overview-card" polymorphic />
+<def tag="overview-card" for="Product">
+  <set inventory="&this.determine_inventory"/>
   <div class="row product-card" param="default" merge>
     <div class="col-md-4 text-center">
       <br/><br/>
