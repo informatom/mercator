@@ -23,9 +23,9 @@
     <set icecatid="&this.try(:icecat_product_id)"/>
 
     <div class="tab-content">
-      <div class="tab-pane active" id="properties">
-        <div repeat="&this.tabled_values">
-          <h3><view: with="&this[0]"/></h3>
+      <div class="tab-pane active threecolumned" id="properties">
+        <div repeat="&this.tabled_values" class="dontbreak">
+          <h3><view: with="&this[0]" class="blue"/></h3>
           <dl class="dl-horizontal">
             <repeat with="&this[1]">
               <dt> <view with="&this[0]"/> </dt>
@@ -105,7 +105,6 @@
         </div>
       </div>
     </div>
-    <partner-logos/>
   </content-body:>
 
   <aside-column:></aside-column:>
