@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
 
   def name
     name = [title, first_name, surname].join " "
-    name = gender + " " + name if gender
+    name = I18n.t("activerecord.attributes.user/genders."+ gender) + " " + name if gender
     return name
   end
 

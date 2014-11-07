@@ -34,74 +34,69 @@
     <content-header: replace />
 
     <content-body: param>
-      <div class="container glow">
-        <div class="row">
-          <div class="col-md-12">
-            <h2><t key="user.show.heading" /></h2>
-            <h3><i><name/></i></h3>
-          </div>
-        </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2><t key="user.show.heading" /></h2>
+          <h3><i><name/></i></h3>
 
-        <div class="row">
-          <div class="col-md-12">
-            <a action="edit" if="&can_edit?" class="pull-right">
-              <ht key="#{model.to_s.underscore}.actions.edit">Edit <%= model %></ht>
-            </a>
-            <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
-            <br/><br/>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <h3 param="collection-heading">
-              <ht key="order.collection.heading" count="&this.orders.basket.count" >
-                <human-collection-name collection="basket" your/>
-              </ht>
-            </h3>
-            <collection:orders.basket param/>
-
-            <h3 param="collection-heading">
-              <t key="mercator.open(pl)" /> <ht key="order.collection.heading" count="&this.orders.accepted_offer.count" >
-                <human-collection-name collection="orders" your/>
-              </ht>
-            </h3>
-            <collection:orders.accepted_offer param/>
-
-            <h3 param="collection-heading">
-              <ht key="order.collection.heading" count="&this.orders.ordered.count" >
-                <human-collection-name collection="orders" your/>
-              </ht>
-            </h3>
-            <collection:orders.ordered param/>
-          </div>
-
-          <div class="col-md-4">
-            <h3 param="collection-heading">
-              <ht key="offer.collection.heading" count="&this.offers.count" >
-                <human-collection-name collection="offers" your/>
-              </ht>
-            </h3>
-            <collection:offers param/>
-          </div>
-
-          <div class="col-md-4">
-            <h3 param="collection-heading">
-              <ht key="billing_address.collection.heading" count="&this.billing_addresses.count" >
-                <human-collection-name collection="billing_addresses" your/>
-              </ht>
-            </h3>
-            <collection:billing_addresses param/>
-
-            <h3 param="collection-heading">
-              <ht key="address.collection.heading" count="&this.addresses.count" >
-                <human-collection-name collection="addresses" your/>
-              </ht>
-            </h3>
-            <collection:addresses param/>
-          </div>
+          <div class="clearfix" ></div>
+          <a action="edit" if="&can_edit?" class="pull-right">
+          <ht key="#{model.to_s.underscore}.actions.edit">Edit <%= model %></ht>
+          </a>
+          <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h3 param="collection-heading">
+            <ht key="order.collection.heading" count="&this.orders.basket.count" >
+              <human-collection-name collection="basket" your/>
+            </ht>
+          </h3>
+          <collection:orders.basket param/>
+
+          <h3 param="collection-heading">
+            <t key="mercator.open(pl)" /> <ht key="order.collection.heading" count="&this.orders.accepted_offer.count" >
+              <human-collection-name collection="orders" your/>
+            </ht>
+          </h3>
+          <collection:orders.accepted_offer param/>
+
+          <h3 param="collection-heading">
+            <ht key="order.collection.heading" count="&this.orders.ordered.count" >
+              <human-collection-name collection="orders" your/>
+            </ht>
+          </h3>
+          <collection:orders.ordered param/>
+        </div>
+
+        <div class="col-md-4">
+          <h3 param="collection-heading">
+            <ht key="offer.collection.heading" count="&this.offers.count" >
+              <human-collection-name collection="offers" your/>
+            </ht>
+          </h3>
+          <collection:offers param/>
+        </div>
+
+        <div class="col-md-4">
+          <h3 param="collection-heading">
+            <ht key="billing_address.collection.heading" count="&this.billing_addresses.count" >
+              <human-collection-name collection="billing_addresses" your/>
+            </ht>
+          </h3>
+          <collection:billing_addresses param/>
+
+          <h3 param="collection-heading">
+            <ht key="address.collection.heading" count="&this.addresses.count" >
+              <human-collection-name collection="addresses" your/>
+            </ht>
+          </h3>
+          <collection:addresses param/>
+        </div>
+      </div>
+
     </content-body:>
   </old-show-page>
 </extend>
