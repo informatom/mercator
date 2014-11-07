@@ -141,3 +141,15 @@
 
 <def tag="comparison-page" polymorphic/>
 <def tag="comparison-page" for="Product"/>
+
+<def tag="breadcrumb" for="Product">
+  <set product-title="&this.title"/>
+  <repeat with="&this.categories">
+    <h4>
+      <repeat with="&this.ancestors << this">
+        <a href="&category_path(this)"><view:name/></a> &gt;
+      </repeat>
+      <product-title/>
+    </h4>
+  </repeat>
+</def>

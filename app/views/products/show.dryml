@@ -9,6 +9,7 @@
   </main-nav:>
 
   <content-header:>
+    <breadcrumb/>
     <card/>
   </content-header:>
 
