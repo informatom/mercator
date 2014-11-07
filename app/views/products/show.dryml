@@ -47,63 +47,27 @@
       </div>
 
       <div class="tab-pane" id="related">
-        <div class="tabbable tabs-left">
-          <ul class="nav nav-tabs" id="related-tabs">
-            <li repeat="related_products.active" class="#{'active' if first_item?}">
-              <a href="#related#{this.id}" data-toggle="tab">
-                <view:title/>
-              </a>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-            <div repeat="related_products.active"
-                 class="tab-pane #{'active' if first_item?}"
-                 id="related#{this.id}">
-              <if><card/></if>
-            </div>
-          </div>
-        </div>
+        <% this.related_products.active.in_groups_of(5) do |group| %>
+         <div class="row">
+           <repeat with="&group"> <mini-card /> </repeat>
+         </div>
+        <% end %>
       </div>
 
       <div class="tab-pane" id="recommended">
-        <div class="tabbable tabs-left">
-          <ul class="nav nav-tabs" id="recommended-tabs">
-            <li repeat="recommended_products.active" class="#{'active' if first_item?}">
-              <a href="#recommended#{this.id}" data-toggle="tab">
-                <view:title/>
-              </a>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-            <div repeat="recommended_products.active"
-                 class="tab-pane #{'active' if first_item?}"
-                 id="recommended#{this.id}">
-              <if><card/></if>
-            </div>
-          </div>
-        </div>
+        <% this.recommended_products.active.in_groups_of(5) do |group| %>
+         <div class="row">
+           <repeat with="&group"> <mini-card /> </repeat>
+         </div>
+        <% end %>
       </div>
 
       <div class="tab-pane" id="supplies">
-        <div class="tabbable tabs-left">
-          <ul class="nav nav-tabs" id="supplies-tabs">
-            <li repeat="supplies.active" class="#{'active' if first_item?}">
-              <a href="#supplies#{this.id}" data-toggle="tab">
-                <view:title/>
-              </a>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-            <div repeat="supplies.active"
-                 class="tab-pane #{'active' if first_item?}"
-                  id="supplies#{this.id}">
-              <if><card/></if>
-            </div>
-          </div>
-        </div>
+        <% this.supplies.active.in_groups_of(5) do |group| %>
+         <div class="row">
+           <repeat with="&group"> <mini-card /> </repeat>
+         </div>
+        <% end %>
       </div>
     </div>
   </content-body:>

@@ -153,3 +153,19 @@
     </h4>
   </repeat>
 </def>
+
+<def tag="mini-card" for="Product">
+  <set inventory="&this.determine_inventory"/>
+  <div class="col-md-2 product-card margin">
+    <div class="text-center">
+      <%= link_to( image_tag( this.photo.url(:small), height: "100px"), product_path(this)) %><br/>
+      <%= link_to this.title, product_path(this) %><br/>
+    </div>
+
+    <transition-link transition="add_to_basket" method="put">
+      <photo name="in-den-warenkorb" class="card-button pull-right" width="65"/>
+    </transition-link>
+    <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %><br/>
+    <small><t key="mercator.excl_vat" /></small><br/>
+  </div>
+</def>
