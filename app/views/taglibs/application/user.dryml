@@ -40,7 +40,7 @@
           <h3><i><name/></i></h3>
 
           <div class="clearfix" ></div>
-          <a action="edit" if="&can_edit?" class="pull-right">
+          <a action="edit" if="&can_edit?" class="pull-right btn btn-primary">
           <ht key="#{model.to_s.underscore}.actions.edit">Edit <%= model %></ht>
           </a>
           <record-flags fields="administrator, sales, logged_in, sales_manager" param/>
@@ -102,11 +102,10 @@
 </extend>
 
 <def tag="photo-card">
-  <div class="well" style="margin: 10px" merge-attrs >
-    <p><t key="mercator.you_are_talking_to" />: <view:first-name/> <view:surname/></p>
-    <if test="&this">
-      <p><%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid" ) %></p>
-    </if>
+  <div class="well" style="margin-bottom: 20px;" merge-attrs >
+    <if><%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid pull-right" ) %></if>
+    <t key="mercator.you_are_talking_to" />: <br/>
+    <view:first-name/> <view:surname/><br/><br/><br/><br/>
   </div>
 </def>
 

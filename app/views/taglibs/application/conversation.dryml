@@ -7,49 +7,55 @@
     </content-header:>
 
     <content-body: param>
-      <div class="container glow">
-        <form lifecycle="feedback" merge param="default">
-          <div class="row">
-            <error-messages param/>
-            <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-            <div class="col-lg-6">
-              <photo width="100%" name="feedback-icon" />
-            </div>
-            <div class="col-lg-6">
-              <textarea class="text conversation-content"
-                        for="text"
-                        id="conversation_content"
-                        rows="25"
-                        name="conversation[content]"
-                        style="width:100%;
-                               height: auto;
-                               background-image: none;
-                               background-position: 0% 0%;
-                               background-repeat: repeat;"
-                        placeholder="#{I18n.translate('mercator.feedback_placeholder')}">
-              </textarea>
-            </div>
+      <form lifecycle="feedback" merge param="default">
+        <div class="row">
+          <error-messages param/>
+          <input type="hidden"
+                 name="key"
+                 value="&this.lifecycle.provided_key"
+                 if="&this.lifecycle.provided_key"/>
+          <div class="col-lg-6">
+            <photo width="100%" name="feedback-icon" />
+          </div>
+          <div class="col-lg-6">
+            <textarea class="text conversation-content"
+                      for="text"
+                      id="conversation_content"
+                      rows="25"
+                      name="conversation[content]"
+                      style="width:100%;
+                             height: auto;
+                             background-image: none;
+                             background-position: 0% 0%;
+                             background-repeat: repeat;"
+                      placeholder="#{I18n.translate('mercator.feedback_placeholder')}">
+            </textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h3><t key="mercator.protocol.one" /></h3>
+            <p><t key="mercator.protocol.data_to_be_stored" /></p>
+
+            <input checked="checked" name="conversation[mode]" type="radio" value="all" />
+            <t key="mercator.protocol.text_customer_sales" /><br/>
+            <input name="conversation[mode]" type="radio" value="consultant" />
+            <t key="mercator.protocol.text_sales" /><br/>
+            <input name="conversation[mode]" type="radio" value="user" />
+            <t key="mercator.protocol.text_customer" /><br/>
+            <input name="conversation[mode]" type="radio" value="none" />
+            <t key="mercator.protocol.text" />
           </div>
 
-          <div class="row">
-            <div class="col-lg-6">
-              <h3><t key="mercator.protocol.one" /></h3>
-              <p><t key="mercator.protocol.data_to_be_stored" /></p>
-
-              <input checked="checked" name="conversation[mode]" type="radio" value="all" /> <t key="mercator.protocol.text_customer_sales" /><br/>
-              <input name="conversation[mode]" type="radio" value="consultant" /> <t key="mercator.protocol.text_sales" /><br/>
-              <input name="conversation[mode]" type="radio" value="user" /> <t key="mercator.protocol.text_customer" /><br/>
-              <input name="conversation[mode]" type="radio" value="none" /> <t key="mercator.protocol.text" />
-            </div>
-
-            <div class="col-lg-6">
-              <div param="actions">
-                <submit label="#{t 'activerecord.attributes.conversation.lifecycle.transitions.feedback', :default=>['Feedback']}" param/><or-cancel param="cancel"/>
-              </div>
+          <div class="col-lg-6">
+            <div param="actions">
+              <submit label="#{t 'activerecord.attributes.conversation.lifecycle.transitions.feedback'}" param/>
+              <or-cancel param="cancel"/>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </content-body:>
   </page>
 </def>
@@ -57,9 +63,15 @@
 <extend tag="initiate-page" for="Conversation">
   <old-initiate-page merge>
     <before-form:>
-      <photo-card with="&User.robot" class="pull-right" />
-      <div class="alert alert-info">
-        <view with="&this.messages.first" />
+      <div class="row">
+        <div class="col-md-9">
+          <div class="alert alert-info">
+            <view with="&this.messages.first" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <photo-card with="&User.robot" />
+        </div>
       </div>
     </before-form:>
   </old-initiate-page>
