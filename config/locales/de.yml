@@ -194,6 +194,7 @@ de:
       default: ! '%A, %-d. %B %Y, %k:%M'
       long: ! '%A, %d. %B %Y, %H:%M Uhr'
       short: ! '%d. %B, %H:%M Uhr'
+      concise: ! '%a %d.%m, %H:%M'
     pm: nachmittags
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

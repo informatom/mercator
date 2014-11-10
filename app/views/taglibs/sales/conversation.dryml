@@ -136,9 +136,17 @@
 <def tag="card" for="Conversation">
   <card class="conversation" param="default" merge>
     <header: param>
-        <div class="col-md-3"><strong><a><name/></a></strong></div>
-        <div class="col-md-3"><view:created-at/></div>
-        <div class="col-md-3"><view with="&distance_of_time_in_words(Time.now - this.created_at)"/></div>
+      <div class="col-md-2">
+        <unless test="&this.consultant">
+          <%= link_to t("mercator.take"), take_sales_conversation_path(this) %>
+        </unless>
+        <if test="&this.consultant && this.consultant.id != current_user.id">
+            <%= link_to t("mercator.take") + " " + t("mercator.from") + " " + this.consultant.name, take_sales_conversation_path(this) %>
+        </if>
+      </div>
+      <div class="col-md-4"><strong><a><name/></a></strong></div>
+      <div class="col-md-2"><view:created-at/></div>
+      <div class="col-md-2"><view with="&distance_of_time_in_words(Time.now - this.created_at)"/></div>
     </header:>
   </card>
 </def>

@@ -1,12 +1,12 @@
 <def tag="card" for="Message">
   <div class="message" param="default" merge>
     <if test="&this.sender_id == current_user.id">
-      <div class="alert alert-success">
+      <div class="alert alert-success" style="padding: 10px;">
         <b><view:sender.first_name/> <view:sender.surname/>:</b> <view:content/>
       </div>
     </if>
     <else>
-      <div class="alert alert-info">
+      <div class="alert alert-info" style="padding: 10px;">
         <b><view:sender.first_name/> <view:sender.surname/>:</b> <view:content/>
       </div>
     </else>
@@ -29,7 +29,7 @@
             showCloseButton: true,
             actions: {
               take: {
-                label: "Übernehmen",
+                label: "<%= I18n.t("mercator.take")%>",
                 action: function(){
                   window.location.href = "/sales/conversations/" + data.conversation + "/take";
                 }
@@ -44,7 +44,7 @@
             showCloseButton: true
           });
         }
-        jQuery("#ding")[0].play();        
+        jQuery("#ding")[0].play();
       });
   </script>
 </def>

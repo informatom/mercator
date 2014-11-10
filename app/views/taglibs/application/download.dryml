@@ -1,28 +1,20 @@
 <def tag="card" for="Download">
-  <card class="download" param="default" merge>
-    <header: param>
-      <h4 param="heading"> <name/> </h4>
-    </header:>
+  <li class="list-group-item">
+    <if test="&this.document">
+      <name/> - <a href="&this.document.url"><t key="mercator.download_here" /></a><br/>
+      <small>(<%= number_to_human_size(this.document.size) %>), <view:document-updated-at for='datetime' format="&:concise"/></small>
+    </if>
 
-    <body:>
-      <div class="row">
-        <div class="col-md-4">
-          <if:photo> <a href="&this.url" target="new"><image src="&this.url(:small)" /></a> </if:photo>
-          <if:document><t key="activerecord.models.download.one" />: <a href="&this.url"><view:original-filename/></a> </if:document>
+    <if test="&this.photo">
+      <div class="media">
+        <div class="media-left">
+           <a href="&this.photo.url" target="new"><image src="&this.photo.url(:thumb)" /></a>
         </div>
-        <div class="col-md-3">
-          <delete-button label="X" param class="btn-danger" />
-          <if test="&this.document">
-            <p><t key="attributes.document_file_size" />: <this.document-file-size/><br/>
-            <t key="attributes.document_updated_at" />: <view:document-updated-at/></p>
-          </if>
-          <if test="&this.photo">
-            <p><%= number_to_human_size(this.photo_file_size) %><br/>
-            <view:photo-updated-at/></p>
-          </if>
+        <div class="media-body">
+          <name/><br/>
+          <small>(<%= number_to_human_size(this.photo.size) %>), <view:photo-updated-at for='datetime' format="&:concise"/></small>
         </div>
       </div>
-
-    </body:>
-  </card>
+    </if>
+  </li>
 </def>

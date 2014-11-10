@@ -566,6 +566,7 @@ de:
     deliveries_and_payments: Lieferungen und Zahlungen
     delivery_slip_date: Lieferscheindatum
     delivery_number: Lieferungsnummer
+    download_here: Hier downloaden
     email_sent: "Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."
     excl_vat: excl. Mwst.
     feedback_placeholder: "Geben Sie hier Ihr persönliches Feedback ein und wählen Sie anschließend unterhalb aus, welche Informationen protokolliert werden sollen."
@@ -734,6 +735,7 @@ de:
     sum_excl_vat: Summe exkl. Mwst
     sum_incl_vat: Gesamtpreis
     switch_user: Account wechseln
+    take: Übernehmen
     toner_upload: Upload Tonerfile
     upload_file: Datei hochladen
     up_to: bis
@@ -746,4 +748,5 @@ de:
     you_are_here: Sie befinden sich hier
     you_are_talking_to: Sie sprechen mit
     you_could: Sie können
-    your_message: Ihre Nachricht
+    your_consultant: Ihr Session-Berater
+    your_message: Geben Sie hier Ihre Nachricht ein ...

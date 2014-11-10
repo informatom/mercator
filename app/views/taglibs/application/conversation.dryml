@@ -82,45 +82,70 @@
   <old-show-page merge>
     <content-header: replace/>
     <content-body:>
+      <h2><photo name="video-chat" width="32" style="vertical-align: super;"/> <t key="activerecord.models.conversation.one"/></h2>
+      <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
+      <br/>
       <div class="row">
         <div class="col-md-8" id="middle-column">
-          <h2><photo name="video-chat" width="32" style="vertical-align: super;"/> <t key="activerecord.models.conversation.one"/></h2>
-          <h4>&nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <if:consultant>
+                <div class="media">
+                  <div class="media-left">
+                    <%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid" ) %>
+                  </div>
+                  <div class="media-body">
+                    <t key="mercator.your_consultant"/>:<br/><br/>
+                    <view:first-name/> <view:surname/>
+                  </div>
+                </div>
+              </if>
+            </div>
 
-          <photo-card with="&this.consultant" />
+            <div class="panel-body">
+              <section param="collection-section" merge>
+                <div part="messages">
+                  <collection: with="&this.messages.limit(5).reverse"/>
+                </div>
+              </section>
+            </div>
 
-          <section param="collection-section" merge>
-            <collection:messages part="messages"/>
-          </section>
-
-          <form with="&@message" update="mymessages">
-            <h3> <t key="mercator.your_message" />: </h3>
-            <div><input:content class="input-block-level"/> </div>
-          </form>
+            <div class="panel-footer">
+              <form with="&@message" update="mymessages">
+                <input:content class="input-block-level form-control"
+                               placeholder="#{I18n.translate('mercator.your_message')}" />
+              </form>
+            </div>
+          </div>
         </div>
+
         <div class="col-md-4 moveable" id="right-column">
           <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.offers") %> </h3>
+            <h3 param="collection-heading" class="blue"> <%= t("attributes.offers") %> </h3>
             <collection:offers part="offers"/>
           </section>
 
           <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.suggestions") %> </h3>
+            <h3 param="collection-heading" class="blue"> <%= t("attributes.suggestions") %> </h3>
             <collection:suggestions part="suggestions"/>
           </section>
 
           <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.downloads") %> </h3>
-            <collection:downloads part="downloads"/>
+            <h3 param="collection-heading" class="blue"> <%= t("attributes.downloads") %> </h3>
+            <ul class="list-group">
+              <collection:downloads part="downloads"/>
+            </ul>
           </section>
 
           <section param="collection-section" merge>
-            <h3 param="collection-heading"> <%= t("attributes.links") %> </h3>
-            <collection:links part="links"/>
+            <h3 param="collection-heading" class="blue"> <%= t("attributes.links") %> </h3>
+            <ul class="list-group">
+              <collection:links part="links"/>
+            </ul>
           </section>
 
 
-          <h3><t key="activerecord.models.feedback.one" /></h3>
+          <h3 class="blue"><t key="activerecord.models.feedback.one" /></h3>
           <p><t key="mercator.feedback_request" />:</p>
           <p><my-transition-link transition="feedback" method="get" class="btn-primary"/></p>
         </div>
