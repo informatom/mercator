@@ -80,19 +80,31 @@
 
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
-    <content-header: replace/>
-    <content-body:>
+    <content-header: >
       <h2><photo name="video-chat" width="32" style="vertical-align: super;"/> <t key="activerecord.models.conversation.one"/></h2>
       <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
-      <br/>
+      </content-header: >
+    <content-body:>
       <div class="row">
-        <div class="col-md-8" id="middle-column">
+        <div class="col-md-0 hidden" id="left-column">
+          <div id="cobrowsing-area" class="hidden">
+            <iframe src="#{this.last_link.url}" width="100%" height="800">
+              <p>
+                <t key="mercator.messages.conversation.no_frames" />:
+                <a href="&this.last_link.url">Link</a>
+              </p>
+            </iframe>
+          </div>
+        </div>
+
+        <div class="col-md-8 moveable" id="middle-column">
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <if:consultant>
                 <div class="media">
                   <div class="media-left">
-                    <%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid" ) %>
+                    <%= image_tag(this.photo.url(:thumb), class: "media-object img-polaroid") %>
                   </div>
                   <div class="media-body">
                     <t key="mercator.your_consultant"/>:<br/><br/>
@@ -102,12 +114,8 @@
               </if>
             </div>
 
-            <div class="panel-body">
-              <section param="collection-section" merge>
-                <div part="messages">
-                  <collection: with="&this.messages.limit(5).reverse"/>
-                </div>
-              </section>
+            <div class="panel-body" part="messages">
+              <collection: with="&this.messages.limit(5).reverse"/>
             </div>
 
             <div class="panel-footer">
@@ -120,30 +128,41 @@
         </div>
 
         <div class="col-md-4 moveable" id="right-column">
-          <section param="collection-section" merge>
-            <h3 param="collection-heading" class="blue"> <%= t("attributes.offers") %> </h3>
-            <collection:offers part="offers"/>
-          </section>
+          <h3 class="blue"><%= t("attributes.offers") %></h3>
+          <collection:offers part="offers"/>
 
-          <section param="collection-section" merge>
-            <h3 param="collection-heading" class="blue"> <%= t("attributes.suggestions") %> </h3>
+          <h3 class="blue"><%= t("attributes.suggestions") %></h3>
+          <ul class="list-group">
             <collection:suggestions part="suggestions"/>
-          </section>
+          </ul>
 
-          <section param="collection-section" merge>
-            <h3 param="collection-heading" class="blue"> <%= t("attributes.downloads") %> </h3>
+          <h3 class="blue"><%= t("attributes.downloads") %></h3>
+          <ul class="list-group">
+            <collection:downloads part="downloads"/>
+          </ul>
+
+          <div part="links">
+            <h3 class="blue"><%= t("attributes.links") %></h3>
             <ul class="list-group">
-              <collection:downloads part="downloads"/>
+              <collection:links />
             </ul>
-          </section>
 
-          <section param="collection-section" merge>
-            <h3 param="collection-heading" class="blue"> <%= t("attributes.links") %> </h3>
-            <ul class="list-group">
-              <collection:links part="links"/>
-            </ul>
-          </section>
-
+            <if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
+              <script>
+                $('#left-column').removeClass('col-md-0 hidden').addClass('col-md-8');
+                $('#left-column').html($('#cobrowsing-area').html());
+                $('#middle-column').removeClass('col-md-8').addClass('col-md-4');
+                $('.bootstrap-content').addClass('widescreen')
+              </script>
+            </if>
+            <else>
+              <script>
+                $('#left-column').removeClass('col-md-8').addClass('hidden col-md-0');
+                $('#middle-column').removeClass('col-md-4').addClass('col-md-8');
+                $('.bootstrap-content').removeClass('widescreen');
+              </script>
+            </else>
+          </div>
 
           <h3 class="blue"><t key="activerecord.models.feedback.one" /></h3>
           <p><t key="mercator.feedback_request" />:</p>

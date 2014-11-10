@@ -1,5 +1,7 @@
 <page>
   <body: replace>
-    <collection/>
+    <collection>
+      <overview-card />
+    </collection>
   </body>
 </page>

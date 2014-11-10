@@ -54,7 +54,7 @@
 <def tag="overview-card" for="Product">
   <set inventory="&this.determine_inventory"/>
   <div class="row product-card" param="default" merge>
-    <div class="col-md-4 text-center">
+    <div class="col-xs-4 text-center">
       <br/><br/>
       <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
       <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
@@ -71,7 +71,7 @@
       </else>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-xs-4">
       <h4>
         <if test="&inventory">
           <%= link_to( this.determine_inventory.name, product_path(this)) %>
@@ -87,7 +87,7 @@
       </if>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-xs-4">
       <p class="text-right">
         <span class="h3 text-right"> <%= number_to_currency( inventory.determine_price(customer_id: current_user.id) ) %> </span>
         <t key="mercator.excl_vat" /><br/>
@@ -99,10 +99,10 @@
       <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-xs-3">
           <photo name="video-chat" class="pull-left" />
         </div>
-        <div class="col-md-9">
+        <div class="col-xs-9">
           <h3><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h3>
         </div>
       </div>

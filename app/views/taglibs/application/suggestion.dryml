@@ -1,0 +1,5 @@
+<def tag="card" for="Suggestion">
+  <li class="list-group-item">
+    <a href="&product_path(this.product)"><view with="&this.product.number" /></a>
+  </li>
+</def>
