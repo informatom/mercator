@@ -74,6 +74,7 @@ en:
     key: Key
     Lineitem: Order Item
     lineitems: Order Items
+    links: Links
     login_count: Login Count
     long_description: Long Description
     markup: Markup Format

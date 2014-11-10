@@ -1,0 +1,27 @@
+<div part="links">
+<if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
+  <script>
+    $('#left-column').removeClass('col-md-8').addClass('col-md-2');
+    $('#middle-column').removeClass('col-md-0 hidden').addClass('col-md-8');
+    $('#middle-column').html($('#cobrowsing-area').html());
+    $('#right-column').removeClass('col-md-4').addClass('col-md-2');
+    $('.bootstrap-content').addClass('widescreen')
+  </script>
+  <div id="cobrowsing-area" class="hidden">
+    <iframe src="#{this.last_link.url}" width="100%" height="800">
+      <p>
+        <t key="mercator.messages.conversation.no_frames" />:
+        <a href="&this.last_link.url">Link</a>
+      </p>
+    </iframe>
+  </div>
+</if>
+<else>
+  <script>
+    $('#left-column').removeClass('col-md-2').addClass('col-md-8');
+    $('#middle-column').removeClass('col-md-8').addClass('hidden col-md-0');
+    $('#right-column').removeClass('col-md-2').addClass('col-md-4');
+    $('.bootstrap-content').removeClass('widescreen');
+  </script>
+</else>
+</div>
