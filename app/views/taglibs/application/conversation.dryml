@@ -3,8 +3,7 @@
 
     <body: class="lifecycle-transition-page feedback-page" param/>
 
-    <content-header: param>
-    </content-header:>
+    <content-header: param />
 
     <content-body: param>
       <form lifecycle="feedback" merge param="default">
@@ -81,21 +80,15 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
     <content-header: >
-      <h2><photo name="video-chat" width="32" style="vertical-align: super;"/> <t key="activerecord.models.conversation.one"/></h2>
+      <h2 id="header">
+        <photo name="video-chat" width="32" style="vertical-align: super;"/>
+        <t key="activerecord.models.conversation.one"/>
+      </h2>
       <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
       </content-header: >
     <content-body:>
       <div class="row">
-        <div class="col-md-0 hidden" id="left-column">
-          <div id="cobrowsing-area" class="hidden">
-            <iframe src="#{this.last_link.url}" width="100%" height="800">
-              <p>
-                <t key="mercator.messages.conversation.no_frames" />:
-                <a href="&this.last_link.url">Link</a>
-              </p>
-            </iframe>
-          </div>
-        </div>
+        <div class="col-md-0 hidden" id="left-column" ></div>
 
         <div class="col-md-8 moveable" id="middle-column">
 
@@ -148,18 +141,30 @@
             </ul>
 
             <if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
+              <div id="cobrowsing-area" class="hidden" part="cobrowsing">
+                <iframe src="#{this.last_link.url}" width="100%" height="800">
+                  <p>
+                    <t key="mercator.messages.conversation.no_frames" />:
+                    <a href="&this.last_link.url">Link</a>
+                  </p>
+                </iframe>
+              </div>
               <script>
-                $('#left-column').removeClass('col-md-0 hidden').addClass('col-md-8');
-                $('#left-column').html($('#cobrowsing-area').html());
-                $('#middle-column').removeClass('col-md-8').addClass('col-md-4');
                 $('.bootstrap-content').addClass('widescreen')
+                $('#middle-column').removeClass('col-md-8').addClass('col-md-3')
+                $('#right-column').removeClass('col-md-4').addClass('col-md-3')
+                $('#left-column').removeClass('col-md-0 hidden').addClass('col-md-9')
+                $('#left-column').html($('#cobrowsing-area').html())
+                $('#header')[0].scrollIntoView(true)
               </script>
             </if>
             <else>
               <script>
-                $('#left-column').removeClass('col-md-8').addClass('hidden col-md-0');
-                $('#middle-column').removeClass('col-md-4').addClass('col-md-8');
-                $('.bootstrap-content').removeClass('widescreen');
+                $('.bootstrap-content').removeClass('widescreen')
+                $('#left-column').removeClass('col-md-9').addClass('hidden col-md-0')
+                $('#middle-column').removeClass('col-md-3').addClass('col-md-8')
+                $('#right-column').removeClass('col-md-3').addClass('col-md-4')
+                $('body')[0].scrollIntoView(true)
               </script>
             </else>
           </div>
