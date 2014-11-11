@@ -82,10 +82,11 @@
     <content-header: >
       <h2 id="header">
         <photo name="video-chat" width="32" style="vertical-align: super;"/>
-        <t key="activerecord.models.conversation.one"/>
+        <t key="activerecord.models.conversation.one"/> &nbsp;
       </h2>
       <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
-      </content-header: >
+    </content-header: >
+
     <content-body:>
       <div class="row">
         <div class="col-md-0 hidden" id="left-column" ></div>
@@ -93,7 +94,7 @@
         <div class="col-md-8 moveable" id="middle-column">
 
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" part="consultant">
               <if:consultant>
                 <div class="media">
                   <div class="media-left">
@@ -191,6 +192,10 @@
       </form>
 
       <form id="offers-form" style="display:none;" action="refresh" update="offers">
+        <input name="id" value="#{this.id}" type="hidden"/>
+      </form>
+
+      <form id="consultant-form" style="display:none;" action="refresh" update="consultant">
         <input name="id" value="#{this.id}" type="hidden"/>
       </form>
 
