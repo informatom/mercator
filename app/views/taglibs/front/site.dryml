@@ -26,6 +26,7 @@
               </div>
               <admin />
               <skype-and-tel />
+              <compare-link />
               <basket-info />
             </div>
           </div>
