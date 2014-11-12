@@ -124,7 +124,7 @@ class Lineitem < ActiveRecord::Base
       else
         amount = self.amount - 1
         price = product.determine_price(amount: amount, customer_id: user.id)
-        self.update(amount: self.amount,
+        self.update(amount: amount,
                     product_price: price)
         self.update(value: self.calculate_value)
       end
