@@ -15,7 +15,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
   show_action :edit_properties do
     @this = Category.find(params[:id])
     properties = @this.products.*.values.flatten.*.property.uniq
-    @count = properties.count
+    properties.sort! { |a,b| a.name <=> b.name }
     @filterable_properties = properties.select { |property| property.state == "filterable"}
     @unfilterable_properties = properties.select { |property| property.state == "unfilterable"}
   end

@@ -38,6 +38,25 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     }
   end
 
+  def show_category
+    category = Category.find(params[:id])
+
+    render json: { status: "success",
+                   total: 12,
+                   records: [{ recid: 1, attribute: I18n.t("attributes.name") + " DE", value: category.name_de },
+                             { recid: 2, attribute: I18n.t("attributes.name") + " EN", value: category.name_en },
+                             { recid: 3, attribute: I18n.t("attributes.description") + " DE", value: category.description_de },
+                             { recid: 4, attribute: I18n.t("attributes.description") + " EN", value: category.description_en },
+                             { recid: 5, attribute: I18n.t("attributes.long_description") + " DE", value: category.long_description_de },
+                             { recid: 6, attribute: I18n.t("attributes.long_description") + " EN", value: category.long_description_en },
+                             { recid: 7, attribute: I18n.t("attributes.position"), value: category.position },
+                             { recid: 8, attribute: I18n.t("attributes.filters"), value: category.filters.to_s },
+                             { recid: 9, attribute: I18n.t("attributes.filtermin"), value: category.filtermin },
+                             { recid: 10, attribute: I18n.t("attributes.filtermax"), value: category.filtermax },
+                             { recid: 11, attribute: I18n.t("attributes.created_at"), value: I18n.l(category.created_at) },
+                             { recid: 12, attribute: I18n.t("attributes.updated_at"), value: I18n.l(category.updated_at) }] }
+  end
+
 protected
 
   def childrenarray(objects: nil, name_method: nil, folder: false)

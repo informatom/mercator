@@ -64,6 +64,9 @@ en:
     downloads: Downloads
     email_address: Email Address
     filter: Filter
+    filters: Filter
+    filtermin: minimal Price
+    filtermax: maximal Price
     first_name: First Name
     folder: Verzeichnis
     gender: Salutation

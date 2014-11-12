@@ -1,4 +1,4 @@
-<h1><t key="activerecord.models.property.other" /> <name/> </h1>
+<div class="h3" style="margin-top: 0px;"><t key="activerecord.models.property.other" /> <name/> </div>
 <set category-id="&this.id"/>
 
 <if test="&@count == 0" >
@@ -6,44 +6,49 @@
 </if>
 
 <else>
-  <t key="mercator.properties.click_to_move" />
+  <p><t key="mercator.properties.click_to_move" /></p>
 
-  <h2><t key="mercator.properties.filterable_properties" /></h2>
+  <p><strong><t key="mercator.properties.filterable_properties" /></strong></p>
   <repeat with="&@filterable_properties">
     <name class="btn btn-default btn-xs" id="property#{this.id}"/>
 
     <script>
       $( "#property#{this.id}" ).click(function() {
-        jQuery("#configarea").html('<i class="fa fa-circle-o-notch fa-spin"></i>')
-        jQuery.ajax({
+        w2ui.productmanager.lock('right', w2utils.lang('Refreshing...'), true)
+        $.ajax({
           url: "/admin/properties/#{this.id}/dont_filter",
           data: { category_id: "#{category_id}" },
-          type: "PUT",
-          success: function(result){
-            jQuery("#configarea").html(result)
-          }
+          type: "PUT"
+        }).done(function(response) {
+          $("#properties").html(response)
+          w2ui.productmanager.unlock('right')
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          w2alert(jqXHR.responseText)
+          w2ui.productmanager.unlock('right')
         })
       })
     </script>
   </repeat>
 
-
-  <h2><t key="mercator.properties.unfilterable_properties" /></h2>
+  <br/>
+  <p><strong><t key="mercator.properties.unfilterable_properties" /></strong></p>
   <repeat with="&@unfilterable_properties">
     <name class="btn btn-default btn-xs" id="property#{this.id}"/>
 
     <script>
       $( "#property#{this.id}" ).click(function() {
-        jQuery("#configarea").html('<i class="fa fa-circle-o-notch fa-spin"></i>')
-        jQuery.ajax({
+        w2ui.productmanager.lock('right', w2utils.lang('Refreshing...'), true)
+        $.ajax({
           url: "/admin/properties/#{this.id}/filter",
           data: { category_id: "#{category_id}" },
-          type: "PUT",
-          success: function(result){
-            jQuery("#configarea").html(result)
-          }
-        })
-      })
+          type: "PUT"
+        }).done(function(response) {
+          $("#properties").html(response)
+          w2ui.productmanager.unlock('right')
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          w2alert(jqXHR.responseText)
+          w2ui.productmanager.unlock('right')
+        })      })
     </script>
   </repeat>
 </else>

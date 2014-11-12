@@ -49,6 +49,7 @@ Mercator::Application.routes.draw do
   namespace :productmanager do
     get 'front/show_categorytree' => 'front#show_categorytree'
     get 'front/show_products/:id' => 'front#show_products'
+    get 'front/show_category/:id' => 'front#show_category'
   end
 
   namespace :contentmanager do
@@ -76,9 +77,6 @@ Mercator::Application.routes.draw do
 
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
-
-  post 'admin/categories/do_treereorder' => 'admin/categories#do_treereorder'
-  post 'admin/webpages/do_treereorder' => 'admin/webpages#do_treereorder'
 
   put 'admin/categories/:id/edit_properties' => 'admin/categories#edit_properties'
 

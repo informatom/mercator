@@ -20,16 +20,22 @@ $(function () {
       {
         type: 'main',
         resizable: true,
+        content: "<div id='category' style='height: 100%'></div>" },
+      {
+        type: 'preview',
+        size: '60%',
+        resizable: true,
         content: "<div id='productsgrid' style='height: 100%'></div>" },
       {
         type: 'right',
         size: '20%',
         resizable: true,
-        content: "Right" }
+        content: "<div id='properties' style='background-color: white; height:100%; padding: 5px'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
         categoryTree()
+        category()
         productsGrid()
       }
     }
