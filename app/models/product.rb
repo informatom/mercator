@@ -81,6 +81,7 @@ class Product < ActiveRecord::Base
     transition :dont_compare, {:active => :active}, :available_to => :all
 
     transition :activate, {:new => :active}, :available_to => "User.administrator", :subsite => "admin"
+    transition :deactivate, { :new => :deprecated }, :available_to => "User.administrator", :subsite => "admin"
     transition :deactivate, { :active => :deprecated }, :available_to => "User.administrator", :subsite => "admin"
     transition :reactivate, { :deprecated => :active }, :available_to => "User.administrator", :subsite => "admin"
   end
@@ -198,7 +199,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.deprecate
-    Product.where(state: "active").each do |product|
+    Product.where(state: ["active", "new"]).each do |product|
       unless product.inventories.any?
         product.lifecycle.deactivate!(User.where(administrator: true).first)
         JobLogger.info("Product " + product.number + " deactivated.")

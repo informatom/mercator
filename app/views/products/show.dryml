@@ -55,9 +55,11 @@
       </div>
 
       <div class="tab-pane" id="recommended">
-        <% this.recommended_products.active.in_groups_of(5) do |group| %>
+        <% this.recommendations.in_groups_of(5) do |group| %>
          <div class="row">
-           <repeat with="&group"> <mini-card /> </repeat>
+           <repeat with="&group">
+             <if><mini-card with="&this.recommended_product" reason="&this.reason" /> </if>
+          </repeat>
          </div>
         <% end %>
       </div>

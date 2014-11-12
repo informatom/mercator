@@ -99,4 +99,15 @@ class Inventory < ActiveRecord::Base
     price = select_price(date: date, amount: amount)
     return price.vat
   end
+
+#--- Class methods ---#
+
+  def self.delete_orphans
+    Inventory.each do |inventory|
+      unless inventory.prices.any?
+        inventory.delete
+        JobLogger.info("Inventory " + inventory.number + " deleted.")
+      end
+    end
+  end
 end
