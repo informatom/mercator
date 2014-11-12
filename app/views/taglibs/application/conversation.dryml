@@ -79,15 +79,15 @@
 
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
-    <content-header: >
+    <content-header: ></content-header: >
+
+    <content-body:>
       <h2 id="header">
         <photo name="video-chat" width="32" style="vertical-align: super;"/>
         <t key="activerecord.models.conversation.one"/> &nbsp;
       </h2>
       <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
-    </content-header: >
 
-    <content-body:>
       <div class="row">
         <div class="col-md-0 hidden" id="left-column" ></div>
 
@@ -109,7 +109,14 @@
             </div>
 
             <div class="panel-body" part="messages">
-              <collection: with="&this.messages.limit(5).reverse"/>
+              <collection: with="&this.messages.limit(5).reverse">
+                <if test="&this.sender != this.conversation.customer && this.sender != this.conversation.consultant">
+                  <card type="warning" />
+                </if>
+                <else>
+                  <card />
+                </else>
+              </collection>
             </div>
 
             <div class="panel-footer">

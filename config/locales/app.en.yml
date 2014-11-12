@@ -524,6 +524,7 @@ en:
     admin_subsite_name: Administration
     admin_subheading: This is the administration page for the Mercator Guided Selling System
     account: My Account
+    ago: ago
     are_you_sure: "Are You Sure?"
     back: Back
     billing_method:
@@ -736,6 +737,7 @@ en:
     use_navigation: Use the links in the menu for navigation.
     user_accounts_missing: There are no user accounts - please provide the details of the site administrator.
     video_chat: Video Chat
+    vor: ""
     welcome_at: Welcome at
     waiting_for_release: "waiting for release."
     you_are_here: You ere here
