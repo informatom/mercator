@@ -1,13 +1,13 @@
 <def tag="card" for="Offer">
   <div class="well">
     <header: param>
-        <a action="show" if="&can_view?" param="show-link" class="btn btn-primary btn-sm pull-right">
-          <ht key="offer.actions.show">Show</ht>
-        </a>
-      <h4 param="heading"><name/></h4>
+      <h5><name/></h5>
     </header:>
     <body: param>
       <summary-card/>
+      <a action="show" if="&can_view?" param="show-link" class="btn btn-primary btn-sm">
+        <ht key="offer.actions.show">Show</ht>
+      </a>
     </body:>
   </div>
 </def>

@@ -191,7 +191,7 @@ de:
   time:
     am: vormittags
     formats:
-      default: ! '%A, %-d. %B %Y, %k:%M'
+      default: ! '%a, %-d.%b %y, %k:%M'
       long: ! '%A, %d. %B %Y, %H:%M Uhr'
       short: ! '%d. %B, %H:%M Uhr'
       concise: ! '%a %d.%m, %H:%M'
