@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
                params: [ :password, :password_confirmation ], unless: :crypted_password
 
     transition :login_via_email, {:active => :active},
-               available_to: :key_holder, if: "Time.now() - key_timestamp < 10.minutes"
+               available_to: :key_holder, if: "Time.now() - self.key_timestamp < 10.minutes"
   end
 
   def signed_up?

@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
   def switch
     last_user_id = current_user.id
-    current_user.update(logged_in: false)
+    self.current_user.update(logged_in: false)
     current_basket.delete_if_obsolete
     hobo_logout do
       session[:last_user] = last_user_id

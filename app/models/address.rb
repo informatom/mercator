@@ -67,7 +67,7 @@ class Address < ActiveRecord::Base
     new_record?
   end
 
-  #--- Class Methods ---#
+  #--- Instance Methods ---#
 
   def if_country_exists
     errors.add(:base, "Unbekanntes Land") unless Country.find_by_name(country)

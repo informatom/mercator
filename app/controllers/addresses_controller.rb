@@ -44,7 +44,7 @@ class AddressesController < ApplicationController
       order = Order.where(id: params[:address][:order_id], user_id: current_user.id ).first
 
       self.this.user = current_user
-      if this.save
+      if self.this.save
         order.update(this.namely([:company, :gender, :title, :first_name, :surname,
                                   :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
         order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
@@ -69,7 +69,7 @@ class AddressesController < ApplicationController
 
   def do_trash
     do_transition_action :trash do
-      this.delete
+      self.this.delete
       redirect_to enter_addresses_path({:order_id => params[:order_id]})
     end
   end

@@ -185,31 +185,23 @@
 
       <!-- Form and Scripts for refreshing content dynamically -->
       <%= subscribe_to "/conversations/" + this.id.to_s %>
+      <%= subscribe_to "/orders/" + current_user.basket.id.to_s %>
 
-      <form id="messages-form" style="display:none;" action="refresh" update="messages">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
-
-      <form id="links-form" style="display:none;" action="refresh" update="links">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
-
-      <form id="downloads-form" style="display:none;" action="refresh" update="downloads">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
-
-      <form id="offers-form" style="display:none;" action="refresh" update="offers">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
-
-      <form id="consultant-form" style="display:none;" action="refresh" update="consultant">
-        <input name="id" value="#{this.id}" type="hidden"/>
-      </form>
+      <% ["messages", "links", "downloads", "offers", "consultant", "summary"].each do |part| %>
+        <form id="#{part}-form" style="display:none;" action="refresh" update="#{part}">
+          <input name="id" value="#{this.id}" type="hidden"/>
+        </form>
+      <% end %>
 
       <script>
           PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
             $("form#" + data.type + "-form").submit();
           });
+      </script>
+      <script>
+        PrivatePub.subscribe("/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
+          $("form#" + "summary-form").submit();
+        });
       </script>
     </content-body:>
   </old-show-page>

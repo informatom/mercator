@@ -84,38 +84,38 @@ class Order < ActiveRecord::Base
 
     transition :cash_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
-      update(billing_method: "cash_payment")
+      self.update(billing_method: "cash_payment")
     end
     transition :cash_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
-      update(billing_method: "cash_payment")
+      self.update(billing_method: "cash_payment")
     end
 
     transition :atm_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
-      update(billing_method: "atm_payment")
+      self.update(billing_method: "atm_payment")
     end
     transition :atm_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
-      update(billing_method: "atm_payment")
+      self.update(billing_method: "atm_payment")
     end
 
     transition :pre_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='pre_payment'" do
-      update(billing_method: "pre_payment")
+      self.update(billing_method: "pre_payment")
     end
     transition :pre_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='pre_payment'" do
-      update(billing_method: "pre_payment")
+      self.update(billing_method: "pre_payment")
     end
 
     transition :e_payment, {:basket => :basket},
                available_to: :user, if: "billing_method !='e_payment'" do
-      update(billing_method: "e_payment")
+      self.update(billing_method: "e_payment")
     end
     transition :e_payment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "billing_method !='e_payment'" do
-      update(billing_method: "e_payment")
+      self.update(billing_method: "e_payment")
     end
 
 
@@ -155,16 +155,16 @@ class Order < ActiveRecord::Base
 
     transition :parcel_service_shipment, {:basket => :basket},
                available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
-      update(shipping_method: "parcel_service_shipment")
-      update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(billing_method)
-      add_shipment_costs
+      self.update(shipping_method: "parcel_service_shipment")
+      self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(billing_method)
+      self.add_shipment_costs
     end
 
     transition :parcel_service_shipment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
-      update(shipping_method: "parcel_service_shipment")
-      update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(billing_method)
-      add_shipment_costs
+      self.update(shipping_method: "parcel_service_shipment")
+      self.update(billing_method: "e_payment") if ["atm_payment", "cash_payment"].include?(billing_method)
+      self.add_shipment_costs
     end
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user, if: "lineitems.any?" do

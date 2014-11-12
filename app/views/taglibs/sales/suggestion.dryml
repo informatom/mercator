@@ -1,4 +1,3 @@
 <def tag="card" for="Suggestion">
-  <div class="col-md-2"><strong><name/></strong></div>
-  <div class="col-md-1"><delete-button label="X" param class="btn-danger btn-mini" /></div>
+   <delete-button label="X" param class="btn-danger btn-xs pull-right" /> <name/>
 </def>

@@ -216,6 +216,6 @@
         <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
       </span>
     </a>
-  </if>
+</if>
   <br/><br/>
 </def>
