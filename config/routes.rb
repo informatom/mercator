@@ -48,8 +48,11 @@ Mercator::Application.routes.draw do
 
   namespace :productmanager do
     get 'front/show_categorytree' => 'front#show_categorytree'
+    get 'front/property_manager/:id' => 'front#property_manager'
     get 'front/show_products/:id' => 'front#show_products'
     get 'front/show_category/:id' => 'front#show_category'
+    get 'front/show_properties' => 'front#show_properties'
+    get 'front/show_property_groups' => 'front#show_property_groups'
   end
 
   namespace :contentmanager do

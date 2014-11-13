@@ -7,15 +7,16 @@
       <stylesheet name='#{subsite}'/>
 
       <javascript name='#{subsite}'/>
-      <javascript name="productmanager/index.js" />
+      <javascript name="productmanager/#{request.parameters[:action]}.js" />
     </head>
 
     <body param>
-      <div id="productmanager" style="height: 100%"></div>
+      <div id="#{request.parameters[:action]}" style="height: 100%"></div>
     </body>
 
     <script>
       var csrf_token = "<%= form_authenticity_token %>"
+      var request_id = "<%= request.parameters[:id] %>"
     </script>
   </html>
 </def>

@@ -684,6 +684,8 @@ en:
       filterable_properties: Filterable Properties
       no_properties_found: No properties found!
       unfilterable_properties: Non-Filterable Properties
+    propertymanager:
+      title: Property Manager
     protocol:
       one: Protocol
       data_to_be_stored: I want the follewing data to be saved

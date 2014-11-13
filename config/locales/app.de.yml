@@ -691,6 +691,8 @@ de:
       filterable_properties: Filterbare Eigenschaften
       no_properties_found: keine Eigenschaften gefunden
       unfilterable_properties: Nicht filterbare Eigenschaften
+    property_manager:
+      title: Eigenschaftsmanager
     protocol:
       one: Protokoll
       data_to_be_stored: Es sollon folgende Daten protokolliert werden
