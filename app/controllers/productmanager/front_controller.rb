@@ -156,6 +156,27 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
                              { recid: 12, attribute: I18n.t("attributes.updated_at"), value: I18n.l(category.updated_at) }] }
   end
 
+  def show_valuetree
+    valuearray = []
+    product = Product.find(params[:id])
+    hashed_values = product.hashed_values
+
+    hashed_values.each do | key, values |
+      property_array = []
+      property_group = PropertyGroup.find(key)
+      property_group_hash =  Hash["title"  => property_group.name, "key" => property_group.id, "folder" => true]
+      values.each do |value|
+         property_array << Hash["title"  => value.property.name + ": <em style='color: orange'>" + value.display + "</em>",
+                                "key" => value.id,
+                                "folder" => false]
+      end
+      property_group_hash["children"] = property_array
+      valuearray << property_group_hash
+    end
+
+    render json: valuearray.to_json
+  end
+
 protected
 
   def childrenarray(objects: nil, name_method: nil, folder: false)

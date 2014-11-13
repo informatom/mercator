@@ -137,6 +137,13 @@ class Product < ActiveRecord::Base
     return nested_hash
   end
 
+  def hashed_values
+    nested_hash = ActiveSupport::OrderedHash.new
+    values = Value.where(product_id: id).sort_by { |a| [a.property_group.position, a.property.position]}
+    hashed_values = values.group_by(&:property_group_id)
+    return hashed_values
+  end
+
   def determine_inventory(amount: 1)
     amount_requested = amount
     if Constant.find_by_key("fifo").value == "true"

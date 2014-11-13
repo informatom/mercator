@@ -15,12 +15,14 @@ $(function () {
         type: 'left',
         size: '20%',
         resizable: true,
+        title: '<%= I18n.t("activerecord.models.product.other") %>',
         content: "<div id='productGrid' style='height: 100%'></div>"
       },
       {
         type: 'main',
         resizable: true,
-        content: "" },
+        title: '<%= I18n.t("activerecord.models.value.other") %>',
+        content: "<div id='valueTree' style='height: 100%'></div>" },
       {
         type: 'right',
         size: '35%',
@@ -31,6 +33,7 @@ $(function () {
       event.onComplete = function () {
         productGrid()
         w2ui.productGrid.load('/productmanager/front/property_manager/' + request_id)
+        valueTree()
       }
     }
   })
