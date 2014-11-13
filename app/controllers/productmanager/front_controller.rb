@@ -164,10 +164,14 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     hashed_values.each do | key, values |
       property_array = []
       property_group = PropertyGroup.find(key)
-      property_group_hash =  Hash["title"  => property_group.name, "key" => property_group.id, "folder" => true]
+      property_group_hash =  Hash["title"  => property_group.name,
+                                  "key" => property_group.id,
+                                  "folder" => true]
       values.each do |value|
          property_array << Hash["title"  => value.property.name + ": <em style='color: orange'>" + value.display + "</em>",
                                 "key" => value.id,
+                                "property_id" => value.property.id,
+                                "property_group_id" => value.property_group.id,
                                 "folder" => false]
       end
       property_group_hash["children"] = property_array
