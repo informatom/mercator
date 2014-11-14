@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: bf49caca6670a2dc26cef7b2b01819e2ed88387a
+  specs:
+    rails-dev-boost (0.3.0)
+      railties (>= 3.0)
+
+GIT
   remote: https://github.com/Hobo/hobo.git
   revision: 123e6e840f9fe7e222b3dbd3562d0f82a93086a9
   specs:
@@ -355,8 +362,8 @@ GEM
       faye
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
-    puma (2.9.0)
-      rack (>= 1.1, < 2.0)
+    quiet_assets (1.0.3)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -377,6 +384,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     ref (1.0.5)
     roo (1.13.2)
       nokogiri
@@ -549,9 +558,11 @@ DEPENDENCIES
   paperclip
   private_pub
   protected_attributes
-  puma
+  quiet_assets
   railroady
   rails (= 4.0.11)
+  rails-dev-boost!
+  rb-inotify (>= 0.8.8)
   roo
   rspec-rails (~> 2.14.0)
   rvm-capistrano

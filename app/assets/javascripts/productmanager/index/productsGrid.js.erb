@@ -4,6 +4,22 @@ function productsGrid() {
     multiSelect : false,
     method: 'GET',
     show: { toolbar: true, footer: true },
+    sortData: [{ field: 'number', direction: 'ASC' }],
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'editProperties', img: 'fa fa-tag', disabled: true,
+          caption: "<%= I18n.t('activerecord.models.property.other') %> <%= I18n.t('hobo.actions.edit', model: '') %>" }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.productsgrid.getSelection()
+        switch (target) {
+        case 'editProperties':
+          document.location = "/productmanager/front/property_manager/" + selection[0]
+        break
+        }
+      }
+    },
 
     columns: [
       { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
@@ -41,6 +57,16 @@ function productsGrid() {
       { field: 'long_description_de', caption: '<%= I18n.t("attributes.long_description") %> DE', type: 'text' },
       { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', type: 'text' }
     ],
-    sortData: [{ field: 'number', direction: 'ASC' }],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('editProperties')
+        } else {
+          this.toolbar.disable('editProperties')
+        }
+      }
+    }
   })
 }

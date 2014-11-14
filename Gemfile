@@ -88,10 +88,15 @@ gem "active_model_serializers"                        # JSON serialization, easy
 gem 'exception_notification'                          # exception_notification via e-mail
 gem 'awesome_print'                                   # nice, colored object representations
 
+group :development  do
+  gem 'rails-dev-boost', :github => 'thedarkone/rails-dev-boost'
+  gem 'rb-inotify', '>= 0.8.8'
+end
+
 group :development, :test  do
-  gem 'puma'                                          # Multi threaded web server
+#  gem 'puma'                                          # Multi threaded web server
   gem 'byebug'                                        # Command line debugger
-#  gem "quiet_assets"                                  # leaner log output
+  gem "quiet_assets"                                  # leaner log output
   gem "better_errors"                                 # Debug messages im Browser
   gem "binding_of_caller"                             # Repl for better_errors
   gem "railroady"                                     # ER-Diagrams

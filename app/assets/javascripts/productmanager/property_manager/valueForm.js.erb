@@ -21,8 +21,65 @@ function valueForm() {
       { name: 'unit_de',    type: 'text',     html: { caption: '<%= I18n.t("attributes.unit") %> DE'}   },
       { name: 'unit_en',    type: 'text',     html: { caption: '<%= I18n.t("attributes.unit") %> EN'}   },
       { name: 'flag',       type: 'checkbox', html: { caption: '<%= I18n.t("activerecord.attributes.property/datatypes.flag") %>'}   },
-      { name: 'created_at', type: 'time',     html: { caption: '<%= I18n.t("attributes.created_at") %>'}},
-      { name: 'updated_at', type: 'time',     html: { caption: '<%= I18n.t("attributes.updated_at") %>'}}
-    ]
+      { name: 'created_at', type: 'text',     html: { caption: '<%= I18n.t("attributes.created_at") %>' }, disabled: true },
+      { name: 'updated_at', type: 'text',     html: { caption: '<%= I18n.t("attributes.updated_at") %>' }, disabled: true },
+      { name: 'dummy',      type: 'float',    html: { caption: ' ', attr: 'hidden' } }
+    ],
+    onChange: function(event) {
+      event.onComplete = function () {
+        updateFieldVisibility()
+      }
+    }
   })
+}
+
+function updateFieldVisibility() {
+  if (!w2ui) return
+  if (!w2ui.valueForm.record['state'] ) return
+
+  if (typeof w2ui.valueForm.record['state'] == "string") {
+    var the_state = w2ui.valueForm.record['state']
+  } else {
+    var the_state = w2ui.valueForm.record['state'].id
+  }
+
+  switch (the_state) {
+    case 'numeric':
+      w2ui.valueForm.record['flag'] = false
+      w2ui.valueForm.record['title_de'] = null
+      w2ui.valueForm.record['title_en'] = null
+      w2ui.valueForm.refresh()
+      w2ui.valueForm.set('flag', {disabled: true})
+      w2ui.valueForm.set('title_de', {disabled: true})
+      w2ui.valueForm.set('title_en', {disabled: true})
+      w2ui.valueForm.set('amount', {disabled: false})
+      w2ui.valueForm.set('unit_de', {disabled: false})
+      w2ui.valueForm.set('unit_en', {disabled: false})
+    break
+    case 'textual':
+      w2ui.valueForm.record['flag'] = false
+      w2ui.valueForm.record['amount'] = null
+      w2ui.valueForm.set('flag', {disabled: true})
+      w2ui.valueForm.set('amount', {disabled: true})
+      w2ui.valueForm.set('title_de', {disabled: false})
+      w2ui.valueForm.set('title_en', {disabled: false})
+      w2ui.valueForm.set('unit_de', {disabled: false})
+      w2ui.valueForm.set('unit_en', {disabled: false})
+      w2ui.valueForm.refresh()
+    break
+    case 'flag':
+      w2ui.valueForm.record['title_de'] = null
+      w2ui.valueForm.record['title_en'] = null
+      w2ui.valueForm.record['amount'] = null
+      w2ui.valueForm.record['unit_de'] = null
+      w2ui.valueForm.record['unit_en'] = null
+      w2ui.valueForm.refresh()
+      w2ui.valueForm.set('flag', {disabled: false})
+      w2ui.valueForm.set('amount', {disabled: true})
+      w2ui.valueForm.set('title_de', {disabled: true})
+      w2ui.valueForm.set('title_en', {disabled: true})
+      w2ui.valueForm.set('unit_de', {disabled: true})
+      w2ui.valueForm.set('unit_en', {disabled: true})
+    break
+  }
 }

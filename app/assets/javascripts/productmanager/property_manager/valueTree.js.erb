@@ -5,20 +5,28 @@ function valueTree() {
     click: function(event, data) {
       if (data.node.key) {
         if (data.node.folder) {
+          // Property Group selected
           property_group_id = data.node.key
-          w2ui['propertiesGrid'].selectNone()
+          w2ui.propertiesGrid.selectNone()
         } else {
+          // Property selected
+          value_id = data.node.key
           property_group_id = data.node.data.property_group_id
           property_id = data.node.data.property_id
+
           var index = w2ui.propertiesGrid.get(property_id, true)
           w2ui.propertiesGrid.scrollIntoView(index)
-          w2ui['propertiesGrid'].selectNone()
-          w2ui['propertiesGrid'].select(property_id)
+          w2ui.propertiesGrid.selectNone()
+          w2ui.propertiesGrid.select(property_id)
+
+          w2ui.valueForm.url = '/productmanager/front/show_value/' + value_id
+          w2ui.valueForm.recid = parseInt(value_id)
+          w2ui.valueForm.reload()
         }
         var index = w2ui.propertyGroupsGrid.get(property_group_id, true)
         w2ui.propertyGroupsGrid.scrollIntoView(index)
-        w2ui['propertyGroupsGrid'].selectNone()
-        w2ui['propertyGroupsGrid'].select(property_group_id)
+        w2ui.propertyGroupsGrid.selectNone()
+        w2ui.propertyGroupsGrid.select(property_group_id)
       }
     }
   })

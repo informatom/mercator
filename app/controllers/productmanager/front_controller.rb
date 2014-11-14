@@ -181,6 +181,27 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     render json: valuearray.to_json
   end
 
+  def show_value
+    value = Value.find(params[:id])
+
+    render json: {
+      status: "success",
+      record: {
+        recid:      value.id,
+        state:      value.state,
+        title_de:   value.title_de,
+        title_en:   value.title_en,
+        amount:     value.amount,
+        unit_de:    value.unit_de,
+        unit_en:    value.unit_en,
+        flag:       value.flag,
+        created_at: I18n.l(value.created_at),
+        updated_at: I18n.l(value.updated_at),
+        dummy:      "42.0"
+      }
+    }
+  end
+
 protected
 
   def childrenarray(objects: nil, name_method: nil, folder: false)

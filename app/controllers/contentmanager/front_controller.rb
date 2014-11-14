@@ -24,14 +24,18 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   def show_webpage
     webpage = Webpage.find(params[:id])
 
-    render json: { status: "success",
-                   total: 6,
-                   records: [{ recid: 1, attribute: "title_de", value: webpage.title_de },
-                             { recid: 2, attribute: "title_en", value: webpage.title_en },
-                             { recid: 3, attribute: "url",      value: webpage.url },
-                             { recid: 4, attribute: "slug",     value: webpage.slug },
-                             { recid: 5, attribute: "menu",     value: webpage.menu },
-                             { recid: 6, attribute: "template", value: webpage.page_template.name } ] }
+    render json: {
+      status: "success",
+      total: 6,
+      records: [
+        { recid: 1, attribute: "title_de", value: webpage.title_de },
+        { recid: 2, attribute: "title_en", value: webpage.title_en },
+        { recid: 3, attribute: "url",      value: webpage.url },
+        { recid: 4, attribute: "slug",     value: webpage.slug },
+        { recid: 5, attribute: "menu",     value: webpage.menu },
+        { recid: 6, attribute: "template", value: webpage.page_template.name }
+      ]
+    }
   end
 
   def show_assignments
@@ -41,12 +45,17 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     webpage.reload
 
     assignments = webpage.page_content_element_assignments
-    render json: { status: "success",
-                   total: assignments.count,
-                   records: assignments.collect { |assignment| { recid: assignment.id,
-                                                                 used_as: assignment.used_as,
-                                                                 content_element_name: assignment.content_element.try(:name) } }
-                 }
+    render json: {
+      status: "success",
+      total: assignments.count,
+      records: assignments.collect {
+        |assignment| {
+          recid: assignment.id,
+          used_as: assignment.used_as,
+          content_element_name: assignment.content_element.try(:name)
+        }
+      }
+    }
   end
 
   def update_folders
@@ -57,7 +66,11 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   def show_content_elements
     @content_elements = ContentElement.where(folder_id: params[:id])
     @serialized_content_elements = ActiveModel::ArraySerializer.new(@content_elements).as_json
-    render json: { status: "success", total: @content_elements.count, records: @serialized_content_elements }
+    render json: {
+      status: "success",
+      total: @content_elements.count,
+      records: @serialized_content_elements
+    }
   end
 
   def update_content_element
