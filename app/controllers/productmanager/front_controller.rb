@@ -196,8 +196,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
         unit_en:    value.unit_en,
         flag:       value.flag,
         created_at: I18n.l(value.created_at),
-        updated_at: I18n.l(value.updated_at),
-        dummy:      "42.0"
+        updated_at: I18n.l(value.updated_at)
       }
     }
   end

@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/thedarkone/rails-dev-boost.git
-  revision: bf49caca6670a2dc26cef7b2b01819e2ed88387a
-  specs:
-    rails-dev-boost (0.3.0)
-      railties (>= 3.0)
-
-GIT
   remote: https://github.com/Hobo/hobo.git
   revision: 123e6e840f9fe7e222b3dbd3562d0f82a93086a9
   specs:
@@ -52,6 +45,13 @@ GIT
     ckeditor (4.1.0)
       mime-types
       orm_adapter (~> 0.5.0)
+
+GIT
+  remote: https://github.com/thedarkone/rails-dev-boost
+  revision: bf49caca6670a2dc26cef7b2b01819e2ed88387a
+  specs:
+    rails-dev-boost (0.3.0)
+      railties (>= 3.0)
 
 PATH
   remote: vendor/engines/mercator_bechlem
