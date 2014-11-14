@@ -89,7 +89,7 @@ gem 'exception_notification'                          # exception_notification v
 gem 'awesome_print'                                   # nice, colored object representations
 
 group :development  do
-  gem 'rails-dev-boost', :github => 'thedarkone/rails-dev-boost'
+  gem 'rails-dev-boost', :git => "https://github.com/thedarkone/rails-dev-boost"
   gem 'rb-inotify', '>= 0.8.8'
 end
 
