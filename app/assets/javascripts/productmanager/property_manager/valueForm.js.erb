@@ -26,27 +26,20 @@ function valueForm() {
     ],
     onChange: function(event) {
       event.onComplete = function () {
-        updateFieldVisibility()
+        var the_state = w2ui.valueForm.record['state'].id
+        updateFieldVisibility(the_state)
       }
     },
     onLoad: function(event) {
       event.onComplete = function () {
-        updateFieldVisibility()
+        var the_state = w2ui.valueForm.record['state']
+        updateFieldVisibility(the_state)
       }
     }
   })
 }
 
-function updateFieldVisibility() {
-  if (!w2ui) return
-  if (!w2ui.valueForm.record['state'] ) return
-
-  if (typeof w2ui.valueForm.record['state'] == "string") {
-    var the_state = w2ui.valueForm.record['state']
-  } else {
-    var the_state = w2ui.valueForm.record['state'].id
-  }
-
+function updateFieldVisibility(the_state) {
   switch (the_state) {
     case 'numeric':
       $.each(['flag', 'title_de', 'title_en'], function( index, field ) {
