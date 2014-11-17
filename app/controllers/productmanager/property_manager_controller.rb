@@ -135,7 +135,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
       flag = nil
       flag = true if attrs[:flag] == "1"
       flag = false if attrs[:flag] == "0"
-      
+
       value.state    = attrs[:state][:id]
       value.title_de = attrs[:title_de]
       value.title_en = attrs[:title_en]
@@ -149,7 +149,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
     if success == false
       render json: { status: "error",
                      message: value.errors.first }
-    else  
+    else
       render json: { status: "success",
                      record: {
                        recid:      value.id,
@@ -161,7 +161,9 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
                        unit_en:    value.unit_en,
                        flag:       value.flag,
                        created_at: I18n.l(value.created_at),
-                       updated_at: I18n.l(value.updated_at)
+                       updated_at: I18n.l(value.updated_at),
+                       property_group_id: value.property_group_id,
+                       property_id: value.property_id
                      }
                    }
     end

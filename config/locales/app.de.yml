@@ -663,6 +663,8 @@ de:
     no_open_payments: keine offenen Zahlungen
     no_products_available: keine Produkte lieferbar
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
+    no_property_group_selected: Keine Eigenschaftsgruppe ausgewählt! Bitte wählen sie eine aus!
+    no_property_selected: Keine Eigenschaft ausgewählt! Bitte wählen sie eine aus!
     not_assigned: Nicht zugeordnet
     offer_email_login: "Wenn Sie bereits registriert sind und sich per E-Mail anmelden möchten, senden wir Ihnen gerne einen Anmelde-Link zu."
     on_request: Auf Anfrage

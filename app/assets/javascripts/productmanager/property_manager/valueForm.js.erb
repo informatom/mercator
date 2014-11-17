@@ -1,11 +1,63 @@
 function valueForm() {
   $('#valueForm').w2form({
     name: 'valueForm',
+    formHTML:
+      '<div class="w2ui-page page-0">'+
+      '  <div style="float: left">'+
+      '      <div class="w2ui-field">'+
+      '          <label>Type</label>'+
+      '          <div><input name="state" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.title") %> DE</label>'+
+      '          <div><input name="title_de" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.title") %> EN</label>'+
+      '          <div><input name="title_en" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.amount") %></label>'+
+      '          <div><input name="amount" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.unit") %> DE</label>'+
+      '          <div><input name="unit_de" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.unit") %> EN</label>'+
+      '          <div><input name="unit_en" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("activerecord.attributes.property/datatypes.flag") %> DE</label>'+
+      '          <div><input name="flag" /></div>'+
+      '      </div>'+
+      '   </div>'+
+      '  <div style="float: right; margin-right:20px;">'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.created_at") %></label>'+
+      '          <div><input name="created_at" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.updated_at") %></label>'+
+      '          <div><input name="updated_at" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.property_group") %></label>'+
+      '          <div><input name="property_group_id" /></div>'+
+      '      </div>'+
+      '      <div class="w2ui-field">'+
+      '          <label><%= I18n.t("attributes.property_group") %></label>'+
+      '          <div><input name="property_id" /></div>'+
+      '      </div>'+
+      '   </div>'+
+      '<div class="w2ui-buttons">'+
+      '   <button class="w2ui-btn w2ui-btn-red" name="deletet">Delete</button>'+
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">Save</button>'+
+      '   <button class="w2ui-btn w2ui-btn-orange" name="create">Add New</button>'+
+      '</div>',
     fields : [
-      {
-        name: 'state',
-        type: 'list',
-        required : true,
+      { name: 'state', type: 'list', required : true,
         options: {
           items: [
             { id: 'textual', text: '<%= I18n.t("activerecord.attributes.property/datatypes.textual") %>'},
@@ -13,16 +65,17 @@ function valueForm() {
             { id: 'flag', text: '<%= I18n.t("activerecord.attributes.property/datatypes.flag") %>'}
           ]
         },
-        html: { caption: 'Type'}
       },
-      { name: 'title_de',   type: 'text',     html: { caption: '<%= I18n.t("attributes.title") %> DE'}  },
-      { name: 'title_en',   type: 'text',     html: { caption: '<%= I18n.t("attributes.title") %> EN'}  },
-      { name: 'amount',     type: 'float',    html: { caption: '<%= I18n.t("attributes.amount") %>'}    },
-      { name: 'unit_de',    type: 'text',     html: { caption: '<%= I18n.t("attributes.unit") %> DE'}   },
-      { name: 'unit_en',    type: 'text',     html: { caption: '<%= I18n.t("attributes.unit") %> EN'}   },
-      { name: 'flag',       type: 'checkbox', html: { caption: '<%= I18n.t("activerecord.attributes.property/datatypes.flag") %>'}   },
-      { name: 'created_at', type: 'text',     html: { caption: '<%= I18n.t("attributes.created_at") %>' }, disabled: true },
-      { name: 'updated_at', type: 'text',     html: { caption: '<%= I18n.t("attributes.updated_at") %>' }, disabled: true }
+      { name: 'title_de',          type: 'text' },
+      { name: 'title_en',          type: 'text' },
+      { name: 'amount',            type: 'float' },
+      { name: 'unit_de',           type: 'text' },
+      { name: 'unit_en',           type: 'text' },
+      { name: 'flag',              type: 'checkbox' },
+      { name: 'created_at',        type: 'text', disabled: true },
+      { name: 'updated_at',        type: 'text', disabled: true },
+      { name: 'property_group_id', type: 'int',  disabled: true },
+      { name: 'property_id',       type: 'int',  disabled: true }
     ],
     onChange: function(event) {
       event.onComplete = function () {
@@ -37,8 +90,8 @@ function valueForm() {
       }
     },
     actions: {
-      save: { 
-        caption: 'Save', 
+      save: {
+        caption: 'Save',
         class: 'w2ui-btn-green',
         onClick: function () {
           var tree = $("#valueTree").fancytree("getTree")
@@ -51,32 +104,51 @@ function valueForm() {
           })
         }
       },
-      delete: { 
-        caption: 'Delete', 
-        class: 'w2ui-btn-red',
+      delete: {
         onClick: function () {
           var form = this
           var tree =  $("#valueTree").fancytree("getTree")
-          var active_node = tree.getActiveNode()
-          property_group = active_node.parent
+          var activeNode = tree.getActiveNode()
+          var propertyGroup = activeNode.parent
 
           $.ajax({
-            url:"/productmanager/property_manager/value/" + active_node.key,
+            url:"/productmanager/property_manager/value/" + activeNode.key,
             method: "DELETE",
             data: { authenticity_token: csrf_token },
             dataType: 'script',
           }).done(function(response, textStatus, jqXHR) {
             form.clear()
             tree.reload().done(function() {
-              tree.activateKey(property_group.key).setExpanded() 
+              tree.activateKey(propertyGroup.key).setExpanded()
             })
           }).fail(function(jqXHR, textStatus, errorThrown) {
             w2alert(jqXHR.responseText)
-            w2popup.lock.unlock()
           })
         }
+      },
+      create: {
+        onClick: function () {
+          var propertyGroupId = w2ui.propertyGroupsGrid.getSelection()[0]
+          if (propertyGroupId) {
+            w2ui.valueForm.record['property_group_id'] = parseInt(propertyGroupId)
+          } else {
+            w2alert('<%= I18n.t("mercator.no_property_group_selected") %>')
+            return
+          }
+          var propertyId = w2ui.propertiesGrid.getSelection()[0]
+          if (propertyId) {
+            w2ui.valueForm.record['property_id'] = parseInt(propertyId)
+          } else {
+            w2alert('<%= I18n.t("mercator.no_property_selected") %>')
+            return
+          }
+          if (!w2ui.valueForm.record['state']) {
+            w2ui.valueForm.record['state'] = 'textual'
+          }
+          w2ui.valueForm.refresh()
+        }
       }
-    }  
+    }
   })
 }
 

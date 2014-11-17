@@ -656,6 +656,8 @@ en:
     no_open_payments: No open payments found.
     no_products_available: No products Available
     no_product_with_this_name: No product found with this name.
+    no_property_group_selected: No Property Group selected! Please select one!
+    no_property_selected: No Property selected! Please select one!
     not_assigned: Not assigned
     offer_email_login: "If you are registered already and want to login using your E-Mail, we can send you a login link."
     on_request: On request
