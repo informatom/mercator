@@ -54,7 +54,7 @@ Mercator::Application.routes.draw do
     get 'front/show_properties' => 'front#show_properties'
     get 'front/show_property_groups' => 'front#show_property_groups'
     get 'front/show_valuetree/:id' => 'front#show_valuetree'
-    post 'front/show_value/:id' => 'front#show_value'
+    post 'front/manage_value/:id' => 'front#manage_value'
   end
 
   namespace :contentmanager do

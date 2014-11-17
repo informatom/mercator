@@ -32,6 +32,7 @@ function productsGrid() {
       { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', size: '200px', sortable: true, hidden: true },
       { field: 'warranty_de', caption: '<%= I18n.t("attributes.warranty") %> DE', size: '200px', sortable: true },
       { field: 'warranty_en', caption: '<%= I18n.t("attributes.warranty") %> EN', size: '200px', sortable: true, hidden: true },
+      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px' },
       { field: 'novelty', caption: '<%= I18n.t("attributes.novelty") %>', size: '50px', attr: "align=center",
         render: function (record) {
           return record.novelty ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'

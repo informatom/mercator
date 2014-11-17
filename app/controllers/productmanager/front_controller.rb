@@ -128,6 +128,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
           long_description_en: ActionController::Base.helpers.strip_tags(product.long_description_en),
           warranty_de: product.warranty_de,
           warranty_en: product.warranty_en,
+          state: I18n.t('mercator.states.' + product.state),
           novelty: product.novelty,
           topseller: product.topseller,
           created_at: product.created_at.utc.to_i*1000,
@@ -181,7 +182,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     render json: valuearray.to_json
   end
 
-  def show_value
+  def manage_value
     value = Value.find(params[:id])
 
     render json: {

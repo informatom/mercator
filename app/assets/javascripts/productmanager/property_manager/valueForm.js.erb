@@ -1,6 +1,6 @@
 function valueForm() {
   $('#valueForm').w2form({
-    name   : 'valueForm',
+    name: 'valueForm',
     fields : [
       {
         name: 'state',
@@ -35,9 +35,21 @@ function valueForm() {
         var the_state = w2ui.valueForm.record['state']
         updateFieldVisibility(the_state)
       }
-    }
+    },
+    actions: {
+      save: { 
+        caption: 'Save', 
+        class: 'w2ui-btn-green',
+        onClick: function () {
+
+          this.save()
+        }
+      }
+    }  
   })
 }
+
+
 
 function updateFieldVisibility(the_state) {
   switch (the_state) {
