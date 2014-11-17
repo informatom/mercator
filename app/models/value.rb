@@ -33,11 +33,11 @@ class Value < ActiveRecord::Base
   def data_meets_state
     case state
       when "textual"
-        unless title_de.present? && amount.blank? && flag.nil?
+        unless title_de.present? && amount.blank? && (flag.nil? || flag == false)
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
       when "numeric"
-        unless amount.present? && title_de.blank? && title_en.blank? && flag.nil?
+        unless amount.present? && title_de.blank? && title_en.blank? && (flag.nil? || flag == false)
           errors.add(:base, I18n.translate("errors.messages.data_meets_state"))
         end
       when "flag"

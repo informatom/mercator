@@ -2,7 +2,7 @@
 namespace :properties do
   # starten als: 'bundle exec rake properties:dedup
   # in Produktivumgebungen: 'bundle exec rake properties:dedup RAILS_ENV=production'
-  desc "eduplicating properties and removing orphans"
+  desc "deduplicating properties and removing orphans"
   task :dedup => :environment do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: properties:dedup")
