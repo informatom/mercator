@@ -41,8 +41,14 @@ function valueForm() {
         caption: 'Save', 
         class: 'w2ui-btn-green',
         onClick: function () {
+          var tree = $("#valueTree").fancytree("getTree")
+          var active_node = tree.getActiveNode()
 
-          this.save()
+          this.save( function() {
+            tree.reload().done(function() {
+              tree.activateKey(active_node.key)
+            })
+          })
         }
       }
     }  
