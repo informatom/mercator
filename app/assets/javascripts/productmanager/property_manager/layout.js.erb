@@ -1,7 +1,7 @@
 $(function () {
   w2utils.locale('/assets/contentmanager/de-de.json')
 
-  $('#property_manager').w2layout({
+  $('#grid').w2layout({
     name: 'propertymanager',
     panels: [
       {
@@ -36,7 +36,7 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         productGrid()
-        w2ui.productGrid.load('/productmanager/front/property_manager/' + request_id)
+        w2ui.productGrid.load('/productmanager/property_manager/index/' + request_id)
         valueTree()
         valueForm()
       }
@@ -63,9 +63,9 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         propertyGroupsGrid()
-        w2ui.propertyGroupsGrid.load('/productmanager/front/show_property_groups')
+        w2ui.propertyGroupsGrid.load('/productmanager/property_manager/show_property_groups')
         propertiesGrid()
-        w2ui.propertiesGrid.load('/productmanager/front/show_properties')
+        w2ui.propertiesGrid.load('/productmanager/property_manager/show_properties')
       }
     }
   })

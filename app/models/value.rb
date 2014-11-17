@@ -11,7 +11,7 @@ class Value < ActiveRecord::Base
     flag     :boolean
     timestamps
   end
-  attr_accessible :title_de, :title_en, :amount, :flag, :product, :property_group, :property
+  attr_accessible :title_de, :title_en, :amount, :flag, :product, :property_group, :property, :state
   translates :title, :unit
   has_paper_trail
 

@@ -7,11 +7,11 @@
       <stylesheet name='#{subsite}'/>
 
       <javascript name='#{subsite}'/>
-      <javascript name="productmanager/#{request.parameters[:action]}.js" />
+      <javascript name="#{request.parameters[:controller]}/index.js" />
     </head>
 
     <body param>
-      <div id="#{request.parameters[:action]}" style="height: 100%"></div>
+      <div id="grid" style="height: 100%"></div>
     </body>
 
     <script>

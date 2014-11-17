@@ -1,6 +1,6 @@
 function valueTree() {
   $("#valueTree").fancytree({
-    source: { url: "/productmanager/front/show_valuetree/" + request_id },
+    source: { url: "/productmanager/property_manager/show_valuetree/" + request_id },
     selectMode: 1,
     click: function(event, data) {
       if (data.node.key) {
@@ -19,7 +19,7 @@ function valueTree() {
           w2ui.propertiesGrid.selectNone()
           w2ui.propertiesGrid.select(property_id)
 
-          w2ui.valueForm.url = '/productmanager/front/manage_value/' + value_id
+          w2ui.valueForm.url = '/productmanager/property_manager/manage_value/' + value_id
           w2ui.valueForm.recid = parseInt(value_id)
           w2ui.valueForm.reload()
         }
