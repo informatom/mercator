@@ -148,7 +148,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
 
     if success == false
       render json: { status: "error",
-                    message: value.errors.first }
+                     message: value.errors.first }
     else  
       render json: { status: "success",
                      record: {
@@ -164,6 +164,15 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
                        updated_at: I18n.l(value.updated_at)
                      }
                    }
+    end
+  end
+
+  def delete_value
+    value = Value.find(params[:id])
+    if value.delete
+      render nothing: true
+    else
+      render json: value.errors.first
     end
   end
 end

@@ -50,12 +50,35 @@ function valueForm() {
             })
           })
         }
+      },
+      delete: { 
+        caption: 'Delete', 
+        class: 'w2ui-btn-red',
+        onClick: function () {
+          var form = this
+          var tree =  $("#valueTree").fancytree("getTree")
+          var active_node = tree.getActiveNode()
+          property_group = active_node.parent
+
+          $.ajax({
+            url:"/productmanager/property_manager/value/" + active_node.key,
+            method: "DELETE",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            form.clear()
+            tree.reload().done(function() {
+              tree.activateKey(property_group.key).setExpanded() 
+            })
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+            w2popup.lock.unlock()
+          })
+        }
       }
     }  
   })
 }
-
-
 
 function updateFieldVisibility(the_state) {
   switch (the_state) {
