@@ -57,6 +57,8 @@ Mercator::Application.routes.draw do
     get 'property_manager/show_property_groups' => 'property_manager#show_property_groups'
     post 'property_manager/manage_value/:id' => 'property_manager#manage_value'
     delete 'property_manager/value/:id' => 'property_manager#delete_value'
+    post 'property_manager/update_property_groups_order' => 'property_manager#update_property_groups_order'
+    post 'property_manager/update_properties_order' => 'property_manager#update_properties_order'
   end
 
   namespace :contentmanager do

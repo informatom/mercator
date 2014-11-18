@@ -744,6 +744,7 @@ en:
     url: URL
     use_navigation: Use the links in the menu for navigation.
     user_accounts_missing: There are no user accounts - please provide the details of the site administrator.
+    value_exists: Can't save! There is already a value for this property group / property combination!
     video_chat: Video Chat
     vor: ""
     welcome_at: Welcome at

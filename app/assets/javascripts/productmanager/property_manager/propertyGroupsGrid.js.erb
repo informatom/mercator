@@ -16,13 +16,33 @@ function propertyGroupsGrid() {
         field: 'position',
         sortable: true,
         caption: '<%= I18n.t("attributes.position") %>',
-        size: '20'
+        size: '20',
+        editable: { type: 'int' }
       }, {
         field: 'name',
         sortable: true,
         caption: '<%= I18n.t("attributes.name") %>',
         size: '100%'
       }
-    ]
+    ],
+    onChange: function(event) {
+      w2ui.propertylists.lock('left')
+      $.ajax({
+        url:"/productmanager/property_manager/update_property_groups_order/",
+        method: "POST",
+        data: {
+          authenticity_token: csrf_token,
+          value_original: event.value_original,
+          value_new: event.value_new
+        },
+        dataType: 'script',
+      }).done(function(response, textStatus, jqXHR) {
+        w2ui.propertyGroupsGrid.load('/productmanager/property_manager/show_property_groups')
+        w2ui.propertylists.unlock('left')
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        w2alert(jqXHR.responseText)
+        w2ui.propertylists.unlock('left')
+      })
+    }
   })
 }

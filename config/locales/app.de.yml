@@ -751,6 +751,7 @@ de:
     url: URL
     use_navigation: Verwenden Sie die Links im Menü zur Navigation.
     user_accounts_missing: Es gibt keine Benuzterkonten - legen Sie nun den ersten Administrationsaccount an.
+    value_exists: Kann Wert nicht speichern! Ein Wert für diese Eigenschaftsgruppe/Eigenschaft Kombination existiert bereits!
     video_chat: Video Chat
     vor: vor
     welcome_at: Willkommen bei

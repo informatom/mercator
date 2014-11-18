@@ -128,7 +128,17 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
   end
 
   def manage_value
-    value = Value.find(params[:id])
+    if params[:recid] == "0"
+      if Value.where(property_group_id: params[:record][:property_group_id],
+                     property_id:       params[:record][:property_id]).any?
+        render json: { status: "error",
+                       message: I18n.t("mercator.value_exists") } and return
+      else
+        value = Value.new
+      end
+    else
+      value = Value.find(params[:recid])
+    end
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
@@ -136,13 +146,15 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
       flag = true if attrs[:flag] == "1"
       flag = false if attrs[:flag] == "0"
 
-      value.state    = attrs[:state][:id]
-      value.title_de = attrs[:title_de]
-      value.title_en = attrs[:title_en]
-      value.amount   = attrs[:amount]
-      value.unit_de  = attrs[:unit_de]
-      value.unit_en  = attrs[:unit_en]
-      value.flag     = flag
+      value.state             = attrs[:state][:id]
+      value.title_de          = attrs[:title_de]
+      value.title_en          = attrs[:title_en]
+      value.amount            = attrs[:amount]
+      value.unit_de           = attrs[:unit_de]
+      value.unit_en           = attrs[:unit_en]
+      value.flag              = flag
+      value.property_group_id = attrs[:property_group_id]
+      value.property_id       = attrs[:property_id]
       success = value.save
     end
 
@@ -176,5 +188,17 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
     else
       render json: value.errors.first
     end
+  end
+
+  def update_property_groups_order
+    property_group = PropertyGroup.find_by(position: params[:value_original])
+    property_group.insert_at(params[:value_new].to_i)
+    render nothing: true
+  end
+
+  def update_properties_order
+    property = Property.find_by(position: params[:value_original])
+    property.insert_at(params[:value_new].to_i)
+    render nothing: true
   end
 end
