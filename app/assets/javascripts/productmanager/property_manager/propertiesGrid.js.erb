@@ -4,13 +4,48 @@ function propertiesGrid() {
     method: 'GET',
     multiSelect : false,
     show: { toolbar: true, footer: true },
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'newProperty', img: 'fa fa-plus' },
+        { type: 'button', id: 'editProperty', img: 'fa fa-edit', disabled: true },
+        { type: 'button', id: 'deleteProperty', img: 'fa fa-trash', disabled: true }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.propertiesGrid.getSelection()
+        switch (target) {
+        case 'newProperty':
+          document.location = "/admin/properties/new?product_id=" + request_id
+        break
+        case 'editProperty':
+          document.location = "/admin/properties/" + selection[0] + "/edit"
+        break
+        case 'deleteProperty':
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/admin/properties/" + selection[0],
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2ui.propertiesGrid.load('/productmanager/property_manager/show_properties')
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
+          })
+        }
+      }
+    },
+
     columns : [
       {
         field: 'recid',
         caption: '<%= I18n.t("attributes.id") %>',
         size: '50px',
         sortable: false,
-        hidden: true ,
+        hidden: true,
         attr: "align=center"
       }, {
         field: 'position',
@@ -23,8 +58,15 @@ function propertiesGrid() {
         sortable: true,
         caption: '<%= I18n.t("attributes.name") %>',
         size: '100%'
+      }, {
+        field: 'datatype',
+        sortable: false,
+        caption: 'Type',
+        size: '50',
+        hidden: true
       }
     ],
+
     onChange: function(event) {
       var tree = $("#valueTree").fancytree("getTree")
       var active_node = tree.getActiveNode()
@@ -47,6 +89,19 @@ function propertiesGrid() {
           tree.activateKey(active_node.key)
         })
       })
+    },
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('editProperty')
+          this.toolbar.enable('deleteProperty')
+        } else {
+          this.toolbar.disable('editProperty')
+          this.toolbar.disable('deleteProperty')
+        }
+      }
     }
   })
 }

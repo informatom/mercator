@@ -80,7 +80,8 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
         |property| {
           recid:    property.id,
           position: property.position,
-          name:     property.name
+          name:     property.name,
+          datatype: property.datatype
         }
       }
     }

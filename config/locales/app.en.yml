@@ -688,6 +688,9 @@ en:
       unfilterable_properties: Non-Filterable Properties
     propertymanager:
       title: Property Manager
+      cannot_delete_property:
+        record_not_found: The property cannot be found.
+        values: "This property cannot be deleted, it is stil used in values!"
       cannot_delete_property_group:
         record_not_found: The property group cannot be found.
         values: "This property group cannot be deleted, it is stil used in values!"

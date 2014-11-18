@@ -148,13 +148,13 @@ function valueForm() {
           var propertyId = w2ui.propertiesGrid.getSelection()[0]
           if (propertyId) {
             w2ui.valueForm.record['property_id'] = parseInt(propertyId)
+            var state = w2ui.propertiesGrid.get(propertyId).datatype
+            w2ui.valueForm.record['state'] = state
+            updateFieldVisibility(state)
           } else {
             w2alert('<%= I18n.t("mercator.no_property_selected") %>')
             return
           }
-
-          w2ui.valueForm.record['state'] = 'textual'
-          updateFieldVisibility('textual')
         }
       }
     }

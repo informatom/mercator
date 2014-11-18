@@ -47,11 +47,14 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
   end
 
   def create
-    query_params = CGI.parse(URI::parse(params[:page_path]).query)
-    product_id = query_params["product_id"][0]
+    query = URI::parse(params[:page_path]).query
 
-    hobo_create(redirect: productmanager_property_manager_path(product_id)) do
-
+    if query
+      query_params = CGI.parse(query)
+      product_id = query_params["product_id"][0]
+      hobo_create(redirect: productmanager_property_manager_path(product_id))
+    else
+      hobo_create
     end
   end
 end
