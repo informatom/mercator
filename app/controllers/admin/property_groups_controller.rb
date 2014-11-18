@@ -29,8 +29,29 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
   end
 
   def destroy
+    begin
+      @property_group = PropertyGroup.find(params[:id])
+    rescue
+      render :text => I18n.t("mercator.product_manager.cannot_delete_property_group.record_not_found"),
+             :status => 403 and return
+    end
+
+    if @property_group.values.any?
+      render :text => I18n.t("mercator.product_manager.cannot_delete_property_group.values"),
+             :status => 403 and return
+    end
+
     hobo_destroy do
-      render json: { status: "success" } if request.xhr?
+      render nothing: true if request.xhr?
+    end
+  end
+
+  def create
+    query_params = CGI.parse(URI::parse(params[:page_path]).query)
+    product_id = query_params["product_id"][0]
+
+    hobo_create(redirect: productmanager_property_manager_path(product_id)) do
+
     end
   end
 end

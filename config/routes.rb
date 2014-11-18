@@ -51,7 +51,7 @@ Mercator::Application.routes.draw do
     get 'front/show_products/:id' => 'front#show_products'
     get 'front/show_category/:id' => 'front#show_category'
 
-    get 'property_manager/index/:id' => 'property_manager#index'
+    get 'property_manager/index/:id' => 'property_manager#index', :as => 'property_manager'
     get 'property_manager/show_valuetree/:id' => 'property_manager#show_valuetree'
     get 'property_manager/show_properties' => 'property_manager#show_properties'
     get 'property_manager/show_property_groups' => 'property_manager#show_property_groups'

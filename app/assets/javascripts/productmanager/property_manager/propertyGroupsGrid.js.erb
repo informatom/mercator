@@ -4,6 +4,41 @@ function propertyGroupsGrid() {
     method: 'GET',
     multiSelect : false,
     show: { toolbar: true, footer: true },
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'newPropertyGroup', img: 'fa fa-plus' },
+        { type: 'button', id: 'editPropertyGroup', img: 'fa fa-edit', disabled: true },
+        { type: 'button', id: 'deletePropertyGroup', img: 'fa fa-trash', disabled: true }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.propertyGroupsGrid.getSelection()
+        switch (target) {
+        case 'newPropertyGroup':
+          document.location = "/admin/property_groups/new?product_id=" + request_id
+        break
+        case 'editPropertyGroup':
+          document.location = "/admin/property_groups/" + selection[0] + "/edit"
+        break
+        case 'deletePropertyGroup':
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/admin/property_groups/" + selection[0],
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2ui.propertyGroupsGrid.load('/productmanager/property_manager/show_property_groups')
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
+          })
+        }
+      }
+    },
+
     columns : [
       {
         field: 'recid',
@@ -47,6 +82,18 @@ function propertyGroupsGrid() {
           tree.activateKey(active_node.key)
         })
       })
-    }
+    },
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('editPropertyGroup')
+          this.toolbar.enable('deletePropertyGroup')
+        } else {
+          this.toolbar.disable('editPropertyGroup')
+          this.toolbar.disable('deletePropertyGroup')
+        }
+      }
+    },
   })
 }

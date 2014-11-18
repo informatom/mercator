@@ -684,6 +684,9 @@ de:
     printer_series: Druckerserien
     product_manager:
       title: Produktmanager
+      cannot_delete_property_group:
+        record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
+        values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
     product_comparison: Produktvergleich
     product_suggestion: Produktvorschlag
     products_available: Produkte zur Auswahl
