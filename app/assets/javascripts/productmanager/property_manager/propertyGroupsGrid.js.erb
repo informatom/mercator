@@ -26,7 +26,9 @@ function propertyGroupsGrid() {
       }
     ],
     onChange: function(event) {
-      w2ui.propertylists.lock('left')
+      var tree = $("#valueTree").fancytree("getTree")
+      var active_node = tree.getActiveNode()
+
       $.ajax({
         url:"/productmanager/property_manager/update_property_groups_order/",
         method: "POST",
@@ -38,10 +40,12 @@ function propertyGroupsGrid() {
         dataType: 'script',
       }).done(function(response, textStatus, jqXHR) {
         w2ui.propertyGroupsGrid.load('/productmanager/property_manager/show_property_groups')
-        w2ui.propertylists.unlock('left')
       }).fail(function(jqXHR, textStatus, errorThrown) {
         w2alert(jqXHR.responseText)
-        w2ui.propertylists.unlock('left')
+      }).always(function() {
+        tree.reload().done(function() {
+          tree.activateKey(active_node.key)
+        })
       })
     }
   })

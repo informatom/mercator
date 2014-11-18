@@ -26,7 +26,9 @@ function propertiesGrid() {
       }
     ],
     onChange: function(event) {
-      w2ui.propertylists.lock('main')
+      var tree = $("#valueTree").fancytree("getTree")
+      var active_node = tree.getActiveNode()
+
       $.ajax({
         url:"/productmanager/property_manager/update_properties_order/",
         method: "POST",
@@ -38,10 +40,12 @@ function propertiesGrid() {
         dataType: 'script',
       }).done(function(response, textStatus, jqXHR) {
         w2ui.propertiesGrid.load('/productmanager/property_manager/show_properties')
-        w2ui.propertylists.unlock('main')
       }).fail(function(jqXHR, textStatus, errorThrown) {
         w2alert(jqXHR.responseText)
-        w2ui.propertylists.unlock('main')
+      }).always(function() {
+        tree.reload().done(function() {
+          tree.activateKey(active_node.key)
+        })
       })
     }
   })
