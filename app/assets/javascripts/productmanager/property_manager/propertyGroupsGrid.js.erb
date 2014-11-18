@@ -15,10 +15,10 @@ function propertyGroupsGrid() {
         var selection = w2ui.propertyGroupsGrid.getSelection()
         switch (target) {
         case 'newPropertyGroup':
-          document.location = "/admin/property_groups/new?product_id=" + request_id
+          document.location = "/admin/property_groups/new?product_id=" + request_id + "&value_id=" + selected_value_id
         break
         case 'editPropertyGroup':
-          document.location = "/admin/property_groups/" + selection[0] + "/edit"
+          document.location = "/admin/property_groups/" + selection[0] + "/edit" + "&value_id=" + selected_value_id
         break
         case 'deletePropertyGroup':
           w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {

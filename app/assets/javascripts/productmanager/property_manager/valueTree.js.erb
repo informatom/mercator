@@ -2,6 +2,9 @@ function valueTree() {
   $("#valueTree").fancytree({
     source: { url: "/productmanager/property_manager/show_valuetree/" + request_id },
     selectMode: 1,
+    init: function() {
+      $("#valueTree").fancytree("getTree").activateKey(selected_value).setExpanded()
+    },
     click: function(event, data) {
       if (data.node.key) {
         if (data.node.folder) {
@@ -18,6 +21,8 @@ function valueTree() {
           w2ui.propertiesGrid.scrollIntoView(index)
           w2ui.propertiesGrid.selectNone()
           w2ui.propertiesGrid.select(property_id)
+          w2ui.propertiesGrid.toolbar.enable('editProperty')
+          w2ui.propertiesGrid.toolbar.enable('deleteProperty')
 
           w2ui.valueForm.url = '/productmanager/property_manager/manage_value/' + value_id
           w2ui.valueForm.recid = parseInt(value_id)
@@ -27,6 +32,9 @@ function valueTree() {
         w2ui.propertyGroupsGrid.scrollIntoView(index)
         w2ui.propertyGroupsGrid.selectNone()
         w2ui.propertyGroupsGrid.select(property_group_id)
+        w2ui.propertyGroupsGrid.toolbar.enable('editPropertyGroup')
+        w2ui.propertyGroupsGrid.toolbar.enable('deletePropertyGroup')
+
       }
     }
   })

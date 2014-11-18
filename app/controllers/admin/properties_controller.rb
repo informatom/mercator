@@ -69,7 +69,21 @@ class Admin::PropertiesController < Admin::AdminSiteController
     if query
       query_params = CGI.parse(query)
       product_id = query_params["product_id"][0]
+      session[:seleted_value] = query_params["value_id"][0].to_i
       hobo_create(redirect: productmanager_property_manager_path(product_id))
+    else
+      hobo_create
+    end
+  end
+
+  def update
+    query = URI::parse(params[:page_path]).query
+
+    if query
+      query_params = CGI.parse(query)
+      product_id = query_params["product_id"][0]
+      session[:seleted_value] = query_params["value_id"][0].to_i
+      hobo_update(redirect: productmanager_property_manager_path(product_id))
     else
       hobo_create
     end

@@ -13,12 +13,15 @@ function propertiesGrid() {
       ],
       onClick: function (target, data) {
         var selection = w2ui.propertiesGrid.getSelection()
+
+        var selected_value_id = w2ui.valueForm.recid
+
         switch (target) {
         case 'newProperty':
-          document.location = "/admin/properties/new?product_id=" + request_id
+          document.location = "/admin/properties/new?product_id=" + request_id + "&value_id=" + selected_value_id
         break
         case 'editProperty':
-          document.location = "/admin/properties/" + selection[0] + "/edit"
+          document.location = "/admin/properties/" + selection[0] + "/edit?product_id=" + request_id + "&value_id=" + selected_value_id
         break
         case 'deleteProperty':
           w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
