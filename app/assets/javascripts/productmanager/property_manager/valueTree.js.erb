@@ -3,7 +3,7 @@ function valueTree() {
     source: { url: "/productmanager/property_manager/show_valuetree/" + request_id },
     selectMode: 1,
     init: function() {
-      if (selected_value) {
+      if (!(selected_value == "0")) {
         $("#valueTree").fancytree("getTree").activateKey(selected_value).setExpanded()
       }
     },
