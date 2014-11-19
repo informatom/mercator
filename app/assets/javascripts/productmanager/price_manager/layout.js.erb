@@ -12,10 +12,10 @@ $(function () {
         content: "<div id='menu'></div>"
       }, {
         type: 'left',
-        size: '20%',
+        size: '25%',
         resizable: true,
         title: '<%= I18n.t("activerecord.models.product.one") %>',
-        content: "<div id='productform' style='height: 100%'></div>"
+        content: "<div id='productForm' style='height: 100%'></div>"
       }, {
         type: 'main',
         resizable: true,
@@ -35,6 +35,7 @@ $(function () {
     ],
     onRender: function(event) {
       event.onComplete = function () {
+        productForm()
       }
     }
   })

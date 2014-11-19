@@ -62,6 +62,7 @@ Mercator::Application.routes.draw do
     post 'property_manager/update_properties_order' => 'property_manager#update_properties_order'
 
     get 'price_manager/index/:id' => 'price_manager#index', :as => 'price_manager'
+    post 'price_manager/manage_product' => 'price_manager#manage_product'
   end
 
   namespace :contentmanager do

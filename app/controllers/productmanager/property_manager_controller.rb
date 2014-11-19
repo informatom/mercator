@@ -27,7 +27,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
           }, {
             recid: 4,
             attribute: I18n.t("attributes.description") + " DE",
-            value: product.description_en
+            value: product.description_de
           }, {
             recid: 5,
             attribute: I18n.t("attributes.description") + " EN",
