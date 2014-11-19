@@ -44,6 +44,9 @@ class Category < ActiveRecord::Base
   has_many :categorizations, -> { order :position }, :inverse_of => :category,
             dependent: :destroy, :accessible => true
 
+  has_many :values, :through => :products
+  has_many :properties, :through => :products
+
   lifecycle do
     state :new, :default => true
     state :active, :deprecated

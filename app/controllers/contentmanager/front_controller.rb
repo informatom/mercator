@@ -109,7 +109,6 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
 protected
-
   def reorder_webpages(webpages: nil, parent_id: nil)
     webpages.each do |position, webpages|
       webpage = Webpage.find(webpages["key"])
@@ -124,9 +123,13 @@ protected
     folders.each do |position, folders|
       folder = Folder.find(folders["key"])
       if folder.position != position.to_i || folder.parent_id != parent_id
-        folder.update(position: position, parent_id: parent_id)
+        folder.update(position: position,
+                      parent_id: parent_id)
       end
-      reorder_folders(folders: folders["children"], parent_id: folder.id) if folders["children"]
+      if folders["children"]
+        reorder_folders(folders: folders["children"],
+                        parent_id: folder.id)
+      end
     end
   end
 
@@ -135,7 +138,9 @@ protected
     objects.each do |object, children|
       childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => folder]
       if children.any?
-        childhash["children"] = childrenarray(objects: children, name_method: name_method, folder: folder)
+        childhash["children"] = childrenarray(objects: children,
+                                              name_method: name_method,
+                                              folder: folder)
       end
       childrenarray << childhash
     end

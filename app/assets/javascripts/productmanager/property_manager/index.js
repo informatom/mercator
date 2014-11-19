@@ -4,3 +4,4 @@
 //= require ./propertyGroupsGrid
 //= require ./valueTree
 //= require ./valueForm
+//= require ./menu

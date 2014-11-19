@@ -50,6 +50,7 @@ Mercator::Application.routes.draw do
     get 'front/show_categorytree' => 'front#show_categorytree'
     get 'front/show_products/:id' => 'front#show_products'
     get 'front/show_category/:id' => 'front#show_category'
+    post 'front/update_categories' => 'front#update_categories'
 
     get 'property_manager/index/:id' => 'property_manager#index', :as => 'property_manager'
     get 'property_manager/show_valuetree/:id' => 'property_manager#show_valuetree'
@@ -87,6 +88,7 @@ Mercator::Application.routes.draw do
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
 
+  get 'admin/categories/:id/edit_properties' => 'admin/categories#edit_properties'
   put 'admin/categories/:id/edit_properties' => 'admin/categories#edit_properties'
 
   post 'conversations/refresh' => 'conversations#refresh'

@@ -9,7 +9,7 @@ $(function () {
         title: '<%= I18n.t("mercator.product_manager.title") %>',
         size: 58,
         resizable: true,
-        content: "Top"
+        content: "<div id='menu'></div>"
       },
       {
         type: 'left',
@@ -37,6 +37,7 @@ $(function () {
         categoryTree()
         category()
         productsGrid()
+        menu()
       }
     }
   })

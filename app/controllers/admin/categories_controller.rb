@@ -13,7 +13,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
   end
 
   show_action :edit_properties do
-    @this = Category.find(params[:id])
+    @this = Category.includes(:products, :values, :properties).find(params[:id])
     properties = @this.products.*.values.flatten.*.property.uniq
     properties.sort! { |a,b| a.name <=> b.name }
     @filterable_properties = properties.select { |property| property.state == "filterable"}

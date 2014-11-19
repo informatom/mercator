@@ -2,6 +2,7 @@ function webpageTree() {
   $("#webpageTree").fancytree({
     source: { url: "/contentmanager/front/show_webpagestree" },
     extensions: ["dnd"],
+
     dnd: {
       dragStart: function(node, data) { return true },
       dragEnter: function(node, data) { return true },
@@ -24,6 +25,7 @@ function webpageTree() {
         })
       }
     },
+
     click: function(event, data) {
       if (data.node.key) {
         w2ui.assignments.load('/contentmanager/front/show_assignments/' + data.node.key)

@@ -9,7 +9,7 @@ $(function () {
         title: '<%= I18n.t("mercator.property_manager.title") %>',
         size: 58,
         resizable: true,
-        content: "Top"
+        content: "<div id='menu'></div>"
       }, {
         type: 'left',
         size: '20%',
@@ -39,6 +39,7 @@ $(function () {
         w2ui.productGrid.load('/productmanager/property_manager/index/' + request_id)
         valueTree()
         valueForm()
+        menu()
       }
     }
   })

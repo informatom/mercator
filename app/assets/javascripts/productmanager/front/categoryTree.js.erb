@@ -1,6 +1,31 @@
 function categoryTree() {
   $("#categoryTree").fancytree({
     source: { url: "/productmanager/front/show_categorytree" },
+    extensions: ["dnd"],
+
+    dnd: {
+      dragStart: function(node, data) { return true },
+      dragEnter: function(node, data) { return true },
+      dragDrop: function(node, data) {
+        data.otherNode.moveTo(node, data.hitMode)
+        w2ui.productmanager.lock('left', w2utils.lang('Refreshing...'), true)
+        $.ajax({
+          url:"/productmanager/front/update_categories",
+          method: "POST",
+          data: {
+            authenticity_token: csrf_token,
+            categories: $("#categoryTree").fancytree("getTree").toDict()
+          },
+          dataType: 'script'
+        }).done(function(response, textStatus, jqXHR) {
+          w2ui.productmanager.unlock('left')
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          w2alert(jqXHR.responseText)
+          w2ui.productmanager.unlock('left')
+        })
+      }
+    },
+
     click: function(event, data) {
       if (data.node.key) {
         w2ui.productsgrid.load('/productmanager/front/show_products/' + data.node.key)

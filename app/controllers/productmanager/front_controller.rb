@@ -57,7 +57,12 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
                              { recid: 11, attribute: I18n.t("attributes.created_at"), value: I18n.l(category.created_at) },
                              { recid: 12, attribute: I18n.t("attributes.updated_at"), value: I18n.l(category.updated_at) }] }
   end
- 
+
+  def update_categories
+    reorder_categories(categories: params[:categories], parent_id: nil)
+    render nothing: true
+  end
+
 protected
 
   def childrenarray(objects: nil, name_method: nil, folder: false)
@@ -65,10 +70,26 @@ protected
     objects.each do |object, children|
       childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => folder]
       if children.any?
-        childhash["children"] = childrenarray(objects: children, name_method: name_method, folder: folder)
+        childhash["children"] = childrenarray(objects: children,
+                                              name_method: name_method,
+                                              folder: folder)
       end
       childrenarray << childhash
     end
     return childrenarray
+  end
+
+  def reorder_categories(categories: nil, parent_id: nil)
+    categories.each do |position, categories|
+      category = Category.find(categories["key"])
+      if category.position != position.to_i || category.parent_id != parent_id
+        category.update(position: position,
+                        parent_id: parent_id)
+      end
+      if categories["children"]
+        reorder_categories(categories: categories["children"],
+                           parent_id: category.id)
+      end
+    end
   end
 end
