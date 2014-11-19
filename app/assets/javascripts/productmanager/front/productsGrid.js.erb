@@ -9,13 +9,18 @@ function productsGrid() {
     toolbar: {
       items: [
         { type: 'button', id: 'editProperties', img: 'fa fa-tag', disabled: true,
-          caption: "<%= I18n.t('activerecord.models.property.other') %> <%= I18n.t('hobo.actions.edit', model: '') %>" }
+          caption: "<%= I18n.t('activerecord.models.property.other') %> <%= I18n.t('hobo.actions.edit', model: '') %>" },
+        { type: 'button', id: 'editPrices', img: 'fa fa-money', disabled: true,
+          caption: "<%= I18n.t('activerecord.models.price.other') %> <%= I18n.t('hobo.actions.edit', model: '') %>" }
       ],
       onClick: function (target, data) {
         var selection = w2ui.productsgrid.getSelection()
         switch (target) {
         case 'editProperties':
           document.location = "/productmanager/property_manager/index/" + selection[0]
+        break
+        case 'editPrices':
+          document.location = "/productmanager/price_manager/index/" + selection[0]
         break
         }
       }
@@ -64,8 +69,10 @@ function productsGrid() {
         var selection = this.getSelection()
         if (selection.length == 1) {
           this.toolbar.enable('editProperties')
+          this.toolbar.enable('editPrices')
         } else {
           this.toolbar.disable('editProperties')
+          this.toolbar.disable('editPrices')
         }
       }
     }

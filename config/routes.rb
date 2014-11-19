@@ -60,6 +60,8 @@ Mercator::Application.routes.draw do
     delete 'property_manager/value/:id' => 'property_manager#delete_value'
     post 'property_manager/update_property_groups_order' => 'property_manager#update_property_groups_order'
     post 'property_manager/update_properties_order' => 'property_manager#update_properties_order'
+
+    get 'price_manager/index/:id' => 'price_manager#index', :as => 'price_manager'
   end
 
   namespace :contentmanager do
