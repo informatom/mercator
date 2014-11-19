@@ -110,7 +110,8 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
 
     hashed_values.each do | key, values |
       property_array = []
-      property_group = PropertyGroup.find(key)
+      property_group = values[0].property_group
+#     property_group = PropertyGroup.find(key) # would be proettier, but is way slower
       property_group_hash =  Hash["title"  => property_group.name,
                                   "key" => property_group.id,
                                   "folder" => true]
@@ -131,7 +132,8 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
   def manage_value
     if params[:recid] == "0"
       if Value.where(property_group_id: params[:record][:property_group_id],
-                     property_id:       params[:record][:property_id]).any?
+                     property_id:       params[:record][:property_id],
+                     product_id:        params[:record][:product_id]).any?
         render json: { status: "error",
                        message: I18n.t("mercator.value_exists") } and return
       else
@@ -156,6 +158,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
       value.flag              = flag
       value.property_group_id = attrs[:property_group_id]
       value.property_id       = attrs[:property_id]
+      value.product_id        = attrs[:product_id]
       success = value.save
     end
 
@@ -165,18 +168,19 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
     else
       render json: { status: "success",
                      record: {
-                       recid:      value.id,
-                       state:      value.state,
-                       title_de:   value.title_de,
-                       title_en:   value.title_en,
-                       amount:     value.amount,
-                       unit_de:    value.unit_de,
-                       unit_en:    value.unit_en,
-                       flag:       value.flag,
-                       created_at: I18n.l(value.created_at),
-                       updated_at: I18n.l(value.updated_at),
+                       recid:             value.id,
+                       state:             value.state,
+                       title_de:          value.title_de,
+                       title_en:          value.title_en,
+                       amount:            value.amount,
+                       unit_de:           value.unit_de,
+                       unit_en:           value.unit_en,
+                       flag:              value.flag,
+                       created_at:        I18n.l(value.created_at),
+                       updated_at:        I18n.l(value.updated_at),
+                       product_id:        value.product_id,
                        property_group_id: value.property_group_id,
-                       property_id: value.property_id
+                       property_id:       value.property_id
                      }
                    }
     end

@@ -139,7 +139,9 @@ class Product < ActiveRecord::Base
 
   def hashed_values
     nested_hash = ActiveSupport::OrderedHash.new
-    values = Value.where(product_id: id).sort_by { |a| [a.property_group.position, a.property.position]}
+    values = Value.includes(:property_group) #eager loading relation ...
+                  .includes(:property)
+                  .where(product_id: id).sort_by { |a| [a.property_group.position, a.property.position]}
     hashed_values = values.group_by(&:property_group_id)
     return hashed_values
   end
