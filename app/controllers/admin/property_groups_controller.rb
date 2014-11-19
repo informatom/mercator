@@ -46,29 +46,35 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
     end
   end
 
-  def create
-    query = URI::parse(params[:page_path]).query
+  def new
+    if request_param(:product_id)
+      @cancelpath = productmanager_property_manager_path(request_param(:product_id).to_i)
+    end
+    hobo_new
+  end
 
-    if query
-      query_params = CGI.parse(query)
-      product_id = query_params["product_id"][0]
-      session[:seleted_value] = query_params["value_id"][0].to_i
+  def create
+    if product_id = page_path_param(:product_id).try(:to_i)
+      session[:seleted_value] = page_path_param(:value_id).to_i
       hobo_create(redirect: productmanager_property_manager_path(product_id))
     else
       hobo_create
     end
   end
 
-  def update
-    query = URI::parse(params[:page_path]).query
+  def edit
+    if request_param(:product_id)
+      @cancelpath = productmanager_property_manager_path(request_param(:product_id).to_i)
+    end
+    hobo_edit
+  end
 
-    if query
-      query_params = CGI.parse(query)
-      product_id = query_params["product_id"][0]
-      session[:seleted_value] = query_params["value_id"][0].to_i
+  def update
+    if product_id = page_path_param(:product_id).try(:to_i)
+      session[:seleted_value] = page_path_param(:value_id).to_i
       hobo_update(redirect: productmanager_property_manager_path(product_id))
     else
-      hobo_create
+      hobo_update
     end
   end
 end

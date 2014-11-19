@@ -1,0 +1,15 @@
+<def tag="form" for="Property">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name_de, name_en, datatype, position" param/>
+    <div param="actions">
+      <submit label="#{ht 'property.actions.save', :default=>['Save']}" param/>
+      <if test="&@cancelpath">
+        <or-cancel param="cancel" href="&@cancelpath"/>
+      </if>
+      <else>
+        <or-cancel param="cancel" />
+      </else>
+    </div>
+  </form>
+</def>

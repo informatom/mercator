@@ -82,4 +82,26 @@ class ApplicationController < ActionController::Base
       redirect_to new_url, :status => 301
     end
   end
+
+  def request_param(parameter)
+    query = request.query_string
+
+    if query.present?
+      query_params = CGI.parse(query)
+      return query_params[parameter.to_s][0]
+    else
+      return nil
+    end
+  end
+
+  def page_path_param(parameter)
+    query ||= URI::parse(params[:page_path]).query
+
+    if query.present?
+      query_params = CGI.parse(query)
+      return query_params[parameter.to_s][0]
+    else
+      return nil
+    end
+  end
 end

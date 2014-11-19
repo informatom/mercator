@@ -107,9 +107,9 @@ PATH
 PATH
   remote: vendor/gems/hobo_w2ui
   specs:
-    hobo_w2ui (0.1.2)
+    hobo_w2ui (0.1.3)
       hobo_jquery (>= 2.0)
-      rails (~> 4.0.11)
+      rails (~> 4.0.0)
 
 GEM
   remote: https://rubygems.org/

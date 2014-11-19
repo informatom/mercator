@@ -1,0 +1,12 @@
+<extend tag="form" for="Value">
+  <old-form merge>
+    <field-list: fields="title_de, title_en, menu, url, position, slug, state, page_template" param />
+    <actions:>
+      <submit label="#{ht 'webpage.actions.save', :default=>['Save']}"/> &nbsp;
+      <t key="hobo.support.or" /> &nbsp;
+      <a href="/contentmanager">
+        <t key="hobo.actions.cancel" />
+      </a>
+    </actions:>
+  </old-form>
+</extend>
