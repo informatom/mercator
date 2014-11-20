@@ -1,37 +1,22 @@
 $(function () {
   w2utils.locale('/assets/contentmanager/de-de.json')
+  w2utils.settings.groupSymbol = " "
 
   $('#grid').w2layout({
     name: 'pricemanager',
     panels: [
-      {
-        type: 'top',
-        title: '<%= I18n.t("mercator.price_manager.title") %>',
-        size: 58,
-        resizable: true,
-        content: "<div id='menu'></div>"
-      }, {
-        type: 'left',
-        size: '25%',
-        resizable: true,
+      { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
+        title: '<%= I18n.t("mercator.price_manager.title") %>'},
+      { type: 'left', size: '25%', resizable: true,
         title: '<%= I18n.t("activerecord.models.product.one") %>',
-        content: "<div id='productForm' style='height: 100%'></div>"
-      }, {
-        type: 'main',
-        resizable: true,
+        content: "<div id='productForm' style='height: 100%'></div>"},
+      { type: 'main', resizable: true,
         title: '<%= I18n.t("activerecord.models.inventory.other") %>',
-        content: "<div id='inventoriesGrid' style='height: 100%'></div>"
-      }, {
-        type: 'preview',
-        resizable: true,
-        size: '430',
+        content: "<div id='inventoriesGrid' style='height: 100%'></div>"},
+      { type: 'preview', resizable: true, size: '430',
         title: '<%= I18n.t("activerecord.models.inventory.one") %>',
-        content: "<div id='inventoryForm' style='height: 401px'></div>"
-      }, {
-        type: 'right',
-        size: '35%',
-        resizable: true,
-        content: "pricelayout" }
+        content: "<div id='inventoryForm' style='height: 401px'></div>"},
+      { type: 'right', size: '35%', resizable: true, content: "pricelayout" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
@@ -45,19 +30,12 @@ $(function () {
   $().w2layout({
     name: 'pricelayout',
     panels: [
-      {
-        type: 'main',
-        resizable: true,
+      { type: 'main', resizable: true,
         title: '<%= I18n.t("activerecord.models.price.other") %>',
-        content: "<div id='pricesGrid' style='height:100%;'></div>"
-      },
-      {
-        type: 'preview',
-        resizable: true,
+        content: "<div id='pricesGrid' style='height:100%;'></div>" },
+      { type: 'preview', resizable: true, size: '400',
         title: '<%= I18n.t("activerecord.models.price.one") %>',
-        content: "<div id='priceForm' style='height:100%;'></div>",
-        size: '400',
-      }
+        content: "<div id='priceForm' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
