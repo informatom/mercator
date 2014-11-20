@@ -102,6 +102,16 @@ function show_inventory_details(inventory_id) {
   w2ui.inventoryForm.recid = inventory_id
   w2ui.inventoryForm.reload()
 
-  w2ui.pricesGrid.url = '/productmanager/price_manager/show_prices/' + inventory_id
-  w2ui.pricesGrid.reload()
+  updatePriceGrid(inventory_id)
+}
+
+function updatePriceGrid(inventory_id) {
+  if (w2ui.pricesGrid) {
+    w2ui.pricesGrid.url = '/productmanager/price_manager/show_prices/' + inventory_id
+    w2ui.pricesGrid.reload()
+  } else {
+    setTimeout(function() {
+      updatePriceGrid(inventory_id)
+    },1000)
+  }
 }

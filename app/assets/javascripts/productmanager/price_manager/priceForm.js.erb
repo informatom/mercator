@@ -21,7 +21,9 @@ function priceForm() {
       { name: 'created_at', type: 'text', disabled: true,
         html: { caption: '<%= I18n.t("attributes.created_at") %>' } },
       { name: 'updated_at', type: 'text', disabled: true,
-        html: { caption: '<%= I18n.t("attributes.updated_at") %>' } }
+        html: { caption: '<%= I18n.t("attributes.updated_at") %>' } },
+      { name: 'inventory_id', type: 'int',
+        html: { caption: '<%= I18n.t("attributes.inventory") %>' }, disabled: true }
     ],
 
     actions: {
@@ -29,6 +31,12 @@ function priceForm() {
         caption: 'Save',
         class: 'w2ui-btn-green',
         onClick: function () {
+          this.save( function(response) {
+            w2ui.pricesGrid.reload().done(function() {
+              /// FIXME! so geht das nicht
+              w2ui.pricesGrid.select(response.record.recid)
+            })
+          })
         }
       },
       delete: {
@@ -41,6 +49,14 @@ function priceForm() {
         caption: 'Add New',
         class: 'w2ui-btn-orange',
         onClick: function () {
+          var selected_inventories = w2ui.inventoriesGrid.getSelection()
+          if (selected_inventories.length == 0) {
+            w2alert('<%= I18n.t("mercator.no_inventory_selected") %>')
+            return
+          }
+          this.clear()
+          this.record['inventory_id'] = selected_inventories[0]
+          this.refresh()
         }
       }
     }

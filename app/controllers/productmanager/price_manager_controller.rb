@@ -128,27 +128,58 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   end
 
   def manage_price
-    price = Price.find(params[:recid])
+    if params[:recid] == "0"
+      price = Price.new
+    else
+      price = Price.find(params[:recid])
+    end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.text {
-        render json: {
-          status: "success",
-          record: {
-            recid:      price.id,
-            value:      price.value,
-            vat:        price.vat,
-            valid_from: I18n.l(price.valid_from),
-            valid_to:   I18n.l(price.valid_to),
-            scale_from: price.scale_from,
-            scale_to:   price.scale_to,
-            promotion:  price.promotion,
-            created_at: I18n.l(price.created_at),
-            updated_at: I18n.l(price.updated_at)
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+
+      promotion = nil
+      promotion = true if attrs[:promotion] == "1"
+      promotion = false if attrs[:promotion] == "0"
+
+      price.value        = attrs[:value]
+      price.vat          = attrs[:vat]
+      price.vat          = attrs[:vat]
+      price.valid_from   = attrs[:valid_from]
+      price.valid_to     = attrs[:valid_to]
+      price.scale_from   = attrs[:scale_from]
+      price.scale_to     = attrs[:scale_to]
+      price.promotion    = promotion
+      price.inventory_id = attrs[:inventory_id]
+
+      success = price.save
+    end
+
+
+    if success == false
+      render json: { status: "error",
+                     message: price.errors.first }
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.text {
+          render json: {
+            status: "success",
+            record: {
+              recid:        price.id,
+              value:        price.value,
+              vat:          price.vat,
+              valid_from:   I18n.l(price.valid_from),
+              valid_to:     I18n.l(price.valid_to),
+              scale_from:   price.scale_from,
+              scale_to:     price.scale_to,
+              promotion:    price.promotion,
+              created_at:   I18n.l(price.created_at),
+              updated_at:   I18n.l(price.updated_at),
+              inventory_id: price.inventory_id
+            }
           }
         }
-      }
+      end
     end
   end
 end

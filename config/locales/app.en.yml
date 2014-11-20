@@ -654,6 +654,7 @@ en:
     new_message: New Message
     no_deliveries: No deliveries found.
     no_file: No file uploaded.
+    no_inventory_selected: You haven't seleted an inventory item.
     no_invoices: No invoices found.
     no_order_positions_yet: There aro no order items yet.
     no_open_payments: No open payments found.
