@@ -77,15 +77,31 @@ function inventoriesGrid() {
       event.onComplete = function () {
         var selection = this.getSelection()
         if (selection.length == 1) {
-          this.toolbar.enable('editInventory')
-          this.toolbar.enable('deleteInventory')
-          w2ui.inventoryForm.recid = selection[0]
-          w2ui.inventoryForm.reload()
+          show_inventory_details(selection[0])
         } else {
           this.toolbar.disable('editInventory')
           this.toolbar.disable('deleteInventory')
         }
       }
+    },
+    onLoad: function(event) {
+      event.onComplete = function () {
+        if (this.records[0]) {
+          show_inventory_details(this.records[0].recid)
+        }
+      }
     }
   })
+}
+
+function show_inventory_details(inventory_id) {
+  w2ui.inventoriesGrid.toolbar.enable('editInventory')
+  w2ui.inventoriesGrid.toolbar.enable('deleteInventory')
+  w2ui.inventoriesGrid.select(inventory_id)
+
+  w2ui.inventoryForm.recid = inventory_id
+  w2ui.inventoryForm.reload()
+
+  w2ui.pricesGrid.url = '/productmanager/price_manager/show_prices/' + inventory_id
+  w2ui.pricesGrid.reload()
 }

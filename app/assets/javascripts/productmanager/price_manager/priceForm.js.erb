@@ -1,0 +1,48 @@
+function priceForm() {
+  $('#priceForm').w2form({
+    name: 'priceForm',
+    url: '/productmanager/price_manager/manage_price',
+
+    fields : [
+      { name: 'value', type: 'text',
+        html: { caption: '<%= I18n.t("attributes.value") %>' } },
+      { name: 'vat', type: 'text',
+        html: { caption: '<%= I18n.t("attributes.vat") %>' } },
+      { name: 'valid_from', type: 'date',
+        html: { caption: '<%= I18n.t("attributes.valid_from") %>' } },
+      { name: 'valid_to', type: 'date',
+        html: { caption: '<%= I18n.t("attributes.valid_to") %>' } },
+      { name: 'scale_from', type: 'text',
+        html: { caption: '<%= I18n.t("attributes.scale_from") %>' } },
+      { name: 'scale_from', type: 'text',
+        html: { caption: '<%= I18n.t("attributes.scale_from") %>' } },
+      { name: 'promotion', type: 'checkbox',
+        html: { caption: '<%= I18n.t("attributes.promotion") %>' } },
+      { name: 'created_at', type: 'text', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.created_at") %>' } },
+      { name: 'updated_at', type: 'text', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.updated_at") %>' } }
+    ],
+
+    actions: {
+      save: {
+        caption: 'Save',
+        class: 'w2ui-btn-green',
+        onClick: function () {
+        }
+      },
+      delete: {
+        caption: 'Delete',
+        class: 'w2ui-btn-red',
+        onClick: function () {
+        }
+      },
+      create: {
+        caption: 'Add New',
+        class: 'w2ui-btn-orange',
+        onClick: function () {
+        }
+      }
+    }
+  })
+}

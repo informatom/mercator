@@ -65,6 +65,8 @@ Mercator::Application.routes.draw do
     post 'price_manager/manage_product'       => 'price_manager#manage_product'
     get  'price_manager/show_inventories/:id' => 'price_manager#show_inventories'
     post 'price_manager/manage_inventory'     => 'price_manager#manage_inventory'
+    get  'price_manager/show_prices/:id'      => 'price_manager#show_prices'
+    post 'price_manager/manage_price'         => 'price_manager#manage_price'
   end
 
   namespace :contentmanager do

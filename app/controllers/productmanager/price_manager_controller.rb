@@ -103,4 +103,52 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       }
     end
   end
+
+  def show_prices
+    prices = Price.where(inventory_id: params[:id])
+
+    render json: {
+      status: "success",
+      total: prices.count,
+      records: prices.collect {
+        |price| {
+          recid:      price.id,
+          value:      price.value,
+          vat:        price.vat,
+          valid_from: price.valid_from,
+          valid_to:   price.valid_to,
+          scale_from: price.scale_from,
+          scale_to:   price.scale_to,
+          promotion:  price.promotion,
+          created_at: I18n.l(price.created_at),
+          updated_at: I18n.l(price.updated_at)
+        }
+      }
+    }
+  end
+
+  def manage_price
+    price = Price.find(params[:recid])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.text {
+        render json: {
+          status: "success",
+          record: {
+            recid:      price.id,
+            value:      price.value,
+            vat:        price.vat,
+            valid_from: price.valid_from,
+            valid_to:   price.valid_to,
+            scale_from: price.scale_from,
+            scale_to:   price.scale_to,
+            promotion:  price.promotion,
+            created_at: I18n.l(price.created_at),
+            updated_at: I18n.l(price.updated_at)
+          }
+        }
+      }
+    end
+  end
 end

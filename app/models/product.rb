@@ -233,10 +233,10 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def self.with_at_least_two_prices
+  def self.with_at_least_x_prices(x)
     products = []
     Product.all.each do |product|
-      products << product if product.prices.count > 1
+      products << product if product.prices.count >= x
     end
     return products
   end
