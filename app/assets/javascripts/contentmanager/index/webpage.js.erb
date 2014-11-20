@@ -3,16 +3,8 @@ function webpage() {
     name: 'webpage',
     method: 'GET',
     columns : [
-      {
-        field: 'attribute',
-        caption: '<%= I18n.t("attributes.attrib") %>',
-        size: '50%'
-      },
-      {
-        field: 'value',
-        caption: '<%= I18n.t("attributes.value") %>',
-        size: '50%'
-      }
+      { field: 'attribute', caption: '<%= I18n.t("attributes.attrib") %>', size: '50%'},
+      {field: 'value', caption: '<%= I18n.t("attributes.value") %>', size: '50%'}
     ]
   })
 }

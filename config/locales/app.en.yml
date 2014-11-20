@@ -71,6 +71,7 @@ en:
     folder: Verzeichnis
     gender: Salutation
     id: ID
+    infinite: infinite
     inventories: Inventories
     inventory: Inventory
     Inventory: Inventory
@@ -333,6 +334,7 @@ en:
         alternative_number: Alternate Product Number
         number: Product Number
         storage: Storage / Branch / Store
+        provision_code: Provision Code
       lineitem:
         product_price: Product Price
         value: Value
@@ -673,6 +675,8 @@ en:
     paste_here: "Paste file here (point mouse here and press [STRG]+[v])"
     password: Change Password
     place_offer: Place Offer
+    price_manager:
+      title: Inventory and Price Manager
     printer: Printer
     printer_series: Printer Series
     product_manager:

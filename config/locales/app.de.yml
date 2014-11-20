@@ -75,6 +75,7 @@ de:
     folder: Verzeichnis
     gender: Anrede
     id: ID
+    infinite: unbegrenzt
     inventories: Bestände
     inventory: Bestand
     Inventory: Bestand
@@ -340,6 +341,7 @@ de:
         alternative_number: alternative Artikelnummer
         number: Artikelnummer
         storage: Lagerort / Filiale
+        provision_code: Provisionscode
       lineitem:
         product_price: Stückpreis
         value: Positionswert
@@ -680,6 +682,8 @@ de:
     paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
     password: Kennwort ändern
     place_offer: Angebot legen
+    price_manager:
+      title: Inventar- und Preismanager
     printer: Drucker
     printer_series: Druckerserien
     product_manager:

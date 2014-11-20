@@ -6,7 +6,7 @@ $(function () {
     panels: [
       {
         type: 'top',
-        title: '<%= I18n.t("mercator.property_manager.title") %>',
+        title: '<%= I18n.t("mercator.price_manager.title") %>',
         size: 58,
         resizable: true,
         content: "<div id='menu'></div>"
@@ -24,9 +24,9 @@ $(function () {
       }, {
         type: 'preview',
         resizable: true,
-        size: '339',
+        size: '450',
         title: '<%= I18n.t("activerecord.models.inventory.one") %>',
-        content: "<div id='inventoryForm' style='height: 310px'></div>"
+        content: "<div id='inventoryForm' style='height: 421px'></div>"
       }, {
         type: 'right',
         size: '35%',
@@ -36,6 +36,8 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         productForm()
+        inventoriesGrid()
+        inventoryForm()
       }
     }
   })

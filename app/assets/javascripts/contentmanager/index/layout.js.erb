@@ -7,41 +7,18 @@ $(function () {
   $('#contentmanager').w2layout({
     name: 'contentmanager',
     panels: [
-      {
-        type: 'top',
-        title: '<%= I18n.t("mercator.content_manager.title") %>',
-        size: 58,
-        resizable: true,
-        content: "<div id='menu'></div>"
-      },
-      {
-        type: 'left',
-        title: '<%= I18n.t("mercator.content_manager.website_structure") %>',
-        size: '13%',
-        resizable: true,
-        content: "<div id='webpageTreeToolbar' style='height:20'></div><div id='webpageTree' style='height:calc(100% - 28px);'></div>"
-      },
-      {
-        type: 'main',
-        title: '<%= I18n.t("activerecord.models.webpage.one") %>',
-        resizable: true,
-        content: "<div id='webpage' style='height:100%;'></div>" },
-      {
-        type: 'preview',
-        title: '<%= I18n.t("activerecord.models.page_content_element_assignment.other") %>',
-        size: '50%',
-        resizable: true,
-        content: "<div id='assignments' style='height:100%'></div>" },
-      {
-        type: 'right',
-        size: '67%',
-        resizable: true},
-      {
-        type: 'bottom',
-        title: '<%= I18n.t("mercator.content_manager.image_gallery") %>',
-        size: 150,
-        resizable: true,
-        content: "<div id='gallery'></div>" }
+      { type: 'top', title: '<%= I18n.t("mercator.content_manager.title") %>',
+        size: 58, resizable: true, content: "<div id='menu'></div>" },
+      { type: 'left', title: '<%= I18n.t("mercator.content_manager.website_structure") %>',
+        size: '13%', resizable: true,
+        content: "<div id='webpageTreeToolbar' style='height:20'></div><div id='webpageTree' style='height:calc(100% - 28px);'></div>" },
+      { type: 'main', title: '<%= I18n.t("activerecord.models.webpage.one") %>',
+        resizable: true, content: "<div id='webpage' style='height:100%;'></div>" },
+      { type: 'preview', title: '<%= I18n.t("activerecord.models.page_content_element_assignment.other") %>',
+        size: '50%', resizable: true, content: "<div id='assignments' style='height:100%'></div>" },
+      { type: 'right', size: '67%', resizable: true},
+      { type: 'bottom', title: '<%= I18n.t("mercator.content_manager.image_gallery") %>',
+        size: 150, resizable: true, content: "<div id='gallery'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
@@ -57,26 +34,12 @@ $(function () {
   $().w2layout({
     name: 'elementexplorer',
     panels: [
-      {
-        type: 'main',
-        resizable: true,
-        title: '<%= I18n.t("mercator.content_manager.folder_structure") %>',
-        content: "<div id='foldertreetoolbar' style='height:20'></div><div id='foldertree' style='height:calc(100% - 28px);'></div>"
-      },
-      {
-        type: 'right',
-        resizable: true,
-        title: '<%= I18n.t("activerecord.models.content_element.other") %>',
-        size: '85%',
-        content: "<div id='contentelementsgrid' style='height:100%'></div>"
-      },
-      {
-        type: 'preview',
-        resizable: true,
-        title: '<%= I18n.t("mercator.image_preview") %>',
-        size: '30%',
-        content: "<div id='preview'></div>"
-      }
+      { type: 'main', resizable: true, title: '<%= I18n.t("mercator.content_manager.folder_structure") %>',
+        content: "<div id='foldertreetoolbar' style='height:20'></div><div id='foldertree' style='height:calc(100% - 28px);'></div>"},
+      { type: 'right', resizable: true, title: '<%= I18n.t("activerecord.models.content_element.other") %>',
+        size: '85%', content: "<div id='contentelementsgrid' style='height:100%'></div>"},
+      { type: 'preview', resizable: true, title: '<%= I18n.t("mercator.image_preview") %>',
+        size: '30%', content: "<div id='preview'></div>"}
     ],
     onRender: function(event) {
       event.onComplete = function () {
