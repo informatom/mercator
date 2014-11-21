@@ -8,29 +8,60 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   def manage_product
     product = Product.find(params[:recid])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.text {
-        render json: {
-          status: "success",
-          record: {
-            number:              product.number,
-            state:               product.state,
-            title_de:            product.title_de,
-            title_en:            product.title_en,
-            description_de:      product.description_de,
-            description_en:      product.description_en,
-            long_description_de: product.long_description_de,
-            long_description_en: product.long_description_en,
-            warranty_de:         product.warranty_de,
-            warranty_en:         product.warranty_en,
-            novelty:             product.novelty,
-            topseller:           product.topseller,
-            created_at:          I18n.l(product.created_at),
-            updated_at:          I18n.l(product.updated_at)
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+
+      novelty = nil
+      novelty = true if attrs[:novelty] == "1"
+      novelty = false if attrs[:novelty] == "0"
+
+      topseller = nil
+      topseller = true if attrs[:topseller] == "1"
+      topseller = false if attrs[:topseller] == "0"
+
+      product.title_de            = attrs[:title_de]
+      product.title_en            = attrs[:title_en]
+      product.number              = attrs[:number]
+      product.description_de      = attrs[:description_de]
+      product.description_en      = attrs[:description_en]
+      product.long_description_de = attrs[:long_description_de]
+      product.long_description_en = attrs[:long_description_en]
+      product.warranty_de         = attrs[:warranty_de]
+      product.warranty_en         = attrs[:warranty_en]
+      product.novelty             = novelty
+      product.topseller           = topseller
+
+      success = product.save
+    end
+
+    if success == false
+      render json: { status: "error",
+                     message: product.errors.first }
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.text {
+          render json: {
+            status: "success",
+            record: {
+              number:              product.number,
+              state:               product.state,
+              title_de:            product.title_de,
+              title_en:            product.title_en,
+              description_de:      product.description_de,
+              description_en:      product.description_en,
+              long_description_de: product.long_description_de,
+              long_description_en: product.long_description_en,
+              warranty_de:         product.warranty_de,
+              warranty_en:         product.warranty_en,
+              novelty:             product.novelty,
+              topseller:           product.topseller,
+              created_at:          I18n.l(product.created_at),
+              updated_at:          I18n.l(product.updated_at)
+            }
           }
         }
-      }
+      end
     end
   end
 

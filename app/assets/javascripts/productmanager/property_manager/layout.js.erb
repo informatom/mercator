@@ -4,34 +4,18 @@ $(function () {
   $('#grid').w2layout({
     name: 'propertymanager',
     panels: [
-      {
-        type: 'top',
-        title: '<%= I18n.t("mercator.property_manager.title") %>',
-        size: 58,
-        resizable: true,
-        content: "<div id='menu'></div>"
-      }, {
-        type: 'left',
-        size: '20%',
-        resizable: true,
+      { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
+        title: '<%= I18n.t("mercator.property_manager.title") %>'},
+      { type: 'left', size: '20%', resizable: true,
         title: '<%= I18n.t("activerecord.models.product.other") %>',
-        content: "<div id='productGrid' style='height: 100%'></div>"
-      }, {
-        type: 'main',
-        resizable: true,
+        content: "<div id='productGrid' style='height: 100%'></div>" },
+      { type: 'main', resizable: true,
         title: '<%= I18n.t("activerecord.models.value.other") %>',
-        content: "<div id='valueTree' style='height: 100%'></div>"
-      }, {
-        type: 'preview',
-        resizable: true,
-        size: '339',
+        content: "<div id='valueTree' style='height: 100%'></div>" },
+      { type: 'preview', resizable: true, size: '339',
         title: '<%= I18n.t("activerecord.models.value.other") %>',
-        content: "<div id='valueForm' style='height: 310px'></div>"
-      }, {
-        type: 'right',
-        size: '35%',
-        resizable: true,
-        content: "" }
+        content: "<div id='valueForm' style='height: 310px'></div>" },
+      { type: 'right', size: '35%', resizable: true, content: "" }
     ],
     onRender: function(event) {
       event.onComplete = function () {

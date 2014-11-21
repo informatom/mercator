@@ -4,3 +4,4 @@
 //= require ./inventoryForm
 //= require ./pricesGrid
 //= require ./priceForm
+//= require ./menu

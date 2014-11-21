@@ -10,7 +10,7 @@ function productForm() {
         html: { caption: '<%= I18n.t("attributes.title") %> EN' } },
       { name: 'number', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.number") %>' } },
-      { name: 'state', type: 'text',
+      { name: 'state', type: 'text', disabled: true,
         html: { caption: '<%= I18n.t("attributes.state") %>' } },
       { name: 'description_de', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.description") %> DE' , attr: 'size=40'} },
@@ -36,23 +36,14 @@ function productForm() {
 
     actions: {
       save: {
-        caption: 'Save',
-        class: 'w2ui-btn-green',
+        caption: 'Save', class: 'w2ui-btn-green',
         onClick: function () {
-        }
-      },
-      delete: {
-        caption: 'Delete',
-        class: 'w2ui-btn-red',
-        onClick: function () {
-        }
-      },
-      create: {
-        caption: 'Add New',
-        class: 'w2ui-btn-orange',
-        onClick: function () {
+          this.save( function(response) {
+            this.reload()
+          })
         }
       }
+
     }
   })
 }
