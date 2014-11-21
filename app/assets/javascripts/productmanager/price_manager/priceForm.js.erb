@@ -32,9 +32,9 @@ function priceForm() {
         class: 'w2ui-btn-green',
         onClick: function () {
           this.save( function(response) {
-            w2ui.pricesGrid.reload().done(function() {
-              /// FIXME! so geht das nicht
+            w2ui.pricesGrid.reload( function(second_response) {
               w2ui.pricesGrid.select(response.record.recid)
+              w2ui.priceForm.recid = response.record.recid
             })
           })
         }
@@ -43,6 +43,17 @@ function priceForm() {
         caption: 'Delete',
         class: 'w2ui-btn-red',
         onClick: function () {
+          $.ajax({
+            url:"/productmanager/price_manager/price/" + w2ui.priceForm.recid,
+            method: "DELETE",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.priceForm.clear()
+            w2ui.pricesGrid.reload()
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+          })
         }
       },
       create: {

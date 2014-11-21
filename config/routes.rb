@@ -61,12 +61,14 @@ Mercator::Application.routes.draw do
     post   'property_manager/update_property_groups_order' => 'property_manager#update_property_groups_order'
     post   'property_manager/update_properties_order'      => 'property_manager#update_properties_order'
 
-    get  'price_manager/index/:id'            => 'price_manager#index', :as => 'price_manager'
-    post 'price_manager/manage_product'       => 'price_manager#manage_product'
-    get  'price_manager/show_inventories/:id' => 'price_manager#show_inventories'
-    post 'price_manager/manage_inventory'     => 'price_manager#manage_inventory'
-    get  'price_manager/show_prices/:id'      => 'price_manager#show_prices'
-    post 'price_manager/manage_price'         => 'price_manager#manage_price'
+    get    'price_manager/index/:id'            => 'price_manager#index', :as => 'price_manager'
+    post   'price_manager/manage_product'       => 'price_manager#manage_product'
+    get    'price_manager/show_inventories/:id' => 'price_manager#show_inventories'
+    post   'price_manager/manage_inventory'     => 'price_manager#manage_inventory'
+    get    'price_manager/show_prices/:id'      => 'price_manager#show_prices'
+    post   'price_manager/manage_price'         => 'price_manager#manage_price'
+    delete 'price_manager/price/:id'            => 'price_manager#delete_price'
+    delete 'price_manager/inventory/:id'        => 'price_manager#delete_inventory'
   end
 
   namespace :contentmanager do

@@ -679,6 +679,8 @@ en:
     place_offer: Place Offer
     price_manager:
       title: Inventory and Price Manager
+      cannot_delete_inventory:
+        prices: The inventory is still referenced in prices and cannot be deleted therefore.
     printer: Printer
     printer_series: Printer Series
     product_manager:

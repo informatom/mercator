@@ -47,13 +47,14 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           name_en:                 inventory.name_en,
           number:                  inventory.number,
           amount:                  inventory.amount,
+          unit:                    inventory.unit,
           comment_de:              inventory.comment_de,
           comment_en:              inventory.comment_en,
           weight:                  inventory.weight,
           charge:                  inventory.charge,
           storage:                 inventory.storage,
           delivery_time:           inventory.delivery_time,
-          erp_updated_at:          I18n.l(inventory.erp_updated_at),
+          erp_updated_at:          (I18n.l(inventory.erp_updated_at) if inventory.erp_updated_at),
           erp_vatline:             inventory.erp_vatline,
           erp_article_group:       inventory.erp_article_group,
           erp_provision_code:      inventory.erp_provision_code,
@@ -69,38 +70,74 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   end
 
   def manage_inventory
-    inventory = Inventory.find(params[:recid])
+    if params[:recid] == "0"
+      inventory = Inventory.new
+    else
+      inventory = Inventory.find(params[:recid])
+    end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.text {
-        render json: {
-          status: "success",
-          record: {
-            recid:                   inventory.id,
-            name_de:                 inventory.name_de,
-            name_en:                 inventory.name_en,
-            number:                  inventory.number,
-            amount:                  inventory.amount,
-            comment_de:              inventory.comment_de,
-            comment_en:              inventory.comment_en,
-            weight:                  inventory.weight,
-            charge:                  inventory.charge,
-            storage:                 inventory.storage,
-            delivery_time:           inventory.delivery_time,
-            erp_updated_at:          I18n.l(inventory.erp_updated_at),
-            erp_vatline:             inventory.erp_vatline,
-            erp_article_group:       inventory.erp_article_group,
-            erp_provision_code:      inventory.erp_provision_code,
-            erp_characteristic_flag: inventory.erp_characteristic_flag,
-            infinite:                inventory.infinite,
-            just_imported:           inventory.just_imported,
-            alternative_number:      inventory.alternative_number,
-            created_at:              I18n.l(inventory.created_at),
-            updated_at:              I18n.l(inventory.updated_at)
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+
+      infinite = nil
+      infinite = true  if attrs[:infinite] == "1"
+      infinite = false if attrs[:infinite] == "0"
+
+      inventory.name_de            = attrs[:name_de]
+      inventory.name_en            = attrs[:name_en]
+      inventory.number             = attrs[:number]
+      inventory.amount             = attrs[:amount]
+      inventory.unit               = attrs[:unit]
+      inventory.comment_de         = attrs[:comment_de]
+      inventory.comment_en         = attrs[:comment_en]
+      inventory.weight             = attrs[:weight]
+      inventory.charge             = attrs[:charge]
+      inventory.storage            = attrs[:storage]
+      inventory.delivery_time      = attrs[:delivery_time][:text]
+      inventory.infinite           = infinite
+      inventory.alternative_number = attrs[:alternative_number]
+      inventory.product_id         = attrs[:product_id]
+
+      success = inventory.save
+    end
+
+    if success == false
+      render json: { status: "error",
+                     message: inventory.errors.first }
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.text {
+          render json: {
+            status: "success",
+            record: {
+              recid:                   inventory.id,
+              name_de:                 inventory.name_de,
+              name_en:                 inventory.name_en,
+              number:                  inventory.number,
+              amount:                  inventory.amount,
+              unit:                    inventory.unit,
+              comment_de:              inventory.comment_de,
+              comment_en:              inventory.comment_en,
+              weight:                  inventory.weight,
+              charge:                  inventory.charge,
+              storage:                 inventory.storage,
+              delivery_time:           inventory.delivery_time,
+              erp_updated_at:          (I18n.l(inventory.erp_updated_at) if inventory.erp_updated_at),
+              erp_vatline:             inventory.erp_vatline,
+              erp_article_group:       inventory.erp_article_group,
+              erp_provision_code:      inventory.erp_provision_code,
+              erp_characteristic_flag: inventory.erp_characteristic_flag,
+              infinite:                inventory.infinite,
+              just_imported:           inventory.just_imported,
+              alternative_number:      inventory.alternative_number,
+              created_at:              I18n.l(inventory.created_at),
+              updated_at:              I18n.l(inventory.updated_at),
+              product_id:              inventory.product_id
+            }
           }
         }
-      }
+      end
     end
   end
 
@@ -154,7 +191,6 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       success = price.save
     end
 
-
     if success == false
       render json: { status: "error",
                      message: price.errors.first }
@@ -168,8 +204,8 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
               recid:        price.id,
               value:        price.value,
               vat:          price.vat,
-              valid_from:   I18n.l(price.valid_from),
-              valid_to:     I18n.l(price.valid_to),
+              valid_from:   (I18n.l(price.valid_from) if price.valid_from),
+              valid_to:     (I18n.l(price.valid_to) if price.valid_to),
               scale_from:   price.scale_from,
               scale_to:     price.scale_to,
               promotion:    price.promotion,
@@ -180,6 +216,29 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           }
         }
       end
+    end
+  end
+
+  def delete_price
+    price = Price.find(params[:id])
+    if price.delete
+      render nothing: true
+    else
+      render json: price.errors.first
+    end
+  end
+
+  def delete_inventory
+    inventory = Inventory.find(params[:id])
+    if inventory.prices.any?
+      render :text => I18n.t("mercator.price_manager.cannot_delete_inventory.prices"),
+             :status => 403 and return
+    end
+
+    if inventory.delete
+      render nothing: true
+    else
+      render json: inventory.errors.first
     end
   end
 end

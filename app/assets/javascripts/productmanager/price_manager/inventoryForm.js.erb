@@ -28,7 +28,7 @@ function inventoryForm() {
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label><%= I18n.t("activerecord.attributes.inventory.alternative_number") %></label>'+
-      '      <div><input name="alternate_number" /></div>'+
+      '      <div><input name="alternative_number" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label><%= I18n.t("attributes.infinite") %></label>'+
@@ -88,6 +88,10 @@ function inventoryForm() {
       '      <label>ERP Flag</label>'+
       '      <div><input name="erp_characteristic_flag" /></div>'+
       '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label><%= I18n.t("activerecord.models.product.one") %></label>'+
+      '      <div><input name="product_id" /></div>'+
+      '    </div>'+
       '  </div>'+
       '</div>'+
       '<div class="w2ui-buttons">'+
@@ -108,7 +112,7 @@ function inventoryForm() {
       { name: 'comment_de', type: 'text' },
       { name: 'comment_en', type: 'text' },
       { name: 'number', type: 'text', required : true },
-      { name: 'alternate_number', type: 'text' },
+      { name: 'alternative_number', type: 'text' },
       { name: 'infinite', type: 'checkbox'},
       { name: 'amount', type: 'float', required : true },
       { name: 'unit', type: 'text', required : true },
@@ -126,7 +130,8 @@ function inventoryForm() {
       { name: 'erp_vatline', type: 'text', disabled: true },
       { name: 'erp_article_group', type: 'text', disabled: true },
       { name: 'erp_provision_code', type: 'text', disabled: true },
-      { name: 'erp_characteristic_flag', type: 'text', disabled: true }
+      { name: 'erp_characteristic_flag', type: 'text', disabled: true },
+      { name: 'product_id', type: 'int', disabled: true }
     ],
 
     actions: {
@@ -134,18 +139,40 @@ function inventoryForm() {
         caption: 'Save',
         class: 'w2ui-btn-green',
         onClick: function () {
+          this.save( function(response) {
+            w2ui.inventoriesGrid.reload(function() {
+              show_inventory_details(response.record.recid)
+            })
+          })
         }
       },
       delete: {
         caption: 'Delete',
         class: 'w2ui-btn-red',
         onClick: function () {
+          $.ajax({
+            url:"/productmanager/price_manager/inventory/" + w2ui.inventoryForm.recid,
+            method: "DELETE",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.inventoryForm.clear()
+            w2ui.inventoriesGrid.reload()
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+          })
         }
       },
       create: {
         caption: 'Add New',
         class: 'w2ui-btn-orange',
         onClick: function () {
+          this.clear()
+          this.record['product_id'] = request_id
+          this.record['name_de'] = w2ui.productForm.record['title_de']
+          this.record['name_en'] = w2ui.productForm.record['title_en']
+          this.record['number'] = w2ui.productForm.record['number']
+          this.refresh()
         }
       }
     }

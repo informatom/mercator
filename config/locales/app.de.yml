@@ -686,6 +686,8 @@ de:
     place_offer: Angebot legen
     price_manager:
       title: Inventar- und Preismanager
+      cannot_delete_inventory:
+        prices: "Der Bestand wird noch in Preisen referenziert und kann daher nicht gelöscht werden."
     printer: Drucker
     printer_series: Druckerserien
     product_manager:
