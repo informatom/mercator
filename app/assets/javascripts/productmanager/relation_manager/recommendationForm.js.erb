@@ -1,22 +1,27 @@
 function recommendationForm() {
   $().w2form({
     name: 'recommendationForm',
+    url: '/productmanager/relation_manager/manage_recommendation',
     style: 'border: 0px; background-color: transparent;',
     fields: [
-      { field: 'reason_de', type: 'text', required: true },
-      { field: 'reason_en', type: 'text' },
-      { field: 'product_id', type: 'int', disabled: true },
-      { field: 'recommended_product_id', type: 'int', disabled: true }
+      { field: 'reason_de', type: 'text', required: true,
+        html: { caption: '<%= I18n.t("attributes.reason") %> DE' } },
+      { field: 'reason_en', type: 'text',
+        html: { caption: '<%= I18n.t("attributes.reason") %> EN' } },
+      { field: 'product_id', type: 'int', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.product") %> DE' } },
+      { field: 'recommended_product_id', type: 'int', disabled: true,
+        html: { caption: '<%= I18n.t("activerecord.models.recommendation.one") %> DE' } },
     ],
     actions: {
-      "save":
+      "Save":
       function () {
-        this.validate()
+        this.save( function() {
+          w2popup.close()
+          w2ui.recommendationsGrid.reload()
+        })
       },
-      "reset":
-      function () {
-        this.clear()
-      }
+      "Cancel": function () { w2popup.close() }
     }
   })
 }

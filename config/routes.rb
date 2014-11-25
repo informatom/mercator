@@ -82,7 +82,7 @@ Mercator::Application.routes.draw do
     delete 'relation_manager/supplyrelation/:id'        => 'relation_manager#delete_supplyrelation'
 
     get    'relation_manager/show_recommendations/:id' => 'relation_manager#show_recommendations'
-    post   'relation_manager/create_recommendation'     => 'relation_manager#create_recommendation'
+    post   'relation_manager/manage_recommendation'     => 'relation_manager#manage_recommendation'
     delete 'relation_manager/recommendation/:id'        => 'relation_manager#delete_recommendation'
   end
 

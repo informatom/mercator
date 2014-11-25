@@ -19,7 +19,7 @@ function recommendationsGrid() {
           w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
             if (button =='Yes') {
               $.ajax({
-                url:"/productmanager/relation_manager/recommendations/" + selection[0],
+                url:"/productmanager/relation_manager/recommendation/" + selection[0],
                 method: "DELETE",
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',

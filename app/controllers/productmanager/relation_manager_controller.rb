@@ -125,14 +125,29 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
-  def create_recommendation
-    recommendation = Recommendation.new(product_id: params[:product_id],
-                                        supply_id:  params[:supply_id],
-                                        reason_de:  params[:reason_de],
-                                        reason_en:  params[:reason_en])
+  def manage_recommendation
+    if params[:recid] == "0"
+      if Recommendation.where(product_id:             params[:record][:product_id],
+                              recommended_product_id: params[:record][:recommended_product_id]).any?
+        render json: { status: "error",
+                       message: I18n.t("mercator.recommendation_exists") } and return
+      else
+        recommendation = Recommendation.new
+      end
+    else
+      recommendation = Recommendation.find(params[:recid])
+    end
+
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+      recommendation.product_id             = attrs[:product_id]
+      recommendation.recommended_product_id = attrs[:recommended_product_id]
+      recommendation.reason_de              = attrs[:reason_de]
+      recommendation.reason_en              = attrs[:reason_en]
+    end
 
     if recommendation.save
-      render nothing: true
+      render json: { status: "success" }
     else
       render json: { status: "error",
                      message: recommendation.errors.first }

@@ -44,6 +44,10 @@ function productsGrid() {
             showMax : true,
             onOpen: function (event) {
               event.onComplete = function () {
+              w2ui.recommendationForm.record['reason_de'] = null
+              w2ui.recommendationForm.record['reason_en'] = null
+              w2ui.recommendationForm.record['product_id'] = request_id
+              w2ui.recommendationForm.record['recommended_product_id'] = selection[0]
               $('#recommendationForm').w2render('recommendationForm');
               }
             }

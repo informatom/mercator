@@ -710,6 +710,7 @@ en:
       text_customer: Feedback text and my name
       text: Feedback Text
     provide_billing_address: Provide Billing Address
+    recommendation_exists: This recommendation already exists.
     register_different_email: register a different e-mail address.
     registered_for: Registered for
     relation_manager:
