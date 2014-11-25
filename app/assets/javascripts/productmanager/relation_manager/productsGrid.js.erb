@@ -78,12 +78,6 @@ function productsGrid() {
       { field: 'number', caption: '<%= I18n.t("attributes.number") %>', size: '100px', sortable: true },
       { field: 'title_de', caption: '<%= I18n.t("attributes.title") %> DE', size: '150px', sortable: true },
       { field: 'title_en', caption: '<%= I18n.t("attributes.title") %> EN', size: '150px', sortable: true, hidden: true },
-      { field: 'description_de', caption: '<%= I18n.t("attributes.description") %> DE', size: '200px', sortable: true },
-      { field: 'description_en', caption: '<%= I18n.t("attributes.description") %> EN', size: '200px', sortable: true, hidden: true },
-      { field: 'long_description_de', caption: '<%= I18n.t("attributes.long_description") %> DE', size: '200px', sortable: true },
-      { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', size: '200px', sortable: true, hidden: true },
-      { field: 'warranty_de', caption: '<%= I18n.t("attributes.warranty") %> DE', size: '200px', sortable: true },
-      { field: 'warranty_en', caption: '<%= I18n.t("attributes.warranty") %> EN', size: '200px', sortable: true, hidden: true },
       { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px' },
       { field: 'novelty', caption: '<%= I18n.t("attributes.novelty") %>', size: '50px', attr: "align=center",
         render: function (record) {
@@ -105,10 +99,6 @@ function productsGrid() {
       { field: 'number', caption: '<%= I18n.t("attributes.number") %>', type: 'text' },
       { field: 'name_de', caption: '<%= I18n.t("attributes.name") %> DE', type: 'text' },
       { field: 'name_en', caption: '<%= I18n.t("attributes.name") %> EN', type: 'text' },
-      { field: 'description_de', caption: '<%= I18n.t("attributes.description") %> DE', type: 'text' },
-      { field: 'description_en', caption: '<%= I18n.t("attributes.description") %> EN', type: 'text' },
-      { field: 'long_description_de', caption: '<%= I18n.t("attributes.long_description") %> DE', type: 'text' },
-      { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', type: 'text' }
     ],
 
     onClick: function(event) {
