@@ -33,7 +33,7 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
-  def show_product_relations
+  def show_productrelations
     productrelations = Product.find(params[:id]).productrelations
     render json: {
       status: "success",
@@ -67,6 +67,43 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
       render nothing: true
     else
       render json: productrelation.errors.first
+    end
+  end
+
+  def show_supplyrelations
+    supplyrelations = Product.find(params[:id]).supplyrelations
+    render json: {
+      status: "success",
+      total: supplyrelations.count,
+      records: supplyrelations.collect {
+        |supplyrelation| {
+          recid: supplyrelation.id,
+          supply_number: supplyrelation.supply.number,
+          created_at: supplyrelation.created_at.utc.to_i*1000,
+          updated_at: supplyrelation.updated_at.utc.to_i*1000
+        }
+      }
+    }
+  end
+
+  def create_supplyrelation
+    supplyrelation = Supplyrelation.new(product_id: params[:product_id],
+                                        supply_id:  params[:supply_id])
+
+    if supplyrelation.save
+      render nothing: true
+    else
+      render json: { status: "error",
+                     message: supplyrelation.errors.first }
+    end
+  end
+
+  def delete_supplyrelation
+    supplyrelation = Supplyrelation.find(params[:id])
+    if supplyrelation.delete
+      render nothing: true
+    else
+      render json: supplyrelation.errors.first
     end
   end
 end

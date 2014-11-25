@@ -12,7 +12,7 @@ function productsGrid() {
           caption: "<%= I18n.t('activerecord.models.productrelation.one') %>" },
         { type: 'button', id: 'newRecommendation', img: 'fa fa-plus', disabled: true,
           caption: "<%= I18n.t('activerecord.models.recommendation.one') %>" },
-        { type: 'button', id: 'newSsupplyrelation', img: 'fa fa-plus', disabled: true,
+        { type: 'button', id: 'newSupplyrelation', img: 'fa fa-plus', disabled: true,
           caption: "<%= I18n.t('activerecord.models.supplyrelation.one') %>" }
       ],
       onClick: function (target, data) {
@@ -37,8 +37,21 @@ function productsGrid() {
         case 'newRecommendation':
           selection[0]
         break
-        case 'newSsupplyrelation':
-          selection[0]
+        case 'newSupplyrelation':
+          $.ajax({
+            url:"/productmanager/relation_manager/create_supplyrelation/",
+            method: "POST",
+            data: {
+              authenticity_token: csrf_token,
+              product_id: request_id,
+              supply_id: selection[0]
+            },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.supplyRelationsGrid.reload()
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(JSON.parse(jqXHR.responseText)['message'])
+          })
         break
         }
       }
@@ -88,11 +101,11 @@ function productsGrid() {
         if (selection.length == 1) {
           this.toolbar.enable('newProductrelation')
           this.toolbar.enable('newRecommendation')
-          this.toolbar.enable('newSsupplyrelation')
+          this.toolbar.enable('newSupplyrelation')
         } else {
           this.toolbar.disable('newProductrelation')
           this.toolbar.disable('newRecommendation')
-          this.toolbar.disable('newSsupplyrelation')
+          this.toolbar.disable('newSupplyrelation')
         }
       }
     }

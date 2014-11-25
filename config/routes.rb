@@ -72,9 +72,14 @@ Mercator::Application.routes.draw do
 
     get    'relation_manager/index/:id'                  => 'relation_manager#index', :as => 'relation_manager'
     get    'relation_manager/show_products'              => 'relation_manager#show_products'
-    get    'relation_manager/show_product_relations/:id' => 'relation_manager#show_product_relations'
+
+    get    'relation_manager/show_productrelations/:id' => 'relation_manager#show_productrelations'
     post   'relation_manager/create_productrelation'     => 'relation_manager#create_productrelation'
     delete 'relation_manager/productrelation/:id'        => 'relation_manager#delete_productrelation'
+
+    get    'relation_manager/show_supplyrelations/:id' => 'relation_manager#show_supplyrelations'
+    post   'relation_manager/create_supplyrelation'     => 'relation_manager#create_supplyrelation'
+    delete 'relation_manager/supplyrelation/:id'        => 'relation_manager#delete_supplyrelation'
   end
 
   namespace :contentmanager do
