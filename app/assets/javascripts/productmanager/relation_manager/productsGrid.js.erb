@@ -35,7 +35,19 @@ function productsGrid() {
           })
         break
         case 'newRecommendation':
-          selection[0]
+          $().w2popup('open', {
+            title   : '<%= I18n.t('activerecord.models.recommendation.one') %>',
+            body    : '<div id="recommendationForm" style="width: 100%; height: 100%;"></div>',
+            style   : 'padding: 15px 0px 0px 0px',
+            width   : 500,
+            height  : 300,
+            showMax : true,
+            onOpen: function (event) {
+              event.onComplete = function () {
+              $('#recommendationForm').w2render('recommendationForm');
+              }
+            }
+          })
         break
         case 'newSupplyrelation':
           $.ajax({

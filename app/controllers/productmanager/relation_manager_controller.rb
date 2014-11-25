@@ -106,4 +106,45 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
       render json: supplyrelation.errors.first
     end
   end
+
+  def show_recommendations
+    recommendations = Product.find(params[:id]).recommendations
+    render json: {
+      status: "success",
+      total: recommendations.count,
+      records: recommendations.collect {
+        |recommendation| {
+          recid: recommendation.id,
+          supply_number: recommendation.recommended_product.number,
+          reason_de: recommendation.reason_de,
+          reason_en: recommendation.reason_en,
+          created_at: recommendation.created_at.utc.to_i*1000,
+          updated_at: recommendation.updated_at.utc.to_i*1000
+        }
+      }
+    }
+  end
+
+  def create_recommendation
+    recommendation = Recommendation.new(product_id: params[:product_id],
+                                        supply_id:  params[:supply_id],
+                                        reason_de:  params[:reason_de],
+                                        reason_en:  params[:reason_en])
+
+    if recommendation.save
+      render nothing: true
+    else
+      render json: { status: "error",
+                     message: recommendation.errors.first }
+    end
+  end
+
+  def delete_recommendation
+    recommendation = Recommendation.find(params[:id])
+    if recommendation.delete
+      render nothing: true
+    else
+      render json: recommendation.errors.first
+    end
+  end
 end

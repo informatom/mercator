@@ -19,6 +19,7 @@ $(function () {
         productsGrid()
         w2ui.productsgrid.load('/productmanager/relation_manager/show_products')
         menu()
+        recommendationForm()
       }
     }
   })
@@ -39,6 +40,7 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         productRelationsGrid()
+        recommendationsGrid()
         supplyRelationsGrid()
       }
     }

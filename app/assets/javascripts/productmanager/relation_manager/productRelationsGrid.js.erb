@@ -37,7 +37,7 @@ function productRelationsGrid() {
 
     columns: [
       { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
-      { field: 'related_product_number', caption: '<%= I18n.t("attributes.number") %> DE', size: '150px', sortable: true },
+      { field: 'related_product_number', caption: '<%= I18n.t("attributes.number") %>', size: '150px', sortable: true },
       { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
       { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,

@@ -80,6 +80,10 @@ Mercator::Application.routes.draw do
     get    'relation_manager/show_supplyrelations/:id' => 'relation_manager#show_supplyrelations'
     post   'relation_manager/create_supplyrelation'     => 'relation_manager#create_supplyrelation'
     delete 'relation_manager/supplyrelation/:id'        => 'relation_manager#delete_supplyrelation'
+
+    get    'relation_manager/show_recommendations/:id' => 'relation_manager#show_recommendations'
+    post   'relation_manager/create_recommendation'     => 'relation_manager#create_recommendation'
+    delete 'relation_manager/recommendation/:id'        => 'relation_manager#delete_recommendation'
   end
 
   namespace :contentmanager do
