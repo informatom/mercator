@@ -1,0 +1,100 @@
+function productsGrid() {
+  $('#productsgrid').w2grid({
+    name: 'productsgrid',
+    multiSelect : false,
+    method: 'GET',
+    show: { toolbar: true, footer: true },
+    sortData: [{ field: 'number', direction: 'ASC' }],
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'newProductrelation', img: 'fa fa-plus', disabled: true,
+          caption: "<%= I18n.t('activerecord.models.productrelation.one') %>" },
+        { type: 'button', id: 'newRecommendation', img: 'fa fa-plus', disabled: true,
+          caption: "<%= I18n.t('activerecord.models.recommendation.one') %>" },
+        { type: 'button', id: 'newSsupplyrelation', img: 'fa fa-plus', disabled: true,
+          caption: "<%= I18n.t('activerecord.models.supplyrelation.one') %>" }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.productsgrid.getSelection()
+        switch (target) {
+        case 'newProductrelation':
+          $.ajax({
+            url:"/productmanager/relation_manager/create_productrelation/",
+            method: "POST",
+            data: {
+              authenticity_token: csrf_token,
+              product_id: request_id,
+              related_product_id: selection[0]
+            },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.productRelationsGrid.reload()
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(JSON.parse(jqXHR.responseText)['message'])
+          })
+        break
+        case 'newRecommendation':
+          selection[0]
+        break
+        case 'newSsupplyrelation':
+          selection[0]
+        break
+        }
+      }
+    },
+
+    columns: [
+      { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      { field: 'number', caption: '<%= I18n.t("attributes.number") %>', size: '100px', sortable: true },
+      { field: 'title_de', caption: '<%= I18n.t("attributes.title") %> DE', size: '150px', sortable: true },
+      { field: 'title_en', caption: '<%= I18n.t("attributes.title") %> EN', size: '150px', sortable: true, hidden: true },
+      { field: 'description_de', caption: '<%= I18n.t("attributes.description") %> DE', size: '200px', sortable: true },
+      { field: 'description_en', caption: '<%= I18n.t("attributes.description") %> EN', size: '200px', sortable: true, hidden: true },
+      { field: 'long_description_de', caption: '<%= I18n.t("attributes.long_description") %> DE', size: '200px', sortable: true },
+      { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', size: '200px', sortable: true, hidden: true },
+      { field: 'warranty_de', caption: '<%= I18n.t("attributes.warranty") %> DE', size: '200px', sortable: true },
+      { field: 'warranty_en', caption: '<%= I18n.t("attributes.warranty") %> EN', size: '200px', sortable: true, hidden: true },
+      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px' },
+      { field: 'novelty', caption: '<%= I18n.t("attributes.novelty") %>', size: '50px', attr: "align=center",
+        render: function (record) {
+          return record.novelty ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'
+        }
+      },
+      { field: 'topseller', caption: '<%= I18n.t("attributes.topseller") %>', size: '50px', attr: "align=center",
+        render: function (record) {
+          return record.topseller ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'
+        }
+      },
+      { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+      { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' }
+    ],
+
+    searches: [
+      { field: 'number', caption: '<%= I18n.t("attributes.number") %>', type: 'text' },
+      { field: 'name_de', caption: '<%= I18n.t("attributes.name") %> DE', type: 'text' },
+      { field: 'name_en', caption: '<%= I18n.t("attributes.name") %> EN', type: 'text' },
+      { field: 'description_de', caption: '<%= I18n.t("attributes.description") %> DE', type: 'text' },
+      { field: 'description_en', caption: '<%= I18n.t("attributes.description") %> EN', type: 'text' },
+      { field: 'long_description_de', caption: '<%= I18n.t("attributes.long_description") %> DE', type: 'text' },
+      { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', type: 'text' }
+    ],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('newProductrelation')
+          this.toolbar.enable('newRecommendation')
+          this.toolbar.enable('newSsupplyrelation')
+        } else {
+          this.toolbar.disable('newProductrelation')
+          this.toolbar.disable('newRecommendation')
+          this.toolbar.disable('newSsupplyrelation')
+        }
+      }
+    }
+  })
+}

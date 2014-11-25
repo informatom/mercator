@@ -70,7 +70,11 @@ Mercator::Application.routes.draw do
     delete 'price_manager/price/:id'            => 'price_manager#delete_price'
     delete 'price_manager/inventory/:id'        => 'price_manager#delete_inventory'
 
-    get    'relation_manager/index/:id'            => 'relation_manager#index', :as => 'relation_manager'
+    get    'relation_manager/index/:id'                  => 'relation_manager#index', :as => 'relation_manager'
+    get    'relation_manager/show_products'              => 'relation_manager#show_products'
+    get    'relation_manager/show_product_relations/:id' => 'relation_manager#show_product_relations'
+    post   'relation_manager/create_productrelation'     => 'relation_manager#create_productrelation'
+    delete 'relation_manager/productrelation/:id'        => 'relation_manager#delete_productrelation'
   end
 
   namespace :contentmanager do
