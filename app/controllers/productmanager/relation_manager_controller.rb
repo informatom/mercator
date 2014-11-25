@@ -107,7 +107,23 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     end
   end
 
-  def show_recommendations
+  def manage_recommendations
+    if params[:cmd] == "save-records"
+      params[:changes].each do |key, change|
+        recommendation = Recommendation.find(change[:recid])
+
+        recommendation.reason_de = change[:reason_de] if change[:reason_de]
+        recommendation.reason_en = change[:reason_en] if change[:reason_en]
+
+        unless recommendation.save
+         render json: {
+           status: "success",
+           message: recommendation.errors.first
+           } and return
+        end
+      end
+    end
+
     recommendations = Product.find(params[:id]).recommendations
     render json: {
       status: "success",
@@ -125,26 +141,20 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
-  def manage_recommendation
-    if params[:recid] == "0"
-      if Recommendation.where(product_id:             params[:record][:product_id],
-                              recommended_product_id: params[:record][:recommended_product_id]).any?
-        render json: { status: "error",
-                       message: I18n.t("mercator.recommendation_exists") } and return
-      else
-        recommendation = Recommendation.new
-      end
+  def create_recommendation
+    if Recommendation.where(product_id:             params[:record][:product_id],
+                            recommended_product_id: params[:record][:recommended_product_id]).any?
+      render json: { status: "error",
+                     message: I18n.t("mercator.recommendation_exists") } and return
     else
-      recommendation = Recommendation.find(params[:recid])
+      recommendation = Recommendation.new
     end
 
-    if params[:cmd] == "save-record"
-      attrs = params[:record]
-      recommendation.product_id             = attrs[:product_id]
-      recommendation.recommended_product_id = attrs[:recommended_product_id]
-      recommendation.reason_de              = attrs[:reason_de]
-      recommendation.reason_en              = attrs[:reason_en]
-    end
+    attrs = params[:record]
+    recommendation.product_id             = attrs[:product_id]
+    recommendation.recommended_product_id = attrs[:recommended_product_id]
+    recommendation.reason_de              = attrs[:reason_de]
+    recommendation.reason_en              = attrs[:reason_en]
 
     if recommendation.save
       render json: { status: "success" }
