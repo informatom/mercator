@@ -11,7 +11,7 @@
     </head>
 
     <body param>
-      <div id="grid" style="height: 100%"></div>
+      <div id="grid" style="height: 102%"></div>
     </body>
 
     <script>
