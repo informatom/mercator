@@ -84,6 +84,9 @@ Mercator::Application.routes.draw do
     get    'relation_manager/manage_recommendations/:id' => 'relation_manager#manage_recommendations'
     post   'relation_manager/create_recommendation'     => 'relation_manager#create_recommendation'
     delete 'relation_manager/recommendation/:id'        => 'relation_manager#delete_recommendation'
+
+    get    'relation_manager/show_categorizations/:id' => 'relation_manager#show_categorizations'
+    get    'relation_manager/show_categorytree'        => 'relation_manager#show_categorytree'
   end
 
   namespace :contentmanager do

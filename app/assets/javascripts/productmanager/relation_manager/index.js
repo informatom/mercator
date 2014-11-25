@@ -4,4 +4,6 @@
 //= require ./productRelationsGrid
 //= require ./recommendationsGrid
 //= require ./supplyRelationsGrid
+//= require ./categorizationsGrid
+//= require ./categoryTree
 //= require ./menu

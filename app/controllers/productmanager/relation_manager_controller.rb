@@ -166,4 +166,42 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
       render json: recommendation.errors.first
     end
   end
+
+  def show_categorizations
+    categorizations = Product.find(params[:id]).categorizations
+    render json: {
+      status: "success",
+      total: categorizations.count,
+      records: categorizations.collect {
+        |categorization| {
+          recid: categorization.id,
+          category_name: categorization.category.name,
+          position: categorization.position,
+          created_at: categorization.created_at.utc.to_i*1000,
+          updated_at: categorization.updated_at.utc.to_i*1000
+        }
+      }
+    }
+  end
+
+  def show_categorytree
+    render json: childrenarray(objects: Category.arrange(order: :position),
+                               name_method: :name_with_status).to_json
+  end
+
+protected
+
+  def childrenarray(objects: nil, name_method: nil, folder: false)
+    childrenarray = []
+    objects.each do |object, children|
+      childhash = Hash["title"  => object.send(name_method), "key" => object.id, "folder" => folder]
+      if children.any?
+        childhash["children"] = childrenarray(objects: children,
+                                              name_method: name_method,
+                                              folder: folder)
+      end
+      childrenarray << childhash
+    end
+    return childrenarray
+  end
 end
