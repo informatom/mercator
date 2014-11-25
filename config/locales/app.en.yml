@@ -712,6 +712,8 @@ en:
     provide_billing_address: Provide Billing Address
     register_different_email: register a different e-mail address.
     registered_for: Registered for
+    relation_manager:
+      title: Relation Manager
     remove_filter: Remove Filter
     repeat: Repeat
     request_email:  Request E-Mail

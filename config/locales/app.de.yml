@@ -719,6 +719,8 @@ de:
     provide_billing_address: Rechnungsadresse angeben
     register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
+    relation_manager:
+      title: Manager der Relationen
     remove_filter: Filter aufheben
     repeat: Wiederholen
     request_email:  E-Mail anfordern

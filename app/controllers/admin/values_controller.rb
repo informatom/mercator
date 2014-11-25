@@ -24,7 +24,7 @@ class Admin::ValuesController < Admin::AdminSiteController
           records: values.collect {
             |value| {
               recid:          value.id,
-              product_number: value.product.number,
+              product_number: (value.product.number if value.product),
               property:       value.property.name_de,
               property_group: value.property_group.name_de,
               title_de:       value.title_de,

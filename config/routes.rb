@@ -69,6 +69,8 @@ Mercator::Application.routes.draw do
     post   'price_manager/manage_price'         => 'price_manager#manage_price'
     delete 'price_manager/price/:id'            => 'price_manager#delete_price'
     delete 'price_manager/inventory/:id'        => 'price_manager#delete_inventory'
+
+    get    'relation_manager/index/:id'            => 'relation_manager#index', :as => 'relation_manager'
   end
 
   namespace :contentmanager do
