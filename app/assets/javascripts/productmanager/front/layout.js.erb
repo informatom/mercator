@@ -21,7 +21,7 @@ $(function () {
       {
         type: 'main',
         resizable: true,
-        content: "<div id='category' style='height: 100%'></div>" },
+        content: "<div id='categoryForm' style='height: 350px'></div>" },
       {
         type: 'preview',
         size: '60%',
@@ -36,7 +36,7 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         categoryTree()
-        category()
+        categoryForm()
         productsGrid()
         menu()
       }

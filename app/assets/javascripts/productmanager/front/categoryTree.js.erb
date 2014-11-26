@@ -42,7 +42,9 @@ function categoryTree() {
 
 function load_corresponding_data(category_id) {
   w2ui.productsgrid.load('/productmanager/front/show_products/' + category_id)
-  w2ui.category.load('/productmanager/front/show_category/' + category_id)
+  w2ui.categoryForm.url = '/productmanager/front/manage_category/' + category_id
+  w2ui.categoryForm.recid = category_id
+  w2ui.categoryForm.reload()
   w2ui.productmanager.lock('right', w2utils.lang('Refreshing...'), true)
   $.ajax({
     url: "/admin/categories/" + category_id + "/edit_properties",
