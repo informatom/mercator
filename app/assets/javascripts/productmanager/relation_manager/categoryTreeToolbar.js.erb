@@ -1,0 +1,30 @@
+function categoryTreeToolbar() {
+  $('#categoryTreeToolbar').w2toolbar({
+    name: 'categoryTreeToolbar',
+    items: [
+      { type: 'button', id: 'addCategorization', icon: 'fa fa-plus', disabled: true,
+        caption: '<%= I18n.t("activerecord.models.categorization.one") %>' }
+    ],
+    onClick: function (event) {
+      switch (event.target) {
+      case 'addCategorization':
+        var active_node = $("#categoryTree").fancytree("getTree").getActiveNode()
+        $.ajax({
+          url: "/productmanager/relation_manager/add_categorization",
+          method: "POST",
+          data: {
+            authenticity_token: csrf_token,
+            category_id: active_node.key,
+            product_id: request_id
+          },
+          dataType: 'script',
+        }).done(function() {
+          w2ui.categorizationsGrid.reload()
+        }).fail(function( jqXHR, textStatus, errorThrown) {
+          w2alert(JSON.parse(jqXHR.responseText)['message'])
+        })
+      break
+      }
+    }
+  })
+}

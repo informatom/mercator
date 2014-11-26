@@ -6,4 +6,5 @@
 //= require ./supplyRelationsGrid
 //= require ./categorizationsGrid
 //= require ./categoryTree
+//= require ./categoryTreeToolbar
 //= require ./menu

@@ -78,15 +78,17 @@ Mercator::Application.routes.draw do
     delete 'relation_manager/productrelation/:id'        => 'relation_manager#delete_productrelation'
 
     get    'relation_manager/show_supplyrelations/:id' => 'relation_manager#show_supplyrelations'
-    post   'relation_manager/create_supplyrelation'     => 'relation_manager#create_supplyrelation'
-    delete 'relation_manager/supplyrelation/:id'        => 'relation_manager#delete_supplyrelation'
+    post   'relation_manager/create_supplyrelation'    => 'relation_manager#create_supplyrelation'
+    delete 'relation_manager/supplyrelation/:id'       => 'relation_manager#delete_supplyrelation'
 
     get    'relation_manager/manage_recommendations/:id' => 'relation_manager#manage_recommendations'
-    post   'relation_manager/create_recommendation'     => 'relation_manager#create_recommendation'
-    delete 'relation_manager/recommendation/:id'        => 'relation_manager#delete_recommendation'
+    post   'relation_manager/create_recommendation'      => 'relation_manager#create_recommendation'
+    delete 'relation_manager/recommendation/:id'         => 'relation_manager#delete_recommendation'
 
     get    'relation_manager/show_categorizations/:id' => 'relation_manager#show_categorizations'
     get    'relation_manager/show_categorytree'        => 'relation_manager#show_categorytree'
+    post   'relation_manager/add_categorization'       => 'relation_manager#add_categorization'
+    delete 'relation_manager/categorization/:id'       => 'relation_manager#delete_categorization'
   end
 
   namespace :contentmanager do

@@ -53,11 +53,12 @@ $(function () {
         content: "<div id='categorizationsGrid' style='height:100%;'></div>" },
       { type: 'preview', size: '60%', resizable: true,
         title: '<%= I18n.t("activerecord.models.category.other") %>',
-        content: "<div id='categoryTree' style='height:100%;'></div>"}
+        content: "<div id='categoryTreeToolbar' style='height:20'></div><div id='categoryTree' style='height:calc(100% - 28px);'></div>"}
     ],
     onRender: function(event) {
       event.onComplete = function () {
         categorizationsGrid()
+        categoryTreeToolbar()
         categoryTree()
       }
     }

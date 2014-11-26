@@ -722,6 +722,7 @@ de:
     registered_for: registriert für
     relation_manager:
       title: Manager der Relationen
+      categorization_exists: Diese Kategorisierung existiert bereits.
     remove_filter: Filter aufheben
     repeat: Wiederholen
     request_email:  E-Mail anfordern

@@ -13,7 +13,7 @@ function categorizationsGrid() {
           caption: "<%= I18n.t('activerecord.models.categorization.one') %> <%= I18n.t('hobo.actions.delete', model: '') %>" }
       ],
       onClick: function (target, data) {
-        var selection = w2ui.recommendationsGrid.getSelection()
+        var selection = w2ui.categorizationsGrid.getSelection()
         switch (target) {
         case 'deleteCategorization':
           w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
@@ -38,7 +38,8 @@ function categorizationsGrid() {
     columns: [
       { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
       { field: 'category_name', caption: '<%= I18n.t("attributes.name") %>', size: '150px', sortable: true },
-      { field: 'position', size: '100px', sortable: true, editable: { type: 'int' },
+      { field: 'ancestor_string', caption: '<%= I18n.t("attributes.parent") %>', size: '250px', sortable: true },
+      { field: 'position', size: '100px', sortable: true, hidden: true ,
         caption: '<%= I18n.t("attributes.position") %>' },
       { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },

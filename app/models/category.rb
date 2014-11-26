@@ -100,6 +100,11 @@ class Category < ActiveRecord::Base
     ancestor_ids.map { |id| Category.find(id) }
   end
 
+  def ancestor_string
+    ancestor_names = ancestors.each { |ancestor| ancestor.name}
+    ancestor_names.join " - "
+  end
+
   def active_siblings
     Category.siblings_of(self).active - [self]
   end

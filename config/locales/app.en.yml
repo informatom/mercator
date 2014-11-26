@@ -715,6 +715,7 @@ en:
     registered_for: Registered for
     relation_manager:
       title: Relation Manager
+      categorization_exists: This categorization already exists!
     remove_filter: Remove Filter
     repeat: Repeat
     request_email:  Request E-Mail

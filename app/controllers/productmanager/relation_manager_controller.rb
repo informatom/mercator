@@ -175,10 +175,11 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
       records: categorizations.collect {
         |categorization| {
           recid: categorization.id,
-          category_name: categorization.category.name,
-          position: categorization.position,
-          created_at: categorization.created_at.utc.to_i*1000,
-          updated_at: categorization.updated_at.utc.to_i*1000
+          category_name:   categorization.category.name,
+          ancestor_string: categorization.category.ancestor_string,
+          position:        categorization.position,
+          created_at:      categorization.created_at.utc.to_i*1000,
+          updated_at:      categorization.updated_at.utc.to_i*1000
         }
       }
     }
@@ -187,6 +188,33 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
   def show_categorytree
     render json: childrenarray(objects: Category.arrange(order: :position),
                                name_method: :name_with_status).to_json
+  end
+
+  def add_categorization
+    if Categorization.where(category_id: params[:category_id],
+                            product_id:  params[:product_id]).any?
+      render json: { status: "error",
+                     message: I18n.t("mercator.relation_manager.categorization_exists") } and return
+    end
+
+    categorization = Categorization.new(position:    1,
+                                        category_id: params[:category_id],
+                                        product_id:  params[:product_id] )
+    if categorization.save
+      render nothing: true
+    else
+      render json: { status: "error",
+                     message: categorization.errors.first }
+    end
+  end
+
+  def delete_categorization
+    categorization = Categorization.find(params[:id])
+    if categorization.delete
+      render nothing: true
+    else
+      render json: categorization.errors.first
+    end
   end
 
 protected

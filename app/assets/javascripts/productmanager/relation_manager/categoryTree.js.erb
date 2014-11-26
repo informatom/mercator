@@ -1,5 +1,12 @@
 function categoryTree() {
   $("#categoryTree").fancytree({
     source: { url: "/productmanager/relation_manager/show_categorytree" },
+    click: function(event, data) {
+      if (data.node.key) {
+        w2ui.categoryTreeToolbar.enable('addCategorization')
+      } else {
+        w2ui.categoryTreeToolbar.disable('addCategorization')
+      }
+    }
   })
 }
