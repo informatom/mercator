@@ -27,25 +27,31 @@ function categoryTree() {
 
     click: function(event, data) {
       if (data.node.key) {
-        w2ui.productsgrid.load('/productmanager/front/show_products/' + data.node.key)
-        w2ui.category.load('/productmanager/front/show_category/' + data.node.key)
-        w2ui.productmanager.lock('right', w2utils.lang('Refreshing...'), true)
-        $.ajax({
-          url: "/admin/categories/" + data.node.key + "/edit_properties",
-          context: document.body
-        }).done(function(response) {
-          $("#properties").html(response)
-          w2ui.productmanager.unlock('right')
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-          w2alert(jqXHR.responseText)
-          w2ui.productmanager.unlock('right')
-        })
+        load_corresponding_data(data.node.key)
       }
     },
+
     init: function(event, data){
       if (selected_category_id) {
         $("#categoryTree").fancytree("getTree").getNodeByKey(selected_category_id).setActive()
+        load_corresponding_data(selected_category_id)
       }
     }
+  })
+}
+
+function load_corresponding_data(category_id) {
+  w2ui.productsgrid.load('/productmanager/front/show_products/' + category_id)
+  w2ui.category.load('/productmanager/front/show_category/' + category_id)
+  w2ui.productmanager.lock('right', w2utils.lang('Refreshing...'), true)
+  $.ajax({
+    url: "/admin/categories/" + category_id + "/edit_properties",
+    context: document.body
+  }).done(function(response) {
+    $("#properties").html(response)
+    w2ui.productmanager.unlock('right')
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    w2alert(jqXHR.responseText)
+    w2ui.productmanager.unlock('right')
   })
 }

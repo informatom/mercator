@@ -82,6 +82,17 @@ function productsGrid() {
           this.toolbar.disable('editRelations')
         }
       }
+    },
+
+    onLoad: function(event) {
+      event.onComplete = function () {
+        this.select(selected_product_id)
+        // onLoad is bit too early, according to the author, currently that's the way to go
+        setTimeout(function() {
+          var index = w2ui.contentelementsgrid.get(selected_product_id, true)
+          w2ui.contentelementsgrid.scrollIntoView(index)
+        }, 100)
+      }
     }
   })
 }
