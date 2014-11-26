@@ -721,7 +721,7 @@ de:
     register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
     relation_manager:
-      title: Manager der Relationen
+      title: "Manager der Zuordnungen für Produkt"
       categorization_exists: Diese Kategorisierung existiert bereits.
     remove_filter: Filter aufheben
     repeat: Wiederholen

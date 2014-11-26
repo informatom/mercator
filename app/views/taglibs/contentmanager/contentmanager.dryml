@@ -24,5 +24,6 @@
     <do param="config"/>
 
     <page-scripts param/>
+
   </html>
 </def>

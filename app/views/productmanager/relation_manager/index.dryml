@@ -1,1 +1,7 @@
-<page/>
+<page>
+  <config:>
+    <script>
+      var product_title = "<%= @product.title %>"
+    </script>
+  </config:>
+</page>

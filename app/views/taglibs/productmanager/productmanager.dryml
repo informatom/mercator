@@ -19,5 +19,9 @@
       var request_id = "<%= request.parameters[:id] %>"
       var selected_value = "<%= session[:seleted_value] %>"
     </script>
+
+    <do param="config"/>
+    <page-scripts param/>
+
   </html>
 </def>

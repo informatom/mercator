@@ -3,7 +3,9 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
   hobo_controller
   respond_to :html, :json, :js, :text
 
-  def index; end
+  def index
+    @product = Product.find(params[:id])
+  end
 
   def show_products
     products = Product.all
