@@ -7,21 +7,17 @@ $(function () {
     panels: [
       { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
         title: '<%= I18n.t("mercator.property_manager.title") %>'},
-      { type: 'left', size: '20%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.product.other") %>',
-        content: "<div id='productGrid' style='height: 100%'></div>" },
+      { type: 'left', size: '20%', resizable: true },
       { type: 'main', resizable: true,
         title: '<%= I18n.t("activerecord.models.value.other") %>',
         content: "<div id='valueTree' style='height: 100%'></div>" },
       { type: 'preview', resizable: true, size: '339',
         title: '<%= I18n.t("activerecord.models.value.other") %>',
         content: "<div id='valueForm' style='height: 310px'></div>" },
-      { type: 'right', size: '35%', resizable: true, content: "" }
+      { type: 'right', size: '35%', resizable: true }
     ],
     onRender: function(event) {
       event.onComplete = function () {
-        productGrid()
-        w2ui.productGrid.load('/productmanager/property_manager/index/' + request_id)
         valueTree()
         valueForm()
         menu()
@@ -56,5 +52,26 @@ $(function () {
     }
   })
 
+  $().w2layout({
+    name: 'attrsAndFeatures',
+    panels: [
+      { type: 'main', resizable: true,
+        title: '<%= I18n.t("activerecord.models.product.other") %>',
+        content: "<div id='productGrid' style='height: 100%'></div>" },
+      { type: 'preview', size: '55%', resizable: true,
+        title: '<%= I18n.t("activerecord.models.feature.other") %>',
+        content: "<div id='featuresGrid' style='height: 100%'></div>" }
+    ],
+    onRender: function(event) {
+      event.onComplete = function () {
+        productGrid()
+        w2ui.productGrid.load('/productmanager/property_manager/index/' + request_id)
+        featuresGrid()
+        featureForm()
+      }
+    }
+  })
+
   w2ui.propertymanager.content('right', w2ui['propertylists'])
+  w2ui.propertymanager.content('left', w2ui['attrsAndFeatures'])
 })

@@ -158,6 +158,7 @@ en:
     supplies: Supplies
     symbolic_image: Symbolic Photo
     template: Website Template
+    text: Text
     thumbnail: Vorschau
     title: Title
     topseller: Topseller
@@ -221,6 +222,9 @@ en:
       download:
         one: Download
         other: Downloads
+      feature:
+        one: Feature
+        other: Features
       feedback:
         one: Feedback
         other: Feedback

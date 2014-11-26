@@ -165,6 +165,7 @@ de:
     surname: Familienname
     symbolic_image: Symbolfoto
     template: Vorlage
+    text: Text
     thumbnail: Thumbnail
     title: Titel
     topseller: Topseller
@@ -228,6 +229,9 @@ de:
       download:
         one: Download
         other: Downloads
+      feature:
+        one: Feature
+        other: Features
       feedback:
         one: Feedback
         other: Feedback

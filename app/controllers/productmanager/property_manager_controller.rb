@@ -206,4 +206,21 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
     property.insert_at(params[:value_new].to_i)
     render nothing: true
   end
+
+  def show_features
+    features = Product.find(params[:id]).features
+
+    render json: {
+      status: "success",
+      total: features.count,
+      records: features.collect {
+        |features| {
+          recid:    features.id,
+          position: features.position,
+          text_de:  features.text_de,
+          text_en:  features.text_en
+        }
+      }
+    }
+  end
 end

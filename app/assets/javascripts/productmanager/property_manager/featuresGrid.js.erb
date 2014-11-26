@@ -1,0 +1,80 @@
+function featuresGrid() {
+  $('#featuresGrid').w2grid({
+    name: 'featuresGrid',
+    multiSelect : false,
+    method: 'GET',
+    url: "/productmanager/property_manager/show_features/" + request_id,
+    show: { toolbar: true, footer: true},
+    sortData: [{ field: 'position', direction: 'ASC' }],
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'createFeature', img: 'fa fa-plus' },
+        { type: 'button', id: 'deleteFeature', img: 'fa fa-trash', disabled: true }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.featuresGrid.getSelection()
+        switch (target) {
+        case 'createFeature':
+          $().w2popup('open', {
+            title   : '<%= I18n.t('activerecord.models.feature.one') %>',
+            body    : '<div id="featureForm" style="width: 100%; height: 100%;"></div>',
+            style   : 'padding: 15px 0px 0px 0px',
+            width   : 500,
+            height  : 300,
+            showMax : true,
+            onOpen: function (event) {
+              event.onComplete = function () {
+              w2ui.featureForm.record['text_de'] = null
+              w2ui.featureForm.record['text_en'] = null
+              w2ui.featureForm.record['position'] = 1
+              w2ui.featureForm.record['product_id'] = request_id
+              $('#featureForm').w2render('featureForm');
+              }
+            }
+          })
+        break
+        case 'deleteFeature':
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/productmanager/relation_manager/feature/" + selection[0],
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2ui.featuresGrid.reload()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
+          })
+        break
+        }
+      }
+    },
+
+    columns: [
+      { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      { field: 'text_de', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true },
+      { field: 'text_en', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true },
+      { field: 'position', size: '50px', sortable: true,
+        caption: '<%= I18n.t("attributes.position") %>' },
+      { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+      { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true, hidden: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' }
+    ],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('deleteFeature')
+        } else {
+          this.toolbar.disable('deleteFeature')
+        }
+      }
+    }
+  })
+}

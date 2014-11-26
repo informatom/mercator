@@ -5,3 +5,5 @@
 //= require ./valueTree
 //= require ./valueForm
 //= require ./menu
+//= require ./featuresGrid
+//= require ./featureForm
