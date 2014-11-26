@@ -3,7 +3,12 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
   hobo_controller
   respond_to :html, :json, :js, :text
 
-  def index; end
+  def index
+    if request_param(:product_id)
+      @selected_product = Product.find(request_param(:product_id))
+      @selected_category = @selected_product.categories.first
+    end
+  end
 
   def show_categorytree
     render json: childrenarray(objects: Category.arrange(order: :position),

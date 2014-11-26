@@ -1,7 +1,7 @@
 <page>
   <config:>
     <script>
-      var product_title = "<%= @product.title %>"
+      var product_title = "<%= @product.title.squish %>"
     </script>
   </config:>
 </page>

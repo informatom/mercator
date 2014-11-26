@@ -1,1 +1,8 @@
-<page/>
+<page>
+  <config:>
+    <script>
+      var selected_product_id = "<%= @selected_product.id %>"
+      var selected_category_id = "<%= @selected_category.id %>"
+    </script>
+  </config:>
+</page>

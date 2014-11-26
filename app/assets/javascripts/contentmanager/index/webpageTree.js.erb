@@ -36,18 +36,16 @@ function webpageTree() {
         w2ui.webpageTreeToolbar.disable('edit')
         w2ui.webpageTreeToolbar.disable('delete')
       }
-    }
-  })
+    },
 
-  if (selected_webpage_id) {
-    setTimeout(
-      function(){
+    init: function(event, data){
+      if (selected_webpage_id) {
         $("#webpageTree").fancytree("getTree").getNodeByKey(selected_webpage_id).setActive();
         w2ui.assignments.load('/contentmanager/front/show_assignments/' + selected_webpage_id)
         w2ui.webpage.load('/contentmanager/front/show_webpage/' + selected_webpage_id)
         w2ui.webpageTreeToolbar.enable('edit')
         w2ui.webpageTreeToolbar.enable('delete')
-      },
-    1000 )
-  }
+      }
+    }
+  })
 }

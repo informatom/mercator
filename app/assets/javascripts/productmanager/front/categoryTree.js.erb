@@ -2,7 +2,6 @@ function categoryTree() {
   $("#categoryTree").fancytree({
     source: { url: "/productmanager/front/show_categorytree" },
     extensions: ["dnd"],
-
     dnd: {
       dragStart: function(node, data) { return true },
       dragEnter: function(node, data) { return true },
@@ -41,6 +40,11 @@ function categoryTree() {
           w2alert(jqXHR.responseText)
           w2ui.productmanager.unlock('right')
         })
+      }
+    },
+    init: function(event, data){
+      if (selected_category_id) {
+        $("#categoryTree").fancytree("getTree").getNodeByKey(selected_category_id).setActive()
       }
     }
   })
