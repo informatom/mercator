@@ -3,8 +3,8 @@ function featuresGrid() {
     name: 'featuresGrid',
     multiSelect : false,
     method: 'GET',
-    url: "/productmanager/property_manager/show_features/" + request_id,
-    show: { toolbar: true, footer: true},
+    url: "/productmanager/property_manager/manage_features/" + request_id,
+    show: { toolbar: true, footer: true, toolbarSave: true, toolbarSearch: false},
     sortData: [{ field: 'position', direction: 'ASC' }],
 
     toolbar: {
@@ -38,7 +38,7 @@ function featuresGrid() {
           w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
             if (button =='Yes') {
               $.ajax({
-                url:"/productmanager/relation_manager/feature/" + selection[0],
+                url:"/productmanager/property_manager/feature/" + selection[0],
                 method: "DELETE",
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
@@ -56,10 +56,10 @@ function featuresGrid() {
 
     columns: [
       { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
-      { field: 'text_de', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true },
-      { field: 'text_en', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true },
-      { field: 'position', size: '50px', sortable: true,
+      { field: 'position', size: '50px', sortable: true, editable: { type: 'int' },
         caption: '<%= I18n.t("attributes.position") %>' },
+      { field: 'text_de', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true, editable: { type: 'text' } },
+      { field: 'text_en', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true, editable: { type: 'text' } },
       { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
       { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true, hidden: true,
@@ -74,6 +74,12 @@ function featuresGrid() {
         } else {
           this.toolbar.disable('deleteFeature')
         }
+      }
+    },
+
+    onSave: function(event) {
+      event.onComplete = function () {
+        this.reload()
       }
     }
   })

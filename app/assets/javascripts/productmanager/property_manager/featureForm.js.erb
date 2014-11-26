@@ -1,7 +1,7 @@
 function featureForm() {
   $().w2form({
     name: 'featureForm',
-    url: '/productmanager/relation_manager/create_feature',
+    url: '/productmanager/property_manager/create_feature',
     style: 'border: 0px; background-color: transparent;',
     fields: [
       { field: 'text_de', type: 'text', required: true,
@@ -18,7 +18,7 @@ function featureForm() {
       function () {
         this.save( function() {
           w2popup.close()
-          w2ui.featureForm.reload()
+          w2ui.featuresGrid.reload()
         })
       },
       "Cancel": function () { w2popup.close() }

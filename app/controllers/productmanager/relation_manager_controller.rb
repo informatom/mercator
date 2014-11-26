@@ -113,7 +113,7 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
 
         unless recommendation.save
          render json: {
-           status: "success",
+           status: "error",
            message: recommendation.errors.first
            } and return
         end

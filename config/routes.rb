@@ -60,7 +60,9 @@ Mercator::Application.routes.draw do
     delete 'property_manager/value/:id'                    => 'property_manager#delete_value'
     post   'property_manager/update_property_groups_order' => 'property_manager#update_property_groups_order'
     post   'property_manager/update_properties_order'      => 'property_manager#update_properties_order'
-    get    'property_manager/show_features/:id'            => 'property_manager#show_features'
+    get    'property_manager/manage_features/:id' => 'property_manager#manage_features'
+    post   'property_manager/create_feature'    => 'property_manager#create_feature'
+    delete 'property_manager/feature/:id'       => 'property_manager#delete_feature'
 
     get    'price_manager/index/:id'            => 'price_manager#index', :as => 'price_manager'
     post   'price_manager/manage_product'       => 'price_manager#manage_product'
@@ -73,19 +75,15 @@ Mercator::Application.routes.draw do
 
     get    'relation_manager/index/:id'                  => 'relation_manager#index', :as => 'relation_manager'
     get    'relation_manager/show_products'              => 'relation_manager#show_products'
-
     get    'relation_manager/show_productrelations/:id' => 'relation_manager#show_productrelations'
     post   'relation_manager/create_productrelation'     => 'relation_manager#create_productrelation'
     delete 'relation_manager/productrelation/:id'        => 'relation_manager#delete_productrelation'
-
     get    'relation_manager/show_supplyrelations/:id' => 'relation_manager#show_supplyrelations'
     post   'relation_manager/create_supplyrelation'    => 'relation_manager#create_supplyrelation'
     delete 'relation_manager/supplyrelation/:id'       => 'relation_manager#delete_supplyrelation'
-
     get    'relation_manager/manage_recommendations/:id' => 'relation_manager#manage_recommendations'
     post   'relation_manager/create_recommendation'      => 'relation_manager#create_recommendation'
     delete 'relation_manager/recommendation/:id'         => 'relation_manager#delete_recommendation'
-
     get    'relation_manager/show_categorizations/:id' => 'relation_manager#show_categorizations'
     get    'relation_manager/show_categorytree'        => 'relation_manager#show_categorytree'
     post   'relation_manager/add_categorization'       => 'relation_manager#add_categorization'

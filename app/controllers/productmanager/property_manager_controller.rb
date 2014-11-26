@@ -207,7 +207,32 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
     render nothing: true
   end
 
-  def show_features
+  def manage_features
+    if params[:cmd] == "save-records"
+      params[:changes].each do |key, change|
+        feature = Feature.find(change[:recid])
+
+        feature.text_de = change[:text_de] if change[:text_de]
+        feature.text_en = change[:text_en] if change[:text_en]
+
+        unless feature.save
+          render json: {
+            status: "error",
+            message: feature.errors.first
+          } and return
+        end
+
+        if change[:position]
+          unless feature.insert_at(change[:position].to_i)
+            render json: {
+              status: "error",
+              message: feature.errors.first
+            } and return
+          end
+        end
+      end
+    end
+
     features = Product.find(params[:id]).features
 
     render json: {
@@ -222,5 +247,28 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
         }
       }
     }
+  end
+
+  def create_feature
+    feature = Feature.new(product_id: params[:record][:product_id],
+                          text_de:    params[:record][:text_de],
+                          text_en:    params[:record][:text_en],
+                          position:   params[:record][:position])
+
+    if feature.save
+      render json: { status: "success" }
+    else
+      render json: { status: "error",
+                     message: feature.errors.first }
+    end
+  end
+
+  def delete_feature
+    feature = Feature.find(params[:id])
+    if feature.delete
+      render nothing: true
+    else
+      render json: feature.errors.first
+    end
   end
 end
