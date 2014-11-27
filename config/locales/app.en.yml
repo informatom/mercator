@@ -754,6 +754,7 @@ en:
     starting_from: starting from
     states:
       active: active
+      announced: announced
       deprecated: deprecated
       draft: draft
       new: new

@@ -9,11 +9,11 @@ function productsGrid() {
     toolbar: {
       items: [
         { type: 'button', id: 'editProperties', img: 'fa fa-tag', disabled: true,
-          caption: "<%= I18n.t('activerecord.models.property.other') %> <%= I18n.t('hobo.actions.edit', model: '') %>" },
+          caption: "<%= I18n.t('activerecord.models.property.other') %>" },
         { type: 'button', id: 'editPrices', img: 'fa fa-money', disabled: true,
-          caption: "<%= I18n.t('activerecord.models.price.other') %> <%= I18n.t('hobo.actions.edit', model: '') %>" },
+          caption: "<%= I18n.t('activerecord.models.price.other') %>" },
         { type: 'button', id: 'editRelations', img: 'fa fa-arrows-h', disabled: true,
-          caption: "<%= I18n.t('attributes.productrelations') %> <%= I18n.t('hobo.actions.edit', model: '') %>" }
+          caption: "<%= I18n.t('attributes.productrelations') %>" },
       ],
       onClick: function (target, data) {
         var selection = w2ui.productsgrid.getSelection()
@@ -42,7 +42,15 @@ function productsGrid() {
       { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', size: '200px', sortable: true, hidden: true },
       { field: 'warranty_de', caption: '<%= I18n.t("attributes.warranty") %> DE', size: '200px', sortable: true },
       { field: 'warranty_en', caption: '<%= I18n.t("attributes.warranty") %> EN', size: '200px', sortable: true, hidden: true },
-      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px' },
+      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px', sortable: true,
+        editable: { type: 'list', items: [
+            { id: 'new',        text: '<%= I18n.t("mercator.states.new") %>'},
+            { id: 'announced',  text: '<%= I18n.t("mercator.states.announced") %>'},
+            { id: 'active',     text: '<%= I18n.t("mercator.states.active") %>'},
+            { id: 'deprecated', text: '<%= I18n.t("mercator.states.deprecated") %>'}
+          ]
+        }
+      },
       { field: 'novelty', caption: '<%= I18n.t("attributes.novelty") %>', size: '50px', attr: "align=center",
         render: function (record) {
           return record.novelty ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'
@@ -66,8 +74,29 @@ function productsGrid() {
       { field: 'description_de', caption: '<%= I18n.t("attributes.description") %> DE', type: 'text' },
       { field: 'description_en', caption: '<%= I18n.t("attributes.description") %> EN', type: 'text' },
       { field: 'long_description_de', caption: '<%= I18n.t("attributes.long_description") %> DE', type: 'text' },
-      { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', type: 'text' }
+      { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', type: 'text' },
+      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', type: 'enum',
+        options: {
+          search: true,
+          applyFilter: true,
+          items: [
+            { id: '<%= I18n.t("mercator.states.new") %>',        text: '<%= I18n.t("mercator.states.new") %>'},
+            { id: '<%= I18n.t("mercator.states.announced") %>',  text: '<%= I18n.t("mercator.states.announced") %>'},
+            { id: '<%= I18n.t("mercator.states.active") %>',     text: '<%= I18n.t("mercator.states.active") %>'},
+            { id: '<%= I18n.t("mercator.states.deprecated") %>', text: '<%= I18n.t("mercator.states.deprecated") %>'}
+          ]
+        }
+      }
     ],
+
+    searchData : [{
+      field : 'state', operator : 'in', type: 'enum',
+      svalue: ['<%= I18n.t("mercator.states.new") %>', '<%= I18n.t("mercator.states.active") %>'],
+      value : [
+        { id: '<%= I18n.t("mercator.states.new") %>', text: '<%= I18n.t("mercator.states.new") %>' },
+        { id: '<%= I18n.t("mercator.states.active") %>', text: '<%= I18n.t("mercator.states.new") %>' }
+      ]
+    }],
 
     onClick: function(event) {
       event.onComplete = function () {
