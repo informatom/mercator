@@ -72,11 +72,11 @@ function categoryForm() {
       '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
       '     <%= I18n.t("hobo.actions.save", model: Category.model_name.human) %>'+
       '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-orange" name="new">'+
-      '     <%= I18n.t("hobo.actions.create", model: Category.model_name.human) %>'+
+      '   <button class="w2ui-btn w2ui-btn-orange" name="newSub">'+
+      '     <%= I18n.t("mercator.product_manager.create_subcategory") %>'+
       '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-blue" name="deleteParent">'+
-      '     <%= I18n.t("mercator.delete_parent_category") %>'+
+      '   <button class="w2ui-btn w2ui-btn-blue" name="newRoot">'+
+      '     <%= I18n.t("mercator.product_manager.create_rootcategory") %>'+
       '   </button>'+
       '</div>',
 
@@ -106,13 +106,14 @@ function categoryForm() {
             data: { authenticity_token: csrf_token },
             dataType: 'script',
           }).done(function(response, textStatus, jqXHR) {
+            $("#categoryTree").fancytree("getTree").reload()
             w2ui.categoryForm.clear()
           }).fail(function(jqXHR, textStatus, errorThrown) {
             w2alert(jqXHR.responseText)
           })
         }
       },
-      new: {
+      newSub: {
         onClick: function () {
           this.clear()
           var active_node = $("#categoryTree").fancytree("getTree").getActiveNode()
@@ -123,10 +124,9 @@ function categoryForm() {
           }
         }
       },
-      deleteParent: {
+      newRoot: {
         onClick: function () {
-          this.record["parent_id"] = nil
-          this.record["parent_name"] = nil
+          this.clear()
           this.refresh()
         }
       },

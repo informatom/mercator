@@ -102,23 +102,24 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     if params[:id] != "0"
       category = Category.find(params[:id])
     else
-      # Continue here with translation !!
-      render :text => I18n.t("mercator.product.cannot_delete_inventory.no_category_selected"),
+      render :text => I18n.t("mercator.product_manager.cannot_delete_category.no_category_selected"),
              :status => 403 and return
     end
 
-
     if category.children.any?
-      # Continue here with translation !!
-      render :text => I18n.t("mercator.product.cannot_delete_inventory.chidlren"),
+      render :text => I18n.t("mercator.product_manager.cannot_delete_category.children"),
              :status => 403 and return
     end
     if category.products.any?
-      # Continue here with translation !!
-      render :text => I18n.t("mercator.product.cannot_delete_inventory.products"),
+      render :text => I18n.t("mercator.product_manager.cannot_delete_category.products"),
              :status => 403 and return
     end
 
+    if category.delete
+      render nothing: true
+    else
+      render json: category.errors.first
+    end
   end
 
 protected
