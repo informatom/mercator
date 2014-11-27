@@ -574,6 +574,7 @@ de:
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
     customer_number: Kundennummer
     delete: Löschen
+    delete_parent_category: Elternkategorie löschen
     deliveries_and_payments: Lieferungen und Zahlungen
     delivery_slip_date: Lieferscheindatum
     delivery_number: Lieferungsnummer

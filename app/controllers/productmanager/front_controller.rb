@@ -45,25 +45,52 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
   end
 
   def manage_category
-    category = Category.find(params[:id])
+    if params[:recid] == "0"
+      category = Category.new
+    else
+      category = Category.find(params[:id])
+    end
 
-    render json: {
-      status: "success",
-      record: {
-        name_de:             category.name_de,
-        name_en:             category.name_en,
-        description_de:      category.description_de,
-        description_en:      category.description_en,
-        long_description_de: category.long_description_de,
-        long_description_en: category.long_description_en,
-        position:            category.position,
-        filters:             category.filters.to_s,
-        filtermin:           category.filtermin,
-        filtermax:           category.filtermax,
-        created_at:          I18n.l(category.created_at),
-        updated_at:          I18n.l(category.updated_at)
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+      category.name_de             = attrs[:name_de]
+      category.name_en             = attrs[:name_en]
+      category.description_de      = attrs[:description_de]
+      category.description_en      = attrs[:description_en]
+      category.long_description_de = attrs[:long_description_de]
+      category.long_description_en = attrs[:long_description_en]
+      category.filtermin           = attrs[:filtermin]
+      category.filtermax           = attrs[:filtermax]
+      category.position            = attrs[:positon].to_i
+      category.parent_id           = attrs[:parent_id]
+      success = category.save
+    end
+
+    if success == false
+      render json: { status: "error",
+                     message: category.errors.first }
+    else
+      render json: {
+        status: "success",
+        record: {
+          recid:               category.id,
+          name_de:             category.name_de,
+          name_en:             category.name_en,
+          description_de:      category.description_de,
+          description_en:      category.description_en,
+          long_description_de: category.long_description_de,
+          long_description_en: category.long_description_en,
+          position:            category.position,
+          filters:             category.filters.to_s,
+          filtermin:           category.filtermin,
+          filtermax:           category.filtermax,
+          created_at:          I18n.l(category.created_at),
+          updated_at:          I18n.l(category.updated_at),
+          parent_name:         (category.parent.name if category.parent),
+          parent_id:           (category.parent.id   if category.parent)
+        }
       }
-    }
+    end
   end
 
   def update_categories
@@ -110,16 +137,20 @@ protected
     return childrenarray
   end
 
-  def reorder_categories(categories: nil, parent_id: nil)
+  def reorder_categories(categories: nil,
+                         parent_id: nil,
+                         categorieshash: Category.all.to_a.each_with_object({}) { |category, hash| hash[category.id] = category })
+
     categories.each do |position, categories|
-      category = Category.find(categories["key"])
+      category = categorieshash[categories["key"].to_i]
       if category.position != position.to_i || category.parent_id != parent_id
         category.update(position: position,
                         parent_id: parent_id)
       end
       if categories["children"]
         reorder_categories(categories: categories["children"],
-                           parent_id: category.id)
+                           parent_id: category.id,
+                           categorieshash: categorieshash)
       end
     end
   end

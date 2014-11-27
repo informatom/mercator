@@ -567,6 +567,7 @@ en:
     conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
     customer_number: Customer Number
     delete: Delete
+    delete_parent_category: Delete Parent Category
     deliveries_and_payments: Deliveries and Payments
     delivery_slip_date: Delivery Slip Date
     delivery_number: Delivery Number
