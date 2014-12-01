@@ -138,10 +138,10 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
                                           category_id: params[:old_category_id])
                                    .first
     if categorization.update(category_id: params[:new_category_id])
-      render nothing: true
+      category_name =  Category.find(params[:new_category_id]).name
+      render text: category_name
     else
-      render json: categorization.errors.first,
-                   :status => 403
+      render text: categorization.errors.first, :status => 403
     end
   end
 

@@ -709,6 +709,7 @@ de:
         no_category_selected: Keine Kategorie zur Löschung ausgewählt!
         children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
         products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
+      product_moved_to: Artikel verschoben in Kategorie
     product_comparison: Produktvergleich
     product_suggestion: Produktvorschlag
     products_available: Produkte zur Auswahl

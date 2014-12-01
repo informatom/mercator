@@ -14,7 +14,6 @@ function categoryTree() {
 
       dragDrop: function(node, data) {
         if( !data.otherNode ){ // It's a draggable not from the tree - so it's from the elementsgrid
-          debugger
           var draggable = data.draggable.element[0]
           var productId = parseInt(draggable.id.split("-")[1])
 
@@ -27,9 +26,10 @@ function categoryTree() {
               new_category_id: data.node.key,
               product_id: productId
             },
-            dataType: 'script',
+            dataType: 'text',
           }).done(function(response, textStatus, jqXHR) {
             w2ui.productsgrid.load('/productmanager/front/manage_products/' + selected_category_id)
+            w2alert('<%= I18n.t("mercator.product_manager.product_moved_to") %>: ' + jqXHR.responseText)
           }).fail(function(jqXHR, textStatus, errorThrown) {
             w2alert(jqXHR.responseText)
           })
