@@ -1,49 +1,7 @@
 <extend tag="form" for="Product">
   <old-form merge multipart>
     <field-list: fields="title_de, title_en, number, description_de, description_en,
-                         long_description_de, long_description_en, categorizations,
-                         property_groups, recommendations, productrelations, supplyrelations,
-                         document, photo" param>
-      <productrelations-view:>
-        <input-many>
-          <field-list fields="related_product">
-            <related-product-view:>
-              <name-one class="form-control" complete-target="&@related_product" completer="number_admin" autocomplete="off" />
-            </related-product-view:>
-          </field-list>
-        </input-many>
-      </productrelations-view:>
-
-      <recommendations-view:>
-        <input-many>
-          <field-list fields="reason_de, recommended_product">
-            <recommended-product-view:>
-              <name-one class="form-control" complete-target="&@recommended_product" completer="number_admin" autocomplete="off"/>
-            </recommended-product-view:>
-          </field-list>
-        </input-many>
-      </recommendations-view:>
-
-      <supplyrelations-view:>
-        <input-many>
-          <field-list fields="supply">
-            <supply-view:>
-              <name-one class="form-control" complete-target="&@supplied_product" completer="number_admin" autocomplete="off"/>
-            </supply-view:>
-          </field-list>
-        </input-many>
-      </supplyrelations-view:>
-
-      <categorizations-view:>
-        <input-many>
-          <field-list fields="position, category">
-            <category-view:>
-              <name-one class="form-control" complete-target="&@category" completer="name_admin" autocomplete="off"/>
-            </category-view:>
-          </field-list>
-        </input-many>
-      </categorizations-view:>
-
+                         long_description_de, long_description_en, document, photo" param>
     </field-list:>
   </old-form>
 </extend>
@@ -52,21 +10,9 @@
 <extend tag="show-page" for="Product">
   <old-show-page merge>
     <append-content-body: >
-
-      <div class="form-horizontal">
-        <section param="collection-section" merge>
-          <h3 param="collection-heading">
-            <ht key="PropertyGroup.collection.heading" count="&this.property_groups.count" >
-              <human-collection-name collection="property_groups" your/>
-            </ht>
-          </h3>
-          <sortable-collection:property_groups param/>
-        </section>
-      </div>
-
       <div class="form-horizontal">
         <div class="control-group photo-url-field">
-          <label class="control-label photo-url-label"><t key="mercator.image.original_version" /></label>
+          <label class="control-label photo-url-label"><t key="mercator.images.original_version" /></label>
           <div class="controls">
             <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url %></span>
           </div>

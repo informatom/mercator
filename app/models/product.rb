@@ -65,10 +65,6 @@ class Product < ActiveRecord::Base
 
   has_many :features, :inverse_of => :product
 
-  children :inventories, :properties, :categories, :related_products, :supplies,
-           :recommended_products, :features
-
-
   lifecycle do
     state :new, :default => true
     state :announced, :active, :deprecated

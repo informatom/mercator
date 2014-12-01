@@ -142,3 +142,4 @@ in admin.dryml per Subsite.
 ## Sources
 
 * Audio sample Big Ben from Freesound.org: http://www.freesound.org/people/hyderpotter/sounds/80290/
+* Flag icon set: http://www.printableworldflags.com/flag-icon
