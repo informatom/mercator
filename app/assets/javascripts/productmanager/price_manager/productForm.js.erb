@@ -10,7 +10,13 @@ function productForm() {
         html: { caption: '<%= I18n.t("attributes.title") %> EN' } },
       { name: 'number', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.number") %>' } },
-      { name: 'state', type: 'text', disabled: true,
+      { name: 'state', type: 'list', required: true,
+        options: { items: [
+          { id: 'new',        text: '<%= I18n.t("mercator.states.new") %>'},
+          { id: 'announced',  text: '<%= I18n.t("mercator.states.announced") %>'},
+          { id: 'active',     text: '<%= I18n.t("mercator.states.active") %>'},
+          { id: 'deprecated', text: '<%= I18n.t("mercator.states.deprecated") %>'}
+        ]},
         html: { caption: '<%= I18n.t("attributes.state") %>' } },
       { name: 'description_de', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.description") %> DE' , attr: 'size=40'} },
