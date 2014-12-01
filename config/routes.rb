@@ -48,7 +48,7 @@ Mercator::Application.routes.draw do
 
   namespace :productmanager do
     get    'front/show_categorytree'   => 'front#show_categorytree'
-    get    'front/show_products/:id'   => 'front#show_products'
+    get    'front/manage_products/:id' => 'front#manage_products'
     post   'front/manage_category/:id' => 'front#manage_category'
     post   'front/update_categories'   => 'front#update_categories'
     delete 'front/category/:id'        => 'front#delete_category'

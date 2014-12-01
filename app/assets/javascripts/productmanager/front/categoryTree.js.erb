@@ -27,7 +27,8 @@ function categoryTree() {
 
     click: function(event, data) {
       if (data.node.key) {
-        load_corresponding_data(data.node.key)
+        selected_category_id = data.node.key
+        load_corresponding_data(selected_category_id)
       }
     },
 
@@ -41,7 +42,7 @@ function categoryTree() {
 }
 
 function load_corresponding_data(category_id) {
-  w2ui.productsgrid.load('/productmanager/front/show_products/' + category_id)
+  w2ui.productsgrid.load('/productmanager/front/manage_products/' + category_id)
   w2ui.categoryForm.url = '/productmanager/front/manage_category/' + category_id
   w2ui.categoryForm.recid = category_id
   w2ui.categoryForm.reload()

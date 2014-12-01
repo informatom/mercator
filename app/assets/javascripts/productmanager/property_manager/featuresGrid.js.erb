@@ -4,7 +4,13 @@ function featuresGrid() {
     multiSelect : false,
     method: 'GET',
     url: "/productmanager/property_manager/manage_features/" + request_id,
-    show: { toolbar: true, footer: true, toolbarSave: true, toolbarSearch: false},
+    show: {
+      toolbar: true,
+      footer: true,
+      toolbarSave: true,
+      toolbarSearch: false
+    },
+
     sortData: [{ field: 'position', direction: 'ASC' }],
 
     toolbar: {

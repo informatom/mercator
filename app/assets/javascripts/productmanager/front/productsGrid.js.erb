@@ -3,7 +3,11 @@ function productsGrid() {
     name: 'productsgrid',
     multiSelect : false,
     method: 'GET',
-    show: { toolbar: true, footer: true },
+    show: {
+      toolbar: true,
+      footer: true,
+      toolbarSave: true
+    },
     sortData: [{ field: 'number', direction: 'ASC' }],
 
     toolbar: {
@@ -14,6 +18,9 @@ function productsGrid() {
           caption: "<%= I18n.t('activerecord.models.price.other') %>" },
         { type: 'button', id: 'editRelations', img: 'fa fa-arrows-h', disabled: true,
           caption: "<%= I18n.t('attributes.productrelations') %>" },
+        { type: 'break' },
+        { type: 'button', id: 'removeFilter', img: 'fa fa-trash',
+          caption: '<%= I18n.t("attributes.filters") %> <%= I18n.t("hobo.actions.delete", model: "") %>' }
       ],
       onClick: function (target, data) {
         var selection = w2ui.productsgrid.getSelection()
@@ -26,6 +33,10 @@ function productsGrid() {
         break
         case 'editRelations':
           document.location = "/productmanager/relation_manager/index/" + selection[0]
+        break
+        case 'removeFilter':
+          w2ui.productsgrid.searchData = null
+          w2ui.productsgrid.search()
         break
         }
       }
@@ -77,13 +88,11 @@ function productsGrid() {
       { field: 'long_description_en', caption: '<%= I18n.t("attributes.long_description") %> EN', type: 'text' },
       { field: 'state', caption: '<%= I18n.t("attributes.state") %>', type: 'enum',
         options: {
-          search: true,
-          applyFilter: true,
           items: [
-            { id: '<%= I18n.t("mercator.states.new") %>',        text: '<%= I18n.t("mercator.states.new") %>'},
-            { id: '<%= I18n.t("mercator.states.announced") %>',  text: '<%= I18n.t("mercator.states.announced") %>'},
-            { id: '<%= I18n.t("mercator.states.active") %>',     text: '<%= I18n.t("mercator.states.active") %>'},
-            { id: '<%= I18n.t("mercator.states.deprecated") %>', text: '<%= I18n.t("mercator.states.deprecated") %>'}
+            { id: 'new',        text: '<%= I18n.t("mercator.states.new") %>'},
+            { id: 'announced',  text: '<%= I18n.t("mercator.states.announced") %>'},
+            { id: 'active',     text: '<%= I18n.t("mercator.states.active") %>'},
+            { id: 'deprecated', text: '<%= I18n.t("mercator.states.deprecated") %>'}
           ]
         }
       }
@@ -94,7 +103,7 @@ function productsGrid() {
       svalue: ['<%= I18n.t("mercator.states.new") %>', '<%= I18n.t("mercator.states.active") %>'],
       value : [
         { id: '<%= I18n.t("mercator.states.new") %>', text: '<%= I18n.t("mercator.states.new") %>' },
-        { id: '<%= I18n.t("mercator.states.active") %>', text: '<%= I18n.t("mercator.states.new") %>' }
+        { id: '<%= I18n.t("mercator.states.active") %>', text: '<%= I18n.t("mercator.states.active") %>' }
       ]
     }],
 
@@ -125,6 +134,15 @@ function productsGrid() {
           w2ui.productsgrid.scrollIntoView(index)
         }, 100)
       }
+    },
+
+    onSubmit: function(event) {
+      this.url = '/productmanager/front/manage_products/' + selected_category_id
+    },
+
+    onSave: function(event) {
+      this.reload()
+      this.url = ""
     }
   })
 }
