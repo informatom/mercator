@@ -3,17 +3,14 @@ function foldertree() {
     source: { url: "/contentmanager/front/show_foldertree" },
     extensions: ["dnd"],
     selectMode: 1,
+
     dnd: {
       droppable: {
         activeClass: "ui-state-default",
         hoverClass: "ui-state-hover"
       },
-      dragStart: function() {
-        return true
-      },
-      dragEnter: function() {
-        return true
-      },
+      dragStart: function() { return true },
+      dragEnter: function() { return true },
       dragDrop: function(node, data) {
         if( !data.otherNode ){ // It's a draggable not from the tree - so it's from the elementsgrid
           var draggable = data.draggable.element[0]

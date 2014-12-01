@@ -1,0 +1,12 @@
+function registerDraggables() {
+  $('.draggable').draggable({
+    cursor: 'crosshair',
+    opacity: 0.9,
+    helper: "clone",
+    containment: "#contentmanager",
+    zIndex: 10000,
+    appendTo: "body",
+    connectToFancytree: true,
+    cursorAt: { top: 0, left: -5 }
+  })
+}

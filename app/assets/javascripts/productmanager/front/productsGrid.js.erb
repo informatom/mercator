@@ -44,7 +44,11 @@ function productsGrid() {
 
     columns: [
       { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
-      { field: 'number', caption: '<%= I18n.t("attributes.number") %>', size: '100px' },
+      { field: 'number', caption: '<%= I18n.t("attributes.number") %>', size: '100px',
+        render: function (record) {
+          return '<div id ="product-' + record.recid + '" class="draggable">' + record.number + '</div>'
+        }
+      },
       { field: 'title_de', caption: '<%= I18n.t("attributes.title") %> DE', size: '150px', sortable: true },
       { field: 'title_en', caption: '<%= I18n.t("attributes.title") %> EN', size: '150px', sortable: true, hidden: true },
       { field: 'description_de', caption: '<%= I18n.t("attributes.description") %> DE', size: '200px', sortable: true },
@@ -143,6 +147,12 @@ function productsGrid() {
     onSave: function(event) {
       this.reload()
       this.url = ""
-    }
+    },
+
+    onSelect: function(event) {
+      event.onComplete = function () {
+        registerDraggables()
+      }
+    },
   })
 }

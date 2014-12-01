@@ -133,6 +133,18 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     end
   end
 
+  def update_categorization
+    categorization = Categorization.where(product_id:  params[:product_id],
+                                          category_id: params[:old_category_id])
+                                   .first
+    if categorization.update(category_id: params[:new_category_id])
+      render nothing: true
+    else
+      render json: categorization.errors.first,
+                   :status => 403
+    end
+  end
+
 protected
 
   def childrenarray(objects: nil, name_method: nil, folder: false)

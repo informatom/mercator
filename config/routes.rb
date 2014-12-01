@@ -47,11 +47,12 @@ Mercator::Application.routes.draw do
   end
 
   namespace :productmanager do
-    get    'front/show_categorytree'   => 'front#show_categorytree'
-    get    'front/manage_products/:id' => 'front#manage_products'
-    post   'front/manage_category/:id' => 'front#manage_category'
-    post   'front/update_categories'   => 'front#update_categories'
-    delete 'front/category/:id'        => 'front#delete_category'
+    get    'front/show_categorytree'     => 'front#show_categorytree'
+    get    'front/manage_products/:id'   => 'front#manage_products'
+    post   'front/manage_category/:id'   => 'front#manage_category'
+    post   'front/update_categories'     => 'front#update_categories'
+    delete 'front/category/:id'          => 'front#delete_category'
+    post   'front/update_categorization' => 'front#update_categorization'
 
     get    'property_manager/index/:id'                    => 'property_manager#index', :as => 'property_manager'
     get    'property_manager/show_valuetree/:id'           => 'property_manager#show_valuetree'
