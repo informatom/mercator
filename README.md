@@ -115,6 +115,10 @@ sudo /etc/init.d/elasticsearch start
   `sudo fc-cache`
 * Use font with correct font-family name in CSS file (this might be different than the file name)
 
+### Delayed Job configuration
+Copy config/delayed_job.sh.example to config/delayed_job.sh and adapt it to your needs
+* Check log file location
+* Check Ruby Version and path
 
 ### Icecat Integration
 

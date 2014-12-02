@@ -17,6 +17,14 @@ namespace :users do
                   sales: true)
     end
 
+    unless User.find_by(surname: "Job User")
+      User.create(first_name: "Mercator",
+                  surname: "Job User",
+                  email_address: "jobs@mercator.mittenin.at",
+                  photo: open("#{Rails.root}/materials/images/little-robot.png"),
+                  sales: true)
+    end
+
     ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
       unless User.find_by(first_name: firstname)
         User.create(first_name: firstname,
