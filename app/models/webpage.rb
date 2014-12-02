@@ -52,15 +52,18 @@ class Webpage < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def view_permitted?(field)
@@ -75,7 +78,7 @@ class Webpage < ActiveRecord::Base
 
   def content_element(name_or_used_as)
     assignment = PageContentElementAssignment.find_by(webpage_id: id, used_as: name_or_used_as)
-    content_element = assignment.content_element if assignment 
+    content_element = assignment.content_element if assignment
 
     content_element ||= ContentElement.find_by(name_de: name_or_used_as)
     content_element ||= ContentElement.find_by(name_en: name_or_used_as)

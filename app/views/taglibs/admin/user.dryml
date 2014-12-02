@@ -10,7 +10,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="administrator, sales, logged_in, sales_manager, contentmanager" param/>
+      <record-flags fields="administrator, sales, logged_in, sales_manager, contentmanager, productmanager" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -55,7 +55,8 @@
 
 <extend tag="form" for="User">
   <old-form merge multipart>
-    <field-list: fields="gender, title, first_name, surname, email_address, phone, sales, sales_manager, contentmanager, administrator,
+    <field-list: fields="gender, title, first_name, surname, email_address,
+                         phone, sales, sales_manager, contentmanager, administrator, productmanager,
                          logged_in, locale, addresses, billing_addresses, photo" param>
     </field-list:>
   </old-form>

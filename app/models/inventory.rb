@@ -52,15 +52,18 @@ class Inventory < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.productmanager?
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.productmanager?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.productmanager?
   end
 
   def view_permitted?(field)

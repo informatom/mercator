@@ -20,15 +20,18 @@ class PageTemplate < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? ||
+    acting_user.contentmanager?
   end
 
   def view_permitted?(field)

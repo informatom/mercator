@@ -45,6 +45,7 @@ de:
     content_de: Inhalt DE
     content_en: Inhalt EN
     content_element: Baustein
+    contentmanager: Content Manager
     Contract: Vertrag
     Conversation: Konversation
     conversation: Konversation
@@ -121,6 +122,7 @@ de:
     product_catalog: Produktkatalog
     product_number: Artikelnummer
     product_price: Preis
+    productmanager: Produktmanager
     productrelations: Produktzuordnungen
     products: Artikel
     promotion: Promotion

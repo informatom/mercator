@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
     sales            :boolean, default: false
     sales_manager    :boolean, default: false
     contentmanager   :boolean, default: false
+    productmanager   :boolean, default: false
     legacy_id        :integer
     last_login_at    :datetime
     logged_in        :boolean, default: false
@@ -33,7 +34,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :gender, :title, :first_name, :surname, :email_address, :password, :password_confirmation,
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager, :contentmanager,
-                  :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
+                  :productmanager, :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
                   :order_id, :phone, :locale
 

@@ -39,6 +39,7 @@ en:
     content_de: Content GER
     content_en: Content EN
     content_element: Content Element
+    contentmanager: Content Manager
     Contract: Contract
     Conversation: Conversation
     conversation: conversation
@@ -117,6 +118,7 @@ en:
     product_catalog: Product Catalog
     product_price: Price
     product_number: Product Number
+    productmanager: Produkt Manager
     productrelations: Product Relations
     products: Products
     promotion: Promotion
