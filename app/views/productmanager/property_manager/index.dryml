@@ -1,1 +1,8 @@
-<page/>
+<page>
+  <config:>
+    <script>
+      var product_title = "<%= @product.title.squish %>"
+      var product_number = "<%= @product.number.squish %>"
+    </script>
+  </config:>
+</page>

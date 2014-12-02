@@ -6,10 +6,10 @@ $(function () {
     name: 'relationmanager',
     panels: [
       { type: 'top', size: 59, resizable: true, content: "<div id='menu'></div>",
-        title: '<%= I18n.t("mercator.relation_manager.title") %>: ' + product_title },
+        title: '<%= I18n.t("mercator.relation_manager.title") %>: &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
       { type: 'left', size: '20%', resizable: true },
       { type: 'main', resizable: true },
-      { type: 'right', size: '45%', resizable: true,
+      { type: 'right', size: '38%', resizable: true,
         title: '<%= I18n.t("activerecord.models.product.other") %>',
         content: "<div id='productsgrid' style='height: 100%'></div>" }
     ],
@@ -53,7 +53,7 @@ $(function () {
         content: "<div id='categorizationsGrid' style='height:100%;'></div>" },
       { type: 'preview', size: '60%', resizable: true,
         title: '<%= I18n.t("activerecord.models.category.other") %>',
-        content: "<div id='categoryTreeToolbar' style='height:20'></div><div id='categoryTree' style='height:calc(100% - 28px);'></div>"}
+        content: "<div id='categoryTreeToolbar' style='height:20'></div><div id='categoryTree' style='height:calc(100% - 30px);'></div>"}
     ],
     onRender: function(event) {
       event.onComplete = function () {

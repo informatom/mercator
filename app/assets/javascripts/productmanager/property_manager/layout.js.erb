@@ -6,13 +6,11 @@ $(function () {
     name: 'propertymanager',
     panels: [
       { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
-        title: '<%= I18n.t("mercator.property_manager.title") %>'},
+        title: '<%= I18n.t("mercator.property_manager.title") %>: &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
       { type: 'left', size: '20%', resizable: true },
-      { type: 'main', resizable: true,
-        title: '<%= I18n.t("activerecord.models.value.other") %>',
+      { type: 'main', resizable: true, title: '<%= I18n.t("activerecord.models.value.other") %>',
         content: "<div id='valueTree' style='height: 100%'></div>" },
-      { type: 'preview', resizable: true, size: '339',
-        title: '<%= I18n.t("activerecord.models.value.other") %>',
+      { type: 'preview', resizable: true, size: '339', title: '<%= I18n.t("activerecord.models.value.one") %>',
         content: "<div id='valueForm' style='height: 310px'></div>" },
       { type: 'right', size: '35%', resizable: true }
     ],
@@ -28,19 +26,11 @@ $(function () {
   $().w2layout({
     name: 'propertylists',
     panels: [
-      {
-        type: 'left',
-        size: '50%',
-        resizable: true,
-        title: '<%= I18n.t("activerecord.models.property_group.other") %>',
-        content: "<div id='propertyGroupsGrid' style='height:100%;'></div>"
-      },
-      {
-        type: 'main',
-        resizable: true,
+      { type: 'left', size: '50%', resizable: true, title: '<%= I18n.t("activerecord.models.property_group.other") %>',
+        content: "<div id='propertyGroupsGrid' style='height:100%;'></div>" },
+      { type: 'main', resizable: true,
         title: '<%= I18n.t("activerecord.models.property.other") %>',
-        content: "<div id='propertiesGrid' style='height:100%;'></div>"
-      }
+        content: "<div id='propertiesGrid' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
@@ -55,11 +45,9 @@ $(function () {
   $().w2layout({
     name: 'attrsAndFeatures',
     panels: [
-      { type: 'main', resizable: true,
-        title: '<%= I18n.t("activerecord.models.product.other") %>',
+      { type: 'main', resizable: true, title: '<%= I18n.t("activerecord.models.product.other") %>',
         content: "<div id='productGrid' style='height: 100%'></div>" },
-      { type: 'preview', size: '55%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.feature.other") %>',
+      { type: 'preview', size: '55%', resizable: true, title: '<%= I18n.t("activerecord.models.feature.other") %>',
         content: "<div id='featuresGrid' style='height: 100%'></div>" }
     ],
     onRender: function(event) {

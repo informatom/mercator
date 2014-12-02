@@ -5,32 +5,15 @@ $(function () {
   $('#grid').w2layout({
     name: 'productmanager',
     panels: [
-      {
-        type: 'top',
-        title: '<%= I18n.t("mercator.product_manager.title") %>',
-        size: 58,
-        resizable: true,
-        content: "<div id='menu'></div>"
-      },
-      {
-        type: 'left',
-        size: '20%',
-        resizable: true,
-        content: "<div id='categoryTree'></div>"
-      },
-      {
-        type: 'main',
-        resizable: true,
+      { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
+        title: '<%= I18n.t("mercator.product_manager.title") %>'},
+      { type: 'left', size: '20%', resizable: true, title: '<%= I18n.t("attributes.product_catalog") %>',
+        content: "<div id='categoryTree'></div>" },
+      { type: 'main', resizable: true, title: '<%= I18n.t("activerecord.models.category.one") %>',
         content: "<div id='categoryForm' style='height: 350px'></div>" },
-      {
-        type: 'preview',
-        size: '60%',
-        resizable: true,
+      { type: 'preview', size: '55%', resizable: true, title: '<%= I18n.t("activerecord.models.product.other") %>',
         content: "<div id='productsgrid' style='height: 100%'></div>" },
-      {
-        type: 'right',
-        size: '20%',
-        resizable: true,
+      { type: 'right', size: '20%', resizable: true, title: '<%= I18n.t("activerecord.models.property.other") %>',
         content: "<div id='properties' style='background-color: white; height:100%; padding: 5px'></div>" }
     ],
     onRender: function(event) {

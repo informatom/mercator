@@ -728,7 +728,7 @@ en:
     register_different_email: register a different e-mail address.
     registered_for: Registered for
     relation_manager:
-      title: "Relation Manager for Product"
+      title: "Relations for"
       categorization_exists: This categorization already exists!
     remove_filter: Remove Filter
     repeat: Repeat

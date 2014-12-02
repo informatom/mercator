@@ -4,7 +4,7 @@ function categorizationsGrid() {
     multiSelect : false,
     method: 'GET',
     url: "/productmanager/relation_manager/show_categorizations/" + request_id,
-    show: { toolbar: true, footer: true},
+    show: { toolbar: true, toolbarSearch: false},
     sortData: [{ field: 'name', direction: 'ASC' }],
 
     toolbar: {
@@ -38,7 +38,7 @@ function categorizationsGrid() {
     columns: [
       { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
       { field: 'category_name', caption: '<%= I18n.t("attributes.name") %>', size: '150px', sortable: true },
-      { field: 'ancestor_string', caption: '<%= I18n.t("attributes.parent") %>', size: '250px', sortable: true },
+      { field: 'ancestor_string', caption: '<%= I18n.t("attributes.parent") %>', size: '230px', sortable: true },
       { field: 'position', size: '100px', sortable: true, hidden: true ,
         caption: '<%= I18n.t("attributes.position") %>' },
       { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,

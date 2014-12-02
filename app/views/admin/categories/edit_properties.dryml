@@ -1,4 +1,3 @@
-<div class="h3" style="margin-top: 0px;"><t key="activerecord.models.property.other" /> <name/> </div>
 <set category-id="&this.id"/>
 
 <if test="&@count == 0" >
@@ -6,8 +5,6 @@
 </if>
 
 <else>
-  <p><t key="mercator.properties.click_to_move" /></p>
-
   <p><strong><t key="mercator.properties.filterable_properties" /></strong></p>
   <repeat with="&@filterable_properties">
     <name class="btn btn-default btn-xs" id="property#{this.id}"/>
@@ -30,7 +27,7 @@
     </script>
   </repeat>
 
-  <br/>
+  <br/><br/>
   <p><strong><t key="mercator.properties.unfilterable_properties" /></strong></p>
   <repeat with="&@unfilterable_properties">
     <name class="btn btn-default btn-xs" id="property#{this.id}"/>

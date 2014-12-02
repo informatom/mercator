@@ -6,7 +6,7 @@ $(function () {
     name: 'pricemanager',
     panels: [
       { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
-        title: '<%= I18n.t("mercator.price_manager.title") %>'},
+        title: '<%= I18n.t("mercator.price_manager.title") %>: &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
       { type: 'left', size: '25%', resizable: true,
         title: '<%= I18n.t("activerecord.models.product.one") %>',
         content: "<div id='productForm' style='height: 100%'></div>"},

@@ -3,7 +3,9 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   hobo_controller
   respond_to :html, :json, :js, :text
 
-  def index; end
+  def index
+    @product = Product.find(params[:id])
+  end
 
   def manage_product
     product = Product.find(params[:recid])

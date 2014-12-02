@@ -265,8 +265,8 @@ de:
         one: Bestellung
         other: Bestellungen
       page_content_element_assignment:
-        one: Element der Webseite
-        other: Elemente der Webseiten
+        one: Bausteinverwendung
+        other: Bausteinverwendungen
       page_template:
         one: Websitevorlage
         other: Websitevorlagen
@@ -735,7 +735,7 @@ de:
     register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
     relation_manager:
-      title: "Manager der Zuordnungen für Produkt"
+      title: "Zuordnungen für "
       categorization_exists: Diese Kategorisierung existiert bereits.
     remove_filter: Filter aufheben
     repeat: Wiederholen
