@@ -154,6 +154,7 @@ class Product < ActiveRecord::Base
   # --- Searchkick Instance Methods --- #
 
   def search_data
+    @price_user = User.find_by(surname: "Dummy Customer")
     { title:            title_de,
       title_de:         title_de,
       title_en:         title_en,
@@ -165,7 +166,7 @@ class Product < ActiveRecord::Base
       warranty:         warranty_de,
       category_ids:     categories.pluck(:id),
       state:            state,
-      price:            determine_price }.merge(property_hash)
+      price:            determine_price(customer_id: @price_user.id) }.merge(property_hash)
   end
 
   def property_hash
@@ -204,10 +205,13 @@ class Product < ActiveRecord::Base
   end
 
   def self.deprecate
+    @jobuser = User.find_by(surname: "Job User")
+
     Product.where(state: ["active", "new"]).each do |product|
       unless product.inventories.any?
-        product.lifecycle.deactivate!(User.where(administrator: true).first)
-        JobLogger.info("Product " + product.number + " deactivated.")
+        unless product.lifecycle.deactivate!(@jobuser)
+          JobLogger.error("Product " + product.number + " could not be deactivated!")
+        end
       end
     end
   end
@@ -220,9 +224,7 @@ class Product < ActiveRecord::Base
       unless product.categorizations.any?
         position = @orphans.categorizations.maximum(:position) + 1 if @orphans.categorizations.any?
         product.categorizations.new(category_id: @orphans.id, position: position)
-        if product.save
-          JobLogger.info("Product " + product.number + " added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
-        else
+        unless product.save
           JobLogger.error("Product " + product.number + " could not be added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
         end
       end

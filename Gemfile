@@ -69,7 +69,7 @@ gem "delayed_job_web"                                 # Web interface for delaye
 gem "holidays"                                        # Determine if there is a public holiday
 gem "naught"                                          # Null Object library
 
-group :production,:staging do
+group :production, :staging, :development do
   gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem" # Engine for integrating Mesonic ERP System
   gem "mercator_icecat", path:"vendor/engines/mercator_icecat"   # Engine for importing Icecat Data
   gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"   # Engine for MPay24 interface

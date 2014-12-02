@@ -22,7 +22,15 @@ namespace :users do
                   surname: "Job User",
                   email_address: "jobs@mercator.mittenin.at",
                   photo: open("#{Rails.root}/materials/images/little-robot.png"),
-                  sales: true)
+                  administrator: true)
+    end
+
+    unless User.find_by(surname: "Dummy Customer")
+      User.create(first_name: "Mercator",
+                  surname: "Dummy Customer",
+                  email_address: "dummy_customer@mercator.mittenin.at",
+                  photo: open("#{Rails.root}/materials/images/little-robot.png"),
+                  administrator: true)
     end
 
     ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
