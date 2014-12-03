@@ -75,15 +75,13 @@ function load_corresponding_data(category_id) {
   w2ui.categoryForm.url = '/productmanager/front/manage_category/' + category_id
   w2ui.categoryForm.recid = category_id
   w2ui.categoryForm.reload()
-  w2ui.productmanager.lock('right', w2utils.lang('Refreshing...'), true)
+
   $.ajax({
     url: "/admin/categories/" + category_id + "/edit_properties",
     context: document.body
   }).done(function(response) {
     $("#properties").html(response)
-    w2ui.productmanager.unlock('right')
   }).fail(function(jqXHR, textStatus, errorThrown) {
     w2alert(jqXHR.responseText)
-    w2ui.productmanager.unlock('right')
   })
 }

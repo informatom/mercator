@@ -128,15 +128,17 @@ function productsGrid() {
 
     onLoad: function(event) {
       event.onComplete = function () {
-        this.select(selected_product_id)
-        this.toolbar.enable('editProperties')
-        this.toolbar.enable('editPrices')
-        this.toolbar.enable('editRelations')
-        // onLoad is bit too early, according to the author, currently that's the way to go
-        setTimeout(function() {
-          var index = w2ui.productsgrid.get(selected_product_id, true)
-          w2ui.productsgrid.scrollIntoView(index)
-        }, 100)
+        if (selected_product_id) {
+          this.select(selected_product_id)
+          this.toolbar.enable('editProperties')
+          this.toolbar.enable('editPrices')
+          this.toolbar.enable('editRelations')
+          // onLoad is bit too early, according to the author, currently that's the way to go
+          setTimeout(function() {
+            var index = w2ui.productsgrid.get(selected_product_id, true)
+            w2ui.productsgrid.scrollIntoView(index)
+          }, 100)
+        }
       }
     },
 
