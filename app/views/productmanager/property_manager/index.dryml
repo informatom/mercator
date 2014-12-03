@@ -1,6 +1,7 @@
 <page>
   <config:>
     <script>
+      var locale = "<%= I18n.locale.to_s %>"
       var product_title = "<%= @product.title.squish %>"
       var product_number = "<%= @product.number.squish %>"
     </script>

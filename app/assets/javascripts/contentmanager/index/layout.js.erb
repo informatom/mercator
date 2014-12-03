@@ -2,7 +2,9 @@
 // https://github.com/fnando/i18n-js https://github.com/nicolai86/rails-asset-localization
 
 $(function () {
-  w2utils.locale('/assets/contentmanager/de-de.json')
+  if (locale == "de") {
+    w2utils.locale('/assets/contentmanager/de-de.json')
+  }
   w2utils.settings.groupSymbol = " "
 
   $('#contentmanager').w2layout({

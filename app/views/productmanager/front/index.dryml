@@ -1,6 +1,7 @@
 <page>
   <config:>
     <script>
+      var locale = "<%= I18n.locale.to_s %>"
       var selected_product_id = "<%= @selected_product.id if @selected_product %>"
       var selected_category_id = "<%= @selected_category.id if @selected_category %>"
     </script>
