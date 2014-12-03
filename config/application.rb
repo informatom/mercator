@@ -18,7 +18,9 @@ module Mercator
     config.assets.precompile += %w(contentmanager.css contentmanager.js)
     # Hobo: the sales subsite loads sales.css & sales.js
     config.assets.precompile += %w(sales.css sales.js)
-    # HAS 20131222 deprecation warning in rails 4
+
+#    config.assets.initialize_on_precompile = true  # Needed for I18n.js
+
     I18n.enforce_available_locales = true
     I18n.available_locales = [:en, :de]
 
