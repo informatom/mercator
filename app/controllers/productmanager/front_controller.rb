@@ -45,7 +45,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
           long_description_en: ActionController::Base.helpers.strip_tags(product.long_description_en),
           warranty_de: product.warranty_de,
           warranty_en: product.warranty_en,
-          state: I18n.t('mercator.states.' + product.state),
+          state: [I18n.t('mercator.states.' + product.state)],
           novelty: product.novelty,
           topseller: product.topseller,
           created_at: product.created_at.utc.to_i*1000,

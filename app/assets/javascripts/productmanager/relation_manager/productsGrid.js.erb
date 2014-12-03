@@ -13,7 +13,10 @@ function productsGrid() {
         { type: 'button', id: 'newRecommendation', img: 'fa fa-plus', disabled: true,
           caption: "<%= I18n.t('activerecord.models.recommendation.one') %>" },
         { type: 'button', id: 'newSupplyrelation', img: 'fa fa-plus', disabled: true,
-          caption: "<%= I18n.t('activerecord.models.supplyrelation.one') %>" }
+          caption: "<%= I18n.t('activerecord.models.supplyrelation.one') %>" },
+        { type: 'break' },
+        { type: 'button', id: 'removeFilter', img: 'fa fa-trash',
+          caption: '<%= I18n.t("attributes.filters") %> <%= I18n.t("hobo.actions.delete", model: "") %>' }
       ],
       onClick: function (target, data) {
         var selection = w2ui.productsgrid.getSelection()
@@ -69,6 +72,10 @@ function productsGrid() {
             w2alert(JSON.parse(jqXHR.responseText)['message'])
           })
         break
+        case 'removeFilter':
+          w2ui.productsgrid.searchData = null
+          w2ui.productsgrid.search()
+        break
         }
       }
     },
@@ -78,7 +85,7 @@ function productsGrid() {
       { field: 'number', caption: '<%= I18n.t("attributes.number") %>', size: '150px', sortable: true },
       { field: 'title_de', caption: '<%= I18n.t("attributes.title") %> DE', size: '200px', sortable: true },
       { field: 'title_en', caption: '<%= I18n.t("attributes.title") %> EN', size: '150px', sortable: true, hidden: true },
-      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px' },
+      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', size: '60px', sortable: true },
       { field: 'novelty', caption: '<%= I18n.t("attributes.novelty") %>', size: '50px', attr: "align=center",
         render: function (record) {
           return record.novelty ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'
@@ -99,7 +106,26 @@ function productsGrid() {
       { field: 'number', caption: '<%= I18n.t("attributes.number") %>', type: 'text' },
       { field: 'title_de', caption: '<%= I18n.t("attributes.title") %> DE', type: 'text' },
       { field: 'title_en', caption: '<%= I18n.t("attributes.title") %> EN', type: 'text' },
+      { field: 'state', caption: '<%= I18n.t("attributes.state") %>', type: 'enum',
+        options: {
+          items: [
+            { id: '<%= I18n.t("mercator.states.new") %>',        text: '<%= I18n.t("mercator.states.new") %>'},
+            { id: '<%= I18n.t("mercator.states.announced") %>',  text: '<%= I18n.t("mercator.states.announced") %>'},
+            { id: '<%= I18n.t("mercator.states.active") %>',     text: '<%= I18n.t("mercator.states.active") %>'},
+            { id: '<%= I18n.t("mercator.states.deprecated") %>', text: '<%= I18n.t("mercator.states.deprecated") %>'}
+          ]
+        }
+      }
     ],
+
+    searchData : [{
+      field : 'state', operator : 'in', type: 'enum',
+      svalue: ['<%= I18n.t("mercator.states.new") %>', '<%= I18n.t("mercator.states.active") %>'],
+      value : [
+        { id: '<%= I18n.t("mercator.states.new") %>', text: '<%= I18n.t("mercator.states.new") %>' },
+        { id: '<%= I18n.t("mercator.states.active") %>', text: '<%= I18n.t("mercator.states.active") %>' }
+      ]
+    }],
 
     onClick: function(event) {
       event.onComplete = function () {

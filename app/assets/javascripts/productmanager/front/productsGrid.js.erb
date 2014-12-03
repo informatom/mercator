@@ -93,10 +93,10 @@ function productsGrid() {
       { field: 'state', caption: '<%= I18n.t("attributes.state") %>', type: 'enum',
         options: {
           items: [
-            { id: 'new',        text: '<%= I18n.t("mercator.states.new") %>'},
-            { id: 'announced',  text: '<%= I18n.t("mercator.states.announced") %>'},
-            { id: 'active',     text: '<%= I18n.t("mercator.states.active") %>'},
-            { id: 'deprecated', text: '<%= I18n.t("mercator.states.deprecated") %>'}
+            { id: '<%= I18n.t("mercator.states.new") %>',        text: '<%= I18n.t("mercator.states.new") %>'},
+            { id: '<%= I18n.t("mercator.states.announced") %>',  text: '<%= I18n.t("mercator.states.announced") %>'},
+            { id: '<%= I18n.t("mercator.states.active") %>',     text: '<%= I18n.t("mercator.states.active") %>'},
+            { id: '<%= I18n.t("mercator.states.deprecated") %>', text: '<%= I18n.t("mercator.states.deprecated") %>'}
           ]
         }
       }
