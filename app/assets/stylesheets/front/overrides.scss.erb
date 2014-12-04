@@ -147,7 +147,7 @@ h3.active { text-decoration: underline; }
 ul.collection > li { margin-left: 0; list-style: none; }
 ul.collection { margin-left: 0; padding: 0;}
 
-.grey a { color: $grey; }
+.grey, .grey a { color: $grey; }
 
 .product-card, .category-card { border: 1px solid $light-grey;
                                 margin-bottom: 10px;
@@ -174,15 +174,11 @@ input[type=checkbox].form-control {
   box-shadow: none;
 }
 
-.well {
-  background-image: none;
-  background-color: #ffffff;
-}
+.well { background-image: none;
+        background-color: #ffffff; }
 
-.header.well {
-  border: none;
-  box-shadow: none;
-}
+.header.well { border: none;
+               box-shadow: none; }
 
 .order-darkgrey { background-color: $order-darkgrey; }
 .order-lightgrey { background-color: $order-lightgrey; }
@@ -212,3 +208,6 @@ h5 {font-weight: bold;}
 .container.widescreen { width: 100% !important; }
 
 .control-group { margin-bottom: 15px; }
+
+.borderless thead tr td, .borderless tbody tr th,
+.borderless tbody tr td, .borderless thead tr th {border: 0px;}

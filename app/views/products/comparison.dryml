@@ -9,56 +9,51 @@
 
     <collection: replace>
       <set percent="& (80 / this.length).to_i"/>
-      <table class="table table-condensed">
+      <table class="table table-condensed table-hover borderless">
         <thead>
           <tr>
-            <th width="20%"><t key='attributes.name'/></th>
+            <th class="grey" width="20%"><t key='attributes.name'/></th>
             <th repeat width="#{percent}%"><view:title/></th>
           </tr>
           <tr>
-            <th><t key='attributes.number'/></th>
+            <th class="grey"><t key='attributes.number'/></th>
             <th repeat><view:number/></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th><t key='attributes.photo'/></th>
+            <th class="grey"><t key='attributes.photo'/></th>
             <td repeat>
               <img src="&this.photo.url(:small)" />
             </td>
           </tr>
 
           <tr>
-            <th><t key='attributes.Price'/></th>
+            <th class="grey"><t key='attributes.Price'/></th>
             <td repeat>
-              <span class="h3"> <%= number_to_currency( this.determine_inventory.determine_price(customer_id: current_user.id) ) %> </span>
-              <t key="mercator.excl_vat" /><br/>
+              <span class="h3">
+                <%= number_to_currency( this.determine_inventory.determine_price(customer_id: current_user.id) ) %>
+                <t key="mercator.excl_vat" />
+              </span> <br/>
               <%= number_to_currency(this.determine_inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
-              <small><t key="mercator.incl_vat" /></small><br/>
+              <t key="mercator.incl_vat" /><br/>
 
               <transition-link transition="add_to_basket" method="put">
                 <photo name="in-den-warenkorb" class="card-button" style="width: 133px;"/>
               </transition-link>
+              <transition-link transition="dont_compare" method="put">
+                <photo name="produkt-entfernen" class="card-button" style="width: 133px;"/>
+              </transition-link>
             </td>
-          </tr>
-
-          <tr>
-            <th></th>
-            <td repeat>
-              <transition-button transition="dont_compare" class="btn btn-info"/>&nbsp;
-            </td>
-          </tr>
-          <tr>
-            <th><t key='attributes.description'/></th> <td repeat><view:description/></td>
           </tr>
 
           <repeat with="&@nested_hash">
               <tr>
-                <th colspan="&this.length + 1"> <h4><view with="&this[0]"/></h4> </th>
+                <th colspan="&this.length + 1"> <h4 class="blue" style="margin-bottom: 0px;"><view with="&this[0]"/></h4> </th>
               </tr>
             <repeat with="&this[1]">
               <tr>
-                <td> <view with="&this[0]"/> </td>
+                <td> <view class="grey" with="&this[0]"/> </td>
                 <set array="&this[1]"/>
                 <repeat with="&session[:compared]">
                   <td> <if test="&array[this]"><view with="&array[this]"/></if> </td>
@@ -71,6 +66,9 @@
             <td repeat>
               <transition-link transition="add_to_basket" method="put">
                 <photo name="in-den-warenkorb" class="card-button" style="width: 133px;"/>
+              </transition-link>
+              <transition-link transition="dont_compare" method="put">
+                <photo name="produkt-entfernen" class="card-button" style="width: 133px;"/>
               </transition-link>
             </td>
           </tr>
