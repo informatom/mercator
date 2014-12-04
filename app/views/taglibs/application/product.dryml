@@ -18,7 +18,9 @@
         <photo name="in-den-warenkorb" class="card-button pull-left"/>
       </transition-link>
       <if test="&session[:compared].include?(this.id)">
-        <transition-button transition="dont_compare" class="btn btn-info" />
+        <transition-link transition="dont_compare" method="put">
+          <photo name="produkt-entfernen" class="card-button pull-right"/>
+        </transition-link>
       </if>
       <else>
         <transition-link transition="compare" method="put">
@@ -62,7 +64,9 @@
         <photo name="in-den-warenkorb" class="card-button pull-left"/>
       </transition-link>
       <if test="&session[:compared].include?(this.id)">
-        <transition-button transition="dont_compare" class="btn btn-info" />
+        <transition-link transition="dont_compare" method="put">
+          <photo name="produkt-entfernen" class="card-button pull-right"/>
+        </transition-link>
       </if>
       <else>
         <transition-link transition="compare" method="put">
