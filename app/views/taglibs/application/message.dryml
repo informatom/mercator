@@ -15,37 +15,39 @@
 </def>
 
 <def tag="message-subscription">
-  <%= subscribe_to "/personal/" + current_user.id.to_s %>
-  <audio controls style="display:none;" id="ding">
-    <source src="/sounds/ding.mp3" type="audio/mpeg" />
-    <source src="/sounds/ding.ogg" type="audio/ogg" />
-    <embed height="50" width="100" src="/sounds/ding.mp3" />
-  </audio>
-  <script>
-      PrivatePub.subscribe("/personal/<%= current_user.id.to_s -%>", function(data, channel) {
-        if (data.conversation) {
-          message = Messenger().post({
-            message: "<strong>" + data.sender + "</strong>: " + data.content,
-            hideAfter: 300,
-            showCloseButton: true,
-            actions: {
-              take: {
-                label: "<%= I18n.t("mercator.take")%>",
-                action: function(){
-                  window.location.href = "/sales/conversations/" + data.conversation + "/take";
+  <if test="&current_user.class != Guest">
+    <%= subscribe_to "/personal/" + current_user.id.to_s %>
+    <audio controls style="display:none;" id="ding">
+      <source src="/sounds/ding.mp3" type="audio/mpeg" />
+      <source src="/sounds/ding.ogg" type="audio/ogg" />
+      <embed height="50" width="100" src="/sounds/ding.mp3" />
+    </audio>
+    <script>
+        PrivatePub.subscribe("/personal/<%= current_user.id.to_s -%>", function(data, channel) {
+          if (data.conversation) {
+            message = Messenger().post({
+              message: "<strong>" + data.sender + "</strong>: " + data.content,
+              hideAfter: 300,
+              showCloseButton: true,
+              actions: {
+                take: {
+                  label: "<%= I18n.t("mercator.take")%>",
+                  action: function(){
+                    window.location.href = "/sales/conversations/" + data.conversation + "/take";
+                  }
                 }
               }
-            }
-          });
-        }
-        else {
-          message = Messenger().post({
-            message: "<strong>" + data.sender + "</strong>: " + data.content,
-            hideAfter: 300,
-            showCloseButton: true
-          });
-        }
-        jQuery("#ding")[0].play();
-      });
-  </script>
+            });
+          }
+          else {
+            message = Messenger().post({
+              message: "<strong>" + data.sender + "</strong>: " + data.content,
+              hideAfter: 300,
+              showCloseButton: true
+            });
+          }
+          jQuery("#ding")[0].play();
+        });
+    </script>
+  </if>
 </def>

@@ -186,16 +186,17 @@
 
 
 <def tag="admin" >
-  <p>&nbsp;
+  <div class="top-right">
     <if test="&current_user.administrator?">
-      <a href='/admin'><%= fa_icon "cog", class: "text-danger" %></a>
+      <a href='/admin' target="admin"><%= fa_icon "cog", class: "text-danger fa-2x" %></a>
     </if>
     <if test="&current_user.sales?">
-      <a href='/sales'><%= fa_icon "building", class: "text-success" %></a>
-      <a href='/contracting'><%= fa_icon "university", class: "text-warning" %></a>
+      <a href='/sales' target="admin"><%= fa_icon "building", class: "text-success fa-2x" %></a>
+      <a href='/contracting' target="admin"><%= fa_icon "university", class: "text-warning fa-2x" %></a>
     </if>
-  </p>
+  </div>
 </def>
+
 
 <def tag="skype-and-tel">
   Tel. 01 587 57 70
@@ -205,6 +206,7 @@
   </a>
   &nbsp; &nbsp;
 </def>
+
 
 <def tag="basket-info">
   <if test="&current_user.basket">
@@ -218,6 +220,7 @@
 </if>
   <br/><br/>
 </def>
+
 
 <def tag="compare-link">
   <if test="&session[:compared]">

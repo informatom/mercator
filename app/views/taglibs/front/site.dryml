@@ -5,8 +5,11 @@
     <append-main-row:>
       <partner-logos/>
     </append-main-row:>
+
     <navbar: param>
-      <div class="container">
+      <admin/>
+      <message-subscription />
+      <div class="container navbar">
         <br/>
         <div class="row">
           <div class="col-lg-4">
@@ -24,9 +27,7 @@
                 <if test="&current_user.surname == 'Gast'"><a href="/switch">Anmelden</a></if>
                 <else><a href="/logout">Abmelden</a></else>
               </div>
-              <admin />
               <skype-and-tel />
-              <compare-link />
               <basket-info />
             </div>
           </div>
