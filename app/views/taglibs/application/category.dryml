@@ -30,7 +30,7 @@
 <def tag="mini-card" polymorphic />
 
 <def tag="mini-card" for="Category">
-  <div class="col-md-3 text-center category-card" id="cat#{this.id}">
+  <div class="col-md-3 text-center category-card clickable" id="cat#{this.id}">
     <image src="&this.photo.url :thumb" />
     <h5><view /></h5>
   </div>
