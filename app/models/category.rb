@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   fields do
     name_de             :string, :required
     name_en             :string, :required
+    state               :string, :required
     description_de      :cktext
     description_en      :cktext
     long_description_de :cktext
@@ -17,9 +18,10 @@ class Category < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name_de, :name_en, :ancestry, :position, :active,
+  attr_accessible :name_de, :name_en, :state, :ancestry, :position, :active,
                   :parent_id, :parent, :categorizations, :products, :document, :photo,
                   :description_de, :description_en, :long_description_de, :long_description_en, :filters
+
   translates :name, :description, :long_description
 
   has_ancestry orphan_strategy: :adopt
@@ -307,4 +309,7 @@ class Category < ActiveRecord::Base
     end
 
   end
+
+  # this makes state editable from form
+  Category.attr_protected[:default] = Category.attr_protected[:default].subtract(["state"])
 end

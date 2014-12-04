@@ -1,40 +1,18 @@
 <extend tag="form" for="Category">
   <old-form merge multipart>
-    <field-list: fields='name_de, name_en, description_de, description_en,
-                         long_description_de, long_description_en, position, parent, categorizations,
+    <field-list: fields='name_de, name_en, state, description_de, description_en,
+                         long_description_de, long_description_en, position, parent-id,
                          document, photo'>
-      <parent-view:>
-          <select-menu class="form-control" options="&Category.all" first-option="&t('mercator.root_category')"/>
-      </parent-view:>
+      <state-view:>
+          <select-menu class="form-control"
+                       name="category[state]"
+                       options="&Category::Lifecycle.states.*[0].map {|state| [I18n.t('mercator.states.' + state.to_s), state.to_s] }" />
+      </state-view:>
 
-      <categorizations-view:>
-        <input-many>
-          <field-list fields="position, product">
-            <product-view:>
-              <name-one class="form-control" complete-target="&@product" completer="number_admin" autocomplete="off"/>
-            </product-view:>
-          </field-list>
-        </input-many>
-      </categorizations-view:>
+      <parent-id-view:>
+        <tree-select-one same-model class="form-control"/>
+      </parent-id-view:>
+
     </field-list:>
   </old-form>
-</extend>
-
-<extend tag="show-page" for="Category">
-  <old-show-page merge>
-    <append-content-body:>
-      <div class="form-horizontal">
-        <section param="collection-section" merge>
-          <h3 param="collection-heading">
-            <ht key="product.collection.heading" count="&this.products.count" >
-              <human-collection-name collection="products" your/>
-            </ht>
-          </h3>
-          <sortable-collection:categorizations param>
-            <card with="&this.product" />
-          </sortable-collection:categorizations>
-        </section>
-      </div>
-    </append-content-body:>
-  </old-show-page>
 </extend>
