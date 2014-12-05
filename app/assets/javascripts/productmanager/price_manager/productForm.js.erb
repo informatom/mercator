@@ -11,12 +11,14 @@ function productForm() {
       { name: 'number', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.number") %>' } },
       { name: 'state', type: 'list', required: true,
-        options: { items: [
-          { id: 'new',        text: '<%= I18n.t("mercator.states.new") %>'},
-          { id: 'announced',  text: '<%= I18n.t("mercator.states.announced") %>'},
-          { id: 'active',     text: '<%= I18n.t("mercator.states.active") %>'},
-          { id: 'deprecated', text: '<%= I18n.t("mercator.states.deprecated") %>'}
-        ]},
+        options: {
+          items: <%= Product::Lifecycle.states.*[0].map {
+            |state| {
+              id: state.to_s,
+              text: I18n.t('mercator.states.' + state.to_s)
+            }
+          }.to_json %>
+        },
         html: { caption: '<%= I18n.t("attributes.state") %>' } },
       { name: 'description_de', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.description") %> DE' , attr: 'size=40'} },

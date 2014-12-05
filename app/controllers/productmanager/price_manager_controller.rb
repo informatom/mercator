@@ -50,7 +50,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
             status: "success",
             record: {
               number:              product.number,
-              state:               {id: product.state, text: I18n.t('mercator.states.' + product.state)},
+              state:               {id: product.state},
               title_de:            product.title_de,
               title_en:            product.title_en,
               description_de:      product.description_de,

@@ -70,6 +70,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       category.description_en      = attrs[:description_en]
       category.long_description_de = attrs[:long_description_de]
       category.long_description_en = attrs[:long_description_en]
+      category.state               = attrs[:state][:id]
       category.filtermin           = attrs[:filtermin]
       category.filtermax           = attrs[:filtermax]
       category.position            = attrs[:positon].to_i
@@ -92,6 +93,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
           long_description_de: category.long_description_de,
           long_description_en: category.long_description_en,
           position:            category.position,
+          state:               {id: category.state},
           filters:             category.filters.to_s,
           filtermin:           category.filtermin,
           filtermax:           category.filtermax,
