@@ -24,7 +24,11 @@ $(function () {
       event.onComplete = function () {
         productForm()
         inventoriesGrid()
-        inventoryForm()
+        if (prices_editable == true) {
+          inventoryForm()
+        } else {
+          disabledInventoryForm()
+        }
         menu()
       }
     }
@@ -43,7 +47,11 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         pricesGrid()
-        priceForm()
+        if (prices_editable == true) {
+          priceForm()
+        } else {
+          disabledPriceForm()
+        }
       }
     }
   })

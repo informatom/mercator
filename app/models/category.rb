@@ -4,7 +4,6 @@ class Category < ActiveRecord::Base
   fields do
     name_de             :string, :required
     name_en             :string, :required
-    state               :string, :required
     description_de      :cktext
     description_en      :cktext
     long_description_de :cktext

@@ -2,6 +2,8 @@
 //= require ./productForm
 //= require ./inventoriesGrid
 //= require ./inventoryForm
+//= require ./disabledInventoryForm
 //= require ./pricesGrid
 //= require ./priceForm
+//= require ./disabledPriceForm
 //= require ./menu

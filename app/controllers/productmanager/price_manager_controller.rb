@@ -5,6 +5,8 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
   def index
     @product = Product.find(params[:id])
+    constant = Constant.find_by_key("prices_are_set_by_erp_and_therefore_not_editable")
+    @prices_editable = !(constant && constant.value == "true")
   end
 
   def manage_product

@@ -1,0 +1,29 @@
+function disabledPriceForm() {
+  $('#priceForm').w2form({
+    name: 'priceForm',
+    url: '/productmanager/price_manager/manage_price',
+
+    fields : [
+      { name: 'value', type: 'float', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.value") %>' } },
+      { name: 'vat', type: 'float', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.vat") %>' } },
+      { name: 'valid_from', type: 'date', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.valid_from") %>' } },
+      { name: 'valid_to', type: 'date', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.valid_to") %>' } },
+      { name: 'scale_from', type: 'float', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.scale_from") %>' } },
+      { name: 'scale_to', type: 'float', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.scale_to") %>' } },
+      { name: 'promotion', type: 'checkbox', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.promotion") %>' } },
+      { name: 'created_at', type: 'text', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.created_at") %>' } },
+      { name: 'updated_at', type: 'text', disabled: true,
+        html: { caption: '<%= I18n.t("attributes.updated_at") %>' } },
+      { name: 'inventory_id', type: 'int', disabled: true ,
+        html: { caption: '<%= I18n.t("attributes.inventory") %>' }}
+    ]
+  })
+}
