@@ -2,6 +2,45 @@ function assignmentsgrid() {
   $('#assignments').w2grid({
     name: 'assignments',
     method: 'GET',
+    multiSelect : false,
+    show: { toolbar: true, toolbarSearch: false},
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'deleteAssignment', img: 'fa fa-trash', disabled: true,
+          caption: "<%= I18n.t('hobo.actions.delete', model: PageContentElementAssignment.model_name.human) %>" }
+      ],
+
+      onClick: function (target, data) {
+        var selection = w2ui.assignments.getSelection()
+        switch (target) {
+        case 'deleteAssignment':
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+
+/// Hier weitermachen!
+
+            if (button =='Yes') {
+              w2popup.lock(w2utils.lang('Refreshing...'), true)
+              $.ajax({
+                url:"/contentmanager/assignment/" + selection[0],
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
+
+                w2popup.lock.unlock()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+                w2popup.lock.unlock()
+              })
+            }
+          })
+        }
+      }
+
+
+    },
     columns: [
       { field: 'used_as', caption: '<%= I18n.t("attributes.used_as") %>', size: '50%', sortable: true },
       { field: 'content_element_name', caption: '<%= I18n.t("attributes.content_element") %>', size: '50%',
@@ -39,6 +78,17 @@ function assignmentsgrid() {
           }
         })
       }
-    }
+    },
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('deleteAssignment')
+        } else {
+          this.toolbar.disable('deleteAssignment')
+        }
+      }
+    },
   })
 }
