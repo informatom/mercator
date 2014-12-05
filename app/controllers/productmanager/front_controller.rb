@@ -73,7 +73,6 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       category.state               = attrs[:state][:id]
       category.filtermin           = attrs[:filtermin]
       category.filtermax           = attrs[:filtermax]
-      category.position            = attrs[:positon].to_i
       category.parent_id           = attrs[:parent_id]
       success = category.save
     end
