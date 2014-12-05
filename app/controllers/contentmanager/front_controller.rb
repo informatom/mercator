@@ -108,6 +108,16 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     @content_elements = ContentElement.where(folder_id: params[:id]).where.not(photo_file_name: nil)
   end
 
+  def delete_assignment
+    page_content_element_assignment = PageContentElementAssignment.find(params[:id])
+
+    if page_content_element_assignment.update(content_element_id: nil)
+      render text: page_content_element_assignment.webpage_id
+    else
+      render json: page_content_element_assignment.errors.first
+    end
+  end
+
 protected
   def reorder_webpages(webpages: nil, parent_id: nil)
     webpages.each do |position, webpages|

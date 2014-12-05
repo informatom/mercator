@@ -93,19 +93,20 @@ Mercator::Application.routes.draw do
   end
 
   namespace :contentmanager do
-    get  'front/show_foldertree'            => 'front#show_foldertree'
-    get  'front/show_webpagestree'          => 'front#show_webpagestree'
-    post 'front/update_webpages'            => 'front#update_webpages'
-    get  'front/show_webpage/:id'           => 'front#show_webpage'
-    get  'front/show_assignments/:id'       => 'front#show_assignments'
-    post 'front/update_folders'             => 'front#update_folders'
-    get  'front/show_content_elements/:id'  => 'front#show_content_elements'
-    get  'front/get_thumbnails/:id'         => 'front#get_thumbnails'
-    post 'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
-    post 'front/update_content_element/:id' => 'front#update_content_element'
-    post 'front/folder'                     => 'front#folder'
-    post 'front/delete_folder/:id'          => 'front#delete_folder'
-    post 'front/content_element'            => 'front#content_element'
+    get    'front/show_foldertree'            => 'front#show_foldertree'
+    get    'front/show_webpagestree'          => 'front#show_webpagestree'
+    post   'front/update_webpages'            => 'front#update_webpages'
+    get    'front/show_webpage/:id'           => 'front#show_webpage'
+    get    'front/show_assignments/:id'       => 'front#show_assignments'
+    post   'front/update_folders'             => 'front#update_folders'
+    get    'front/show_content_elements/:id'  => 'front#show_content_elements'
+    get    'front/get_thumbnails/:id'         => 'front#get_thumbnails'
+    post   'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
+    post   'front/update_content_element/:id' => 'front#update_content_element'
+    post   'front/folder'                     => 'front#folder'
+    post   'front/delete_folder/:id'          => 'front#delete_folder'
+    post   'front/content_element'            => 'front#content_element'
+    delete 'front/assignment/:id'             => 'front#delete_assignment'
   end
 
   get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
