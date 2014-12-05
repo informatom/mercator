@@ -28,7 +28,8 @@ function webpageTree() {
 
     click: function(event, data) {
       if (data.node.key) {
-        w2ui.assignments.load('/contentmanager/front/show_assignments/' + data.node.key)
+        w2ui.assignments.url = '/contentmanager/front/show_assignments/' + data.node.key
+        w2ui.assignments.reload()
         w2ui.webpageForm.url = '/contentmanager/front/manage_webpage/' + data.node.key
         w2ui.webpageForm.recid = data.node.key
         w2ui.webpageForm.reload()
@@ -43,7 +44,8 @@ function webpageTree() {
     init: function(event, data){
       if (selected_webpage_id) {
         $("#webpageTree").fancytree("getTree").getNodeByKey(selected_webpage_id).setActive();
-        w2ui.assignments.load('/contentmanager/front/show_assignments/' + selected_webpage_id)
+        w2ui.assignments.url = '/contentmanager/front/show_assignments/' + selected_webpage_id
+        w2ui.assignments.reload()
         w2ui.webpageForm.url = '/contentmanager/front/manage_webpage/' + selected_webpage_id
         w2ui.webpageForm.recid = selected_webpage_id
         w2ui.webpageForm.reload()

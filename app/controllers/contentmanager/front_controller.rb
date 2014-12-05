@@ -36,6 +36,9 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
       webpage.slug             = attrs[:slug]
       webpage.page_template_id = attrs[:page_template_id][:id]
       success = webpage.save
+
+# DIe Zuordnungen müssen noch neu geschrieben werden.
+
     end
 
     if success == false
@@ -59,6 +62,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     webpage = Webpage.find(params[:id])
 
     webpage.add_missing_page_content_element_assignments
+    webpage.delete_orphaned_page_content_element_assignments
     webpage.reload
 
     assignments = webpage.page_content_element_assignments

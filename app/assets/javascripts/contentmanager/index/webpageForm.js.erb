@@ -23,10 +23,12 @@ function webpageForm() {
         html: { caption: '<%= I18n.t("attributes.page_template") %>' } }
     ],
     actions: {
-      'Save': function (event) { this.save() }
+      "save": function () {
+        this.save(function() {
+          w2ui.assignments.reload()
+        })
+      }
     },
-    postData: { authenticity_token: csrf_token },
-    onSave: function(event) {
-    }
+    postData: { authenticity_token: csrf_token }
   })
 }
