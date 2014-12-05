@@ -1,0 +1,14 @@
+//= require ./layout
+//= require ./menu
+//= require ./webpageTreeToolbar
+//= require ./webpageTree
+//= require ./webpageForm
+//= require ./assignments
+//= require ./foldertree
+//= require ./foldertreeToolbar
+//= require ./folderForm
+//= require ./contentelementsgrid
+//= require ./contentElementForm
+//= require ./previewImage
+//= require ./gallery
+//= require ./registerDraggables

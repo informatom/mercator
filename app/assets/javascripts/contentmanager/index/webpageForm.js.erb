@@ -1,0 +1,32 @@
+function webpageForm() {
+  $('#webpageForm').w2form({
+    name: 'webpageForm',
+    url: 'contentmanager/front/folder',
+    fields : [
+      { field: 'title_de', type: 'text', required: true,
+        html: { caption: '<%= I18n.t("attributes.title") %> DE' } },
+      { field: 'title_en', type: 'text',
+        html: { caption: '<%= I18n.t("attributes.title") %> EN' } },
+      { field: 'url', type: 'text',
+        html: { caption: 'URL' } },
+      { field: 'slug', type: 'text',
+        html: { caption: 'Slug' } },
+      { field: 'page_template_id', type: 'list', required: true,
+        options: {
+          items: <%= PageTemplate.all.map {
+            |page_template| {
+              id:   page_template.id,
+              text: page_template.name
+            }
+          }.to_json %>
+        },
+        html: { caption: '<%= I18n.t("attributes.page_template") %>' } }
+    ],
+    actions: {
+      'Save': function (event) { this.save() }
+    },
+    postData: { authenticity_token: csrf_token },
+    onSave: function(event) {
+    }
+  })
+}

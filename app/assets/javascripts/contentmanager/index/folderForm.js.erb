@@ -1,19 +1,19 @@
 function folderForm() {
   $().w2form({
-      name: 'folderForm',
-      url: 'contentmanager/front/folder',
-      fields : [
-        { field: 'name', type: 'text', required: true, html: { caption: '<%= I18n.t("attributes.name") %>' } }
-      ],
-      actions: {
-        'Cancel': function () { w2popup.close() },
-        'Clear':  function () { this.clear() },
-        'Save':   function (event) { this.save() }
-      },
-      postData: { authenticity_token: csrf_token },
-      onSave: function(event) {
-        w2popup.close()
-        $("#foldertree").fancytree("getTree").reload()
-      }
+    name: 'folderForm',
+    url: 'contentmanager/front/folder',
+    fields : [
+      { field: 'name', type: 'text', required: true, html: { caption: '<%= I18n.t("attributes.name") %>' } }
+    ],
+    actions: {
+      'Cancel': function () { w2popup.close() },
+      'Clear':  function () { this.clear() },
+      'Save':   function (event) { this.save() }
+    },
+    postData: { authenticity_token: csrf_token },
+    onSave: function(event) {
+      w2popup.close()
+      $("#foldertree").fancytree("getTree").reload()
+    }
   })
 }

@@ -21,21 +21,38 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     render nothing: true
   end
 
-  def show_webpage
-    webpage = Webpage.find(params[:id])
+  def manage_webpage
+    if params[:recid] == "0"
+      webpage = Category.new
+    else
+      webpage = Webpage.find(params[:id])
+    end
 
-    render json: {
-      status: "success",
-      total: 6,
-      records: [
-        { recid: 1, attribute: "title_de", value: webpage.title_de },
-        { recid: 2, attribute: "title_en", value: webpage.title_en },
-        { recid: 3, attribute: "url",      value: webpage.url },
-        { recid: 4, attribute: "slug",     value: webpage.slug },
-        { recid: 5, attribute: "menu",     value: webpage.menu },
-        { recid: 6, attribute: "template", value: webpage.page_template.name }
-      ]
-    }
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+      webpage.title_de         = attrs[:title_de]
+      webpage.title_en         = attrs[:title_en]
+      webpage.url              = attrs[:url]
+      webpage.slug             = attrs[:slug]
+      webpage.page_template_id = attrs[:page_template_id][:id]
+      success = webpage.save
+    end
+
+    if success == false
+      render json: { status: "error",
+                     message: webpage.errors.first }
+    else
+      render json: {
+        status: "success",
+        record: {
+          title_de:         webpage.title_de,
+          title_en:         webpage.title_en,
+          url:              webpage.url,
+          slug:             webpage.slug,
+          page_template_id: {id: webpage.page_template_id}
+        }
+      }
+    end
   end
 
   def show_assignments

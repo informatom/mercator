@@ -16,9 +16,9 @@ $(function () {
         size: '13%', resizable: true,
         content: "<div id='webpageTreeToolbar' style='height:20'></div><div id='webpageTree' style='height:calc(100% - 28px);'></div>" },
       { type: 'main', title: '<%= I18n.t("activerecord.models.webpage.one") %>',
-        resizable: true, content: "<div id='webpage' style='height:100%;'></div>" },
+        resizable: true, content: "<div id='webpageForm' style='height:100%;'></div>" },
       { type: 'preview', title: '<%= I18n.t("activerecord.models.page_content_element_assignment.other") %> ',
-        size: '50%', resizable: true, content: "<div id='assignments' style='height:100%'></div>" },
+        size: '60%', resizable: true, content: "<div id='assignments' style='height:100%'></div>" },
       { type: 'right', size: '67%', resizable: true},
       { type: 'bottom', title: '<%= I18n.t("mercator.content_manager.image_gallery") %>',
         size: 150, resizable: true, content: "<div id='gallery'></div>" }
@@ -27,7 +27,7 @@ $(function () {
       event.onComplete = function () {
         webpageTreeToolbar()
         webpageTree()
-        webpage()
+        webpageForm()
         assignmentsgrid()
         menu()
       }
