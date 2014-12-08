@@ -1,7 +1,7 @@
 function webpageForm() {
   $('#webpageForm').w2form({
     name: 'webpageForm',
-    url: 'contentmanager/front/folder',
+    url: 'contentmanager/front/manage_webpage/0',
     fields : [
       { field: 'title_de', type: 'text', required: true,
         html: { caption: '<%= I18n.t("attributes.title") %> DE' } },
@@ -11,6 +11,8 @@ function webpageForm() {
         html: { caption: 'URL' } },
       { field: 'slug', type: 'text',
         html: { caption: 'Slug' } },
+      { field: 'position', type: 'int', required: true,
+        html: { caption: '<%= I18n.t("attributes.position") %>' } },
       { field: 'page_template_id', type: 'list', required: true,
         options: {
           items: <%= PageTemplate.all.map {
@@ -30,6 +32,7 @@ function webpageForm() {
         onClick: function () {
           this.save(function(response) {
             new_id = response.record.recid.toString()
+            w2ui.assignments.url = '/contentmanager/front/show_assignments/' + new_id
             w2ui.assignments.reload()
             var tree = $("#webpageTree").fancytree("getTree")
             tree.reload().done(function() {
@@ -68,6 +71,7 @@ function webpageForm() {
         onClick: function () {
           var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
           this.clear()
+          this.record['position'] = 0
           if (active_node) {
             this.record['parent_id'] = active_node.key
           }

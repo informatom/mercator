@@ -58,18 +58,10 @@ function contentelementsgrid() {
       { field: 'markup', caption: '<%= I18n.t("attributes.markup") %>', size: '40px', hidden: true },
       { field: 'content_de', caption: '<%= I18n.t("attributes.content_de") %>', size: '50%', sortable: true },
       { field: 'content_en', caption: '<%= I18n.t("attributes.content_en") %>', size: '300px', sortable: true, hidden: true },
-      {
-        field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
-        render: function (record) {
-          return moment(record.created_at).format("YYYY-MM-DD HH:mm:ss")
-        }
-      },
-      {
-        field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,
-        render: function (record) {
-          return moment(record.updated_at).format("YYYY-MM-DD HH:mm:ss")
-        }
-      },
+      { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+      { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
       { field: 'document_file_name', caption: '<%= I18n.t("attributes.document") %>', size: '150px', sortable: true },
       { field: 'photo_file_name', caption: '<%= I18n.t("attributes.photo") %>', size: '150px', sortable: true },
       { field: 'thumb_url', caption: '<%= I18n.t("attributes.thumbnail") %> <%= I18n.t("attributes.path") %>', size: '150px', hidden: true },

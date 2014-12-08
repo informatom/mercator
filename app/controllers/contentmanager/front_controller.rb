@@ -31,7 +31,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     if params[:cmd] == "save-record"
       attrs = params[:record]
       webpage.parent_id        = attrs[:parent_id] if attrs[:parent_id]
-      webpage.position         = 0 if attrs[:parent_id]
+      webpage.position         = attrs[:position]
       webpage.title_de         = attrs[:title_de]
       webpage.title_en         = attrs[:title_en]
       webpage.url              = attrs[:url]
@@ -52,6 +52,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
           title_en:         webpage.title_en,
           url:              webpage.url,
           slug:             webpage.slug,
+          position:         webpage.position,
           page_template_id: {id: webpage.page_template_id}
         }
       }

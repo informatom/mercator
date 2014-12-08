@@ -10,7 +10,7 @@
  *= require hobo_bootstrap
  *= require hobo_jquery_ui
  *= require hobo_bootstrap_ui
- *= require jquery-ui/redmond
+ * require jquery-ui/redmond // Moved this out because of contentmanager droppable .... let's seee
  *= require hobo_ckeditor
  *= require messenger
  *= require messenger-spinner
