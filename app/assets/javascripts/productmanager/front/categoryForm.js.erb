@@ -167,7 +167,7 @@ function categoryForm() {
           var active_node = $("#categoryTree").fancytree("getTree").getActiveNode()
           if (!active_node == "") {
             debugger
-            document.location = "/admin/categories/" + active_node.key + "/edit"
+            document.location = "/admin/categories/" + active_node.key + "/edit?product_manager=true"
           }  else {
             w2alert('<%= I18n.t("mercator.product_manager.no_category_selected") %>')
             return

@@ -45,6 +45,21 @@ class Admin::CategoriesController < Admin::AdminSiteController
     hobo_index
   end
 
+  def edit
+    if request_param(:product_manager)
+      @cancelpath = productmanager_front_path(category_id: params[:id])
+    end
+    hobo_edit
+  end
+
+  def update
+    if product_id = page_path_param(:product_manager)
+      hobo_update(redirect: productmanager_front_path(category_id: params[:id].to_i))
+    else
+      hobo_update
+    end
+  end
+
 protected
   def parse_categories(categories: nil, parent_id: nil)
     categories.each do |position, categories|

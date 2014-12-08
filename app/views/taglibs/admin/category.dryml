@@ -14,5 +14,16 @@
       </parent-id-view:>
 
     </field-list:>
+
+    <actions:>
+      <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/>
+      <if test="&@cancelpath">
+        <or-cancel param="cancel" href="&@cancelpath"/>
+      </if>
+      <else>
+        <or-cancel param="cancel" />
+      </else>
+    </actions:>
+
   </old-form>
 </extend>

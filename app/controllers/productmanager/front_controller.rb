@@ -8,6 +8,9 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       @selected_product = Product.find(request_param(:product_id))
       @selected_category = @selected_product.categories.first
     end
+    if request_param(:category_id)
+      @selected_category = Category.find(request_param(:category_id))
+    end
   end
 
   def show_categorytree
