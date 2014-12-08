@@ -6,11 +6,11 @@
       <state-view:>
           <select-menu class="form-control"
                        name="category[state]"
-                       options="&Category::Lifecycle.states.*[0].map {|state| [I18n.t('mercator.states.' + state.to_s), state.to_s] }" />
+                       options="&Category::Lifecycle.states.*[0].map {|state| [I18n.t('mercator.states.' + state.to_s), state.to_s] }"/>
       </state-view:>
 
       <parent-id-view:>
-        <tree-select-one same-model class="form-control"/>
+        <tree-select-one same-model include-none class="form-control"/>
       </parent-id-view:>
 
     </field-list:>

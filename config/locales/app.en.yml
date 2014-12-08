@@ -703,8 +703,10 @@ en:
         products: The category cannot be deleted. It contains products.
       create_rootcategory: Create New Root (Top Level) Category
       create_subcategory: Create New Sub Category
-      title: Produktmanager
+      edit_category: Edit All Fields
+      no_category_selected: "No category selected!"
       product_moved_to: Product moved to Category
+      title: Produktmanager
     product_comparison: Product Comparison
     product_suggestion: Product Suggestion
     products_available: products available

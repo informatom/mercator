@@ -700,7 +700,6 @@ de:
     product_manager:
       create_rootcategory: "Neue Wurzelkategorie (Toplevel) erstellen"
       create_subcategory: "Neue Unterkategorie erstellen"
-      title: Produktmanager
       cannot_delete_property:
         record_not_found: Die Eigenschaft kann nicht gefunden werden.
         values: Diese Eigenschaft wird noch in Werten verwendet und kann daher nicht gelöscht werden.
@@ -711,7 +710,10 @@ de:
         no_category_selected: Keine Kategorie zur Löschung ausgewählt!
         children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
         products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
+      edit_category: Alle Felder editieren
+      no_category_selected: "Keine Kategorie ausgewählt!"
       product_moved_to: Artikel verschoben in Kategorie
+      title: Produktmanager
     product_comparison: Produktvergleich
     product_suggestion: Produktvorschlag
     products_available: Produkte zur Auswahl

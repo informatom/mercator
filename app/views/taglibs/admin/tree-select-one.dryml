@@ -6,6 +6,10 @@
   end
   select_options = options.map { |x| [("&nbsp; &nbsp; &nbsp;" * x.depth + "‣ " + name(:with => x, :no_wrapper => true)).html_safe, x.id] }
 
+  if include_none
+    select_options = [["Root", 1]] + select_options
+  end
+
   attributes = add_classes(attributes, "input", "belongs_to", type_and_field)
   -%>
 
