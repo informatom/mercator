@@ -56,7 +56,7 @@ function webpageForm() {
               }).done(function(response, textStatus, jqXHR) {
                 $("#webpageTree").fancytree("getTree").reload()
                 w2ui.webpageForm.clear()
-                this.refresh()
+                w2ui.webpageForm.refresh()
                 $("#webpageTree").fancytree("getTree").reload()
               }).fail(function(jqXHR, textStatus, errorThrown) {
                 w2alert(jqXHR.responseText)
