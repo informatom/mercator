@@ -1,5 +1,5 @@
 function registerGallery() {
-  $('.thumbnail').click( function () {
+  $('.mercatorthumb').click( function () {
     var content_element_id = parseInt(this.id.split("-")[2])
     previewImage(content_element_id)
     var index = w2ui.contentelementsgrid.get(content_element_id, true)
