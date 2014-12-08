@@ -22,11 +22,57 @@ function webpageForm() {
         },
         html: { caption: '<%= I18n.t("attributes.page_template") %>' } }
     ],
+
     actions: {
-      "save": function () {
-        this.save(function() {
-          w2ui.assignments.reload()
-        })
+      save: {
+        caption: 'Save',
+        class: 'w2ui-btn-green',
+        onClick: function () {
+          this.save(function(response) {
+            new_id = response.record.recid.toString()
+            w2ui.assignments.reload()
+            var tree = $("#webpageTree").fancytree("getTree")
+            tree.reload().done(function() {
+              tree.activateKey(new_id).setExpanded()
+            })
+          })
+        }
+      },
+      delete: {
+        caption: 'Delete',
+        class: 'w2ui-btn-red',
+        onClick: function () {
+          var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
+          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/admin/webpages/" + active_node.key,
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                $("#webpageTree").fancytree("getTree").reload()
+                w2ui.webpageForm.clear()
+                this.refresh()
+                $("#webpageTree").fancytree("getTree").reload()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
+          })
+        }
+      },
+      create: {
+        caption: 'Add New',
+        class: 'w2ui-btn-orange',
+        onClick: function () {
+          var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
+          this.clear()
+          if (active_node) {
+            this.record['parent_id'] = active_node.key
+          }
+          this.refresh()
+        }
       }
     },
     postData: { authenticity_token: csrf_token }

@@ -23,22 +23,21 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def manage_webpage
     if params[:recid] == "0"
-      webpage = Category.new
+      webpage = Webpage.new
     else
       webpage = Webpage.find(params[:id])
     end
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
+      webpage.parent_id        = attrs[:parent_id] if attrs[:parent_id]
+      webpage.position         = 0 if attrs[:parent_id]
       webpage.title_de         = attrs[:title_de]
       webpage.title_en         = attrs[:title_en]
       webpage.url              = attrs[:url]
       webpage.slug             = attrs[:slug]
       webpage.page_template_id = attrs[:page_template_id][:id]
       success = webpage.save
-
-# DIe Zuordnungen müssen noch neu geschrieben werden.
-
     end
 
     if success == false
@@ -48,6 +47,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
       render json: {
         status: "success",
         record: {
+          recid:            webpage.id,
           title_de:         webpage.title_de,
           title_en:         webpage.title_en,
           url:              webpage.url,

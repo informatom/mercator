@@ -1,19 +1,11 @@
 /*
- * This is the stylesheet manifest file for the contentmanager subsite.
- * Files or plugins referenced from here or placed in the contentmanager/
- * directory will be included.
- *
- *= require_self
- *= require contentmanager/w2ui-1.4.2.min
- *= require contentmanager/jquery-ui.min
- *= require contentmanager/jquery-ui.structure.min
- *= require contentmanager/jquery-ui.theme.min
- *= require contentmanager/ui.fancytree.min
- *= require messenger
- *= require messenger-spinner
- *= require messenger-theme-future
+ *= require application
+ *= require jquery-ui/redmond
+ *= require admin/ui.fancytree.min
+ *= require overrides
+ *= require hobo_w2ui
  *= require contentmanager/overrides
- *= require font-awesome
+ *= require_self
 
 @import "font-awesome";
 */
