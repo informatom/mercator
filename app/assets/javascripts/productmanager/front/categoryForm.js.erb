@@ -104,14 +104,14 @@ function categoryForm() {
           }.to_json %>
         }
       },
-      { name: 'position',            type: 'int',   disabled: true},
-      { name: 'filters',             type: 'float', disabled: true },
-      { name: 'filtermin',           type: 'float' },
-      { name: 'filtermax',           type: 'float' },
-      { name: 'created_at',          type: 'text',  disabled: true },
-      { name: 'updated_at',          type: 'text',  disabled: true },
-      { name: 'parent_name',         type: 'text',  disabled: true },
-      { name: 'parent_id',           type: 'int',   disabled: true },
+      { name: 'position',    type: 'int' },
+      { name: 'filters',     type: 'float', disabled: true },
+      { name: 'filtermin',   type: 'float' },
+      { name: 'filtermax',   type: 'float' },
+      { name: 'created_at',  type: 'text',  disabled: true },
+      { name: 'updated_at',  type: 'text',  disabled: true },
+      { name: 'parent_name', type: 'text',  disabled: true },
+      { name: 'parent_id',   type: 'int',   disabled: true },
     ],
 
     actions: {
@@ -135,8 +135,9 @@ function categoryForm() {
           this.clear()
           var active_node = $("#categoryTree").fancytree("getTree").getActiveNode()
           if (active_node) {
-            this.record["parent_id"] = active_node.key
-            this.record["parent_name"] = active_node.title.split("<")[0]
+            this.record.parent_id = active_node.key
+            this.record.parent_name = active_node.title.split("<")[0]
+            this.record.position = 0
             this.refresh()
           }
         }
@@ -144,6 +145,7 @@ function categoryForm() {
       newRoot: {
         onClick: function () {
           this.clear()
+          this.record.position = 0
           this.refresh()
         }
       },
