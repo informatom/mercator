@@ -94,7 +94,7 @@ function categoryForm() {
       { name: 'description_en',      type: 'text' },
       { name: 'long_description_de', type: 'textarea' },
       { name: 'long_description_en', type: 'textarea' },
-      { name: 'state',               type: 'list',
+      { name: 'state',               type: 'list', required : true,
         options: {
           items: <%= Category::Lifecycle.states.*[0].map {
             |state| {
