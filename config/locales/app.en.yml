@@ -809,11 +809,13 @@ en:
           children: The category cannot be deleted. There are still subcategories.
           products: The category cannot be deleted. It contains products.
         create:
-          root: Create New Root (Top Level) Category
-          sub: Create New Sub Category
+          root: New Root (Top Level) Category
+          sub: New Sub Category
+        delete: Delete
         edit: Edit All Fields
         none_selected: "No category selected!"
         one: Category
+        save: Save
       Product:
         moved_to: Product moved to Category
         other: Products

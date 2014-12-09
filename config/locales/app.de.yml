@@ -816,11 +816,13 @@ de:
           children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
           products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
         create:
-          root: "Neue Wurzelkategorie (Toplevel) erstellen"
-          sub: "Neue Unterkategorie erstellen"
+          root: "Neue Wurzelkategorie (Toplevel)"
+          sub: "Neue Unterkategorie"
+        delete: Löschen
         edit: Alle Felder editieren
         none_selected: "Keine Kategorie ausgewählt!"
         one: Kategorie
+        save: Speichern
       title: Produktmanager
       Product:
         other: Artikel
