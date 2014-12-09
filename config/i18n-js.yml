@@ -13,7 +13,7 @@
 #
 translations:
   - file: 'app/assets/javascripts/i18n/cm.js'
-    only: [ '*.js.cm', '*.attributes']
+    only: [ '*.js.cm', '*.attributes', '*.mercator.states']
 
   - file: 'app/assets/javascripts/i18n/pm.js'
-    only: [ '*.js.pm', '*.attributes']
+    only: [ '*.js.pm', '*.attributes', '*.mercator.states']

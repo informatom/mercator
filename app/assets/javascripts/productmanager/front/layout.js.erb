@@ -8,14 +8,14 @@ $(function () {
     name: 'productmanager',
     panels: [
       { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
-        title: '<%= I18n.t("mercator.product_manager.title") %>'},
-      { type: 'left', size: '20%', resizable: true, title: '<%= I18n.t("attributes.product_catalog") %>',
+        title: I18n.t("js.pm.title") },
+      { type: 'left', size: '20%', resizable: true, title: I18n.t("attributes.product_catalog"),
         content: "<div id='categoryTree'></div>" },
-      { type: 'main', resizable: true, title: '<%= I18n.t("activerecord.models.category.one") %>',
+      { type: 'main', resizable: true, title: I18n.t("js.pm.Category.one"),
         content: "<div id='categoryForm' style='height: 380px'></div>" },
-      { type: 'preview', size: '52%', resizable: true, title: '<%= I18n.t("activerecord.models.product.other") %>',
+      { type: 'preview', size: '52%', resizable: true, title: I18n.t("js.pm.Product.other"),
         content: "<div id='productsgrid' style='height: 100%'></div>" },
-      { type: 'right', size: '20%', resizable: true, title: '<%= I18n.t("activerecord.models.property.other") %>',
+      { type: 'right', size: '20%', resizable: true, title: I18n.t("js.pm.Property.other"),
         content: "<div id='properties' style='background-color: white; height:100%; padding: 5px'></div>" }
     ],
     onRender: function(event) {

@@ -6,84 +6,79 @@ function categoryForm() {
       '<div class="w2ui-page page-0">'+
       '  <div style="float: left">'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.name") %> DE</label>'+
+      '      <label>' + I18n.t('attributes.name_de') + '</label>'+
       '      <div><input name="name_de" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.name") %> EN</label>'+
+      '      <label>' + I18n.t("attributes.name_en") + '</label>'+
       '      <div><input name="name_en" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.description") %> DE</label>'+
+      '      <label>' + I18n.t("attributes.description_de") + '</label>'+
       '      <div><input name="description_de" size=80 /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.description") %> EN</label>'+
+      '      <label>' + I18n.t("attributes.description_en") + '</label>'+
       '      <div><input name="description_en" size=80 /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.long_description") %> DE</label>'+
+      '      <label>' + I18n.t("attributes.long_description_de") + '</label>'+
       '      <div><textarea rows="4" cols="84" name="long_description_de" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.long_description") %> EN</label>'+
+      '      <label>' + I18n.t("attributes.long_description_en") + '</label>'+
       '      <div><textarea rows="4" cols="84" name="long_description_en" /></div>'+
       '    </div>'+
       '  </div>'+
       '  <div style="float: right; margin-right:20px;">'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.state") %></label>'+
+      '      <label>' + I18n.t("attributes.state") + '</label>'+
       '      <div><input name="state" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.position") %></label>'+
+      '      <label>' + I18n.t("attributes.position") + '</label>'+
       '      <div><input name="position" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.filters") %></label>'+
+      '      <label>' + I18n.t("attributes.filters") + '</label>'+
       '      <div><input name="filters" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.filtermin") %></label>'+
+      '      <label>' + I18n.t("attributes.filtermin") + '</label>'+
       '      <div><input name="filtermin" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.filtermax") %></label>'+
+      '      <label>' + I18n.t("attributes.filtermax") + '</label>'+
       '      <div><input name="filtermax" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.created_at") %></label>'+
+      '      <label>' + I18n.t("attributes.created_at") + '</label>'+
       '      <div><input name="created_at" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.updated_at") %></label>'+
+      '      <label>' + I18n.t("attributes.updated_at") + '</label>'+
       '      <div><input name="updated_at" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.parent") %></label>'+
+      '      <label>' + I18n.t("attributes.parent") + '</label>'+
       '      <div><input name="parent_name" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.parent") %></label>'+
+      '      <label>' + I18n.t("attributes.parent") + '</label>'+
       '      <div><input name="parent_id" /></div>'+
       '    </div>'+
       '  </div>'+
       '</div>'+
       '<div class="w2ui-buttons">'+
-      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
-      '     <%= I18n.t("hobo.actions.save", model: Category.model_name.human) %>'+
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">' + I18n.t("js.pm.Category.save") +
       '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-blue" name="newSub">'+
-      '     <%= I18n.t("mercator.product_manager.create_subcategory") %>'+
+      '   <button class="w2ui-btn w2ui-btn-blue" name="newSub">' + I18n.t("js.pm.Category.create.sub") +
       '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-blue" name="newRoot">'+
-      '     <%= I18n.t("mercator.product_manager.create_rootcategory") %>'+
+      '   <button class="w2ui-btn w2ui-btn-blue" name="newRoot">' + I18n.t("js.pm.Category.create.root") +
       '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+
-      '     <%= I18n.t("hobo.actions.delete", model: Category.model_name.human) %>'+
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">' + I18n.t("js.pm.Category.delete") +
       '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-orange" name="edit_all_fields">'+
-      '     <%= I18n.t("mercator.product_manager.edit_category") %>'+
+      '   <button class="w2ui-btn w2ui-btn-orange" name="edit_all_fields">' + I18n.t("js.pm.Category.edit") +
       '   </button>'+
       '</div>',
 
@@ -96,12 +91,9 @@ function categoryForm() {
       { name: 'long_description_en', type: 'textarea' },
       { name: 'state',               type: 'list', required : true,
         options: {
-          items: <%= Category::Lifecycle.states.*[0].map {
-            |state| {
-              id: state.to_s,
-              text: I18n.t('mercator.states.' + state.to_s)
-            }
-          }.to_json %>
+          items: <%= a = Category::Lifecycle.states.*[0].map {
+            |state| "{id: '" + state.to_s + "', text: I18n.t('mercator.states." + state.to_s + "')}"
+          }.to_s.gsub('"','') %>
         }
       },
       { name: 'position',    type: 'int' },
@@ -170,8 +162,8 @@ function categoryForm() {
           if (!active_node == "") {
             debugger
             document.location = "/admin/categories/" + active_node.key + "/edit?product_manager=true"
-          }  else {
-            w2alert('<%= I18n.t("mercator.product_manager.no_category_selected") %>')
+          } else {
+            w2alert(I18n.t("js.pm.Category.none_selected"))
             return
           }
         }

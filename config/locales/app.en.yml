@@ -52,6 +52,8 @@ en:
     customer: Customer
     delivery_time: Delivery Time
     description: Description
+    description_de: Description GER
+    description_en: Description EN
     Detail: Details
     discount: Discount
     discount_abs: "Discount absolute in EUR"
@@ -82,6 +84,8 @@ en:
     links: Links
     login_count: Login Count
     long_description: Long Description
+    long_description_de: Long Description GER
+    long_description_en: Long Description EN
     markup: Markup Format
     messages: Messages
     miscellaneous: Miscellaneous
@@ -799,19 +803,28 @@ en:
       website_structure: Website Sructure
 
     pm:
-      cannot_delete_property:
-        record_not_found: The property cannot be found.
-        values: "This property cannot be deleted, it is stil used in values!"
-      cannot_delete_property_group:
-        record_not_found: The property group cannot be found.
-        values: "This property group cannot be deleted, it is stil used in values!"
-      cannot_delete_category:
-        no_category_selected: No category selected!
-        children: The category cannot be deleted. There are still subcategories.
-        products: The category cannot be deleted. It contains products.
-      create_rootcategory: Create New Root (Top Level) Category
-      create_subcategory: Create New Sub Category
-      edit_category: Edit All Fields
-      no_category_selected: "No category selected!"
-      product_moved_to: Product moved to Category
+      Category:
+        cannot_delete:
+          no_category_selected: No category selected!
+          children: The category cannot be deleted. There are still subcategories.
+          products: The category cannot be deleted. It contains products.
+        create:
+          root: Create New Root (Top Level) Category
+          sub: Create New Sub Category
+        edit: Edit All Fields
+        none_selected: "No category selected!"
+        one: Category
+      Product:
+        moved_to: Product moved to Category
+        other: Products
       title: Produktmanager
+      Property:
+        cannot_delete:
+          record_not_found: The property cannot be found.
+          values: "This property cannot be deleted, it is stil used in values!"
+        other: Properties
+      PropertyGroup:
+        cannot_delete:
+          record_not_found: The property group cannot be found.
+          values: "This property group cannot be deleted, it is stil used in values!"
+

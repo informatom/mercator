@@ -56,6 +56,8 @@ de:
     customer: Kunde
     delivery_time: Versand-/Abholbereit in
     description: Beschreibung
+    description_de: Beschreibung DE
+    description_en: Beschreibung EN
     detail: Details
     discount: Rabatt
     discount_abs: "Rabatt absolut in EUR"
@@ -86,6 +88,8 @@ de:
     links: Links
     login_count: Anzahl Anmeldungen
     long_description: Lange Beschreibung
+    long_description_de: Lange Beschreibung DE
+    long_description_en: Lange Beschreibung EN
     markup: Markup Format
     messages: Nachrichten
     miscellaneous: Diverses
@@ -806,20 +810,27 @@ de:
       website_structure: Webseitenstruktur
 
     pm:
-      create_rootcategory: "Neue Wurzelkategorie (Toplevel) erstellen"
-      create_subcategory: "Neue Unterkategorie erstellen"
-      cannot_delete_property:
-        record_not_found: Die Eigenschaft kann nicht gefunden werden.
-        values: Diese Eigenschaft wird noch in Werten verwendet und kann daher nicht gelöscht werden.
-      cannot_delete_property_group:
-        record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
-        values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
-      cannot_delete_category:
-        no_category_selected: Keine Kategorie zur Löschung ausgewählt!
-        children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
-        products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
-      edit_category: Alle Felder editieren
-      no_category_selected: "Keine Kategorie ausgewählt!"
-      product_moved_to: Artikel verschoben in Kategorie
+      Category:
+        cannot_delete:
+          no_category_selected: Keine Kategorie zur Löschung ausgewählt!
+          children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
+          products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
+        create:
+          root: "Neue Wurzelkategorie (Toplevel) erstellen"
+          sub: "Neue Unterkategorie erstellen"
+        edit: Alle Felder editieren
+        none_selected: "Keine Kategorie ausgewählt!"
+        one: Kategorie
       title: Produktmanager
-
+      Product:
+        other: Artikel
+        moved_to: Artikel verschoben in Kategorie
+      Property:
+        cannot_delete:
+          record_not_found: Die Eigenschaft kann nicht gefunden werden.
+          values: Diese Eigenschaft wird noch in Werten verwendet und kann daher nicht gelöscht werden.
+        other: Eigenschaften
+      PropertyGroup:
+        cannot_delete:
+          record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
+          values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
