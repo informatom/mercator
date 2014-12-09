@@ -74,7 +74,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       category.long_description_de = attrs[:long_description_de]
       category.long_description_en = attrs[:long_description_en]
       category.state               = attrs[:state][:id]
-      category.position            = attrs[:position] && 0
+      category.position            = attrs[:position] || 0
       category.filtermin           = attrs[:filtermin]
       category.filtermax           = attrs[:filtermax]
       category.parent_id           = attrs[:parent_id]
