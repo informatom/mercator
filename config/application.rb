@@ -19,7 +19,8 @@ module Mercator
     # Hobo: the sales subsite loads sales.css & sales.js
     config.assets.precompile += %w(sales.css sales.js)
 
-#    config.assets.initialize_on_precompile = true  # Needed for I18n.js
+    config.middleware.use I18n::JS::Middleware # Needed for I18n.js
+    config.assets.initialize_on_precompile = true # Needed for I18n.js
 
     I18n.enforce_available_locales = true
     I18n.available_locales = [:en, :de]

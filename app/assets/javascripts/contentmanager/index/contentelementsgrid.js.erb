@@ -8,11 +8,11 @@ function contentelementsgrid() {
     toolbar: {
       items: [
         { type: 'button', id: 'newContentElement', img: 'fa fa-plus',
-          caption: "<%= I18n.t('hobo.actions.create', model: ContentElement.model_name.human) %>" },
+          caption: I18n.t('js.cm.ContentElement.create') },
         { type: 'button', id: 'editContentElement', img: 'fa fa-edit', disabled: true,
-          caption: "<%= I18n.t('hobo.actions.edit', model: ContentElement.model_name.human) %>" },
+          caption: I18n.t('js.cm.ContentElement.edit') },
         { type: 'button', id: 'deleteContentElement', img: 'fa fa-trash', disabled: true,
-          caption: "<%= I18n.t('hobo.actions.delete', model: ContentElement.model_name.human) %>" }
+          caption: I18n.t('js.cm.ContentElement.delete') }
       ],
       onClick: function (target, data) {
         var selection = w2ui.contentelementsgrid.getSelection()
@@ -24,7 +24,7 @@ function contentelementsgrid() {
           document.location = "/admin/content_elements/" + selection[0] + "/edit"
         break
         case 'deleteContentElement':
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          w2confirm(I18n.t("js.cm.are_you_sure"), function (button) {
             if (button =='Yes') {
               w2popup.lock(w2utils.lang('Refreshing...'), true)
               $.ajax({
@@ -47,33 +47,33 @@ function contentelementsgrid() {
     },
 
     columns: [
-      { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, hidden: true , attr: "align=center" },
       {
-        field: 'name_de', caption: '<%= I18n.t("attributes.name_de") %>', size: '150px', sortable: true,
+        field: 'name_de', caption: I18n.t("attributes.name_de"), size: '150px', sortable: true,
         render: function (record) {
           return '<div id ="content-element-' + record.recid + '" class="draggable">' + record.name_de + '</div>'
         }
       },
-      { field: 'name_en', caption: '<%= I18n.t("attributes.name_en") %>', size: '150px', sortable: true, hidden: true },
-      { field: 'markup', caption: '<%= I18n.t("attributes.markup") %>', size: '40px', hidden: true },
-      { field: 'content_de', caption: '<%= I18n.t("attributes.content_de") %>', size: '50%', sortable: true },
-      { field: 'content_en', caption: '<%= I18n.t("attributes.content_en") %>', size: '300px', sortable: true, hidden: true },
-      { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
+      { field: 'name_en', caption: I18n.t("attributes.name_en"), size: '150px', sortable: true, hidden: true },
+      { field: 'markup', caption: I18n.t("attributes.markup"), size: '40px', hidden: true },
+      { field: 'content_de', caption: I18n.t("attributes.content_de"), size: '50%', sortable: true },
+      { field: 'content_en', caption: I18n.t("attributes.content_en"), size: '300px', sortable: true, hidden: true },
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
-      { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,
+      { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
-      { field: 'document_file_name', caption: '<%= I18n.t("attributes.document") %>', size: '150px', sortable: true },
-      { field: 'photo_file_name', caption: '<%= I18n.t("attributes.photo") %>', size: '150px', sortable: true },
-      { field: 'thumb_url', caption: '<%= I18n.t("attributes.thumbnail") %> <%= I18n.t("attributes.path") %>', size: '150px', hidden: true },
-      { field: 'photo_url', caption: '<%= I18n.t("attributes.photo") %> <%= I18n.t("attributes.path") %>', size: '150px', hidden: true }
+      { field: 'document_file_name', caption: I18n.t("attributes.document"),  size: '150px', sortable: true },
+      { field: 'photo_file_name', caption: I18n.t("attributes.photo"), size: '150px', sortable: true },
+      { field: 'thumb_url', caption: I18n.t("attributes.thumbnail") + ' ' + I18n.t("attributes.path"), size: '150px', hidden: true },
+      { field: 'photo_url', caption: I18n.t("attributes.photo") + ' ' + I18n.t("attributes.path"), size: '150px', hidden: true }
     ],
 
     searches: [
-      { field: 'name_de', caption: '<%= I18n.t("attributes.name_de") %>', type: 'text' },
-      { field: 'name_en', caption: '<%= I18n.t("attributes.name_en") %>', type: 'text' },
-      { field: 'content_de', caption: '<%= I18n.t("attributes.content_de") %>', type: 'text' },
-      { field: 'content_en', caption: '<%= I18n.t("attributes.content_en") %>', type: 'text' },
-      { field: 'photo_file_name', caption: '<%= I18n.t("attributes.photo") %>', type: 'text' }
+      { field: 'name_de', caption: I18n.t("attributes.name_de"), type: 'text' },
+      { field: 'name_en', caption: I18n.t("attributes.name_en"), type: 'text' },
+      { field: 'content_de', caption: I18n.t("attributes.content_de"), type: 'text' },
+      { field: 'content_en', caption: I18n.t("attributes.content_en"), type: 'text' },
+      { field: 'photo_file_name', caption: I18n.t("attributes.photo"), type: 'text' }
     ],
     sortData: [{ field: 'name_de', direction: 'ASC' }],
 
@@ -100,7 +100,7 @@ function contentelementsgrid() {
     onLoad: function(event) {
       event.onComplete = function () {
         this.select(selected_content_element_id)
-        // onLoad is bit too early, according to the author, currently that's the way to go
+        // onLoad is bit too early, according to the author, currently that's the way to go:
         setTimeout(function() {
           var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
           w2ui.contentelementsgrid.scrollIntoView(index)

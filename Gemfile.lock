@@ -39,6 +39,13 @@ GIT
       paperclip
 
 GIT
+  remote: https://github.com/fnando/i18n-js
+  revision: de0f58d58f676d00a8c6e77b40237bcd63f01c47
+  specs:
+    i18n-js (3.0.0.rc8)
+      i18n (~> 0.6)
+
+GIT
   remote: https://github.com/galetahub/ckeditor.git
   revision: 2664d61ae0ac9a35e7ae103ac50ab34933231b8b
   specs:
@@ -540,6 +547,7 @@ DEPENDENCIES
   hobo_w2ui!
   hobo_will_paginate
   holidays
+  i18n-js!
   jbuilder (~> 1.2)
   jquery-rails (~> 2.3.0)
   jquery-ui-rails

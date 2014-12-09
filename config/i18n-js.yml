@@ -1,0 +1,19 @@
+# If you're going to use the Rails 3.1 asset pipeline, change
+# the following configuration to something like this:
+#
+# translations:
+#   - file: "app/assets/javascripts/i18n/translations.js"
+#
+# If you're running an old version, you can use something
+# like this:
+#
+# translations:
+#   - file: "app/assets/javascripts/i18n/translations.js"
+#     only: "*"
+#
+translations:
+  - file: 'app/assets/javascripts/i18n/cm.js'
+    only: [ '*.js.cm', '*.attributes']
+
+  - file: 'app/assets/javascripts/i18n/pm.js'
+    only: [ '*.js.pm', '*.attributes']

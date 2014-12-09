@@ -4,15 +4,15 @@ function webpageForm() {
     url: 'contentmanager/front/manage_webpage/0',
     fields : [
       { field: 'title_de', type: 'text', required: true,
-        html: { caption: '<%= I18n.t("attributes.title") %> DE' } },
+        html: { caption: I18n.t("attributes.title_de") } },
       { field: 'title_en', type: 'text',
-        html: { caption: '<%= I18n.t("attributes.title") %> EN' } },
+        html: { caption: I18n.t("attributes.title_en") } },
       { field: 'url', type: 'text',
         html: { caption: 'URL' } },
       { field: 'slug', type: 'text',
         html: { caption: 'Slug' } },
       { field: 'position', type: 'int', required: true,
-        html: { caption: '<%= I18n.t("attributes.position") %>' } },
+        html: { caption: I18n.t("attributes.position") } },
       { field: 'page_template_id', type: 'list', required: true,
         options: {
           items: <%= PageTemplate.all.map {
@@ -22,7 +22,7 @@ function webpageForm() {
             }
           }.to_json %>
         },
-        html: { caption: '<%= I18n.t("attributes.page_template") %>' } }
+        html: { caption: I18n.t("attributes.page_template") } }
     ],
 
     actions: {
@@ -46,7 +46,7 @@ function webpageForm() {
         class: 'w2ui-btn-red',
         onClick: function () {
           var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          w2confirm(I18n.t("js.cm.are_you_sure"), function (button) {
             if (button =='Yes') {
               $.ajax({
                 url:"/admin/webpages/" + active_node.key,

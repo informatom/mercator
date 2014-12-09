@@ -18,7 +18,7 @@ function webpageTreeToolbar() {
       break
       case 'delete':
         var active_node = $("#webpageTree").fancytree("getTree").getActiveNode()
-        w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+        w2confirm(I18n.t("js.cm.are_you_sure"), function (button) {
           if (button =='Yes') {
             $.ajax({
               url: "/admin/webpages/" + active_node.key,

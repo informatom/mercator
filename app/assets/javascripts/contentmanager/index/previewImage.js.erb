@@ -6,7 +6,7 @@ function previewImage(recid) {
     $(".preview").click( function() {
       var fullpath = w2ui['contentelementsgrid'].get(recid).photo_url
       w2popup.open({
-        title: '<%= I18n.t("mercator.image_preview") %>',
+        title: I18n.t("js.cm.image_preview"),
         width: '60%',
         height: '75%',
         body: "<div class='preview-container'><img src=" + fullpath + " class='preview'></div>"

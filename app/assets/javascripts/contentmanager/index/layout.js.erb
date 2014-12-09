@@ -1,8 +1,5 @@
-// Approaches for Localization: https://github.com/simplificator/asset_pipeline_i18n
-// https://github.com/fnando/i18n-js https://github.com/nicolai86/rails-asset-localization
-
 $(function () {
-  if (locale == "de") {
+  if (I18n.locale == "de") {
     w2utils.locale('/assets/contentmanager/de-de.json')
   }
   w2utils.settings.groupSymbol = " "
@@ -10,18 +7,19 @@ $(function () {
   $('#contentmanager').w2layout({
     name: 'contentmanager',
     panels: [
-      { type: 'top', title: '<%= I18n.t("mercator.content_manager.title") %>',
-        size: 58, resizable: true, content: "<div id='menu'></div>" },
-      { type: 'left', title: '<%= I18n.t("mercator.content_manager.website_structure") %>',
-        size: '13%', resizable: true,
-        content: "<div id='webpageTreeToolbar' style='height:20'></div><div id='webpageTree' style='height:calc(100% - 30px);'></div>" },
-      { type: 'main', title: '<%= I18n.t("activerecord.models.webpage.one") %>',
+      { type: 'top', size: 59, resizable: true, title: I18n.t("js.cm.title"),
+        content: "<div id='menu'></div>" },
+      { type: 'left', size: '13%', resizable: true, title: I18n.t("js.cm.website_structure"),
+        content: "<div id='webpageTreeToolbar' style='height:20'></div>"+
+                 "<div id='webpageTree' style='height:calc(100% - 30px);'></div>" },
+      { type: 'main', title: I18n.t("js.cm.WebPage.one"),
         resizable: true, content: "<div id='webpageForm' style='height:100%;'></div>" },
-      { type: 'preview', title: '<%= I18n.t("activerecord.models.page_content_element_assignment.other") %> ',
-        size: '58%', resizable: true, content: "<div id='assignments' style='height:100%'></div>" },
+      { type: 'preview', size: '58%', resizable: true,
+        title: I18n.t("js.cm.PageContentElementAssignment.other"),
+        content: "<div id='assignments' style='height:100%'></div>" },
       { type: 'right', size: '67%', resizable: true},
-      { type: 'bottom', title: '<%= I18n.t("mercator.content_manager.image_gallery") %>',
-        size: 150, resizable: true, content: "<div id='gallery'></div>" }
+      { type: 'bottom', title: I18n.t("js.cm.image_gallery"), size: 150, resizable: true,
+        content: "<div id='gallery'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
@@ -37,11 +35,14 @@ $(function () {
   $().w2layout({
     name: 'elementexplorer',
     panels: [
-      { type: 'main', resizable: true, title: '<%= I18n.t("mercator.content_manager.folder_structure") %>',
-        content: "<div id='foldertreetoolbar' style='height:20'></div><div id='foldertree' style='height:calc(100% - 30px);'></div>"},
-      { type: 'right', resizable: true, title: '<%= I18n.t("activerecord.models.content_element.other") %>',
+      { type: 'main', resizable: true,
+        title: I18n.t("js.cm.folder_structure"),
+        content: "<div id='foldertreetoolbar' style='height:20'></div>"+
+                 "<div id='foldertree' style='height:calc(100% - 30px);'></div>"},
+      { type: 'right', resizable: true,
+        title: I18n.t("js.cm.ContentElement.other"),
         size: '85%', content: "<div id='contentelementsgrid' style='height:100%'></div>"},
-      { type: 'preview', resizable: true, title: '<%= I18n.t("mercator.image_preview") %>',
+      { type: 'preview', resizable: true, title: I18n.t("js.cm.image_preview"),
         size: '30%', content: "<div id='preview'></div>"}
     ],
     onRender: function(event) {

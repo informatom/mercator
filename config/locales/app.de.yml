@@ -170,6 +170,8 @@ de:
     text: Text
     thumbnail: Thumbnail
     title: Titel
+    title_de: Titel DE
+    title_en: Title EN
     topseller: Topseller
     unit: Einheit
     upload: Hochladen
@@ -554,23 +556,6 @@ de:
     coming_from: aus
     consumeables: Verbrauchsmaterialien
     consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
-    content_manager:
-      cannot_delete_folder:
-        content_elements: 'Dieses Verzeichnis kann nicht gelöscht werden, denn es enthält Bausteine.'
-        subfolders: 'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!'
-        record_not_found: 'Das Verzeichnis existiert nicht mehr.'
-      cannot_delete_webpage:
-        subpages: 'Diese Webseite kann nicht gelöscht werden, denn es gibt Unterseiten!'
-        record_not_found: 'Die Webseite existiert nicht mehr.'
-      create_folder: Verzeichnis erstellen
-      edit_folder: Verzeichnis bearbeiten
-      folder_structure: Verzeichnisstruktur
-      image_gallery: Bildergallerie
-      no_content_element_selected: Kein Baustein ausgewählt.
-      no_folder_selected: Kein Verzeichnis ausgewählt.
-      no_weppage_selected: Keine Webseite ausgewählt.
-      title: Mercator - Content Manager
-      website_structure: Webseitenstruktur
     contracting_subsite_name: Vertragswesen
     contracting_subheading: Die Seite zur Verwaltung der Verträge im Mercator Guided Selling System
     conversation_notifications: Auf dieser Seite erfolgen die Audio-Benachtichtigungen über neue Konversationen.
@@ -601,7 +586,6 @@ de:
       number: Rechnungsnummer
       one: Rechnung
       other: Rechnungen
-    image_preview: Bildvorschau
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -676,7 +660,6 @@ de:
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
     no_property_group_selected: Keine Eigenschaftsgruppe ausgewählt! Bitte wählen sie eine aus!
     no_property_selected: Keine Eigenschaft ausgewählt! Bitte wählen sie eine aus!
-    not_assigned: Nicht zugeordnet
     offer_email_login: "Wenn Sie bereits registriert sind und sich per E-Mail anmelden möchten, senden wir Ihnen gerne einen Anmelde-Link zu."
     on_request: Auf Anfrage
     open(pl): offene
@@ -697,23 +680,6 @@ de:
         prices: "Der Bestand wird noch in Preisen referenziert und kann daher nicht gelöscht werden."
     printer: Drucker
     printer_series: Druckerserien
-    product_manager:
-      create_rootcategory: "Neue Wurzelkategorie (Toplevel) erstellen"
-      create_subcategory: "Neue Unterkategorie erstellen"
-      cannot_delete_property:
-        record_not_found: Die Eigenschaft kann nicht gefunden werden.
-        values: Diese Eigenschaft wird noch in Werten verwendet und kann daher nicht gelöscht werden.
-      cannot_delete_property_group:
-        record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
-        values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
-      cannot_delete_category:
-        no_category_selected: Keine Kategorie zur Löschung ausgewählt!
-        children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
-        products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
-      edit_category: Alle Felder editieren
-      no_category_selected: "Keine Kategorie ausgewählt!"
-      product_moved_to: Artikel verschoben in Kategorie
-      title: Produktmanager
     product_comparison: Produktvergleich
     product_suggestion: Produktvorschlag
     products_available: Produkte zur Auswahl
@@ -796,3 +762,64 @@ de:
     you_could: Sie können
     your_consultant: Ihr Session-Berater
     your_message: Geben Sie hier Ihre Nachricht ein ...
+
+  js:
+    cm:
+      admin_subsite_name: Administration
+      are_you_sure: Sind Sie sicher?
+      cannot_delete_folder:
+        content_elements: 'Dieses Verzeichnis kann nicht gelöscht werden, denn es enthält Bausteine.'
+        subfolders: 'Verzeichnis kann nicht gelöscht werden: Es gibt Unterverzeichnisse!'
+        record_not_found: 'Das Verzeichnis existiert nicht mehr.'
+      cannot_delete_webpage:
+        subpages: 'Diese Webseite kann nicht gelöscht werden, denn es gibt Unterseiten!'
+        record_not_found: 'Die Webseite existiert nicht mehr.'
+      ContentElement:
+        create: Baustein erstellen
+        delete: Baustein löschen
+        edit: Baustein bearbeiten
+        other: Bausteine
+      contracting_subsite_name: Vertragswesen
+      create_folder: Verzeichnis erstellen
+      edit_folder: Verzeichnis bearbeiten
+      frontend_subsite_name: Frontend
+      Folder:
+        other: Verzeichnisse
+      folder_structure: Verzeichnisstruktur
+      image_gallery: Bildergallerie
+      image_preview: Bildvorschau
+      not_assigned: nicht_zugeordnet
+      no_content_element_selected: Kein Baustein ausgewählt.
+      no_folder_selected: Kein Verzeichnis ausgewählt.
+      no_weppage_selected: Keine Webseite ausgewählt.
+      PageContentElementAssignment:
+        delete: Bausteinverwendung löschen
+        other: Bausteinverwendungen
+      PageTemplate:
+        other: Websitevorlagen
+      sales_subsite_name: Vertriebswesen
+      title: Mercator - Content Manager
+      video_chat: Video Chat
+      WebPage:
+        one: Webseite
+        other: Webseiten
+      website_structure: Webseitenstruktur
+
+    pm:
+      create_rootcategory: "Neue Wurzelkategorie (Toplevel) erstellen"
+      create_subcategory: "Neue Unterkategorie erstellen"
+      cannot_delete_property:
+        record_not_found: Die Eigenschaft kann nicht gefunden werden.
+        values: Diese Eigenschaft wird noch in Werten verwendet und kann daher nicht gelöscht werden.
+      cannot_delete_property_group:
+        record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
+        values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
+      cannot_delete_category:
+        no_category_selected: Keine Kategorie zur Löschung ausgewählt!
+        children: Die Kategorie kann nicht gelöscht werden. Es gibt noch Unterkategorien.
+        products: Die Kategorie kann nicht gelöscht werden. Sie enthält noch Produkte.
+      edit_category: Alle Felder editieren
+      no_category_selected: "Keine Kategorie ausgewählt!"
+      product_moved_to: Artikel verschoben in Kategorie
+      title: Produktmanager
+

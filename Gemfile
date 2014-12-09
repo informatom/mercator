@@ -69,7 +69,7 @@ gem "delayed_job_web"                                 # Web interface for delaye
 gem "holidays"                                        # Determine if there is a public holiday
 gem "naught"                                          # Null Object library
 
-# gem "i18n-js"                                         # Javascript Internationalization
+gem "i18n-js", :git => "https://github.com/fnando/i18n-js"  # Javascript Internationalization
 
 group :production, :staging do
   gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem" # Engine for integrating Mesonic ERP System

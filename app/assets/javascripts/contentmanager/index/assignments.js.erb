@@ -8,13 +8,13 @@ function assignmentsgrid() {
     toolbar: {
       items: [
         { type: 'button', id: 'deleteAssignment', img: 'fa fa-trash', disabled: true,
-          caption: "<%= I18n.t('hobo.actions.delete', model: PageContentElementAssignment.model_name.human) %>" }
+          caption: I18n.t('js.cm.PageContentElementAssignment.delete') }
       ],
       onClick: function (target, data) {
         var selection = w2ui.assignments.getSelection()
         switch (target) {
         case 'deleteAssignment':
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          w2confirm( I18n.t("js.cm.are_you_sure"), function (button) {
             if (button =='Yes') {
               $.ajax({
                 url:"/contentmanager/front/assignment/" + selection[0],
@@ -32,11 +32,11 @@ function assignmentsgrid() {
       }
     },
     columns: [
-      { field: 'used_as', caption: '<%= I18n.t("attributes.used_as") %>', size: '50%', sortable: true },
-      { field: 'content_element_name', caption: '<%= I18n.t("attributes.content_element") %>', size: '50%',
+      { field: 'used_as', caption: I18n.t("attributes.used_as"), size: '50%', sortable: true },
+      { field: 'content_element_name', caption: I18n.t("attributes.content_element"), size: '50%',
         render: function (record) {
           return '<div id="assignment-' + record.recid + '" class="droppable">' +
-                  (record.content_element_name || '<span style="color: #ff0000"> <%= I18n.t("mercator.not_assigned") %></span>') + '</div>'
+                  (record.content_element_name || '<span style="color: #ff0000">' + I18n.t("js.cm.not_assigned") + '</span>') + '</div>'
       }}
     ],
     sortData: [ { field: 'used_as', direction: 'ASC' } ],

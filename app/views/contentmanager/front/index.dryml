@@ -3,10 +3,15 @@
     <javascript name="contentmanager/index/index.js" />
     <script>
       var csrf_token = "<%= form_authenticity_token %>"
-      var locale = "<%= I18n.locale.to_s %>"
+      I18n = {}
+      I18n.defaultLocale = "de"
+      I18n.locale = "<%= I18n.locale %>"
+      I18n.currentLocale()
       var selected_folder_id = "<%= session[:selected_folder_id] %>"
       var selected_content_element_id = "<%= session[:selected_content_element_id] %>"
       var selected_webpage_id = "<%= session[:selected_webpage_id] %>"
     </script>
+    <%= javascript_include_tag "i18n" %>
+    <%= javascript_include_tag "i18n/cm" %>
   </config>
 </page>

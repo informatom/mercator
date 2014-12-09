@@ -4,20 +4,20 @@ function contentElementForm() {
       url: 'contentmanager/front/content_element',
       fields : [
         { field: 'name_de', type: 'text', required: true,
-          html: { caption: '<%= I18n.t("attributes.name_de") %>'} },
+          html: { caption: I18n.t("attributes.name_de") } },
         { field: 'name_en', type: 'text',
-          html: { caption: '<%= I18n.t("attributes.name_en") %>'} },
+          html: { caption: I18n.t("attributes.name_en") } },
         { field: 'markup', type: 'text',
-          html: { caption: '<%= I18n.t("attributes.markup") %>'} },
+          html: { caption: I18n.t("attributes.markup") } },
         { field: 'content_de', type: 'textarea',
-          html: { caption: '<%= I18n.t("attributes.content_de") %>'} },
+          html: { caption: I18n.t("attributes.content_de") } },
         { field: 'content_en', type: 'textarea',
-          html: { caption: '<%= I18n.t("attributes.content_en") %>'} },
+          html: { caption: I18n.t("attributes.content_en") } },
         { field: 'document', type: 'file',
-          html: { caption: '<%= I18n.t("attributes.document") %>'},
+          html: { caption: I18n.t("attributes.document") },
           options: { max: 1 } },
         { field: 'photo', type: 'file', width: 250,
-          html: { caption: '<%= I18n.t("attributes.photo") %>'},
+          html: { caption: I18n.t("attributes.photo") },
           options: { max: 1 } },
       ],
       actions: {
@@ -28,7 +28,7 @@ function contentElementForm() {
       postData: { authenticity_token: csrf_token },
       onSave: function(event) {
         w2popup.close()
-        // grid reload
+        w2ui.contentelementsgrid.reload()
       }
   })
 }

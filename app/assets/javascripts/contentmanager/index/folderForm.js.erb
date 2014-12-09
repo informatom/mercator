@@ -3,7 +3,7 @@ function folderForm() {
     name: 'folderForm',
     url: 'contentmanager/front/folder',
     fields : [
-      { field: 'name', type: 'text', required: true, html: { caption: '<%= I18n.t("attributes.name") %>' } }
+      { field: 'name', type: 'text', required: true, html: { caption: I18n.t("attributes.name") } }
     ],
     actions: {
       'Cancel': function () { w2popup.close() },

@@ -163,6 +163,8 @@ en:
     text: Text
     thumbnail: Vorschau
     title: Title
+    title_de: Title GER
+    title_en: Title EN
     topseller: Topseller
     unit: Unit
     upload: Upload
@@ -547,23 +549,6 @@ en:
     coming_from: from
     consumeables: Consumeables
     consumeable_search_help: You can search for consumeables for your printer here. Select a printer series and / or enter some characters of the type of your HP printer.
-    content_manager:
-      cannot_delete_folder:
-        content_elements: This folder cannot be deleted. It contains content elements.
-        subfolders: This folder cannot be deleted. It contains content subfolders.
-        record_not_found: The folder cannot be found any more.
-      cannot_delete_webpage:
-        subpages: This webpage cannot be deleted. It contains subpages.
-        record_not_found: The webpage cannot be found any more.
-      create_folder: Create Folder
-      edit_folder: Edit Folder
-      folder_structure: Folder Structure
-      image_gallery: Image Gallery
-      no_content_element_selected: No content element selected.
-      no_folder_selected: No folder selected.
-      no_webpage_selected: No webpage selected.
-      title: Mercator - Content Manager
-      website_structure: Website Sructure
     contracting_subsite_name: Contracting
     contracting_subheading: Contracting Management for the Mercator Guided Selling System
     conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
@@ -594,7 +579,6 @@ en:
       number: Invoice Number
       one: Invoice
       other: Invoices
-    image_preview: Image Preview
     images:
       original_version: Original Version
       thumbnail_version: Thumbnail Version
@@ -669,7 +653,6 @@ en:
     no_product_with_this_name: No product found with this name.
     no_property_group_selected: No Property Group selected! Please select one!
     no_property_selected: No Property selected! Please select one!
-    not_assigned: Not assigned
     offer_email_login: "If you are registered already and want to login using your E-Mail, we can send you a login link."
     on_request: On request
     open(pl): open
@@ -690,23 +673,6 @@ en:
         prices: The inventory is still referenced in prices and cannot be deleted therefore.
     printer: Printer
     printer_series: Printer Series
-    product_manager:
-      cannot_delete_property:
-        record_not_found: The property cannot be found.
-        values: "This property cannot be deleted, it is stil used in values!"
-      cannot_delete_property_group:
-        record_not_found: The property group cannot be found.
-        values: "This property group cannot be deleted, it is stil used in values!"
-      cannot_delete_category:
-        no_category_selected: No category selected!
-        children: The category cannot be deleted. There are still subcategories.
-        products: The category cannot be deleted. It contains products.
-      create_rootcategory: Create New Root (Top Level) Category
-      create_subcategory: Create New Sub Category
-      edit_category: Edit All Fields
-      no_category_selected: "No category selected!"
-      product_moved_to: Product moved to Category
-      title: Produktmanager
     product_comparison: Product Comparison
     product_suggestion: Product Suggestion
     products_available: products available
@@ -789,3 +755,63 @@ en:
     you_could: You could
     your_consultant: Your session consultant
     your_message: Enter your message here ...
+
+  js:
+    cm:
+      admin_subsite_name: Administration
+      are_you_sure: Are you sure?
+      cannot_delete_folder:
+        content_elements: This folder cannot be deleted. It contains content elements.
+        subfolders: This folder cannot be deleted. It contains content subfolders.
+        record_not_found: The folder cannot be found any more.
+      cannot_delete_webpage:
+        subpages: This webpage cannot be deleted. It contains subpages.
+        record_not_found: The webpage cannot be found any more.
+      ContentElement:
+        create: Create Content Element
+        delete: Delete Content Element
+        edit: Edit Content Element
+        other: Content Elements
+      contracting_subsite_name: Contracting
+      create_folder: Create Folder
+      edit_folder: Edit Folder
+      Folder:
+        other: Folders
+      folder_structure: Folder Structure
+      frontend_subsite_name: Front End
+      image_gallery: Image Gallery
+      image_preview: Image Preview
+      not_assigned: not assigned
+      no_content_element_selected: No content element selected.
+      no_folder_selected: No folder selected.
+      no_webpage_selected: No webpage selected.
+      PageContentElementAssignment:
+        delete: delete Page ↔ Content Element
+        other: Page ↔ Content Element
+      PageTemplate:
+        other: Page Templates
+      sales_subsite_name: Sales
+      title: Mercator - Content Manager
+      video_chat: Video Chat
+      WebPage:
+        one: Web Page
+        other: Web Pages
+      website_structure: Website Sructure
+
+    pm:
+      cannot_delete_property:
+        record_not_found: The property cannot be found.
+        values: "This property cannot be deleted, it is stil used in values!"
+      cannot_delete_property_group:
+        record_not_found: The property group cannot be found.
+        values: "This property group cannot be deleted, it is stil used in values!"
+      cannot_delete_category:
+        no_category_selected: No category selected!
+        children: The category cannot be deleted. There are still subcategories.
+        products: The category cannot be deleted. It contains products.
+      create_rootcategory: Create New Root (Top Level) Category
+      create_subcategory: Create New Sub Category
+      edit_category: Edit All Fields
+      no_category_selected: "No category selected!"
+      product_moved_to: Product moved to Category
+      title: Produktmanager
