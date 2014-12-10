@@ -62,7 +62,7 @@ function priceForm() {
         onClick: function () {
           var selected_inventories = w2ui.inventoriesGrid.getSelection()
           if (selected_inventories.length == 0) {
-            w2alert(I18n.t("js.pm.no_inventory_selected"))
+            w2alert(I18n.t("js.pm.Inventory.none_selected"))
             return
           }
           this.clear()

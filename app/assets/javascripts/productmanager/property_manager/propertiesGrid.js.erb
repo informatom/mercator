@@ -25,7 +25,7 @@ function propertiesGrid() {
                               "/edit?product_id=" + request_id + "&value_id=" + selected_value_id
         break
         case 'deleteProperty':
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          w2confirm(I18n.t("js.pm.are_you_sure"), function (button) {
             if (button =='Yes') {
               $.ajax({
                 url:"/admin/properties/" + selection[0],
@@ -44,31 +44,13 @@ function propertiesGrid() {
     },
 
     columns : [
-      {
-        field: 'recid',
-        caption: '<%= I18n.t("attributes.id") %>',
-        size: '50px',
-        sortable: false,
-        hidden: true,
-        attr: "align=center"
-      }, {
-        field: 'position',
-        sortable: true,
-        caption: '<%= I18n.t("attributes.position") %>',
-        size: '20',
-        editable: { type: 'int' }
-      }, {
-        field: 'name',
-        sortable: true,
-        caption: '<%= I18n.t("attributes.name") %>',
-        size: '100%'
-      }, {
-        field: 'datatype',
-        sortable: false,
-        caption: 'Type',
-        size: '50',
-        hidden: true
-      }
+      { field: 'recid', size: '50px', sortable: false, hidden: true, attr: "align=center",
+        caption: I18n.t("attributes.id") },
+      { field: 'position', sortable: true, size: '20', editable: { type: 'int' },
+        caption: I18n.t("attributes.position") },
+      { field: 'name', sortable: true, size: '100%',
+        caption: I18n.t("attributes.name") },
+      { field: 'datatype', sortable: false, caption: 'Type', size: '50', hidden: true }
     ],
 
     onChange: function(event) {

@@ -23,7 +23,7 @@ function featuresGrid() {
         switch (target) {
         case 'createFeature':
           $().w2popup('open', {
-            title   : '<%= I18n.t('activerecord.models.feature.one') %>',
+            title   : I18n.t('de.pm.Feature'),
             body    : '<div id="featureForm" style="width: 100%; height: 100%;"></div>',
             style   : 'padding: 15px 0px 0px 0px',
             width   : 500,
@@ -41,7 +41,7 @@ function featuresGrid() {
           })
         break
         case 'deleteFeature':
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          w2confirm(I18n.t("js.pm.are_you_sure"), function (button) {
             if (button =='Yes') {
               $.ajax({
                 url:"/productmanager/property_manager/feature/" + selection[0],
@@ -61,14 +61,14 @@ function featuresGrid() {
     },
 
     columns: [
-      { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, hidden: true , attr: "align=center" },
       { field: 'position', size: '50px', sortable: true, editable: { type: 'int' },
-        caption: '<%= I18n.t("attributes.position") %>' },
-      { field: 'text_de', caption: '<%= I18n.t("attributes.text") %> DE', size: '150px', sortable: true, editable: { type: 'text' } },
-      { field: 'text_en', caption: '<%= I18n.t("attributes.text") %> EN', size: '150px', sortable: true, editable: { type: 'text' } },
-      { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
+        caption: I18n.t("attributes.position") },
+      { field: 'text_de', caption: I18n.t("attributes.text_de"), size: '150px', sortable: true, editable: { type: 'text' } },
+      { field: 'text_en', caption: I18n.t("attributes.text_en"), size: '150px', sortable: true, editable: { type: 'text' } },
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
-      { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true, hidden: true,
+      { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' }
     ],
 

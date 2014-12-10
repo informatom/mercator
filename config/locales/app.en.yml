@@ -170,12 +170,16 @@ en:
     symbolic_image: Symbolic Photo
     template: Website Template
     text: Text
+    text_de: Text GER
+    text_en: Text EN
     thumbnail: Vorschau
     title: Title
     title_de: Title GER
     title_en: Title EN
     topseller: Topseller
     unit: Unit
+    unit_de: Unit GER
+    unit_en: Unit EN
     upload: Upload
     usage: Usage
     usage_id: Usage ID
@@ -417,7 +421,7 @@ en:
       property/datatypes:
         textual: textual
         numeric: numeric
-        flag: yes/no
+        flag: true/false
       user:
         lifecycle:
           transitions:
@@ -661,8 +665,6 @@ en:
     no_open_payments: No open payments found.
     no_products_available: No products Available
     no_product_with_this_name: No product found with this name.
-    no_property_group_selected: No Property Group selected! Please select one!
-    no_property_selected: No Property selected! Please select one!
     offer_email_login: "If you are registered already and want to login using your E-Mail, we can send you a login link."
     on_request: On request
     open(pl): open
@@ -688,8 +690,6 @@ en:
       filterable_properties: Filterable Properties
       no_properties_found: No properties found!
       unfilterable_properties: Non-Filterable Properties
-    propertymanager:
-      title: Property Manager
     protocol:
       one: Protocol
       data_to_be_stored: I want the follewing data to be saved
@@ -821,13 +821,15 @@ en:
         one: Category
         save: Save
       contracting_subsite_name: Contracting
+      Feature:
+        other: Features
       Filter:
         delete: Remove Filter
       frontend_subsite_name: Front End
       Inventory:
         one: Inventory
         other: Inventories
-      no_inventory_selected: You haven't seleted an inventory item.
+        none_selected: You haven't seleted an inventory item.
       Price:
         one: Price
         other: Prices
@@ -843,10 +845,28 @@ en:
         cannot_delete:
           record_not_found: The property cannot be found.
           values: "This property cannot be deleted, it is stil used in values!"
+        datatypes:
+          textual: textual
+          numeric: numeric
+          flag: true/false
+        none_selected: No Property selected! Please select one!
+        one: Property
         other: Properties
       PropertyGroup:
         cannot_delete:
           record_not_found: The property group cannot be found.
           values: "This property group cannot be deleted, it is stil used in values!"
+        none_selected: No Property Group selected! Please select one!
+        one: Property Group
+        other: Property Groups
+      property_manager:
+        title: Property Manager
       sales_subsite_name: Sales
       title: Produktmanager
+      true_false: true/false
+      Value:
+        create: Create Value
+        delete: Delete Value
+        one: Value
+        other: Values
+        save: Save Value

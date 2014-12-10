@@ -3,16 +3,8 @@ function productGrid() {
     name: 'productGrid',
     method: 'GET',
     columns : [
-      {
-        field: 'attribute',
-        caption: '<%= I18n.t("attributes.attrib") %>',
-        size: '30%'
-      },
-      {
-        field: 'value',
-        caption: '<%= I18n.t("attributes.value") %>',
-        size: '70%'
-      }
+      { field: 'attribute', caption: I18n.t("attributes.attrib"), size: '30%' },
+      { field: 'value', caption: I18n.t("attributes.value"), size: '70%' }
     ]
   })
 }

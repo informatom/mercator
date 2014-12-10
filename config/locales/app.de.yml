@@ -177,12 +177,16 @@ de:
     symbolic_image: Symbolfoto
     template: Vorlage
     text: Text
+    text_de: Text DE
+    text_en: Text EN
     thumbnail: Thumbnail
     title: Titel
     title_de: Titel DE
     title_en: Title EN
     topseller: Topseller
     unit: Einheit
+    unit_de: Einheit DE
+    unit_en: Einheit EN
     upload: Hochladen
     usage: Verwendung
     usage_id: Element
@@ -668,8 +672,6 @@ de:
     no_open_payments: keine offenen Zahlungen
     no_products_available: keine Produkte lieferbar
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
-    no_property_group_selected: Keine Eigenschaftsgruppe ausgewählt! Bitte wählen sie eine aus!
-    no_property_selected: Keine Eigenschaft ausgewählt! Bitte wählen sie eine aus!
     offer_email_login: "Wenn Sie bereits registriert sind und sich per E-Mail anmelden möchten, senden wir Ihnen gerne einen Anmelde-Link zu."
     on_request: Auf Anfrage
     open(pl): offene
@@ -695,8 +697,6 @@ de:
       filterable_properties: Filterbare Eigenschaften
       no_properties_found: keine Eigenschaften gefunden
       unfilterable_properties: Nicht filterbare Eigenschaften
-    property_manager:
-      title: Eigenschaftsmanager
     protocol:
       one: Protokoll
       data_to_be_stored: Es sollon folgende Daten protokolliert werden
@@ -828,13 +828,15 @@ de:
         one: Kategorie
         save: Speichern
       contracting_subsite_name: Vertragswesen
+      Feature:
+        other: Features
       Filter:
         delete: Filter entfernen
       frontend_subsite_name: Frontend
       Inventory:
         one: Bastand
         other: Bestände
-      no_inventory_selected: Sie haben keinen Bestand ausgewählt!
+        none_selected: Sie haben keinen Bestand ausgewählt!
       Price:
         one: Preis
         other: Preise
@@ -850,10 +852,28 @@ de:
         cannot_delete:
           record_not_found: Die Eigenschaft kann nicht gefunden werden.
           values: Diese Eigenschaft wird noch in Werten verwendet und kann daher nicht gelöscht werden.
+        datatypes:
+          textual: textartig
+          numeric: numerisch
+          flag: wahr/falsch
+        none_selected: Keine Eigenschaft ausgewählt! Bitte wählen sie eine aus!
+        one: Eigenschaft
         other: Eigenschaften
       PropertyGroup:
         cannot_delete:
           record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
           values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
+        none_selected: Keine Eigenschaftsgruppe ausgewählt! Bitte wählen sie eine aus!
+        one: Eigenschaftengruppe
+        other: Eigenschaftengruppen
+      property_manager:
+        title: Eigenschaftsmanager
       sales_subsite_name: Vertriebswesen
       title: Produktmanager
+      true_false: wahr/falsch
+      Value:
+        create: Wert erzeugen
+        delete: Wert löschen
+        one: Wert
+        other: Werte
+        save: Wert speichern

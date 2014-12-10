@@ -5,13 +5,13 @@ function featureForm() {
     style: 'border: 0px; background-color: transparent;',
     fields: [
       { field: 'text_de', type: 'text', required: true,
-        html: { caption: '<%= I18n.t("attributes.text") %> DE' } },
+        html: { caption: I18n.t("attributes.text_de") } },
       { field: 'text_en', type: 'text',
-        html: { caption: '<%= I18n.t("attributes.text") %> EN' } },
+        html: { caption: I18n.t("attributes.text_en") } },
       { field: 'position', type: 'int',
-        html: { caption: '<%= I18n.t("attributes.position") %>' } },
+        html: { caption: I18n.t("attributes.position") } },
       { field: 'product_id', type: 'int', disabled: true,
-        html: { caption: '<%= I18n.t("attributes.product") %> DE' } },
+        html: { caption: I18n.t("js.pm.Product.one") } },
     ],
     actions: {
       "Save":

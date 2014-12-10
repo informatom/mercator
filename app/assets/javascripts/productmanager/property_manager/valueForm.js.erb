@@ -11,71 +11,65 @@ function valueForm() {
       '      <div><input name="state" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.title") %> DE</label>'+
+      '      <label>' + I18n.t("attributes.title_de") + '</label>'+
       '      <div><input name="title_de" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.title") %> EN</label>'+
+      '      <label>' + I18n.t("attributes.title_en") + '</label>'+
       '      <div><input name="title_en" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.amount") %></label>'+
+      '      <label>' + I18n.t("attributes.amount") + '</label>'+
       '      <div><input name="amount" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.unit") %> DE</label>'+
+      '      <label>' + I18n.t("attributes.unit_de") + '</label>'+
       '      <div><input name="unit_de" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.unit") %> EN</label>'+
+      '      <label>' + I18n.t("attributes.unit_en") + '</label>'+
       '      <div><input name="unit_en" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("activerecord.attributes.property/datatypes.flag") %> DE</label>'+
+      '      <label>' + I18n.t("js.pm.true_false") + '</label>'+
       '      <div><input type="checkbox" name="flag" /></div>'+
       '    </div>'+
       '  </div>'+
       '  <div style="float: right; margin-right:20px;">'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.created_at") %></label>'+
+      '      <label>' + I18n.t("attributes.created_at") + '</label>'+
       '      <div><input name="created_at" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.updated_at") %></label>'+
+      '      <label>' + I18n.t("attributes.updated_at") + '</label>'+
       '      <div><input name="updated_at" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.product") %></label>'+
+      '      <label>' + I18n.t("js.pm.Product.one") + '</label>'+
       '      <div><input name="product_id" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.property_group") %></label>'+
+      '      <label>' + I18n.t("js.pm.PropertyGroup.one") + '</label>'+
       '      <div><input name="property_group_id" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label><%= I18n.t("attributes.property") %></label>'+
+      '      <label>' + I18n.t("js.pm.Property.one") + '</label>'+
       '      <div><input name="property_id" /></div>'+
       '    </div>'+
       '  </div>'+
       '</div>'+
       '<div class="w2ui-buttons">'+
-      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+
-      '     <%= I18n.t("hobo.actions.delete", model: Value.model_name.human) %>'+
-      '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
-      '     <%= I18n.t("hobo.actions.save", model: Value.model_name.human) %>'+
-      '   </button>'+
-      '   <button class="w2ui-btn w2ui-btn-orange" name="create">'+
-      '   <%= I18n.t("hobo.actions.create", model: Value.model_name.human) %>'+
-      '   </button>'+
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+ I18n.t("js.pm.Value.delete") + '</button>'+
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+ I18n.t("js.pm.Value.save") + '</button>'+
+      '   <button class="w2ui-btn w2ui-btn-orange" name="create">'+ I18n.t("js.pm.Value.create") + '</button>'+
       '</div>',
     fields : [
       { name: 'state', type: 'list', required : true,
         options: {
           items: [
-            { id: 'textual', text: '<%= I18n.t("activerecord.attributes.property/datatypes.textual") %>'},
-            { id: 'numeric', text: '<%= I18n.t("activerecord.attributes.property/datatypes.numeric") %>'},
-            { id: 'flag', text: '<%= I18n.t("activerecord.attributes.property/datatypes.flag") %>'}
+            { id: 'textual', text: I18n.t("js.pm.Property.datatypes.textual") },
+            { id: 'numeric', text: I18n.t("js.pm.Property.datatypes.numeric") },
+            { id: 'flag',    text: I18n.t("js.pm.Property.datatypes.flag") }
           ]
         }
       },
@@ -150,7 +144,7 @@ function valueForm() {
           if (propertyGroupId) {
             w2ui.valueForm.record['property_group_id'] = parseInt(propertyGroupId)
           } else {
-            w2alert('<%= I18n.t("mercator.no_property_group_selected") %>')
+            w2alert(I18n.t("js.pm.PropertyGroup.none_selected"))
             return
           }
 
@@ -161,7 +155,7 @@ function valueForm() {
             w2ui.valueForm.record['state'] = state
             updateFieldVisibility(state)
           } else {
-            w2alert('<%= I18n.t("mercator.no_property_selected") %>')
+            w2alert(I18n.t("js.pm.Property.none_selected"))
             return
           }
         }

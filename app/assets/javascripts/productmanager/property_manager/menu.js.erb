@@ -2,37 +2,17 @@ function menu() {
   $('#menu').w2toolbar({
     name: 'menu-toolbar',
     items: [
-      {
-        type: 'button',
-        id: 'home',
-        caption: "<%= I18n.t('mercator.frontend_subsite_name') %>",
-        icon: 'fa fa-external-link'
-      },
-      {
-        type: 'button',
-        id: 'admin',
-        caption: "<%= I18n.t('mercator.admin_subsite_name') %>",
-        icon: 'fa fa-external-link'
-      },
-      {
-        type: 'button',
-        id: 'contracting',
-        caption: "<%= I18n.t('mercator.contracting_subsite_name') %>",
-        icon: 'fa fa-external-link'
-      },
-      {
-        type: 'button',
-        id: 'sales',
-        caption: "<%= I18n.t('mercator.sales_subsite_name') %>",
-        icon: 'fa fa-external-link'
-      },
+      { type: 'button', id: 'home', icon: 'fa fa-external-link',
+        caption: I18n.t('js.pm.frontend_subsite_name') },
+      { type: 'button', id: 'admin', icon: 'fa fa-external-link',
+        caption: I18n.t('js.pm.admin_subsite_name') },
+      { type: 'button', id: 'contracting', icon: 'fa fa-external-link',
+        caption: I18n.t('js.pm.contracting_subsite_name') },
+      { type: 'button', id: 'sales', icon: 'fa fa-external-link',
+        caption: I18n.t('js.pm.sales_subsite_name') },
       { type: 'break' },
-      {
-        type: 'button',
-        id: 'productmanager?product_id=' + request_id,
-        caption: "<%= I18n.t('mercator.product_manager.title') %>",
-        icon: 'fa fa-external-link'
-      }
+      { type: 'button', icon: 'fa fa-external-link', id: 'productmanager?product_id=' + request_id,
+        caption: I18n.t('js.pm.title') }
     ],
     onClick: function (event) {
       document.location = "/" + event.target
