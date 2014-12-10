@@ -10,13 +10,13 @@ function recommendationsGrid() {
     toolbar: {
       items: [
         { type: 'button', id: 'deleteRecommendation', img: 'fa fa-trash', disabled: true,
-          caption: "<%= I18n.t('activerecord.models.recommendation.one') %> <%= I18n.t('hobo.actions.delete', model: '') %>" }
+          caption: I18n.t('js.pm.Recommendation.delete') }
       ],
       onClick: function (target, data) {
         var selection = w2ui.recommendationsGrid.getSelection()
         switch (target) {
         case 'deleteRecommendation':
-          w2confirm('<%= I18n.t("mercator.are_you_sure") %>', function (button) {
+          w2confirm(I18n.t("js.pm.are_you_sure"), function (button) {
             if (button =='Yes') {
               $.ajax({
                 url:"/productmanager/relation_manager/recommendation/" + selection[0],
@@ -36,15 +36,15 @@ function recommendationsGrid() {
     },
 
     columns: [
-      { field: 'recid', caption: '<%= I18n.t("attributes.id") %>', size: '50px', sortable: true, hidden: true , attr: "align=center" },
-      { field: 'supply_number', caption: '<%= I18n.t("attributes.number") %>', size: '150px', sortable: true },
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      { field: 'supply_number', caption: I18n.t("attributes.number"), size: '150px', sortable: true },
       { field: 'reason_de', size: '150px', sortable: true, editable: { type: 'text' },
-        caption: '<%= I18n.t("attributes.reason") %> DE' },
+        caption: I18n.t("attributes.reason_de") },
       { field: 'reason_en', size: '150px', sortable: true, editable: { type: 'text' },
-        caption: '<%= I18n.t("attributes.reason") %> EN' },
-      { field: 'created_at', caption: '<%= I18n.t("attributes.created_at") %>', size: '130px', sortable: true, hidden: true,
+        caption: I18n.t("attributes.reason_en") },
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true, hidden: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
-      { field: 'updated_at', caption: '<%= I18n.t("attributes.updated_at") %>', size: '130px', sortable: true,
+      { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' }
     ],
 

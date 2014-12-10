@@ -140,6 +140,8 @@ en:
     recommended_product: Recommended Product
     recommended_products: Recommended Products
     reason: Reason
+    reason_de: Reason GER
+    reason_en: Reason EN
     reciever: Reciever
     related_product: Related Product
     related_products: Related Products
@@ -701,9 +703,6 @@ en:
     recommendation_exists: This recommendation already exists.
     register_different_email: register a different e-mail address.
     registered_for: Registered for
-    relation_manager:
-      title: "Relations for"
-      categorization_exists: This categorization already exists!
     remove_filter: Remove Filter
     repeat: Repeat
     request_email:  Request E-Mail
@@ -807,6 +806,11 @@ en:
     pm:
       admin_subsite_name: Administration
       are_you_sure: "Are You Sure?"
+      Categorization:
+        delete: Delete Categorization
+        exists: This categorization already exists!
+        one: Categorization
+        other: Categorizations
       Category:
         cannot_delete:
           no_category_selected: No category selected!
@@ -819,6 +823,7 @@ en:
         edit: Edit All Fields
         none_selected: "No category selected!"
         one: Category
+        other: Categories
         save: Save
       contracting_subsite_name: Contracting
       Feature:
@@ -842,6 +847,10 @@ en:
         moved_to: Product moved to Category
         one: Product
         other: Products
+      Productrelation:
+        delete: Delete Product Relation
+        one: Product Relation
+        other: Product Relations
       Property:
         cannot_delete:
           record_not_found: The property cannot be found.
@@ -862,7 +871,17 @@ en:
         other: Property Groups
       property_manager:
         title: Property Manager
+      Recommendation:
+        delete: Delete Recommendation
+        one: Recommendation
+        other: Recommendations
+      relation_manager:
+        title: "Relations for"
       sales_subsite_name: Sales
+      Supplyrelation:
+        delete: Delete Supply Relation
+        one: Supply Relation
+        other: Supply Relations
       title: Produktmanager
       true_false: true/false
       Value:

@@ -3,7 +3,7 @@ function categoryTreeToolbar() {
     name: 'categoryTreeToolbar',
     items: [
       { type: 'button', id: 'addCategorization', icon: 'fa fa-plus', disabled: true,
-        caption: '<%= I18n.t("activerecord.models.categorization.one") %>' }
+        caption: I18n.t("js.pm.Categorization.one") }
     ],
     onClick: function (event) {
       switch (event.target) {

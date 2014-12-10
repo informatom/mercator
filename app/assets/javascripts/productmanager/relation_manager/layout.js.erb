@@ -8,11 +8,11 @@ $(function () {
     name: 'relationmanager',
     panels: [
       { type: 'top', size: 59, resizable: true, content: "<div id='menu'></div>",
-        title: '<%= I18n.t("mercator.relation_manager.title") %>: &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
+        title: I18n.t("js.pm.relation_manager.title") + ': &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
       { type: 'left', size: '20%', resizable: true },
       { type: 'main', resizable: true },
       { type: 'right', size: '38%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.product.other") %>',
+        title: I18n.t("js.pm.Product.other"),
         content: "<div id='productsgrid' style='height: 100%'></div>" }
     ],
     onRender: function(event) {
@@ -28,14 +28,11 @@ $(function () {
   $().w2layout({
     name: 'relations',
     panels: [
-      { type: 'top', size: '33%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.productrelation.other") %>',
+      { type: 'top', size: '33%', resizable: true, title: I18n.t("js.pm.Productrelation.other"),
         content: "<div id='productRelationsGrid' style='height:100%;'></div>"},
-      { type: 'main', resizable: true,
-        title: '<%= I18n.t("activerecord.models.recommendation.other") %>',
+      { type: 'main', resizable: true, title: I18n.t("js.pm.Recommendation.other"),
         content: "<div id='recommendationsGrid' style='height:100%;'></div>" },
-      { type: 'preview', size: '50%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.supplyrelation.other") %>',
+      { type: 'preview', size: '50%', resizable: true, title: I18n.t("js.pm.Supplyrelation.other"),
         content: "<div id='supplyRelationsGrid' style='height:100%;'></div>"}
     ],
     onRender: function(event) {
@@ -50,12 +47,11 @@ $(function () {
   $().w2layout({
     name: 'categorizations',
     panels: [
-      { type: 'main', resizable: true,
-        title: '<%= I18n.t("activerecord.models.categorization.other") %>',
+      { type: 'main', resizable: true, title: I18n.t("js.pm.Categorization.other"),
         content: "<div id='categorizationsGrid' style='height:100%;'></div>" },
-      { type: 'preview', size: '60%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.category.other") %>',
-        content: "<div id='categoryTreeToolbar' style='height:20'></div><div id='categoryTree' style='height:calc(100% - 30px);'></div>"}
+      { type: 'preview', size: '60%', resizable: true, title: I18n.t("js.pm.Category.other"),
+        content: "<div id='categoryTreeToolbar' style='height:20'></div>" +
+                 "<div id='categoryTree' style='height:calc(100% - 30px);'></div>"}
     ],
     onRender: function(event) {
       event.onComplete = function () {

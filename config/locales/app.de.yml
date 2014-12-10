@@ -144,6 +144,8 @@ de:
     recommended_product: empfohlenes Produkt
     recommended_products: empfohlene Produkte
     reason: Grund
+    reason_de: Grund DE
+    reason_en: Grund EN
     reciever: Empfänger
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
@@ -708,9 +710,6 @@ de:
     recommendation_exists: Die Empfehlung existiert bereits.
     register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
-    relation_manager:
-      title: "Zuordnungen für "
-      categorization_exists: Diese Kategorisierung existiert bereits.
     remove_filter: Filter aufheben
     repeat: Wiederholen
     request_email:  E-Mail anfordern
@@ -814,6 +813,11 @@ de:
     pm:
       admin_subsite_name: Administration
       are_you_sure: "Sind Sie Sicher?"
+      Categorization:
+        delete: Kategorisierung löschen
+        exists: Diese Kategorisierung existiert bereits.
+        one: Kategorisierung
+        other: Kategorisierungen
       Category:
         cannot_delete:
           no_category_selected: Keine Kategorie zur Löschung ausgewählt!
@@ -826,6 +830,7 @@ de:
         edit: Alle Felder editieren
         none_selected: "Keine Kategorie ausgewählt!"
         one: Kategorie
+        other: Kategorien
         save: Speichern
       contracting_subsite_name: Vertragswesen
       Feature:
@@ -849,6 +854,10 @@ de:
         moved_to: Artikel verschoben in Kategorie
         one: Artikel
         other: Artikel
+      Productrelation:
+        delete: Artikelzuordnung löschen
+        one: Artikelzuordnung
+        other: Artikelzuordnungen
       Property:
         cannot_delete:
           record_not_found: Die Eigenschaft kann nicht gefunden werden.
@@ -869,7 +878,17 @@ de:
         other: Eigenschaftengruppen
       property_manager:
         title: Eigenschaftsmanager
+      Recommendation:
+        delete: Empfehlung löschen
+        one: Empfehlung
+        other: Empfehlungen
+      relation_manager:
+        title: "Zuordnungen für "
       sales_subsite_name: Vertriebswesen
+      Supplyrelation:
+        delete: Zubehörzuordnung löschen
+        one: Zubehörzuordnung
+        other: Zubehörzuordnungen
       title: Produktmanager
       true_false: wahr/falsch
       Value:

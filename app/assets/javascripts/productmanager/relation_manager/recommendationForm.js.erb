@@ -5,13 +5,13 @@ function recommendationForm() {
     style: 'border: 0px; background-color: transparent;',
     fields: [
       { field: 'reason_de', type: 'text', required: true,
-        html: { caption: '<%= I18n.t("attributes.reason") %> DE' } },
+        html: { caption: I18n.t("attributes.reason_de") } },
       { field: 'reason_en', type: 'text',
-        html: { caption: '<%= I18n.t("attributes.reason") %> EN' } },
+        html: { caption: I18n.t("attributes.reason_en") } },
       { field: 'product_id', type: 'int', disabled: true,
-        html: { caption: '<%= I18n.t("attributes.product") %> DE' } },
+        html: { caption: I18n.t("js.pm.Product.one") } },
       { field: 'recommended_product_id', type: 'int', disabled: true,
-        html: { caption: '<%= I18n.t("activerecord.models.recommendation.one") %> DE' } },
+        html: { caption: I18n.t("js.pm.Recommendation.one") } },
     ],
     actions: {
       "Save":
