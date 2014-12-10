@@ -829,6 +829,7 @@ de:
         save: Speichern
       contracting_subsite_name: Vertragswesen
       Feature:
+        one: Feature
         other: Features
       Filter:
         delete: Filter entfernen

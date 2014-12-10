@@ -822,6 +822,7 @@ en:
         save: Save
       contracting_subsite_name: Contracting
       Feature:
+        one: Feature
         other: Features
       Filter:
         delete: Remove Filter
