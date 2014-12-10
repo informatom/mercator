@@ -195,6 +195,8 @@ de:
     vat: MwSt.
     version_of: Version vom
     warranty: Garantie
+    warranty_de: Garantie DE
+    warranty_en: Garantie EN
     weight: Gewicht
 
   activerecord:
@@ -810,6 +812,7 @@ de:
       website_structure: Webseitenstruktur
 
     pm:
+      admin_subsite_name: Administration
       Category:
         cannot_delete:
           no_category_selected: Keine Kategorie zur Löschung ausgewählt!
@@ -823,7 +826,12 @@ de:
         none_selected: "Keine Kategorie ausgewählt!"
         one: Kategorie
         save: Speichern
-      title: Produktmanager
+      contracting_subsite_name: Vertragswesen
+      Filter:
+        delete: Filter entfernen
+      frontend_subsite_name: Frontend
+      Price:
+        other: Preise
       Product:
         other: Artikel
         moved_to: Artikel verschoben in Kategorie
@@ -836,3 +844,5 @@ de:
         cannot_delete:
           record_not_found: Die Eigenschaftengruppe kann nicht gefunden werden.
           values: Diese Eigenschaftengruppe wird noch in Werten verwendet und kann daher nicht gelöscht werden.
+      sales_subsite_name: Vertriebswesen
+      title: Produktmanager

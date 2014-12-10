@@ -188,6 +188,8 @@ en:
     vat: VAT
     version_of: Version of
     warranty: Warranty
+    warranty_de: Warranty GER
+    warranty_en: Warranty EN
     weight: Weight
 
   activerecord:
@@ -803,6 +805,7 @@ en:
       website_structure: Website Sructure
 
     pm:
+      admin_subsite_name: Administration
       Category:
         cannot_delete:
           no_category_selected: No category selected!
@@ -816,10 +819,15 @@ en:
         none_selected: "No category selected!"
         one: Category
         save: Save
+      contracting_subsite_name: Contracting
+      Filter:
+        delete: Remove Filter
+      frontend_subsite_name: Front End
+      Price:
+        other: Prices
       Product:
         moved_to: Product moved to Category
         other: Products
-      title: Produktmanager
       Property:
         cannot_delete:
           record_not_found: The property cannot be found.
@@ -829,4 +837,5 @@ en:
         cannot_delete:
           record_not_found: The property group cannot be found.
           values: "This property group cannot be deleted, it is stil used in values!"
-
+      sales_subsite_name: Sales
+      title: Produktmanager
