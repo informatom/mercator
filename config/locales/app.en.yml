@@ -4,6 +4,7 @@ en:
     administator: Administrator
     Address: Address
     addresses: Adresses
+    alternative_number: Alternate Product Number
     amount: Amount
     ancestry: Ancestry String
     attrib: Attribute
@@ -31,6 +32,8 @@ en:
     code: Code
     c_o: C/O
     comment: Comment
+    comment_de: Comment GER
+    comment_en: Comment EN
     company: Company
     Constant: Constant
     consultant: Consultant
@@ -132,6 +135,7 @@ en:
     PropertyGroup: Property Group
     property_group: Property Group
     property_groups: Property Groups
+    provision_code: Provision Code
     recommendations: Recommendations
     recommended_product: Recommended Product
     recommended_products: Recommended Products
@@ -157,6 +161,7 @@ en:
     Sites: Sites
     startdate: Starting Date
     state: State
+    storage: Storage / Branch / Store
     street: Street
     suggestions: Suggestions
     supply: Supply
@@ -651,7 +656,6 @@ en:
     new_message: New Message
     no_deliveries: No deliveries found.
     no_file: No file uploaded.
-    no_inventory_selected: You haven't seleted an inventory item.
     no_invoices: No invoices found.
     no_order_positions_yet: There aro no order items yet.
     no_open_payments: No open payments found.
@@ -673,10 +677,6 @@ en:
     paste_here: "Paste file here (point mouse here and press [STRG]+[v])"
     password: Change Password
     place_offer: Place Offer
-    price_manager:
-      title: Inventory and Price Manager
-      cannot_delete_inventory:
-        prices: The inventory is still referenced in prices and cannot be deleted therefore.
     printer: Printer
     printer_series: Printer Series
     product_comparison: Product Comparison
@@ -806,6 +806,7 @@ en:
 
     pm:
       admin_subsite_name: Administration
+      are_you_sure: "Are You Sure?"
       Category:
         cannot_delete:
           no_category_selected: No category selected!
@@ -823,10 +824,20 @@ en:
       Filter:
         delete: Remove Filter
       frontend_subsite_name: Front End
+      Inventory:
+        one: Inventory
+        other: Inventories
+      no_inventory_selected: You haven't seleted an inventory item.
       Price:
+        one: Price
         other: Prices
+      price_manager:
+        title: Inventory and Price Manager
+        cannot_delete_inventory:
+          prices: The inventory is still referenced in prices and cannot be deleted therefore.
       Product:
         moved_to: Product moved to Category
+        one: Product
         other: Products
       Property:
         cannot_delete:

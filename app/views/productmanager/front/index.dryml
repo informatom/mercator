@@ -4,7 +4,6 @@
       I18n = {}
       I18n.defaultLocale = "de"
       I18n.locale = "<%= I18n.locale %>"
-      I18n.currentLocale()
       var selected_product_id = "<%= @selected_product.id if @selected_product %>"
       var selected_category_id = "<%= @selected_category.id if @selected_category %>"
     </script>

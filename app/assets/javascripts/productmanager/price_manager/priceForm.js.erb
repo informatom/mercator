@@ -5,25 +5,25 @@ function priceForm() {
 
     fields : [
       { name: 'value', type: 'float', required : true,
-        html: { caption: '<%= I18n.t("attributes.value") %>' } },
+        html: { caption: I18n.t("attributes.value") } },
       { name: 'vat', type: 'float', required : true,
-        html: { caption: '<%= I18n.t("attributes.vat") %>' } },
+        html: { caption: I18n.t("attributes.vat") } },
       { name: 'valid_from', type: 'date', required : true,
-        html: { caption: '<%= I18n.t("attributes.valid_from") %>' } },
+        html: { caption: I18n.t("attributes.valid_from") } },
       { name: 'valid_to', type: 'date', required : true,
-        html: { caption: '<%= I18n.t("attributes.valid_to") %>' } },
+        html: { caption: I18n.t("attributes.valid_to") } },
       { name: 'scale_from', type: 'float', required : true,
-        html: { caption: '<%= I18n.t("attributes.scale_from") %>' } },
+        html: { caption: I18n.t("attributes.scale_from") } },
       { name: 'scale_to', type: 'float', required : true,
-        html: { caption: '<%= I18n.t("attributes.scale_to") %>' } },
+        html: { caption: I18n.t("attributes.scale_to") } },
       { name: 'promotion', type: 'checkbox',
-        html: { caption: '<%= I18n.t("attributes.promotion") %>' } },
+        html: { caption: I18n.t("attributes.promotion") } },
       { name: 'created_at', type: 'text', disabled: true,
-        html: { caption: '<%= I18n.t("attributes.created_at") %>' } },
+        html: { caption: I18n.t("attributes.created_at") } },
       { name: 'updated_at', type: 'text', disabled: true,
-        html: { caption: '<%= I18n.t("attributes.updated_at") %>' } },
+        html: { caption: I18n.t("attributes.updated_at") } },
       { name: 'inventory_id', type: 'int',
-        html: { caption: '<%= I18n.t("attributes.inventory") %>' }, disabled: true }
+        html: { caption: I18n.t("attributes.inventory") }, disabled: true }
     ],
 
     actions: {
@@ -62,7 +62,7 @@ function priceForm() {
         onClick: function () {
           var selected_inventories = w2ui.inventoriesGrid.getSelection()
           if (selected_inventories.length == 0) {
-            w2alert('<%= I18n.t("mercator.no_inventory_selected") %>')
+            w2alert(I18n.t("js.pm.no_inventory_selected"))
             return
           }
           this.clear()

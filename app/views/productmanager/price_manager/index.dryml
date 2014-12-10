@@ -4,12 +4,11 @@
       I18n = {}
       I18n.defaultLocale = "de"
       I18n.locale = "<%= I18n.locale %>"
-      I18n.currentLocale()
       var product_title = "<%= @product.title.squish %>"
       var product_number = "<%= @product.number.squish %>"
       var prices_editable = <%= @prices_editable %>
     </script>
     <%= javascript_include_tag "i18n" %>
-    <%= javascript_include_tag "i18n/cm" %>
+    <%= javascript_include_tag "i18n/pm" %>
   </config:>
 </page>

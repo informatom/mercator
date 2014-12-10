@@ -4,6 +4,7 @@ de:
     administator: Administrator
     Address: Adresse
     addresses: Adressen
+    alternative_number: alternative Artikelnummer
     amount: Menge
     ancestry: Ancestry-String
     attrib: Attribut
@@ -37,6 +38,8 @@ de:
     code: Code
     c_o: zu Handen
     comment: Kommentar
+    comment_de: Kommentar DE
+    comment_en: Kommentar EN
     company: Firma
     Constant: Konstante
     consultant: Berater
@@ -136,6 +139,7 @@ de:
     PropertyGroup: Eigenschaftsgruppe
     property_group: Eigenschaftsgruppe
     property_groups: Eigenschaftsgruppen
+    provision_code: Provisionscode
     recommendations: Empfehlungen
     recommended_product: empfohlenes Produkt
     recommended_products: empfohlene Produkte
@@ -163,6 +167,7 @@ de:
     Sites: Bereiche
     startdate: Startdatum
     state: Status
+    storage: Lagerort / Filiale
     street: Straße
     suggestions: Produktvorschläge
     supply: Zubehör
@@ -658,7 +663,6 @@ de:
     new_message: Neue Nachricht
     no_deliveries: keine Lieferungen
     no_file: Keine Datei hochgeladen
-    no_inventory_selected: Sie haben keinen Bestand ausgewählt!
     no_invoices: keine Rechnungen
     no_order_positions_yet: Bisher gibt es keine Bestellpositionen.
     no_open_payments: keine offenen Zahlungen
@@ -680,10 +684,6 @@ de:
     paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
     password: Kennwort ändern
     place_offer: Angebot legen
-    price_manager:
-      title: Inventar- und Preismanager
-      cannot_delete_inventory:
-        prices: "Der Bestand wird noch in Preisen referenziert und kann daher nicht gelöscht werden."
     printer: Drucker
     printer_series: Druckerserien
     product_comparison: Produktvergleich
@@ -813,6 +813,7 @@ de:
 
     pm:
       admin_subsite_name: Administration
+      are_you_sure: "Sind Sie Sicher?"
       Category:
         cannot_delete:
           no_category_selected: Keine Kategorie zur Löschung ausgewählt!
@@ -830,11 +831,21 @@ de:
       Filter:
         delete: Filter entfernen
       frontend_subsite_name: Frontend
+      Inventory:
+        one: Bastand
+        other: Bestände
+      no_inventory_selected: Sie haben keinen Bestand ausgewählt!
       Price:
+        one: Preis
         other: Preise
+      price_manager:
+        title: Inventar- und Preismanager
+        cannot_delete_inventory:
+          prices: "Der Bestand wird noch in Preisen referenziert und kann daher nicht gelöscht werden."
       Product:
-        other: Artikel
         moved_to: Artikel verschoben in Kategorie
+        one: Artikel
+        other: Artikel
       Property:
         cannot_delete:
           record_not_found: Die Eigenschaft kann nicht gefunden werden.

@@ -6,7 +6,6 @@
       I18n = {}
       I18n.defaultLocale = "de"
       I18n.locale = "<%= I18n.locale %>"
-      I18n.currentLocale()
       var selected_folder_id = "<%= session[:selected_folder_id] %>"
       var selected_content_element_id = "<%= session[:selected_content_element_id] %>"
       var selected_webpage_id = "<%= session[:selected_webpage_id] %>"

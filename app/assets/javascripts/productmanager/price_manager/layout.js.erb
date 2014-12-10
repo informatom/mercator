@@ -8,15 +8,15 @@ $(function () {
     name: 'pricemanager',
     panels: [
       { type: 'top', size: 58, resizable: true, content: "<div id='menu'></div>",
-        title: '<%= I18n.t("mercator.price_manager.title") %>: &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
+        title: I18n.t("js.pm.price_manager.title") + ': &nbsp;  <b>' + product_number + '</b> &nbsp; ' + product_title },
       { type: 'left', size: '25%', resizable: true,
-        title: '<%= I18n.t("activerecord.models.product.one") %>',
+        title: I18n.t("js.pm.Product.one"),
         content: "<div id='productForm' style='height: 100%'></div>"},
       { type: 'main', resizable: true,
-        title: '<%= I18n.t("activerecord.models.inventory.other") %>',
+        title: I18n.t("js.pm.Inventory.other"),
         content: "<div id='inventoriesGrid' style='height: 100%'></div>"},
       { type: 'preview', resizable: true, size: '462',
-        title: '<%= I18n.t("activerecord.models.inventory.one") %>',
+        title: I18n.t("js.pm.Inventory.one"),
         content: "<div id='inventoryForm' style='height: 433px'></div>"},
       { type: 'right', size: '35%', resizable: true, content: "pricelayout" }
     ],
@@ -38,10 +38,10 @@ $(function () {
     name: 'pricelayout',
     panels: [
       { type: 'main', resizable: true,
-        title: '<%= I18n.t("activerecord.models.price.other") %>',
+        title: I18n.t("js.pm.Price.other"),
         content: "<div id='pricesGrid' style='height:100%;'></div>" },
       { type: 'preview', resizable: true, size: '430',
-        title: '<%= I18n.t("activerecord.models.price.one") %>',
+        title: I18n.t("js.pm.Price.one"),
         content: "<div id='priceForm' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
