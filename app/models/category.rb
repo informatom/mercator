@@ -289,6 +289,7 @@ class Category < ActiveRecord::Base
   def self.reindexing_and_filter_updates
     Category.reindex
 
+    @price_user = User.find_by(surname: "Dummy Customer")
     Category.order(:id).each do |category|
       category.reindex
       category.update_property_hash
