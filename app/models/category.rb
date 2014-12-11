@@ -294,7 +294,7 @@ class Category < ActiveRecord::Base
       category.update_property_hash
 
       # determine_price returns nil, if no price can be found
-      category_prices = category.products.*.determine_price.compact
+      category_prices = category.products.*.determine_price(customer_id: @price_user.id).compact
 
       if category_prices.any?
         category.update(filtermin: category_prices.min.round,
