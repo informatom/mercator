@@ -58,4 +58,27 @@ class Property < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+  #--- Class Methods --- #
+
+  def self.dedup
+    orphaned_values = Value.where.not(property_id: Property.pluck(:id)).count
+    orphaned_values == 0 or JobLogger.error("There are " + orphaned_values + " orphaned values.")
+
+    Property.all.group_by(&:name_de).each do |name, properties|
+       we_keep_id = properties.first.id
+       properties.shift
+       properties.each do |property|
+         values_to_move = Value.where(property_id: property.id)
+         values_to_move.update_all(property_id: we_keep_id) or JobLogger.error("Could not update values!")
+         property.delete or JobLogger.error("Could not delete Property " + property.id.to_s + "!")
+       end
+    end
+
+    Property.all.each do |property|
+      if property.values.count == 0
+        property.delete or JobLogger.error("Could not delete Property " + property.id.to_s + "!")
+      end
+    end
+  end
 end

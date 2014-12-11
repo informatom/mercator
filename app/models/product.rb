@@ -212,9 +212,7 @@ class Product < ActiveRecord::Base
 
     Product.where(state: ["active", "new"]).each do |product|
       unless product.inventories.any?
-        unless product.lifecycle.deactivate!(@jobuser)
-          JobLogger.error("Product " + product.number + " could not be deactivated!")
-        end
+        product.lifecycle.deactivate!(@jobuser) or JobLogger.error("Product " + product.number + " could not be deactivated!")
       end
     end
   end
@@ -227,9 +225,7 @@ class Product < ActiveRecord::Base
       unless product.categorizations.any?
         position = @orphans.categorizations.maximum(:position) + 1 if @orphans.categorizations.any?
         product.categorizations.new(category_id: @orphans.id, position: position)
-        unless product.save
-          JobLogger.error("Product " + product.number + " could not be added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
-        end
+        product.save or JobLogger.error("Product " + product.number + " could not be added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
       end
     end
   end

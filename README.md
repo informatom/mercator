@@ -136,11 +136,22 @@ in admin.dryml per Subsite.
 ```bash
 10 * * * * /bin/bash -l -c 'cd /var/rails/mercator && script/rails runner -e production '\''User.cleanup_deprecated'\'' >> /var/rails/mercator/log/cron.log 2>&1'
 ```
-#### Updating Inventories daily
+#### Updating Products daily
 ```bash
 30 4 * * * /bin/bash -l -c 'cd /var/rails/mercator && RAILS_ENV=production bundle exec rake webartikel:update --silent >> /var/rails/mercator/log/cron.log 2>&1'
-
 ```
+#### Updating Bechlem Supply Info daily
+```bash
+30 3 * * * /bin/bash -l -c 'cd /var/rails/mercator && RAILS_ENV=production bundle exec rake
+rake bechlem:import --silent >> /var/rails/mercator/log/cron.log 2>&1'
+```
+## Updating ERP Account numbers daily
+```bash
+30 4 * * *  /bin/bash -l -c 'cd /var/rails/mercator && RAILS_ENV=production bundle exec rake mesonic:users:update_erp_account_nrs --silent >> /var/rails/mercator/log/cron.log 2>&1'
+```
+## Updating Icecat Metadata Info daily
+```bash
+0 5 * * * /bin/bash -l -c 'cd /var/rails/mercator && RAILS_ENV=production bundle exec rake icecat:metadata:daily_update --silent >> /var/rails/mercator/log/cron.log 2>&1'
 
 
 ## Sources
