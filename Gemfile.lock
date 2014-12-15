@@ -95,6 +95,7 @@ PATH
   specs:
     mercator_mpay24 (0.1)
       rails (~> 4.0)
+      savon (~> 2.0)
 
 PATH
   remote: vendor/gems/hobo_bootstrap

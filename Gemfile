@@ -71,7 +71,7 @@ gem "naught"                                          # Null Object library
 
 gem "i18n-js", :git => "https://github.com/fnando/i18n-js"  # Javascript Internationalization
 
-group :production, :staging do
+group :production, :staging, :development do
   gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem" # Engine for integrating Mesonic ERP System
   gem "mercator_icecat", path:"vendor/engines/mercator_icecat"   # Engine for importing Icecat Data
   gem "mercator_mpay24", path:"vendor/engines/mercator_mpay24"   # Engine for MPay24 interface

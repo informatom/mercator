@@ -224,7 +224,7 @@ class User < ActiveRecord::Base
     User.all.each do |user|
       if user.orders.count == 0 &&
          Time.now - user.created_at > 1.hours &&
-         user.name == "Gast" &&
+         user.surname == "Gast" &&
          user.state == "guest" &&
          user.gtc_confirmed_at == nil
         if user.delete
