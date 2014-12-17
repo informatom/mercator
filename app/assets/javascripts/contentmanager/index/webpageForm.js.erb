@@ -13,15 +13,7 @@ function webpageForm() {
         html: { caption: 'Slug' } },
       { field: 'position', type: 'int', required: true,
         html: { caption: I18n.t("attributes.position") } },
-      { field: 'page_template_id', type: 'list', required: true,
-        options: {
-          items: <%= PageTemplate.all.map {
-            |page_template| {
-              id:   page_template.id,
-              text: page_template.name
-            }
-          }.to_json %>
-        },
+      { field: 'page_template_id', type: 'list', required: true, options: { items: pagetemplates },
         html: { caption: I18n.t("attributes.page_template") } }
     ],
 

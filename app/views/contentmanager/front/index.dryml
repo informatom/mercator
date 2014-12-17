@@ -9,6 +9,12 @@
       var selected_folder_id = "<%= session[:selected_folder_id] %>"
       var selected_content_element_id = "<%= session[:selected_content_element_id] %>"
       var selected_webpage_id = "<%= session[:selected_webpage_id] %>"
+      var pagetemplates = <%= PageTemplate.all.map {
+            |page_template| {
+              id:   page_template.id,
+              text: page_template.name
+            }
+          }.to_json.html_safe %>
     </script>
     <%= javascript_include_tag "i18n" %>
     <%= javascript_include_tag "i18n/cm" %>
