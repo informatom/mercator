@@ -3,7 +3,7 @@ Mercator::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  if Rails.env.production?
+  if true #ails.env.production?
     mount MercatorMesonic::Engine => "/mercator_mesonic"
     mount MercatorIcecat::Engine => "/mercator_icecat"
     mount MercatorBechlem::Engine => "/"

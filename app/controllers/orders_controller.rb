@@ -6,6 +6,9 @@ class OrdersController < ApplicationController
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
+  # can be found in mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
+  include OrdersControllerExtensions if Rails.application.config.try(:payment) == "mpay24"
+
   def refresh
     self.this = Order.find(params[:id])
     hobo_show
