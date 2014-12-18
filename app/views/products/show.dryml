@@ -19,6 +19,9 @@
       <li><a href="#related" data-toggle="tab"><t key="attributes.related_products"/></a></li>
       <li><a href="#recommended" data-toggle="tab"><t key="attributes.recommended_products"/></a> </li>
       <li><a href="#supplies" data-toggle="tab"><t key="attributes.supplies"/></a> </li>
+      <if test="&this.number.split('-')[0] == 'HP'">
+        <li><a href="#syndication" data-toggle="tab"><t key="attributes.syndication"/></a> </li>
+      </if>
     </ul>
 
     <set icecatid="&this.try(:icecat_product_id)"/>
@@ -71,6 +74,27 @@
          </div>
         <% end %>
       </div>
+
+      <if test="&this.number.split('-')[0] == 'HP'">
+        <div class="tab-pane" id="syndication">
+          <div id="flix-minisite">&nbsp;</div>
+
+          <div id="flix-inpage">&nbsp;</div>
+          <script type="text/javascript"
+                  src="http://media.flixfacts.com/js/loader.js"
+                  data-flix-distributor="8887"
+                  data-flix-language="at"
+                  data-flix-mpn="#{this.number.split('-')[1]}"
+                  data-flix-ean=""
+                  data-flix-sku=""
+                  data-flix-button="flix-minisite"
+                  data-flix-inpage="flix-inpage"
+                  data-flix-button-image=""
+                  data-flix-fallback-language="en"
+                  data-flix-price="">
+          </script>
+        </div>
+      </if>
     </div>
   </content-body:>
 
