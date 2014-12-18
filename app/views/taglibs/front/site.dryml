@@ -13,16 +13,14 @@
         <br/>
         <div class="row">
           <div class="col-lg-4">
-            <a href="/"><photo name="ivellio-logo" /></a>
+            <a href="/"><photo name="ivellio-logo" width="90%"/></a>
           </div>
           <div class="col-lg-8 text-right">
             <div class="row">
               <div class="col-lg-5">
-                <br/>
                 <live-search/>
               </div>
               <div class="col-lg-7 text-right">
-                <br /><br />
                 <a href="/">Home</a> | <language-selector-plain /> | <greeter /> |
                 <if test="&current_user.surname == 'Gast'"><a href="/switch">Anmelden</a></if>
                 <else><a href="/logout">Abmelden</a></else>
