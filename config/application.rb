@@ -75,5 +75,7 @@ module Mercator
     config.handlebars.precompile = true
 
     WillPaginate.per_page = 20
+
+    Ahoy.track_visits_immediately = true
   end
 end

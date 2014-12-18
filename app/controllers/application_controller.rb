@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
+  after_filter :track_action
 
   def auto_log_in
     if current_user.guest?
@@ -103,5 +104,11 @@ class ApplicationController < ActionController::Base
     else
       return nil
     end
+  end
+
+protected
+
+  def track_action
+    ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
   end
 end

@@ -26,7 +26,7 @@ reasonably fast development instace can be fired up pretty fast
 1. Install Ruby. In Linux environments we recommend rvm for doing this. See https://rvm.io/rvm/install for details
 2. Install all gems needed by running <tt>bundle install</tt>
 3. Create a database mercator_production using <tt>rake db:create</tt>
-4.  Whenever Gem needs for RVM-compatibility ~/.rvmrc with content rvm_trust_rvmrcs_flag=1
+4. Whenever Gem needs for RVM-compatibility ~/.rvmrc with content rvm_trust_rvmrcs_flag=1
 5. Start up your Server <tt>rails s</tt>
 
 Your Mercator is now running and fully functional!

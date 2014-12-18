@@ -70,6 +70,8 @@ gem "holidays"                                        # Determine if there is a 
 gem "naught"                                          # Null Object library
 
 gem "i18n-js", :git => "https://github.com/fnando/i18n-js"  # Javascript Internationalization
+gem 'ahoy_matey'                                      # User tracking
+gem 'activeuuid', '>= 0.5.0'
 
 group :production, :staging, :development do
   gem "mercator_bechlem", path:"vendor/engines/mercator_bechlem" # Engine for integrating Mesonic ERP System
