@@ -69,6 +69,7 @@ en:
     document_updated_at: Updated at
     downloads: Downloads
     email_address: Email Address
+    erp_identifier: ERP Identifier
     filter: Filter
     filters: Filter
     filtermin: minimal Price
@@ -732,7 +733,7 @@ en:
     states:
       active: active
       announced: announced
-      deprecated: deprecated
+      deprecated: inactive
       draft: draft
       new: new
       published: published

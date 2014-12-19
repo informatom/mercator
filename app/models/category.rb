@@ -14,12 +14,13 @@ class Category < ActiveRecord::Base
     filters             :serialized
     filtermin           :decimal, :required, :precision => 10, :scale => 2
     filtermax           :decimal, :required, :precision => 10, :scale => 2
+    erp_identifier      :string
     timestamps
   end
 
-  attr_accessible :name_de, :name_en, :state, :ancestry, :position, :active,
-                  :parent_id, :parent, :categorizations, :products, :document, :photo,
-                  :description_de, :description_en, :long_description_de, :long_description_en, :filters
+  attr_accessible :name_de, :name_en, :state, :ancestry, :position, :active, :parent_id, :parent,
+                  :categorizations, :products, :document, :photo, :description_de, :description_en,
+                  :long_description_de, :long_description_en, :filters, :erp_identifier
 
   translates :name, :description, :long_description
 
@@ -97,7 +98,10 @@ class Category < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def active_product_count
-    products.active.count + descendants.active.joins{ products }.where{ products.state == "active" }.count
+    products.active.count + descendants.active
+                                       .joins{ products }
+                                       .where{ products.state == "active" }
+                                       .count
   end
 
   def ancestors
@@ -194,16 +198,31 @@ class Category < ActiveRecord::Base
     find_by_name_de(param)
   end
 
+  def self.mercator
+    @mercator = Category.where(name_de: "== Mercator ==").first
+    @mercator = create(
+      name_de: "== Mercator ==",
+      name_en: "== Mercator ==",
+      description_de: "Mercator - Servicekategorien",
+      description_en: "Mercator - Service Categories",
+      position: 9999,
+      state: "deprecated",
+      filtermin: 1,
+      filtermax: 1 ) unless @mercator
+    return @mercator
+  end
+
   def self.auto
-    @auto = Category.where(name_de: "automatisch").first
+    @auto = Category.where(name_de: "Importierte Artike").first
     @auto = create(
-      name_de: "automatisch",
-      name_en: "automatic",
+      name_de: "importiert",
+      name_en: "imported",
       description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
       description_en: "automatically created froducts from ERP import Job",
       long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
       long_description_en: "Please complete products and put them into categories",
-      parent: nil,
+      parent_id: Category.mercator.id,
+      state: "deprecated",
       position: 1,
       filtermin: 1,
       filtermax: 1 ) unless @auto
@@ -219,7 +238,7 @@ class Category < ActiveRecord::Base
       description_en: "Dicounted Articles",
       long_description_de: "Aktionsartikel",
       long_description_en: "Dicounted Articles",
-      parent: nil,
+      state: "active",
       position: 1,
       filtermin: 1,
       filtermax: 1) unless @discounts
@@ -235,7 +254,7 @@ class Category < ActiveRecord::Base
       description_en: "New",
       long_description_de: "Neuheiten",
       long_description_en: "Novelties",
-      parent: nil,
+      state: "active",
       position: 1,
       filtermin: 1,
       filtermax: 1) unless @novelties
@@ -251,7 +270,7 @@ class Category < ActiveRecord::Base
       description_en: "Topseller",
       long_description_de: "Topseller",
       long_description_en: "Topseller",
-      parent: nil,
+      state: "active",
       position: 1,
       filtermin: 1,
       filtermax: 1) unless @topseller
@@ -259,16 +278,17 @@ class Category < ActiveRecord::Base
   end
 
   def self.orphans
-    @orphans = Category.where(name_de: "verwaiste Produkte").first
+    @orphans = Category.where(name_de: "verwaiste Artikel").first
     @orphans = create(
-      name_de: "verwaiste Produkte",
+      name_de: "verwaist",
       name_en: "Orphans",
-      description_de: "verwaiste Produkte",
+      description_de: "verwaiste Artikel",
       description_en: "Orphans",
-      long_description_de: "verwaiste Produkte",
+      long_description_de: "verwaiste Artikel",
       long_description_en: "Orphans",
-      parent: nil,
-      position: 1,
+      parent_id: Category.mercator,
+      state: "deprecated",
+      position: 2,
       filtermin: 1,
       filtermax: 1) unless @orphans
     return @orphans

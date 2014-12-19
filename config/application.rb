@@ -76,6 +76,7 @@ module Mercator
 
     WillPaginate.per_page = 20
 
+# Ahoy user tracking
     Ahoy.track_visits_immediately = true
   end
 end

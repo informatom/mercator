@@ -73,6 +73,7 @@ de:
     document_updated_at: Aktualisiert
     downloads: Downloads
     email_address: E-Mail Adresse
+    erp_identifier: Referenz aus Mesonic
     filter: Filter
     filters: Filter
     filtermin: minimaler Preis
@@ -739,7 +740,7 @@ de:
     states:
       active: aktiv
       announced: angekündigt
-      deprecated: veraltet
+      deprecated: inaktiv
       draft: Entwurf
       new: neu
       published: veröffentlicht
