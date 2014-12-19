@@ -18,6 +18,8 @@ app/views/taglibs/auto/*
 vendor/catalogs/*
 vendor/xml/*
 vendor/bechlem/*
+vendor/customers/*
+vendor/customer
 
 app/views/page_templates/*
 materials/ivellio-vellin/*
