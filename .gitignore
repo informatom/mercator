@@ -7,9 +7,7 @@ app/views/taglibs/auto/*
 app/views/page_templates/*
 app/assets/stylesheets/front/glypha.ttf
 
-
 config/hobo_routes.rb
-config/application.yml
 config/private_pub.yml
 config/database.yml
 config/delayed_job.sh
