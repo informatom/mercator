@@ -11,5 +11,4 @@
 
 <include src="front/site"/>
 
-<include if="&Rails.application.config.try(:payment) == 'mpay24'"
-         src="../../../vendor/engines/mercator_mpay24/app/views/orders/*"/>
+<include src="../../../vendor/customer/mpay24-tags"/>
