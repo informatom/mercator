@@ -1,8 +1,12 @@
 .bundle
+.gemtags
+
 db/schema.rb
 
-log/*
-tmp
+app/views/taglibs/auto/*
+app/views/page_templates/*
+app/assets/stylesheets/front/glypha.ttf
+
 
 config/hobo_routes.rb
 config/application.yml
@@ -11,18 +15,17 @@ config/database.yml
 config/delayed_job.sh
 
 log/*
+
+materials/ivellio-vellin/*
+
 public/assets/*
 public/system/*
 public/ckeditor_assets/*
-app/views/taglibs/auto/*
+
+tmp/*
+
 vendor/catalogs/*
 vendor/xml/*
 vendor/bechlem/*
 vendor/customers/*
 vendor/customer
-
-app/views/page_templates/*
-materials/ivellio-vellin/*
-app/assets/stylesheets/front/glypha.ttf
-
-.gemtags
