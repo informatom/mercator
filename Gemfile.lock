@@ -55,47 +55,10 @@ GIT
 
 GIT
   remote: https://github.com/thedarkone/rails-dev-boost
-  revision: bf49caca6670a2dc26cef7b2b01819e2ed88387a
+  revision: 15ebc37b3f1b424ce7f5a160d2a8f890023208e6
   specs:
     rails-dev-boost (0.3.0)
       railties (>= 3.0)
-
-PATH
-  remote: vendor/engines/mercator_bechlem
-  specs:
-    mercator_bechlem (0.1)
-      mysql2
-      rails (~> 4.0)
-
-PATH
-  remote: vendor/engines/mercator_icecat
-  specs:
-    mercator_icecat (0.1)
-      rails (~> 4.0)
-      saxerator
-      try_to
-
-PATH
-  remote: vendor/engines/mercator_legacy_importer
-  specs:
-    mercator_legacy_importer (0.1)
-      mysql2
-      rails (~> 4.0)
-
-PATH
-  remote: vendor/engines/mercator_mesonic
-  specs:
-    mercator_mesonic (0.1)
-      activerecord-sqlserver-adapter (~> 4.0.0)
-      nokogiri
-      rails (~> 4.0)
-
-PATH
-  remote: vendor/engines/mercator_mpay24
-  specs:
-    mercator_mpay24 (0.1)
-      rails (~> 4.0)
-      savon (~> 2.0)
 
 PATH
   remote: vendor/gems/hobo_bootstrap
@@ -447,8 +410,6 @@ GEM
       nori (~> 2.4.0)
       uuid (~> 2.3.7)
       wasabi (~> 3.3.0)
-    saxerator (0.9.4)
-      nokogiri (>= 1.4.0)
     searchkick (0.8.3)
       activemodel
       elasticsearch (>= 1)
@@ -576,11 +537,6 @@ DEPENDENCIES
   jquery-ui-themes (~> 0.0.4)
   launchy (~> 2.3.0)
   less-rails
-  mercator_bechlem!
-  mercator_icecat!
-  mercator_legacy_importer!
-  mercator_mesonic!
-  mercator_mpay24!
   messengerjs-rails
   mysql2
   naught
