@@ -1,9 +1,7 @@
 # encoding: utf-8
-require 'open-uri'
 
 namespace :users do
-  # starten als: 'bundle exec rake users:create_defaults'
-  # in Produktivumgebungen: 'bundle exec rake users:create_defaults RAILS_ENV=production'
+  # starten als: 'bundle exec rake users:create_defaults RAILS_ENV=production'
   desc "Create default users"
   task :create_defaults => :environment do
     JobLogger.info("=" * 50)
