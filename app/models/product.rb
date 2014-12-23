@@ -207,10 +207,7 @@ class Product < ActiveRecord::Base
     @jobuser = User.find_by(surname: "Job User")
 
     Product.where(state: ["active", "new"]).each do |product|
-      unless product.inventories.any?
-        product.lifecycle.deactivate!(@jobuser) or
-        (( JobLogger.error("Product " + product.number + " could not be deactivated!") and debugger ))
-      end
+      product.lifecycle.deactivate!(@jobuser) unless product.inventories.any?
     end
   end
 

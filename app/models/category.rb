@@ -213,7 +213,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.auto
-    @auto = Category.where(name_de: "Importierte Artike").first
+    @auto = Category.where(name_de: "importiert").first
     @auto = create(
       name_de: "importiert",
       name_en: "imported",
