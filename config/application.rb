@@ -12,26 +12,11 @@ Bundler.require(:default, Rails.env)
 
 module Mercator
   class Application < Rails::Application
-    # Hobo: the content_manager subsite loads content_manager.css & content_manager.js
-    config.assets.precompile += %w(content_manager.css content_manager.js)
-    # Hobo: the contentmanager subsite loads contentmanager.css & contentmanager.js
-    config.assets.precompile += %w(contentmanager.css contentmanager.js)
-    # Hobo: the sales subsite loads sales.css & sales.js
-    config.assets.precompile += %w(sales.css sales.js)
-
     config.middleware.use I18n::JS::Middleware # Needed for I18n.js
     config.assets.initialize_on_precompile = true # Needed for I18n.js
 
     I18n.enforce_available_locales = true
     I18n.available_locales = [:en, :de]
-
-    # Hobo: the contracting subsite loads contracting.css & contracting.js
-    config.assets.precompile += %w(contracting.css contracting.js contracting2.css )
-    config.assets.precompile += %w(contentmanager/index.js contentmanager/property_manager.js)
-    # Hobo: the admin subsite loads admin.css & admin.js
-    config.assets.precompile += %w(admin.css front-pdf.css admin.js contracting2.js)
-    # Codemirror
-    config.assets.precompile += ["codemirror*", "codemirror/**/*"]
 
     config.generators do |g|
       g.test_framework :rspec, :fixtures => true
@@ -39,10 +24,7 @@ module Mercator
       g.fixture_replacement = :factory_girl_rails
     end
 
-    # Hobo: Named routes have changed in Hobo 2.0.   Set to false to emit both the 2.0 and 1.3 names.
     config.hobo.dont_emit_deprecated_routes = true
-    # Hobo: the front subsite loads front.css & front.js
-    config.assets.precompile += %w(front.css front.js)
 
     config.i18n.load_path += Dir[Rails.root.join('locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :de
