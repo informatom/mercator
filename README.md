@@ -14,6 +14,10 @@ First of: There are lots of dependencies as we aim to write as little code as po
 ```bash
 sudo apt-get install freetds-dev freetds-bin tdsodbc unixodbc unixodbc-dev
 ```
+* Imagemagick:
+```bash
+sudo apt-get install imagemagick
+```
 
 FIXME! Links, all below me
 FIXME! What is guided selling

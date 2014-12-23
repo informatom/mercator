@@ -173,7 +173,6 @@ class Product < ActiveRecord::Base
   end
 
   def property_hash
-    JobLogger.info("Product " + id.to_s + " reindexed.")
     Hash[values.select { |value| value.property.state == "filterable"}
                .map { |value| [value.property.name_de, value.display.rstrip] }]
   end
@@ -199,11 +198,8 @@ class Product < ActiveRecord::Base
                    description_de: description)
     @product.categorizations.new(category_id: @auto_category.id,
                                  position:    newposition)
-    if @product.save
-      ::JobLogger.info("Product " + @product.number + " saved in Auto Category.")
-    else
-      ::JobLogger.error("Product " + @product.number + " could not be saved in Auto Category!")
-    end
+    @product.save or
+    (( JobLogger.error("Product " + @product.number + " could not be saved in Auto Category!") ))
     return @product
   end
 
@@ -212,7 +208,8 @@ class Product < ActiveRecord::Base
 
     Product.where(state: ["active", "new"]).each do |product|
       unless product.inventories.any?
-        product.lifecycle.deactivate!(@jobuser) or JobLogger.error("Product " + product.number + " could not be deactivated!")
+        product.lifecycle.deactivate!(@jobuser) or
+        (( JobLogger.error("Product " + product.number + " could not be deactivated!") and debugger ))
       end
     end
   end
@@ -225,7 +222,10 @@ class Product < ActiveRecord::Base
       unless product.categorizations.any?
         position = @orphans.categorizations.maximum(:position) + 1 if @orphans.categorizations.any?
         product.categorizations.new(category_id: @orphans.id, position: position)
-        product.save or JobLogger.error("Product " + product.number + " could not be added to orphans. (" + index.to_s + "/" + amount.to_s + ")")
+        product.save or
+        ((JobLogger.error("Product " + product.number +
+                          " could not be added to orphans. (" + index.to_s +
+                          "/" + amount.to_s + ")")))
       end
     end
   end

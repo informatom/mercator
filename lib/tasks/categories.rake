@@ -47,7 +47,7 @@ namespace :categories do
     JobLogger.info("Started Job: categories:delete_childrenless")
     Category.all.each do |category|
       if category.children.empty? && category.products.empty?
-        JobLogger.info("Deleteting Catogory " + category.name) 
+        JobLogger.info("Deleteting Catogory " + category.name)
         category.delete
       end
     end

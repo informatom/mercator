@@ -7,6 +7,10 @@ namespace :users do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: categories:create_defaults")
 
+    # one liner for creating a password from the console:
+    # user = User.create(first_name: "Stefan", surname: "Haslinger", email_address: "stefan.haslinger@mittenin.at", administrator: true, password: "%PASSWORD%" , password_confirmation: %PASSWORD%, state: "active")
+
+
     unless User.find_by(surname: "Robot")
       User.create(first_name: "E-Mail",
                   surname: "Robot",
@@ -27,8 +31,7 @@ namespace :users do
       User.create(first_name: "Mercator",
                   surname: "Dummy Customer",
                   email_address: "dummy_customer@mercator.mittenin.at",
-                  photo: open("#{Rails.root}/materials/images/little-robot.png"),
-                  administrator: true)
+                  photo: open("#{Rails.root}/materials/images/little-robot.png"))
     end
 
     ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|

@@ -324,10 +324,7 @@ class Category < ActiveRecord::Base
         category.update(filtermin: 0,
                         filtermax: 1000)
       end
-
-      JobLogger.info("Reindexed Category: " + category.id.to_s)
     end
-
   end
 
   # this makes state editable from form
