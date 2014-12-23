@@ -9,7 +9,6 @@ app/assets/stylesheets/front/glypha.ttf
 
 config/hobo_routes.rb
 config/private_pub.yml
-config/database.yml
 config/delayed_job.sh
 
 log/*
