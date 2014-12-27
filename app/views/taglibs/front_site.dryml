@@ -9,6 +9,5 @@
 <include src="application"/>
 <include src="application/*"/>
 
-<include src="front/site"/>
-
 <include src="../../../vendor/customer/mpay24-tags"/>
+<include src="../../../vendor/customer/front-tags"/>
