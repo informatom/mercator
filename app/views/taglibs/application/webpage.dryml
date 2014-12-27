@@ -27,7 +27,18 @@
 
 <def tag="container" for="Webpage" attrs="name, size, including-photo" >
   <if test="&content_element = this.content_element(name)">
-    <%= raw(content_element.content) if content_element.content %>
+    <%= if content_element.content
+          case content_element.markup
+          when "html"
+            content_element.content.html_safe
+          when "textile"
+            RedCloth.new(content_element.content).to_html.html_safe
+          when "markdown"
+            markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+            markdown.render(content_element.content).html_safe
+          end
+        end
+    %>
     <if test="&including_photo">
       <img if="&size" src="&content_element.photo(size.to_sym)" />
       <img unless="&size" src="&content_element.photo" />

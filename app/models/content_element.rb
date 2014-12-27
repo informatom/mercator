@@ -1,7 +1,7 @@
 class ContentElement < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
-  MarkupType = HoboFields::Types::EnumString.for("html", "markdown")
+  MarkupType = HoboFields::Types::EnumString.for("html", "markdown", "textile")
 
   fields do
     name_de    :string, :unique, :required

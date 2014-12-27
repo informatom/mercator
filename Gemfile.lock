@@ -85,6 +85,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     actionmailer (4.0.12)
       actionpack (= 4.0.12)
       mail (~> 2.5, >= 2.5.4)
@@ -374,6 +375,7 @@ GEM
     rake (10.4.2)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    redcarpet (3.1.2)
     ref (1.0.5)
     referer-parser (0.3.0)
     request_store (1.1.0)
@@ -492,6 +494,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   active_model_serializers
   activerecord-sqlserver-adapter (~> 4.0)
   activeuuid (>= 0.5.0)
@@ -551,6 +554,7 @@ DEPENDENCIES
   rails (= 4.0.12)
   rails-dev-boost!
   rb-inotify (>= 0.8.8)
+  redcarpet
   roo
   rspec-rails (~> 2.14.0)
   rvm-capistrano

@@ -347,8 +347,9 @@ en:
             deactivate: Deactivate
             reactivate: Reactivate
       contentelement/markups:
-        html: "HTML Page"
-        markdown: "Markdown Page"
+        html: "HTML"
+        markdown: "Markdown"
+        textile: "Textile"
       contractitem:
         volume: Monthly Printing Volume
       conversation:
