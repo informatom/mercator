@@ -6,6 +6,6 @@ class OrderMailer < ActionMailer::Base
     @service_mail = Constant.find_by_key('service_mail').value
 
     mail(:to => order.user.email_address, :bcc => Constant.find_by_key('service_mail').value,
-         :subject => "Ivellio-Vellin: Bestellinfo")
+         :subject => Constant.find_by_key('order_corfirmation_mail_subject').value )
   end
 end

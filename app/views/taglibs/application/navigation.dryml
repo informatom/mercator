@@ -197,17 +197,6 @@
   </div>
 </def>
 
-
-<def tag="skype-and-tel">
-  Tel. 01 587 57 70
-  &nbsp; &nbsp;
-  <a href="skype:verkauf.ivellio?call">
-    Skype <photo name="skype" height="24px"/>
-  </a>
-  &nbsp; &nbsp;
-</def>
-
-
 <def tag="basket-info">
   <if test="&current_user.basket">
     <a with="&current_user.basket" class="basket">

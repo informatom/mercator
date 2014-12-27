@@ -3,7 +3,7 @@ class Constant < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    key   :string, :required, :unique
+    key   :string, :required, :unique, :name => true
     value :string
     timestamps
   end
