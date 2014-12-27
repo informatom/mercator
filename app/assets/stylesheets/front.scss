@@ -1,21 +1,7 @@
 /*
- * This is the stylesheet manifest file for the front subsite (which
- * is your whole application if you don't have any subsites).  Files
- * or plugins referenced from here or placed in the front/ directory
- * will be included.
- *
  *= require_self
- *= require hobo_rapid
- *= require hobo_jquery
- *= require jquery-ui
- *= require hobo_bootstrap
- *= require hobo_bootstrap_ui
- *= require front/bootstrap
- *= require front/bootstrap-theme
- *= require bootstrap-slider
  *= require messenger
  *= require messenger-spinner
  *= require messenger-theme-future
- *= require font-awesome
- *= require front/overrides
+ *= require customer
 */
