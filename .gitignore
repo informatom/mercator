@@ -26,3 +26,5 @@ vendor/xml/*
 vendor/bechlem/*
 vendor/customers/*
 vendor/customer
+
+Gemfile.lock

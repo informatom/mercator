@@ -14,7 +14,7 @@
   <% content_element ||= ContentElement.find_by(name_en: name) %>
 
   <if test="&content_element">
-    <view if="&content_element.content" with="&content_element.content" />
+    <%= raw(content_element.content) if content_element.content %>
     <if test="&including_photo">
       <img if="&size" src="&content_element.photo(size.to_sym)" />
       <img unless="&size" src="&content_element.photo" />
@@ -27,7 +27,7 @@
 
 <def tag="container" for="Webpage" attrs="name, size, including-photo" >
   <if test="&content_element = this.content_element(name)">
-    <view if="&content_element.content" with="&content_element.content" />
+    <%= raw(content_element.content) if content_element.content %>
     <if test="&including_photo">
       <img if="&size" src="&content_element.photo(size.to_sym)" />
       <img unless="&size" src="&content_element.photo" />

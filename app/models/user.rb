@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   hobo_user_model # Don't put anything above this
 
   Gender = HoboFields::Types::EnumString.for(:male, :female, :no_info)
+  EditorType = HoboFields::Types::EnumString.for("wysiwyg", "html")
 
   fields do
     gender           User::Gender
@@ -26,6 +27,7 @@ class User < ActiveRecord::Base
     erp_contact_nr   :string
     locale           :string
     call_priority    :integer
+    editor           EditorType
     timestamps
   end
 
@@ -36,7 +38,7 @@ class User < ActiveRecord::Base
                   :current_password, :administrator, :legacy_id, :sales, :sales_manager, :contentmanager,
                   :productmanager, :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
                   :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
-                  :order_id, :phone, :locale
+                  :order_id, :phone, :locale, :editor
 
   attr_accessor :confirmation, :type => :boolean
   attr_accessor :order_id, :type => :integer

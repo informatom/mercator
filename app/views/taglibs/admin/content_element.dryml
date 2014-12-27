@@ -5,6 +5,34 @@
       <folder-view:>
         <tree-select-one class="form-control"/>
       </folder-view:>
+
+      <content-de-view:>
+        <if test="&current_user.editor =='html'">
+          <%= text_area_tag("content_element[content_de]", this, options={id: "editor_de", class: "form-horizontal"}) %>
+          <script>
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor_de"), {
+              lineNumbers: true,
+              mode: "application/x-erb",
+              theme: "solarized"
+            });
+          </script>
+        </if>
+        <else><input /></else>
+      </content-de-view:>
+
+      <content-en-view:>
+        <if test="&current_user.editor =='html'">
+          <%= text_area_tag("content_element[content_en]", this, options={id: "editor_en"}) %>
+          <script>
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor_en"), {
+              lineNumbers: true,
+              mode: "application/x-erb",
+              theme: "solarized"
+            });
+          </script>
+        </if>
+        <else><input /></else>
+      </content-en-view:>
     </field-list:>
     <actions:>
       <submit label="#{ht 'content_element.actions.save', :default=>['Save']}"/> &nbsp;
