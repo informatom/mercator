@@ -3,6 +3,7 @@ class Gtc < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
+    markup     ContentElement::MarkupType
     title_de   :string, :required, :name
     title_en   :string, :required
     content_de :cktext, :required
@@ -10,7 +11,7 @@ class Gtc < ActiveRecord::Base
     version_of :date, :required
     timestamps
   end
-  attr_accessible :title_de, :title_en, :content_de, :content_en, :version_of
+  attr_accessible :title_de, :title_en, :content_de, :content_en, :version_of, :markup
   translates :title, :content
   has_paper_trail
 

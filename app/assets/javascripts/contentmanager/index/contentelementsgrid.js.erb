@@ -99,12 +99,16 @@ function contentelementsgrid() {
 
     onLoad: function(event) {
       event.onComplete = function () {
-        this.select(selected_content_element_id)
-        // onLoad is bit too early, according to the author, currently that's the way to go:
-        setTimeout(function() {
-          var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
-          w2ui.contentelementsgrid.scrollIntoView(index)
-        }, 100)
+        if (selected_content_element_id){
+          this.select(selected_content_element_id)
+          // onLoad is bit too early, according to the author, currently that's the way to go:
+          setTimeout(function() {
+            var index = w2ui.contentelementsgrid.get(selected_content_element_id, true)
+            w2ui.contentelementsgrid.scrollIntoView(index)
+            w2ui.contentelementsgrid.toolbar.enable('editContentElement')
+            w2ui.contentelementsgrid.toolbar.enable('deleteContentElement')
+          }, 100)
+        }
       }
     }
   })
