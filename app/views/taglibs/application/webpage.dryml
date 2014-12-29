@@ -9,40 +9,21 @@
   </h4>
 </def>
 
-<def tag="container" attrs="name, size, including-photo" polymorphic >
+<def tag="container" attrs="name, size" polymorphic >
   <% content_element = ContentElement.find_by(name_de: name) %>
   <% content_element ||= ContentElement.find_by(name_en: name) %>
 
   <if test="&content_element">
     <%= raw(content_element.content) if content_element.content %>
-    <if test="&including_photo">
-      <img if="&size" src="&content_element.photo(size.to_sym)" />
-      <img unless="&size" src="&content_element.photo" />
-    </if>
   </if>
   <else>
     <view with="<!--" /> <t key="mercator.messages.content_element.missing" /> <name/> <view with="-->"/>
   </else>
 </def>
 
-<def tag="container" for="Webpage" attrs="name, size, including-photo" >
+<def tag="container" for="Webpage" attrs="name, size" >
   <if test="&content_element = this.content_element(name)">
-    <%= if content_element.content
-          case content_element.markup
-          when "html"
-            content_element.content.html_safe
-          when "textile"
-            RedCloth.new(content_element.content).to_html.html_safe
-          when "markdown"
-            markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-            markdown.render(content_element.content).html_safe
-          end
-        end
-    %>
-    <if test="&including_photo">
-      <img if="&size" src="&content_element.photo(size.to_sym)" />
-      <img unless="&size" src="&content_element.photo" />
-    </if>
+    <%= content_element.parse %>
   </if>
   <else>
     <%= "<!--".html_safe %> <t key="mercator.messages.content_element.missing" /> <name/> <%= "-->".html_safe %>

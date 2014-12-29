@@ -74,4 +74,40 @@ class ContentElement < ActiveRecord::Base
   def photo_url
     photo.url
   end
+
+  def parse
+    return nil unless self.content
+
+    case self.markup
+    when "html"
+      html_content = self.content
+    when "textile"
+      html_content = RedCloth.new(self.content).to_html
+    when "markdown"
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+      html_content = markdown.render(self.content)
+    end
+
+    # Parsing images in...
+    html_fragment = Nokogiri::HTML.fragment(html_content)
+
+    photos = html_fragment.css "photo"
+    photos.each do |photo|
+
+      photo_content_element = ContentElement.find_by(name_de: photo['name'])
+      photo_content_element ||= ContentElement.find_by(name_en: photo['name'])
+
+      if photo_content_element
+        photo.name = 'img'
+        if photo['size']
+          photo['src'] = photo_content_element.photo(photo['size'].to_sym)
+          photo['size'] = nil
+        else
+          photo['src']= photo_content_element.photo
+        end
+      end
+    end
+
+    html_fragment.to_html.html_safe
+  end
 end
