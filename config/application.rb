@@ -64,5 +64,6 @@ module Mercator
 # Customer specific assets
     config.assets.paths << Rails.root.join("vendor", "customer", "stylesheets")
     config.assets.paths << Rails.root.join("vendor", "customer", "javascripts")
+    config.assets.paths << Rails.root.join("vendor", "customer", "images")
   end
 end
