@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
   after_filter :track_action
+  before_filter :miniprofiler
 
   def auto_log_in
     if current_user.guest?
@@ -104,6 +105,11 @@ class ApplicationController < ActionController::Base
     else
       return nil
     end
+  end
+
+  def miniprofiler
+    # enable this in a before_filter for profiling in production
+    Rack::MiniProfiler.authorize_request
   end
 
 protected
