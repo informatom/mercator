@@ -19,14 +19,9 @@ Mercator::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  Rails.application.config.assets.precompile += [
-    'front.css, front.js',
-    'admin.css', 'admin.js',
-    'contentmanager.css', 'contentmanager.js',
-    'contracting.css', 'contracting.js',
-    'productmanager.css', 'productmanager.js',
-    'sales.css', 'sales.js'
-  ]
+  Rails.application.config.assets.precompile += [ 'admin.css', 'admin.js', 'contentmanager.css',
+    'contentmanager.js', 'contracting.css', 'contracting.js', 'front.css', 'front.js',
+    'productmanager.css', 'productmanager.js', 'sales.css', 'sales.js' ]
 
   ActionMailer::Base.smtp_settings = {
     :domain => CONFIG[:smtp_domain],
