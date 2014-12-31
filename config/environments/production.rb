@@ -9,7 +9,7 @@ Mercator::Application.configure do
 
   config.serve_static_assets = false
   config.assets.compress = true
-  config.assets.compile = true
+  config.assets.compile = false
   config.assets.digest = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
