@@ -1,6 +1,6 @@
 $(function () {
   if (I18n.locale == "de") {
-    w2utils.locale('/assets/contentmanager/de-de.json')
+    w2utils.locale(<%= ActionController::Base.helpers.asset_path('contentmanager/de-de.json') %>)
   }
   w2utils.settings.groupSymbol = ""
 
