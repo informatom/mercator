@@ -56,6 +56,7 @@ module Mercator
     WillPaginate.per_page = 20
 
     Ahoy.track_visits_immediately = true   # User tracking
+    Ahoy.geocode = false  # sync Geacoding is way too slow
 
 # Customer specific assets
     config.assets.paths << Rails.root.join("vendor", "customer", "assets", "images").to_s
