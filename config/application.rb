@@ -14,7 +14,7 @@ module Mercator
   class Application < Rails::Application
     config.middleware.use I18n::JS::Middleware # Needed for I18n.js
     config.assets.initialize_on_precompile = true # Needed for I18n.js
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf|png|jpg|gif|jpeg)\z/
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf|png|jpg|gif|jpeg|json)\z/
 
     I18n.enforce_available_locales = true
     I18n.available_locales = [:en, :de]
