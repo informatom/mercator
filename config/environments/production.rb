@@ -18,7 +18,8 @@ Mercator::Application.configure do
 
   Rails.application.config.assets.precompile += [ 'admin.css', 'admin.js', 'contentmanager.css',
     'contentmanager.js', 'contracting.css', 'contracting.js', 'front.css', 'front.js',
-    'productmanager.css', 'productmanager.js', 'sales.css', 'sales.js' ]
+    'productmanager.css', 'productmanager.js', 'sales.css', 'sales.js',
+    'index.js', 'i18n.js', 'cm.js', 'pm.js'  ]
 
   ActionMailer::Base.smtp_settings = {
     :domain => CONFIG[:smtp_domain],
