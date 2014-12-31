@@ -1,7 +1,5 @@
 Mercator::Application.configure do
   config.cache_classes = true
-
-# HAS: 20131219 according to deprecation warning on update to Rails 4
   config.eager_load = true
 
   config.consider_all_requests_local       = false
@@ -16,7 +14,6 @@ Mercator::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
-  # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
   Rails.application.config.assets.precompile += [ 'admin.css', 'admin.js', 'contentmanager.css',
@@ -31,6 +28,7 @@ Mercator::Application.configure do
   config.ember.variant = :production
 
   config.middleware.use ExceptionNotification::Rack,
-  :email => { :email_prefix => "[MERCATOR - " + CONFIG[:system_name] + "] ", :sender_address => %{"notifier" <error@mercator.informatom.com>},
-              :exception_recipients => CONFIG[:exception_notification]}
+  :email => { :email_prefix => "[MERCATOR - " + CONFIG[:system_name] + "] ",
+              :sender_address => %{"notifier" <error@mercator.informatom.com>},
+              :exception_recipients => CONFIG[:exception_notification] }
 end

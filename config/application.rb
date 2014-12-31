@@ -29,19 +29,15 @@ module Mercator
     config.i18n.load_path += Dir[Rails.root.join('locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :de
     config.encoding = "utf-8"
+
     config.filter_parameters += [:password]
     config.active_support.escape_html_entities_in_json = true
     config.active_record.whitelist_attributes = true
     config.assets.version = '1.0'
 
     config.generators do |generator|
-      generator.test_framework :rspec,
-      fixtures: true,
-      view_specs: false,
-      helper_specs: false,
-      routing_specs: false,
-      controller_specs: true,
-      request_specs: false
+      generator.test_framework :rspec, fixtures: true, view_specs: false, helper_specs: false,
+      routing_specs: false, controller_specs: true, request_specs: false
       generator.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
@@ -58,12 +54,9 @@ module Mercator
 
     WillPaginate.per_page = 20
 
-# Ahoy user tracking
-    Ahoy.track_visits_immediately = true
+    Ahoy.track_visits_immediately = true   # User tracking
 
 # Customer specific assets
-    config.assets.paths << Rails.root.join("vendor", "customer", "stylesheets")
-    config.assets.paths << Rails.root.join("vendor", "customer", "javascripts")
-    config.assets.paths << Rails.root.join("vendor", "customer", "images")
+    config.assets.paths << Rails.root.join("vendor", "customer", "assets")
   end
 end
