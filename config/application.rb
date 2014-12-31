@@ -57,6 +57,8 @@ module Mercator
     Ahoy.track_visits_immediately = true   # User tracking
 
 # Customer specific assets
-    config.assets.paths << Rails.root.join("vendor", "customer", "assets")
+    config.assets.paths << Rails.root.join("vendor", "customer", "assets", "images")
+    config.assets.paths << Rails.root.join("vendor", "customer", "assets", "javascripts")
+    config.assets.paths << Rails.root.join("vendor", "customer", "assets", "stylesheets")
   end
 end
