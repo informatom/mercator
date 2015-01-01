@@ -222,6 +222,9 @@ de:
         other: Rechnungsadresse
         actions:
           index: Rechnungsadresse bearbeiten
+        blogpost:
+          one: Blogpost
+          other: Blogposts
       categorization:
         one: Kategorisierung
         other: Kategorisierungen

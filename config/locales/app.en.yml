@@ -215,6 +215,9 @@ en:
         other: Billing Addresses
         actions:
           index: Edit Billing Address
+      blogpost:
+        one: Blog Post
+        other: Blog Posts
       categorization:
         one: Categorization
         other: Categorizations
