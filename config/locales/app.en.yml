@@ -290,6 +290,9 @@ en:
       page_template:
         one: Page Template
         other: Page Templates
+      post_category:
+        one: Topic
+        other: Topics
       price:
         one: Price
         other: Prices

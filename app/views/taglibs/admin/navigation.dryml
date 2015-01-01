@@ -94,6 +94,15 @@
         <nav-item with="&PageTemplate">
           <ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Blogpost">
+          <ht key="blogpost.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&PostCategory">
+          <ht key="post_category.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Comment">
+          <ht key="comment.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
       </ul>
     </li>
 

@@ -222,9 +222,12 @@ de:
         other: Rechnungsadresse
         actions:
           index: Rechnungsadresse bearbeiten
-        blogpost:
-          one: Blogpost
-          other: Blogposts
+      blogpost:
+        one: Blogpost
+        other: Blogposts
+      post_category:
+        one: Thema
+        other: Themen
       categorization:
         one: Kategorisierung
         other: Kategorisierungen
@@ -232,7 +235,7 @@ de:
         one: Kategorie
         other: Kategorien
       comment:
-        one: Koemmentar
+        one: Kommentar
         other: Kommentare
       constant:
         one: Konstante

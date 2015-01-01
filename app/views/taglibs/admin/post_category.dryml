@@ -1,0 +1,13 @@
+<extend tag="form" for="PostCategory">
+  <old-form merge>
+    <field-list: fields='name_de, name_en, parent-id'>
+      <parent-id-view:>
+        <tree-select-one same-model include-none class="form-control"/>
+      </parent-id-view:>
+    </field-list:>
+    <actions:>
+      <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel" />
+    </actions:>
+
+  </old-form>
+</extend>

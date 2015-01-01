@@ -2,7 +2,7 @@ class Blogpost < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title_de        :string
+    title_de        :string, :required
     title_en        :string
     publishing_date :date
     timestamps
@@ -13,6 +13,8 @@ class Blogpost < ActiveRecord::Base
   translates :title
   has_paper_trail
   belongs_to :content_element
+  belongs_to :category
+  validates_presence_of :category
 
   acts_as_taggable_on :blogtags
 
@@ -34,5 +36,11 @@ class Blogpost < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+  # --- Instance methods --- #
+
+  def name
+    self.title
   end
 end
