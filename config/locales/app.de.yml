@@ -231,6 +231,9 @@ de:
       category:
         one: Kategorie
         other: Kategorien
+      comment:
+        one: Koemmentar
+        other: Kommentare
       constant:
         one: Konstante
         other: Konstanten
