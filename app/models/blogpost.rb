@@ -7,16 +7,19 @@ class Blogpost < ActiveRecord::Base
     publishing_date :date
     timestamps
   end
-  attr_accessible :title_de, :title_en, :publishing_date
+  attr_accessible :title_de, :title_en, :publishing_date, :blogtag_list, :content_element,
+                  :content_element_id
 
   translates :title
   has_paper_trail
   belongs_to :content_element
 
+  acts_as_taggable_on :blogtags
+
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?    acting_user.administrator? ||
+    acting_user.administrator? ||
     acting_user.contentmanager?  end
 
   def update_permitted?
