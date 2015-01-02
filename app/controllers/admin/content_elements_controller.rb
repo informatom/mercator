@@ -30,6 +30,7 @@ class Admin::ContentElementsController < Admin::AdminSiteController
   def create
     hobo_create(redirect: contentmanager_front_path) do
       session[:selected_content_element_id] = this.id
+      session[:selected_folder_id] = this.folder.id
     end
   end
 

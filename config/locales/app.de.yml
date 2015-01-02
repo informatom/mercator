@@ -632,6 +632,8 @@ de:
       conversation:
         no_frames: "Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie können die eingebettete Seite über den folgenden Verweis aufrufen"
         started: Eine neue Konversation wurde gestartet!
+      document:
+        missing: Hier fehlt das Dokument
       lineitem:
         delete:
           success: "Die Bestellposition wurde gelöscht."

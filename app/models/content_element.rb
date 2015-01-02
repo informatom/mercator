@@ -108,6 +108,19 @@ class ContentElement < ActiveRecord::Base
       end
     end
 
+    documents = html_fragment.css "document"
+    documents.each do |document|
+
+      document_content_element = ContentElement.find_by(name_de: document['name'])
+      document_content_element ||= ContentElement.find_by(name_en: document['name'])
+
+      if document_content_element
+        document.name = 'a'
+        document['href']= document_content_element.document.url
+        document.content= document_content_element.document_file_name
+      end
+    end
+
     html_fragment.to_html.html_safe
   end
 end

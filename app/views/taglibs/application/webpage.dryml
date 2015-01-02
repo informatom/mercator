@@ -17,7 +17,10 @@
     <%= raw(content_element.content) if content_element.content %>
   </if>
   <else>
-    <view with="<!--" /> <t key="mercator.messages.content_element.missing" /> <name/> <view with="-->"/>
+    <view with="<!--" />
+    <t key="mercator.messages.content_element.missing" />
+    <name/>
+    <view with="-->"/>
   </else>
 </def>
 
@@ -26,20 +29,26 @@
     <%= content_element.parse %>
   </if>
   <else>
-    <%= "<!--".html_safe %> <t key="mercator.messages.content_element.missing" /> <name/> <%= "-->".html_safe %>
+    <%= "<!--".html_safe %>
+    <t key="mercator.messages.content_element.missing" />
+    <name/>
+    <%= "-->".html_safe %>
   </else>
 </def>
 
 <def tag="photo" attrs="name, size" polymorphic>
-  <% content_element = ContentElement.find_by(name_de: name) %>
-  <% content_element ||= ContentElement.find_by(name_en: name) %>
+  <% content_element = ContentElement.find_by(name_de: name)
+     content_element ||= ContentElement.find_by(name_en: name) %>
 
   <if test="&content_element">
     <img if="&size" src="&content_element.photo(size.to_sym)" merge-attrs/>
-    <img nless="&size" src="&content_element.photo" merge-attrs/>
+    <img unless="&size" src="&content_element.photo" merge-attrs/>
   </if>
   <else>
-    <view with="<!--" /> <t key="mercator.messages.photo.missing" /> <name/> <view with="-->"/>
+    <view with="<!--" />
+    <t key="mercator.messages.photo.missing" />
+    <name/>
+    <view with="-->"/>
   </else>
 </def>
 
@@ -50,6 +59,41 @@
     <img unless="&size" src="&content_element.photo" merge-attrs/>
   </if>
   <else>
-    <view with="<!--" /> <t key="mercator.messages.photo.missing" /> <name/> <view with="-->"/>
+    <view with="<!--" />
+    <t key="mercator.messages.photo.missing" />
+    <name/>
+    <view with="-->"/>
+  </else>
+</def>
+
+
+<def tag="document" attrs="name" polymorphic>
+  <% content_element = ContentElement.find_by(name_de: name)
+     content_element ||= ContentElement.find_by(name_en: name) %>
+
+  <if test="&content_element">
+    <a href="&content_element.document.url" merge-attrs>
+      <%= content_element.document_file_name %>
+    </a>
+  </if>
+  <else>
+    <view with="<!--" />
+    <t key="mercator.messages.document.missing" />
+    <name/>
+    <view with="-->"/>
+  </else>
+</def>
+
+<def tag="document" for="Webpage" attrs="name" >
+  <if test="&content_element = this.content_element(name)">
+    <a href="&content_element.document.url" merge-attrs>
+      <%= content_element.document_file_name %>
+    </a>
+  </if>
+  <else>
+    <view with="<!--" />
+    <t key="mercator.messages.photo.missing" />
+    <name/>
+    <view with="-->"/>
   </else>
 </def>

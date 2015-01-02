@@ -625,6 +625,8 @@ en:
       conversation:
         no_frames: "Unfortunately, your browser cannot display embedded frames. You can visit the site by clicking the following link:"
         started: A new conversation was started!
+      document:
+        missing: "The document is missing: "
       lineitem:
         delete:
           success: The order position was deleted.
