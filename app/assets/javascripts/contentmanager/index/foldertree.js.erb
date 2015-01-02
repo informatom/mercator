@@ -73,12 +73,12 @@ function foldertree() {
   })
 }
 
-function loadGridAndGallery(content_element_id, set_element) {
-  w2ui.contentelementsgrid.load('/contentmanager/front/show_content_elements/' + content_element_id)
-
+function loadGridAndGallery(folder_id, set_element) {
+  w2ui.contentelementsgrid.load('/contentmanager/front/show_content_elements/' + folder_id)
+  selected_folder_id = folder_id
   w2ui.contentmanager.lock('bottom', w2utils.lang('Refreshing...'), true)
   $.ajax({
-    url: "/contentmanager/front/get_thumbnails/" + content_element_id,
+    url: "/contentmanager/front/get_thumbnails/" + folder_id,
     context: document.body
   }).done(function(response) {
     $("#gallery").html(response)

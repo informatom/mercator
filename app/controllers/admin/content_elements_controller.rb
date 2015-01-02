@@ -19,16 +19,24 @@ class Admin::ContentElementsController < Admin::AdminSiteController
     hobo_index
   end
 
-  def update
-    hobo_update(redirect: contentmanager_front_path) do
-      session[:selected_content_element_id] = this.id
-      session[:selected_folder_id] = this.folder.id
+  def new
+    if params[:folder]
+      self.this = ContentElement.new()
+      self.this.folder_id = params[:folder]
     end
+    hobo_new
   end
 
   def create
     hobo_create(redirect: contentmanager_front_path) do
       session[:selected_content_element_id] = this.id
+    end
+  end
+
+  def update
+    hobo_update(redirect: contentmanager_front_path) do
+      session[:selected_content_element_id] = this.id
+      session[:selected_folder_id] = this.folder.id
     end
   end
 

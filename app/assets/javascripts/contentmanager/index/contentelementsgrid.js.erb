@@ -18,7 +18,11 @@ function contentelementsgrid() {
         var selection = w2ui.contentelementsgrid.getSelection()
         switch (target) {
         case 'newContentElement':
-          document.location = "/admin/content_elements/new"
+          if (selected_folder_id) {
+            document.location = "/admin/content_elements/new?folder=" + selected_folder_id
+          } else {
+            document.location = "/admin/content_elements/new"
+          }
         break
         case 'editContentElement':
           document.location = "/admin/content_elements/" + selection[0] + "/edit"
