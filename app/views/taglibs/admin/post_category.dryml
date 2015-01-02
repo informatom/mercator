@@ -5,9 +5,5 @@
         <tree-select-one same-model include-none class="form-control"/>
       </parent-id-view:>
     </field-list:>
-    <actions:>
-      <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel" />
-    </actions:>
-
   </old-form>
 </extend>

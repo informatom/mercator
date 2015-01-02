@@ -1,6 +1,6 @@
 <extend tag="form" for="PageTemplate">
   <old-form merge>
-    <field-list fields="name, dryml, content, placeholder-list">
+    <field-list: fields="name, dryml, content, placeholder-list">
       <content-view:>
         <input id="editor" />
         <script>
@@ -11,10 +11,7 @@
           });
         </script>
       </content-view:>
-    </field-list>
-    <div param="actions">
-      <submit label="#{ht 'page_template.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
+    </field-list:>
   </old-form>
 </extend>
 

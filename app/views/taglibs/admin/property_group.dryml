@@ -1,6 +1,6 @@
 <extend tag="show-page" for="PropertyGroup">
   <old-show-page merge>
-    <append-content-body: >
+    <append-content-body:>
       <div class="form-horizontal">
         <section param="collection-section" merge>
           <h3 param="collection-heading">
@@ -11,7 +11,7 @@
           <sortable-collection:properties param/>
         </section>
       </div>
-    </append-content-body: >
+    </append-content-body:>
 
   </old-show-page>
 </extend>

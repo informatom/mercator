@@ -24,6 +24,7 @@ de:
     billing_title: Titel (Rechnung)
     BillingAddress: Rechnungsadresse
     billing_addresses: Rechnungsadressen
+    blogtag_list: Tags
     Category: Kategorie
     category: Kategorie
     categories: Kategorien
@@ -123,6 +124,7 @@ de:
     placeholder_list: Liste der Platzhalter
     position: Reihung
     postalcode: Postleitzahl
+    post_category: Thema
     Price: Preis
     prices: Preise
     Product: Artikel
@@ -141,6 +143,7 @@ de:
     property_group: Eigenschaftsgruppe
     property_groups: Eigenschaftsgruppen
     provision_code: Provisionscode
+    publishing_date: Datum der Veröffentlichung
     recommendations: Empfehlungen
     recommended_product: empfohlenes Produkt
     recommended_products: empfohlene Produkte

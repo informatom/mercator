@@ -1,10 +1,9 @@
 <extend tag="form" for="Blogpost">
   <old-form merge>
-    <field-list fields="title_de, title_en, publishing_date, content_element, blogtag-list">
-    </field-list>
-    <div param="actions">
-      <submit label="#{ht 'blogpost.actions.save', :default=>['Save']}" param/>
-      <or-cancel param="cancel"/>
-    </div>
+    <field-list: fields="title_de, title_en, post_category, publishing_date, content_element, blogtag_list">
+      <post-category-view:>
+        <tree-select-one class="form-control"/>
+      </post-category-view:>
+    </field-list:>
   </old-form>
 </extend>

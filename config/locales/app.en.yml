@@ -20,6 +20,7 @@ en:
     billing_street: Billing Street
     BillingAddress: Billing Address
     billing_addresses: Billing Addresses
+    blogtag_list: Tags
     Category: Category
     category: Category
     categories: Categories
@@ -119,6 +120,7 @@ en:
     placeholder_list: Placeholder List
     position: Position
     postalcode: Postal Code
+    post_category: Thema
     Price: Price
     prices: Prices
     Product: Product
@@ -137,6 +139,7 @@ en:
     property_group: Property Group
     property_groups: Property Groups
     provision_code: Provision Code
+    publishing_date: Publishing Date
     recommendations: Recommendations
     recommended_product: Recommended Product
     recommended_products: Recommended Products

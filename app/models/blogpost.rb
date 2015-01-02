@@ -8,13 +8,13 @@ class Blogpost < ActiveRecord::Base
     timestamps
   end
   attr_accessible :title_de, :title_en, :publishing_date, :blogtag_list, :content_element,
-                  :content_element_id
+                  :content_element_id, :post_category, :post_category_id
 
   translates :title
   has_paper_trail
   belongs_to :content_element
-  belongs_to :category
-  validates_presence_of :category
+  belongs_to :post_category
+  validates_presence_of :post_category
 
   acts_as_taggable_on :blogtags
 
