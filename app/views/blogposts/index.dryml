@@ -5,7 +5,7 @@
 
   <content:>
     <repeat>
-      <title>
-    <repeat/>
+      <view:title />
+    </repeat>
   </content>
 </page>
