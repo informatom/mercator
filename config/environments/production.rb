@@ -9,7 +9,6 @@ Mercator::Application.configure do
   config.assets.compress = true
   config.assets.compile = false
   config.assets.digest = true
-  config.assets.css_compressor = :sass
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
