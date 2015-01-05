@@ -449,6 +449,7 @@ GEM
     tiny_tds (0.6.2)
     traco (3.1.5)
       activerecord (>= 3.0)
+    truncate_html (0.9.3)
     try_to (1.0)
     turbolinks (2.5.1)
       coffee-rails
@@ -546,6 +547,7 @@ DEPENDENCIES
   therubyracer
   tiny_tds
   traco
+  truncate_html
   try_to
   turbolinks
   valvat

@@ -12,8 +12,11 @@ class Blogpost < ActiveRecord::Base
 
   translates :title
   has_paper_trail
+
   belongs_to :content_element
   belongs_to :post_category
+  has_many :comments
+
   validates_presence_of :post_category
 
   acts_as_taggable_on :blogtags
