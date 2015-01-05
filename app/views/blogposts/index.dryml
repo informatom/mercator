@@ -4,42 +4,67 @@
   </title:>
 
   <content:>
-    <div id="posts" class="small-thumbs">
-      <repeat>
-        <div class="entry clearfix">
-          <if test="&this.content_element.photo">
-            <div class="entry-image">
-              <a href="&this.content_element.photo" data-lightbox="image">
-                <img class="image_fade" src="&this.content_element.photo(:medium)" alt="&this.content_element.photo_file_name" /></a>
-            </div>
-          </if>
+    <div class="postcontent nobottommargin clearfix">
+      <div id="posts" class="small-thumbs">
+        <repeat>
+          <div class="entry clearfix">
+            <if test="&this.content_element.photo">
+              <div class="entry-image">
+                <a href="&this.content_element.photo" data-lightbox="image">
+                  <img class="image_fade" src="&this.content_element.photo(:medium)" alt="&this.content_element.photo_file_name" /></a>
+              </div>
+            </if>
 
-          <div class="entry-c">
-            <div class="entry-title">
-                <h2><a href="blog-single.html"><view:title /></a></h2>
-            </div>
+            <div class="entry-c">
+              <div class="entry-title">
+                  <h2><a href="blog-single.html"><view:title /></a></h2>
+              </div>
 
-            <ul class="entry-meta clearfix">
-                <li><i class="icon-calendar3"></i> <view with="&l(this.publishing_date, format: :long)"/></li>
-                <!-- <li><a href="&blogpost_path(this, user: )"><i class="icon-user"></i> admin</a></li> -->
-                <li><i class="icon-folder-open"></i> <a href="&blogposts_path(category: this.post_category.id)"><view with="&this.post_category.name"/></a></li>
-                <li><i class="icon-tag"></i>
-                  <repeat with="&this.blogtag_list" join=" - " >
-                    <a href="&blogposts_path(tag: this)"><view/></a>
-                  </repeat>
-                </li>
-                <li><a href="&blogpost_path(this) + '#comments'"><i class="icon-comments"></i> <%= this.comments.count %> <t key="activerecord.models.comment.other" /></a></li>
-                <li><a href="#"><i class="icon-font"></i></a></li>
-            </ul>
+              <ul class="entry-meta clearfix">
+                  <li>
+                    <i class="icon-calendar3"></i>
+                    <view with="&l(this.publishing_date, format: :long)"/>
+                  </li>
+                  <li>
+                    <i class="icon-folder-open"></i>
+                    <a href="&blogposts_path(post_category_id: this.post_category.id)">
+                      <view with="&this.post_category.name"/>
+                    </a>
+                  </li>
+                  <li><i class="icon-tag"></i>
+                    <repeat with="&this.blogtag_list" join=" - " >
+                      <a href="&blogposts_path(tag: this)"><view/></a>
+                    </repeat>
+                  </li>
+                  <li>
+                    <a href="&blogpost_path(this) + '#comments'">
+                      <i class="icon-comments"></i>
+                      <%= this.comments.count %>
+                      <t key="activerecord.models.comment.other" />
+                    </a>
+                  </li>
+                  <li><a href="#"><i class="icon-font"></i></a></li>
+              </ul>
 
-            <!-- Post Content -->
-            <div class="entry-content">
-              <view: with="&truncate_html(this.content_element.parse, :length => 750)"/>
-              <a href="&blogpost_path(this)" class="more-link"><t key="mercator.read_more" /> →</a>
+              <!-- Post Content -->
+              <div class="entry-content">
+                <view: with="&truncate_html(this.content_element.parse, :length => 750)"/>
+                <a href="&blogpost_path(this)" class="more-link"><t key="mercator.read_more" /> →</a>
+              </div>
             </div>
           </div>
-        </div>
-      </repeat>
+        </repeat>
+
+        <page-nav inner-window="2" outer-window="0" />
+      </div>
+    </div>
+
+    <div class="sidebar nobottommargin col_last clearfix">
+      <div class="sidebar-widgets-wrap">
+        <post-category-widget />
+        <tag-cloud-widget />
+        <archive-widget />
+      </div>
     </div>
   </content>
 </page>

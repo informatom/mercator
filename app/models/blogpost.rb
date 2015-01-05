@@ -10,6 +10,8 @@ class Blogpost < ActiveRecord::Base
   attr_accessible :title_de, :title_en, :publishing_date, :blogtag_list, :content_element,
                   :content_element_id, :post_category, :post_category_id
 
+  self.per_page = 8 # Anzahl Seiteneinträge will_paginate
+
   translates :title
   has_paper_trail
 

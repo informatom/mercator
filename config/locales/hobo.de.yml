@@ -89,8 +89,8 @@ de:
     actions:
       new: "%{model} anlegen"
       create: "%{model} erzeugen"
-      previous: "Voriges"
-      next: "Nächstes"
+      previous: "← Zurück"
+      next: "Weiter →"
       add: "Hinzufügen"
       show_all: "Alle anzeigen: %{model}"
       delete: "%{model} löschen"
