@@ -13,11 +13,6 @@ class BlogpostsController < ApplicationController
       in_month = params[:month].to_datetime..(params[:month].to_datetime + 1.month)
       self.this = self.this.where(publishing_date: in_month)
     end
-
-    @recent_comments = Comment.order("created_at DESC").limit(5)
-#    @histogram = Tag.to_histogram
-#    @blogpost_months = Blogpost.select("updated_at").all.group_by { |b| b.updated_at.beginning_of_month }
-
     hobo_index
   end
 end

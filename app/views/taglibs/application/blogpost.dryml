@@ -9,7 +9,7 @@
   <ul>
     <repeat>
       <li>
-        <a href="&blogposts_path(post_category_id: this.id)"><view no-wrapper/></a>
+        <a href="&blogposts_path(post_category_id: this.id)"><view:name no-wrapper/></a>
         <post-category-tree if="&this.children" with="&this.children"/>
       </li>
     </repeat>
