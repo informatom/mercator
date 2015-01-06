@@ -1,0 +1,44 @@
+<page>
+  <title:>
+    <h1><t key="activerecord.models.comment.actions.new"/></h1>
+  </title:>
+
+  <content:>
+    <div class="postcontent nobottommargin clearfix">
+      <div class="single-post bottommargin">
+        <flash-messages />
+
+        <if test="&@parent">
+          <card with="&@parent"/>
+        </if>
+        <else>
+           <card if="&@blogpost" with="&@blogpost" title/>
+           <card if="&@podcast" with="&@podcast"/>
+        </else>
+      </div>
+
+      <div id="respond" class="clearfix">
+        <h3><t key="activerecord.models.comment.one"/></h3>
+
+        <form with="&@comment">
+          <error-messages/>
+          <field-list fields="content">
+            <content-view:>
+              <input class="form-control" rows="15" />
+            </content-view:>
+          </field-list>
+
+          <submit label="#{ht 'comment.actions.save'}" class="button button-3d nomargin"/>
+        </form>
+      </div>
+
+      <div class="divider divider-short divider-center">
+        <i class="icon-crop"></i>
+      </div>
+
+      <a href="/blogposts" class="more-link">← <t key="mercator.back"/></a>
+    </div>
+
+    <blog-sidebar/>
+  </content>
+</page>

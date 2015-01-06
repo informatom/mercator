@@ -1,0 +1,27 @@
+<page>
+  <title:>
+    <h1><view:title no-wrapper/></h1>
+  </title:>
+
+  <content:>
+    <div class="postcontent nobottommargin clearfix">
+      <div class="single-post nobottommargin">
+        <card/>
+
+        <div class="tagcloud clearfix bottommargin">
+          <h4> <t key="attributes.blogtag_list" /></h4>
+
+          <repeat with="&this.blogtag_list">
+            <a href="&blogposts_path(tag: this)"><view/></a>
+          </repeat>
+        </div>
+
+        <comments-widget/>
+
+        <a href="/blogposts" class="more-link">← <t key="mercator.back"/></a>
+      </div>
+    </div>
+
+    <blog-sidebar/>
+  </content>
+</page>

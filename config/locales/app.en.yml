@@ -230,6 +230,8 @@ en:
       comment:
         one: Comment
         other: Comments
+        actions:
+          new: Create Comment
       constant:
         one: Constant
         other: Constants

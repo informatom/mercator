@@ -1,0 +1,10 @@
+<def tag="tag-cloud-widget">
+  <div class="widget widget_tag_cloud">
+    <h4> <t key="attributes.blogtag_list" /></h4>
+
+    <% tag_cloud(Blogpost.tag_counts_on(:blogtags), %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
+
+      <%= link_to tag.name, blogposts_path(tag: tag.name), :class => css_class %>
+    <% end %>
+  </div>
+</def>

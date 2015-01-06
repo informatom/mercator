@@ -240,6 +240,8 @@ de:
       comment:
         one: Kommentar
         other: Kommentare
+        actions:
+          new: Kommentar erstellen
       constant:
         one: Konstante
         other: Konstanten

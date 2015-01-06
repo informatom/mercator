@@ -60,7 +60,7 @@ class Product < ActiveRecord::Base
   has_many :supplies, :through => :supplyrelations
   has_many :supplyrelations, :inverse_of => :product, dependent: :destroy, :accessible => true
 
-  has_many :inventories, dependent: :restrict_with_exception, :inverse_of => :product
+  has_many :inventories, dependent: :restrict_with_error, :inverse_of => :product
   has_many :prices, :through => :inventories
 
   has_many :features, :inverse_of => :product

@@ -97,3 +97,18 @@
     <view with="-->"/>
   </else>
 </def>
+
+<def tag="flash-messages">
+  <if test="&alert">
+    <div class="alert alert-danger nobottommargin">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <i class="icon-remove-sign"></i><view: with="&alert" no-wrapper/>
+    </div>
+  </if>
+  <if test="&notice">
+    <div class="alert alert-info nobottommargin">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <i class="icon-remove-sign"></i><view: with="&notice" no-wrapper/>
+    </div>
+  </if>
+</def>

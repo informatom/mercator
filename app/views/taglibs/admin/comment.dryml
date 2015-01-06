@@ -1,5 +1,5 @@
 <extend tag="form" for="Comment">
   <old-form merge>
-    <field-list: fields="content, blogpost"/>
+    <field-list: fields="content, blogpost, user"/>
   </old-form>
 </extend>

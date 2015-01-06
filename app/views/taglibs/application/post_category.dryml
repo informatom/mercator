@@ -1,0 +1,18 @@
+<def tag="post-category-widget">
+  <div class="widget widget_links clearfix">
+    <h4> <t key="activerecord.models.post_category.other"/> </h4>
+    <post-category-tree with="&PostCategory.roots" />
+  </div>
+</def>
+
+<def tag="post-category-tree">
+  <ul>
+    <repeat>
+      <li>
+        <a href="&blogposts_path(post_category_id: this.id)"><view:name no-wrapper/></a>
+        <post-category-tree if="&this.children" with="&this.children"/>
+      </li>
+    </repeat>
+  </ul>
+</def>
+

@@ -3,11 +3,11 @@ class Comment < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    content :text
-    ancestry   :string, :index => true
+    content  :text
+    ancestry :string, :index => true
     timestamps
   end
-  attr_accessible :content, :ancestry, :blogpost, :blogpost_id
+  attr_accessible :content, :ancestry, :blogpost, :blogpost_id, :user_id, :user
 
   has_ancestry orphan_strategy: :adopt
   has_paper_trail

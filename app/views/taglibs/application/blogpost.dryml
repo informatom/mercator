@@ -1,29 +1,10 @@
-<def tag="post-category-widget">
-  <div class="widget widget_links clearfix">
-    <h4> <t key="activerecord.models.post_category.other"/> </h4>
-    <post-category-tree with="&PostCategory.roots" />
-  </div>
-</def>
-
-<def tag="post-category-tree">
-  <ul>
-    <repeat>
-      <li>
-        <a href="&blogposts_path(post_category_id: this.id)"><view:name no-wrapper/></a>
-        <post-category-tree if="&this.children" with="&this.children"/>
-      </li>
-    </repeat>
-  </ul>
-</def>
-
-<def tag="tag-cloud-widget">
-  <div class="widget widget_tag_cloud">
-    <h4> <t key="attributes.blogtag_list" /></h4>
-
-    <% tag_cloud(Blogpost.tag_counts_on(:blogtags), %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
-
-      <%= link_to tag.name, blogposts_path(tag: tag.name), :class => css_class %>
-    <% end %>
+<def tag="blog-sidebar">
+  <div class="sidebar nobottommargin col_last clearfix">
+    <div class="sidebar-widgets-wrap">
+      <post-category-widget />
+      <tag-cloud-widget />
+      <archive-widget />
+    </div>
   </div>
 </def>
 
@@ -37,4 +18,47 @@
       <% end %>
     </ul>
   </div>
+</def>
+
+<def tag="card" for="Blogpost" attrs="title">
+  <if: test="&title">
+    <h3><view:title no-wrapper/></h3>
+  </if>
+
+  <ul class="entry-meta clearfix">
+      <li>
+        <i class="icon-calendar3"></i>
+        <view with="&l(this.publishing_date, format: :long)"/>
+      </li>
+      <li>
+        <i class="icon-folder-open"></i>
+        <a href="&blogposts_path(post_category_id: this.post_category.id)">
+          <view with="&this.post_category.name"/>
+        </a>
+      </li>
+      <li><i class="icon-tag"></i>
+        <repeat with="&this.blogtag_list" join=" - " >
+          <a href="&blogposts_path(tag: this)"><view/></a>
+        </repeat>
+      </li>
+      <li>
+        <a href="&blogpost_path(this) + '#comments'">
+          <i class="icon-comments"></i>
+          <%= this.comments.count %>
+          <t key="activerecord.models.comment.other" />
+        </a>
+      </li>
+      <li><a href="#"><i class="icon-font"></i></a></li>
+    </ul>
+
+    <if test="&this.content_element.photo">
+      <div class="entry-image">
+        <a href="&this.content_element.photo" data-lightbox="image">
+          <img class="image_fade" src="&this.content_element.photo(:medium)" alt="&this.content_element.photo_file_name" /></a>
+      </div>
+    </if>
+
+    <div class="entry-content bottommargin">
+      <view: with="&this.content_element.parse"/>
+    </div>
 </def>

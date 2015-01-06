@@ -1,0 +1,47 @@
+<def tag="comments-widget">
+  <div id="comments" class="clearfix">
+    <h3 id="comments-title">
+      <view with="&this.comments.count" inline/> &nbsp;
+      <t key="activerecord.models.comment.other"/>
+    </h3>
+
+    <comments-tree with="&this.comments.roots"/>
+  </div>
+</def>
+
+<def tag="comments-tree">
+ <ul class="commentlist clearfix">
+    <repeat>
+      <li class="comment">
+        <card />
+        <comments-tree if="&this.children" with="&this.children"/>
+      </li>
+    </repeat>
+  </ul>
+</def>
+
+<def tag="card" for="Comment">
+  <div class="comment-wrap clearfix">
+    <div class="comment-meta">
+      <div class="comment-author vcard">
+        <span class="comment-avatar clearfix">
+          <img height='60' width='60' class='avatar avatar-60 photo avatar-default'
+               src="&this.user.gravatar_url" />
+          </span>
+      </div>
+    </div>
+    <div class="comment-content clearfix">
+      <div class="comment-author">
+        <view: with="&this.user.name" no-wrapper/>
+        <span>
+          <a href="#" title="Permalink"><view:created-at no-wrapper/></a>
+        </span>
+      </div>
+      <p><view:content no-wrapper/></p>
+      <a class='comment-reply-link' href="&new_comment_path(parent_id: this.id)">
+        <i class="icon-reply"></i>
+      </a>
+    </div>
+    <div class="clear"></div>
+  </div>
+</def>

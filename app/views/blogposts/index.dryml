@@ -17,7 +17,7 @@
 
             <div class="entry-c">
               <div class="entry-title">
-                  <h2><a href="blog-single.html"><view:title /></a></h2>
+                  <h2><a href="&blogpost_path(this)"><view:title /></a></h2>
               </div>
 
               <ul class="entry-meta clearfix">
@@ -46,7 +46,6 @@
                   <li><a href="#"><i class="icon-font"></i></a></li>
               </ul>
 
-              <!-- Post Content -->
               <div class="entry-content">
                 <view: with="&truncate_html(this.content_element.parse, :length => 750)"/>
                 <a href="&blogpost_path(this)" class="more-link"><t key="mercator.read_more" /> →</a>
@@ -59,12 +58,6 @@
       </div>
     </div>
 
-    <div class="sidebar nobottommargin col_last clearfix">
-      <div class="sidebar-widgets-wrap">
-        <post-category-widget />
-        <tag-cloud-widget />
-        <archive-widget />
-      </div>
-    </div>
+    <blog-sidebar/>
   </content>
 </page>

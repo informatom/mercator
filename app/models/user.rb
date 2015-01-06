@@ -50,14 +50,19 @@ class User < ActiveRecord::Base
     :default_url => "/images/:style/missing.png"
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ }
 
-  has_many :addresses, dependent: :destroy, inverse_of: :user, accessible: true
-  has_many :billing_addresses, dependent: :destroy, inverse_of: :user, accessible: true
+  has_many :addresses, dependent: :restrict_with_error, inverse_of: :user, accessible: true
+  has_many :billing_addresses, dependent: :restrict_with_error, inverse_of: :user, accessible: true
 
-  has_many :orders, dependent: :restrict_with_exception, inverse_of: :user
-  has_many :offers, dependent: :restrict_with_exception, inverse_of: :user
+  has_many :orders, dependent: :restrict_with_error, inverse_of: :user
+  has_many :offers, dependent: :restrict_with_error, inverse_of: :user
 
-  has_many :conversations, dependent: :destroy, inverse_of: :customer, foreign_key: :customer_id
+  has_many :comments, dependent: :restrict_with_error, inverse_of: :user
 
+  has_many :conversations, dependent: :restrict_with_error, inverse_of: :customer, foreign_key: :customer_id
+
+  include Gravtastic
+  gravtastic :default => "http://www.informatom.com/assets/images/unknown-user.png"
+  gravtastic :email_address
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
@@ -156,7 +161,9 @@ class User < ActiveRecord::Base
 
   def name
     name = [title, first_name, surname].join " "
-    name = I18n.t("activerecord.attributes.user/genders."+ gender) + " " + name if gender
+    if gender && gender != "no_info"
+      name = I18n.t("activerecord.attributes.user/genders."+ gender) + " " + name
+    end
     return name
   end
 
