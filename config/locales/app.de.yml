@@ -581,6 +581,7 @@ de:
     account: Mein Account
     ago: ""
     are_you_sure: "Sind Sie Sicher?"
+    avoiding_comment_spam: "Um Spammer auszuschließen bitten wir Sie, uns Ihre gültige E-Mail Adresse und Ihren Namen bekannt zu geben."
     back: Zurück
     billing_method:
       change: Zahlungsart wechseln
@@ -588,6 +589,7 @@ de:
     click_to_finish: "Klicken Sie bitte noch auf den 'Account aktivieren'-Button, um die Aktivierung abzuschließen."
     cobrowsing_link: Cobrowsing Link
     coming_from: aus
+    comment: Kommentieren
     consumeables: Verbrauchsmaterialien
     consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
     contracting_subsite_name: Vertragswesen
@@ -682,8 +684,12 @@ de:
       user:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
+        activated: Ihr Account is nun aktiviert.
+        confirm_and_refresh: "Ein E-Mail wurde an Sie versandt. Bitte klicken Sie auf den Bestätigungslink im E-Mail und laden Sie dann die Seite neu."
         update_email:
           error: ist bereits registriert oder fehlt.
+        upgrade:
+          error: "Die Daten konnten nicht gespeichert werden. Haben Sie eine korrekte Adresse angegeben oder sind Die bereits registriert?"
     more_info: mehr Infos
     new_message: Neue Nachricht
     no_deliveries: keine Lieferungen
@@ -732,6 +738,7 @@ de:
     registered_for: registriert für
     remove_filter: Filter aufheben
     repeat: Wiederholen
+    reply: Antworten
     request_email:  E-Mail anfordern
     restart_application: "Applikation neu starten"
     restarting: "Neustart"

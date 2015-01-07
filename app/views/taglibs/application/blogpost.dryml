@@ -12,7 +12,7 @@
   <div class="widget widget_archive">
     <h4 class="widgettitle">Archiv</h4>
     <ul>
-      <% blogging_months = Blogpost.select(:publishing_date).all.group_by{ |b| b.publishing_date.beginning_of_month }
+      <% blogging_months = Blogpost.select(:publishing_date).group_by{ |b| b.publishing_date.beginning_of_month }
          blogging_months.sort.each do |month, posts| %>
         <li><%= link_to month.strftime('%B %Y'), blogposts_path(month: month) %> (<%= posts.count %>)</li>
       <% end %>

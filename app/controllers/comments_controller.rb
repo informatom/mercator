@@ -31,4 +31,10 @@ class CommentsController < ApplicationController
 
     hobo_new
   end
+
+  def create
+    @redirect_path = blogpost_path(params[:comment][:blogpost_id]) if params[:comment][:blogpost_id]
+    #@redirect_path = podcast_path(params[:comment][:podcast_id]) if params[:comment][:podcast_id])
+    hobo_create(redirect: @redirect_path)
+  end
 end

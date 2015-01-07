@@ -31,6 +31,10 @@
       </div>
     </div>
     <div class="comment-content clearfix">
+      <a href="&new_comment_path(parent_id: this.id)"
+         class='button button-3d button-rounded button-amber pull-right'>
+         <i class="icon-reply"></i> <t key="mercator.reply"/>
+      </a>
       <div class="comment-author">
         <view: with="&this.user.name" no-wrapper/>
         <span>
@@ -38,9 +42,6 @@
         </span>
       </div>
       <p><view:content no-wrapper/></p>
-      <a class='comment-reply-link' href="&new_comment_path(parent_id: this.id)">
-        <i class="icon-reply"></i>
-      </a>
     </div>
     <div class="clear"></div>
   </div>

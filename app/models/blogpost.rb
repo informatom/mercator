@@ -23,6 +23,9 @@ class Blogpost < ActiveRecord::Base
 
   acts_as_taggable_on :blogtags
 
+  scope :translated, -> { includes(:content_element).where.not('content_elememt.' + current_locale_column(:content).to_s + ' = ?', nil) }
+
+
   # --- Permissions --- #
 
   def create_permitted?

@@ -87,7 +87,8 @@ class UsersController < ApplicationController
 
   def do_activate
     do_transition_action :activate do
-      redirect_to :user_login
+      flash[:notice] = I18n.t("mercator.messages.user.activated")
+      redirect_to :root
     end
   end
 
@@ -120,5 +121,15 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def upgrade
+    if current_user.update_attributes(params[:user])
+      UserMailer.activation(current_user, current_user.lifecycle.key).deliver
+      flash[:notice] = I18n.t("mercator.messages.user.confirm_and_refresh")
+    else
+      flash[:error] = I18n.t("mercator.messages.user.upgrade.error")
+    end
+    redirect_to params[:page_path]
   end
 end

@@ -574,12 +574,14 @@ en:
     account: My Account
     ago: ago
     are_you_sure: "Are You Sure?"
+    avoiding_comment_spam: "To avoid comment spam we request a valid e-mail address and your name to properly display the comments."
     back: Back
     billing_method:
       change: Change Billing Method
       select: Please Select a Billing Method
     click_to_finish: "Please click an the Activate Account button to finish the activation process."
     cobrowsing_link: Cobrowsing Link
+    comment: Comment
     coming_from: from
     consumeables: Consumeables
     consumeable_search_help: You can search for consumeables for your printer here. Select a printer series and / or enter some characters of the type of your HP printer.
@@ -675,8 +677,12 @@ en:
       user:
         accept_gtc:
           error: "You have to accept the General Terms and Conditions (GTCs), to continue with the order process!"
+        activated: Your account has been activated successfully.
+        confirm_and_refresh: "Please klick an the confirmation link in the e-mail message sent to you and refresh this page afterwards."
         update_email:
           error: is already registered or missing!
+        upgrade:
+          error: "The data you provided could not be saved. Is the e-mail address correct or maybe already registered?"
     more_info: more info
     new_message: New Message
     no_deliveries: No deliveries found.
@@ -725,6 +731,7 @@ en:
     registered_for: Registered for
     remove_filter: Remove Filter
     repeat: Repeat
+    reply: Reply
     request_email:  Request E-Mail
     restart_application: Restart Application
     restarting: Restarting

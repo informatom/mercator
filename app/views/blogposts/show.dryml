@@ -7,6 +7,11 @@
     <div class="postcontent nobottommargin clearfix">
       <div class="single-post nobottommargin">
         <card/>
+        <a href="&new_comment_path(blogpost_id: this.id)"
+           class="button button-3d button-rounded button-amber pull-right">
+          <i class="icon-comment"></i><t key="mercator.comment"/>
+        </a>
+
 
         <div class="tagcloud clearfix bottommargin">
           <h4> <t key="attributes.blogtag_list" /></h4>
