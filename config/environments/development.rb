@@ -8,6 +8,7 @@ Mercator::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
   config.active_support.deprecation = :log
   config.action_dispatch.best_standards_support = :builtin
   config.active_record.mass_assignment_sanitizer = :strict
@@ -21,4 +22,8 @@ Mercator::Application.configure do
   ActionMailer::Base.delivery_method = :sendmail
 
   config.ember.variant = :development
+
+  # HAS:20140414: Diese Zeile auskommentieren, wenn man in Development doppelte Assets loswerden will und
+  # RAILS_ENV=development rake assets:clean kurzfristig nicht funktioniert.
+  config.serve_static_assets = false
 end
