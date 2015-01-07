@@ -22,8 +22,4 @@ Mercator::Application.configure do
   ActionMailer::Base.delivery_method = :sendmail
 
   config.ember.variant = :development
-
-  # HAS:20140414: Diese Zeile auskommentieren, wenn man in Development doppelte Assets loswerden will und
-  # RAILS_ENV=development rake assets:clean kurzfristig nicht funktioniert.
-  config.serve_static_assets = false
 end
