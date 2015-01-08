@@ -20,7 +20,7 @@
         </if>
 
         <else>
-          <nav-item href="#{this.url}">
+          <nav-item href="/#{this.url}">
             <view:title/>
           </nav-item>
         </else>
@@ -52,7 +52,7 @@
           <simple-nav with="&this.children"/>
         </if>
         <else>
-          <a href="#{this.url}"><view:title no-wrapper/></a>
+          <a href="/#{this.url}"><view:title no-wrapper/></a>
         </else>
       </li>
     </repeat>
