@@ -54,11 +54,29 @@
     <if test="&this.content_element.photo">
       <div class="entry-image">
         <a href="&this.content_element.photo" data-lightbox="image">
-          <img class="image_fade" src="&this.content_element.photo(:medium)" alt="&this.content_element.photo_file_name" /></a>
+          <img class="image_fade"
+               src="&this.content_element.photo(:medium)"
+               alt="&this.content_element.photo_file_name" />
+        </a>
       </div>
     </if>
 
     <div class="entry-content bottommargin">
       <view: with="&this.content_element.parse"/>
     </div>
+</def>
+
+<def tag="latest-news">
+  <h3>Latest News</h3>
+
+  <ul class="iconlist">
+    <repeat with="&Blogpost.latest">
+      <li>
+        <i class="icon-play"></i>
+        <a href="&blogpost_path(this.id)">
+          <view:title no-wrapper/>
+        </a>
+      </li>
+    </repeat>
+  </ul>
 </def>
