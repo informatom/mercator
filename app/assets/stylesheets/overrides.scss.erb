@@ -1,5 +1,10 @@
 @font-face {font-family: Glypha; src: url(<%= asset_path 'front/glypha.ttf' %>); }
-body, label, input, button, select, textarea { font-family: 'Ubuntu', sans-serif; font-size: 12px; line-height: 17px;}
+@font-face {font-family: Ubuntu; src: url(<%= asset_path 'ubuntu.ttf' %>); }
+body, label, input, button, select, textarea { font-family: 'Ubuntu',
+                                               sans-serif;
+                                               font-size: 12px;
+                                               line-height: 17px;
+                                               font-weight: 300;}
 
 // Making all fonts smaller
 h1 { font-size: 26px; line-height: 32px; }

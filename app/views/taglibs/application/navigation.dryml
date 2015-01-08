@@ -43,6 +43,22 @@
   </navigation>
 </def>
 
+<def tag="simple-nav">
+  <ul>
+    <repeat>
+      <li>
+        <if test="&this.menu">
+          <a href="#"><view:title no-wrapper/></a>
+          <simple-nav with="&this.children"/>
+        </if>
+        <else>
+          <a href="#{this.url}"><view:title no-wrapper/></a>
+        </else>
+      </li>
+    </repeat>
+  </ul>
+</def>
+
 <def tag='account-nav' attrs='include-search' >
   <div class='nav-collapse collapse'>
   <do with='&current_user'>
