@@ -8,7 +8,7 @@ class Chapter < ActiveRecord::Base
     href  :string
     timestamps
   end
-  attr_accessible :start, :title, :href
+  attr_accessible :start, :title, :href, :podcast, :podcast_id
 
   belongs_to :podcast
 
