@@ -10,7 +10,7 @@ class Podcast < ActiveRecord::Base
     published_at :datetime
     timestamps
   end
-  attr_accessible :number, :title, :shownotes, :duration, :published_at
+  attr_accessible :number, :title, :shownotes, :duration, :published_at, :ogg, :mp3
 
   self.per_page = 5 # Anzahl Seiteneinträge will_paginate
 
@@ -20,7 +20,12 @@ class Podcast < ActiveRecord::Base
   has_attached_file :mp3
   validates_attachment :mp3, content_type: { content_type: "audio/mp3" }
   has_attached_file :ogg
-  validates_attachment :ogg, content_type: { content_type: "video/ogg" }
+
+  validates_attachment :ogg, content_type: { content_type: ['audio/ogg', 'video/ogv', 'application/ogg'] }
+  # Allow ".ogg" as an extension for files with the mime type "video/ogg".
+  application_ogg = MIME::Types["application/ogg"].first
+  application_ogg.extensions << "ogg"
+  MIME::Types.index_extensions application_ogg
 
   # --- Permissions --- #
 

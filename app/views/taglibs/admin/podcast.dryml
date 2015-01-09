@@ -1,0 +1,24 @@
+<extend tag="form" for="Podcast">
+  <old-form merge multipart>
+    <field-list: fields="number, title, shownotes, duration, published_at, mp3, ogg" param>
+      <category-view:>
+        <tree-select-one class="form-control"/>
+      </category-view:>
+
+      <shownotes-view:>
+        <if test="&current_user.editor =='html'">
+          <%= text_area_tag("content_element[content_de]", this, options={id: "editor_de", class: "form-horizontal"}) %>
+          <script>
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor_de"), {
+              lineNumbers: true,
+              mode: "application/x-erb",
+              theme: "solarized",
+              lineWrapping: "true"
+            });
+          </script>
+        </if>
+        <else><input /></else>
+      </shownotes-view:>
+    </field-list:>
+  </old-form>
+</extend>
