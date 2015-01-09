@@ -322,6 +322,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    podlove-web-player-rails (2.0.17)
+      railties (>= 3.2)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     private_pub (1.0.3)
@@ -514,6 +516,7 @@ DEPENDENCIES
   nokogiri
   paper_trail (~> 3.0.0)
   paperclip
+  podlove-web-player-rails
   private_pub
   protected_attributes
   railroady

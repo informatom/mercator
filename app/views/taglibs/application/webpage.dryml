@@ -14,7 +14,7 @@
   <% content_element ||= ContentElement.find_by(name_en: name) %>
 
   <if test="&content_element">
-    <%= raw(content_element.content) if content_element.content %>
+    <%= content_element.parse %>
   </if>
   <else>
     <view with="<!--" />

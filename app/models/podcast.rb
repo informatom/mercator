@@ -12,7 +12,8 @@ class Podcast < ActiveRecord::Base
   end
   attr_accessible :number, :title, :shownotes, :duration, :published_at, :ogg, :mp3
 
-  self.per_page = 5 # Anzahl Seiteneinträge will_paginate
+  self.per_page = 3 # Anzahl Seiteneinträge will_paginate
+  default_scope { order('podcasts.published_at DESC') }
 
   has_many :comments
   has_many :chapters
