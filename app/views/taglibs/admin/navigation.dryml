@@ -103,6 +103,12 @@
         <nav-item with="&Comment">
           <ht key="comment.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Podcast">
+          <ht key="podcast.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
+        <nav-item with="&Chapter">
+          <ht key="chapter.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
       </ul>
     </li>
 

@@ -73,6 +73,7 @@ de:
     document_file_size: Dateigröße
     document_updated_at: Aktualisiert
     downloads: Downloads
+    duration: Dauer
     email_address: E-Mail Adresse
     erp_identifier: Referenz aus Mesonic
     filter: Filter
@@ -144,6 +145,7 @@ de:
     property_groups: Eigenschaftsgruppen
     provision_code: Provisionscode
     publishing_date: Datum der Veröffentlichung
+    published_at: Publiziert am/um
     recommendations: Empfehlungen
     recommended_product: empfohlenes Produkt
     recommended_products: empfohlene Produkte
@@ -237,6 +239,9 @@ de:
       category:
         one: Kategorie
         other: Kategorien
+      chapter:
+        one: Kapitel
+        other: Kapitel
       comment:
         one: Kommentar
         other: Kommentare
@@ -305,6 +310,9 @@ de:
       page_template:
         one: Websitevorlage
         other: Websitevorlagen
+      podcast:
+        one: Podcast
+        other: Podcasts
       price:
         one: Preis
         other: Preise

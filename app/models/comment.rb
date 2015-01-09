@@ -15,6 +15,7 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :blogpost
+  belongs_to :podcast
 
   # --- Permissions --- #
 

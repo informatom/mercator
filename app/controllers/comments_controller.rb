@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       self.this.blogpost_id = @blogpost.id
     end
     if params[:podcast_id]
-      #@podcast = Podcast.find(params[:blogpest_id])
+      @podcast = Podcast.find(params[:blogpest_id])
       self.this.podcast_id = @podcast.id
     end
 
@@ -23,10 +23,10 @@ class CommentsController < ApplicationController
       @comment.parent_id = @parent.id
 
       @comment.blogpost_id = @parent.blogpost_id
-#     @comment.podcast_id = @parent.podcast_id
+      @comment.podcast_id = @parent.podcast_id
 
       @blogpost = Blogpost.find(@parent.blogpost_id) if @parent.blogpost_id
-#     @podcast = Podcast.find(@parent.podcast_id) if @parent.podcast_id
+      @podcast = Podcast.find(@parent.podcast_id) if @parent.podcast_id
     end
 
     hobo_new
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
   def create
     @redirect_path = blogpost_path(params[:comment][:blogpost_id]) if params[:comment][:blogpost_id]
-    #@redirect_path = podcast_path(params[:comment][:podcast_id]) if params[:comment][:podcast_id])
+    @redirect_path = podcast_path(params[:comment][:podcast_id]) if params[:comment][:podcast_id]
     hobo_create(redirect: @redirect_path)
   end
 end

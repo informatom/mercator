@@ -69,6 +69,7 @@ en:
     document_file_size: Document File Size
     document_updated_at: Updated at
     downloads: Downloads
+    duration: Duration
     email_address: Email Address
     erp_identifier: ERP Identifier
     filter: Filter
@@ -140,6 +141,7 @@ en:
     property_groups: Property Groups
     provision_code: Provision Code
     publishing_date: Publishing Date
+    published_at: Published At
     recommendations: Recommendations
     recommended_product: Recommended Product
     recommended_products: Recommended Products
@@ -227,6 +229,9 @@ en:
       category:
         one: Category
         other: Categories
+      chapter:
+        one: chapter
+        other: chapters
       comment:
         one: Comment
         other: Comments
@@ -295,6 +300,9 @@ en:
       page_template:
         one: Page Template
         other: Page Templates
+      podcast:
+        one: Podcast
+        other: Podcasts
       post_category:
         one: Topic
         other: Topics
