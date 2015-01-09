@@ -17,6 +17,11 @@ class Podcast < ActiveRecord::Base
   has_many :comments
   has_many :chapters
 
+  has_attached_file :mp3
+  validates_attachment :mp3, content_type: { content_type: "audio/mp3" }
+  has_attached_file :ogg
+  validates_attachment :ogg, content_type: { content_type: "video/ogg" }
+
   # --- Permissions --- #
 
   def create_permitted?
