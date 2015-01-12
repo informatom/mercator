@@ -6,7 +6,7 @@
   <content:>
     <javascript name='jquery'/>
     <javascript name='jquery-migrate'/>
-    <javascript name='podlove-web-player-rails'/>
+    <javascript name='podlove-web-player-rails/index'/>
     <div class="postcontent nobottommargin clearfix">
       <div id="posts" class="small-thumbs">
         <repeat>

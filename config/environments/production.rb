@@ -23,7 +23,7 @@ Mercator::Application.configure do
     'productmanager/front/index.js', 'productmanager/price_manager/index.js',
     'productmanager/property_manager/index.js', 'productmanager/relation_manager/index.js',
     'i18n.js', 'i18n/cm.js', 'i18n/pm.js',
-    'jquery-migrate', 'podlove-web-player-rails' ]
+    'jquery', 'jquery-migrate', 'podlove-web-player-rails/index.js' ]
 
   ActionMailer::Base.smtp_settings = {
     :domain => CONFIG[:smtp_domain],
