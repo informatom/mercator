@@ -220,6 +220,12 @@ de:
     weight: Gewicht
 
   activerecord:
+    errors:
+      models:
+        submission:
+          attributes:
+            answer:
+              invalid: "ist falsch - Sind Sie ein Roboter?"
     models:
       address:
         one: Lieferadresse
@@ -803,7 +809,6 @@ de:
     vor: vor
     welcome_at: Willkommen bei
     waiting_for_release: ", die auf Freigabe warten."
-    wrong_answer: "ist falsch - Sind Sie ein Roboter?"
     you_are_here: Sie befinden sich hier
     you_are_talking_to: Sie sprechen mit
     you_could: Sie können

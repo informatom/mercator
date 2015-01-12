@@ -213,6 +213,12 @@ en:
     weight: Weight
 
   activerecord:
+    errors:
+      models:
+        submission:
+          attributes:
+            answer:
+              invalid: "is wrong - are you a robot?"
     models:
       address:
         one: Shipping Address
@@ -796,7 +802,6 @@ en:
     vor: ""
     welcome_at: Welcome at
     waiting_for_release: "waiting for release."
-    wrong_answer: "is wrong - are you a robot?"
     you_are_here: You ere here
     you_are_talking_to: You are talking to
     you_could: You could
