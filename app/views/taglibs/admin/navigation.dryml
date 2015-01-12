@@ -25,6 +25,9 @@
         <nav-item with="&Address">
           <ht key="address.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Submission">
+          <ht key="submission.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
        </ul>
     </li>
 

@@ -7,6 +7,7 @@ en:
     alternative_number: Alternate Product Number
     amount: Amount
     ancestry: Ancestry String
+    answer: Answer
     attrib: Attribute
     basket: Basket
     baskets: Baskets
@@ -93,6 +94,7 @@ en:
     long_description_de: Long Description GER
     long_description_en: Long Description EN
     markup: Markup Format
+    message: Message
     messages: Messages
     miscellaneous: Miscellaneous
     name: Name
@@ -327,6 +329,9 @@ en:
       shipping_cost:
         one: Shipping Cost
         other: Shipping Cost
+      submission:
+        one: Submission
+        other: Submissions
       suggestion:
         one: Product Suggestion
         other: Product Suggestions
@@ -791,6 +796,7 @@ en:
     vor: ""
     welcome_at: Welcome at
     waiting_for_release: "waiting for release."
+    wrong_answer: "is wrong - are you a robot?"
     you_are_here: You ere here
     you_are_talking_to: You are talking to
     you_could: You could

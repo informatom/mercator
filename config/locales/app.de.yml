@@ -7,6 +7,7 @@ de:
     alternative_number: alternative Artikelnummer
     amount: Menge
     ancestry: Ancestry-String
+    answer: Antwort
     attrib: Attribut
     basket: Warenkorb
     baskets: Warenkörbe
@@ -97,6 +98,7 @@ de:
     long_description_de: Lange Beschreibung DE
     long_description_en: Lange Beschreibung EN
     markup: Markup Format
+    message: Nachricht
     messages: Nachrichten
     miscellaneous: Diverses
     name: Name
@@ -334,6 +336,9 @@ de:
       shipping_cost:
         one: Versandspesen
         other: Versandspesen
+      submission:
+        one: Kontaktaufnahme
+        other: Kontaktaufnahmen
       suggestion:
         one: Produktvorschlag
         other: Produktvorschläge
@@ -798,6 +803,7 @@ de:
     vor: vor
     welcome_at: Willkommen bei
     waiting_for_release: ", die auf Freigabe warten."
+    wrong_answer: "ist falsch - Sind Sie ein Roboter?"
     you_are_here: Sie befinden sich hier
     you_are_talking_to: Sie sprechen mit
     you_could: Sie können
