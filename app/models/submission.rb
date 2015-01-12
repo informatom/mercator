@@ -29,6 +29,8 @@ class Submission < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || acting_user.sales?
+    acting_user.administrator? ||
+    acting_user.sales? ||
+    new_record?
   end
 end
