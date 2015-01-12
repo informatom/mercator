@@ -3,12 +3,14 @@
     <div class="sidebar-widgets-wrap">
       <post-category-widget />
       <tag-cloud-widget />
-      <archive-widget />
+      <archive-widget for="Blogpost"/>
     </div>
   </div>
 </def>
 
-<def tag="archive-widget">
+<def tag="archive-widget" polymorphic/>
+
+<def tag="archive-widget" for="Blogpost">
   <div class="widget widget_archive">
     <h4 class="widgettitle">Archiv</h4>
     <ul>

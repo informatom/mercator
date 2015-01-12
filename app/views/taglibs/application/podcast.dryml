@@ -2,67 +2,78 @@
   <div class="sidebar nobottommargin col_last clearfix">
     <div class="sidebar-widgets-wrap">
       <container name="podcast-about"/>
+      <latest-comments-widget />
+      <archive-widget for="Podcast"/>
     </div>
   </div>
 </def>
 
-<def tag="card" for="Blogpost" attrs="title">
+<def tag="archive-widget" for="Podcast">
+  <div class="widget widget_archive">
+    <h4 class="widgettitle">Archiv</h4>
+    <ul>
+      <% podcast_months = Podcast.select(:published_at)
+                                 .group_by{ |b| b.published_at.beginning_of_month }
+         podcast_months.sort.each do |month, podcasts| %>
+        <li><%= link_to month.strftime('%B %Y'), podcasts_path(month: month) %> (<%= podcasts.count %>)</li>
+      <% end %>
+    </ul>
+  </div>
+</def>
+
+<def tag="card" for="Podcast" attrs="title">
   <if: test="&title">
     <h3><view:title no-wrapper/></h3>
   </if>
 
-  <ul class="entry-meta clearfix">
-      <li>
-        <i class="icon-calendar3"></i>
-        <view with="&l(this.publishing_date, format: :long)"/>
-      </li>
-      <li>
-        <i class="icon-folder-open"></i>
-        <a href="&blogposts_path(post_category_id: this.post_category.id)">
-          <view with="&this.post_category.name"/>
-        </a>
-      </li>
-      <li><i class="icon-tag"></i>
-        <repeat with="&this.blogtag_list" join=" - " >
-          <a href="&blogposts_path(tag: this)"><view/></a>
-        </repeat>
-      </li>
-      <li>
-        <a href="&blogpost_path(this) + '#comments'">
-          <i class="icon-comments"></i>
-          <%= this.comments.count %>
-          <t key="activerecord.models.comment.other" />
-        </a>
-      </li>
-      <li><a href="#"><i class="icon-font"></i></a></li>
+  <div class="entry-c">
+    <div class="entry-title">
+        <h2>Episode <view:number/> - <a href="&podcast_path(this)"><view:title /></a></h2>
+    </div>
+
+    <ul class="entry-meta clearfix">
+        <li>
+          <i class="icon-calendar3"></i>
+          <view with="&l(this.published_at, format: :long)"/>
+        </li>
+        <li>
+          <a href="&podcast_path(this) + '#comments'">
+            <i class="icon-comments"></i>
+            <%= this.comments.count %>
+            <t key="activerecord.models.comment.other" />
+          </a>
+        </li>
+        <li><a href="#"><i class="icon-font"></i></a></li>
     </ul>
 
-    <if test="&this.content_element.photo">
-      <div class="entry-image">
-        <a href="&this.content_element.photo" data-lightbox="image">
-          <img class="image_fade"
-               src="&this.content_element.photo(:medium)"
-               alt="&this.content_element.photo_file_name" />
-        </a>
-      </div>
-    </if>
+    <div class="entry-content">
+      <%= podloveaudio(mp3: this.mp3.url,
+                       ogg: this.ogg.url,
+                       title: this.title,
+                       autoplay: "false",
+                       alwaysShowControls: "true",
+                       duration: this.duration,
+                       chapters: this.chapterstring,
+                       chaptersVisible: "true",
+                       chapterlinks: "all",
+                       features: ["current","progress","duration","tracks","fullscreen","volume"] ) %>
 
-    <div class="entry-content bottommargin">
-      <view: with="&this.content_element.parse"/>
+      <p>
+        <a href="&this.mp3.url">
+          <i class="icon-music"></i>
+          Download MP3
+          (<view with="&this.mp3_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
+        </a> -
+        <a href="&this.ogg.url">
+          <i class="icon-music"></i>
+          Download OGG
+          (<view with="&this.ogg_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
+        </a>
+      </p>
+
+      <view with="&this.shownotes.html_safe"/>
+      <a href="&archive_podcasts_path" class="more-link"><t key="mercator.archive" /> →</a>
     </div>
-</def>
 
-<def tag="latest-news">
-  <h3>Latest News</h3>
-
-  <ul class="iconlist">
-    <repeat with="&Blogpost.latest">
-      <li>
-        <i class="icon-play"></i>
-        <a href="&blogpost_path(this.id)">
-          <view:title no-wrapper/>
-        </a>
-      </li>
-    </repeat>
-  </ul>
+  </div>
 </def>

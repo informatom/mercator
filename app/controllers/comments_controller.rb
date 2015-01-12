@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       self.this.blogpost_id = @blogpost.id
     end
     if params[:podcast_id]
-      @podcast = Podcast.find(params[:blogpest_id])
+      @podcast = Podcast.find(params[:podcast_id])
       self.this.podcast_id = @podcast.id
     end
 

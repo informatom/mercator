@@ -7,7 +7,8 @@ class Comment < ActiveRecord::Base
     ancestry :string, :index => true
     timestamps
   end
-  attr_accessible :content, :ancestry, :blogpost, :blogpost_id, :user_id, :user
+  attr_accessible :content, :ancestry, :blogpost, :blogpost_id, :user_id, :user,
+                  :podcast_id, :podcast
 
   has_ancestry orphan_strategy: :adopt
   has_paper_trail

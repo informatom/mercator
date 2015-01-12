@@ -9,19 +9,14 @@
     <javascript name='podlove-web-player-rails'/>
     <div class="postcontent nobottommargin clearfix">
       <div id="posts" class="small-thumbs">
-        <repeat>
 
-          <card />
-          <a href="&new_comment_path(podcast_id: this.id)"
-             class="button button-3d button-rounded button-amber pull-right">
-            <i class="icon-comment"></i><t key="mercator.comment"/>
-          </a>
+        <card title/>
+        <a href="&new_comment_path(podcast_id: this.id)"
+           class="button button-3d button-rounded button-amber pull-right">
+          <i class="icon-comment"></i><t key="mercator.comment"/>
+        </a>
 
-          <comments-widget/>
-
-        </repeat>
-
-        <page-nav inner-window="2" outer-window="0" />
+        <comments-widget/>
       </div>
     </div>
 
