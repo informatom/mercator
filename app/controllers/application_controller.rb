@@ -54,34 +54,37 @@ class ApplicationController < ActionController::Base
 # Domainseperation
   def domain_cms_redirect
     cms_domain = Constant.find_by_key('cms_domain').value
-    unless request.url.include?(cms_domain)
-      new_url = case request.port
-                when 80  then 'http://' + cms_domain + request.path
-                when 443 then 'https://' + cms_domain + request.path
-                else          'http://' + cms_domain + ":" + request.port.to_s + request.path
-                end
+    return if request.url.include?(cms_domain)
 
-      current_user.remember_me
-      new_url = new_url + "?remember_token=" + current_user.remember_token
+    podcast_domain = Constant.find_by_key('podcast_domain').try(:value)
+    return if request.url.include?(podcast_domain)
 
-      redirect_to new_url, :status => 301
-    end
+    new_url = case request.port
+              when 80  then 'http://' + cms_domain + request.path
+              when 443 then 'https://' + cms_domain + request.path
+              else          'http://' + cms_domain + ":" + request.port.to_s + request.path
+              end
+
+    current_user.remember_me
+    new_url = new_url + "?remember_token=" + current_user.remember_token
+
+    redirect_to new_url, :status => 301
   end
 
   def domain_shop_redirect
     shop_domain = Constant.find_by_key('shop_domain').value
-    unless request == nil || (request.url.include?(shop_domain))
-      new_url = case request.port
-                when 80  then 'http://' + shop_domain + request.path
-                when 443 then 'https://' + shop_domain + request.path
-                else          'http://' + shop_domain + ":" + request.port.to_s + request.path
-                end
+    return if (request == nil || (request.url.include?(shop_domain)))
 
-      current_user.remember_me
-      new_url = new_url + "?remember_token=" + current_user.remember_token
+    new_url = case request.port
+              when 80  then 'http://' + shop_domain + request.path
+              when 443 then 'https://' + shop_domain + request.path
+              else          'http://' + shop_domain + ":" + request.port.to_s + request.path
+              end
 
-      redirect_to new_url, :status => 301
-    end
+    current_user.remember_me
+    new_url = new_url + "?remember_token=" + current_user.remember_token
+
+    redirect_to new_url, :status => 301
   end
 
   def request_param(parameter)

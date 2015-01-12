@@ -1,6 +1,7 @@
 class BlogpostsController < ApplicationController
   hobo_model_controller
   auto_actions :index, :show
+  index_action :feed
 
   before_filter :domain_cms_redirect
 
@@ -10,6 +11,7 @@ class BlogpostsController < ApplicationController
                                              .not(ContentElement.current_locale_column(:content) => [nil, ""]))
                         .paginate(page: params[:page])
                         .order('publishing_date DESC')
+                        .where.not(publishing_date: nil)
     self.this = self.this.tagged_with(params[:tag]) if params[:tag]
     self.this = self.this.where(post_category_id: params[:post_category_id]) if params[:post_category_id]
     @blogposts= self.this
@@ -20,5 +22,9 @@ class BlogpostsController < ApplicationController
     end
 
     hobo_index
+  end
+
+  def feed
+    @blogposts = Blogpost.where.not(publishing_date: nil)
   end
 end

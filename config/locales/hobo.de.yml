@@ -143,7 +143,7 @@ de:
       current_password_is_not_correct: "ist nicht korrekt"
       you_are_site_admin: "Sie sind jetzt der Administrator"
       you_signed_up: "Sie haben sich angemeldet"
-      none: "Kein %{model}-Objekt gefunden."
+      none: "Kein %{model}-Objekt selektiert."
       confirm: "Sind Sie sich sicher?"
 
     # default hobo collection translation

@@ -2,7 +2,7 @@ class PodcastsController < ApplicationController
   hobo_model_controller
   auto_actions :index, :show
 
-  index_action :archive
+  index_action :archive, :feed, :ogg
 
   before_filter :domain_cms_redirect
 
@@ -33,6 +33,14 @@ class PodcastsController < ApplicationController
     end
 
     hobo_index
+  end
+
+  def feed
+    @podcasts = Podcast.where.not(published_at: nil)
+  end
+
+  def ogg
+    @podcasts = Podcast.where.not(published_at: nil)
   end
 
 end
