@@ -13,11 +13,6 @@ class Submission < ActiveRecord::Base
   attr_accessible :name, :email, :phone, :message, :answer
 
   validates_format_of :answer, :with => %r{8}
-  validates_format_of :phone, :with => %r{\A(\+[0-9]{2,3}|0+[0-9]{2,5})[\d\s\/\(\)-]+\z},
-                      :allow_blank => :true,
-                      :message => "muss die Form +49 1234 12345678 oder 01234 12345678 haben," +
-                                  " d.h. +Laendercode Vorwahl lokale_Rufnummer oder " +
-                                  " 0Vorwahl lokale_Rufnummer."
 
   # --- Permissions --- #
 

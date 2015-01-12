@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Neue Kontaktaufnahme von <%= @submission.name %></h1>
+      <table>
+        <tr><td><b>Name:</b></td><td><%= @submission.name %></td></tr>
+        <tr><td><b>Email:</b></td><td><%= @submission.email %></td></tr>
+        <tr><td><b>Phone:</b></td><td><%= @submission.phone %></td></tr>
+        <tr><td><b>Message:</b></td><td><%= @submission.message %></td></tr>
+        <tr><td><b>Answer:</b></td><td><%= @submission.answer %></td></tr>
+      </table>
+  </body>
+</html>

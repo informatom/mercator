@@ -537,6 +537,8 @@ en:
         position: Used for sorting within property Group
       property_group:
         position: Used for sorting on product show page and filters
+      submission:
+        answer: "What makes 3 plus 5? (Unfortunately, we have to ask you this because of spam robots!)"
       user:
         name: Please enter your full name including title here.
         email_address: We will never share your address with third parties.

@@ -1,0 +1,57 @@
+<page>
+  <slider: replace>
+    <section id="google-map" class="gmap slider-parallax"/>
+  </slider:>
+
+  <page-specific-javascript: replace>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+      $('#google-map').gMap({
+        latitude: 48.226345,
+        longitude: 16.399392,
+        maptype: 'ROADMAP',
+        zoom: 14,
+        markers: [{
+          latitude: 48.226345,
+          longitude: 16.399392,
+          html: '<div style="width: 300px;">Informatom EDV-Dienstleistungen</div>',
+          icon: {
+            image: '#{image_path "map-icon-red.png"}',
+            iconsize: [32, 39],
+            iconanchor: [32,39]
+          }
+        }],
+        doubleclickzoom: false,
+        controls: {
+          panControl: true,
+          zoomControl: true,
+          mapTypeControl: true,
+          scaleControl: false,
+          streetViewControl: false,
+          overviewMapControl: false
+        }
+      })
+    </script>
+  </page-specific-javascript:>
+
+  <content:>
+    <section class="content-body">
+      <div class="postcontent nobottommargin clearfix">
+        <h2><t key="activerecord.models.submission.one"/></h2>
+        <form with="&@submission">
+          <error-messages/>
+          <field-list fields="name, email, phone, message, answer"
+                      required="name, email, message, answer"/>
+          <submit label="#{ht 'submission.actions.save'}" class="button button-3d nomargin"/>
+        </form>
+
+      </div>
+
+      <div class="sidebar col_last nobottommargin">
+        <container name="footer-3"/>
+        <br/><br/>
+        <container name="office-hours"/>
+      </div>
+    </section>
+  </content:>
+</page>

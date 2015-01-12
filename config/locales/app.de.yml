@@ -544,6 +544,8 @@ de:
         position: Dient zur Reihung innerhalb der Eigenschaftsgruppe
       property_group:
         position: Dient zur Reihung der Eigenschaftsgruppen eines Produktes
+      submission:
+        answer: Was ergibt 3 plus 5? (Leider müssen wir Sie dies als Maßnahme gegen Spambots fragen!)
       user:
         name: "Bitte geben Sie Ihren gesamten Namen inklusive Titel an."
         email_address: Ihre E-Mail Adresse wird niemals weitergegeben.
