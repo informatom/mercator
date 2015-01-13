@@ -9,7 +9,7 @@ class BlogpostsController < ApplicationController
     self.this = Blogpost.joins(:content_element)
                         .merge(ContentElement.where
                                              .not(ContentElement.current_locale_column(:content) => [nil, ""]))
-                        .paginate(page: params[:page])
+                        .paginate(page: params[:page].to_i)
                         .order('publishing_date DESC')
                         .where.not(publishing_date: nil)
     self.this = self.this.tagged_with(params[:tag]) if params[:tag]
