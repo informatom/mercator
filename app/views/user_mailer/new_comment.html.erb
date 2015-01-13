@@ -4,10 +4,10 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>
-      Neue Kommentar von <%= @comment.user.name %> (<%= @comment.user.email_address %>) zu
+    <h3>
+      Neue Kommentar von <%= @comment.user.name %> (<%= @comment.user.email_address %>) zu<br/>
       <%= @comment.blogpost ? @comment.blogpost.title : @comment.podcast.title %>
-    </h1>
+    </h3>
 
     <table>
       <tr><td><b>Text:</b></td><td><%= strip_tags(@comment.content) %></td></tr>
