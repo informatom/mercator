@@ -11,7 +11,7 @@
 
     <table>
       <tr><td><b>Text:</b></td><td><%= strip_tags(@comment.content) %></td></tr>
-      <% if @comment.parent %>
+      <% if @comment.parent do %>
         <tr>
           <td><b>Übergeordneter Kommentar:</b></td>
           <td><%= strip_tags(@comment.content %></td>
