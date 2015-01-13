@@ -11,10 +11,10 @@
 
     <table>
       <tr><td><b>Text:</b></td><td><%= strip_tags(@comment.content) %></td></tr>
-      <% if @comment.parent do %>
+      <% if @comment.parent %>
         <tr>
           <td><b>Übergeordneter Kommentar:</b></td>
-          <td><%= strip_tags(@comment.content %></td>
+          <td><%= strip_tags(@comment.content) %></td>
         </tr>
       <% end %>
     </table>
