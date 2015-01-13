@@ -6,7 +6,7 @@ class SubmissionsController < ApplicationController
   def create
     hobo_create(redirect: new_submission_path) do
       if self.this.valid?
-        UserMailer.submission(@submission).deliver
+        UserMailer.new_submission(self.this).deliver
       end
     end
   end

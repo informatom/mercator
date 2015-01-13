@@ -24,9 +24,15 @@ class UserMailer < ActionMailer::Base
           :to      => Constant.find_by_key('service_mail').try(:value) )
   end
 
-  def submission(submission)
+  def new_submission(submission)
     @submission = submission
     mail(:to => Constant.find_by_key('service_mail').try(:value) ,
          :subject => "#{app_name} -- Neue Kontaktaufnahme")
+  end
+
+  def new_comment(comment)
+    @comment = comment
+    mail(:to => Constant.find_by_key('service_mail').try(:value) ,
+         :subject => "#{app_name} -- Neuer Kommentar")
   end
 end
