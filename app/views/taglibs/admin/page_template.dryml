@@ -18,10 +18,6 @@
 <extend tag="show-page" for="PageTemplate">
   <old-show-page merge>
     <content-body: param>
-      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/tomorrow.min.css"/>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script>
-
       <field-list fields="name, dryml, content, placeholder-list" param>
         <content-field: replace />
         <placeholder-list-view:>

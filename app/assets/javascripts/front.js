@@ -8,5 +8,6 @@
 //= require messenger
 //= require messenger-theme-future
 //= require ahoy
+//= require application/highlight.min.js
 
 //= require customer
