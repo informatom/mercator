@@ -5,19 +5,18 @@
   </head>
   <body>
     <h1>
-      Neue Kommentar von <%= @comment.user.name %> (<%= @comment.user.email %>) zu
+      Neue Kommentar von <%= @comment.user.name %> (<%= @comment.user.email_address %>) zu
       <%= @comment.blogpost ? @comment.blogpost.title : @comment.podcast.title %>
     </h1>
 
     <table>
-      <tr><td><b>Text:</b></td><td><%= strip_tags(@comment.text) %></td></tr>
-      <tr>
-        <td><b>Übergeordneter Kommentar:</b></td>
-        <td><% if @comment.parent %>
-            <%= truncate(strip_tags(@comment.text), :length => 200) %>
-          <% end %>
-        </td>
-      </tr>
+      <tr><td><b>Text:</b></td><td><%= strip_tags(@comment.content) %></td></tr>
+      <% if @comment.parent %>
+        <tr>
+          <td><b>Übergeordneter Kommentar:</b></td>
+          <td><%= strip_tags(@comment.content %></td>
+        </tr>
+      <% end %>
     </table>
   </body>
 </html>
