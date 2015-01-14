@@ -6,7 +6,9 @@
        config.oauth_token_secret = Constant.find_by_key('twitter_uoauth_token_secret').value
      end
      twitter_user = Constant.find_by_key('twitter_user').value
-     tweets = Twitter.user_timeline(twitter_user, :count => 200).paginate(:page => params[:page], :per_page => 15) %>
+     page = params[:page] ? params[:page].to_i : 1
+     tweets = Twitter.user_timeline(twitter_user, :count => 200)
+                     .paginate(:page => params[page], :per_page => 15) %>
   <div class="widget widget-twitter-feed clearfix">
     <ul id="sidebar-twitter-list-1" class="iconlist">
       <repeat with="&tweets">

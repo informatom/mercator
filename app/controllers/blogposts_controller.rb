@@ -7,6 +7,7 @@ class BlogpostsController < ApplicationController
 
   def index
     page = params[:page] ? params[:page].to_i : 1
+
     self.this = Blogpost.joins(:content_element)
                         .merge(ContentElement.where
                                              .not(ContentElement.current_locale_column(:content) => [nil, ""]))
@@ -27,5 +28,11 @@ class BlogpostsController < ApplicationController
 
   def feed
     @blogposts = Blogpost.where.not(publishing_date: nil)
+  end
+
+  def show
+    hobo_show do
+      render 'show.rss' if request.format.rss?
+    end
   end
 end
