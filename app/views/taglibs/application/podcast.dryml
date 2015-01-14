@@ -12,7 +12,8 @@
   <div class="widget widget_archive">
     <h4 class="widgettitle">Archiv</h4>
     <ul>
-      <% podcast_months = Podcast.select(:published_at)
+      <% podcast_months = Podcast.where.not(published_at: nil)
+                                 .select(:published_at)
                                  .group_by{ |b| b.published_at.beginning_of_month }
          podcast_months.sort.each do |month, podcasts| %>
         <li><%= link_to month.strftime('%B %Y'), podcasts_path(month: month) %> (<%= podcasts.count %>)</li>
