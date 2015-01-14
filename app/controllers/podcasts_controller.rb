@@ -45,4 +45,9 @@ class PodcastsController < ApplicationController
     @podcasts = Podcast.where.not(published_at: nil)
   end
 
+  def show
+    hobo_show do
+      render 'show.rss' if request.format.rss?
+    end
+  end
 end
