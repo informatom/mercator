@@ -1,6 +1,12 @@
 <extend tag="form" for="Blogpost">
   <old-form merge>
     <field-list: fields="title_de, title_en, post_category, publishing_date, content_element, blogtag_list">
+      <content-element-view:>
+        <name-one class="form-control"
+                  complete-target="&ContentElement.new()"
+                  completer="name_de_admin"
+                  autocomplete="off"/>
+      </content-element-view:>
       <post-category-view:>
         <tree-select-one class="form-control"/>
       </post-category-view:>
