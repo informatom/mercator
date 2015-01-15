@@ -119,7 +119,7 @@ PATH
   specs:
     hobo_w2ui (0.1.4)
       hobo_jquery (>= 2.0)
-      rails (~> 4.0.0)
+      rails (>= 4.0)
 
 GEM
   remote: https://rubygems.org/
