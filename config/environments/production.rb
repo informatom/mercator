@@ -24,7 +24,7 @@ Mercator::Application.configure do
     'productmanager/property_manager/index.js', 'productmanager/relation_manager/index.js',
     'i18n.js', 'i18n/cm.js', 'i18n/pm.js',
     'jquery.js', 'jquery-migrate.js', 'podlove-web-player-rails/index.js',
-    'videochat.css', "ckeditor/styles.js"]
+    'videochat.css', "ckeditor/*"]
 
   ActionMailer::Base.smtp_settings = {
     :domain => CONFIG[:smtp_domain],
