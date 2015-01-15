@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   # after_filter :track_action
 
   def auto_log_in
+    puts "============================= current user" + current_user.name
     if current_user.guest?
       if session[:last_user]
         self.current_user = User.find(session[:last_user])
@@ -57,7 +58,7 @@ class ApplicationController < ActionController::Base
     return if request.url.include?(cms_domain)
 
     podcast_domain = Constant.find_by_key('podcast_domain').try(:value)
-    return if request.url.include?(podcast_domain)
+    return if podcast_domain && request.url.include?(podcast_domain)
 
     new_url = case request.port
               when 80  then 'http://' + cms_domain + request.path
