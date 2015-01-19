@@ -128,6 +128,7 @@ class Category < ActiveRecord::Base
   end
 
   def try_deprecation
+    return if [:squeel, :mercator, :novelties, :auto, :discounts, :topseller, :orphans].include?(usage)
     return if state != "active" && state != "new"
     return if products.where(state: "active").count > 0
 
