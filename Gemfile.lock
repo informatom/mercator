@@ -101,9 +101,11 @@ PATH
   remote: vendor/gems/hobo_bootstrap
   specs:
     hobo_bootstrap (2.1.0)
-      bootstrap-sass (~> 3.2)
+      bootstrap-sass (~> 3.3.1)
       hobo_jquery (>= 2.0)
       hobo_will_paginate-bootstrap
+      sass-rails (>= 3.2)
+      sprockets-rails (>= 2.1.4)
 
 PATH
   remote: vendor/gems/hobo_bootstrap_ui
@@ -117,7 +119,7 @@ PATH
   specs:
     hobo_w2ui (0.1.4)
       hobo_jquery (>= 2.0)
-      rails (~> 4.0.0)
+      rails (>= 4.0)
 
 GEM
   remote: https://rubygems.org/

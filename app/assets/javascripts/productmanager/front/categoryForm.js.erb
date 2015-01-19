@@ -29,11 +29,19 @@ function categoryForm() {
       '      <label>' + I18n.t("attributes.long_description_en") + '</label>'+
       '      <div><textarea rows="4" cols="84" name="long_description_en" /></div>'+
       '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.squeel_condition") + '</label>'+
+      '      <div><input name="squeel_condition" size=80 /></div>'+
+      '    </div>'+
       '  </div>'+
       '  <div style="float: right; margin-right:20px;">'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.state") + '</label>'+
       '      <div><input name="state" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.usage") + '</label>'+
+      '      <div><input name="usage" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.position") + '</label>'+
@@ -89,10 +97,18 @@ function categoryForm() {
       { name: 'description_en',      type: 'text' },
       { name: 'long_description_de', type: 'textarea' },
       { name: 'long_description_en', type: 'textarea' },
+      { name: 'squeel_condition',    type: 'text' },
       { name: 'state',               type: 'list', required : true,
         options: {
           items: <%= a = Category::Lifecycle.states.*[0].map {
             |state| "{id: '" + state.to_s + "', text: I18n.t('mercator.states." + state.to_s + "')}"
+          }.to_s.gsub('"','') %>
+        }
+      },
+      { name: 'usage',               type: 'list', required : true,
+        options: {
+          items: <%= a = Category::Usage.values.map {
+            |value| "{id: '" + value + "', text: I18n.t('mercator.states." + value.to_s + "')}"
           }.to_s.gsub('"','') %>
         }
       },

@@ -1,6 +1,9 @@
 class Category < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
+  Usage = HoboFields::Types::EnumString.for(:standard, :squeel, :mercator, :novelties, :auto, :discounts,
+                                            :topseller, :orphans)
+
   fields do
     name_de             :string, :required
     name_en             :string, :required
@@ -15,12 +18,15 @@ class Category < ActiveRecord::Base
     filtermin           :decimal, :required, :precision => 10, :scale => 2
     filtermax           :decimal, :required, :precision => 10, :scale => 2
     erp_identifier      :string
+    usage               Category::Usage
+    squeel_condition    :string
     timestamps
   end
 
   attr_accessible :name_de, :name_en, :state, :ancestry, :position, :active, :parent_id, :parent,
                   :categorizations, :products, :document, :photo, :description_de, :description_en,
-                  :long_description_de, :long_description_en, :filters, :erp_identifier
+                  :long_description_de, :long_description_en, :filters, :erp_identifier, :usage,
+                  :squeel_condition
 
   translates :name, :description, :long_description
 
@@ -199,7 +205,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.mercator
-    @mercator = Category.where(name_de: "== Mercator ==").first
+    @mercator = Category.where(usage: :mercator).first
     @mercator = create(
       name_de: "== Mercator ==",
       name_en: "== Mercator ==",
@@ -208,12 +214,13 @@ class Category < ActiveRecord::Base
       position: 9999,
       state: "deprecated",
       filtermin: 1,
-      filtermax: 1 ) unless @mercator
+      filtermax: 1,
+      usage: :mercator) unless @mercator
     return @mercator
   end
 
   def self.auto
-    @auto = Category.where(name_de: "importiert").first
+    @auto = Category.where(usage: :auto).first
     @auto = create(
       name_de: "importiert",
       name_en: "imported",
@@ -225,12 +232,13 @@ class Category < ActiveRecord::Base
       state: "deprecated",
       position: 1,
       filtermin: 1,
-      filtermax: 1 ) unless @auto
+      filtermax: 1,
+      usage: :auto ) unless @auto
     return @auto
   end
 
   def self.discounts
-    @discounts = Category.where(name_de: "Aktionen").first
+    @discounts = Category.where(usage: :discounts).first
     @discounts = create(
       name_de: "Aktionen",
       name_en: "Discounts",
@@ -241,12 +249,13 @@ class Category < ActiveRecord::Base
       state: "active",
       position: 1,
       filtermin: 1,
-      filtermax: 1) unless @discounts
+      filtermax: 1,
+      usage: :discounts) unless @discounts
     return @discounts
   end
 
   def self.novelties
-    @novelties = Category.where(name_de: "Neuheiten").first
+    @novelties = Category.where(usage: :novelties).first
     @novelties = create(
       name_de: "Neuheiten",
       name_en: "New",
@@ -257,12 +266,13 @@ class Category < ActiveRecord::Base
       state: "active",
       position: 1,
       filtermin: 1,
-      filtermax: 1) unless @novelties
+      filtermax: 1,
+      usage: :novelties) unless @novelties
     return @novelties
   end
 
   def self.topseller
-    @topseller = Category.where(name_de: "Topseller").first
+    @topseller = Category.where(usage: :topseller).first
     @topseller = create(
       name_de: "Topseller",
       name_en: "Topseller",
@@ -273,12 +283,13 @@ class Category < ActiveRecord::Base
       state: "active",
       position: 1,
       filtermin: 1,
-      filtermax: 1) unless @topseller
+      filtermax: 1,
+      usage: :topseller) unless @topseller
     return @topseller
   end
 
   def self.orphans
-    @orphans = Category.where(name_de: "verwaiste Artikel").first
+    @orphans = Category.where(usage: :orphans).first
     @orphans = create(
       name_de: "verwaist",
       name_en: "Orphans",
@@ -290,7 +301,8 @@ class Category < ActiveRecord::Base
       state: "deprecated",
       position: 2,
       filtermin: 1,
-      filtermax: 1) unless @orphans
+      filtermax: 1,
+      usage: :orphans) unless @orphans
     return @orphans
   end
 

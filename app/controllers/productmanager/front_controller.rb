@@ -79,6 +79,8 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       category.filtermin           = attrs[:filtermin]
       category.filtermax           = attrs[:filtermax]
       category.parent_id           = attrs[:parent_id]
+      category.usage               = attrs[:usage][:id]
+      category.squeel_condition    = attrs[:squeel_condition]
       success = category.save
     end
 
@@ -104,7 +106,9 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
           created_at:          I18n.l(category.created_at),
           updated_at:          I18n.l(category.updated_at),
           parent_name:         (category.parent.name if category.parent),
-          parent_id:           (category.parent.id   if category.parent)
+          parent_id:           (category.parent.id   if category.parent),
+          usage:               {id: category.usage},
+          squeel_condition:    category.squeel_condition
         }
       }
     end

@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   # after_filter :track_action
 
   def auto_log_in
-    puts "============================= current user" + current_user.name
     if current_user.guest?
       if session[:last_user]
         self.current_user = User.find(session[:last_user])

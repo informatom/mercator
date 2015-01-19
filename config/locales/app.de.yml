@@ -175,6 +175,7 @@ de:
     shipping_surname: Familienname (Lieferung)
     shipping_title: Titel (Lieferung)
     Sites: Bereiche
+    squeel_condition: Bedingung (SQueeL)
     startdate: Startdatum
     state: Status
     storage: Lagerort / Filiale
@@ -386,6 +387,15 @@ de:
             activate: Aktiverien
             deactivate: Deaktivieren
             reactivate: Reaktivieren
+      category/usages:
+        auto: Auto
+        discounts: Angebote
+        mercator: Mercator
+        novelties: Neuheiten
+        orphans: Waisen
+        squeel: SQueeL
+        standard: normale Kategorie
+        topseller: Topseller
       contentelement/markups:
         html: "HTML"
         markdown: "Markdown"
@@ -787,12 +797,20 @@ de:
     states:
       active: aktiv
       announced: angekündigt
+      archived: archivert
+      auto: Auto
       deprecated: inaktiv
+      discounts: Angebote
       draft: Entwurf
+      mercator: Mercator
       new: neu
+      novelties: Neuheiten
+      orphans: Waisen
       published: veröffentlicht
       published_but_hidden: verborgen
-      archived: archivert
+      squeel: SQueeL
+      standard: normale Kategorie
+      topseller: Topseller
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
     subcategories: Unterkategorien

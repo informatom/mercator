@@ -169,6 +169,7 @@ en:
     shipping_postalcode: Shipping Postal Code
     shipping_street: Shipping Street
     Sites: Sites
+    squeel_condition: Condition (SQueeL)
     startdate: Starting Date
     state: State
     storage: Storage / Branch / Store
@@ -379,6 +380,15 @@ en:
             activate: Activate
             deactivate: Deactivate
             reactivate: Reactivate
+      category/usages:
+        auto: Auto
+        discounts: Discounts
+        mercator: Mercator
+        novelties: Novelties
+        orphans: Orphans
+        squeel: SQueeL
+        standard: ordinary Category
+        topseller: Topseller
       contentelement/markups:
         html: "HTML"
         markdown: "Markdown"
@@ -780,12 +790,20 @@ en:
     states:
       active: active
       announced: announced
+      archived: archived
+      auto: Auto
       deprecated: inactive
+      discounts: Discounts
       draft: draft
+      mercator: Mercator
+      novelties: Novelties
       new: new
+      orphans: Orphans
       published: published
       published_but_hidden: hidden
-      archived: archived
+      squeel: SQueeL
+      standard: ordinary Category
+      topseller: Topseller
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories
