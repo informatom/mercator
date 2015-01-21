@@ -100,7 +100,6 @@ en:
     name: Name
     name_de: Name GER
     name_en: Name EN
-    novelty: Novelty
     number: Number
     offers: Offers
     order: Order
@@ -188,7 +187,6 @@ en:
     title: Title
     title_de: Title GER
     title_en: Title EN
-    topseller: Topseller
     unit: Unit
     unit_de: Unit GER
     unit_en: Unit EN
@@ -382,13 +380,10 @@ en:
             reactivate: Reactivate
       category/usages:
         auto: Auto
-        discounts: Discounts
         mercator: Mercator
-        novelties: Novelties
         orphans: Orphans
         squeel: SQueeL
         standard: ordinary Category
-        topseller: Topseller
       contentelement/markups:
         html: "HTML"
         markdown: "Markdown"
@@ -794,17 +789,14 @@ en:
       archived: archived
       auto: Auto
       deprecated: inactive
-      discounts: Discounts
       draft: draft
       mercator: Mercator
-      novelties: Novelties
       new: new
       orphans: Orphans
       published: published
       published_but_hidden: hidden
       squeel: SQueeL
       standard: ordinary Category
-      topseller: Topseller
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories

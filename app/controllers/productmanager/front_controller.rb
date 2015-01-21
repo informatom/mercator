@@ -49,8 +49,6 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
           warranty_de: product.warranty_de,
           warranty_en: product.warranty_en,
           state: [I18n.t('mercator.states.' + product.state)],
-          novelty: product.novelty,
-          topseller: product.topseller,
           created_at: product.created_at.utc.to_i*1000,
           updated_at: product.updated_at.utc.to_i*1000
         }

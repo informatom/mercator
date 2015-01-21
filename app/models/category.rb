@@ -1,8 +1,7 @@
 class Category < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
-  Usage = HoboFields::Types::EnumString.for(:standard, :squeel, :mercator, :novelties, :auto, :discounts,
-                                            :topseller, :orphans)
+  Usage = HoboFields::Types::EnumString.for(:standard, :squeel, :mercator, :auto, :orphans)
 
   fields do
     name_de             :string, :required
@@ -128,7 +127,7 @@ class Category < ActiveRecord::Base
   end
 
   def try_deprecation
-    return if [:squeel, :mercator, :novelties, :auto, :discounts, :topseller, :orphans].include?(usage)
+    return if [:squeel, :mercator, :auto, :orphans].include?(usage)
     return if state != "active" && state != "new"
     return if products.where(state: "active").count > 0
 
@@ -206,100 +205,63 @@ class Category < ActiveRecord::Base
   end
 
   def self.mercator
-    @mercator = Category.where(usage: :mercator).first
-    @mercator = create(
-      name_de: "== Mercator ==",
-      name_en: "== Mercator ==",
-      description_de: "Mercator - Servicekategorien",
-      description_en: "Mercator - Service Categories",
-      position: 9999,
-      state: "deprecated",
-      filtermin: 1,
-      filtermax: 1,
-      usage: :mercator) unless @mercator
-    return @mercator
+    mercator = Category.find_by(usage: :mercator)
+    mercator ||= create(name_de: "== Mercator ==", name_en: "== Mercator ==",
+                        description_de: "Mercator - Servicekategorien",
+                        description_en: "Mercator - Service Categories",
+                        position: 9999, state: "deprecated", filtermin: 1, filtermax: 1,
+                        usage: :mercator)
+    return mercator
   end
 
   def self.auto
-    @auto = Category.where(usage: :auto).first
-    @auto = create(
-      name_de: "importiert",
-      name_en: "imported",
-      description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
-      description_en: "automatically created froducts from ERP import Job",
-      long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
-      long_description_en: "Please complete products and put them into categories",
-      parent_id: Category.mercator.id,
-      state: "deprecated",
-      position: 1,
-      filtermin: 1,
-      filtermax: 1,
-      usage: :auto ) unless @auto
-    return @auto
+    auto = Category.find_by(usage: :auto)
+    auto ||= create(name_de: "importiert", name_en: "imported",
+                    description_de: "Automatisch angelegte Produkte aus ERP Batchimport",
+                    description_en: "automatically created froducts from ERP import Job",
+                    long_description_de: "Bitte Produkte vervollständigen und kategorisieren.",
+                    long_description_en: "Please complete products and put them into categories",
+                    parent_id: Category.mercator.id, state: "deprecated", position: 1,
+                    filtermin: 1, filtermax: 1, usage: :auto )
+    return auto
   end
 
   def self.novelties
-    @novelties = Category.where(usage: :novelties).first
-    @novelties = create(
-      name_de: "Neuheiten",
-      name_en: "New",
-      description_de: "Neuheiten",
-      description_en: "New",
-      long_description_de: "Neuheiten",
-      long_description_en: "Novelties",
-      state: "active",
-      position: 1,
-      filtermin: 1,
-      filtermax: 1,
-      usage: :novelties) unless @novelties
-    return @novelties
+    novelties = Category.find_by(squeel_condition: "kennzeichen == 'N'")
+    novelties ||= create(name_de: "Neuheiten", name_en: "New", description_de: "Neuheiten",
+                         description_en: "New", long_description_de: "Neuheiten",
+                         long_description_en: "Novelties", state: "active", position: 1,
+                         filtermin: 1, filtermax: 1, squeel_condition: "kennzeichen == 'N'",
+                         usage: :squeel)
+    return novelties
   end
 
   def self.topseller
-    @topseller = Category.where(usage: :topseller).first
-    @topseller = create(
-      name_de: "Topseller",
-      name_en: "Topseller",
-      description_de: "Topseller",
-      description_en: "Topseller",
-      long_description_de: "Topseller",
-      long_description_en: "Topseller",
-      state: "active",
-      position: 1,
-      filtermin: 1,
-      filtermax: 1,
-      usage: :topseller) unless @topseller
-    return @topseller
+    topseller = Category.find_by(squeel_condition: "kennzeichen == 'T'")
+    topseller ||= create(name_de: "Topseller", name_en: "Topseller", description_de: "Topseller",
+                         description_en: "Topseller", long_description_de: "Topseller",
+                         long_description_en: "Topseller", state: "active", position: 1,
+                         filtermin: 1, filtermax: 1, squeel_condition: "kennzeichen == 'T'",
+                         usage: :squeel)
+    return topseller
   end
 
   def self.orphans
-    @orphans = Category.where(usage: :orphans).first
-    @orphans = create(
-      name_de: "verwaist",
-      name_en: "Orphans",
-      description_de: "verwaiste Artikel",
-      description_en: "Orphans",
-      long_description_de: "verwaiste Artikel",
-      long_description_en: "Orphans",
-      parent_id: Category.mercator,
-      state: "deprecated",
-      position: 2,
-      filtermin: 1,
-      filtermax: 1,
-      usage: :orphans) unless @orphans
-    return @orphans
+    orphans = Category.find_by(usage: :orphans)
+    orphans ||= create(name_de: "verwaist", name_en: "Orphans", description_de: "verwaiste Artikel",
+                       description_en: "Orphans", long_description_de: "verwaiste Artikel",
+                       long_description_en: "Orphans", parent_id: Category.mercator,
+                       state: "deprecated", position: 2, filtermin: 1, filtermax: 1,
+                       usage: :orphans)
+    return orphans
   end
 
   def self.deprecate
-    Category.roots.each do |category|
-      category.try_deprecation
-    end
+    Category.roots.each {|category| category.try_deprecation}
   end
 
   def self.update_property_hash
-    Category.order(id: :asc).load.each do |category|
-      category.update_property_hash
-    end
+    Category.order(id: :asc).load.each {|category| category.update_property_hash}
   end
 
   def self.reindexing_and_filter_updates

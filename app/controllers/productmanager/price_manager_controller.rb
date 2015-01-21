@@ -15,14 +15,6 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
     if params[:cmd] == "save-record"
       attrs = params[:record]
 
-      novelty = nil
-      novelty = true if attrs[:novelty] == "1"
-      novelty = false if attrs[:novelty] == "0"
-
-      topseller = nil
-      topseller = true if attrs[:topseller] == "1"
-      topseller = false if attrs[:topseller] == "0"
-
       product.title_de            = attrs[:title_de]
       product.title_en            = attrs[:title_en]
       product.number              = attrs[:number]
@@ -32,8 +24,6 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       product.long_description_en = attrs[:long_description_en]
       product.warranty_de         = attrs[:warranty_de]
       product.warranty_en         = attrs[:warranty_en]
-      product.novelty             = novelty
-      product.topseller           = topseller
       product.state               = attrs[:state][:id]
 
       success = product.save
@@ -59,8 +49,6 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
               long_description_en: product.long_description_en,
               warranty_de:         product.warranty_de,
               warranty_en:         product.warranty_en,
-              novelty:             product.novelty,
-              topseller:           product.topseller,
               created_at:          I18n.l(product.created_at),
               updated_at:          I18n.l(product.updated_at)
             }

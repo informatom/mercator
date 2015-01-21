@@ -24,10 +24,8 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
               value: ActionController::Base.helpers.strip_tags(@product.long_description_en) },
             { recid: 8, attribute: I18n.t("attributes.warranty") + " DE", value: @product.warranty_de },
             { recid: 9, attribute: I18n.t("attributes.warranty") + " EN", value: @product.warranty_en },
-            { recid: 10, attribute: I18n.t("attributes.novelty"), value: @product.novelty.to_s },
-            { recid: 11, attribute: I18n.t("attributes.topseller"), value: @product.topseller },
-            { recid: 12, attribute: I18n.t("attributes.created_at"), value: I18n.l(@product.created_at) },
-            { recid: 13, attribute: I18n.t("attributes.updated_at"), value: I18n.l(@product.updated_at) }
+            { recid: 10, attribute: I18n.t("attributes.created_at"), value: I18n.l(@product.created_at) },
+            { recid: 11, attribute: I18n.t("attributes.updated_at"), value: I18n.l(@product.updated_at) }
           ]
         }
       }

@@ -1,20 +1,24 @@
 <extend tag="form" for="Product">
   <old-form merge multipart>
     <field-list: fields="title_de, title_en, number, description_de, description_en,
-                         long_description_de, long_description_en, document, photo" param>
+                         long_description_de, long_description_en, warranty_de, warranty_en,
+                         document, photo" param>
     </field-list:>
   </old-form>
 </extend>
-
 
 <extend tag="show-page" for="Product">
   <old-show-page merge>
     <append-content-body: >
       <div class="form-horizontal">
         <div class="control-group photo-url-field">
-          <label class="control-label photo-url-label"><t key="mercator.images.original_version" /></label>
+          <label class="control-label photo-url-label">
+            <t key="mercator.images.original_version" />
+          </label>
           <div class="controls">
-            <span class="photo-updated-at-tag view product-photo-url "><%= image_tag this.photo.url %></span>
+            <span class="photo-updated-at-tag view product-photo-url ">
+              <%= image_tag this.photo.url %>
+            </span>
           </div>
         </div>
       </div>

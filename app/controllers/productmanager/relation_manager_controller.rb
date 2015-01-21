@@ -20,8 +20,6 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
           title_de: product.title_de,
           title_en: product.title_en,
           state: [I18n.t('mercator.states.' + product.state)],
-          novelty: product.novelty,
-          topseller: product.topseller,
           created_at: product.created_at.utc.to_i*1000,
           updated_at: product.updated_at.utc.to_i*1000
         }

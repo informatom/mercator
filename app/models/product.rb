@@ -13,8 +13,6 @@ class Product < ActiveRecord::Base
     warranty_de         :cktext
     warranty_en         :cktext
     legacy_id           :integer
-    novelty             :boolean
-    topseller           :boolean
     timestamps
   end
 
@@ -25,7 +23,7 @@ class Product < ActiveRecord::Base
                   :long_description_de, :long_description_en,
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
-                  :novelty, :topseller
+                  :warranty_de, :warranty_en
 
   translates :title, :description, :long_description, :warranty
   has_paper_trail
