@@ -1,4 +1,4 @@
-<page>
+<page title="&this.title">
   <title:>
     <h1><view:title no-wrapper/></h1>
   </title:>
