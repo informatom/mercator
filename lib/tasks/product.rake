@@ -107,4 +107,27 @@ namespace :products do
     JobLogger.info("Finished Job: products:first_activation")
     JobLogger.info("=" * 50)
   end
+
+  # starten als: 'bundle exec rake products:remove_newlines RAILS_ENV=production'
+  desc "Removes newline \n sequences"
+  task :remove_newlines => :environment do
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Job: products:remove_newlines")
+
+    require 'string_extensions'
+
+    Product.all.each_with_index do |product, i|
+      puts i.to_s
+      product.description_de = product.description_de.fix_icecat if product.description_de
+      product.description_en = product.description_en.fix_icecat if product.description_en
+      product.long_description_de = product.long_description_de.fix_icecat if product.long_description_de
+      product.long_description_en = product.long_description_en.fix_icecat if product.long_description_en
+      product.warranty_de = product.warranty_de.fix_icecat if product.warranty_de
+      product.warranty_en = product.warranty_en.fix_icecat if product.warranty_en
+      product.save(validate: false)
+    end
+
+    JobLogger.info("Finished Job: products:remove_newlines")
+    JobLogger.info("=" * 50)
+  end
 end
