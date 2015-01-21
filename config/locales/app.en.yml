@@ -733,6 +733,7 @@ en:
       date: Order Date
       number: Order Number
       text: Order Text
+    overview: Overview
     packing_slip_number: Packing Slip Number
     parked: Parked
     paste_here: "Paste file here (point mouse here and press [STRG]+[v])"

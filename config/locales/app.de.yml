@@ -740,6 +740,7 @@ de:
       date: Auftragsdatum
       number: Auftragsdatum
       text: Bestelltext
+    overview: Übersicht
     packing_slip_number: Lieferscheinnummer
     parked: Geparkter
     paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
