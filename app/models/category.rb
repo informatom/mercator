@@ -238,23 +238,6 @@ class Category < ActiveRecord::Base
     return @auto
   end
 
-  def self.discounts
-    @discounts = Category.where(usage: :discounts).first
-    @discounts = create(
-      name_de: "Aktionen",
-      name_en: "Discounts",
-      description_de: "Aktionsartikel",
-      description_en: "Dicounted Articles",
-      long_description_de: "Aktionsartikel",
-      long_description_en: "Dicounted Articles",
-      state: "active",
-      position: 1,
-      filtermin: 1,
-      filtermax: 1,
-      usage: :discounts) unless @discounts
-    return @discounts
-  end
-
   def self.novelties
     @novelties = Category.where(usage: :novelties).first
     @novelties = create(

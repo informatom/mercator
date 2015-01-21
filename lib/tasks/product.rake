@@ -1,7 +1,6 @@
 # encoding: utf-8
 namespace :products do
-  # starten als: 'bundle exec rake products:activateplus
-  # in Produktivumgebungen: 'bundle exec rake products:activateplus RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:activateplus RAILS_ENV=production'
   desc "Creates dummy prices, inventories and activates products"
   task :activateplus => :environment do
     Product.all.each do |product|
@@ -32,8 +31,7 @@ namespace :products do
     end
   end
 
-  # starten als: 'bundle exec rake products:deprecate
-  # in Produktivumgebungen: 'bundle exec rake products:deprecate RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:deprecate RAILS_ENV=production'
   desc "Deprecates products without inventories"
   task :deprecate => :environment do
     JobLogger.info("=" * 50)
@@ -45,8 +43,7 @@ namespace :products do
     JobLogger.info("=" * 50)
   end
 
-  # starten als: 'bundle exec rake products:fix_photo_content_type
-  # in Produktivumgebungen: 'bundle exec rake products:fix_photo_content_type RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:fix_photo_content_type RAILS_ENV=production'
   desc "Fixes photo content types"
   task :fix_photo_content_type => :environment do
     Product.all.each do |product|
@@ -77,8 +74,7 @@ namespace :products do
     end
   end
 
-  # starten als: 'bundle exec rake products:reindex
-  # in Produktivumgebungen: 'bundle exec rake products:reindex RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:reindex RAILS_ENV=production'
   desc "Reindexes products in Elasticsearch."
   task :reindex => :environment do
     JobLogger.info("=" * 50)
@@ -88,8 +84,7 @@ namespace :products do
     JobLogger.info("=" * 50)
   end
 
-  # starten als: 'bundle exec rake products:catch_orphans
-  # in Produktivumgebungen: 'bundle exec rake products:catch_orphans RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:catch_orphans RAILS_ENV=production'
   desc "Assigns orphaned products to category Orphans."
   task :catch_orphans => :environment do
     JobLogger.info("=" * 50)
@@ -99,8 +94,7 @@ namespace :products do
     JobLogger.info("=" * 50)
   end
 
-  # starten als: 'bundle exec rake products:first_activation
-  # in Produktivumgebungen: 'bundle exec rake products:first_activation RAILS_ENV=production'
+  # starten als: 'bundle exec rake products:first_activation RAILS_ENV=production'
   desc "Product activation after first import"
   task :first_activation => :environment do
     JobLogger.info("=" * 50)
