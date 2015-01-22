@@ -29,7 +29,7 @@ function categoryTree() {
             dataType: 'text',
           }).done(function(response, textStatus, jqXHR) {
             w2ui.productsgrid.load('/productmanager/front/manage_products/' + selected_category_id)
-            w2alert('<%= I18n.t("mercator.product_manager.product_moved_to") %>: ' + jqXHR.responseText)
+            w2alert(I18n.t("js.pm.Product.moved_to") + ': ' + jqXHR.responseText)
           }).fail(function(jqXHR, textStatus, errorThrown) {
             w2alert(jqXHR.responseText)
           })
