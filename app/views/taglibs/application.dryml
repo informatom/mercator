@@ -76,3 +76,5 @@
     <meta name="description" content="&self.this.title" />
   </if>
 </def>
+
+<def tag="nil-view">-</def>

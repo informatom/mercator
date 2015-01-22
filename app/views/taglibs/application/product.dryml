@@ -12,7 +12,8 @@
 
   <div class="row" param="default" merge>
     <div class="col-md-3 text-center product-card">
-      <br/><br/>
+      <h5><view:number /></h5>
+      <br/>
       <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
       <transition-link transition="add_to_basket" method="put">
         <photo name="in-den-warenkorb" class="card-button pull-left"/>
@@ -57,7 +58,8 @@
   <set inventory="&this.determine_inventory"/>
   <div class="row product-card" param="default" merge>
     <div class="col-xs-4 text-center">
-      <br/><br/>
+      <h5><view:number /></h5>
+      <br/>
       <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
       <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
       <transition-link transition="add_to_basket" method="put">
@@ -84,6 +86,7 @@
           <%= link_to( this.title, product_path(this)) %>
         </else>
       </h4>
+
       <if test="&this.features">
         <ul>
           <li repeat="&this.features"><view:text/></li>
@@ -99,7 +102,7 @@
         <small><t key="mercator.incl_vat" /></small>
       </p>
 
-      <p><small><view:warranty/></small></p>
+      <p><small><view:description /></small></p>
       <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
 
       <div class="row">
