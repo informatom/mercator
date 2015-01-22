@@ -45,6 +45,14 @@ class Admin::CategoriesController < Admin::AdminSiteController
     hobo_index
   end
 
+  def new
+    if request_param(:product_manager)
+      @cancelpath = productmanager_front_path(category_id: params[:id])
+    end
+    hobo_new
+  end
+
+
   def edit
     if request_param(:product_manager)
       @cancelpath = productmanager_front_path(category_id: params[:id])

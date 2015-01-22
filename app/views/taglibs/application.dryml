@@ -63,7 +63,7 @@
       <meta name="description" content="&@product.title" />
     </else>
   </if>
-  <if test="&@category">
+  <if test="&@category && @category.id">
     <link rel="canonical" href="& 'http://' + Constant.find_by_key('shop_domain').value + category_path( @category )"/>
     <meta name="description" content="&@category.description" />
   </if>
