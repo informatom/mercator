@@ -2,19 +2,20 @@ class Webpage < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title_de   :string, :required
-    title_en   :string
-    url        :string
-    ancestry   :string, :index => true
-    position   :integer, :required
-    legacy_id  :integer
-    slug       :string, :unique, :name => true
+    title_de        :string, :required
+    title_en        :string
+    url             :string
+    seo_description :string
+    ancestry        :string, :index => true
+    position        :integer, :required
+    legacy_id       :integer
+    slug            :string, :unique, :name => true
     timestamps
   end
 
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
                   :position, :parent_id, :parent, :position, :page_template, :url, :ancestry,
-                  :slug, :menu
+                  :slug, :seo_description
   translates :title
   has_ancestry orphan_strategy: :adopt
 

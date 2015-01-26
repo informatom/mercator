@@ -11,6 +11,8 @@ function webpageForm() {
         html: { caption: 'URL' } },
       { field: 'slug', type: 'text',
         html: { caption: 'Slug' } },
+      { field: 'seo_description', type: 'text',
+        html: { caption: I18n.t("attributes.seo_description") } },
       { field: 'position', type: 'int', required: true,
         html: { caption: I18n.t("attributes.position") } },
       { field: 'page_template_id', type: 'list', required: true, options: { items: pagetemplates },

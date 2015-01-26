@@ -36,6 +36,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
       webpage.title_en         = attrs[:title_en]
       webpage.url              = attrs[:url]
       webpage.slug             = attrs[:slug]
+      webpage.seo_description  = attrs[:seo_description]
       webpage.page_template_id = attrs[:page_template_id][:id]
       success = webpage.save
     end
@@ -52,6 +53,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
           title_en:         webpage.title_en,
           url:              webpage.url,
           slug:             webpage.slug,
+          seo_description:  webpage.seo_description,
           position:         webpage.position,
           page_template_id: {id: webpage.page_template_id}
         }

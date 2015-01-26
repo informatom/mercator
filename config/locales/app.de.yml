@@ -162,6 +162,7 @@ de:
     scale_from: Staffel ab
     scale_to: Staffel bis
     sender: Absender
+    seo_description: Beschreibung (SEO)
     shipping_country: Land (Lieferung)
     shipping_company: Firmenname (Lieferung)
     shipping_city: Stadt (Lieferung)

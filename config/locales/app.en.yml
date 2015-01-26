@@ -158,6 +158,7 @@ en:
     scale_from: Scale from
     scale_to: Scale to
     sender: Sender
+    seo_description: Description (SEO)
     shipping_country: Shipping Country
     shipping_c_o: Shipping c/o
     shipping_city: Shipping City

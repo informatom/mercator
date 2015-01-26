@@ -69,7 +69,7 @@
   </if>
   <if test="&self.this.class == Webpage && self.this.id">
     <link rel="canonical" href="& 'http://' + Constant.find_by_key('cms_domain').value + webpage_path(self.this)"/>
-    <meta name="description" content="&self.this.title" />
+    <meta name="description" content="&self.this.seo_description" />
   </if>
    <if test="&self.this.class == Blogpost && self.this.id">
     <link rel="canonical" href="& 'http://' + Constant.find_by_key('cms_domain').value + blogpost_path(self.this)"/>

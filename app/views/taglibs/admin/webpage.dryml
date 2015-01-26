@@ -1,6 +1,7 @@
 <extend tag="form" for="Webpage">
   <old-form merge>
-    <field-list: fields="title_de, title_en, menu, url, position, slug, state, page_template" param />
+    <field-list: fields="title_de, title_en, menu, url, position, slug, seo_description, state,
+                         page_template" param />
     <actions:>
       <submit label="#{ht 'webpage.actions.save', :default=>['Save']}"/> &nbsp;
       <t key="hobo.support.or" /> &nbsp;
