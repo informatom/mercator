@@ -163,6 +163,7 @@ de:
     scale_to: Staffel bis
     sender: Absender
     seo_description: Beschreibung (SEO)
+    severity: Schweregrad
     shipping_country: Land (Lieferung)
     shipping_company: Firmenname (Lieferung)
     shipping_city: Stadt (Lieferung)
@@ -297,6 +298,9 @@ de:
       lineitem:
         one: Bestellposition
         other: Bestellpositionen
+      logentry:
+        one: Log
+        other: Logs
       message:
         one: Nachricht
         other: Nachrichten

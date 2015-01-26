@@ -11,6 +11,9 @@
           <li><t key='mercator.use_navigation'/></li>
         </ul>
       </section>
+      <section class="tasks">
+        <a href="mercator_mesonic/import" class="btn btn-warning">Update Mesonic Webartikel</a>
+      </section>
     </header>
 
     <section class="content-body">

@@ -159,6 +159,7 @@ en:
     scale_to: Scale to
     sender: Sender
     seo_description: Description (SEO)
+    severity: Severity
     shipping_country: Shipping Country
     shipping_c_o: Shipping c/o
     shipping_city: Shipping City
@@ -287,6 +288,9 @@ en:
       lineitem:
         one: Order Item
         other: Order Items
+      logentry:
+        one: Log
+        other: Logs
       message:
         one: Message
         other: Messages
