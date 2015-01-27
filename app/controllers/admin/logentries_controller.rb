@@ -6,7 +6,11 @@ class Admin::LogentriesController < Admin::AdminSiteController
   def index
     logentries = Logentry
     if params[:sort]
-      logentries = logentries.order(params[:sort]["0"][:field] || :created_at => :desc)
+      sortparam = params[:sort]["0"][:field] == "recid" ? "id" : params[:sort]["0"][:field]
+      sortparam ||= :id
+      direction = "DESC"
+      direction = "ASC" if params[:sort]["0"][:direction] == "asc"
+      logentries = logentries.order(sortparam + ' ' + direction)
     end
     if params[:search]
         logentries = logentries.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")

@@ -1,10 +1,11 @@
 <page>
   <content-body: replace>
     <w2ui-index-table model="Logentry"
-                      columns="severity, message, created_at"
-                      sizes ="50, 500, 100"
+                      columns="recid, severity, message, created_at"
+                      sizes ="20, 50, 500, 100"
                       searches="severity, message, created_at"
-                      sort="created_at"
+                      sort="recid"
+                      sortdir="DESC"
                       subsite="admin"
                       async />
   </content-body:>
