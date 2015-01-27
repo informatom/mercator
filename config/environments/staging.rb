@@ -2,6 +2,9 @@ Mercator::Application.configure do
   config.cache_classes = true
   config.eager_load = true
 
+  # otherwise it's debug, because we are not in production
+  config.log_level = :warn
+
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
