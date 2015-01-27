@@ -1,0 +1,43 @@
+#!/bin/bash
+# upstart-job for delayed_job
+
+set -e
+# FIXME! set APP_PATH approprietely
+APP_PATH="/var/rails/mercator"
+
+# FIXME! set user and environment approprietely
+start_job() {
+        echo "Starting delayed job"
+        sudo -iu rails bash -c "cd $APP_PATH && RAILS_ENV=production ./bin/delayed_job start"
+}
+
+stop_job() {
+        echo "Stopping delayed job"
+        sudo -iu rails bash -c "cd $APP_PATH && RAILS_ENV=production ./bin/delayed_job stop"
+}
+
+status_job() {
+        echo "Status of delayed job"
+        sudo -iu rails bash -c "cd $APP_PATH && RAILS_ENV=production ./bin/delayed_job status"
+}
+
+COMMAND="$1"
+shift
+
+case $COMMAND in
+start|stop|status|restart)
+    $ECHO
+    if [ "$COMMAND" = "stop" ]; then
+        stop_job
+    elif [ "$COMMAND" = "start" ]; then
+        start_job
+    elif [ "$COMMAND" = "status" ]; then
+        status_job
+    elif  [ "$COMMAND" = "restart" ]; then
+        stop_job
+        sleep 1s
+        start_job
+        exit 0
+    fi
+    ;;
+esac

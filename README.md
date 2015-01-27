@@ -124,6 +124,9 @@ Copy config/delayed_job.sh.example to config/delayed_job.sh and adapt it to your
 * Check log file location
 * Check Ruby Version and path
 
+Installing as a service on a production system:
+* Create an init script, like the one in @/materials/delayed_job@ in @/etc/init.d@ and make it executable (755).
+
 ### Icecat Integration
 
 If Using MercatorIcecat for Icecat Integration you need one import like
