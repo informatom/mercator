@@ -12,7 +12,9 @@
         </ul>
       </section>
       <section class="tasks">
-        <a href="mercator_mesonic/import" class="btn btn-warning">Update Mesonic Webartikel</a>
+        <if test="&Rails.application.config.try(:erp) == 'mesonic'">
+          <p><a href="&mercator_mesonic.import_path" class="btn btn-warning">Update Mesonic Webartikel</a></p>
+        </if>
       </section>
     </header>
 
