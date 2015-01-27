@@ -26,7 +26,7 @@ class Admin::LogentriesController < Admin::AdminSiteController
               recid:          logentry.id,
               severity:       logentry.severity,
               message:        logentry.message,
-              created_at:     logentry.created_at,
+              created_at:     I18n.l(logentry.created_at, format: :sortable),
             }
           }
         }

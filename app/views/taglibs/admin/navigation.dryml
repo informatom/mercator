@@ -131,6 +131,9 @@
         <nav-item with="&ShippingCost">
           <ht key="shipping_cost.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <nav-item with="&Logentry">
+          <ht key="logentry.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
       </ul>
     </li>
   </navigation>

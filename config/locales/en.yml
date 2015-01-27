@@ -202,6 +202,7 @@ en:
       long: ! '%B %d, %Y %H:%M'
       short: ! '%d %b %H:%M'
       concise: ! '%a %d.%m., %H:%M'
+      sortable: ! '%Y-%m-%d %H:%M:%S'
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
