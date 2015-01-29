@@ -48,6 +48,18 @@ The following constants have to be set in the Administration Area (http://yourdo
 * shop_domain, cms_domain: Damain names for the shop and the cms area of the application, respectively. They have to be porvided including subdomais, but without protocol (e.g. mercator.informatom.com). They can be identical.
 * fifo: storage strategy, either true or false (as text strings). If false is given, lifo is used.
 
+# Setting up faye
+
+* Install the necessary gems
+
+  ```
+  gem install faye
+  gem install thin
+  gem install prilate_pub
+  ```
+
+  Start faye: @rackup private_pub.ru -s thin -E production@
+
 ## Add-Ons
 
 Several Gems are installed, which are non-mandatory add-ons.
@@ -126,6 +138,20 @@ Copy config/delayed_job.sh.example to config/delayed_job.sh and adapt it to your
 
 Installing as a service on a production system:
 * Create an init script, like the one in @/materials/delayed_job@ in @/etc/init.d@ and make it executable (755).
+* Don't forget to restart the process, when new code that could be run in background, has been deployed,
+  the app is still running, otherwise.
+
+### Palava
+
+We depend on palava (https://palava.tv/, https://github.com/palavatv)
+* Install redis.
+  @sudo apt-get install redis-server@
+* Restrict to local access in @/etc/redis/redis.conf@:
+  @bind 127.0.0.1@
+
+* Checkout the mercator-palava repo and install the gems required:
+  @bundle install@
+
 
 ### Icecat Integration
 

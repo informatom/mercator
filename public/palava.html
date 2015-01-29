@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Mercator Palava WebRTC Videochat</title>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/assets/application/EventEmitter.min.js"></script>
+    <script src="/assets/application/palava.js"></script>
+
+    <script type="text/javascript">
+      var channel, session;
+      channel = new palava.WebSocketChannel('ws://palava.informatom.com')
+      session = new palava.Session({ roomId: "test", channel: channel })
+
+      session.on('local_stream_ready', function(stream) {
+        palava.browser.attachMediaStream($('#myvideo'), stream)
+        session.room.join() })
+
+      session.on('peer_stream_ready', function(peer) {
+        var element;
+        if (peer.isLocal()) { return }
+        if ($('#' + peer.id).length > 0) {
+          element = $('#' + peer.id)
+          $('#others').append(element)
+        } else {
+          element = $('<li id="' + peer.id + '"><video autoplay></video></li>')
+          $('#others').append(element)
+        }
+        palava.browser.attachMediaStream(element.children('video')[0], peer.getStream())
+      })
+
+      session.on('peer_left', function(peer) {
+        $('#' + peer.id).remove()
+      })
+
+      session.init({
+        identity: new palava.Identity({ userMediaConfig: { audio: true, video: true } }),
+        options: { stun: 'stun:palava.informatom.com', joinTimeout: 500 }
+      })
+    </script>
+  </head>
+  <body>
+    <h2>Mein Video</h2>
+    <video id="myvideo" muted autoplay></video>
+    <h2>Andere Videos:</h2>
+    <ul id="others"></ul>
+  </body>
+</html>
