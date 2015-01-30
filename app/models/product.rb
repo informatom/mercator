@@ -67,10 +67,7 @@ class Product < ActiveRecord::Base
     state :new, :default => true
     state :announced, :active, :deprecated
 
-    transition :add_to_basket, {:active => :active}, :available_to => :all do
-      acting_user.basket.add_product(product: self)
-    end
-
+    transition :add_to_basket, {:active => :active}, :available_to => :all
     transition :compare, {:active => :active}, :available_to => :all
     transition :dont_compare, {:active => :active}, :available_to => :all
 

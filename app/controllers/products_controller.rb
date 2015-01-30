@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def do_add_to_basket
     do_transition_action :add_to_basket do
+      current_user.basket.add_product(product: self.this)
       flash[:success] = I18n.t("mercator.messages.product.add_to_basket.success")
       flash[:notice] = nil
       PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")

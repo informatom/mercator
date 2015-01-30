@@ -247,7 +247,6 @@ class Order < ActiveRecord::Base
   end
 
   def add_product(product: nil, amount: 1)
-    debugger
     if lineitem = lineitems.where(product_number: product.number, state: "active").first
       lineitem.increase_amount(user_id: user_id, amount: amount)
     else
