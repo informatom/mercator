@@ -40,7 +40,13 @@ class OrdersController < ApplicationController
     end
 
     if Rails.application.config.try(:payment) == "mpay24" && Rails.env == "production"
-      unless self.payment
+      if respone = self.payment
+        if response.body[:select_payment_response]
+          redirect_to response.body[:select_payment_response][:location]
+        else
+          puts "Error: Response is not of the expected format."
+        end
+      else
         flash[:error] = I18n.t "mercator.messages.order.payment.failure"
         flash[:notice] = nil
 

@@ -215,9 +215,13 @@ class Order < ActiveRecord::Base
     lineitems.any? ? discount_rel * lineitems.sum('value') / 100 : 0
   end
 
+  def vat
+    lineitems.*.calculate_vat_value(discount_rel: discount_rel).sum
+  end
+
   def sum_incl_vat
     if lineitems.any?
-      sum + lineitems.*.calculate_vat_value(discount_rel: discount_rel).sum
+      sum + vat
     else
       0
     end
@@ -243,6 +247,7 @@ class Order < ActiveRecord::Base
   end
 
   def add_product(product: nil, amount: 1)
+    debugger
     if lineitem = lineitems.where(product_number: product.number, state: "active").first
       lineitem.increase_amount(user_id: user_id, amount: amount)
     else
@@ -320,6 +325,18 @@ class Order < ActiveRecord::Base
                                                        vat:           shipping_cost.vat,
                                                        value:         shipping_cost.value)
     end
+  end
+
+  def shipping_cost
+    shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
+    shipping_cost_item = lineitems.find_by(product_number: shipping_cost_product_number)
+    shipping_cost_item ? shipping_cost_item.value : 0
+  end
+
+  def shipping_cost_vat
+    shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
+    shipping_cost_item = lineitems.find_by(product_number: shipping_cost_product_number)
+    shipping_cost_item ? shipping_cost_item.vat : 0
   end
 
   def delete_if_obsolete

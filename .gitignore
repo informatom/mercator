@@ -1,8 +1,6 @@
 .bundle
 .gemtags
 
-db/schema.rb
-
 app/views/taglibs/auto/*
 app/views/page_templates/*
 app/assets/stylesheets/front/glypha.ttf
