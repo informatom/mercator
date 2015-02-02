@@ -34,10 +34,12 @@ class OrdersController < ApplicationController
     if Rails.application.config.try(:payment) == "mpay24" &&
        ["production", "staging", "development"].include?(Rails.env.to_s)
 
-      if response = @order.pay(system: Rails.env.to_s) && response.body[:select_payment_response]
+      response = @order.pay(system: Rails.env.to_s)
+      if response.body[:select_payment_response][:location]
         redirect_to response.body[:select_payment_response][:location]
       else
-        flash[:error] = I18n.t "mercator.messages.order.payment.failure"
+        puts "Error:" + response.body[:select_payment_response][:err_text]
+        flash[:error] = response.body[:select_payment_response][:err_text]
         flash[:notice] = nil
         render action: :error and return
       end

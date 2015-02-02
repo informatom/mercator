@@ -247,11 +247,9 @@ class Order < ActiveRecord::Base
 
   def name
     if ["basket", "parked"].include?(state)
-      [I18n.t("attributes.basket"), I18n.t("mercator.from"),
-       "<nobr>"+I18n.l(created_at).to_s+"</nobr>"].join(" ").html_safe
+      [I18n.t("attributes.basket"), I18n.t("mercator.from"),I18n.l(created_at).to_s].join(" ").html_safe
     else
-      [I18n.t("activerecord.models.order.one"), I18n.t("mercator.from"),
-       "<nobr>"+I18n.l(created_at).to_s+"</nobr>"].join(" ").html_safe
+      [I18n.t("activerecord.models.order.one"), I18n.t("mercator.from"), I18n.l(created_at).to_s].join(" ").html_safe
     end
   end
 
