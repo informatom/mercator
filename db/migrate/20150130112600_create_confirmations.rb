@@ -1,4 +1,4 @@
-class AddConfirmations < ActiveRecord::Migration
+class CreateConfirmations < ActiveRecord::Migration
   def self.up
     create_table :mercator_mpay24_confirmations do |t|
       t.string :operation
@@ -18,6 +18,8 @@ class AddConfirmations < ActiveRecord::Migration
       t.string :profile_status
       t.string :filter_status
       t.string :appr_code
+      t.datetime :created_at
+      t.datetime :updated_at
     end
   end
 

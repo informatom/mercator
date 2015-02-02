@@ -6,5 +6,6 @@ require "private_pub"
 
 Faye::WebSocket.load_adapter('thin')
 
-PrivatePub.load_config(File.expand_path("../config/private_pub.yml", __FILE__), ENV["RAILS_ENV"] || "development")
+config_path = File.expand_path("../config/private_pub.yml"
+PrivatePub.load_config(config_path, __FILE__), ENV["RAILS_ENV"] || "development")
 run PrivatePub.faye_app

@@ -6,8 +6,12 @@ class OrdersController < ApplicationController
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
-  # can be found in mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
-  include OrdersControllerExtensions if Rails.application.config.try(:payment) == "mpay24"
+  # location: mercator/vendor/engines/mercator_mpay24/app/controllers/
+  #           orders_controller_extensions.rb
+  if Rails.application.config.try(:payment) == "mpay24"
+    include OrdersControllerExtensions
+  end
+
 
   def refresh
     self.this = Order.find(params[:id])
@@ -25,29 +29,27 @@ class OrdersController < ApplicationController
 
 
   def do_place
-    self.this = Order.find(params[:id])
+    self.this = @order = Order.find(params[:id])
 
-    if Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production"
-      # A quick ckeck, if erp_account_number is current (User could have been changed since last job run)
-      current_user.update_erp_account_nr()
+    if Rails.application.config.try(:payment) == "mpay24" &&
+       ["production", "staging", "development"].include?(Rails.env.to_s)
 
-      unless self.this.push_to_mesonic()
-        flash[:error] = I18n.t "mercator.messages.order.place.failure"
+      if response = @order.pay(system: Rails.env.to_s) && response.body[:select_payment_response]
+        redirect_to response.body[:select_payment_response][:location]
+      else
+        flash[:error] = I18n.t "mercator.messages.order.payment.failure"
         flash[:notice] = nil
-
         render action: :error and return
       end
     end
 
-    if Rails.application.config.try(:payment) == "mpay24" && Rails.env == "production"
-      if respone = self.payment
-        if response.body[:select_payment_response]
-          redirect_to response.body[:select_payment_response][:location]
-        else
-          puts "Error: Response is not of the expected format."
-        end
-      else
-        flash[:error] = I18n.t "mercator.messages.order.payment.failure"
+    if Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production"
+ # A quick ckeck, if erp_account_number is current
+      # (User could have been changed since last job run)
+      current_user.update_erp_account_nr()
+
+      unless @order.push_to_mesonic()
+        flash[:error] = I18n.t "mercator.messages.order.place.failure"
         flash[:notice] = nil
 
         render action: :error and return

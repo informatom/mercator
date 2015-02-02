@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130112600) do
+ActiveRecord::Schema.define(version: 20150202101500) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -485,24 +485,40 @@ ActiveRecord::Schema.define(version: 20150130112600) do
   add_index "mercator_icecat_metadata", ["product_id"], name: "index_mercator_icecat_metadata_on_product_id", using: :btree
 
   create_table "mercator_mpay24_confirmations", force: true do |t|
-    t.string "operation"
-    t.string "tid"
-    t.string "status"
-    t.string "price"
-    t.string "currency"
-    t.string "p_type"
-    t.string "brand"
-    t.string "mpaytid"
-    t.string "user_field"
-    t.string "orderdesc"
-    t.string "customer"
-    t.string "customer_email"
-    t.string "language"
-    t.string "customer_id"
-    t.string "profile_status"
-    t.string "filter_status"
-    t.string "appr_code"
+    t.string   "operation"
+    t.string   "tid"
+    t.string   "status"
+    t.string   "price"
+    t.string   "currency"
+    t.string   "p_type"
+    t.string   "brand"
+    t.string   "mpaytid"
+    t.string   "user_field"
+    t.string   "orderdesc"
+    t.string   "customer"
+    t.string   "customer_email"
+    t.string   "language"
+    t.string   "customer_id"
+    t.string   "profile_status"
+    t.string   "filter_status"
+    t.string   "appr_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "payment_id"
   end
+
+  add_index "mercator_mpay24_confirmations", ["payment_id"], name: "index_mercator_mpay24_confirmations_on_payment_id", using: :btree
+
+  create_table "mercator_mpay24_payments", force: true do |t|
+    t.string   "merchant_id"
+    t.string   "tid"
+    t.text     "order_xml"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mercator_mpay24_payments", ["order_id"], name: "index_mercator_mpay24_payments_on_order_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.string   "content"

@@ -34,21 +34,21 @@ class UsersController < ApplicationController
     if logged_in?
       current_user.update(logged_in: true)
 
-      last_user = session[:last_user] ? User.find(session[:last_user]) : NullObject.new()
-      last_basket = last_user.basket || NullObject.new()
+      last_user = session[:last_user] ? User.find(session[:last_user]) : nil
+      last_basket = last_user.basket
 
-      current_basket.delete_if_obsolete
-      last_basket.delete_if_obsolete
+      current_basket.try(:delete_if_obsolete)
+      last_basket.try(:delete_if_obsolete)
 
       if last_basket && !last_basket.frozen?
         current_basket.lifecycle.park!(current_user)
         last_basket.update(user_id: current_user.id)
-        last_basket.lineitems.update_all(user_id: current_user.id)
+        Lineitem.where(order_id: last_basket.id).update_all(user_id: current_user.id)
       end
 
       Order.create(user: current_user) unless current_user.basket
       current_user.sync_agb_with_basket
-      last_user.conversations.update_all(customer_id: current_user.id)
+      Conversation.where(customer_id: last_user.id).update_all(customer_id: current_user.id)
     end
   end
 
