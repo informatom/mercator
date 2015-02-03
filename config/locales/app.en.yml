@@ -442,6 +442,16 @@ en:
       order:
         position: Item
         lifecycle:
+          states:
+            accepted_offer: Accepted Offer
+            archived_basket: Archived Basket
+            basket: Basket
+            in_payment: In Payment
+            ordered: Ordered
+            paid: Paid
+            parked: Parked
+            payment_failed: Payment Failed
+            shipped: Shipped
           transitions:
             cash_payment: Cash Payment
             atm_payment: ATM Payment
@@ -761,6 +771,7 @@ en:
     provide_billing_address: Provide Billing Address
     read_more: Read More
     recommendation_exists: This recommendation already exists.
+    refreshes: "This page refreshes after a few seconds. If you cancelled the payment, you can start all over again."
     register_different_email: register a different e-mail address.
     registered_for: Registered for
     remove_filter: Remove Filter

@@ -449,6 +449,16 @@ de:
       order:
         position: Position
         lifecycle:
+          states:
+            accepted_offer: angenommenes Angebot
+            archived_basket: archivierter Warenkorb
+            basket: Warenkorb
+            in_payment: in Bezahlung
+            ordered: bestellt
+            paid: bezahlt
+            parked: geparkt
+            payment_failed: Zahlung gescheitert
+            shipped: geliefert
           transitions:
             cash_payment: Barzahlung
             atm_payment: Bankomat
@@ -768,6 +778,7 @@ de:
     provide_billing_address: Rechnungsadresse angeben
     read_more: Weiter lesen
     recommendation_exists: Die Empfehlung existiert bereits.
+    refreshes: "Diese Seite aktualiert sich nach einigen Sekunden automatisch. Sie können, falls Sie die Zahlung abgebrochen haben, erneut die Zahlung beginnen."
     register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
     remove_filter: Filter aufheben

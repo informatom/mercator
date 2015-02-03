@@ -129,7 +129,7 @@ class Order < ActiveRecord::Base
 
     transition :place, {[:basket, :accepted_offer] => :ordered}, available_to: :user,
                if: "acting_user.gtc_accepted_current? && billing_company.present? && billing_method !='e_payment'"
-    transition :pay, {[:basket, :accepted_offer, :in_payment] => :in_payment}, available_to: :user,
+    transition :pay, {[:basket, :accepted_offer, :in_payment, :payment_failed] => :in_payment}, available_to: :user,
                if: "acting_user.gtc_accepted_current? && billing_company.present? && billing_method =='e_payment'"
 
     transition :failing_payment, {[:in_payment, :payment_failed, :paid] => :payment_failed},

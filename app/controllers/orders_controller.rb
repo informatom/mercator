@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   hobo_model_controller
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
+  show_action :payment_status
 
   # location: mercator/vendor/engines/mercator_mpay24/app/controllers/
   #           orders_controller_extensions.rb
@@ -84,5 +85,12 @@ class OrdersController < ApplicationController
       @current_user = current_user
       @current_user.confirmation = false
     end
+  end
+
+
+  show_action :payment_status do
+    @order = self.this = Order.find(params[:id])
+
+    render "confirm"
   end
 end

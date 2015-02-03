@@ -1,0 +1,21 @@
+<index-page>
+  <collection: replace>
+    <table-plus without-page-nav
+                fields="this, billing_method, billing_company, shipping_method,
+                        shipping_company, erp_customer_number, erp_billing_number,
+                        erp_order_number, sum_incl_vat, updated_at, state, actions">
+      <billing-method-view:>
+        <if><t key="activerecord.attributes.order.lifecycle.transitions.#{this}" /></if>
+      </billing-method-view>
+      <shipping-method-view:>
+        <if><t key="activerecord.attributes.order.lifecycle.transitions.#{this}" /></if>
+      </shipping-method-view>
+      <state-view:>
+        <if><t key="activerecord.attributes.order.lifecycle.states.#{this}" /></if>
+      </state-view>
+
+      <actions-heading:></actions-heading:>
+      <actions-view:><bootstrap-table-actions/></actions-view:>
+    </table-plus>
+  </collection:>
+</index-page>

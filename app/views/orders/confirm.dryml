@@ -1,8 +1,25 @@
-<show-page>
-  <field-list: replace>
-    <content-element name="bestellung_angenommen"/>
-  </field-list>
-</show-page>
+<page>
+  <content:>
+    <if test="&['paid', 'ordered'].include?(@order.state)">
+      <content-element name="bestellung_angenommen"/>
+    </if>
+
+    <if test="&@order.state == 'payment_failed'">
+      <content-element name="gescheiterte_zahlung"/>
+      <br/><br/>
+      <p><my-transition-link transition="pay" method="put" class="btn-danger"/></p>
+    </if>
+
+    <if test="&@order.state == 'in_payment'">
+      <content-element name="wartet_auf_bestaetigung"/>
+      <meta http-equiv="refresh" content="5"/>
+      <br/><br/>
+      <p><t key="mercator.refreshes"/></p>
+      <p><my-transition-link transition="pay" method="put" class="btn-danger"/></p>
+
+    </if>
+  </content:>
+</page>
 
 <def tag="content-element" attrs="name">
   <do with="&ContentElement.where(name_de: name).first">
