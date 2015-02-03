@@ -34,17 +34,24 @@ namespace :users do
                   photo: open("#{Rails.root}/materials/images/little-robot.png"))
     end
 
-    ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
-      unless User.find_by(first_name: firstname)
-        User.create(first_name: firstname,
-                    surname: "Vertriebsmitarbeiter",
-                    email_address: (index + 1).to_s + "@mercator.mittenin.at",
-                    sales: true,
-                    password: "123456",
-                    password_confirmation: "123456",
-                    state: "active")
-      end
+    unless User.find_by(surname: "MPay24")
+      User.create(first_name: "Mercator",
+                  surname: "MPay24",
+                  email_address: "mpay24@mercator.mittenin.at",
+                  photo: open("#{Rails.root}/materials/images/little-robot.png"))
     end
+
+    # ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
+    #   unless User.find_by(first_name: firstname)
+    #     User.create(first_name: firstname,
+    #                 surname: "Vertriebsmitarbeiter",
+    #                 email_address: (index + 1).to_s + "@mercator.mittenin.at",
+    #                 sales: true,
+    #                 password: "123456",
+    #                 password_confirmation: "123456",
+    #                 state: "active")
+    #   end
+    # end
 
     JobLogger.info("Finished Job: categories:create_defaults")
     JobLogger.info("=" * 50)

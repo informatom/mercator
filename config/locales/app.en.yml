@@ -450,6 +450,7 @@ en:
             pickup_shipment: Pickup (no Shipment)
             parcel_service_shipment: Shipment by Parcel Service
             archive_parked_basket: Archive Parked Basket
+            pay: Pay now
             place: Order Now
             check: Check Order
             delete_all_positions: Delete all Items

@@ -31,22 +31,8 @@ class OrdersController < ApplicationController
   def do_place
     self.this = @order = Order.find(params[:id])
 
-    if Rails.application.config.try(:payment) == "mpay24" &&
-       ["production", "staging", "development"].include?(Rails.env.to_s)
-
-      response = @order.pay(system: Rails.env.to_s)
-      if response.body[:select_payment_response][:location]
-        redirect_to response.body[:select_payment_response][:location]
-      else
-        puts "Error:" + response.body[:select_payment_response][:err_text]
-        flash[:error] = response.body[:select_payment_response][:err_text]
-        flash[:notice] = nil
-        render action: :error and return
-      end
-    end
-
     if Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production"
- # A quick ckeck, if erp_account_number is current
+      # A quick ckeck, if erp_account_number is current
       # (User could have been changed since last job run)
       current_user.update_erp_account_nr()
 
@@ -64,6 +50,29 @@ class OrdersController < ApplicationController
 
       Order.create(user: current_user) # and create a new basket ...
       render action: :confirm
+    end
+  end
+
+  def do_pay
+    self.this = @order = Order.find(params[:id])
+
+    if Rails.application.config.try(:payment) == "mpay24" &&
+       ["production", "staging", "development"].include?(Rails.env.to_s)
+
+      response = @order.pay(system: Rails.env.to_s)
+    end
+
+    do_transition_action :pay do
+      Order.create(user: current_user) # and create a new basket ...
+
+      if response.body[:select_payment_response][:location]
+        redirect_to response.body[:select_payment_response][:location]
+      else
+        puts "Error:" + response.body[:select_payment_response][:err_text]
+        flash[:error] = response.body[:select_payment_response][:err_text]
+        flash[:notice] = nil
+        render action: :error and return
+      end
     end
   end
 

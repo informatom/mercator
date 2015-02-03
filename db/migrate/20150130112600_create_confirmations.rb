@@ -15,6 +15,7 @@ class CreateConfirmations < ActiveRecord::Migration
       t.string :customer_email
       t.string :language
       t.string :customer_id
+      t.string :profile_id
       t.string :profile_status
       t.string :filter_status
       t.string :appr_code

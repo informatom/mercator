@@ -68,7 +68,7 @@ class Order < ActiveRecord::Base
   lifecycle do
     state :basket, :default => true
     state :ordered, :parked, :archived_basket, :accepted_offer
-    state :paid, :shipped
+    state :paid, :shipped, :in_payment, :payment_failed
 
     create :from_offer, :available_to => :all, become: :accepted_offer,
            params: [:user_id, :billing_company, :billing_phone, :billing_gender, :billing_title,
@@ -123,11 +123,19 @@ class Order < ActiveRecord::Base
                if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
     transition :check, {:accepted_offer => :accepted_offer}, available_to: :user,
                if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
+    transition :check, {:in_payment => :in_payment}, available_to: :user,
+               if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
 
-    transition :place, {:basket => :ordered}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company.present?"
-    transition :place, {:accepted_offer => :ordered}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company.present?"
+
+    transition :place, {[:basket, :accepted_offer] => :ordered}, available_to: :user,
+               if: "acting_user.gtc_accepted_current? && billing_company.present? && billing_method !='e_payment'"
+    transition :pay, {[:basket, :accepted_offer, :in_payment] => :in_payment}, available_to: :user,
+               if: "acting_user.gtc_accepted_current? && billing_company.present? && billing_method =='e_payment'"
+
+    transition :failing_payment, {[:in_payment, :payment_failed, :paid] => :payment_failed},
+               available_to: "User.find_by(surname: 'MPay24')"
+    transition :successful_payment, {[:in_payment, :payment_failed, :paid] => :paid},
+               available_to: "User.find_by(surname: 'MPay24')"
 
     transition :park, {:basket => :parked}, available_to: :user
 
