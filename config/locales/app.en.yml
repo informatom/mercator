@@ -62,8 +62,7 @@ en:
     Detail: Details
     discount: Discount
     discount_abs: "Discount absolute in EUR"
-    discount-abs: "Discount absolute in EUR"
-    discount-rel: "Discount relative in %"
+    discount_rel: "Discount relative in %"
     document: Document
     document_file_name: Document File Name
     document_content_type: Document Content Type
@@ -72,7 +71,10 @@ en:
     downloads: Downloads
     duration: Duration
     email_address: Email Address
+    erp_billing_number: ERP Billing Number
+    erp_customer_number: ERP Customer Number
     erp_identifier: ERP Identifier
+    erp_order_number: ERB Order Number
     filter: Filter
     filters: Filter
     filtermin: minimal Price
@@ -80,6 +82,8 @@ en:
     first_name: First Name
     folder: Verzeichnis
     gender: Salutation
+    gtc_confirmed_at: GTC Confirmed at
+    gtc_version_of: GTC Version of
     id: ID
     infinite: infinite
     inventories: Inventories
@@ -246,6 +250,9 @@ en:
         other: Comments
         actions:
           new: Create Comment
+      confirmation:
+        one: Confirmation
+        other: Confirmatiors
       constant:
         one: Constant
         other: Constants
@@ -312,6 +319,9 @@ en:
       page_template:
         one: Page Template
         other: Page Templates
+      payment:
+        one: Payment
+        other: Payments
       podcast:
         one: Podcast
         other: Podcasts

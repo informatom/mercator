@@ -1,0 +1,152 @@
+<extend tag="show-page" for="Order">
+  <old-show-page merge>
+    <content-body:>
+      <div class="row">
+        <div class="col-md-3">
+          <strong> <t key="activerecord.models.billing_address.one"/>: </strong>
+          (<t key="activerecord.attributes.order.lifecycle.transitions.#{self.this.billing_method}" />) <br/>
+          <t key="activerecord.attributes.address/genders.#{self.this.billing_gender}" />&nbsp;
+          <view:billing-title/> <view:billing_first_name/> <view:billing_surname/> (<view:billing_phone/>)<br/>
+          <view:billing-company/>,
+          <view:billing-detail/> <br/>
+          <view:billing-street/>, <view:billing-postalcode/> <view:billing-city/>, <view:billing_country/>
+        </div>
+
+        <div class="col-md-3">
+          <strong>
+            <t key="activerecord.models.address.one"/>:
+          </strong> (<t key="activerecord.attributes.order.lifecycle.transitions.#{self.this.shipping_method}" />) <br/>
+          <t key="activerecord.attributes.address/genders.#{self.this.shipping_gender}" />&nbsp;
+          <view:shipping-title/> <view:shipping_first_name/> <view:shipping_surname/> (<view:shipping_phone/>)<br/>
+          <view:shipping-company/>,
+          <view:shipping-detail/> <br/>
+          <view:shipping-street/>, <view:shipping-postalcode/> <view:shipping-city/>, <view:shipping_country/>
+        </div>
+
+        <div class="col-md-3">
+          <strong> <t key="attributes.state"/>: </strong> <view:state/> <br/>
+          <strong> <t key="attributes.gtc_confirmed_at"/>: </strong> <view:gtc_confirmed_at/> <br/>
+          <strong> <t key="attributes.gtc_version_of"/>: </strong> <view:gtc_version_of/> <br/>
+          <strong> <t key="attributes.discount_rel"/>: </strong> <view:discount_rel/> <br/>
+        </div>
+
+        <div class="col-md-3">
+          <strong> <t key="attributes.erp_customer_number"/>: </strong> <view:erp_customer_number/> <br/>
+          <strong> <t key="attributes.erp_billing_number"/>: </strong> <view:erp_billing_number/> <br/>
+          <strong> <t key="attributes.erp_order_number"/>: </strong> <view:erp_order_number/> <br/>
+          <strong> <t key="attributes.conversation"/>: </strong> <view:conversation/>
+        </div>
+      </div>
+      <br/><br/>
+
+      <table class="table table-striped table-hover table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th><t key="attributes.position"/></th>
+            <th><t key="attributes.product_number"/></th>
+            <th><t key="attributes.description"/></th>
+            <th><t key="attributes.amount"/></th>
+            <th><t key="attributes.unit"/></th>
+            <th><t key="attributes.product_price"/></th>
+            <th><t key="attributes.vat"/></th>
+            <th><t key="attributes.value"/></th>
+            <th><t key="attributes.delivery_time"/></th>
+            <th><t key="attributes.discount_abs"/></th>
+          </tr>
+        </thead>
+        <tbody>
+          <repeat with="&self.this.lineitems">
+            <tr>
+              <td><view:position/></td>
+              <td><view:product_number/></td>
+              <td><view:description/></td>
+              <td><view:amount/></td>
+              <td><view:unit/></td>
+              <td><view:product_price/></td>
+              <td><view:vat/></td>
+              <td><view:value/></td>
+              <td><view:delivery_time/></td>
+              <td><view:discount_abs/></td>
+            </tr>
+          </repeat>
+        </tbody>
+      </table>
+
+      <if test="&Rails.application.config.try(:payment) == 'mpay24'">
+        <h2>
+          <t key="activerecord.models.payment.other"/>,
+          <t key="activerecord.models.confirmation.other"/>
+        </h2>
+
+        <table class="table table-striped table-hover table-condensed table-bordered">
+          <thead>
+            <tr class="info">
+              <th><t key="activerecord.models.payment.one"/></th>
+              <th>merchant_id</th>
+              <th>user_field_hash</th>
+              <th>tid</th>
+              <th><t key="attributes.created_at"/></th>
+            </tr>
+            <tr>
+              <th><t key="activerecord.models.confirmation.one"/></th>
+              <th>operation</th>
+              <th>user_field</th>
+              <th>tid</th>
+              <th>status</th>
+              <th>price</th>
+              <th>currency</th>
+              <th>p_type</th>
+              <th>brand</th>
+              <th>mpaytid</th>
+              <th>orderdesc</th>
+              <th><t key="attributes.customer"/></th>
+              <th>customer_email</th>
+              <th>language</th>
+              <th>customer_id</th>
+              <th>profile_id</th>
+              <th>profile_status</th>
+              <th>filter_status</th>
+              <th>appr_code</th>
+              <th><t key="attributes.created_at"/></th>
+            </tr>
+          </thead>
+          <tbody>
+            <repeat with="&self.this.payments">
+              <tr class="info">
+                <td><view:id/></td>
+                <td><view:merchant-id/></td>
+                <td><view:user-field-hash/></td>
+                <td><view:tid/></td>
+                <td><view:created-at/></td>
+              </tr>
+              <repeat with="&self.this.confirmations">
+                <tr>
+                  <td><view:id/></td>
+                  <td><view:operation/></td>
+                  <td><view:user-field/></td>
+                  <td><view:tid/></td>
+                  <td><view:status/></td>
+                  <td><view:price/></td>
+                  <td><view:currency/></td>
+                  <td><view:p-type/></td>
+                  <td><view:brand/></td>
+                  <td><view:mpaytid/></td>
+                  <td><view:orderdesc/></td>
+                  <td><view:customer/></td>
+                  <td><view:customer-email/></td>
+                  <td><view:language/></td>
+                  <td><view:customer-id/></td>
+                  <td><view:profile-id/></td>
+                  <td><view:profile-status/></td>
+                  <td><view:filter-status/></td>
+                  <td><view:appr-code/></td>
+                  <td><view:created-at/></td>
+                </tr>
+              </repeat>
+            </repeat>
+          </tbody>
+        </table>
+      </if>
+    </content-body:>
+  </old-show-page>
+</extend>

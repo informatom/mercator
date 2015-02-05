@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202101500) do
+ActiveRecord::Schema.define(version: 20150205125300) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -499,6 +499,7 @@ ActiveRecord::Schema.define(version: 20150202101500) do
     t.string   "customer_email"
     t.string   "language"
     t.string   "customer_id"
+    t.string   "profile_id"
     t.string   "profile_status"
     t.string   "filter_status"
     t.string   "appr_code"
@@ -516,6 +517,7 @@ ActiveRecord::Schema.define(version: 20150202101500) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_field_hash"
   end
 
   add_index "mercator_mpay24_payments", ["order_id"], name: "index_mercator_mpay24_payments_on_order_id", using: :btree

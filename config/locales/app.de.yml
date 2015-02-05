@@ -66,8 +66,7 @@ de:
     detail: Details
     discount: Rabatt
     discount_abs: "Rabatt absolut in EUR"
-    discount-abs: "Rabatt absolut in EUR"
-    discount-rel: "Rabatt relativ in %"
+    discount_rel: "Rabatt relativ in %"
     document: Dokument
     document_file_name: Dateiname
     document_content_type: Dateityp
@@ -76,7 +75,10 @@ de:
     downloads: Downloads
     duration: Dauer
     email_address: E-Mail Adresse
-    erp_identifier: Referenz aus Mesonic
+    erp_billing_number: ERP Rechnungsnummer
+    erp_customer_number: ERP Kundennummer
+    erp_identifier: ERP Referenz
+    erp_order_number: ERB Bestellnummer
     filter: Filter
     filters: Filter
     filtermin: minimaler Preis
@@ -84,6 +86,8 @@ de:
     first_name: Vorname
     folder: Verzeichnis
     gender: Anrede
+    gtc_confirmed_at: AGB bestätigt
+    gtc_version_of: AGB Version
     id: ID
     infinite: unbegrenzt
     inventories: Bestände
@@ -256,6 +260,9 @@ de:
         other: Kommentare
         actions:
           new: Kommentar erstellen
+      confirmation:
+        one: Bestätigung
+        other: Bestätigungen
       constant:
         one: Konstante
         other: Konstanten
@@ -322,6 +329,9 @@ de:
       page_template:
         one: Websitevorlage
         other: Websitevorlagen
+      payment:
+        one: Zahlung
+        other: Zahlungen
       podcast:
         one: Podcast
         other: Podcasts
