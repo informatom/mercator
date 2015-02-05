@@ -115,7 +115,11 @@
               <tr class="info">
                 <td><view:id/></td>
                 <td><view:merchant-id/></td>
-                <td><view:user-field-hash/></td>
+                <td>
+                  <view: with="&self.this.user_field_hash[0..21]"/><br/>
+                  <view: with="&self.this.user_field_hash[22..43]"/><br/>
+                  <view: with="&self.this.user_field_hash[44..100]"/>
+                </td>
                 <td><view:tid/></td>
                 <td><view:created-at/></td>
               </tr>
@@ -123,7 +127,11 @@
                 <tr>
                   <td><view:id/></td>
                   <td><view:operation/></td>
-                  <td><view:user-field/></td>
+                  <td>
+                    <view: with="&self.this.user_field[0..21]"/><br/>
+                    <view: with="&self.this.user_field[22..43]"/><br/>
+                    <view: with="&self.this.user_field[44..100]"/>
+                  </td>
                   <td><view:tid/></td>
                   <td><view:status/></td>
                   <td><view:price/></td>
