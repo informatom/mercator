@@ -639,6 +639,7 @@ de:
     billing_method:
       change: Zahlungsart wechseln
       select: Bitte wählen Sie eine Zahlungsart
+    check_confirmation: Status bei Mpay24 abfragen
     click_to_finish: "Klicken Sie bitte noch auf den 'Account aktivieren'-Button, um die Aktivierung abzuschließen."
     cobrowsing_link: Cobrowsing Link
     coming_from: aus

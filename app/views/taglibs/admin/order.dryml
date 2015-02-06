@@ -113,7 +113,10 @@
           <tbody>
             <repeat with="&self.this.payments">
               <tr class="info">
-                <td><view:id/></td>
+                <td>
+                  <view:id/><br/>
+                  <a href="&mercator_mpay24.check_confirmation_path(this.id)"><t key="mercator.check_confirmation"/></a>
+                </td>
                 <td><view:merchant-id/></td>
                 <td>
                   <view: with="&self.this.user_field_hash[0..21]"/><br/>
