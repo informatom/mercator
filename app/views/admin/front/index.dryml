@@ -13,7 +13,19 @@
       </section>
       <section class="tasks">
         <if test="&Rails.application.config.try(:erp) == 'mesonic'">
-          <p><a href="&mercator_mesonic.import_path" class="btn btn-warning">Update Mesonic Webartikel</a></p>
+          <p>
+            <a href="&mercator_mesonic.import_path" class="btn btn-warning">
+              Update Mesonic Webartikel
+            </a>
+          </p>
+        </if>
+        <if test="&Rails.application.config.try(:payment) == 'mpay24'">
+          <p>
+            <a href="&admin_orders_path(sort: 'updated_at', search: 'in Bezahlung')"
+               class="btn btn-info">
+            <t key="mercator.orders_in_payment"/>
+            </a>
+          </p>
         </if>
       </section>
     </header>

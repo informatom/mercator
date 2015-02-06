@@ -755,6 +755,7 @@ en:
       date: Order Date
       number: Order Number
       text: Order Text
+    orders_in_payment: "Orders in State 'in payment'"
     overview: Overview
     packing_slip_number: Packing Slip Number
     parked: Parked

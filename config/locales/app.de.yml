@@ -762,6 +762,7 @@ de:
       date: Auftragsdatum
       number: Auftragsdatum
       text: Bestelltext
+    orders_in_payment: "Bestellungen mit Status 'in Bezahlung'"
     overview: Übersicht
     packing_slip_number: Lieferscheinnummer
     parked: Geparkter

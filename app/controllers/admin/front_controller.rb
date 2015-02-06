@@ -2,7 +2,9 @@ class Admin::FrontController < Admin::AdminSiteController
 
   hobo_controller
 
-  def index; end
+  def index
+    @orders_in_payment = Order.where(status: :in_payment)
+  end
 
   def summary
     redirect_to user_login_path unless current_user.administrator?
