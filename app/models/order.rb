@@ -388,4 +388,9 @@ class Order < ActiveRecord::Base
     JobLogger.info("Finished Cronjob runner: Order.cleanup_deprecated")
     JobLogger.info("=" * 50)
   end
+
+  def self.notify_in_payment
+    @orders = Order.where(state: :in_payment, updated_at: (Time.now - 1.day)..Time.now)
+    OrderMailer.notify_in_payment(@orders).deliver if @orders.any?
+  end
 end

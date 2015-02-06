@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+  <head>
+    <title> Neue Bestellungen mit Status in Bezahlung </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style> body, table { font-family: Arial, Helvetica, Sans-Serif; font-size: small; } </style>
+  </head>
+
+  <body>
+    <h1>Neue Bestellungen mit Status in Bezahlung</h1>
+
+    <p>
+      Folgende Bestellungen, die in den letzten 24 Stunden geändert wurden, sind im Status "in Bezahlung."
+    </p>
+
+    <ul>
+      <% @orders.each do |order| %>
+        <li><%= link_to order.name, admin_order_path(order) %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to "Alle Bestellungen im Status 'in Bezahlung.'",
+                admin_orders_path(sort: 'updated_at', search: 'in Bezahlung') %>
+  </body>
+</html>

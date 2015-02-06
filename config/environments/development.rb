@@ -17,9 +17,8 @@ Mercator::Application.configure do
   config.assets.debug = true
 
 # config.hobo.show_translation_keys = true
-  BetterErrors::Middleware.allow_ip! "10.0.0.202"
 
-  ActionMailer::Base.delivery_method = :sendmail
+  ActionMailer::Base.smtp_settings = { :domain => "localhost", :enable_starttls_auto => false }
 
   config.ember.variant = :development
 end

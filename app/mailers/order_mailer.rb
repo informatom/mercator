@@ -3,9 +3,15 @@ class OrderMailer < ActionMailer::Base
 
   def confirmation(order: nil)
     @order = order
-    @service_mail = Constant.find_by_key('service_mail').value
 
     mail(:to => order.user.email_address, :bcc => Constant.find_by_key('service_mail').value,
          :subject => Constant.find_by_key('order_corfirmation_mail_subject').value )
+  end
+
+  def notify_in_payment(orders)
+    @orders = orders
+
+    mail(:to => Constant.find_by_key('service_mail').value,
+         :subject => Constant.find_by_key('order_notify_in_payment_mail_subject').value )
   end
 end
