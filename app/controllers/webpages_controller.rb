@@ -7,9 +7,9 @@ class WebpagesController < ApplicationController
   before_filter :domain_cms_redirect
 
   def show
-    @this = Webpage.friendly.find(params[:id])
+    self.this = @webpage = Webpage.friendly.find(params[:id])
     hobo_show do
-      render "page_templates/" + @this.page_template.name
+      render "page_templates/" + self.this.page_template.name
     end
   end
 end

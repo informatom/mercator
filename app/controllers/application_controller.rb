@@ -7,20 +7,9 @@ class ApplicationController < ActionController::Base
   # after_filter :track_action
 
   def auto_log_in
-    if current_user.guest?
-      if session[:last_user]
-        self.current_user = User.find(session[:last_user])
-        return
-      end
-
-      if params[:remember_token]
-        self.current_user = User.find_by_remember_token(params[:remember_token])
-        return
-      end
-
-      self.current_user = User.initialize
-      Order.create(user: current_user)
-    end
+    self.current_user = User.find_by_remember_token(params[:remember_token]) if params[:remember_token]
+    self.current_user = User.find(session[:last_user]) if session[:last_user]
+    self.current_user = User.initialize if self.current_user.guest?
   end
 
   def set_locale
@@ -44,11 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_basket
-    if current_user && current_user.basket
-      current_user.basket
-    else
-      NullObject.new()
-    end
+    current_user.basket if current_user
   end
 
 # Domainseperation

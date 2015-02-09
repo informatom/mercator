@@ -129,8 +129,7 @@ class User < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    # Only the initial admin user can be created
-    self.class.count == 0 || acting_user.administrator?
+    acting_user.administrator?
   end
 
   def update_permitted?
@@ -138,9 +137,10 @@ class User < ActiveRecord::Base
     acting_user.sales? ||
     (acting_user == self &&
      only_changed?(:gender, :title, :first_name, :surname, :email_address, :phone,
-                   :crypted_password, :current_password, :password, :password_confirmation, :confirmation))
-    # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
-    # directly from a form submission.
+                   :crypted_password, :current_password, :password, :password_confirmation,
+                   :confirmation))
+    # Note: crypted_password has attr_protected so although it is permitted to change,
+    # it cannot be changed directly from a form submission.
   end
 
   def destroy_permitted?
@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
   end
 
   def basket
-    Order.user_is(self).basket.last
+    Order.find_by(user_id: id, state: :basket) or Order.create(user_id: id)
   end
 
   def parked_basket

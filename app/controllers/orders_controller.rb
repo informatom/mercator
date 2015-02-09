@@ -48,8 +48,6 @@ class OrdersController < ApplicationController
     do_transition_action :place do
       flash[:success] = I18n.t "mercator.messages.order.place.success"
       flash[:notice] = nil
-
-      Order.create(user: current_user) # and create a new basket ...
       render action: :confirm
     end
   end

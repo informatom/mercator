@@ -218,11 +218,11 @@
     <a with="&current_user.basket" class="basket">
       <%= fa_icon "shopping-cart", class:"fa-lg" %>
       <span part="summary" class="label label-danger" style="display: inline">
-        <%= current_user.basket.lineitems.count %> Pos. /
-        <%= current_user.basket.sum_incl_vat %> <%= fa_icon "eur" %>
+        <view with="&current_user.basket.lineitems.count"/> Pos. /
+        <view with="&current_user.basket.sum_incl_vat"/> <%= fa_icon "eur" %>
       </span>
     </a>
-</if>
+  </if>
   <br/><br/>
 </def>
 

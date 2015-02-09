@@ -146,7 +146,7 @@
             <else>
               <set orderid="&this.id" />
               <if test="&current_user.lifecycle.find_transition(:accept_gtc, current_user)">
-                <accept-gtc-form with="&@current_user">
+                <accept-gtc-form with="&current_user">
                   <agb:></agb:>
                   <field-list: fields="confirmation">
                     <confirmation-view:>
