@@ -20,5 +20,7 @@ Mercator::Application.configure do
 
   ActionMailer::Base.smtp_settings = { :domain => "localhost", :enable_starttls_auto => false }
 
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
   config.ember.variant = :development
 end

@@ -119,9 +119,11 @@
                 </td>
                 <td><view:merchant-id/></td>
                 <td>
-                  <view: with="&this.user_field_hash[0..21]"/><br/>
-                  <view: with="&this.user_field_hash[22..43]"/><br/>
-                  <view: with="&this.user_field_hash[44..100]"/>
+                  <if test="&this.user_field_hash">
+                    <view with="&this.user_field_hash[0..21]"/><br/>
+                    <view with="&this.user_field_hash[22..43]"/><br/>
+                    <view with="&this.user_field_hash[44..100]"/>
+                  </if>
                 </td>
                 <td><view:tid/></td>
                 <td><view:created-at/></td>

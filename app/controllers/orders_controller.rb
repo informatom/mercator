@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
         puts "Error:" + response.body[:select_payment_response][:err_text]
         flash[:error] = response.body[:select_payment_response][:err_text]
         flash[:notice] = nil
-        render action: :error and return
+        render action: :show and return
       end
     end
   end

@@ -55,7 +55,7 @@ class Order < ActiveRecord::Base
 
   has_paper_trail
 
-  belongs_to :user, :creator => true
+  belongs_to :user, :creator => true, inverse_of: :orders
   view_hints.parent :user
   validates :user, :presence => true
 
