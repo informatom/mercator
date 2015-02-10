@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
 
   def auto_log_in
     self.current_user = User.find_by_remember_token(params[:remember_token]) if params[:remember_token]
-    self.current_user = User.find(session[:last_user]) if session[:last_user]
-    self.current_user = User.initialize if self.current_user.guest?
+    if self.current_user.guest?
+      self.current_user = session[:last_user] ? User.find(session[:last_user]) : User.initialize
+    end
   end
 
   def set_locale
