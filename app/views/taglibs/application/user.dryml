@@ -117,3 +117,9 @@
     </field-list:>
   </old-form>
 </extend>
+
+<extend tag="forgot-password-page">
+  <old-forgot-password-page merge>
+    <before-actions:><br/></before-actions:>
+  </old-forgot-password-page>
+</extend>

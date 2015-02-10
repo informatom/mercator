@@ -11,7 +11,7 @@ class ConversationsController < ApplicationController
 
   def show
     hobo_show do
-      if current_user.guest? || current_user.id == this.customer_id
+      if current_user.class == Guest || current_user.id == this.customer_id
         reciever_id = this.consultant_id
       else
         reciever_id = this.customer_id

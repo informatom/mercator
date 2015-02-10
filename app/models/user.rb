@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/user_extensions.rb
   include UserExtensions if Rails.application.config.try(:erp) == "mesonic"
 
-  attr_accessible :gender, :title, :first_name, :surname, :email_address, :password, :password_confirmation,
-                  :current_password, :administrator, :legacy_id, :sales, :sales_manager, :contentmanager,
-                  :productmanager, :logged_in, :last_login_at, :login_count, :addresses, :billing_addresses,
-                  :conversations, :confirmation, :photo, :erp_account_nr, :erp_contact_nr,
-                  :order_id, :phone, :locale, :editor
+  attr_accessible :gender, :title, :first_name, :surname, :email_address, :password,
+                  :password_confirmation, :current_password, :administrator, :legacy_id, :sales,
+                  :sales_manager, :contentmanager, :productmanager, :logged_in, :last_login_at,
+                  :login_count, :addresses, :billing_addresses, :conversations, :confirmation,
+                  :photo, :erp_account_nr, :erp_contact_nr, :order_id, :phone, :locale, :editor
 
   attr_accessor :confirmation, :type => :boolean
   attr_accessor :order_id, :type => :integer
@@ -63,15 +63,6 @@ class User < ActiveRecord::Base
   include Gravtastic
   gravtastic :default => "http://www.informatom.com/assets/images/unknown-user.png"
   gravtastic :email_address
-
-  # This gives admin rights and an :active state to the first sign-up.
-  # Just remove it if you don't want that
-  before_create do |user|
-    if !Rails.env.test? && user.class.count == 0
-      user.administrator = true
-      user.state = "active"
-    end
-  end
 
   # --- Signup lifecycle --- #
 
