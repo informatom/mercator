@@ -16,13 +16,13 @@ class BlogpostsController < ApplicationController
                         .order(publishing_date: :desc)
     self.this = self.this.tagged_with(params[:tag]) if params[:tag]
     self.this = self.this.where(post_category_id: params[:post_category_id]) if params[:post_category_id]
-    @blogposts= self.this
 
     if params[:month]
       in_month = params[:month].to_datetime..(params[:month].to_datetime + 1.month)
       self.this = self.this.where(publishing_date: in_month)
     end
 
+    @blogposts = self.this
     hobo_index
   end
 
