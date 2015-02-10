@@ -123,3 +123,31 @@
     <before-actions:><br/></before-actions:>
   </old-forgot-password-page>
 </extend>
+
+<extend tag="login-page">
+  <old-login-page merge>
+    <after-content:>
+      <if test="&current_user.name == 'Gast'" >
+        <div class='row'>
+          <div class='col-md-3'>&nbsp;</div>
+          <div class='col-md-6'>
+            <section class='well' param='content-body' style='padding:50px 50px 10px 50px;'>
+              <h2 param='heading'>Login via E-Mail</h2>
+              <br/>
+              <form action="request_login_link" method="POST">
+                <fieldset>
+                  <label><t key="attributes.email_address"/></label>
+                  <input type="string" name="email_address"/>
+                  <span class="help-block"><t key="mercator.offer_email_login"/></span>
+                </fieldset>
+                <p>&nbsp;</p>
+                <submit label="&t('mercator.request_email')"/>
+              </form>
+            </section>
+          </div>
+          <div class='span3'>&nbsp;</div>
+        </div>
+      </if>
+    </after-content:>
+  </old-login-page>
+</extend>

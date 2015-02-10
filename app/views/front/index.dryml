@@ -14,14 +14,6 @@
           <li>erweiterbar</li>
         </ul>
 
-        <% if User.count == 0 -%>
-          <h3 style="margin-top: 20px;"><t key='mercator.user_accounts_missing'/></h3>
-          <form with="&this || User.new" without-cancel>
-            <field-list: fields="name, email_address, password, password_confirmation"/>
-            <submit: label="Register Administrator"/>
-          </form>
-        <% end -%>
-
       </section>
     </header>
     <section class="content-body">
