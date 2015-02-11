@@ -1,5 +1,5 @@
 <def tag="twitter-feed-widget">
-  <% Twitter.configure do |config|
+  <% client = Twitter::REST::Client.new do |config|
        config.consumer_key = Constant.find_by_key('twitter_consumer_key').value
        config.consumer_secret = Constant.find_by_key('twitter_consumer_secret').value
        config.oauth_token = Constant.find_by_key('twitter_oauth_token').value
@@ -7,8 +7,8 @@
      end
      twitter_user = Constant.find_by_key('twitter_user').value
      page = params[:page] ? params[:page].to_i : 1
-     tweets = Twitter.user_timeline(twitter_user, :count => 200)
-                     .paginate(:page => params[page], :per_page => 15) %>
+     tweets = client.user_timeline(twitter_user, :count => 200)
+                    .paginate(:page => params[page], :per_page => 15) %>
   <div class="widget widget-twitter-feed clearfix">
     <ul id="sidebar-twitter-list-1" class="iconlist">
       <repeat with="&tweets">
