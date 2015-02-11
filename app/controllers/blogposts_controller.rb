@@ -28,6 +28,7 @@ class BlogpostsController < ApplicationController
 
   def feed
     @blogposts = Blogpost.where.not(publishing_date: nil)
+    render 'feed.rss'
   end
 
   def show
