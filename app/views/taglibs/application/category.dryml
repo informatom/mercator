@@ -12,10 +12,16 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-3">
-              <photo class="pull-left" name="video-chat" />
+              <a href="/videochat">
+                <photo class="pull-left" name="video-chat" />
+              </a>
             </div>
             <div class="col-md-9">
-              <h2><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h2>
+              <h2>
+                <a href="&initiate_conversations_path">
+                  <t key="mercator.start_conversation" />
+                </a>
+              </h2>
             </div>
           </div>
           <view with="&this.active_product_count" /> <t key="mercator.products_available" /><br/>

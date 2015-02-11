@@ -107,7 +107,9 @@
 
       <div class="row">
         <div class="col-xs-3">
-          <photo name="video-chat" class="pull-left" />
+          <a href="/videochat">
+            <photo name="video-chat" class="pull-left" />
+          </a>
         </div>
         <div class="col-xs-9">
           <h3><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h3>

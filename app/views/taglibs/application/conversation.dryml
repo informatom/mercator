@@ -83,7 +83,9 @@
 
     <content-body:>
       <h2 id="header">
-        <photo name="video-chat" width="32" style="vertical-align: super;"/>
+        <a href="/videochat">
+          <photo name="video-chat" width="32" style="vertical-align: super;"/>
+        </a>
         <t key="activerecord.models.conversation.one"/> &nbsp;
       </h2>
       <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>

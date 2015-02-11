@@ -29,13 +29,13 @@
     <right:>
       <li>
         <a href="&initiate_conversations_path" style="background-color: #fff; color: #012E4F;">
-          <img src="&ContentElement.where(name_de: 'video-chat').first.try(:photo)" height="24" />
+          <photo name="video-chat" height="24"/>
           <h4 style="display: inline; vertical-align: bottom">&nbsp; <t key="mercator.start_conversation" /></h4>
         </a>
       </li>
       <li>
-        <a href="/chat.html" style="background-color: #fff; color: #012E4F;">
-          <img src="&ContentElement.where(name_de: 'video-chat').first.try(:photo)" height="24" />
+        <a href="/videochat" style="background-color: #fff; color: #012E4F;">
+          <photo name="video-chat" height="24"/>
           <h4 style="display: inline; vertical-align: bottom">&nbsp; <t key="mercator.video_chat" /></h4>
         </a>
       </li>
