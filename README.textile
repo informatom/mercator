@@ -2,12 +2,12 @@ h1. Mercator
 
 Mercator is a guided selling web application based on "Ruby on Rails":http://rubyonrails.org/ and the "Hobo":http://www.hobocentral.net/ web application framework.
 
-* Ineterested in a live "Demo":http://www.informatom.com?
+* Interested in seeing a live "Demo":http://www.informatom.com?
 
 h2. Shameless plug
 
 If you are interested in using or trying a hosted version of Mercator, feel free to contact me
-via E-mail mailto:stefan.haslinger@mittenin.at and I will refer you to a hosting partner.
+via "E-mail":mailto://stefan.haslinger@mittenin.at and I will refer you to a hosting partner.
 Mercator can be run on your own infrastructure as well, we provide installation and maitenance support for Mercator.
 
 Mercator is highly extensible. If you are interested in more or changed features, feel free to contact me as well.
