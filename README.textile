@@ -1,6 +1,6 @@
 h1. Mercator
 
-Mercator is a guided selling web application written using the Hobo web application framework.
+Mercator is a guided selling web application based on "Ruby on Rails":http://rubyonrails.org/ and the "Hobo":http://www.hobocentral.net/ web application framework.
 
 h2. Shameless plug
 
