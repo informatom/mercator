@@ -1,4 +1,4 @@
-# Mercator
+h1. Mercator
 
 Mercator is a guided selling web application written using the Hobo web application framework.
 
@@ -13,9 +13,9 @@ Rates are cut in half for GPL Licensed Add-Ons.
 
 h2. Documentation
 
-We are currentcy focussing on the German Doucumentation ([[Dokumentation DE]]), which is under construction.
-The Eglish documentation will follow afterwards.
+We are currently (as of 2015/02/12) focussing on the German Documentation in the Wiki:../../wiki , which is under construction.
+The English documentation will follow afterwards.
 
 h2. Licence
 
-Mercator is licenced under the GPL v3. See [[LICENSC]]
+Mercator is licenced under the GPL v3. See "License":./LICENSE
