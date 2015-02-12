@@ -13,8 +13,8 @@ Rates are cut in half for GPL Licensed Add-Ons.
 
 h2. Documentation
 
-We are currently (as of 2015/02/12) focussing on the German Documentation in the "Wiki":../../wiki/Dokumentation-%28DE%29, which is under construction.
-The English documentation will follow afterwards.
+We are currently (as of 2015/02/12) focussing on the German Documentation in the "Wiki":../../wiki/Dokumentation-%28DE%29.
+An English Documentation will be written afterwards.
 
 h2. Licence
 
