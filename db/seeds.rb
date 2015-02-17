@@ -6,7 +6,7 @@ Constant.find_or_create_by(key: :site_name) do |constant|
 end
 
 # delivery times, in german, comma seperated
-Constant.find_or_create_by(key: :delivery_times_de) { |constant|
+Constant.find_or_create_by(key: :delivery_times_de) do |constant|
   constant.value = "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage"
 end
 
@@ -72,8 +72,8 @@ end
 
 # Payment customer credentials (used for price derivation e.g. in category filters)
 User.find_or_create_by(surname: "MPay24") do |user|
-  user.first_name: "Mercator"
-  user.email_address: "mpay24@mercator.mydomain.com"
+  user.first_name = "Mercator"
+  user.email_address = "mpay24@mercator.mydomain.com"
 end
 
 
@@ -94,7 +94,8 @@ end
 # Category automatically created products from ERP import Job
 Category.find_or_create_by(usage: :auto) do |category|
   category.name_de = "importiert"
-  category.name_en = "imported"category.description_de = "Automatisch angelegte Produkte aus ERP Batchimport"
+  category.name_en = "imported"
+  category.description_de = "Automatisch angelegte Produkte aus ERP Batchimport"
   category.description_en = "automatically created products from ERP import Job"
   category.long_description_de = "Bitte Produkte vervollständigen und kategorisieren."
   category.long_description_en = "Please complete products and put them into categories"
