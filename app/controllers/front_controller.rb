@@ -7,7 +7,7 @@ class FrontController < ApplicationController
   def home
     @home = Webpage.where(slug: "home").first
     if @home
-      redirect_to "webpages/home"
+      redirect_to "/webpages/home"
     else
       redirect_to action: :index
     end
