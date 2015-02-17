@@ -10,37 +10,6 @@ namespace :users do
     # one liner for creating a password from the console:
     # user = User.create(first_name: "Stefan", surname: "Haslinger", email_address: "stefan.haslinger@mittenin.at", administrator: true, password: "%PASSWORD%" , password_confirmation: %PASSWORD%, state: "active")
 
-
-    unless User.find_by(surname: "Robot")
-      User.create(first_name: "E-Mail",
-                  surname: "Robot",
-                  email_address: "robot@mercator.mittenin.at",
-                  photo: open("#{Rails.root}/materials/images/little-robot.png"),
-                  sales: true)
-    end
-
-    unless User.find_by(surname: "Job User")
-      User.create(first_name: "Mercator",
-                  surname: "Job User",
-                  email_address: "jobs@mercator.mittenin.at",
-                  photo: open("#{Rails.root}/materials/images/little-robot.png"),
-                  administrator: true)
-    end
-
-    unless User.find_by(surname: "Dummy Customer")
-      User.create(first_name: "Mercator",
-                  surname: "Dummy Customer",
-                  email_address: "dummy_customer@mercator.mittenin.at",
-                  photo: open("#{Rails.root}/materials/images/little-robot.png"))
-    end
-
-    unless User.find_by(surname: "MPay24")
-      User.create(first_name: "Mercator",
-                  surname: "MPay24",
-                  email_address: "mpay24@mercator.mittenin.at",
-                  photo: open("#{Rails.root}/materials/images/little-robot.png"))
-    end
-
     # ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
     #   unless User.find_by(first_name: firstname)
     #     User.create(first_name: firstname,
