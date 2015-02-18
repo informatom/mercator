@@ -1,80 +1,67 @@
 ### Constants ###
 
 # Site name
-Constant.find_or_create_by(key: :site_name) do |constant|
-  constant.value= "My Mercator"
-end
+Constant.create(key: :site_name,
+                value: "My Mercator")
 
 # delivery times, in german, comma seperated
-Constant.find_or_create_by(key: :delivery_times_de) do |constant|
-  constant.value = "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage"
-end
+Constant.create(key: :delivery_times_de,
+                value: "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage")
 
 # delivery times, comma seperated
-Constant.find_or_create_by(key: :delivery_times_en) do |constant|
-  constant.value= "1-2 days,2-4 days,1 week,on request"
-end
+Constant.create(key: :delivery_times_en,
+                value: "1-2 days,2-4 days,1 week,on request")
 
 # Domain used for web shop and consulting part of mercator
-Constant.find_or_create_by(key: :shop_domain) do |constant|
-  constant.value = "shop.mydomain"
-end
+Constant.create(key: :shop_domain,
+                value: "shop.mydomain")
 
 # Domain used for CMS part of mercator
-Constant.find_or_create_by(key: :cms_domain) do |constant|
-  constant.value = "cms.mydomain"
-end
+Constant.create(key: :cms_domain,
+                value: "cms.mydomain")
 
 # store strategy / policy: "true" of "false"
-Constant.find_or_create_by(key: :fifo) do |constant|
-  constant.value = "true"
-end
+Constant.create(key: :fifo,
+                value: "true")
 
 # article name for shipping_casts
-Constant.find_or_create_by(key: :shipping_cost_article) do |constant|
-  constant.value = "SHIPPING_COSTS"
-end
+Constant.create(key: :shipping_cost_article,
+                value: "SHIPPING_COSTS")
 
 # E-mail address for service ("office") mails
-Constant.find_or_create_by(key: :service_mail) do |constant|
-  constant.value= "no-reply@my-mercator.mydomain"
-end
+Constant.create(key: :service_mail,
+                value: "no-reply@my-mercator.mydomain")
 
 # Office hours, hash of array values, be careful with the quotes!
 # Example: '{MON: ["11:30", "17:00"], TUE: ["8:30", "17:00"], WED: ["8:30", "17:00"], THU: ["8:30", "17:00"], FRI: ["8:30", "12:30"]}'
-Constant.find_or_create_by(key: :office_hours) do |constant|
-  constant.value = '{MON: ["11:30", "17:00"], TUE: ["8:30", "17:00"], WED: ["8:30", "17:00"], THU: ["8:30", "17:00"], FRI: ["8:30", "12:30"]}'
-end
+Constant.create(key: :office_hours,
+                value: '{MON: ["11:30", "17:00"], TUE: ["8:30", "17:00"], WED: ["8:30", "17:00"], THU: ["8:30", "17:00"], FRI: ["8:30", "12:30"]}')
 
 
 ### Users ###
 
 # Automatic ("robot") user credenitals, representing a sales representity
-User.find_or_create_by(surname: "Robot") do |user|
-  user.first_name = "E-Mail"
-  user.email_address = "robot@mercator.mydomain.com"
-  user.photo =  open("#{Rails.root}/materials/images/little-robot.png")
-  user.sales = true
-end
+User.create(surname: "Robot",
+            first_name: "E-Mail",
+            email_address: "robot@mercator.mydomain.com",
+            photo: open("#{Rails.root}/materials/images/little-robot.png"),
+            sales: true)
 
 # Job User credentials, needs to be administrator
-User.find_or_create_by(surname: "Job User") do |user|
-  user.first_name = "Mercator"
-  user.email_address = "jobs@mercator.mydomain.com"
-  user.administrator = true
-end
+User.create(surname: "Job User",
+            first_name: "Mercator",
+            email_address: "jobs@mercator.mydomain.com",
+            administrator: true)
 
 # Dummy customer credentials (used for price derivation e.g. in category filters)
-User.find_or_create_by(surname: "Dummy Customer") do |user|
-  user.first_name = "Mercator"
-  user.email_address = "dummy_customer@mercator.mydomain.com"
-end
+User.create(surname: "Dummy Customer",
+            first_name: "Mercator",
+            email_address: "dummy_customer@mercator.mydomain.com")
 
 # Payment customer credentials (used for price derivation e.g. in category filters)
-User.find_or_create_by(surname: "MPay24") do |user|
-  user.first_name = "Mercator"
-  user.email_address = "mpay24@mercator.mydomain.com"
-end
+User.create(surname: "MPay24",
+            first_name: "Mercator",
+            email_address: "mpay24@mercator.mydomain.com")
 
 
 ### Categories ###
@@ -262,3 +249,261 @@ ShippingCost.find_or_create_by(shipping_method: "parcel_service_shipment") do |s
   shipping_cost.country_id = 104
   shipping_cost.vat = 20
 end
+
+
+### Country ###
+
+Country.create(name_de: "Afghanistan", code: "AF", name_en: "Afghanistan")
+Country.create(name_de: "Alandinseln", code: "AX", name_en: "Åland")
+Country.create(name_de: "Albanien", code: "AL", name_en: "Albania")
+Country.create(name_de: "Algerien", code: "DZ", name_en: "Algeria")
+Country.create(name_de: "Amerikanisch-Ozeanien", code: "UM",
+               name_en: "United States Minor Outlying Islands")
+Country.create(name_de: "Amerikanisch-Samoa", code: "AS", name_en: "American Samoa")
+Country.create(name_de: "Amerikanische Jungferninseln", code: "VI", name_en: "Virgin Islands, U.S.")
+Country.create(name_de: "Andorra", code: "AD", name_en: "Andorra")
+Country.create(name_de: "Angola", code: "AO", name_en: "Angola")
+Country.create(name_de: "Anguilla", code: "AI", name_en: "Anguilla")
+Country.create(name_de: "Antarktis", code: "AQ", name_en: "Antarctica")
+Country.create(name_de: "Antigua und Barbuda", code: "AG", name_en: "Antigua and Barbuda")
+Country.create(name_de: "Argentinien", code: "AR", name_en: "Argentina")
+Country.create(name_de: "Armenien", code: "AM", name_en: "Armenia")
+Country.create(name_de: "Aruba", code: "AW", name_en: "Aruba")
+Country.create(name_de: "Aserbaidschan", code: "AZ", name_en: "Azerbaijan")
+Country.create(name_de: "Australien", code: "AU", name_en: "Australia")
+Country.create(name_de: "Bahamas", code: "BS", name_en: "Bahamas")
+Country.create(name_de: "Bahrain", code: "BH", name_en: "Bahrain")
+Country.create(name_de: "Bangladesch", code: "BD", name_en: "Bangladesh")
+Country.create(name_de: "Barbados", code: "BB", name_en: "Barbados")
+Country.create(name_de: "Belarus", code: "BY", name_en: "Belarus")
+Country.create(name_de: "Belgien", code: "BE", name_en: "Belgium")
+Country.create(name_de: "Belize", code: "BZ", name_en: "Belize")
+Country.create(name_de: "Benin", code: "BJ", name_en: "Benin")
+Country.create(name_de: "Bermuda", code: "BM", name_en: "Bermuda")
+Country.create(name_de: "Bhutan", code: "BT", name_en: "Bhutan")
+Country.create(name_de: "Bolivien", code: "BO", name_en: "Bolivia")
+Country.create(name_de: "Bosnien und Herzegowina", code: "BA", name_en: "Bosnia and Herzegovina")
+Country.create(name_de: "Botsuana", code: "BW", name_en: "Botswana")
+Country.create(name_de: "Bouvetinsel", code: "BV", name_en: "Bouvet Island")
+Country.create(name_de: "Brasilien", code: "BR", name_en: "Brazil")
+Country.create(name_de: "Britische Jungferninseln", code: "VG", name_en: "Virgin Islands, British")
+Country.create(name_de: "Britisches Territorium im Indischen Ozean", code: "IO",
+               name_en: "British Indian Ocean Territory")
+Country.create(name_de: "Brunei Darussalam", code: "BN", name_en: "Brunei Darussalam")
+Country.create(name_de: "Bulgarien", code: "BG", name_en: "Bulgaria")
+Country.create(name_de: "Burkina Faso", code: "BF", name_en: "Burkina Faso")
+Country.create(name_de: "Burundi", code: "BI", name_en: "Burundi")
+Country.create(name_de: "Chile", code: "CL", name_en: "Chile")
+Country.create(name_de: "China", code: "CN", name_en: "China")
+Country.create(name_de: "Cookinseln", code: "CK", name_en: "Cook Islands")
+Country.create(name_de: "Costa Rica", code: "CR", name_en: "Costa Rica")
+Country.create(name_de: "Côte d’Ivoire", code: "CI", name_en: "Côte d'Ivoire")
+Country.create(name_de: "Demokratische Republik Kongo", code: "CD", name_en: "Congo (Kinshasa)")
+Country.create(name_de: "Demokratische Volksrepublik Korea", code: "KP", name_en: "Korea, North")
+Country.create(name_de: "Deutschland", code: "DE", name_en: "Germany")
+Country.create(name_de: "Dominica", code: "DM", name_en: "Dominica")
+Country.create(name_de: "Dominikanische Republik", code: "DO", name_en: "Dominican Republic")
+Country.create(name_de: "Dschibuti", code: "DJ", name_en: "Djibouti")
+Country.create(name_de: "Dänemark", code: "DK", name_en: "Denmark")
+Country.create(name_de: "Ecuador", code: "EC", name_en: "Ecuador")
+Country.create(name_de: "El Salvador", code: "SV", name_en: "El Salvador")
+Country.create(name_de: "Eritrea", code: "ER", name_en: "Eritrea")
+Country.create(name_de: "Estland", code: "EE", name_en: "Estonia")
+Country.create(name_de: "Falklandinseln", code: "FK", name_en: "Falkland Islands")
+Country.create(name_de: "Fidschi", code: "FJ", name_en: "Fiji")
+Country.create(name_de: "Finnland", code: "FI", name_en: "Finland")
+Country.create(name_de: "Frankreich", code: "FR", name_en: "France")
+Country.create(name_de: "Französisch-Guayana", code: "GF", name_en: "French Guiana")
+Country.create(name_de: "Französisch-Polynesien", code: "PF", name_en: "French Polynesia")
+Country.create(name_de: "Französische Süd- und Antarktisgebiete", code: "TF",
+               name_en: "French Southern Lands")
+Country.create(name_de: "Färöer", code: "FO", name_en: "Faroe Islands")
+Country.create(name_de: "Gabun", code: "GA", name_en: "Gabon")
+Country.create(name_de: "Gambia", code: "GM", name_en: "Gambia")
+Country.create(name_de: "Georgien", code: "GE", name_en: "Georgia")
+Country.create(name_de: "Ghana", code: "GH", name_en: "Ghana")
+Country.create(name_de: "Gibraltar", code: "GI", name_en: "Gibraltar")
+Country.create(name_de: "Grenada", code: "GD", name_en: "Grenada")
+Country.create(name_de: "Griechenland", code: "GR", name_en: "Greece")
+Country.create(name_de: "Grönland", code: "GL", name_en: "Greenland")
+Country.create(name_de: "Guadeloupe", code: "GP", name_en: "Guadeloupe")
+Country.create(name_de: "Guam", code: "GU", name_en: "Guam")
+Country.create(name_de: "Guatemala", code: "GT", name_en: "Guatemala")
+Country.create(name_de: "Guernsey", code: "GG", name_en: "Guernsey")
+Country.create(name_de: "Guinea", code: "GN", name_en: "Guinea")
+Country.create(name_de: "Guinea-Bissau", code: "GW", name_en: "Guinea-Bissau")
+Country.create(name_de: "Guyana", code: "GY", name_en: "Guyana")
+Country.create(name_de: "Haiti", code: "HT", name_en: "Haiti")
+Country.create(name_de: "Heard- und McDonald-Inseln", code: "HM",
+               name_en: "Heard and McDonald Islands")
+Country.create(name_de: "Honduras", code: "HN", name_en: "Honduras")
+Country.create(name_de: "Indien", code: "IN", name_en: "India")
+Country.create(name_de: "Indonesien", code: "ID", name_en: "Indonesia")
+Country.create(name_de: "Irak", code: "IQ", name_en: "Iraq")
+Country.create(name_de: "Iran", code: "IR", name_en: "Iran")
+Country.create(name_de: "Irland", code: "IE", name_en: "Ireland")
+Country.create(name_de: "Island", code: "IS", name_en: "Iceland")
+Country.create(name_de: "Isle of Man", code: "IM", name_en: "Isle of Man")
+Country.create(name_de: "Israel", code: "IL", name_en: "Israel")
+Country.create(name_de: "Italien", code: "IT", name_en: "Italy")
+Country.create(name_de: "Jamaika", code: "JM", name_en: "Jamaica")
+Country.create(name_de: "Japan", code: "JP", name_en: "Japan")
+Country.create(name_de: "Jemen", code: "YE", name_en: "Yemen")
+Country.create(name_de: "Jersey", code: "JE", name_en: "Jersey")
+Country.create(name_de: "Jordanien", code: "JO", name_en: "Jordan")
+Country.create(name_de: "Kaimaninseln", code: "KY", name_en: "Cayman Islands")
+Country.create(name_de: "Kambodscha", code: "KH", name_en: "Cambodia")
+Country.create(name_de: "Kamerun", code: "CM", name_en: "Cameroon")
+Country.create(name_de: "Kanada", code: "CA", name_en: "Canada")
+Country.create(name_de: "Kap Verde", code: "CV", name_en: "Cape Verde")
+Country.create(name_de: "Kasachstan", code: "KZ", name_en: "Kazakhstan")
+Country.create(name_de: "Katar", code: "QA", name_en: "Qatar")
+Country.create(name_de: "Kenia", code: "KE", name_en: "Kenya")
+Country.create(name_de: "Kirgisistan", code: "KG", name_en: "Kyrgyzstan")
+Country.create(name_de: "Kiribati", code: "KI", name_en: "Kiribati")
+Country.create(name_de: "Kokosinseln", code: "CC", name_en: "Cocos (Keeling) Islands")
+Country.create(name_de: "Kolumbien", code: "CO", name_en: "Colombia")
+Country.create(name_de: "Komoren", code: "KM", name_en: "Comoros")
+Country.create(name_de: "Kongo", code: "CG", name_en: "Congo (Brazzaville)")
+Country.create(name_de: "Kroatien", code: "HR", name_en: "Croatia")
+Country.create(name_de: "Kuba", code: "CU", name_en: "Cuba")
+Country.create(name_de: "Kuwait", code: "KW", name_en: "Kuwait")
+Country.create(name_de: "Laos", code: "LA", name_en: "Laos")
+Country.create(name_de: "Lesotho", code: "LS", name_en: "Lesotho")
+Country.create(name_de: "Lettland", code: "LV", name_en: "Latvia")
+Country.create(name_de: "Libanon", code: "LB", name_en: "Lebanon")
+Country.create(name_de: "Liberia", code: "LR", name_en: "Liberia")
+Country.create(name_de: "Libyen", code: "LY", name_en: "Libya")
+Country.create(name_de: "Liechtenstein", code: "LI", name_en: "Liechtenstein")
+Country.create(name_de: "Litauen", code: "LT", name_en: "Lithuania")
+Country.create(name_de: "Luxemburg", code: "LU", name_en: "Luxembourg")
+Country.create(name_de: "Madagaskar", code: "MG", name_en: "Madagascar")
+Country.create(name_de: "Malawi", code: "MW", name_en: "Malawi")
+Country.create(name_de: "Malaysia", code: "MY", name_en: "Malaysia")
+Country.create(name_de: "Malediven", code: "MV", name_en: "Maldives")
+Country.create(name_de: "Mali", code: "ML", name_en: "Mali")
+Country.create(name_de: "Malta", code: "MT", name_en: "Malta")
+Country.create(name_de: "Marokko", code: "MA", name_en: "Morocco")
+Country.create(name_de: "Marshallinseln", code: "MH", name_en: "Marshall Islands")
+Country.create(name_de: "Martinique", code: "MQ", name_en: "Martinique")
+Country.create(name_de: "Mauretanien", code: "MR", name_en: "Mauritania")
+Country.create(name_de: "Mauritius", code: "MU", name_en: "Mauritius")
+Country.create(name_de: "Mayotte", code: "YT", name_en: "Mayotte")
+Country.create(name_de: "Mazedonien", code: "MK", name_en: "Macedonia")
+Country.create(name_de: "Mexiko", code: "MX", name_en: "Mexico")
+Country.create(name_de: "Mikronesien", code: "FM", name_en: "Micronesia")
+Country.create(name_de: "Monaco", code: "MC", name_en: "Monaco")
+Country.create(name_de: "Mongolei", code: "MN", name_en: "Mongolia")
+Country.create(name_de: "Montenegro", code: "ME", name_en: "Montenegro")
+Country.create(name_de: "Montserrat", code: "MS", name_en: "Montserrat")
+Country.create(name_de: "Mosambik", code: "MZ", name_en: "Mozambique")
+Country.create(name_de: "Myanmar", code: "MM", name_en: "Myanmar")
+Country.create(name_de: "Namibia", code: "NA", name_en: "Namibia")
+Country.create(name_de: "Nauru", code: "NR", name_en: "Nauru")
+Country.create(name_de: "Nepal", code: "NP", name_en: "Nepal")
+Country.create(name_de: "Neukaledonien", code: "NC", name_en: "New Caledonia")
+Country.create(name_de: "Neuseeland", code: "NZ", name_en: "New Zealand")
+Country.create(name_de: "Nicaragua", code: "NI", name_en: "Nicaragua")
+Country.create(name_de: "Niederlande", code: "NL", name_en: "Netherlands")
+Country.create(name_de: "Niederländische Antillen", code: "AN", name_en: "Netherlands Antilles")
+Country.create(name_de: "Niger", code: "NE", name_en: "Niger")
+Country.create(name_de: "Nigeria", code: "NG", name_en: "Nigeria")
+Country.create(name_de: "Niue", code: "NU", name_en: "Niue")
+Country.create(name_de: "Norfolkinsel", code: "NF", name_en: "Norfolk Island")
+Country.create(name_de: "Norwegen", code: "NO", name_en: "Norway")
+Country.create(name_de: "Nördliche Marianen", code: "MP", name_en: "Northern Mariana Islands")
+Country.create(name_de: "Oman", code: "OM", name_en: "Oman")
+Country.create(name_de: "Osttimor", code: "TL", name_en: "Timor-Leste")
+Country.create(name_de: "Pakistan", code: "PK", name_en: "Pakistan")
+Country.create(name_de: "Palau", code: "PW", name_en: "Palau")
+Country.create(name_de: "Palästinensische Gebiete", code: "PS", name_en: "Palestine")
+Country.create(name_de: "Panama", code: "PA", name_en: "Panama")
+Country.create(name_de: "Papua-Neuguinea", code: "PG", name_en: "Papua New Guinea")
+Country.create(name_de: "Paraguay", code: "PY", name_en: "Paraguay")
+Country.create(name_de: "Peru", code: "PE", name_en: "Peru")
+Country.create(name_de: "Philippinen", code: "PH", name_en: "Philippines")
+Country.create(name_de: "Pitcairn", code: "PN", name_en: "Pitcairn")
+Country.create(name_de: "Polen", code: "PL", name_en: "Poland")
+Country.create(name_de: "Portugal", code: "PT", name_en: "Portugal")
+Country.create(name_de: "Puerto Rico", code: "PR", name_en: "Puerto Rico")
+Country.create(name_de: "Republik Korea", code: "KR", name_en: "Korea, South")
+Country.create(name_de: "Republik Moldau", code: "MD", name_en: "Moldova")
+Country.create(name_de: "Réunion", code: "RE", name_en: "Reunion")
+Country.create(name_de: "Ruanda", code: "RW", name_en: "Rwanda")
+Country.create(name_de: "Rumänien", code: "RO", name_en: "Romania")
+Country.create(name_de: "Russische Föderation", code: "RU", name_en: "Russian Federation")
+Country.create(name_de: "Salomonen", code: "SB", name_en: "Solomon Islands")
+Country.create(name_de: "Sambia", code: "ZM", name_en: "Zambia")
+Country.create(name_de: "Samoa", code: "WS", name_en: "Samoa")
+Country.create(name_de: "San Marino", code: "SM", name_en: "San Marino")
+Country.create(name_de: "São Tomé und Príncipe", code: "ST", name_en: "Sao Tome and Principe")
+Country.create(name_de: "Saudi-Arabien", code: "SA", name_en: "Saudi Arabia")
+Country.create(name_de: "Schweden", code: "SE", name_en: "Sweden")
+Country.create(name_de: "Schweiz", code: "CH", name_en: "Switzerland")
+Country.create(name_de: "Senegal", code: "SN", name_en: "Senegal")
+Country.create(name_de: "Serbien", code: "RS", name_en: "Serbia")
+Country.create(name_de: "Serbien und Montenegro", code: "CS", name_en: "Serbia and Montenegro")
+Country.create(name_de: "Seychellen", code: "SC", name_en: "Seychelles")
+Country.create(name_de: "Sierra Leone", code: "SL", name_en: "Sierra Leone")
+Country.create(name_de: "Simbabwe", code: "ZW", name_en: "Zimbabwe")
+Country.create(name_de: "Singapur", code: "SG", name_en: "Singapore")
+Country.create(name_de: "Slowakei", code: "SK", name_en: "Slovakia")
+Country.create(name_de: "Slowenien", code: "SI", name_en: "Slovenia")
+Country.create(name_de: "Somalia", code: "SO", name_en: "Somalia")
+Country.create(name_de: "Sonderverwaltungszone Hongkong", code: "HK", name_en: "Hong Kong")
+Country.create(name_de: "Sonderverwaltungszone Macao", code: "MO", name_en: "Macau")
+Country.create(name_de: "Spanien", code: "ES", name_en: "Spain")
+Country.create(name_de: "Sri Lanka", code: "LK", name_en: "Sri Lanka")
+Country.create(name_de: "St. Barthélemy", code: "BL", name_en: "Saint Barthélemy")
+Country.create(name_de: "St. Helena", code: "SH", name_en: "Saint Helena")
+Country.create(name_de: "St. Kitts und Nevis", code: "KN", name_en: "Saint Kitts and Nevis")
+Country.create(name_de: "St. Lucia", code: "LC", name_en: "Saint Lucia")
+Country.create(name_de: "St. Martin", code: "MF", name_en: "Saint Martin (French part)")
+Country.create(name_de: "St. Pierre und Miquelon", code: "PM", name_en: "Saint Pierre and Miquelon")
+Country.create(name_de: "St. Vincent und die Grenadinen", code: "VC",
+               name_en: "Saint Vincent and the Grenadines")
+Country.create(name_de: "Sudan", code: "SD", name_en: "Sudan")
+Country.create(name_de: "Suriname", code: "SR", name_en: "Suriname")
+Country.create(name_de: "Svalbard und Jan Mayen", code: "SJ", name_en: "Svalbard and Jan Mayen Islands")
+Country.create(name_de: "Swasiland", code: "SZ", name_en: "Swaziland")
+Country.create(name_de: "Südafrika", code: "ZA", name_en: "South Africa")
+Country.create(name_de: "Südgeorgien und die Südlichen Sandwichinseln", code: "GS",
+               name_en: "South Georgia and South Sandwich Islands")
+Country.create(name_de: "Syrien", code: "SY", name_en: "Syria")
+Country.create(name_de: "Tadschikistan", code: "TJ", name_en: "Tajikistan")
+Country.create(name_de: "Taiwan", code: "TW", name_en: "Taiwan")
+Country.create(name_de: "Tansania", code: "TZ", name_en: "Tanzania")
+Country.create(name_de: "Thailand", code: "TH", name_en: "Thailand")
+Country.create(name_de: "Togo", code: "TG", name_en: "Togo")
+Country.create(name_de: "Tokelau", code: "TK", name_en: "Tokelau")
+Country.create(name_de: "Tonga", code: "TO", name_en: "Tonga")
+Country.create(name_de: "Trinidad und Tobago", code: "TT", name_en: "Trinidad and Tobago")
+Country.create(name_de: "Tschad", code: "TD", name_en: "Chad")
+Country.create(name_de: "Tschechische Republik", code: "CZ", name_en: "Czech Republic")
+Country.create(name_de: "Tunesien", code: "TN", name_en: "Tunisia")
+Country.create(name_de: "Turkmenistan", code: "TM", name_en: "Turkmenistan")
+Country.create(name_de: "Turks- und Caicosinseln", code: "TC", name_en: "Turks and Caicos Islands")
+Country.create(name_de: "Tuvalu", code: "TV", name_en: "Tuvalu")
+Country.create(name_de: "Türkei", code: "TR", name_en: "Turkey")
+Country.create(name_de: "Uganda", code: "UG", name_en: "Uganda")
+Country.create(name_de: "Ukraine", code: "UA", name_en: "Ukraine")
+Country.create(name_de: "Ungarn", code: "HU", name_en: "Hungary")
+Country.create(name_de: "Uruguay", code: "UY", name_en: "Uruguay")
+Country.create(name_de: "Usbekistan", code: "UZ", name_en: "Uzbekistan")
+Country.create(name_de: "Vanuatu", code: "VU", name_en: "Vanuatu")
+Country.create(name_de: "Vatikanstadt", code: "VA", name_en: "Vatican City")
+Country.create(name_de: "Venezuela", code: "VE", name_en: "Venezuela")
+Country.create(name_de: "Vereinigte Arabische Emirate", code: "AE", name_en: "United Arab Emirates")
+Country.create(name_de: "Vereinigte Staaten", code: "US", name_en: "United States of America")
+Country.create(name_de: "Vereinigtes Königreich", code: "GB", name_en: "United Kingdom")
+Country.create(name_de: "Vietnam", code: "VN", name_en: "Vietnam")
+Country.create(name_de: "Wallis und Futuna", code: "WF", name_en: "Wallis and Futuna Islands")
+Country.create(name_de: "Weihnachtsinsel", code: "CX", name_en: "Christmas Island")
+Country.create(name_de: "Westsahara", code: "EH", name_en: "Western Sahara")
+Country.create(name_de: "Zentralafrikanische Republik", code: "CF",
+               name_en: "Central African Republic")
+Country.create(name_de: "Zypern", code: "CY", name_en: "Cyprus")
+Country.create(name_de: "Ägypten", code: "EG", name_en: "Egypt")
+Country.create(name_de: "Äquatorialguinea", code: "GQ", name_en: "Equatorial Guinea")
+Country.create(name_de: "Äthiopien", code: "ET", name_en: "Ethiopia")
+Country.create(name_de: "Österreich", code: "AT", name_en: "Austria")

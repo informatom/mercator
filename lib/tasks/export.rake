@@ -22,5 +22,11 @@ namespace :export do
     end
   end
 
+  desc "Exports Country.all in a seeds.rb way."
+  task :country_seeds => :environment do
+    Country.all.each do |country|
+      puts "Country.create(#{country.serializable_hash.delete_if {|key, value| ['created_at','updated_at','id', 'legacy_id'].include?(key)}.to_s.gsub(/[{}]/,'')})"
+    end
+  end
 
 end
