@@ -1,41 +1,58 @@
 ### Constants ###
 
 # Site name
-Constant.create(key: :site_name,
-                value: "My Mercator")
+Constant.create(key: :site_name, value: "My Mercator")
 
 # delivery times, in german, comma seperated
-Constant.create(key: :delivery_times_de,
-                value: "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage")
+Constant.create(key: :delivery_times_de, value: "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage")
 
 # delivery times, comma seperated
-Constant.create(key: :delivery_times_en,
-                value: "1-2 days,2-4 days,1 week,on request")
+Constant.create(key: :delivery_times_en, value: "1-2 days,2-4 days,1 week,on request")
 
-# Domain used for web shop and consulting part of mercator
-Constant.create(key: :shop_domain,
-                value: "shop.mydomain")
-
-# Domain used for CMS part of mercator
-Constant.create(key: :cms_domain,
-                value: "cms.mydomain")
+# Domain used for web shop and consulting part of mercator, CMS and Podcasting area, respectively
+Constant.create(key: :shop_domain, value: "shop.mydomain")
+Constant.create(key: :cms_domain, value: "cms.mydomain")
+Constant.create(key: "podcast_domain", value: "podcast.mydomain")
 
 # store strategy / policy: "true" of "false"
-Constant.create(key: :fifo,
-                value: "true")
+Constant.create(key: :fifo, value: "true")
 
 # article name for shipping_casts
-Constant.create(key: :shipping_cost_article,
-                value: "SHIPPING_COSTS")
+Constant.create(key: :shipping_cost_article, value: "SHIPPING_COSTS")
 
 # E-mail address for service ("office") mails
-Constant.create(key: :service_mail,
-                value: "no-reply@my-mercator.mydomain")
+Constant.create(key: :service_mail, value: "no-reply@my-mercator.mydomain")
 
 # Office hours, hash of array values, be careful with the quotes!
 # Example: '{MON: ["11:30", "17:00"], TUE: ["8:30", "17:00"], WED: ["8:30", "17:00"], THU: ["8:30", "17:00"], FRI: ["8:30", "12:30"]}'
 Constant.create(key: :office_hours,
                 value: '{MON: ["11:30", "17:00"], TUE: ["8:30", "17:00"], WED: ["8:30", "17:00"], THU: ["8:30", "17:00"], FRI: ["8:30", "12:30"]}')
+
+# Coutry code for automatic holiday derivation, e.g. "de", "at"
+Constant.create(key: "holiday_country_code", value: "at")
+
+# Should be set to "true", if an ERP system is responsible for pricing
+Constant.create(key: "prices_are_set_by_erp_and_therefore_not_editable", value: "false")
+
+# Credentials for MPay24 user, only necessary, if E-Payment is installed and enabled
+Constant.create(key: "mpay_test_username", value: "FIXME!")
+Constant.create(key: "mpay_test_password", value: "FIXME!")
+Constant.create(key: "mpay_production_username", value: "FIXME!")
+Constant.create(key: "mpay_production_password", value: "FIXME!")
+
+# Email subject for order confirmation email message
+Constant.create(key: "order_corfirmation_mail_subject", value: "Bestellinfo")
+
+# Email subject for notification email on new orders in state 'in payment'
+Constant.create(key: "order_notify_in_payment_mail_subject",
+                value: "neue Bestellungen im Status Bezahlung")
+
+# Credentials for twitter user, only necessary, when twitter timeline should be displayed
+Constant.create(key: "twitter_user", value: "FIXME!")
+Constant.create(key: "twitter_consumer_key", value: "FIXME!")
+Constant.create(key: "twitter_consumer_secret", value: "FIXME!")
+Constant.create(key: "twitter_oauth_token", value: "FIXME!")
+Constant.create(key: "twitter_uoauth_token_secret", value: "FIXME!")
 
 
 ### Users ###
@@ -66,6 +83,7 @@ User.create(surname: "MPay24",
 
 ### Categories ###
 
+# These categories are fine for a quick, no customization necessary.
 # Mercator system category
 Category.find_or_create_by(usage: :mercator) do |category|
   category.name_de =  "== Mercator =="
@@ -141,6 +159,7 @@ end
 
 ### GTC ###
 
+# These templates are fine for a quick start, no customization necessary.
 Gtc.find_or_create_by(title_de: "AGB") do |gtc|
   gtc.title_en = "GTC"
   gtc.content_de = "FIXME! Geben Sie hier Ihre Allgemeinen Geschäftsbedingungen ein!"
@@ -244,6 +263,7 @@ end
 
 ### ShippingCost ###
 
+# Shipping cost value and tax
 ShippingCost.find_or_create_by(shipping_method: "parcel_service_shipment") do |shipping_cost|
   shipping_cost.value = 12
   shipping_cost.country_id = 104
@@ -253,6 +273,8 @@ end
 
 ### Country ###
 
+# List of countries where service is web shop service is provided
+# Restrict, if necessary!
 Country.create(name_de: "Afghanistan", code: "AF", name_en: "Afghanistan")
 Country.create(name_de: "Alandinseln", code: "AX", name_en: "Åland")
 Country.create(name_de: "Albanien", code: "AL", name_en: "Albania")
