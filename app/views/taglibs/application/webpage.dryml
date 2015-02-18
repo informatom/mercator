@@ -41,12 +41,14 @@
      content_element ||= ContentElement.find_by(name_en: name) %>
 
   <if test="&content_element">
-    1!!!<img if="&size"
+    <img if="&size"
          src="&content_element.photo(size.to_sym)"
-         alt="&name" />
-    2!!!<img unless="&size"
+         alt="&name"
+         merge-attrs />
+    <img unless="&size"
          src="&content_element.photo"
-         alt="&name" />
+         alt="&name"
+         merge-attrs />
   </if>
   <else>
     <view with="<!--" />
@@ -59,12 +61,14 @@
 
 <def tag="photo" for="Webpage" attrs="name, size" >
   <if test="&content_element = this.content_element(name)">
-    3!!!<img if="&size"
+    <img if="&size"
          src="&content_element.photo(size.to_sym)"
-         alt="&name" />
-    4!!!<img unless="&size"
+         alt="&name"
+         merge-attrs />
+    <img unless="&size"
          src="&content_element.photo"
-         alt="&name" />
+         alt="&name"
+         merge-attrs />
   </if>
   <else>
     <view with="<!--" />

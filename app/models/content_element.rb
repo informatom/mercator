@@ -99,6 +99,8 @@ class ContentElement < ActiveRecord::Base
 
       if photo_content_element
         photo.name = 'img'
+        photo['alt'] = photo['name']
+        photo.attributes['name'].remove
         if photo['size']
           photo['src'] = photo_content_element.photo(photo['size'].to_sym)
           photo['size'] = nil
