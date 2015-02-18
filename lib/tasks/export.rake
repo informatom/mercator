@@ -15,4 +15,12 @@ namespace :export do
     end
   end
 
+  desc "Exports ShippingCost.all in a seeds.rb way."
+  task :shipping_cost_seeds => :environment do
+    ShippingCost.all.each do |shipping_cost|
+      puts "ShippingCost.create(#{shipping_cost.serializable_hash.delete_if {|key, value| ['created_at','updated_at','id'].include?(key)}.to_s.gsub(/[{}]/,'')})"
+    end
+  end
+
+
 end

@@ -253,3 +253,12 @@ PageTemplate.find_or_create_by(name: "demo") do |page_template|
                           " dargestellt werden. -->    \r\n</page>\r\n\r\n"
   page_template.dryml = true
 end
+
+
+### ShippingCost ###
+
+ShippingCost.find_or_create_by(shipping_method: "parcel_service_shipment") do |shipping_cost|
+  shipping_cost.value = 12
+  shipping_cost.country_id = 104
+  shipping_cost.vat = 20
+end
