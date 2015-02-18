@@ -41,8 +41,8 @@
      content_element ||= ContentElement.find_by(name_en: name) %>
 
   <if test="&content_element">
-    <img if="&size" src="&content_element.photo(size.to_sym)" merge-attrs/>
-    <img unless="&size" src="&content_element.photo" merge-attrs/>
+    <img if="&size" src="&content_element.photo(size.to_sym)" alt="name" merge-attrs/>
+    <img unless="&size" src="&content_element.photo" alt="name" merge-attrs/>
   </if>
   <else>
     <view with="<!--" />
@@ -55,8 +55,8 @@
 
 <def tag="photo" for="Webpage" attrs="name, size" >
   <if test="&content_element = this.content_element(name)">
-    <img if="&size" src="&content_element.photo(size.to_sym)" merge-attrs/>
-    <img unless="&size" src="&content_element.photo" merge-attrs/>
+    <img if="&size" src="&content_element.photo(size.to_sym)" alt="name" merge-attrs/>
+    <img unless="&size" src="&content_element.photo" alt="name" merge-attrs/>
   </if>
   <else>
     <view with="<!--" />
