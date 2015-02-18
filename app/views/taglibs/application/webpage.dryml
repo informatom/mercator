@@ -43,12 +43,10 @@
   <if test="&content_element">
     <img if="&size"
          src="&content_element.photo(size.to_sym)"
-         alt="&name"
-         merge-attrs="&attributes - ['name', 'alt']" />
+         alt="&name" />
     <img unless="&size"
          src="&content_element.photo"
-         alt="&name"
-         merge-attrs="&attributes - ['name', 'alt']" />
+         alt="&name" />
   </if>
   <else>
     <view with="<!--" />
@@ -63,12 +61,10 @@
   <if test="&content_element = this.content_element(name)">
     <img if="&size"
          src="&content_element.photo(size.to_sym)"
-         alt="&name"
-         merge-attrs="&attributes - ['name', 'alt']" />
+         alt="&name" />
     <img unless="&size"
          src="&content_element.photo"
-         alt="&name"
-         merge-attrs="&attributes - ['name', 'alt']" />
+         alt="&name" />
   </if>
   <else>
     <view with="<!--" />
