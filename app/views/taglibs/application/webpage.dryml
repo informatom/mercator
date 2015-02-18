@@ -44,11 +44,11 @@
     <img if="&size"
          src="&content_element.photo(size.to_sym)"
          alt="&name"
-         merge-attrs="&attributes - 'name' - 'alt'" />
+         merge-attrs="&attributes - ['name', 'alt']" />
     <img unless="&size"
          src="&content_element.photo"
          alt="&name"
-         merge-attrs="&attributes - 'name' - 'alt'" />
+         merge-attrs="&attributes - ['name', 'alt']" />
   </if>
   <else>
     <view with="<!--" />
@@ -64,11 +64,11 @@
     <img if="&size"
          src="&content_element.photo(size.to_sym)"
          alt="&name"
-         merge-attrs="&attributes - 'name' - 'alt'" />
+         merge-attrs="&attributes - ['name', 'alt']" />
     <img unless="&size"
          src="&content_element.photo"
          alt="&name"
-         merge-attrs="&attributes - 'name' - 'alt'" />
+         merge-attrs="&attributes - ['name', 'alt']" />
   </if>
   <else>
     <view with="<!--" />
