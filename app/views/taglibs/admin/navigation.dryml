@@ -39,7 +39,7 @@
           <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
         <nav-item href="&productmanager_front_path">
-          <ht key="category.nav_item" count="100"><t key="attributes.product_catalog" /></ht>
+          <t key="attributes.productmanager"/>
         </nav-item>
         <li class="divider"></li>
         <nav-item with="&Product">
@@ -65,38 +65,21 @@
       </ul>
     </li>
 
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.orders") %> ...
-      <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item with="&Order">
-          <ht key="order.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item with="&Lineitem">
-          <ht key="lineitem.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-      </ul>
-    </li>
+    <nav-item with="&Order">
+      <ht key="order.nav_item" count="100"><model-name-human count="100"/></ht>
+    </nav-item>
 
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.CMS") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item with="&Webpage">
-          <ht key="webpage.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
         <nav-item href="&contentmanager_front_path">
-          <ht key="webpage.nav_item" count="100"><t key="attributes.page_tree" /></ht>
-        </nav-item>
-        <nav-item with="&Folder">
-          <ht key="folder.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item with="&ContentElement">
-          <ht key="content_element.nav_item" count="100"><model-name-human count="100"/></ht>
+          <t key="attributes.contentmanager"/>
         </nav-item>
         <nav-item with="&PageTemplate">
           <ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <li class="divider"></li>
         <nav-item with="&Blogpost">
           <ht key="blogpost.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
@@ -106,6 +89,7 @@
         <nav-item with="&Comment">
           <ht key="comment.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
+        <li class="divider"></li>
         <nav-item with="&Podcast">
           <ht key="podcast.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
