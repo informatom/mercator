@@ -11,20 +11,18 @@ function menu() {
       { type: 'button', id: 'sales',
         caption: I18n.t('js.cm.sales_subsite_name'), icon: 'fa fa-external-link' },
       { type: 'break' },
-      { type: 'button', id: 'admin/webpages',
-        caption: I18n.t('js.cm.WebPage.other'), icon: 'fa fa-external-link' },
-      { type: 'button', id: 'admin/folders',
-        caption: I18n.t('js.cm.Folder.other'), icon: 'fa fa-external-link' },
-      { type: 'button', id: 'admin/content_elements',
-        caption: I18n.t('js.cm.ContentElement.other'), icon: 'fa fa-external-link'},
       { type: 'button', id: 'admin/page_templates',
-        caption: I18n.t('js.cm.PageTemplate.other'), icon: 'fa fa-external-link' },
+        caption: I18n.t('js.cm.PageTemplate.other'), icon: 'fa fa-external-link'},
       { type: 'spacer' },
-      { type: 'button', id: 'chat.html',
+      { type: 'button', id: 'videochat',
         caption: I18n.t('js.cm.video_chat'), icon: 'fa fa-external-link'},
     ],
     onClick: function (event) {
-      document.location = event.target
+      if (event.target == "admin/page_templates") {
+        window.open(event.target)
+      } else {
+        document.location = event.target
+      }
     }
   })
 }
