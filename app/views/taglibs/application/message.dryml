@@ -15,7 +15,7 @@
 </def>
 
 <def tag="message-subscription">
-  <if test="&current_user.class != Guest">
+  <if test="&current_user.sales">
     <%= subscribe_to "/personal/" + current_user.id.to_s %>
     <audio controls style="display:none;" id="ding">
       <source src="/sounds/ding.mp3" type="audio/mpeg" />
