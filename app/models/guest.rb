@@ -8,6 +8,10 @@ class Guest < Hobo::Model::Guest
     false
   end
 
+  def sales
+    false
+  end
+
   def locale
     I18n.default_locale
   end
