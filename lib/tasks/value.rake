@@ -1,8 +1,7 @@
 # encoding: utf-8
 
 namespace :value do
-  # starten als: 'bundle exec rake value:transfer'
-  # in Produktivumgebungen: 'bundle exec rake value:transfer RAILS_ENV=production'
+  # starten als:'bundle exec rake value:transfer RAILS_ENV=production
   desc "Transfers values into new structure"
   task :transfer => :environment do
 
@@ -41,8 +40,7 @@ namespace :value do
     end
   end
 
-  # starten als: 'bundle exec rake value:find_numerics'
-  # in Produktivumgebungen: 'bundle exec rake value:find_numerics RAILS_ENV=production'
+  # starten als: bundle exec rake value:find_numerics RAILS_ENV=production
   desc "Find numerical values"
   task :find_numerics => :environment do
     Value.where(state: "textual").each do |value|

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 namespace :export do
+  # starten als: 'bundle exec rake export:gtc_seeds RAILS_ENV=production'
   desc "Exports Gtc.all in a seeds.rb way."
   task :gtc_seeds => :environment do
     Gtc.all.each do |gtc|
@@ -8,6 +9,7 @@ namespace :export do
     end
   end
 
+  # starten als: 'bundle exec rake export:page_template_seeds RAILS_ENV=production'
   desc "Exports PageTemplate.all in a seeds.rb way."
   task :page_template_seeds => :environment do
     PageTemplate.all.each do |page_template|
@@ -15,6 +17,7 @@ namespace :export do
     end
   end
 
+  # starten als: 'bundle exec rake export:shipping_cost_seeds RAILS_ENV=production'
   desc "Exports ShippingCost.all in a seeds.rb way."
   task :shipping_cost_seeds => :environment do
     ShippingCost.all.each do |shipping_cost|
@@ -22,6 +25,7 @@ namespace :export do
     end
   end
 
+  # starten als: 'bundle exec rake export:country_seeds RAILS_ENV=production'
   desc "Exports Country.all in a seeds.rb way."
   task :country_seeds => :environment do
     Country.all.each do |country|

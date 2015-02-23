@@ -2,8 +2,7 @@
 require 'csv'
 
 namespace :countries do
-  # starten als: 'bundle exec rake countries:import'
-  # in Produktivumgebungen: 'bundle exec rake countries:import RAILS_ENV=production'
+  # starten als: 'bundle exec rake countries:import RAILS_ENV=production'
   desc "Import German country names"
   task :import => :environment do
 

@@ -1,28 +1,28 @@
 # encoding: utf-8
 
 namespace :users do
-  # starten als: 'bundle exec rake users:create_defaults RAILS_ENV=production'
-  desc "Create default users"
-  task :create_defaults => :environment do
+  # starten als: bundle exec rake users:create_some_sales_users RAILS_ENV=production
+  desc "Creats four sales users"
+  task :create_some_sales_users => :environment do
     JobLogger.info("=" * 50)
-    JobLogger.info("Started Job: categories:create_defaults")
+    JobLogger.info("Started Job: categories:create_some_sales_users")
 
     # one liner for creating a password from the console:
     # user = User.create(first_name: "Stefan", surname: "Haslinger", email_address: "stefan.haslinger@mittenin.at", administrator: true, password: "%PASSWORD%" , password_confirmation: %PASSWORD%, state: "active")
 
-    # ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
-    #   unless User.find_by(first_name: firstname)
-    #     User.create(first_name: firstname,
-    #                 surname: "Vertriebsmitarbeiter",
-    #                 email_address: (index + 1).to_s + "@mercator.mittenin.at",
-    #                 sales: true,
-    #                 password: "123456",
-    #                 password_confirmation: "123456",
-    #                 state: "active")
-    #   end
-    # end
+    ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
+      unless User.find_by(first_name: firstname)
+        User.create(first_name: firstname,
+                    surname: "Vertriebsmitarbeiter",
+                    email_address: (index + 1).to_s + "@mercator.mittenin.at",
+                    sales: true,
+                    password: "123456",
+                    password_confirmation: "123456",
+                    state: "active")
+      end
+    end
 
-    JobLogger.info("Finished Job: categories:create_defaults")
+    JobLogger.info("Finished Job: categories:create_some_sales_users")
     JobLogger.info("=" * 50)
   end
 end

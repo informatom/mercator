@@ -1,7 +1,6 @@
 namespace :paperclip do
   desc 'Fix content types'
-  # starten als: 'bundle exec rake paperclip:fix_content_types'
-  # in Produktivumgebungen: 'bundle exec rake paperclip:fix_content_types RAILS_ENV=production'
+  # starten als: 'bundle exec rake paperclip:fix_content_types RAILS_ENV=production'
   task :fix_content_types => :environment do
      Category.all.each do |category|
        if category.photo_file_name

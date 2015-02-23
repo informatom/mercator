@@ -2,8 +2,7 @@
 
 namespace :page_templates do
 
-  # starten als: rake page_templates:save_to_disk
-  # in Produktivumgebungen: bundle exec rake page_templates:save_to_disk RAILS_ENV=production
+  # starten als: rake page_templates:save_to_disk RAILS_ENV=production
   desc "Persist page templates to file system"
   task :save_to_disk => :environment do
     page_templates_dir = Rails.root.to_s + "/app/views/page_templates"

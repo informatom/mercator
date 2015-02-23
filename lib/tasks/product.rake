@@ -31,6 +31,7 @@ namespace :products do
     end
   end
 
+
   # starten als: 'bundle exec rake products:deprecate RAILS_ENV=production'
   desc "Deprecates products without inventories"
   task :deprecate => :environment do
@@ -42,6 +43,7 @@ namespace :products do
     JobLogger.info("Finished Job: products:deprecate")
     JobLogger.info("=" * 50)
   end
+
 
   # starten als: 'bundle exec rake products:fix_photo_content_type RAILS_ENV=production'
   desc "Fixes photo content types"
@@ -74,6 +76,7 @@ namespace :products do
     end
   end
 
+
   # starten als: 'bundle exec rake products:reindex RAILS_ENV=production'
   desc "Reindexes products in Elasticsearch."
   task :reindex => :environment do
@@ -84,6 +87,7 @@ namespace :products do
     JobLogger.info("=" * 50)
   end
 
+
   # starten als: 'bundle exec rake products:catch_orphans RAILS_ENV=production'
   desc "Assigns orphaned products to category Orphans."
   task :catch_orphans => :environment do
@@ -93,6 +97,7 @@ namespace :products do
     JobLogger.info("Finished Job: products:catch_orphans")
     JobLogger.info("=" * 50)
   end
+
 
   # starten als: 'bundle exec rake products:first_activation RAILS_ENV=production'
   desc "Product activation after first import"
@@ -107,6 +112,7 @@ namespace :products do
     JobLogger.info("Finished Job: products:first_activation")
     JobLogger.info("=" * 50)
   end
+
 
   # starten als: 'bundle exec rake products:remove_newlines RAILS_ENV=production'
   desc "Removes newline \n sequences"

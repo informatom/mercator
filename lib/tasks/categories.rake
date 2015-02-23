@@ -2,8 +2,7 @@
 require 'faker'
 
 namespace :categories do
-  # starten als: 'bundle exec rake categories:fake[42]'
-  # in Produktivumgebungen: 'bundle exec rake categories:fake[42] RAILS_ENV=production'
+  # starten als: 'bundle exec rake categories:fake[42] RAILS_ENV=production'
   desc "Create fake Categories"
   task :fake, [:count] => :environment do |t, args|
 
@@ -17,8 +16,7 @@ namespace :categories do
     end
   end
 
-  # starten als: 'bundle exec rake categories:deprecate
-  # in Produktivumgebungen: 'bundle exec rake categories:deprecate RAILS_ENV=production'
+  # starten als: 'bundle exec rake categories:deprecate RAILS_ENV=production'
   desc "Deprecates categories without active products in itself or in subcategories"
   task :deprecate => :environment do
     JobLogger.info("=" * 50)
@@ -28,8 +26,7 @@ namespace :categories do
     JobLogger.info("=" * 50)
   end
 
-  # starten als: 'bundle exec rake categories:reindex
-  # in Produktivumgebungen: 'bundle exec rake categories:reindex RAILS_ENV=production'
+  # starten als: 'bundle exec rake categories:reindex RAILS_ENV=production'
   desc "Reindexes Elasticsearch and rebuilds category property hashes."
   task :reindex => :environment do
     JobLogger.info("=" * 50)
@@ -39,9 +36,8 @@ namespace :categories do
     JobLogger.info("=" * 50)
   end
 
-  # starten als: 'bundle exec rake categories:delete_childrenless
-  # in Produktivumgebungen: 'bundle exec rake categories:delete_childrenless RAILS_ENV=production'
-  desc "Reindexes Elasticsearch and rebuilds category property hashes."
+  # starten als: 'bundle exec rake categories:delete_childrenless RAILS_ENV=production'
+  desc "Deletes childrenless categories"
   task :delete_childrenless => :environment do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: categories:delete_childrenless")

@@ -2,8 +2,7 @@
 
 namespace :inventory do
 
-  # starten als: 'bundle exec rake inventory:delivery_time
-  # in Produktivumgebungen: 'bundle exec rake inventory:delivery_time RAILS_ENV=production'
+  # starten als: 'bundle exec rake inventory:delivery_time RAILS_ENV=production'
   desc "Creates dummy delivery_time"
   task :delivery_time => :environment do
     Inventory.all.each do |inventory|

@@ -1,8 +1,7 @@
 # encoding: utf-8
 
 namespace :mercator do
-  # starten als: r
-  # in Produktivumgebungen: bundle exec rake orders:delete_inactive_and_history RAILS_ENV=production
+  # starten als: bundle exec rake mercator:delete_inactive_and_history RAILS_ENV=production
   desc "Delete inactive products, users and version history"
   task :delete_inactive_and_history => :environment do
     JobLogger.info("=" * 50)
@@ -24,8 +23,7 @@ namespace :mercator do
     JobLogger.info("=" * 50)
   end
 
-  # starten als: rake mercator:delete_orphans
-  # in Produktivumgebungen: bundle exec rake orders:delete_orphans RAILS_ENV=production
+  # starten als: bundle exec rake mercator:delete_orphans RAILS_ENV=production
   desc "Cleanup orphaned relations mercator"
   task :delete_orphans => :environment do
     JobLogger.info("=" * 50)
