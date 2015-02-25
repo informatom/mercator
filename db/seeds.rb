@@ -173,7 +173,7 @@ Gtc.find_or_create_by(title_de: "AGB") do |gtc|
   gtc.content_de = "FIXME! Geben Sie hier Ihre Allgemeinen Geschäftsbedingungen ein!"
   gtc.content_en = "<p>FIXME! Enter your GTCs here!"
   gtc.version_of = "2015-01-01"
-  gtc.markup = "HTML"
+  gtc.markup = "html"
 end
 
 ### Page Templates ###
