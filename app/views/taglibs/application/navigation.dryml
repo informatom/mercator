@@ -29,13 +29,23 @@
     <right:>
       <li>
         <a href="&initiate_conversations_path" style="background-color: #fff; color: #012E4F;">
-          <photo name="video-chat" height="24"/>
+          <if test="&ContentElement.find_by(name_de: name)">
+            <photo name="video-chat" height="24"/>
+          </if>
+          <else>
+            <%= fa_icon "video-camera", class:"fa-lg" %>
+          </else>
           <h4 style="display: inline; vertical-align: bottom">&nbsp; <t key="mercator.start_conversation" /></h4>
         </a>
       </li>
       <li>
         <a href="/videochat" style="background-color: #fff; color: #012E4F;">
-          <photo name="video-chat" height="24"/>
+          <if test="&ContentElement.find_by(name_de: name)">
+            <photo name="video-chat" height="24"/>
+          </if>
+          <else>
+            <%= fa_icon "video-camera", class:"fa-lg" %>
+          </else>
           <h4 style="display: inline; vertical-align: bottom">&nbsp; <t key="mercator.video_chat" /></h4>
         </a>
       </li>
@@ -197,7 +207,8 @@
 
 
 <def tag="greeter" >
-  Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
+  <p class="navbar-text">Hallo, </p>
+  <a with="&current_user"><view with="&current_user.name" /></a>
 </def>
 
 
@@ -218,12 +229,11 @@
     <a with="&current_user.basket" class="basket">
       <%= fa_icon "shopping-cart", class:"fa-lg" %>
       <span part="summary" class="label label-danger" style="display: inline">
-        <view with="&current_user.basket.lineitems.count"/> Pos. /
-        <view with="&current_user.basket.sum_incl_vat"/> <%= fa_icon "eur" %>
+        <view with="&current_user.basket.lineitems.count" no-wrapper/> Pos. /
+        <view with="&current_user.basket.sum_incl_vat" no-wrapper/> <%= fa_icon "eur" %>
       </span>
     </a>
   </if>
-  <br/><br/>
 </def>
 
 
