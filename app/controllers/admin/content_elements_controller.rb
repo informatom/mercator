@@ -29,10 +29,11 @@ class Admin::ContentElementsController < Admin::AdminSiteController
 
   def create
     # filters "►" and other non ASCII-characters
-    params[:content_element][:content_de] = params[:content_element][:content_de].encode(Encoding.find('ASCII'),
-                                                   {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
-    params[:content_element][:content_en] = params[:content_element][:content_en].encode(Encoding.find('ASCII'),
-                                                   {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
+    # FIXME! That's the wrong way!
+    #params[:content_element][:content_de] = params[:content_element][:content_de].encode(Encoding.find('ASCII'),
+    #                                               {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
+    #params[:content_element][:content_en] = params[:content_element][:content_en].encode(Encoding.find('ASCII'),
+    #                                               {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
 
     hobo_create(redirect: contentmanager_front_path) do
       session[:selected_content_element_id] = this.id
@@ -42,10 +43,10 @@ class Admin::ContentElementsController < Admin::AdminSiteController
 
   def update
     # filters "►" and other non ASCII-characters
-    params[:content_element][:content_de] = params[:content_element][:content_de].encode(Encoding.find('ASCII'),
-                                                   {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
-    params[:content_element][:content_en] = params[:content_element][:content_en].encode(Encoding.find('ASCII'),
-                                                   {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
+    #params[:content_element][:content_de] = params[:content_element][:content_de].encode(Encoding.find('ASCII'),
+    #                                               {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
+    #params[:content_element][:content_en] = params[:content_element][:content_en].encode(Encoding.find('ASCII'),
+    #                                               {:invalid => :replace, :undef => :replace, :replace => '', :universal_newline => true })
 
     hobo_update(redirect: contentmanager_front_path) do
       session[:selected_content_element_id] = this.id
