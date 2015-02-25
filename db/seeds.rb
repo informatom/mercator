@@ -57,6 +57,14 @@ Constant.create(key: "twitter_uoauth_token_secret", value: "FIXME!")
 
 ### Users ###
 
+# Your admin User
+User.create(surname: "FIXME!",
+            first_name: "FIXME!",
+            email_address: "FIXME!",
+            administrator: true,
+            password: "FIXME!",
+            password_confirmation: "FIXME!")
+
 # Automatic ("robot") user credenitals, representing a sales representity
 User.create(surname: "Robot",
             first_name: "E-Mail",
