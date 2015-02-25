@@ -29,7 +29,7 @@
     <right:>
       <li>
         <a href="&initiate_conversations_path" style="background-color: #fff; color: #012E4F;">
-          <if test="&ContentElement.find_by(name_de: name)">
+          <if test="&ContentElement.find_by(name_de: 'video-chat')">
             <photo name="video-chat" height="24"/>
           </if>
           <else>
@@ -40,7 +40,7 @@
       </li>
       <li>
         <a href="/videochat" style="background-color: #fff; color: #012E4F;">
-          <if test="&ContentElement.find_by(name_de: name)">
+          <if test="&ContentElement.find_by(name_de: 'video-chat')">
             <photo name="video-chat" height="24"/>
           </if>
           <else>
