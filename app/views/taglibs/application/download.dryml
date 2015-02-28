@@ -1,14 +1,14 @@
 <def tag="card" for="Download">
   <li class="list-group-item">
-    <if test="&this.document">
+    <if test="&this.document_file_name">
       <name/> - <a href="&this.document.url"><t key="mercator.download_here" /></a><br/>
       <small>(<%= number_to_human_size(this.document.size) %>), <view:document-updated-at for='datetime' format="&:concise"/></small>
     </if>
 
-    <if test="&this.photo">
+    <if test="&this.photo_file_name">
       <div class="media">
         <div class="media-left">
-           <a href="&this.photo.url" target="new"><image src="&this.photo.url(:thumb)" /></a>
+          <a href="&this.photo.url" target="new"><image src="&this.photo.url(:thumb)" /></a>
         </div>
         <div class="media-body">
           <name/><br/>

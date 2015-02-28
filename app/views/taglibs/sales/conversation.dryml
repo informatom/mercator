@@ -44,60 +44,38 @@
         </div>
         <div class="col-md-4">
           <h3><t key="mercator.file_and_image_upload" /></h3>
-          <div id="fine-uploader"></div>
-          <br/>
-          <div class="btn btn-info" id="dropzone"><t key="mercator.paste_here" /></div>
 
-          <script>
-          var filenames = [];
-          $(document).ready(function () {
-              $("#fine-uploader").fineUploader({
-                  multiple: false,
-                  request: {
-                      endpoint: '/sales/conversations/<%= this.id -%>/do_upload',
-                      paramsInBody: true,
-                      customHeaders: {
-                        "X-CSRF-Token": "<%= form_authenticity_token %>"
-                     }
-                  },
-                  paste: {
-                    targetElement: $('#dropzone')[0],
-                  },
-                  params: {
-                    authenticity_token: "<%= form_authenticity_token %>",
-                  }
-              });
-          });
-          // Fineuploader Docs at: http://docs.fineuploader.com/branch/master/api/options.html
-          // Got the CSRF knowledge from: https://github.com/Widen/fine-uploader/pull/104
+          <%= form_for(Download.new, url: sales_downloads_path) do |f| %>
+            <t key="mercator.upload_file" />
+            <%= f.file_field :document, multiple: true, name: "download[document]" %>
+            <%= f.text_field :conversation_id, value: @conversation.id, hidden: true %>
+          <% end %>
+
+          <script id="template-upload" type="text/x-tmpl">
+            <div class="upload">
+              {%=o.name%}
+              <div class="progress"><div class="bar" style="width: 0%"></div></div>
+            </div>
           </script>
 
-          <script type="text/template" id="qq-template">
-              <div class="qq-uploader-selector qq-uploader">
-                  <div class="qq-upload-button-selector btn btn-success">
-                      <div><t key="mercator.upload_file" /></div>
-                  </div>
-                  <span class="qq-drop-processing-selector qq-drop-processing">
-                      <span><t key="mercator.file_is_being_processed" /> ...</span>
-                      <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
-                  </span>
-                  <ul class="qq-upload-list-selector qq-upload-list">
-                      <li>
-                        <div class="qq-progress-bar-container-selector">
-                            <div class="qq-progress-bar-selector qq-progress-bar"></div>
-                        </div>
-                        <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                        <span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
-                        <span class="qq-upload-file-selector qq-upload-file"></span>
-                        <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text"/>
-                        <span class="qq-upload-size-selector qq-upload-size"></span>
-                        <a class="qq-upload-cancel-selector qq-upload-cancel" href="#"><t key="hobo.actions.cancel" /></a>
-                        <a class="qq-upload-retry-selector qq-upload-retry" href="#"><t key="mercator.repeat" /></a>
-                        <a class="qq-upload-delete-selector qq-upload-delete" href="#"><t key="mercator.delete" /></a>
-                        <span class="qq-upload-status-text-selector qq-upload-status-text"></span>
-                      </li>
-                  </ul>
-              </div>
+          <script>
+            $('#new_download').fileupload({
+              dataType: "script",
+              add: function(e, data) {
+                var file
+                file = data.files[0]
+                data.context = $(tmpl("template-upload", file))
+                $('#new_download').append(data.context)
+                data.submit()
+              },
+              progress: function(e, data) {
+                var progress
+                if (data.context) {
+                  progress = parseInt(data.loaded / data.total * 100, 10)
+                  data.context.find('.bar').css('width', progress + '%')
+                }
+              }
+            })
           </script>
 
           <div>

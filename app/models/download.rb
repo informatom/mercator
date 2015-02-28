@@ -9,7 +9,7 @@ class Download < ActiveRecord::Base
   attr_accessible :name, :document, :conversation_id, :conversation, :document, :photo
   has_paper_trail
 
-  has_attached_file :document, :default_url => "/images/:style/missing.png"
+  has_attached_file :document, :default_url => "/file/:style/missing.png"
   has_attached_file :photo, :default_url => "/images/:style/missing.png",
                     :styles => { :medium => "500x500>", :small => "250x250>", :thumb => "100x100>" }
 

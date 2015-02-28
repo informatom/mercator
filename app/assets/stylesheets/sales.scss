@@ -5,6 +5,7 @@
  *
  *= require_self
  *= require application
- *= require_tree ./sales
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
  *= require overrides
 */

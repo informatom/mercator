@@ -17,7 +17,6 @@
 //= require hobo_ckeditor
 //= require messenger
 //= require messenger-theme-future
-//= require jquery.fineuploader-4.2.2.min
 //= require private_pub
 //= require ahoy
 //= require application/highlight.min.js
