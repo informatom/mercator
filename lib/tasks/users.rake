@@ -7,8 +7,9 @@ namespace :users do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: categories:create_some_sales_users")
 
-    # one liner for creating a password from the console:
-    # user = User.create(first_name: "Stefan", surname: "Haslinger", email_address: "stefan.haslinger@mittenin.at", administrator: true, password: "%PASSWORD%" , password_confirmation: %PASSWORD%, state: "active")
+    # creating a user from the console:
+    # user = User.create(first_name: "Stefan", surname: "Haslinger", email_address: "stefan.haslinger@mittenin.at", administrator: true, password: "%PASSWORD%" , password_confirmation: "%PASSWORD%")
+    # user.state = "active" && user.save
 
     ["erster", "zweiter", "dritter", "vierter"].each_with_index do |firstname, index|
       unless User.find_by(first_name: firstname)
