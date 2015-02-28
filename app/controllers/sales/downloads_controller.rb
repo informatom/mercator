@@ -29,8 +29,8 @@ class Sales::DownloadsController < Sales::SalesSiteController
       @download.document.original_filename = @download.document_file_name
     end
 
-    PrivatePub.publish_to("/conversations/"+ @download.conversation_id.to_s, type: "downloads")
     hobo_create do
+      PrivatePub.publish_to("/conversations/"+ @download.conversation_id.to_s, type: "downloads")
       render :json => { :success => "true" }
     end
   end
