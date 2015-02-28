@@ -20,13 +20,9 @@ class Sales::DownloadsController < Sales::SalesSiteController
       params[:download][:document] = nil
       self.this = @download = Download.new(params[:download])
       @download.name = File.basename(@download.photo_file_name, '.*')
-      @download.photo.class.class_eval { attr_accessor :original_filename }
-      @download.photo.original_filename = @download.photo_file_name
     else
       self.this = @download = Download.new(params[:download])
       @download.name = File.basename(@download.document_file_name, '.*')
-      @download.document.class.class_eval { attr_accessor :original_filename }
-      @download.document.original_filename = @download.document_file_name
     end
 
     hobo_create do

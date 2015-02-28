@@ -656,6 +656,7 @@ de:
     delivery_slip_date: Lieferscheindatum
     delivery_number: Lieferungsnummer
     download_here: Hier downloaden
+    drop_here: "Dateien können auch einfach per Drag and Drop in die Seite gezogen werden."
     email_sent: "Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."
     excl_vat: excl. Mwst.
     feedback_placeholder: "Geben Sie hier Ihr persönliches Feedback ein und wählen Sie anschließend unterhalb aus, welche Informationen protokolliert werden sollen."
@@ -766,7 +767,6 @@ de:
     overview: Übersicht
     packing_slip_number: Lieferscheinnummer
     parked: Geparkter
-    paste_here: "Datei hier pasten (auf mich zeigen und [STRG]+[v])"
     password: Kennwort ändern
     place_offer: Angebot legen
     printer: Drucker
