@@ -25,7 +25,7 @@ class Category < ActiveRecord::Base
   attr_accessible :name_de, :name_en, :state, :ancestry, :position, :active, :parent_id, :parent,
                   :categorizations, :products, :document, :photo, :description_de, :description_en,
                   :long_description_de, :long_description_en, :filters, :erp_identifier, :usage,
-                  :squeel_condition
+                  :squeel_condition, :filtermin, :filtermax
 
   translates :name, :description, :long_description
 
