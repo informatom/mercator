@@ -930,7 +930,7 @@ de:
         delete: Filter entfernen
       frontend_subsite_name: Frontend
       Inventory:
-        one: Bastand
+        one: Bestand
         other: Bestände
         none_selected: Sie haben keinen Bestand ausgewählt!
       Price:

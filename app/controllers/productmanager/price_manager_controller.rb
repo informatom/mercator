@@ -10,7 +10,12 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   end
 
   def manage_product
-    product = Product.find(params[:recid])
+    if params[:recid] == "0"
+      product = Product.new
+      product.categorizations.new(position: 999, category: Category.auto)
+    else
+      product = Product.find(params[:recid])
+    end
 
     if params[:cmd] == "save-record"
       attrs = params[:record]

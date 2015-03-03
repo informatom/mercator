@@ -46,8 +46,17 @@ function productForm() {
             this.reload()
           })
         }
+      },
+      create: {
+        caption: 'Add New',
+        class: 'w2ui-btn-orange',
+        onClick: function () {
+          this.clear()
+          this.record['state'] = "new"
+          this.record['number'] = w2ui.productForm.record['number']
+          this.refresh()
+        }
       }
-
     }
   })
 }
