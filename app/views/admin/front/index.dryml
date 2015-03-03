@@ -19,6 +19,7 @@
             </a>
           </p>
         </if>
+
         <if test="&Rails.application.config.try(:payment) == 'mpay24'">
           <p>
             <a href="&admin_orders_path(sort: 'updated_at', search: 'in Bezahlung')"
@@ -27,6 +28,12 @@
             </a>
           </p>
         </if>
+
+        <p>
+          <a href="&catch_orphans_admin_products_path" class="btn btn-warning">
+            <t key="mercator.catch_orphaned_products"/>
+          </a>
+        </p>
       </section>
     </header>
 

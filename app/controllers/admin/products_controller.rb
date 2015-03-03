@@ -2,6 +2,7 @@ class Admin::ProductsController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all, :new
+  index_action :catch_orphans
 
   autocomplete :number
 
@@ -19,5 +20,15 @@ class Admin::ProductsController < Admin::AdminSiteController
                          .order_by(parse_sort_param(:title_de, :title_en, :this, :number, :state))
     end
     hobo_index
+  end
+
+  def catch_orphans
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Task: products:catch_orphans")
+    Product.catch_orphans
+    JobLogger.info("Started Task: products:catch_erphans")
+    JobLogger.info("=" * 50)
+
+    redirect_to admin_logentries_path
   end
 end

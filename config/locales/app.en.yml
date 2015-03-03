@@ -632,6 +632,7 @@ en:
     billing_method:
       change: Change Billing Method
       select: Please Select a Billing Method
+    catch_orphaned_products: Catch Orphaned Products
     check_confirmation: Check status with Mpay24
     click_to_finish: "Please click an the Activate Account button to finish the activation process."
     cobrowsing_link: Cobrowsing Link
