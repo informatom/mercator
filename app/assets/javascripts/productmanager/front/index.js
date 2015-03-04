@@ -1,4 +1,3 @@
-// require i18n/translations ... not yet
 //= require ./layout
 //= require ./categoryTree.js.erb
 //= require ./productsGrid.js.erb
