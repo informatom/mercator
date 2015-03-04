@@ -3,9 +3,9 @@
  * Files or plugins referenced from here or placed in the sales/
  * directory will be included.
  *
- *= require_self
  *= require application
  *= require jquery.fileupload
  *= require jquery.fileupload-ui
  *= require overrides
+ *= require_self
 */

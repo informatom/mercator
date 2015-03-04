@@ -42,6 +42,7 @@
             <collection:downloads part="downloads"/>
           </section>
         </div>
+
         <div class="col-md-4">
           <h3><t key="mercator.file_and_image_upload" /></h3>
           <t key="mercator.drop_here" />
@@ -80,33 +81,36 @@
               }
             })
           </script>
+          <hr/>
 
-          <div>
-            <h3><t key="mercator.cobrowsing_link" /></h3>
-            <form with="&@link" update="links" id="cobrowsing">
-              <p> <t key="mercator.url" />: <input:url/> </p>
-            </form>
-          </div>
-
-          <div>
-            <h3><t key="mercator.product_suggestion" /></h3>
-            <form with="&@suggestion" update="suggestions">
-              <p>
-                <t key="attributes.product_number" />:
-                <autocomplete:product source="&complete_number_sales_products_path" />
-              </p>
-            </form>
-            <create-button with="&Link" update="messages" label="&ht('suggestion.actions.show')"
-                           fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions',
-                                     conversation_id: this.id.to_s }"/>
-          </div>
+          <h3><t key="mercator.cobrowsing_link" /></h3>
+          <form with="&@link" update="links" id="cobrowsing">
+            <div class="form-group form-group-sm">
+              <label class="col-sm-1 control-label"><t key="mercator.url" /></label>
+              <div class="col-sm-6">
+                <input:url class="form-control input-sm"/>
+              </div>
+            </div>
+          </form>
+          <hr/>
 
           <h3><%= t("attributes.suggestions") %> </h3>
+          <form with="&@suggestion" update="suggestions">
+            <div class="form-group form-group-sm">
+              <label class="col-sm-1 control-label"><t key="attributes.product_number" /></label>
+              <div class="col-sm-6">
+                <name-one:product class="form-control input-sm" completer="number_sales" autocomplete="off"/>
+              </div>
+            </div>
+          </form>
           <collection:suggestions part="suggestions"/>
 
-          <h3><t key="mercator.place_offer" /></h3>
-          <my-creator-link with="&Offer" creator="build" class="pull-right btn-primary"/>
+          <create-button with="&Link" update="messages" label="&ht('suggestion.actions.show')"
+                         fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions',
+                                   conversation_id: this.id.to_s }"/>
 
+          <hr/>
+          <my-creator-link with="&Offer" creator="build" class="btn-primary"/>
         </div>
       </div>
    </content-body:>

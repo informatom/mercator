@@ -41,6 +41,7 @@ class Suggestion < ActiveRecord::Base
 # --- Instance methods --- #
 
   def name
-    "(" + product.number + ") " + product.title
+    # strangely otherwise the product name completer fails in conversation
+    product ? "(" + product.number + ") " + product.title : ""
   end
 end
