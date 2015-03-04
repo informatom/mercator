@@ -55,9 +55,11 @@ function foldertree() {
     },
     click: function(event, data) {
       if (data.node.key) {
-        loadGridAndGallery(data.node.key)
-        w2ui.foldertreeToolbar.enable('edit')
-        w2ui.foldertreeToolbar.enable('delete')
+        if (data.targetType == 'title' || data.targetType == 'icon') {
+          loadGridAndGallery(data.node.key)
+          w2ui.foldertreeToolbar.enable('edit')
+          w2ui.foldertreeToolbar.enable('delete')
+        }
       } else {
         w2ui.foldertreeToolbar.disable('edit')
         w2ui.foldertreeToolbar.disable('delete')
