@@ -19,15 +19,15 @@ class Admin::FoldersController < Admin::AdminSiteController
     begin
       @folder = Folder.find(params[:id])
     rescue
-      render :text => I18n.t("mercator.content_manager.cannot_delete_folder.record_not_found"),
+      render :text => I18n.t("js.cm.cannot_delete_folder.record_not_found"),
              :status => 403 and return
     end
 
     if @folder.content_elements.any?
-      render :text => I18n.t("mercator.content_manager.cannot_delete_folder.content_elements"),
+      render :text => I18n.t("js.cm.cannot_delete_folder.content_elements"),
              :status => 403 and return
     elsif @folder.children.any?
-      render :text => I18n.t("mercator.content_manager.cannot_delete_folder.subfolders"),
+      render :text => I18n.t("js.cm.cannot_delete_folder.subfolders"),
       :status => 403 and return
     end
 
