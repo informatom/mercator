@@ -899,6 +899,7 @@ de:
         one: Webseite
         other: Webseiten
       website_structure: Webseitenstruktur
+      will_be_deleted: wird gelöscht
 
     pm:
       admin_subsite_name: Administration

@@ -892,6 +892,7 @@ en:
         one: Web Page
         other: Web Pages
       website_structure: Website Sructure
+      will_be_deleted: will be deleted
 
     pm:
       admin_subsite_name: Administration

@@ -13,7 +13,8 @@ function foldertreeToolbar() {
       break
       case 'delete':
         var active_node = $("#foldertree").fancytree("getTree").getActiveNode()
-        w2confirm(I18n.t("js.cm.are_you_sure"), function (button) {
+        w2confirm(I18n.t("js.cm.are_you_sure") + " ( " + active_node.title +
+                  " " + I18n.t("js.cm.will_be_deleted") +  " )", function (button) {
           if (button =='Yes') {
             $.ajax({
               url: "/admin/folders/" + active_node.key,
