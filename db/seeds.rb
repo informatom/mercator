@@ -181,7 +181,7 @@ end
 PageTemplate.find_or_create_by(name: "simple") do |page_template|
   page_template.content = "<page title=\"Home\">\r\n\r\n  <body: class=\"front-page\"/>\r\n\r\n  " +
                           "<content:>\r\n    <section class=\"content-body\">\r\n      <div class" +
-                          "=\"row text-center\">\r\n        <div class=\"col-lg-12\">\r\n        " +
+                          "=\"row\">\r\n        <div class=\"col-lg-12\">\r\n        " +
                           "  <container name='main-content'/>\r\n        </div>\r\n      </div>\r" +
                           "\n    </section>\r\n  </content:>\r\n  \r\n  <footer: class=\"text-cen" +
                           "ter\">\r\n    <container name='footer'/>\r\n  </footer:>\r\n</page>"
@@ -266,6 +266,17 @@ PageTemplate.find_or_create_by(name: "demo") do |page_template|
                           " Damit können in einem Platzhalter beliebig viele Bilder und Dokumente" +
                           " dargestellt werden. -->    \r\n</page>\r\n\r\n"
   page_template.dryml = true
+end
+
+
+### Folder ###
+
+Folder.find_or_create_by(name: "Texte") do |folder|
+  folder.position = 0
+end
+
+Folder.find_or_create_by(name: "Bilder") do |folder|
+  folder.position = 1
 end
 
 
