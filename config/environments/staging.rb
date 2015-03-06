@@ -22,7 +22,7 @@ Mercator::Application.configure do
   Rails.application.config.assets.precompile += [ 'admin.css', 'admin.js', 'contentmanager.css',
     'contentmanager.js', 'contracting.css', 'contracting.js', 'front.css', 'front.js',
     'productmanager.css', 'productmanager.js', 'sales.css', 'sales.js',
-    'contentmanager/index/index.js', 'contentmanager/de-de.json',
+    'contentmanager/index/index.js',
     'productmanager/front/index.js', 'productmanager/price_manager/index.js',
     'productmanager/property_manager/index.js', 'productmanager/relation_manager/index.js',
     'i18n.js', 'i18n/cm.js', 'i18n/pm.js' ,
