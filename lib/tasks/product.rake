@@ -120,8 +120,6 @@ namespace :products do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: products:remove_newlines")
 
-    require 'string_extensions'
-
     Product.all.each_with_index do |product, i|
       puts i.to_s
       product.description_de = product.description_de.fix_icecat if product.description_de
