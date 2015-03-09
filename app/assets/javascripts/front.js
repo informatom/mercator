@@ -10,4 +10,4 @@
 //= require ahoy
 //= require application/highlight.min.js
 
-//= require ../../../vendor/customer/assets/javascripts/customer.js
+//= require mercator-customer.js
