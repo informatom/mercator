@@ -10,4 +10,4 @@
 //= require ahoy
 //= require application/highlight.min.js
 
-//= require customer
+//= require ../../../vendor/customer/assets/javascripts/customer.js
