@@ -13,21 +13,14 @@
   <div class="row" param="default" merge>
     <div class="col-md-3 text-center product-card">
       <h5><view:number /></h5>
-      <br/>
-      <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
-      <transition-link transition="add_to_basket" method="put">
-        <photo name="in-den-warenkorb" class="card-button pull-left"/>
-      </transition-link>
-      <if test="&session[:compared].include?(this.id)">
-        <transition-link transition="dont_compare" method="put">
-          <photo name="produkt-entfernen" class="card-button pull-right"/>
-        </transition-link>
-      </if>
-      <else>
-        <transition-link transition="compare" method="put">
-          <photo name="produkt-vergleichen" class="card-button pull-right"/>
-        </transition-link>
-      </else>
+
+      <div class="thumbnail">
+        <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+      </div>
+
+      <add-to-basket-button/>
+      <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
+      <else><compare-product /></else>
     </div>
 
     <div class="col-md-5">
@@ -59,22 +52,15 @@
   <div class="row product-card" param="default" merge>
     <div class="col-xs-4 text-center">
       <h5><view:number /></h5>
-      <br/>
-      <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+
+      <div class="thumbnail">
+        <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+      </div>
+
       <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
-      <transition-link transition="add_to_basket" method="put">
-        <photo name="in-den-warenkorb" class="card-button pull-left"/>
-      </transition-link>
-      <if test="&session[:compared].include?(this.id)">
-        <transition-link transition="dont_compare" method="put">
-          <photo name="produkt-entfernen" class="card-button pull-right"/>
-        </transition-link>
-      </if>
-      <else>
-        <transition-link transition="compare" method="put">
-          <photo name="produkt-vergleichen" class="card-button pull-right"/>
-        </transition-link>
-      </else>
+      <add-to-basket-button/>
+      <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
+      <else><compare-product /></else>
     </div>
 
     <div class="col-xs-4">
@@ -105,16 +91,26 @@
       <p><small><view:description /></small></p>
       <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
 
-      <div class="row">
-        <div class="col-xs-3">
-          <a href="/videochat">
-            <photo name="video-chat" class="pull-left" />
-          </a>
+      <if test="&ContentElement.find_by(name_de: 'video-chat')">
+        <div class="row">
+          <div class="col-xs-3">
+            <a href="/videochat">
+              <photo name="video-chat" class="pull-left" />
+            </a>
+          </div>
+          <div class="col-xs-9">
+            <h3><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h3>
+          </div>
         </div>
-        <div class="col-xs-9">
-          <h3><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h3>
-        </div>
-      </div>
+      </if>
+      <else>
+        <a href="/videochat" class="btn btn-info">
+          <%= fa_icon "video-camera", class:"fa-lg" %> Video Chat
+        </a><br/><br/>
+        <a href="&initiate_conversations_path" class="btn btn-info">
+          <%= fa_icon "user-plus", class:"fa-lg" %> <t key="mercator.start_conversation" />
+        </a>
+      </else>
     </div>
   </div>
 </def>
@@ -173,14 +169,58 @@
       <if test="&reason">
         <view with="&reason"/><br/>
       </if>
-      <%= link_to( image_tag( this.photo.url(:small), height: "100px"), product_path(this)) %><br/>
+        <%= link_to( image_tag( this.photo.url(:small), height: "100px" ), product_path(this), class: "thumbnail") %>
+
       <%= link_to this.title, product_path(this) %><br/>
     </div>
 
-    <transition-link transition="add_to_basket" method="put">
-      <photo name="in-den-warenkorb" class="card-button pull-right" width="65"/>
-    </transition-link>
+    <add-to-basket-button/>
     <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %><br/>
     <small><t key="mercator.excl_vat" /></small><br/>
   </div>
+</def>
+
+<def tag="dont-compare-product">
+  <transition-link transition="dont_compare" method="put">
+    <if test="&ContentElement.find_by(name_de: 'produkt-entfernen')">
+      <photo name="produkt-entfernen" class="card-button pull-right"/>
+    </if>
+    <else>
+      <div class="btn btn-default">
+        <span class="fa-stack fa-lg">
+          <%= fa_icon "arrows-h", class:"fa-lg fa-stack-1x" %>
+          <%= fa_icon "ban", class:"fa-stack-2x text-danger" %>
+        </span>
+        <t key="activerecord.attributes.product.lifecycle.transitions.dont_compare"/>
+      </div>
+    </else>
+  </transition-link>
+</def>
+
+<def tag="compare-product">
+  <transition-link transition="compare" method="put">
+    <if test="&ContentElement.find_by(name_de: 'produkt-vergleichen')">
+      <photo name="produkt-vergleichen" class="card-button pull-right"/>
+    </if>
+    <else>
+      <div class="btn btn-primary">
+        <%= fa_icon "arrows-h fa-border", class:"fa-lg " %>
+        <t key="activerecord.attributes.product.lifecycle.transitions.compare"/>
+      </div>
+    </else>
+  </transition-link>
+</def>
+
+<def tag="add-to-basket-button">
+  <transition-link transition="add_to_basket" method="put">
+    <if test="&ContentElement.find_by(name_de: 'in-den-warenkorb')">
+       <photo name="in-den-warenkorb" class="card-button pull-left"/>
+    </if>
+    <else>
+      <div class="btn btn-success">
+        <%= fa_icon "shopping-cart", class:"fa-lg" %>
+        <t key="activerecord.attributes.product.lifecycle.transitions.add_to_basket"/>
+      </div><br/> <br/>
+    </else>
+  </transition-link>
 </def>

@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
       else
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                 { match: { state: 'active' } } ] + matcharray } },
-                                 facets: this.filters.values.flatten)
+                                 facets: this.filters.values.flatten) if this.filters
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                             { match: { state: 'active' } } ] + matcharray } } ).results
