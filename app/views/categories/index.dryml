@@ -7,7 +7,7 @@
 
   <content-body:>
     <div class="row">
-      <if test="&[nil, 'false'].include?(Constant.find_by_key('shop_start_message').try(:value))" >
+      <if test="&[nil, 'false'].exclude?(Constant.find_by_key('shop_start_message').try(:value))" >
           <div class="alert alert-info nobottommargin">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <t key="&'mercator.' + Constant.find_by_key('shop_start_message').value" />
