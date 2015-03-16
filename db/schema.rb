@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205125300) do
+ActiveRecord::Schema.define(version: 20150316125956) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -412,6 +412,7 @@ ActiveRecord::Schema.define(version: 20150205125300) do
     t.boolean  "infinite"
     t.boolean  "just_imported"
     t.string   "alternative_number"
+    t.string   "size"
   end
 
   add_index "inventories", ["product_id"], name: "index_inventories_on_product_id", using: :btree
@@ -618,6 +619,7 @@ ActiveRecord::Schema.define(version: 20150205125300) do
     t.string   "shipping_first_name"
     t.string   "billing_phone"
     t.string   "shipping_phone"
+    t.string   "store"
   end
 
   add_index "orders", ["conversation_id"], name: "index_orders_on_conversation_id", using: :btree

@@ -8,6 +8,7 @@ class Inventory < ActiveRecord::Base
     number                  :string,  :required
     amount                  :decimal, :required, :precision => 10, :scale => 2
     unit                    :string,  :required
+    size                    :string
     comment_de              :string
     comment_en              :string
     weight                  :decimal, :precision => 10, :scale => 2

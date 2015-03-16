@@ -27,6 +27,7 @@ class Order < ActiveRecord::Base
     shipping_city       :string
     shipping_country    :string
     shipping_phone      :string
+    store               :string
     gtc_confirmed_at    :datetime
     gtc_version_of      :date
     erp_customer_number :string

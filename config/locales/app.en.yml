@@ -174,10 +174,12 @@ en:
     shipping_postalcode: Shipping Postal Code
     shipping_street: Shipping Street
     Sites: Sites
+    size: Size
     squeel_condition: Condition (SQueeL)
     startdate: Starting Date
     state: State
     storage: Storage / Branch / Store
+    store: Store
     street: Street
     suggestions: Suggestions
     supply: Supply
