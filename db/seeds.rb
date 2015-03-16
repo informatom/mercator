@@ -54,6 +54,12 @@ Constant.create(key: "twitter_consumer_secret", value: "FIXME!")
 Constant.create(key: "twitter_oauth_token", value: "FIXME!")
 Constant.create(key: "twitter_uoauth_token_secret", value: "FIXME!")
 
+# Hide product comparison
+Constant.create(key: "no_product_comparison", value: "false")
+
+# Hide net prices
+Constant.create(key: "display_only_brutto_prices", value: "false")
+
 
 ### Users ###
 
