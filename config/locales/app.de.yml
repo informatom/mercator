@@ -747,6 +747,7 @@ de:
         upgrade:
           error: "Die Daten konnten nicht gespeichert werden. Haben Sie eine korrekte Adresse angegeben oder sind Die bereits registriert?"
     more_info: mehr Infos
+    more_than_a_family: "Wenn Sie mehr als eine Familie ausstatten möchten, setzen Sie Sich doch mit uns telefonisch in Verbindung!"
     new_message: Neue Nachricht
     no_deliveries: keine Lieferungen
     no_file: Keine Datei hochgeladen

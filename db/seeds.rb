@@ -60,6 +60,9 @@ Constant.create(key: "no_product_comparison", value: "false")
 # Hide net prices
 Constant.create(key: "display_only_brutto_prices", value: "false")
 
+# Display a message on shop starter page
+Constant.create(key: "shop_start_message", value: "false")
+
 
 ### Users ###
 

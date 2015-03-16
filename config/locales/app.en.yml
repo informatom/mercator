@@ -740,6 +740,7 @@ en:
         upgrade:
           error: "The data you provided could not be saved. Is the e-mail address correct or maybe already registered?"
     more_info: more info
+    more_than_a_family: "If you want to equip more than one family with our products, please contact us fvia phone."
     new_message: New Message
     no_deliveries: No deliveries found.
     no_file: No file uploaded.
