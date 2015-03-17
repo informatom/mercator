@@ -21,22 +21,27 @@ class Categorization < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator? ||
-    acting_user.productmanager?
+    acting_user.administrator? || acting_user.productmanager?
   end
 
   def update_permitted?
-    acting_user.administrator? ||
-    acting_user.productmanager?
+    acting_user.administrator? || acting_user.productmanager?
   end
 
   def destroy_permitted?
-    acting_user.administrator? ||
-    acting_user.productmanager?
+    acting_user.administrator? || acting_user.productmanager?
   end
 
   def view_permitted?(field)
     true
   end
 
+
+  # ---CLass Methods  --- #
+
+  def self.complement(product: nil, category: nil)
+    Categorization.find_or_create_by(product_id: product.id, category_id: category.id) do |category|
+      category.position = try_to(1) { category.categorizations.maximum(:position).next }
+    end
+  end
 end

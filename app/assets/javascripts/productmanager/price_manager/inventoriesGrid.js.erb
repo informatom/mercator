@@ -33,7 +33,7 @@ function inventoriesGrid() {
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
               }).done(function(response, textStatus, jqXHR) {
-                w2ui.propertiesGrid.load('/productmanager/price_manager/show_inventories')
+                w2ui.inventoriesGrid.reload()
               }).fail(function(jqXHR, textStatus, errorThrown) {
                 w2alert(jqXHR.responseText)
               })
@@ -59,6 +59,7 @@ function inventoriesGrid() {
       { field: 'amount', sortable: true, caption: I18n.t("attributes.amount"), size: '10'},
       { field: 'unit', sortable: true, caption: I18n.t("attributes.unit"), size: '10'},
       { field: 'weight', sortable: true, hidden: true, caption: I18n.t("attributes.weight"), size: '10'},
+      { field: 'size', sortable: true, hidden: true, caption: I18n.t("attributes.size"), size: '10'},
       { field: 'charge', sortable: true, hidden: true, caption: I18n.t("attributes.charge"), size: '20'},
       { field: 'storage', sortable: true, hidden: true, caption: I18n.t("attributes.storage"), size: '20'},
       { field: 'delivery_time', sortable: true, caption: I18n.t("attributes.delivery_time"), size: '20'},

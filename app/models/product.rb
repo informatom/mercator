@@ -178,31 +178,9 @@ class Product < ActiveRecord::Base
     find_by_number(param)
   end
 
-  def self.create_in_auto(number: nil, title: nil, description: nil)
-    @auto_category = Category.auto
-
-    if @auto_category.categorizations.any?
-      newposition = @auto_category.categorizations.maximum(:position) +1
-    else
-      newposition = 1
-    end
-
-    description = title if description.blank?
-    @product = new(number:         number,
-                   title_de:       title,
-                   description_de: description)
-    @product.categorizations.new(category_id: @auto_category.id,
-                                 position:    newposition)
-    @product.save or
-    (( JobLogger.error("Product " + @product.number + " could not be saved in Auto Category!") ))
-    return @product
-  end
-
   def self.deprecate
-    @jobuser = User.find_by(surname: "Job User")
-
     Product.where(state: ["active", "new"]).each do |product|
-      product.lifecycle.deactivate!(@jobuser) unless product.inventories.any?
+      product.lifecycle.deactivate!(User::JOBUSER) unless product.inventories.any?
     end
   end
 
@@ -233,6 +211,14 @@ class Product < ActiveRecord::Base
   def self.show_diffs_of_double_priced_in_stdout
     with_at_least_two_prices.each do |product|
       puts product.number, product.prices[0].attributes.to_a - product.prices[1].attributes.to_a
+    end
+  end
+
+  def self.activate_all
+    Product.all.each do |product|
+      if product.lifecycle.available_transitions.*.name.include?(:activate)
+        product.lifecycle.activate!(User::JOBUSER)
+      end
     end
   end
 end

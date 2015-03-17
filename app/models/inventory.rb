@@ -29,9 +29,10 @@ class Inventory < ActiveRecord::Base
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
   include InventoryExtensions if Rails.application.config.try(:erp) == "mesonic"
 
-  attr_accessible :name_de, :name_en, :number, :amount, :unit, :comment_de, :comment_en, :weight, :charge, :storage,
-                  :product, :product_id, :photo, :delivery_time, :erp_updated_at, :erp_vatline, :erp_article_group,
-                  :erp_provision_code, :erp_characteristic_flag, :infinite, :just_imported, :alternative_number
+  attr_accessible :name_de, :name_en, :number, :amount, :unit, :comment_de, :comment_en, :weight,
+                  :charge, :storage, :product, :product_id, :photo, :delivery_time, :erp_updated_at,
+                  :erp_vatline, :erp_article_group, :erp_provision_code, :erp_characteristic_flag,
+                  :infinite, :just_imported, :alternative_number, :size
   translates :name, :comment
   has_paper_trail
 

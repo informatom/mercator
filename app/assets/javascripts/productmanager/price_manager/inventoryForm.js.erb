@@ -46,6 +46,10 @@ function inventoryForm() {
       '      <label>' + I18n.t("attributes.weight") + '</label>'+
       '      <div><input name="weight" /></div>'+
       '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.size") + '</label>'+
+      '      <div><input name="size" /></div>'+
+      '    </div>'+
       '  </div>'+
       '  <div style="float: right; margin-right:20px;">'+
       '    <div class="w2ui-field">'+
@@ -111,7 +115,7 @@ function inventoryForm() {
       { name: 'amount', type: 'float', required : true },
       { name: 'unit', type: 'text', required : true },
       { name: 'weight', type: 'float' },
-
+      { name: 'size', type: 'text' },
       { name: 'charge', type: 'text' },
       { name: 'storage', type: 'text' },
       { name: 'delivery_time', type: 'list', required : true,

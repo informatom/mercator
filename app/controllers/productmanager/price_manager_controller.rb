@@ -80,6 +80,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           comment_de:              inventory.comment_de,
           comment_en:              inventory.comment_en,
           weight:                  inventory.weight,
+          size:                    inventory.size,
           charge:                  inventory.charge,
           storage:                 inventory.storage,
           delivery_time:           inventory.delivery_time,
@@ -120,6 +121,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       inventory.comment_de         = attrs[:comment_de]
       inventory.comment_en         = attrs[:comment_en]
       inventory.weight             = attrs[:weight]
+      inventory.size               = attrs[:size]
       inventory.charge             = attrs[:charge]
       inventory.storage            = attrs[:storage]
       inventory.delivery_time      = attrs[:delivery_time][:text]
@@ -149,6 +151,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
               comment_de:              inventory.comment_de,
               comment_en:              inventory.comment_en,
               weight:                  inventory.weight,
+              size:                    inventory.size,
               charge:                  inventory.charge,
               storage:                 inventory.storage,
               delivery_time:           inventory.delivery_time,

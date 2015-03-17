@@ -50,7 +50,7 @@ class Order < ActiveRecord::Base
                   :shipping_surname, :shipping_detail, :shipping_street, :shipping_postalcode,
                   :shipping_city, :shipping_country, :lineitems, :user, :user_id,
                   :erp_customer_number, :erp_billing_number, :erp_order_number, :confirmation,
-                  :discount_rel, :billing_phone, :shipping_phone
+                  :discount_rel, :billing_phone, :shipping_phone, :store
 
   attr_accessor :confirmation, :type => :boolean
 

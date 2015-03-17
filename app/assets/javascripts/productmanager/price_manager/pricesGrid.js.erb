@@ -32,7 +32,7 @@ function pricesGrid() {
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
               }).done(function(response, textStatus, jqXHR) {
-                w2ui.propertiesGrid.load('/productmanager/price_manager/show_prices')
+                w2ui.pricesGrid.reload()
               }).fail(function(jqXHR, textStatus, errorThrown) {
                 w2alert(jqXHR.responseText)
               })
