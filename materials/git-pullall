@@ -59,7 +59,7 @@ cd /var/rails/mercator/vendor/customers/mercator-demo-dev
 git remote update
 git pull origin master
 
-cd /var/rails/mercator/vendor/customers/mercator-demo-production
+cd /var/rails/mercator/vendor/customers/mercator-demo-prod
 git remote update
 git pull origin master
 

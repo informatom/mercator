@@ -464,27 +464,6 @@ ActiveRecord::Schema.define(version: 20150316125956) do
 
   add_index "logentries", ["user_id"], name: "index_logentries_on_user_id", using: :btree
 
-  create_table "mercator_icecat_metadata", force: true do |t|
-    t.string   "path"
-    t.datetime "icecat_updated_at"
-    t.string   "quality"
-    t.string   "product_number"
-    t.string   "cat_id"
-    t.string   "on_market"
-    t.string   "model_name"
-    t.string   "product_view"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "product_id"
-    t.string   "supplier_id"
-    t.string   "icecat_product_id"
-    t.string   "prod_id"
-  end
-
-  add_index "mercator_icecat_metadata", ["icecat_product_id"], name: "index_mercator_icecat_metadata_on_icecat_product_id", using: :btree
-  add_index "mercator_icecat_metadata", ["prod_id"], name: "index_mercator_icecat_metadata_on_prod_id", using: :btree
-  add_index "mercator_icecat_metadata", ["product_id"], name: "index_mercator_icecat_metadata_on_product_id", using: :btree
-
   create_table "mercator_mpay24_confirmations", force: true do |t|
     t.string   "operation"
     t.string   "tid"
