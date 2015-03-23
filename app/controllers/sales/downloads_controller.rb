@@ -5,12 +5,14 @@ class Sales::DownloadsController < Sales::SalesSiteController
   auto_actions :all
 
   def destroy
-    PrivatePub.publish_to("/conversations/"+ Download.find(params[:id]).conversation.id.to_s, type: "downloads")
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ Download.find(params[:id]).conversation.id.to_s,
+                          type: "downloads")
     hobo_destroy
   end
 
   def update
-    PrivatePub.publish_to("/conversations/"+ Download.find(params[:id]).conversation.id.to_s, type: "downloads")
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ Download.find(params[:id]).conversation.id.to_s,
+                          type: "downloads")
     hobo_update
   end
 
@@ -26,7 +28,8 @@ class Sales::DownloadsController < Sales::SalesSiteController
     end
 
     hobo_create do
-      PrivatePub.publish_to("/conversations/"+ @download.conversation_id.to_s, type: "downloads")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @download.conversation_id.to_s,
+                            type: "downloads")
       render :json => { :success => "true" }
     end
   end

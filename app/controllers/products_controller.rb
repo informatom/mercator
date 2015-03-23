@@ -12,7 +12,8 @@ class ProductsController < ApplicationController
       current_user.basket.add_product(product: self.this)
       flash[:success] = I18n.t("mercator.messages.product.add_to_basket.success")
       flash[:notice] = nil
-      PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ current_basket.id.to_s,
+                            type: "basket")
       redirect_to session[:return_to]
     end
   end

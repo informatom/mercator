@@ -45,16 +45,19 @@ class Sales::OffersController < Sales::SalesSiteController
           lineitem.delete
         end
       end
-      PrivatePub.publish_to("/conversations/"+ @this.conversation_id.to_s, type: "offers")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
+                            type: "offers")
     end
   end
 
   def update
     hobo_update do
       if params[:offer][:shipping_company]
-        PrivatePub.publish_to("/conversations/"+ @this.conversation_id.to_s, type: "offers")
+        PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
+                              type: "offers")
       end
     end
-    PrivatePub.publish_to("/offers/"+ @this.id.to_s, type: "all")
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.id.to_s,
+                          type: "all")
   end
 end

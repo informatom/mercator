@@ -79,28 +79,33 @@ class Offer < ActiveRecord::Base
 
     transition :submit, {:in_progress => :pending_approval}, available_to: "User.sales",
                         if: "Date.today <= valid_until", subsite: "sales" do
-      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ id.to_s,
+                            type: "all")
     end
 
     transition :place, {:in_progress => :valid}, available_to: "User.sales",
                        if: "Date.today <= valid_until", subsite: "sales" do
-      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ id.to_s,
+                            type: "all")
     end
 
     transition :place, {:pending_approval => :valid}, available_to: "User.sales_manager",
                        if: "Date.today <= valid_until", subsite: "sales" do
-      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ id.to_s,
+                            type: "all")
     end
 
     transition :copy, {:valid => :valid}, available_to: :user, if: "Date.today <= valid_until"
 
     transition :devalidate, {:valid => :invalid}, available_to: :all,
                             if: "Date.today > valid_until", subsite: "sales" do
-      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ id.to_s,
+                            type: "all")
     end
 
     transition :revise, {:invalid => :in_progress}, available_to: "User.sales", subsite: "sales" do
-      PrivatePub.publish_to("/offers/"+ id.to_s, type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ id.to_s,
+                            type: "all")
     end
   end
 

@@ -5,7 +5,7 @@
     </content-header:>
 
     <field-list: replace>
-      <%= subscribe_to "/orders/" + current_user.basket.id.to_s %>
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/orders/" + current_user.basket.id.to_s %>
       <form id="summary-form" style="display:none;" action="refresh" update="summary">
         <input name="id" value="#{current_user.basket.id}" type="hidden"/>
       </form>
@@ -13,7 +13,7 @@
         <input name="id" value="#{current_user.basket.id}" type="hidden"/>
       </form>
       <script>
-        PrivatePub.subscribe("/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
           $("form#" + data.type + "-form").submit();
           $("form#" + "summary-form").submit();
         });

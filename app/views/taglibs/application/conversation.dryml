@@ -186,8 +186,8 @@
       </div>
 
       <!-- Form and Scripts for refreshing content dynamically -->
-      <%= subscribe_to "/conversations/" + this.id.to_s %>
-      <%= subscribe_to "/orders/" + current_user.basket.id.to_s %>
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/conversations/" + this.id.to_s %>
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/orders/" + current_user.basket.id.to_s %>
 
       <% ["messages", "links", "downloads", "offers", "consultant", "summary"].each do |part| %>
         <form id="#{part}-form" style="display:none;" action="refresh" update="#{part}">
@@ -196,12 +196,12 @@
       <% end %>
 
       <script>
-          PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
+          PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/conversations/<%= this.id.to_s -%>", function(data, channel) {
             $("form#" + data.type + "-form").submit();
           });
       </script>
       <script>
-        PrivatePub.subscribe("/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
           $("form#" + "summary-form").submit();
         });
       </script>

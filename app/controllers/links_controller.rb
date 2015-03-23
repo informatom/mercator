@@ -8,7 +8,9 @@ class LinksController < ApplicationController
        this.url = "http://" + this.url
        this.save
       end
-      PrivatePub.publish_to("/conversations/"+ this.conversation.id.to_s, type: "links", url: params[:link][:url])
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ this.conversation.id.to_s,
+                            type: "links",
+                            url: params[:link][:url])
     end
   end
 end

@@ -3,6 +3,9 @@
 # Site name
 Constant.create(key: :site_name, value: "My Mercator")
 
+# System id, used at Messaging Server
+Constant.create(key: "system_id", value: "FIXME!")
+
 # delivery times, in german, comma seperated
 Constant.create(key: :delivery_times_de, value: "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage")
 
@@ -68,6 +71,7 @@ Constant.create(key: "erp_product_variations", value: "false")
 
 # Display a message on shop starter page
 Constant.create(key: "shop_start_message", value: "false")
+
 
 
 ### Users ###

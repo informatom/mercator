@@ -11,7 +11,7 @@
               </div>
             </div>
           </form>
-          <%= subscribe_to "/conversations/" + this.id.to_s %>
+          <%= subscribe_to "/" + CONFIG[:system_id] + "/conversations/" + this.id.to_s %>
 
           <form id="messages-form" style="display:none;" action="refresh" update="messages">
             <input name="id" value="#{this.id}" type="hidden"/>
@@ -26,7 +26,7 @@
           </form>
 
           <script>
-            PrivatePub.subscribe("/conversations/<%= this.id.to_s -%>", function(data, channel) {
+            PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/conversations/<%= this.id.to_s -%>", function(data, channel) {
               $("form#" + data.type + "-form").submit();
             });
           </script>

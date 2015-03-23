@@ -16,14 +16,14 @@
 
 <def tag="message-subscription">
   <if test="&current_user.sales">
-    <%= subscribe_to "/personal/" + current_user.id.to_s %>
+    <%= subscribe_to "/" + CONFIG[:system_id] + "/personal/" + current_user.id.to_s %>
     <audio controls style="display:none;" id="ding">
       <source src="/sounds/ding.mp3" type="audio/mpeg" />
       <source src="/sounds/ding.ogg" type="audio/ogg" />
       <embed height="50" width="100" src="/sounds/ding.mp3" />
     </audio>
     <script>
-        PrivatePub.subscribe("/personal/<%= current_user.id.to_s -%>", function(data, channel) {
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/personal/<%= current_user.id.to_s -%>", function(data, channel) {
           if (data.conversation) {
             message = Messenger().post({
               message: "<strong>" + data.sender + "</strong>: " + data.content,

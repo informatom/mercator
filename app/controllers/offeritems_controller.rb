@@ -27,7 +27,8 @@ class OfferitemsController < ApplicationController
         flash[:success] = I18n.t("mercator.messages.offeritem.transfer.success")
         flash[:notice] = nil
       end
-      PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ current_basket.id.to_s,
+                            type: "basket")
       redirect_to session[:return_to]
     end
   end

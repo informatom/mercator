@@ -112,7 +112,8 @@ class Lineitem < ActiveRecord::Base
       self.update(amount: amount,
                   product_price: price)
       self.update(value: self.calculate_value)
-      PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
+                            type: "basket")
     end
 
     transition :remove_one,
@@ -128,7 +129,8 @@ class Lineitem < ActiveRecord::Base
                     product_price: price)
         self.update(value: self.calculate_value)
       end
-      PrivatePub.publish_to("/orders/"+ acting_user.basket.id.to_s, type: "basket")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
+                            type: "basket")
     end
   end
 

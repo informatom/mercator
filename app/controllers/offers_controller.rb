@@ -58,7 +58,8 @@ class OffersController < ApplicationController
           lineitem.save
           flash[:success] = I18n.t("mercator.messages.offer.copy_to_order.success")
           flash[:notice] = nil
-          PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
+          PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ current_basket.id.to_s,
+                                type: "basket")
           redirect_to order_path(order)
         end
       else
@@ -81,7 +82,8 @@ class OffersController < ApplicationController
           lineitem.save
           flash[:success] = I18n.t("mercator.messages.offer.copy_to_offer.success")
           flash[:notice] = nil
-          PrivatePub.publish_to("/orders/"+ current_basket.id.to_s, type: "basket")
+          PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ current_basket.id.to_s,
+                                type: "basket")
           redirect_to session[:return_to]
         end
       end

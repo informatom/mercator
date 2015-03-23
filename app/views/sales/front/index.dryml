@@ -32,9 +32,9 @@
       <div id="recent"><collection with="&Offer.pending_approval.recent(5)"/></div>
     </section>
 
-    <%= subscribe_to "/conversations/new" %>
+    <%= subscribe_to "/" + CONFIG[:system_id] + "/conversations/new" %>
     <script>
-      PrivatePub.subscribe("/conversations/new", function(data, channel) {
+      PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/conversations/new", function(data, channel) {
         jQuery.ajax({
           url: "/sales/refresh",
           type: "POST",

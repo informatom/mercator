@@ -21,14 +21,16 @@ class Sales::OfferitemsController < Sales::SalesSiteController
                                   discount_abs: @this.discount_abs)
       end
     end
-    PrivatePub.publish_to("/offers/"+ @this.offer_id.to_s, type: "all")
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.offer_id.to_s,
+                          type: "all")
   end
 
   def do_delete_from_offer
     do_transition_action :delete_from_offer do
       flash[:success] = I18n.t("mercator.messages.offeritem.delete_from_offer.success")
       flash[:notice] = nil
-      PrivatePub.publish_to("/offers/"+ @this.offer_id.to_s, type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.offer_id.to_s,
+                            type: "all")
       redirect_to session[:return_to]
     end
   end

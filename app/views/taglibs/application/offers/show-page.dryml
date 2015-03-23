@@ -5,22 +5,22 @@
     </content-header:>
 
     <field-list: replace >
-      <%= subscribe_to "/offers/" + this.id.to_s %>
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/offers/" + this.id.to_s %>
       <form id="all-form" style="display:none;" action="refresh" update="all">
         <input name="id" value="#{this.id}" type="hidden"/>
       </form>
       <script>
-        PrivatePub.subscribe("/offers/<%= this.id.to_s -%>", function(data, channel) {
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/offers/<%= this.id.to_s -%>", function(data, channel) {
           $("form#" + data.type + "-form").submit();
         });
       </script>
 
-      <%= subscribe_to "/orders/" + current_user.basket.id.to_s %>
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/orders/" + current_user.basket.id.to_s %>
       <form id="summary-form" style="display:none;" action="/orders/refresh" update="summary">
         <input name="id" value="#{current_user.basket.id}" type="hidden"/>
       </form>
       <script>
-        PrivatePub.subscribe("/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
           $("form#" + "summary-form").submit();
         });
       </script>
