@@ -1,0 +1,81 @@
+#!/bin/bash
+ssh-add
+
+cd /var/rails/mercator
+git remote update
+git pull origin master
+
+
+# Engines
+cd /var/rails/mercator/vendor/engines/mercator_bechlem
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/engines/mercator_icecat
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/engines/mercator_legacy_importer
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/engines/mercator_mesonic
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/engines/mercator_mpay24
+git remote update
+git pull origin master
+
+
+# Gems
+cd /var/rails/mercator/vendor/gems/hobo_bootstrap
+git remote update
+git pull origin bootstrap3
+
+cd /var/rails/mercator/vendor/gems/hobo_bootstrap_ui
+git remote update
+git pull origin bootstrap3
+
+
+# Customers
+cd /var/rails/mercator/vendor/customers/informatom-dev
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/informatom-production
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/ivellio-dev
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/ivellio-staging
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/mercator-demo-dev
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/mercator-demo-production
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/miranda-dev
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/miranda-staging
+git remote update
+git pull origin master
+
+cd /var/rails/mercator/vendor/customers/mercator-customer
+git remote update
+git pull origin master
+
+
+cd /var/rails/mercator
+bundle install
+rake db:migrate
