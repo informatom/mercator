@@ -181,6 +181,18 @@ class Lineitem < ActiveRecord::Base
     (self.product_price - discount_abs) * self.amount
   end
 
+  def value_incl_vat
+    self.value * (100 + self.vat) / 100
+  end
+
+  def gross_price
+    self.product_price * (100 + self.vat) / 100
+  end
+
+  def undiscounted_gross_value
+    self.amount * self.product_price * (100 + self.vat) / 100
+  end
+
   #--- Class Methods --- #
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)

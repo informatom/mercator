@@ -28,8 +28,26 @@
                 <view:description/>
                 <if:delivery-time> <br/> <em><t key='attributes.delivery_time'/>:</em> <view/> </if>
               </td>
-              <td><div class="text-right"><view with="&number_to_currency(this.product_price)"/></div></td>
-              <td><div class="text-right"><view with="&number_to_currency(this.value)"/></div></td>
+              <td>
+                <div class="text-right">
+                  <if test="&Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'">
+                    <view with="&number_to_currency(this.gross_price)"/>
+                  </if>
+                  <else>
+                    <view with="&number_to_currency(this.product_price)"/>
+                  </else>
+                </div>
+              </td>
+              <td>
+                <div class="text-right">
+                  <if test="&Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'">
+                    <view with="&number_to_currency(this.value_incl_vat)"/>
+                  </if>
+                  <else>
+                    <view with="&number_to_currency(this.value)"/>
+                  </else>
+                </div>
+              </td>
             </tr>
           </repeat>
         </tbody>
