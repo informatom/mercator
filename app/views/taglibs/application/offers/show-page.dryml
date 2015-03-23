@@ -69,18 +69,35 @@
                     <em><t key='attributes.delivery_time'/>:</em> <view:delivery-time/>
                   </td>
                   <td>
-                    <div class="text-right"><view with="&number_to_currency(this.product_price)"/></div>
+                    <div class="text-right">
+                      <if test="&Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'">
+                        <view with="&number_to_currency(this.gross_price)"/>
+                      </if>
+                      <else>
+                        <view with="&number_to_currency(this.product_price)"/>
+                      </else>
+                    </div>
                     <if test="&this.discount_abs != 0">
                       <div class="text-right"> - <view:discount-abs/>% <t key='attributes.discount'/> </div>
                     </if>
                   </td>
                   <td>
-                    <if test="&this.discount_abs != 0">
-                      <div class="text-right">
-                        <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
-                      </div>
-                    </if>
-                    <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
+                    <if test="&Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'">
+                      <if test="&this.discount_abs != 0">
+                          <div class="text-right">
+                            <del><view with="&number_to_currency(this.undiscounted_gross_value)"/></del>
+                          </div>
+                        </if>
+                        <div class="text-right"><view with="&number_to_currency(this.value_incl_vat)"/></div>
+                      </if>
+                    <else>
+                      <if test="&this.discount_abs != 0">
+                        <div class="text-right">
+                          <del><view with="&number_to_currency(this.amount * this.product_price)"/></del>
+                        </div>
+                      </if>
+                      <div class="text-right"><view with="&number_to_currency(this.value)"/></div>
+                    </else>
                   </td>
                   <td><my-transition-link transition="copy" class="btn-success btn-sm"/></td>
                 </tr>
