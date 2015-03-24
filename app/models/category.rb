@@ -273,7 +273,12 @@ class Category < ActiveRecord::Base
       category.update_property_hash
 
       # determine_price returns nil, if no price can be found
-      category_prices = category.products.*.determine_price(customer_id: @price_user.id).compact
+      category_prices =
+        if Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'
+          category.products.*.determine_price(customer_id: @price_user.id, incl_vat: true).compact
+        else
+          category.products.*.determine_price(customer_id: @price_user.id, incl_vat: false).compact
+        end
 
       if category_prices.any?
         category.update(filtermin: category_prices.min.round,

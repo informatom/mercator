@@ -153,6 +153,13 @@ class Product < ActiveRecord::Base
 
   def search_data
     @price_user = User.find_by(surname: "Dummy Customer")
+    @price =
+    if Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'
+      determine_price(customer_id: @price_user.id, incl_vat: true)
+    else
+      determine_price(customer_id: @price_user.id, incl_vat: false)
+    end
+
     { title:            title_de,
       title_de:         title_de,
       title_en:         title_en,
@@ -164,7 +171,7 @@ class Product < ActiveRecord::Base
       warranty:         warranty_de,
       category_ids:     categories.pluck(:id),
       state:            state,
-      price:            determine_price(customer_id: @price_user.id) }.merge(property_hash)
+      price:            @price }.merge(property_hash)
   end
 
   def property_hash
