@@ -17,7 +17,7 @@ class OffersController < ApplicationController
       if this.complete
         order = Order::Lifecycle.from_offer(current_user,
                                             user_id: current_user.id,
-                                            billing_method:      "e_payment",
+                                            billing_method:      Order::DEFAULT_BILLING_METHOD,
                                             billing_company:     this.billing_company,
                                             billing_gender:      this.billing_gender,
                                             billing_first_name:  this.billing_first_name,

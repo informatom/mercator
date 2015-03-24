@@ -64,6 +64,14 @@ class Order < ActiveRecord::Base
 
   has_many :lineitems, dependent: :destroy, accessible: true
 
+  DEFAULT_BILLING_METHOD =
+    Rails.application.config.try(:payment) == "mpay24" ? :e_payment : :pre_payment
+
+  DEFAULT_SHIPPING_METHOD =
+    Rails.application.config.try(:payment) == "mpay24" ? :parcel_service_shipment : :pickup_shipment
+
+
+
   # --- Lifecycles --- #
 
   lifecycle do
@@ -111,11 +119,11 @@ class Order < ActiveRecord::Base
     end
 
     transition :e_payment, {:basket => :basket}, available_to: :user,
-               if: "billing_method !='e_payment'" do
+               if: "billing_method !='e_payment' && Rails.application.config.try(:payment) == 'mpay24'" do
       self.update(billing_method: "e_payment")
     end
     transition :e_payment, {:accepted_offer => :accepted_offer}, available_to: :user,
-               if: "billing_method !='e_payment'" do
+               if: "billing_method !='e_payment' && Rails.application.config.try(:payment) == 'mpay24'" do
       self.update(billing_method: "e_payment")
     end
 
@@ -168,7 +176,7 @@ class Order < ActiveRecord::Base
                available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
       if ["atm_payment", "cash_payment"].include?(billing_method)
-        self.update(billing_method: "e_payment")
+        self.update(billing_method: Order::DEFAULT_BILLING_METHOD)
       end
       self.add_shipment_costs
     end
@@ -177,7 +185,7 @@ class Order < ActiveRecord::Base
                available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
       self.update(shipping_method: "parcel_service_shipment")
       if ["atm_payment", "cash_payment"].include?(billing_method)
-        self.update(billing_method: "e_payment")
+        self.update(billing_method: Order::DEFAULT_BILLING_METHOD)
       end
       self.add_shipment_costs
     end

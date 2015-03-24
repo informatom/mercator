@@ -78,14 +78,14 @@ class BillingAddressesController < ApplicationController
                                         :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"
         order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
                                         :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"
-        order.billing_method = "e_payment"
+        order.billing_method = Order::DEFAULT_BILLING_METHOD
         order.save
 
         Address.create(this.namely([:company, :gender, :title, :first_name, :surname,
                                     :detail, :street, :postalcode, :city, :country, :phone])
                        .merge(user_id: current_user.id))
 
-        order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
+        order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless order.shipping_method
         redirect_to order_path(order)
       end
     end
@@ -101,12 +101,12 @@ class BillingAddressesController < ApplicationController
         current_user.update_mesonic(billing_address: self.this)
       end
 
-      order.lifecycle.e_payment!(current_user) unless order.shipping_method
+      order.update(billing_method: Order::DEFAULT_BILLING_METHOD) unless order.billing_method
 
       unless order.shipping_company
         order.update(this.namely([:company, :gender, :title, :first_name, :surname,
                                   :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
-        order.lifecycle.parcel_service_shipment!(current_user) unless order.shipping_method
+        order.update(shipping_method: DEFAULT_SHIPPING_METHOD) unless order.shipping_method
       end
 
       redirect_to order_path(order)
