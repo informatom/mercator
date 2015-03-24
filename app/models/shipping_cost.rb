@@ -4,7 +4,7 @@ class ShippingCost < ActiveRecord::Base
 
   fields do
     shipping_method :string, :required
-    value           :decimal, :required, :precision => 10, :scale => 2
+    value           :decimal, :required, :precision => 13, :scale => 5
     vat             :decimal, :required, :precision => 10, :scale => 2
     timestamps
   end

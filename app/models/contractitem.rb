@@ -10,16 +10,16 @@ class Contractitem < ActiveRecord::Base
     amount          :integer
     unit            :string
     volume          :integer
-    product_price   :decimal, :precision => 10, :scale => 2
+    product_price   :decimal, :precision => 13, :scale => 5
     vat             :decimal, :precision => 10, :scale => 2
-    value           :decimal, :precision => 10, :scale => 2
+    value           :decimal, :precision => 13, :scale => 5
     discount_abs    :decimal, :required, :scale => 2, :precision => 10, :default => 0
     term            :integer
     startdate       :date
     volume_bw       :integer
     volume_color    :integer
-    marge           :decimal, :precision => 10, :scale => 2
-    monitoring_rate :decimal, :precision => 10, :scale => 2
+    marge           :decimal, :precision => 13, :scale => 5
+    monitoring_rate :decimal, :precision => 13, :scale => 5
     timestamps
   end
 

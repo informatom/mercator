@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316125956) do
+ActiveRecord::Schema.define(version: 20150324070000) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.string   "description_en"
     t.integer  "amount"
     t.integer  "theyield"
-    t.decimal  "wholesale_price", precision: 10, scale: 2
+    t.decimal  "wholesale_price", precision: 13, scale: 5
     t.integer  "term"
     t.integer  "consumption1"
     t.integer  "consumption2"
@@ -193,7 +193,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.integer  "consumption4"
     t.integer  "consumption5"
     t.integer  "consumption6"
-    t.decimal  "balance6",        precision: 10, scale: 2
+    t.decimal  "balance6",        precision: 13, scale: 5
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contractitem_id"
@@ -230,9 +230,9 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.string   "description_en"
     t.integer  "amount"
     t.string   "unit"
-    t.decimal  "product_price",   precision: 10, scale: 2
+    t.decimal  "product_price",   precision: 13, scale: 5
     t.decimal  "vat",             precision: 10, scale: 2
-    t.decimal  "value",           precision: 10, scale: 2
+    t.decimal  "value",           precision: 13, scale: 5
     t.decimal  "discount_abs",    precision: 10, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -246,8 +246,8 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.date     "startdate"
     t.integer  "volume_bw"
     t.integer  "volume_color"
-    t.decimal  "marge",           precision: 10, scale: 2
-    t.decimal  "monitoring_rate", precision: 10, scale: 2
+    t.decimal  "marge",           precision: 13, scale: 5
+    t.decimal  "monitoring_rate", precision: 13, scale: 5
   end
 
   add_index "contractitems", ["contract_id"], name: "index_contractitems_on_contract_id", using: :btree
@@ -420,9 +420,9 @@ ActiveRecord::Schema.define(version: 20150316125956) do
   create_table "lineitems", force: true do |t|
     t.string   "product_number"
     t.decimal  "amount",         precision: 10, scale: 2
-    t.decimal  "product_price",  precision: 10, scale: 2
+    t.decimal  "product_price",  precision: 13, scale: 5
     t.decimal  "vat",            precision: 10, scale: 2
-    t.decimal  "value",          precision: 10, scale: 2
+    t.decimal  "value",          precision: 13, scale: 5
     t.integer  "position"
     t.string   "description_de"
     t.string   "description_en"
@@ -436,7 +436,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.datetime "key_timestamp"
     t.string   "delivery_time"
     t.boolean  "upselling"
-    t.decimal  "discount_abs",   precision: 10, scale: 2, default: 0.0
+    t.decimal  "discount_abs",   precision: 13, scale: 5, default: 0.0
   end
 
   add_index "lineitems", ["order_id"], name: "index_lineitems_on_order_id", using: :btree
@@ -521,9 +521,9 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.string   "description_en"
     t.decimal  "amount",         precision: 10, scale: 2
     t.string   "unit"
-    t.decimal  "product_price",  precision: 10, scale: 2
+    t.decimal  "product_price",  precision: 13, scale: 5
     t.decimal  "vat",            precision: 10, scale: 2
-    t.decimal  "value",          precision: 10, scale: 2
+    t.decimal  "value",          precision: 13, scale: 5
     t.string   "delivery_time"
     t.boolean  "upselling"
     t.datetime "created_at"
@@ -534,7 +534,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.integer  "product_id"
     t.string   "state",                                   default: "in_progress"
     t.datetime "key_timestamp"
-    t.decimal  "discount_abs",   precision: 10, scale: 2, default: 0.0
+    t.decimal  "discount_abs",   precision: 13, scale: 5, default: 0.0
   end
 
   add_index "offeritems", ["offer_id"], name: "index_offeritems_on_offer_id", using: :btree
@@ -564,7 +564,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.datetime "key_timestamp"
     t.date     "valid_until"
     t.boolean  "complete"
-    t.decimal  "discount_rel",        precision: 10, scale: 2, default: 0.0
+    t.decimal  "discount_rel",        precision: 13, scale: 5, default: 0.0
     t.string   "billing_surname"
     t.string   "shipping_surname"
     t.string   "billing_gender"
@@ -610,7 +610,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.string   "erp_order_number"
     t.string   "billing_surname"
     t.string   "shipping_surname"
-    t.decimal  "discount_rel",        precision: 10, scale: 2, default: 0.0
+    t.decimal  "discount_rel",        precision: 13, scale: 5, default: 0.0
     t.string   "billing_gender"
     t.string   "billing_title"
     t.string   "billing_first_name"
@@ -675,7 +675,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
   add_index "post_categories", ["ancestry"], name: "index_post_categories_on_ancestry", using: :btree
 
   create_table "prices", force: true do |t|
-    t.decimal  "value",        precision: 10, scale: 2
+    t.decimal  "value",        precision: 13, scale: 5
     t.decimal  "vat",          precision: 10, scale: 2
     t.date     "valid_from"
     t.date     "valid_to"
@@ -767,7 +767,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
 
   create_table "shipping_costs", force: true do |t|
     t.string   "shipping_method"
-    t.decimal  "value",           precision: 10, scale: 2
+    t.decimal  "value",           precision: 13, scale: 5
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
@@ -830,7 +830,7 @@ ActiveRecord::Schema.define(version: 20150316125956) do
     t.string   "article_number"
     t.string   "description"
     t.string   "vendor_number"
-    t.decimal  "price",          precision: 10, scale: 2
+    t.decimal  "price",          precision: 13, scale: 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end

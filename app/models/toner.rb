@@ -6,7 +6,7 @@ class Toner < ActiveRecord::Base
     article_number :string
     description    :string
     vendor_number  :string, :required, :name => true
-    price          :decimal, :required, :precision => 10, :scale => 2
+    price          :decimal, :required, :precision => 13, :scale => 5
     timestamps
   end
 

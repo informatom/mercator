@@ -3,7 +3,7 @@ class Price < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    value      :decimal, :required, :precision => 10, :scale => 2
+    value      :decimal, :required, :precision => 13, :scale => 5
     vat        :decimal, :required, :precision => 10, :scale => 2
     valid_from :date, :required
     valid_to   :date, :required

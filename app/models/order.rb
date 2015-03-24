@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
     erp_customer_number :string
     erp_billing_number  :string
     erp_order_number    :string
-    discount_rel        :decimal, :required, :scale => 2, :precision => 10, :default => 0
+    discount_rel        :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
 

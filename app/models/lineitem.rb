@@ -9,12 +9,12 @@ class Lineitem < ActiveRecord::Base
     description_en :string
     amount         :decimal, :required, :precision => 10, :scale => 2
     unit           :string, :required
-    product_price  :decimal, :required, :scale => 2, :precision => 10
+    product_price  :decimal, :required, :precision => 13, :scale => 5
     vat            :decimal, :required, :precision => 10, :scale => 2
-    value          :decimal, :required, :scale => 2, :precision => 10
+    value          :decimal, :required, :precision => 13, :scale => 5
     delivery_time  :string
     upselling      :boolean
-    discount_abs   :decimal, :required, :scale => 2, :precision => 10, :default => 0
+    discount_abs   :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
 

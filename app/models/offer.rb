@@ -27,7 +27,7 @@ class Offer < ActiveRecord::Base
     shipping_phone      :string
     valid_until         :date, :required
     complete            :boolean
-    discount_rel        :decimal, :required, :scale => 2, :precision => 10, :default => 0
+    discount_rel        :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
   attr_accessible :valid_until, :billing_company, :billing_gender, :billing_title, :billing_first_name,

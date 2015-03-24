@@ -11,7 +11,7 @@ class Consumableitem < ActiveRecord::Base
     description_en  :string
     amount          :integer
     theyield        :integer
-    wholesale_price :decimal, :precision => 10, :scale => 2
+    wholesale_price :decimal, :precision => 13, :scale => 5
     term            :integer
     consumption1    :integer
     consumption2    :integer
@@ -19,7 +19,7 @@ class Consumableitem < ActiveRecord::Base
     consumption4    :integer
     consumption5    :integer
     consumption6    :integer
-    balance6        :decimal, :precision => 10, :scale => 2
+    balance6        :decimal, :precision => 13, :scale => 5
     timestamps
   end
   attr_accessible :position, :product_number, :product_line, :description_de, :description_en, :amount,

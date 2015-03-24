@@ -9,12 +9,12 @@ class Offeritem < ActiveRecord::Base
     description_en :string
     amount         :decimal, :precision => 10, :scale => 2
     unit           :string
-    product_price  :decimal, :scale => 2, :precision => 10
+    product_price  :decimal, :precision => 13, :scale => 5
     vat            :decimal, :precision => 10, :scale => 2
-    value          :decimal, :scale => 2, :precision => 10
+    value          :decimal, :precision => 13, :scale => 5
     delivery_time  :string
     upselling      :boolean
-    discount_abs   :decimal, :required, :scale => 2, :precision => 10, :default => 0
+    discount_abs   :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
   attr_accessible :position, :product_id, :product_number, :description_de, :description_en, :amount,
