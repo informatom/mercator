@@ -837,6 +837,9 @@ de:
       published_but_hidden: verborgen
       squeel: SQueeL
       standard: normale Kategorie
+    storage:
+      DG: Domgasse
+      LG: Lerchenf.Gürtel
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
     subcategories: Unterkategorien

@@ -1,0 +1,13 @@
+<def tag="compare-product">
+  <transition-link transition="compare" method="put">
+    <if test="&ContentElement.find_by(name_de: 'produkt-vergleichen')">
+      <photo name="produkt-vergleichen" class="card-button pull-right"/>
+    </if>
+    <else>
+      <div class="btn btn-primary">
+        <%= fa_icon "arrows-h fa-border", class:"fa-lg " %>
+        <t key="activerecord.attributes.product.lifecycle.transitions.compare"/>
+      </div>
+    </else>
+  </transition-link>
+</def>

@@ -1,0 +1,13 @@
+<def tag="breadcrumb" for="Product">
+  <set product-title="&this.title"/>
+  <repeat with="&this.categories">
+    <h4>
+      <a href="&categories_path"><t key="mercator.overview"/></a> &gt;
+
+      <repeat with="&this.ancestors << this">
+        <a href="&category_path(this)"><view:name/></a> &gt;
+      </repeat>
+      <product-title/>
+    </h4>
+  </repeat>
+</def>

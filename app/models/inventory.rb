@@ -105,6 +105,10 @@ class Inventory < ActiveRecord::Base
     return price.vat
   end
 
+  def selectortext
+    I18n.t('attributes.size') + ': ' + size + ' / ' + I18n.t('mercator.storage.' + storage)
+  end
+
 #--- Class methods ---#
 
   def self.delete_orphans

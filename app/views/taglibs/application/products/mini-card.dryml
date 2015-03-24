@@ -1,0 +1,18 @@
+<def tag="mini-card" for="Product" attrs="reason">
+  <set inventory="&this.determine_inventory"/>
+  <div class="col-md-2 product-card margin">
+    <div class="text-center">
+
+      <if test="&reason">
+        <view with="&reason"/><br/>
+      </if>
+        <%= link_to( image_tag( this.photo.url(:small), height: "100px" ), product_path(this), class: "thumbnail") %>
+
+      <%= link_to this.title, product_path(this) %><br/>
+    </div>
+
+    <add-to-basket-button/>
+    <%= number_to_currency(inventory.determine_price(customer_id: current_user.id)) %><br/>
+    <small><t key="mercator.excl_vat" /></small><br/>
+  </div>
+</def>

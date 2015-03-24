@@ -1,0 +1,45 @@
+<def tag="card" for="Product">
+  <set inventory="&this.determine_inventory"/>
+
+  <h2>
+    <if test="&inventory">
+      <%= link_to this.determine_inventory.name, product_path(this), class: "blue" %>
+    </if>
+    <else>
+      <%= link_to this.title, product_path(this), class: "blue" %>
+    </else>
+  </h2>
+
+  <div class="row" param="default" merge>
+    <div class="col-md-3 text-center product-card">
+      <h5><view:number /></h5>
+
+      <div class="thumbnail">
+        <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+      </div>
+
+      <add-to-basket-button/>
+      <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
+        <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
+        <else><compare-product /></else>
+      </if>
+    </div>
+
+    <div class="col-md-5">
+      <price-tag with="&inventory"/>
+      <h4><t key="attributes.description" />:</h4>
+      <view:long-description />
+    </div>
+
+    <div class="col-md-4">
+      <p><small><view:warranty/></small></p>
+      <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
+
+      <if test="&this.features">
+        <ul>
+          <li repeat="&this.features"><view:text/></li>
+        </ul>
+      </if>
+    </div>
+  </div>
+</def>

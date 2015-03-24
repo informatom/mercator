@@ -52,4 +52,10 @@ class CategoriesController < ApplicationController
     self.this = @categories
     hobo_index
   end
+
+  def refresh
+    self.this = Category.find(params[:id])
+    @inventory = Inventory.find(params[:inventory_id])
+    hobo_show
+  end
 end

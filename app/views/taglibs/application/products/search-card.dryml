@@ -1,0 +1,28 @@
+<def tag="search-card" for="Product">
+  <div class="product media col-md-4" param="default" merge>
+    <set inventory="&this.determine_inventory"/>
+    <span class="pull-left">
+      <if test="&this.photo.exists?">
+        <p><%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid", width: "50%" ), product_path(this)) %></p>
+      </if>
+    </span>
+
+    <div class="media-body">
+      <h3 class="media-header">
+        <if test="&inventory">
+          <%= link_to( this.determine_inventory.name, product_path(this)) %>
+        </if>
+        <else>
+          <%= link_to( this.title, product_path(this)) %>
+        </else>
+      </h3>
+
+      <if test="&inventory && inventory.comment">
+       <strong><view: with="&inventory.comment"/></strong>
+      </if>
+      <if test="&this.description">
+        <view: with="& truncate(description, lenth: 300)"/>
+      </if>
+    </div>
+  </div>
+</def>

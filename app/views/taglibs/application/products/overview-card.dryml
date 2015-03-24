@@ -1,0 +1,79 @@
+<def tag="overview-card" polymorphic />
+<def tag="overview-card" for="Product" >
+  <div class="row product-card" part="card" id="card-#{this.id}">
+    <set inventory="&@inventory || this.determine_inventory"/>
+    <div class="col-xs-4 text-center">
+      <h5><view:number /></h5>
+
+      <div class="thumbnail">
+        <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+      </div>
+
+      <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
+      <add-to-basket-button/>
+
+      <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
+        <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
+        <else><compare-product /></else>
+      </if>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <if test="&inventory">
+          <%= link_to( this.determine_inventory.name, product_path(this)) %>
+        </if>
+        <else>
+          <%= link_to( this.title, product_path(this)) %>
+        </else>
+      </h4>
+
+      <if test="&this.features">
+        <ul>
+          <li repeat="&this.features"><view:text/></li>
+        </ul>
+      </if>
+
+      <set inventories="&Inventory.where(product_id: this.id)"/>
+      <if test="&inventories.pluck(:size).uniq.count > 1">
+        <form action="refresh" update="card-#{this.id}" id="form-#{this.id}">
+          <input name="id" value="#{@category.id if @category}" type="hidden"/>
+          <select-menu name="inventory_id"
+                       options="&inventories.map {|i| [ i.selectortext, i.id]}"
+                       onchange="$('#form-#{this.id}').submit();"
+                       selected="&inventory.id" />
+        </form>
+      </if>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="text-right">
+        <price-tag with="&inventory"/>
+      </div>
+
+      <p><small><view:description /></small></p>
+      <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
+
+      <if test="&ContentElement.find_by(name_de: 'video-chat')">
+        <div class="row">
+          <div class="col-xs-3">
+            <a href="/videochat">
+              <photo name="video-chat" class="pull-left" />
+            </a>
+          </div>
+          <div class="col-xs-9">
+            <h3><a href="&initiate_conversations_path"> <t key="mercator.start_conversation" /> </a></h3>
+          </div>
+        </div>
+      </if>
+      <else>
+        <a href="/videochat" class="btn btn-info">
+          <%= fa_icon "video-camera", class:"fa-lg" %> Video Chat
+        </a><br/><br/>
+        <a href="&initiate_conversations_path" class="btn btn-info">
+          <%= fa_icon "user-plus", class:"fa-lg" %> <t key="mercator.start_conversation" />
+        </a>
+      </else>
+    </div>
+  </div>
+</def>
