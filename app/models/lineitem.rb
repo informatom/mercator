@@ -141,22 +141,26 @@ class Lineitem < ActiveRecord::Base
     true
   end
 
+
   def update_permitted?
     user_is?(acting_user) ||
     acting_user.sales? ||
     acting_user.administrator?
   end
 
+
   def destroy_permitted?
     user_is?(acting_user) ||
     acting_user.administrator?
   end
+
 
   def view_permitted?(field)
     user_is?(acting_user) ||
     acting_user.sales? ||
     acting_user.administrator?
   end
+
 
  #--- Instance methods ---#
 
@@ -168,30 +172,37 @@ class Lineitem < ActiveRecord::Base
     raise unless self.save
   end
 
+
   def merge(lineitem: nil)
     increase_amount(amount: lineitem.amount)
     lineitem.delete
   end
 
+
   def calculate_vat_value(discount_rel: 0)
     self.vat * self.value * ( 100 - discount_rel) / 100 / 100
   end
+
 
   def calculate_value(discount_abs: self.discount_abs)
     (self.product_price - discount_abs) * self.amount
   end
 
+
   def value_incl_vat
     self.value * (100 + self.vat) / 100
   end
+
 
   def gross_price
     self.product_price * (100 + self.vat) / 100
   end
 
+
   def undiscounted_gross_value
     self.amount * self.product_price * (100 + self.vat) / 100
   end
+
 
   #--- Class Methods --- #
 
@@ -218,6 +229,32 @@ class Lineitem < ActiveRecord::Base
       raise "Lineitem connot be created"
     end
   end
+
+
+  def self.create_from_inventory(user_id: nil, inventory: nil, amount: 1, position:nil, order_id: nil)
+    price = inventory.determine_price(amount: amount, customer_id: user_id)
+    vat = inventory.determine_vat(amount: amount)
+
+    product = inventory.product
+    lineitem = Lineitem.new(user_id:        user_id,
+                            order_id:       order_id,
+                            position:       position,
+                            product_id:     product.id,
+                            product_number: inventory.number,
+                            description_de: product.title_de,
+                            description_en: product.title_en,
+                            delivery_time:  (inventory.delivery_time || product.delivery_time),
+                            amount:         amount,
+                            unit:           inventory.unit,
+                            product_price:  price,
+                            vat:            vat)
+    lineitem.value = lineitem.calculate_value
+
+    unless lineitem.save
+      raise "Lineitem connot be created"
+    end
+  end
+
 
   def self.cleanup_orphaned
     Lineitem.all.each do |lineitem|

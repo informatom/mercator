@@ -7,6 +7,17 @@ class ProductsController < ApplicationController
   index_action :comparison
 
 
+  def show
+    @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
+    hobo_show
+  end
+
+  def refresh
+    @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
+    hobo_show
+  end
+
+
   def do_add_to_basket
     do_transition_action :add_to_basket do
       current_user.basket.add_product(product: self.this)

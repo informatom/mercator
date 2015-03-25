@@ -1,38 +1,43 @@
 <def tag="overview-card" polymorphic />
+
+
 <def tag="overview-card" for="Product" >
   <div class="row product-card" part="card" id="card-#{this.id}">
     <set inventory="&@inventory || this.determine_inventory"/>
     <div class="col-xs-4 text-center">
-      <h5><view:number /></h5>
+      <h5><view with="&inventory.number or number" /></h5>
 
       <div class="thumbnail">
-        <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+        <%= link_to( image_tag(inventory.photo.url(:small) || this.photo.url(:small)),
+                     product_path(this, inventory_id: inventory.id)) %>
       </div>
 
-      <h4><a href="&product_path(this)"><t key="mercator.more_info" /></a></h4>
+      <h4>
+        <a href="&product_path(this, inventory_id: inventory.id)">
+          <t key="mercator.more_info" />
+        </a>
+      </h4>
       <add-to-basket-button/>
 
       <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
-        <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
-        <else><compare-product /></else>
+        <if test="&session[:compared].include?(this.id)">
+          <dont-compare-product />
+        </if>
+        <else>
+          <compare-product />
+        </else>
       </if>
     </div>
 
     <div class="col-xs-4">
       <h4>
-        <if test="&inventory">
-          <%= link_to( this.determine_inventory.name, product_path(this)) %>
-        </if>
-        <else>
-          <%= link_to( this.title, product_path(this)) %>
-        </else>
+        <%= link_to(inventory.name || name,
+                    product_path(this, inventory_id: inventory.id)) %>
       </h4>
 
-      <if test="&this.features">
-        <ul>
-          <li repeat="&this.features"><view:text/></li>
-        </ul>
-      </if>
+      <ul>
+        <li repeat="&this.features"><view:text/></li>
+      </ul>
 
       <set inventories="&Inventory.where(product_id: this.id)"/>
       <if test="&inventories.pluck(:size).uniq.count > 1">
@@ -51,8 +56,14 @@
         <price-tag with="&inventory"/>
       </div>
 
-      <p><small><view:description /></small></p>
-      <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
+      <p><small><view:description/></small></p>
+
+      <p>
+        <small>
+          <t key="attributes.delivery_time" />
+          <view: with="&inventory.delivery_time"/>
+        </small>
+      </p>
 
       <if test="&ContentElement.find_by(name_de: 'video-chat')">
         <div class="row">

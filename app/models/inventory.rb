@@ -51,6 +51,7 @@ class Inventory < ActiveRecord::Base
   has_many :prices, dependent: :destroy
   children :prices
 
+
   # --- Permissions --- #
 
   def create_permitted?
@@ -58,19 +59,23 @@ class Inventory < ActiveRecord::Base
     acting_user.productmanager?
   end
 
+
   def update_permitted?
     acting_user.administrator? ||
     acting_user.productmanager?
   end
+
 
   def destroy_permitted?
     acting_user.administrator? ||
     acting_user.productmanager?
   end
 
+
   def view_permitted?(field)
     true
   end
+
 
    #--- Instance methods ---#
 
@@ -94,20 +99,24 @@ class Inventory < ActiveRecord::Base
     end
   end
 
+
   def select_price(date: Time.now, amount: 1)
     price = prices.where{(valid_to >= date) & (valid_from <= date) &
                          (scale_from <= amount) & (scale_to >= amount)}.first
     return price
   end
 
+
   def determine_vat(date: Time.now, amount: 1)
     price = select_price(date: date, amount: amount)
     return price.vat
   end
 
+
   def selectortext
     I18n.t('attributes.size') + ': ' + size + ' / ' + I18n.t('mercator.storage.' + storage)
   end
+
 
 #--- Class methods ---#
 

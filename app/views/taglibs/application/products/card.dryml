@@ -1,24 +1,27 @@
 <def tag="card" for="Product">
-  <set inventory="&this.determine_inventory"/>
+  <div class="row" part="card" id="card-#{this.id}">
+    <set inventory="&@inventory || this.determine_inventory"/>
+    <div class="col-md-12">
+      <h2>
+        <%= link_to(inventory.name || name,
+                    product_path(this, inventory_id: inventory.id), class: "blue") %>
+      </h2>
+    </div>
 
-  <h2>
-    <if test="&inventory">
-      <%= link_to this.determine_inventory.name, product_path(this), class: "blue" %>
-    </if>
-    <else>
-      <%= link_to this.title, product_path(this), class: "blue" %>
-    </else>
-  </h2>
-
-  <div class="row" param="default" merge>
     <div class="col-md-3 text-center product-card">
-      <h5><view:number /></h5>
+      <h5><view with="&inventory.number or number" /></h5>
 
       <div class="thumbnail">
-        <%= link_to( image_tag( this.photo.url(:small) ), product_path(this)) %>
+        <%= link_to(image_tag(inventory.photo.url(:small) || this.photo.url(:small)),
+                    product_path(this, inventory_id: inventory.id)) %>
       </div>
 
       <add-to-basket-button/>
+
+      <%= link_to("inventar hinzufügen",
+              add_to_basket_inventory_path(inventory),
+              class: "btn btn-success") %>
+
       <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
         <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
         <else><compare-product /></else>
@@ -33,7 +36,24 @@
 
     <div class="col-md-4">
       <p><small><view:warranty/></small></p>
-      <p><small><t key="attributes.delivery_time" /> <view:delivery-time/></small></p>
+
+      <p>
+        <small>
+          <t key="attributes.delivery_time" />
+          <view with="&inventory.delivery_time" />
+        </small>
+      </p>
+
+      <set inventories="&Inventory.where(product_id: this.id)"/>
+      <if test="&inventories.pluck(:size).uniq.count > 1">
+        <form action="refresh" update="card-#{this.id}" id="form-#{this.id}">
+          <input name="id" value="&this.id" type="hidden"/>
+          <select-menu name="inventory_id"
+                       options="&inventories.map {|i| [ i.selectortext, i.id]}"
+                       onchange="$('#form-#{this.id}').submit();"
+                       selected="&inventory.id" />
+        </form>
+      </if>
 
       <if test="&this.features">
         <ul>

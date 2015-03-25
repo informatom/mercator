@@ -204,15 +204,18 @@ class Order < ActiveRecord::Base
     true
   end
 
+
   def update_permitted?
     acting_user.administrator? ||
     acting_user.sales? ||
     (user_is? acting_user)
   end
 
+
   def destroy_permitted?
     acting_user.administrator?
   end
+
 
   def view_permitted?(field)
     acting_user.administrator? ||
@@ -220,28 +223,34 @@ class Order < ActiveRecord::Base
     user_is?(acting_user)
   end
 
+
   # --- Instance Methods --- #
 
   def basket?
     self.state == "basket"
   end
 
+
   def accepted_offer?
     self.state == "accepted_offer"
   end
 
+
   def sum
     self.lineitems.sum('value') - self.discount
   end
+
 
   def discount
     self.discount_rel = 0 unless discount_rel
     lineitems.any? ? discount_rel * lineitems.sum('value') / 100 : 0
   end
 
+
   def vat
     lineitems.*.calculate_vat_value(discount_rel: discount_rel).sum
   end
+
 
   def sum_incl_vat
     if lineitems.any?
@@ -250,6 +259,7 @@ class Order < ActiveRecord::Base
       0
     end
   end
+
 
   def vat_items
     vat_items = Hash.new
@@ -262,6 +272,7 @@ class Order < ActiveRecord::Base
     return vat_items
   end
 
+
   def name
     if ["basket", "parked"].include?(state)
       [I18n.t("attributes.basket"), I18n.t("mercator.from"),I18n.l(created_at).to_s].join(" ").html_safe
@@ -269,6 +280,7 @@ class Order < ActiveRecord::Base
       [I18n.t("activerecord.models.order.one"), I18n.t("mercator.from"), I18n.l(created_at).to_s].join(" ").html_safe
     end
   end
+
 
   def add_product(product: nil, amount: 1)
     if lineitem = lineitems.where(product_number: product.number, state: "active").first
@@ -279,6 +291,18 @@ class Order < ActiveRecord::Base
                                    position: last_position + 10, user_id: user_id)
     end
   end
+
+
+  def add_inventory(inventory: nil, amount: 1)
+    if lineitem = lineitems.where(product_number: inventory.number, state: "active").first
+      lineitem.increase_amount(user_id: user_id, amount: amount)
+    else
+      last_position = lineitems.*.position.max || 0
+      Lineitem.create_from_inventory(order_id: id, inventory: inventory, amount: amount,
+                                     position: last_position + 10, user_id: user_id)
+    end
+  end
+
 
   def merge(basket: nil)
     if basket.id !=id #first run or second run?
@@ -303,10 +327,12 @@ class Order < ActiveRecord::Base
     end
   end
 
+
   def billing_address_filled?
     # all obligatory fields in billing address are filled?
     billing_surname && billing_street &&  billing_postalcode && billing_city && billing_country
   end
+
 
   def add_shipment_costs
     shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
@@ -352,17 +378,20 @@ class Order < ActiveRecord::Base
     end
   end
 
+
   def shipping_cost
     shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
     shipping_cost_item = lineitems.find_by(product_number: shipping_cost_product_number)
     shipping_cost_item ? shipping_cost_item.value : 0
   end
 
+
   def shipping_cost_vat
     shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
     shipping_cost_item = lineitems.find_by(product_number: shipping_cost_product_number)
     shipping_cost_item ? shipping_cost_item.vat : 0
   end
+
 
   def delete_if_obsolete
     case lineitems.count
@@ -377,6 +406,7 @@ class Order < ActiveRecord::Base
       false
     end
   end
+
 
   #--- Class Methods --- #
 
@@ -397,6 +427,7 @@ class Order < ActiveRecord::Base
     JobLogger.info("Finished Cronjob runner: Order.cleanup_deprecated")
     JobLogger.info("=" * 50)
   end
+
 
   def self.notify_in_payment
     @orders = Order.where(state: :in_payment, updated_at: (Time.now - 1.day)..Time.now)
