@@ -283,7 +283,7 @@ class Order < ActiveRecord::Base
 
 
   def add_product(product: nil, amount: 1)
-    if lineitem = lineitems.where(product_number: product.number, state: "active").first
+    if lineitem = lineitems.where(product_id: product.id, state: "active").first
       lineitem.increase_amount(user_id: user_id, amount: amount)
     else
       last_position = lineitems.*.position.max || 0
@@ -294,7 +294,7 @@ class Order < ActiveRecord::Base
 
 
   def add_inventory(inventory: nil, amount: 1)
-    if lineitem = lineitems.where(product_number: inventory.number, state: "active").first
+    if lineitem = lineitems.where(inventory_id: inventory.id, state: "active").first
       lineitem.increase_amount(user_id: user_id, amount: amount)
     else
       last_position = lineitems.*.position.max || 0

@@ -39,6 +39,7 @@ class Lineitem < ActiveRecord::Base
   acts_as_list :scope => :order
 
   belongs_to :product
+  belongs_to :inventory
 
   lifecycle do
     state :active, :default => true
@@ -240,6 +241,7 @@ class Lineitem < ActiveRecord::Base
                             order_id:       order_id,
                             position:       position,
                             product_id:     product.id,
+                            inventory_id:   inventory.id,
                             product_number: inventory.number,
                             description_de: product.title_de,
                             description_en: product.title_en,

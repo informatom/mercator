@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324070000) do
+ActiveRecord::Schema.define(version: 20150326064613) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -437,8 +437,10 @@ ActiveRecord::Schema.define(version: 20150324070000) do
     t.string   "delivery_time"
     t.boolean  "upselling"
     t.decimal  "discount_abs",   precision: 13, scale: 5, default: 0.0
+    t.integer  "inventory_id"
   end
 
+  add_index "lineitems", ["inventory_id"], name: "index_lineitems_on_inventory_id", using: :btree
   add_index "lineitems", ["order_id"], name: "index_lineitems_on_order_id", using: :btree
   add_index "lineitems", ["product_id"], name: "index_lineitems_on_product_id", using: :btree
   add_index "lineitems", ["state"], name: "index_lineitems_on_state", using: :btree

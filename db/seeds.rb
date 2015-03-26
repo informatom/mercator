@@ -66,6 +66,9 @@ Constant.create(key: "display_only_brutto_prices", value: "false")
 # Erp exports gross prices
 Constant.create(key: "import_gross_prices_from_erp", value: "false")
 
+# Inventories act as product variations (and not only stock elements)
+Constant.create(key: "inventories_are_variations", value: "false")
+
 # Product variations are imported from ERP
 Constant.create(key: "erp_product_variations", value: "false")
 

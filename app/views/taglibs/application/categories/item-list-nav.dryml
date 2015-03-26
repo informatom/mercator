@@ -1,0 +1,25 @@
+<def tag="item-list-view" attrs="category-id">
+  <if test='&this.children'> - </if>
+  <else> &nbsp; </else>
+  <view class="grey"/> (<view with="&this.active_product_count" />)
+
+  <repeat with="&this.children.active">
+    <if test="&this.id == category_id || this.descendant_ids.include?(category_id) || this.sibling_ids.include?(category_id)">
+      <ul style="list-style-type: none">
+        <li>
+          <item-list-view category-id="&category_id" />
+        </li>
+      </ul>
+    </if>
+  </repeat>
+
+  <if test="&this.id == category_id && this.children.active">
+    <ul style="list-style-type: none">
+      <repeat with="&this.children.active">
+        <li>
+          <item-list-view category-id="&category_id" />
+        </li>
+      </repeat>
+    </ul>
+  </if>
+</def>

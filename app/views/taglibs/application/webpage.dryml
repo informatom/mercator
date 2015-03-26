@@ -17,10 +17,10 @@
     <%= content_element.parse %>
   </if>
   <else>
-    <view with="<!--".html_safe />
+    <%= "<!--".html_safe %>
     <t key="mercator.messages.content_element.missing" />
     <name/>
-    <view with="-->".html_safe />
+    <%= "-->".html_safe %>
   </else>
 </def>
 

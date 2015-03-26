@@ -54,7 +54,9 @@ class CategoriesController < ApplicationController
   end
 
   def refresh
-    self.this = Category.find(params[:id])
+    # params[:id] sends product_id, not category_id, so:
+    self.this = Category.find(params[:page_path].split("/")[2].split("-")[0])
+
     @inventory = Inventory.find(params[:inventory_id])
     hobo_show
   end

@@ -1,0 +1,45 @@
+<def tag="category-nav">
+  <repeat with="&this.ancestors">
+    <if test="active_siblings">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <nav-item repeat="&this.active_siblings" href="#{category_path(this)}/">
+            <name/>
+          </nav-item>
+        </ul>
+      </li>
+    </if>
+    <nav-item href="#{category_path(this)}"><name/></nav-item>
+  </repeat>
+
+  <if test="&this.active_siblings">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+        <b class="caret"></b>
+      </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <nav-item repeat="active_siblings" href="#{category_path(this)}/">
+            <name/>
+          </nav-item>
+        </ul>
+    </li>
+    <nav-item class="active" href="#{category_path(this)}"><name/></nav-item>
+  </if>
+  <unless test="active_siblings">
+    <li class="active"><a><name/></a></li>
+  </unless>
+
+  <if test="&this.active_children">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#{category_path(this)}">
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item repeat="active_children" href="#{category_path(this)}">
+          <name/>
+        </nav-item>
+      </ul>
+    </li>
+  </if>
+</def>

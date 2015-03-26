@@ -16,11 +16,7 @@
                     product_path(this, inventory_id: inventory.id)) %>
       </div>
 
-      <add-to-basket-button/>
-
-      <%= link_to("inventar hinzufügen",
-              add_to_basket_inventory_path(inventory),
-              class: "btn btn-success") %>
+      <add-to-basket-button inventory="&inventory" />
 
       <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
         <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
