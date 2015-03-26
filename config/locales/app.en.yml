@@ -104,6 +104,7 @@ en:
     name: Name
     name_de: Name GER
     name_en: Name EN
+    not_shippable: Not shippable
     number: Number
     offers: Offers
     order: Order

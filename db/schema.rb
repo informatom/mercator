@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326064613) do
+ActiveRecord::Schema.define(version: 20150326114252) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -724,6 +724,7 @@ ActiveRecord::Schema.define(version: 20150326064613) do
     t.text     "long_description_en"
     t.text     "warranty_de"
     t.text     "warranty_en"
+    t.boolean  "not_shippable"
   end
 
   add_index "products", ["state"], name: "index_products_on_state", using: :btree

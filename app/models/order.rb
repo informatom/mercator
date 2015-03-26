@@ -153,27 +153,23 @@ class Order < ActiveRecord::Base
     transition :pickup_shipment, {:basket => :basket}, available_to: :user,
                if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
-
-      shippment_costs_line = self.lineitems
-                                 .where(position: 10000,
-                                        product_number: Constant.find_by_key("shipping_cost_article").value)
-                                 .first
-      shippment_costs_line.delete if shippment_costs_line
+      self.lineitems
+          .find_by(position: 10000,
+                   product_number: Constant.find_by_key("shipping_cost_article").value)
+          .try(:delete)
     end
 
     transition :pickup_shipment, {:accepted_offer => :accepted_offer},
                available_to: :user, if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
-
-      shippment_costs_line = self.lineitems
-                                 .where(position: 10000,
-                                        product_number: Constant.find_by_key("shipping_cost_article").value)
-                                 .first
-      shippment_costs_line.delete if shippment_costs_line
+      self.lineitems
+          .find_by(position: 10000,
+                   product_number: Constant.find_by_key("shipping_cost_article").value)
+          .try(:delete)
     end
 
     transition :parcel_service_shipment, {:basket => :basket},
-               available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
+               available_to: :user, if: "shipping_method != 'parcel_service_shipment' && self.shippable?" do
       self.update(shipping_method: "parcel_service_shipment")
       if ["atm_payment", "cash_payment"].include?(billing_method)
         self.update(billing_method: Order::DEFAULT_BILLING_METHOD)
@@ -230,6 +226,10 @@ class Order < ActiveRecord::Base
     self.state == "basket"
   end
 
+
+  def shippable?
+    !lineitems.*.product.*.not_shippable.any?
+  end
 
   def accepted_offer?
     self.state == "accepted_offer"

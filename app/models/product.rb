@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
     warranty_de         :cktext
     warranty_en         :cktext
     legacy_id           :integer
+    not_shippable       :boolean
     timestamps
   end
 
@@ -23,7 +24,7 @@ class Product < ActiveRecord::Base
                   :long_description_de, :long_description_en,
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
-                  :warranty_de, :warranty_en
+                  :warranty_de, :warranty_en, :not_shippable
 
   translates :title, :description, :long_description, :warranty
   has_paper_trail

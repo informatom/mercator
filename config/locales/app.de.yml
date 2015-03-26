@@ -108,6 +108,7 @@ de:
     name: Name
     name_de: Name DE
     name_en: Name EN
+    not_shippable: nicht versendbar
     number: Nummer
     offers: Angebote
     order: Bestellung
