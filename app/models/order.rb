@@ -248,7 +248,7 @@ class Order < ActiveRecord::Base
 
 
   def vat
-    lineitems.*.calculate_vat_value(discount_rel: discount_rel).sum
+    lineitems.*.vat_value(discount_rel: discount_rel).sum
   end
 
 
@@ -266,7 +266,7 @@ class Order < ActiveRecord::Base
     grouped_lineitems = lineitems.group_by{|lineitem| lineitem.vat}
     grouped_lineitems.each_pair do |percentage, itemgroup|
       vat_items[percentage] = itemgroup.reduce(0) do |sum, lineitem|
-        sum + lineitem.calculate_vat_value(discount_rel: discount_rel)
+        sum + lineitem.vat_value(discount_rel: discount_rel)
       end
     end
     return vat_items
@@ -284,7 +284,7 @@ class Order < ActiveRecord::Base
 
   def add_product(product: nil, amount: 1)
     if lineitem = lineitems.where(product_id: product.id, state: "active").first
-      lineitem.increase_amount(user_id: user_id, amount: amount)
+      lineitem.increase_amount(amount: amount)
     else
       last_position = lineitems.*.position.max || 0
       Lineitem.create_from_product(order_id: id, product: product, amount: amount,
@@ -295,7 +295,7 @@ class Order < ActiveRecord::Base
 
   def add_inventory(inventory: nil, amount: 1)
     if lineitem = lineitems.where(inventory_id: inventory.id, state: "active").first
-      lineitem.increase_amount(user_id: user_id, amount: amount)
+      lineitem.increase_amount(amount: amount)
     else
       last_position = lineitems.*.position.max || 0
       Lineitem.create_from_inventory(order_id: id, inventory: inventory, amount: amount,

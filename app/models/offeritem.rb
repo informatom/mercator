@@ -84,7 +84,6 @@ class Offeritem < ActiveRecord::Base
     product = Product.find_by_number(product_number)
 
     if product
-      price = product.determine_price(amount: amount, customer_id: user_id)
       inventory = product.determine_inventory(amount: amount)
       vat = inventory.determine_vat(amount: amount)
       update(product_id:     product.id,
@@ -93,10 +92,8 @@ class Offeritem < ActiveRecord::Base
              description_en: product.title_en,
              delivery_time:  product.delivery_time,
              unit:           inventory.unit,
-             product_price:  price,
              vat:            vat)
-      self.value = calculate_value
-      save
+      self.new_pricing
     else
       update(product_id:     nil,
              product_number: product_number,
@@ -104,11 +101,16 @@ class Offeritem < ActiveRecord::Base
     end
   end
 
-  def calculate_vat_value(discount_rel: 0)
+  def vat_value(discount_rel: 0)
     vat * value * ( 100 - discount_rel) / 100 / 100
   end
 
-  def calculate_value(discount_abs: self.discount_abs)
-    (product_price - discount_abs) * amount
+  def new_pricing
+    price =
+      Product.find(product_id)
+             .determine_price(amount: self.amount,
+                              customer_id: current_user.id)
+    self.update(product_price: price)
+    self.update(value: (self.product_price - self.discount_abs) * self.amount)
   end
 end

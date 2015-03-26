@@ -104,31 +104,19 @@ class Lineitem < ActiveRecord::Base
       self.update(upselling: false)
     end
 
-    transition :add_one,
-               {:active => :active},
-               if: "acting_user.basket == order",
-               available_to: :all do
-      amount = self.amount + 1
-      price = product.determine_price(amount: amount, customer_id: self.user.id)
-      self.update(amount: amount,
-                  product_price: price)
-      self.update(value: self.calculate_value)
+    transition :add_one, {:active => :active}, available_to: :all,
+               if: "acting_user.basket == order" do
+      self.increase_amount(customer_id: acting_user.id)
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
                             type: "basket")
     end
 
-    transition :remove_one,
-               {:active => :active},
-               if: "acting_user.basket == order",
-               available_to: :all do
+    transition :remove_one, {:active => :active}, available_to: :all,
+               if: "acting_user.basket == order" do
       if self.amount == 1
         self.delete
       else
-        amount = self.amount - 1
-        price = product.determine_price(amount: amount, customer_id: user.id)
-        self.update(amount: amount,
-                    product_price: price)
-        self.update(value: self.calculate_value)
+        self.increase_amount(customer_id: acting_user.id, amount: -1)
       end
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
                             type: "basket")
@@ -165,12 +153,25 @@ class Lineitem < ActiveRecord::Base
 
  #--- Instance methods ---#
 
-  def increase_amount(user_id: nil, amount: 1)
-    self.amount += amount
+  def increase_amount(customer_id: nil, amount: 1)
+    self.update(amount: self.amount + amount)
+    self.new_pricing
+  end
 
-    product = Product.find(self.product_id)
-    self.value = product.determine_price(amount: self.amount, customer_id: user_id) * self.amount
-    raise unless self.save
+
+  def new_pricing
+    price =
+      if self.inventory_id
+        Inventory.find(inventory_id)
+                 .determine_price(amount: self.amount,
+                                  customer_id: user_id)
+      else
+        Product.find(product_id)
+               .determine_price(amount: self.amount,
+                                customer_id: user_id)
+      end
+    self.update(product_price: price)
+    self.update(value: (self.product_price - self.discount_abs) * self.amount)
   end
 
 
@@ -180,13 +181,8 @@ class Lineitem < ActiveRecord::Base
   end
 
 
-  def calculate_vat_value(discount_rel: 0)
+  def vat_value(discount_rel: 0)
     self.vat * self.value * ( 100 - discount_rel) / 100 / 100
-  end
-
-
-  def calculate_value(discount_abs: self.discount_abs)
-    (self.product_price - discount_abs) * self.amount
   end
 
 
@@ -222,9 +218,8 @@ class Lineitem < ActiveRecord::Base
                             delivery_time:  product.delivery_time,
                             amount:         amount,
                             unit:           inventory.unit,
-                            product_price:  price,
                             vat:            vat)
-    lineitem.value = lineitem.calculate_value
+    lineitem.new_pricing
 
     unless lineitem.save
       raise "Lineitem connot be created"
@@ -248,9 +243,8 @@ class Lineitem < ActiveRecord::Base
                             delivery_time:  (inventory.delivery_time || product.delivery_time),
                             amount:         amount,
                             unit:           inventory.unit,
-                            product_price:  price,
                             vat:            vat)
-    lineitem.value = lineitem.calculate_value
+    lineitem.new_pricing
 
     unless lineitem.save
       raise "Lineitem connot be created"

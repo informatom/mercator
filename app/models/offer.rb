@@ -149,7 +149,7 @@ class Offer < ActiveRecord::Base
 
   def sum_incl_vat
     if offeritems.any?
-      sum + offeritems.*.calculate_vat_value(discount_rel: discount_rel).sum
+      sum + offeritems.*.vat_value(discount_rel: discount_rel).sum
     else
       0
     end
@@ -160,7 +160,7 @@ class Offer < ActiveRecord::Base
     grouped_offeritems = offeritems.group_by{|offeritem| offeritem.vat}
     grouped_offeritems.each_pair do |percentage, itemgroup|
       vat_items[percentage] = itemgroup.reduce(0) do |sum, offeritem|
-        sum + offeritem.calculate_vat_value(discount_rel: discount_rel)
+        sum + offeritem.vat_value(discount_rel: discount_rel)
       end
     end
     return vat_items
