@@ -666,6 +666,8 @@ en:
     goto_login: "if you remember the password, use it to login:"
     goto_search: Goto Search
     gtc_confirmation_left: "I confirm, that I have read and understood the"
+    gtc_confirmation_fagg: "Right of Withdrawel from Austrian FAGG"
+    gtc_confirmation_middle: "and information on"
     gtc_confirmation_right:  und I accept them.
     home: Home
     identifier: Description

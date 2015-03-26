@@ -12,7 +12,11 @@
         <input for="boolean"/>
       </confirmation-label:>
       <confirmation-view:>
-        <t key="mercatoor.gtc_confirmation_left" /> <t key="activerecord.models.gtc.one" /> <t key="mercatoor.gtc_confirmation_right" />
+        <t key="mercator.gtc_confirmation_left" />&nbsp;
+        <t key="activerecord.models.gtc.one" />&nbsp;
+        <t key="mercator.gtc_confirmation_middle" />&nbsp;
+        <t key="mercator.gtc_confirmation_fagg" />&nbsp;
+        <t key="mercator.gtc_confirmation_right" />
       </confirmation-view:>
     </field-list:>
     <prepend-actions:>

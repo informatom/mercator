@@ -178,6 +178,10 @@
                       <transition-link with="&current_user" transition="accept_gtc" method="get" params="&{:order_id => orderid}">
                         <t key="activerecord.models.gtc.one" />
                       </transition-link><%= " " %>
+                        <t key="mercator.gtc_confirmation_middle" />
+                      <transition-link with="&current_user" transition="accept_gtc" method="get" params="&{:order_id => orderid}">
+                        <t key="mercator.gtc_confirmation_fagg" />
+                      </transition-link><%= " " %>
                       <t key="mercator.gtc_confirmation_right" />
                     </confirmation-view:>
                   </field-list:>

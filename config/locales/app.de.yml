@@ -673,6 +673,8 @@ de:
     goto_login: "sich anmelden, falls sie ihr Kennwort noch kennen:"
     goto_search: Zur Suche
     gtc_confirmation_left: "Ich bestätige, die"
+    gtc_confirmation_fagg: "Widerrufsrecht aus dem FAGG"
+    gtc_confirmation_middle: "und die Informatonen zum"
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
     home: Home
     identifier: Bezeichnung
