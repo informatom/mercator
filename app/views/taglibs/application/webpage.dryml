@@ -51,10 +51,10 @@
          merge-attrs />
   </if>
   <else>
-    <view with="<!--" />
+    <%= "<!--".html_safe %>
     <t key="mercator.messages.photo.missing" />
     <name/>
-    <view with="-->"/>
+    <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -71,10 +71,10 @@
          merge-attrs />
   </if>
   <else>
-    <view with="<!--" />
+    <%= "<!--".html_safe %>
     <t key="mercator.messages.photo.missing" />
     <name/>
-    <view with="-->"/>
+    <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -89,10 +89,10 @@
     </a>
   </if>
   <else>
-    <view with="<!--" />
+    <%= "<!--".html_safe %>
     <t key="mercator.messages.document.missing" />
     <name/>
-    <view with="-->"/>
+    <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -103,10 +103,10 @@
     </a>
   </if>
   <else>
-    <view with="<!--" />
+    <%= "<!--".html_safe %>
     <t key="mercator.messages.photo.missing" />
     <name/>
-    <view with="-->"/>
+    <%= "-->".html_safe %>
   </else>
 </def>
 
