@@ -18,7 +18,7 @@
   </if>
   <else>
     <%= "<!--".html_safe %>
-    <t key="mercator.messages.content_element.missing" />
+    <t key="mercator.messages.content_element.missing" />&nbsp;
     <name/>
     <%= "-->".html_safe %>
   </else>
@@ -30,7 +30,7 @@
   </if>
   <else>
     <%= "<!--".html_safe %>
-    <t key="mercator.messages.content_element.missing" />
+    <t key="mercator.messages.content_element.missing" />&nbsp;
     <name/>
     <%= "-->".html_safe %>
   </else>
@@ -52,7 +52,7 @@
   </if>
   <else>
     <%= "<!--".html_safe %>
-    <t key="mercator.messages.photo.missing" />
+    <t key="mercator.messages.photo.missing" />&nbsp;
     <name/>
     <%= "-->".html_safe %>
   </else>
@@ -72,7 +72,7 @@
   </if>
   <else>
     <%= "<!--".html_safe %>
-    <t key="mercator.messages.photo.missing" />
+    <t key="mercator.messages.photo.missing" />&nbsp;
     <name/>
     <%= "-->".html_safe %>
   </else>
@@ -90,7 +90,7 @@
   </if>
   <else>
     <%= "<!--".html_safe %>
-    <t key="mercator.messages.document.missing" />
+    <t key="mercator.messages.document.missing" />&nbsp;
     <name/>
     <%= "-->".html_safe %>
   </else>
@@ -104,7 +104,7 @@
   </if>
   <else>
     <%= "<!--".html_safe %>
-    <t key="mercator.messages.photo.missing" />
+    <t key="mercator.messages.photo.missing" />&nbsp;
     <name/>
     <%= "-->".html_safe %>
   </else>
