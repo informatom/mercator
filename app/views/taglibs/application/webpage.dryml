@@ -17,10 +17,7 @@
     <%= content_element.parse %>
   </if>
   <else>
-    <%= "<!--".html_safe %>
-    <t key="mercator.messages.content_element.missing" />&nbsp;
-    <name/>
-    <%= "-->".html_safe %>
+    <%= "<!--".html_safe %> <t key="mercator.messages.content_element.missing" /> <name/> <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -29,10 +26,7 @@
     <%= content_element.parse %>
   </if>
   <else>
-    <%= "<!--".html_safe %>
-    <t key="mercator.messages.content_element.missing" />&nbsp;
-    <name/>
-    <%= "-->".html_safe %>
+    <%= "<!--".html_safe %> <t key="mercator.messages.content_element.missing" /> <name/> <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -51,10 +45,7 @@
          merge-attrs />
   </if>
   <else>
-    <%= "<!--".html_safe %>
-    <t key="mercator.messages.photo.missing" />&nbsp;
-    <name/>
-    <%= "-->".html_safe %>
+    <%= "<!--".html_safe %> <t key="mercator.messages.photo.missing" /> <name/> <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -71,10 +62,7 @@
          merge-attrs />
   </if>
   <else>
-    <%= "<!--".html_safe %>
-    <t key="mercator.messages.photo.missing" />&nbsp;
-    <name/>
-    <%= "-->".html_safe %>
+    <%= "<!--".html_safe %> <t key="mercator.messages.photo.missing" /> <name/> <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -89,10 +77,7 @@
     </a>
   </if>
   <else>
-    <%= "<!--".html_safe %>
-    <t key="mercator.messages.document.missing" />&nbsp;
-    <name/>
-    <%= "-->".html_safe %>
+    <%= "<!--".html_safe %> <t key="mercator.messages.document.missing" /> <name/> <%= "-->".html_safe %>
   </else>
 </def>
 
@@ -103,10 +88,7 @@
     </a>
   </if>
   <else>
-    <%= "<!--".html_safe %>
-    <t key="mercator.messages.photo.missing" />&nbsp;
-    <name/>
-    <%= "-->".html_safe %>
+    <%= "<!--".html_safe %> <t key="mercator.messages.photo.missing" /> <name/> <%= "-->".html_safe %>
   </else>
 </def>
 
