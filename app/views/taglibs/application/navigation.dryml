@@ -207,8 +207,7 @@
 
 
 <def tag="greeter" >
-  <p class="navbar-text">Hallo, </p>
-  <a with="&current_user"><view with="&current_user.name" /></a>
+  Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
 </def>
 
 

@@ -37,4 +37,10 @@ class Admin::LogentriesController < Admin::AdminSiteController
       }
     end
   end
+
+  def destroy
+    hobo_destroy do
+      render json: '{ status: "success" }' if request.xhr?
+    end
+  end
 end
