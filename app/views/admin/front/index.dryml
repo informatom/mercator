@@ -34,6 +34,13 @@
             <t key="mercator.catch_orphaned_products"/>
           </a>
         </p>
+
+        <p>
+          <a href="&index_invalid_admin_products_path" class="btn btn-warning">
+            <t key="mercator.invalid_products"/>
+          </a>
+        </p>
+
       </section>
     </header>
 

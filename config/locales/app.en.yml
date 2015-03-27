@@ -671,11 +671,6 @@ en:
     gtc_confirmation_right:  und I accept them.
     home: Home
     identifier: Description
-    invoice:
-      date: Date of Invoice
-      number: Invoice Number
-      one: Invoice
-      other: Invoices
     images:
       original_version: Original Version
       thumbnail_version: Thumbnail Version
@@ -685,6 +680,12 @@ en:
     incl_vat: incl. VAT
     in_all_categories: of all Categories
     in_the_category: in Category
+    invalied_products: Invalid Products
+    invoice:
+      date: Date of Invoice
+      number: Invoice Number
+      one: Invoice
+      other: Invoices
     last_x: "The last %{x} "
     messages:
       content_element:

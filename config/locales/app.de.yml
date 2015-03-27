@@ -678,11 +678,6 @@ de:
     gtc_confirmation_right: gelesen und verstanden zu haben und stimme diesen zu.
     home: Home
     identifier: Bezeichnung
-    invoice:
-      date: Rechnungsdatum
-      number: Rechnungsnummer
-      one: Rechnung
-      other: Rechnungen
     images:
       original_version: Originalversion
       thumbnail_version: Thumbnail Version
@@ -692,6 +687,12 @@ de:
     incl_vat: incl. Mwst.
     in_all_categories: aller Kategorien
     in_the_category: in der Kategorie
+    invalid_products: Ungültige Produkte
+    invoice:
+      date: Rechnungsdatum
+      number: Rechnungsnummer
+      one: Rechnung
+      other: Rechnungen
     last_x: "Die letzten %{x} "
     messages:
       content_element:

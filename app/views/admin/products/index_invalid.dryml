@@ -1,0 +1,16 @@
+<page>
+  <content:>
+    <h3><%= @errorsarray.count %> Problems</h3>
+
+    <ul>
+      <li repeat="&@errorsarray">
+        <a href="&admin_product_path(Product.find(this[0]))"><%= Product.find(this[0]).title_de %></a>
+        <ul>
+          <li repeat="&this[1]">
+            <view with="&this[0]"/> <view with="&this[1][0]"/>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </content:>
+</page>

@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all, :new
-  index_action :catch_orphans
+  index_action :catch_orphans, :index_invalid
 
   autocomplete :number
 
@@ -30,5 +30,9 @@ class Admin::ProductsController < Admin::AdminSiteController
     JobLogger.info("=" * 50)
 
     redirect_to admin_logentries_path
+  end
+
+  def index_invalid
+    @errorsarray = Product.all.reject{|p| p.valid?}.map{|p| [p.id, p.errors.messages]}
   end
 end
