@@ -1,30 +1,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" without-live-search merge-attrs>
     <default:>
-      <repeat with="&Webpage.roots.published">
-        <if test="&this.menu">
-          <li class='nav-item dropdown'>
-            <a class="dropdown-toggle" id="drop#{this.id}" data-toggle="dropdown" href="#">
-              <view:title/>
-              <b class="caret"></b>
-            </a>
-
-            <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
-              <repeat with="&this.children">
-                <nav-item href="#{this.url}">
-                  <view:title/>
-                </nav-item>
-              </repeat>
-            </ul>
-          </li>
-        </if>
-
-        <else>
-          <nav-item href="/#{this.url}">
-            <view:title/>
-          </nav-item>
-        </else>
-      </repeat>
+      <webpage-navigation with="&Webpage.roots.published"/>
     </default:>
     <right:>
       <li>
@@ -52,6 +29,35 @@
     </right:>
   </navigation>
 </def>
+
+
+<def tag="webpage-navigation">
+  <repeat>
+    <if test="&this.menu">
+      <li class='nav-item dropdown'>
+        <a class="dropdown-toggle" id="drop#{this.id}" data-toggle="dropdown" href="#">
+          <view:title/>
+          <b class="caret"></b>
+        </a>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
+          <repeat with="&this.children">
+            <nav-item href="#{this.url}">
+              <view:title/>
+            </nav-item>
+          </repeat>
+        </ul>
+      </li>
+    </if>
+
+    <else>
+      <nav-item href="/#{this.url}">
+        <view:title/>
+      </nav-item>
+    </else>
+  </repeat>
+</def>
+
 
 <def tag="simple-nav">
   <ul>

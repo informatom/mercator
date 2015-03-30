@@ -1,0 +1,35 @@
+<def tag="photo" attrs="name, size" polymorphic>
+  <% content_element = ContentElement.find_by(name_de: name)
+     content_element ||= ContentElement.find_by(name_en: name) %>
+
+  <if test="&content_element">
+    <img if="&size"
+         src="&content_element.photo(size.to_sym)"
+         alt="&name"
+         merge-attrs />
+    <img unless="&size"
+         src="&content_element.photo"
+         alt="&name"
+         merge-attrs />
+  </if>
+  <else>
+    <%= "<!--".html_safe %> <t key="mercator.messages.photo.missing" /> <name/> <%= "-->".html_safe %>
+  </else>
+</def>
+
+
+<def tag="photo" for="Webpage" attrs="name, size" >
+  <if test="&content_element = this.content_element(name)">
+    <img if="&size"
+         src="&content_element.photo(size.to_sym)"
+         alt="&name"
+         merge-attrs />
+    <img unless="&size"
+         src="&content_element.photo"
+         alt="&name"
+         merge-attrs />
+  </if>
+  <else>
+    <%= "<!--".html_safe %> <t key="mercator.messages.photo.missing" /> <name/> <%= "-->".html_safe %>
+  </else>
+</def>

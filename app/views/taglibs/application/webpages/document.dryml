@@ -1,0 +1,25 @@
+<def tag="document" attrs="name" polymorphic>
+  <% content_element = ContentElement.find_by(name_de: name)
+     content_element ||= ContentElement.find_by(name_en: name) %>
+
+  <if test="&content_element">
+    <a href="&content_element.document.url" merge-attrs>
+      <%= content_element.document_file_name %>
+    </a>
+  </if>
+  <else>
+    <%= "<!--".html_safe %> <t key="mercator.messages.document.missing" /> <name/> <%= "-->".html_safe %>
+  </else>
+</def>
+
+
+<def tag="document" for="Webpage" attrs="name" >
+  <if test="&content_element = this.content_element(name)">
+    <a href="&content_element.document.url" merge-attrs>
+      <%= content_element.document_file_name %>
+    </a>
+  </if>
+  <else>
+    <%= "<!--".html_safe %> <t key="mercator.messages.photo.missing" /> <name/> <%= "-->".html_safe %>
+  </else>
+</def>
