@@ -41,10 +41,10 @@ class Admin::CategoriesController < Admin::AdminSiteController
                                  (description_de.matches_any my{@search}) |
                                  (description_en.matches_any my{@search}) |
                                  (state.matches_any my{@search}) }
-                          .order_by(parse_sort_param(:name_de, :name_en, :this))
+                          .order_by(parse_sort_param(:name_de, :name_en, :this, :description_de, :description_en, :state, :name => "name_de"))
     else
       self.this = Category.paginate(:page => params[:page])
-                          .order_by(parse_sort_param(:name_de, :name_en, :this))
+                          .order_by(parse_sort_param(:name_de, :name_en, :this, :description_de, :description_en, :state, :name => "name_de"))
     end
     hobo_index
   end
