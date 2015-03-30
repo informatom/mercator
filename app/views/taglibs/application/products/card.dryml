@@ -35,8 +35,7 @@
 
       <p>
         <small>
-          <t key="attributes.delivery_time" />
-          <view with="&inventory.delivery_time" />
+          <t key="attributes.delivery_time" /> <view with="&inventory.delivery_time" />
         </small>
       </p>
 
