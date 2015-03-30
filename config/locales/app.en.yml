@@ -652,6 +652,7 @@ en:
     deliveries_and_payments: Deliveries and Payments
     delivery_slip_date: Delivery Slip Date
     delivery_number: Delivery Number
+    deprecate_categories: deactivate empty categories
     download_here: Download here
     drop_here: "Files can be dropped into this page via drag and drop."
     email_sent: "We have sent you an email with a login link, if you hale registered with that address. This link is valid for 10 minutes and can only be used once."

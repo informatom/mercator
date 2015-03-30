@@ -4,6 +4,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all
+  index_action :deprecate
 
   autocomplete :name, :query_scope => [:name_de_contains]
 
@@ -11,6 +12,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
     @this = @categories = Category.roots.paginate(:page => 1, :per_page => Category.count)
     @categoriesarray = childrenarray(categories: Category.arrange).to_json
   end
+
 
   show_action :edit_properties do
     @this = Category.includes(:products, :values, :properties).find(params[:id])
@@ -20,6 +22,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
     @unfilterable_properties = properties.select { |property| property.state == "unfilterable"}
   end
 
+
   index_action :do_treereorder do
     @categories = Category.all
     parse_categories(categories: params[:categories], parent_id: nil)
@@ -27,6 +30,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
       hobo_ajax_response
     end
   end
+
 
   def index
     if params[:search]
@@ -45,6 +49,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
     hobo_index
   end
 
+
   def new
     if request_param(:product_manager)
       @cancelpath = productmanager_front_path(category_id: params[:id])
@@ -60,6 +65,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
     hobo_edit
   end
 
+
   def update
     if product_id = page_path_param(:product_manager)
       hobo_update(redirect: productmanager_front_path(category_id: params[:id].to_i))
@@ -67,6 +73,17 @@ class Admin::CategoriesController < Admin::AdminSiteController
       hobo_update
     end
   end
+
+
+  def deprecate
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Task: products:deprecate_categories")
+    Category.deprecate
+    JobLogger.info("Finished Task: products:deprecate_categories")
+    JobLogger.info("=" * 50)
+    redirect_to admin_logentries_path
+  end
+
 
 protected
   def parse_categories(categories: nil, parent_id: nil)
@@ -78,6 +95,7 @@ protected
       parse_categories(categories: categories["children"], parent_id: category.id) if categories["children"]
     end
   end
+
 
   def childrenarray(categories: nil)
     childrenarray = []

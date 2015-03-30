@@ -36,8 +36,14 @@
         </p>
 
         <p>
-          <a href="&index_invalid_admin_products_path" class="btn btn-warning">
+          <a href="&index_invalid_admin_products_path" class="btn btn-info">
             <t key="mercator.invalid_products"/>
+          </a>
+        </p>
+
+        <p>
+          <a href="&deprecate_admin_categories_path" class="btn btn-info">
+            <t key="mercator.deprecate_categories"/>
           </a>
         </p>
 

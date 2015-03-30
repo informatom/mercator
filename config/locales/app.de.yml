@@ -659,6 +659,7 @@ de:
     deliveries_and_payments: Lieferungen und Zahlungen
     delivery_slip_date: Lieferscheindatum
     delivery_number: Lieferungsnummer
+    deprecate_categories: leere Kategorien deaktivieren
     download_here: Hier downloaden
     drop_here: "Dateien können auch einfach per Drag and Drop in die Seite gezogen werden."
     email_sent: "Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."

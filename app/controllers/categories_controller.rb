@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   before_filter :domain_shop_redirect
 
+
   def show
     hobo_show do
       category_id = params[:id].to_i
@@ -52,6 +53,7 @@ class CategoriesController < ApplicationController
     self.this = @categories
     hobo_index
   end
+
 
   def refresh
     # params[:id] sends product_id, not category_id, so:
