@@ -2,8 +2,8 @@
   <old-show-page merge>
     <before-content-header:>
       <p>
-        <a href="&admin_categories_path" class="btn btn-info">
-          <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
+        <a href="&admin_page_templates_path" class="btn btn-info">
+          <ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht>
         </a>
       </p>
     </before-content-header:>
@@ -20,8 +20,8 @@
 
     <after-content:>
       <p>
-        <a href="&admin_categories_path" class="btn btn-info">
-          <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
+        <a href="&admin_page_templates_path" class="btn btn-info">
+          <ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht>
         </a>
       </p>
     </after-content:>
