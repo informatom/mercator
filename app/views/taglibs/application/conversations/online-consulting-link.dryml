@@ -1,6 +1,7 @@
 <def tag="online-consulting-link">
-  <set path="&conversation_path(current_user.conversations.order(:created_at).last) or initiate_conversations_path"/>
-
+  <set path="&current_user.conversations.any ?
+             conversation_path(current_user.conversations.order(:created_at).last) :
+             initiate_conversations_path"/>
   <a href="&path" class="btn btn-default">
     <%= fa_icon "user-plus", class:"fa-lg" %>
     <t key="mercator.start_conversation" />
