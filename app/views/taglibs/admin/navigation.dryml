@@ -31,15 +31,19 @@
        </ul>
     </li>
 
+    <nav-item href="&productmanager_front_path">
+      <t key="attributes.productmanager"/>
+    </nav-item>
+
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("mercator.shop") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <nav-item with="&Order">
+          <ht key="order.nav_item" count="100"><model-name-human count="100"/></ht>
+        </nav-item>
         <nav-item with="&Category">
           <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item href="&productmanager_front_path">
-          <t key="attributes.productmanager"/>
         </nav-item>
         <li class="divider"></li>
         <nav-item with="&Product">
@@ -65,17 +69,14 @@
       </ul>
     </li>
 
-    <nav-item with="&Order">
-      <ht key="order.nav_item" count="100"><model-name-human count="100"/></ht>
+    <nav-item href="&contentmanager_front_path">
+      <t key="attributes.contentmanager"/>
     </nav-item>
 
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.CMS") %>
       <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item href="&contentmanager_front_path">
-          <t key="attributes.contentmanager"/>
-        </nav-item>
         <nav-item with="&PageTemplate">
           <ht key="page_template.nav_item" count="100"><model-name-human count="100"/></ht>
         </nav-item>
