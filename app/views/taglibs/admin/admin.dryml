@@ -12,43 +12,8 @@
   </div>
 </def>
 
-<def tag="state-icon">
-  <if test="&this.state == 'archived'"><%= fa_icon "archive" %></if>
-  <if test="&this.state == 'new'"><%= fa_icon "certificate" %></if>
-  <if test="&this.state == 'draft'"><%= fa_icon "wrench" %></if>
-  <if test="&this.state == 'published_but_hidden'"><%= fa_icon "eye-slash" %></if>
-  <if test="&this.state == 'deprecated'"><%= fa_icon "archive" %></if>
-    <%= "(" + (h this.state) + ")" unless
-      ["active","published", "draft", "published_but_hidden", "archived", "new", "deprecated"].include? this.state %>
-</def>
-
-<def tag="treeview" attrs="title, action">
-  <li repeat id="#{this.id}" class="#{'folder' if this.children}">
-
-    <if test="&action">
-      <state-icon/> <name no-wrapper/>
-      <%= fa_icon "edit", class: "pull-right text-warning", id: "link" + this.id.to_s %>
-    </if>
-
-    <else>
-      <state-icon/> <name no-wrapper/>
-    </else>
-
-    <ul if="&this.children">
-      <treeview with="&this.children" title action />
-    </ul>
-  </li>
-</def>
-
-<script>
-  // $( "#link#{this.id}" ).click(function() {
-  //   jQuery("#configarea").html('<i class="fa fa-circle-o-notch fa-spin"></i>')
-  //   jQuery.ajax({
-  //     url: "#{this.id}/edit_properties",
-  //     type: "GET",
-  //     success: function(result){
-  //       jQuery("#configarea").html(result)
-  //     }
-  //   })
-  // })
-</script>
+<extend tag="page">
+  <old-page merge>
+    <container: class="container-fluid" remove-class="container"/>
+  </old-page>
+</extend>
