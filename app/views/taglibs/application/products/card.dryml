@@ -28,13 +28,7 @@
       <price-tag with="&inventory"/>
       <h4><t key="attributes.description" />:</h4>
 
-      <set longtext-truncate-length="&Constant.find_by_key('longtext_truncate_length').try(:value)"/>
-      <if test="&longtext_truncate_length">
-        <%= truncate_html this.long_description, :length => longtext_truncate_length.to_i %>
-      </if>
-      <else>
-        <view:long-description />
-      </else>
+      <view:long-description />
     </div>
 
     <div class="col-md-4">
