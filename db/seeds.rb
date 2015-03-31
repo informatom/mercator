@@ -75,6 +75,8 @@ Constant.create(key: "erp_product_variations", value: "false")
 # Display a message on shop starter page
 Constant.create(key: "shop_start_message", value: "false")
 
+# Text truncating length
+Constant.create(key: "longtext_truncate_length", value: "180")
 
 
 ### Users ###
