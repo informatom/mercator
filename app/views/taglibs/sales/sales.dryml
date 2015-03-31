@@ -1,0 +1,5 @@
+<extend tag="page">
+  <old-page merge>
+    <container: class="container-fluid" remove-class="container"/>
+  </old-page>
+</extend>
