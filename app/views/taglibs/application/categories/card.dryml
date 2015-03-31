@@ -10,30 +10,9 @@
           <view:description/>
         </div>
         <div class="col-md-6">
-          <div class="row">
-            <if test="&ContentElement.find_by(name_de: 'video-chat')">
-              <div class="col-md-3">
-                <a href="/videochat">
-                  <photo class="pull-left" name="video-chat" />
-                </a>
-              </div>
-            <div class="col-md-9">
-              <h2>
-                <a href="&initiate_conversations_path">
-                  <t key="mercator.start_conversation" />
-                </a>
-              </h2>
-            </div>
-            </if>
-            <else>
-              <a href="/videochat" class="btn btn-info">
-                <%= fa_icon "video-camera", class:"fa-lg" %> Video Chat
-              </a><br/><br/>
-              <a href="&initiate_conversations_path" class="btn btn-info">
-                <%= fa_icon "user-plus", class:"fa-lg" %> <t key="mercator.start_conversation" />
-              </a>
-            </else>
-          </div>
+          <p><video-chat-link/></p>
+          <p><online-consulting-link/></p>
+
           <view with="&this.active_product_count" /> <t key="mercator.products_available" /><br/>
           <t key="mercator.starting_from" /> <strong><view with="&number_to_currency(this.starting_from)"/></strong>
          <t key="mercator.up_to" />  <strong><view with="&number_to_currency(this.up_to)"/></strong>

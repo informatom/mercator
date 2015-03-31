@@ -1,0 +1,5 @@
+<def tag="video-chat-link">
+  <a href="/videochat" class="btn btn-default">
+    <%= fa_icon "video-camera", class:"fa-lg" %> Video Chat
+  </a>
+</def>

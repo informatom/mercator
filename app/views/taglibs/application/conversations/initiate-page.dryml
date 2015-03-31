@@ -1,0 +1,16 @@
+<extend tag="initiate-page" for="Conversation">
+  <old-initiate-page merge>
+    <before-form:>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="alert alert-info">
+            <view with="&this.messages.first" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <photo-card with="&User.robot" />
+        </div>
+      </div>
+    </before-form:>
+  </old-initiate-page>
+</extend>

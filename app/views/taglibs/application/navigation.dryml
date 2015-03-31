@@ -4,28 +4,8 @@
       <webpage-navigation with="&Webpage.roots.published"/>
     </default:>
     <right:>
-      <li>
-        <a href="&initiate_conversations_path" style="background-color: #fff; color: #012E4F;">
-          <if test="&ContentElement.find_by(name_de: 'video-chat')">
-            <photo name="video-chat" height="24"/>
-          </if>
-          <else>
-            <%= fa_icon "video-camera", class:"fa-lg" %>
-          </else>
-          <h4 style="display: inline; vertical-align: bottom">&nbsp; <t key="mercator.start_conversation" /></h4>
-        </a>
-      </li>
-      <li>
-        <a href="/videochat" style="background-color: #fff; color: #012E4F;">
-          <if test="&ContentElement.find_by(name_de: 'video-chat')">
-            <photo name="video-chat" height="24"/>
-          </if>
-          <else>
-            <%= fa_icon "video-camera", class:"fa-lg" %>
-          </else>
-          <h4 style="display: inline; vertical-align: bottom">&nbsp; <t key="mercator.video_chat" /></h4>
-        </a>
-      </li>
+      <li><online-consulting-link/></li>
+      <li><video-chat-link/></li>
     </right:>
   </navigation>
 </def>

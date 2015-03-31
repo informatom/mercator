@@ -1,0 +1,131 @@
+<extend tag="show-page" for="Conversation">
+  <old-show-page merge>
+    <content-header: ></content-header: >
+
+    <content-body:>
+      <h2 id="header">
+        <a href="/videochat">
+          <photo name="video-chat" width="32" style="vertical-align: super;"/>
+        </a>
+        <t key="activerecord.models.conversation.one"/> &nbsp;
+      </h2>
+      <h4>&nbsp; &nbsp; &nbsp; &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h4>
+
+      <div class="row">
+        <div class="col-md-0 hidden" id="left-column" ></div>
+
+        <div class="col-md-8 moveable" id="middle-column">
+
+          <div class="panel panel-default">
+            <div class="panel-heading" part="consultant">
+              <if:consultant>
+                <div class="media">
+                  <div class="media-left">
+                    <%= image_tag(this.photo.url(:thumb), class: "media-object img-polaroid") %>
+                  </div>
+                  <div class="media-body">
+                    <t key="mercator.your_consultant"/>:<br/><br/>
+                    <view:first-name/> <view:surname/>
+                  </div>
+                </div>
+              </if>
+            </div>
+
+            <div class="panel-body" part="messages">
+              <collection: with="&this.messages.limit(5).reverse">
+                <if test="&this.sender != this.conversation.customer && this.sender != this.conversation.consultant">
+                  <card type="warning" />
+                </if>
+                <else>
+                  <card />
+                </else>
+              </collection>
+            </div>
+
+            <div class="panel-footer">
+              <form with="&@message" update="mymessages">
+                <input:content class="input-block-level form-control"
+                               placeholder="#{I18n.translate('mercator.your_message')}" />
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 moveable" id="right-column">
+          <h3 class="blue"><%= t("attributes.offers") %></h3>
+          <collection:offers part="offers"/>
+
+          <h3 class="blue"><%= t("attributes.suggestions") %></h3>
+          <ul class="list-group">
+            <collection:suggestions part="suggestions"/>
+          </ul>
+
+          <h3 class="blue"><%= t("attributes.downloads") %></h3>
+          <ul class="list-group">
+            <collection:downloads part="downloads"/>
+          </ul>
+
+          <div part="links">
+            <h3 class="blue"><%= t("attributes.links") %></h3>
+            <ul class="list-group">
+              <collection:links />
+            </ul>
+
+            <if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
+              <div id="cobrowsing-area" class="hidden" part="cobrowsing">
+                <iframe src="#{this.last_link.url}" width="100%" height="800">
+                  <p>
+                    <t key="mercator.messages.conversation.no_frames" />:
+                    <a href="&this.last_link.url">Link</a>
+                  </p>
+                </iframe>
+              </div>
+              <script>
+                $('.bootstrap-content').addClass('widescreen')
+                $('#middle-column').removeClass('col-md-8').addClass('col-md-3')
+                $('#right-column').removeClass('col-md-4').addClass('col-md-3')
+                $('#left-column').removeClass('col-md-0 hidden').addClass('col-md-9')
+                $('#left-column').html($('#cobrowsing-area').html())
+                $('#header')[0].scrollIntoView(true)
+              </script>
+            </if>
+            <else>
+              <script>
+                $('.bootstrap-content').removeClass('widescreen')
+                $('#left-column').removeClass('col-md-9').addClass('hidden col-md-0')
+                $('#middle-column').removeClass('col-md-3').addClass('col-md-8')
+                $('#right-column').removeClass('col-md-3').addClass('col-md-4')
+                $('body')[0].scrollIntoView(true)
+              </script>
+            </else>
+          </div>
+
+          <h3 class="blue"><t key="activerecord.models.feedback.one" /></h3>
+          <p><t key="mercator.feedback_request" />:</p>
+          <p><my-transition-link transition="feedback" method="get" class="btn-primary"/></p>
+        </div>
+      </div>
+
+      <!-- Form and Scripts for refreshing content dynamically -->
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/conversations/" + this.id.to_s %>
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/orders/" + current_user.basket.id.to_s %>
+
+      <% ["messages", "links", "downloads", "offers", "consultant", "summary"].each do |part| %>
+        <form id="#{part}-form" style="display:none;" action="refresh" update="#{part}">
+          <input name="id" value="#{this.id}" type="hidden"/>
+        </form>
+      <% end %>
+
+      <script>
+          PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/conversations/<%= this.id.to_s -%>", function(data, channel) {
+            $("form#" + data.type + "-form").submit();
+          });
+      </script>
+      <script>
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
+          $("form#" + "summary-form").submit();
+        });
+      </script>
+    </content-body:>
+  </old-show-page>
+</extend>
