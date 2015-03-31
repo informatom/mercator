@@ -1,0 +1,30 @@
+<extend tag="form" for="Category">
+  <old-form merge multipart>
+    <field-list: fields='name_de, name_en, state, usage, description_de, description_en,
+                         long_description_de, long_description_en, position, parent-id,
+                         erp_identifier, squeel_condition,
+                         document, photo, filtermin, filtermax'>
+      <state-view:>
+          <select-menu class="form-control"
+                       name="category[state]"
+                       options="&Category::Lifecycle.states.*[0].map {|state| [I18n.t('mercator.states.' + state.to_s), state.to_s] }"/>
+      </state-view:>
+
+      <parent-id-view:>
+        <tree-select-one same-model include-none class="form-control"/>
+      </parent-id-view:>
+
+    </field-list:>
+
+    <actions:>
+      <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/>
+      <if test="&@cancelpath">
+        <or-cancel param="cancel" href="&@cancelpath"/>
+      </if>
+      <else>
+        <or-cancel param="cancel" />
+      </else>
+    </actions:>
+
+  </old-form>
+</extend>

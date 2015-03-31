@@ -1,0 +1,29 @@
+<extend tag="show-page" for="PageTemplate">
+  <old-show-page merge>
+    <before-content-header:>
+      <p>
+        <a href="&admin_categories_path" class="btn btn-info">
+          <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
+        </a>
+      </p>
+    </before-content-header:>
+
+    <content-body: param>
+      <field-list fields="name, dryml, content, placeholder-list" param>
+        <content-field: replace />
+        <placeholder-list-view:>
+          <span class="form-control dryml-tag view page-template-dryml " disabled="disabled"><view/></span>
+        </placeholder-list-view:>
+      </field-list>
+      <pre style="background-color: white"><code class="xhtml"><%= this.content %></code></pre>
+    </content-body:>
+
+    <after-content:>
+      <p>
+        <a href="&admin_categories_path" class="btn btn-info">
+          <ht key="category.nav_item" count="100"><model-name-human count="100"/></ht>
+        </a>
+      </p>
+    </after-content:>
+  </old-show-page>
+</extend>
