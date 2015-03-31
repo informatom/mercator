@@ -1,5 +1,5 @@
 <def tag="online-consulting-link">
-  <set path="&current_user.conversations.any ?
+  <set path="&current_user.conversations.any? ?
              conversation_path(current_user.conversations.order(:created_at).last) :
              initiate_conversations_path"/>
   <a href="&path" class="btn btn-default">
