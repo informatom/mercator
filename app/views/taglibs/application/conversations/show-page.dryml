@@ -43,7 +43,7 @@
             </div>
 
             <div class="panel-footer">
-              <form with="&@message" update="mymessages">
+              <form with="&@message" update="mymessages" reset-form>
                 <input:content class="input-block-level form-control"
                                placeholder="#{I18n.translate('mercator.your_message')}" />
               </form>
