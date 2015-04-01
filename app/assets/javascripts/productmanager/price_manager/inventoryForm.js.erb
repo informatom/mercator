@@ -119,7 +119,7 @@ function inventoryForm() {
       { name: 'charge', type: 'text' },
       { name: 'storage', type: 'text' },
       { name: 'delivery_time', type: 'list', required : true,
-        options: { items: [ <% Constant.where(key: 'delivery_times_de').first.value.split(',').each do |option| %>
+        options: { items: [ <% Constant.find_by(key: 'delivery_times_de').value.split(',').each do |option| %>
                               { id: '<%= option %>', text: '<%= option %>'},
                             <% end %> ] } },
       { name: 'created_at', type: 'text', disabled: true },

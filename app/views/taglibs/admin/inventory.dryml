@@ -13,7 +13,7 @@
       <delivery-time-view:>
         <select-menu class="form-control"
                      name="inventory[delivery_time]"
-                    options="&Constant.where(key: 'delivery_times_de').first.value.split(',')"/>
+                    options="&Constant.find_by(key: 'delivery_times_de').value.split(',')"/>
       </delivery-time-view:>
     </field-list>
   </old-form>

@@ -41,6 +41,4 @@ Mercator::Application.configure do
   :email => { :email_prefix => "[MERCATOR - " + CONFIG[:system_name] + "] ",
               :sender_address => %{"notifier" <error@mercator.informatom.com>},
               :exception_recipients => CONFIG[:exception_notification] }
-
-  Rails.application.routes.default_url_options[:host] = 'example.com:8888'
 end
