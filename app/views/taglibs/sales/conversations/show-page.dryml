@@ -62,7 +62,7 @@
           <create-button with="&Link" update="messages" label="&ht('suggestion.actions.show')"
                          fields="&{url: request.host_with_port + '/conversations/'+ this.id.to_s + '/suggestions',
                                    conversation_id: this.id.to_s }"/>
-
+          <hr/>
 
           <h3><t key="mercator.file_and_image_upload" /></h3>
           <t key="mercator.drop_here" />
@@ -112,7 +112,6 @@
               </div>
             </div>
           </form>
-          <hr/>
 
           <hr/>
           <my-creator-link with="&Offer" creator="build" class="btn-primary"/>
