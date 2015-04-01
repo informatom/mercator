@@ -42,5 +42,5 @@ Mercator::Application.configure do
               :sender_address => %{"notifier" <error@mercator.informatom.com>},
               :exception_recipients => CONFIG[:exception_notification] }
 
-  Rails.application.routes.default_url_options[:host] = 'www.example.com'
+  Rails.application.routes.default_url_options[:host] = 'example.com'
 end
