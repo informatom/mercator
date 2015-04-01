@@ -1,0 +1,21 @@
+<def tag="card" for="Conversation">
+  <card class="conversation" param="default" merge>
+    <header: param>
+      <a><name/></a>
+    </header:>
+    <body:>
+      <div class="row">
+        <div class="col-md-3">
+          <unless test="&this.consultant">
+            <%= link_to t("mercator.take"), take_sales_conversation_path(this) %>
+          </unless>
+          <if test="&this.consultant && this.consultant.id != current_user.id">
+              <%= link_to t("mercator.take") + " " + t("mercator.from") + " " + this.consultant.name, take_sales_conversation_path(this) %>
+          </if>
+        </div>
+        <div class="col-md-2"><view:created-at/></div>
+        <div class="col-md-2"><view with="&time_ago_in_words(this.created_at)"/></div>
+      </div>
+    </body:>
+  </card>
+</def>
