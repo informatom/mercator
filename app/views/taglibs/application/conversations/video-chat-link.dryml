@@ -1,7 +1,7 @@
 <def tag="video-chat-link">
   <set domain="&Constant.where(key: 'cms_domain').first.value" />
   <set path="&webpage_path(Webpage.find_by(slug: 'videochat'), domain: domain)"/>
-  <%= webpage_path(Webpage.find_by(slug: 'videochat'), domain: domain) %>
+  <%= domain %>
   <a href="&path" class="btn btn-default" target="videochat">
     <%= fa_icon "video-camera", class: "fa-lg" %> Video Chat
   </a>
