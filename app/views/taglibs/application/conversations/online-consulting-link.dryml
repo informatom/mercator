@@ -1,8 +1,8 @@
 <def tag="online-consulting-link">
   <set domain="&Constant.where(key: 'cms_domain').first.value" />
   <set path="&current_user.conversations.any? ?
-             conversation_path(current_user.conversations.order(:created_at).last, domain: domain) :
-             initiate_conversations_path(domain: domain)"/>
+             conversation_url(current_user.conversations.order(:created_at).last, domain: domain) :
+             initiate_conversations_url(domain: domain)"/>
   <a href="&path" class="btn btn-default" target="conversation">
     <%= fa_icon "user-plus", class:"fa-lg" %>
     <t key="mercator.start_conversation" />
