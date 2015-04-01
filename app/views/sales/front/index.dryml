@@ -4,7 +4,7 @@
 
   <content:>
     <header class="content-header hero-unit">
-      <h1><app-name /> <t key='mercator.sales_subsite_name'/></h1>
+      <h1><t key='mercator.sales_subsite_name'/></h1>
       <section class="welcome-message">
         <h3><t key='mercator.sales_subheading'/></h3>
         <ul>

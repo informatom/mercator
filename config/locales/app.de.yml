@@ -810,7 +810,7 @@ de:
     restart_application: "Applikation neu starten"
     restarting: "Neustart"
     root_category: Wurzelkategorie
-    sales_subsite_name: Vertriebswesen
+    sales_subsite_name: Vertrieb
     sales_subheading: Die Seite zur Verwaltung der Beratungs-Sessions im Mercator Guided Selling System
     salutation:
       call: "Guten Tag! Mein Name ist %{first_name} %{surname}. Bitte sagen Sie mir noch um was es geht und ich hole einen Ventriebsmitarbeiter für Sie."
@@ -886,7 +886,7 @@ de:
         delete: Baustein löschen
         edit: Baustein bearbeiten
         other: Bausteine
-      contracting_subsite_name: Vertragswesen
+      contracting_subsite_name: Verträge
       create_folder: Verzeichnis erstellen
       edit_folder: Verzeichnis bearbeiten
       frontend_subsite_name: Frontend

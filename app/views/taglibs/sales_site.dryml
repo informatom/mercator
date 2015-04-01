@@ -8,3 +8,7 @@
 
 <include src="application"/>
 <include src="sales/*"/>
+
+<def tag="app-name">
+  Mercator - <t key="mercator.sales_subsite_name"/>
+</def>

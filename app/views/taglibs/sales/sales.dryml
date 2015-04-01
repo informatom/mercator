@@ -1,5 +1,9 @@
 <extend tag="page">
   <old-page merge>
     <container: class="container-fluid" remove-class="container"/>
+
+    <app-name:>
+      <a class="navbar-brand" href="#{base_url}/">Mercator</a>
+    </app-name:>
   </old-page>
 </extend>

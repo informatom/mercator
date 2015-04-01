@@ -1,16 +1,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.Sites") %>
-      <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item href="#{base_url}/"><t key='mercator.frontend_subsite_name'/></nav-item>
-        <nav-item href="#{base_url}/admin/"> <t key='hobo.admin.subsite_name'/></nav-item>
-        <nav-item href="#{base_url}/contracting/"><t key='mercator.contracting_subsite_name'/></nav-item>
-        <nav-item href="#{base_url}/sales/"><t key='mercator.sales_subsite_name'/></nav-item>
-        <nav-item href="#{base_url}/chat.html" target="new"><t key='mercator.video_chat'/></nav-item>
-      </ul>
-    </li>
+    <nav-item href="#{base_url}/admin/"> <t key='hobo.admin.subsite_name'/></nav-item>
+    <nav-item href="#{base_url}/sales/"><t key='mercator.sales_subsite_name'/></nav-item>
 
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("attributes.User") %>
@@ -121,5 +112,14 @@
         </nav-item>
       </ul>
     </li>
+
+    <li><video-chat-link/></li>
   </navigation>
+</def>
+
+<def tag="video-chat-link">
+  <set path="&webpage_url(Webpage.find_by(slug: 'videochat'), port: request.port)"/>
+  <a href="&path" target="videochat">
+    <%= fa_icon "video-camera", class: "fa-lg" %> Video Chat
+  </a>
 </def>
