@@ -1,0 +1,18 @@
+<def tag="search-card" for="String">
+  <h1 class ="col-md-12"><view/></h1>
+</def>
+
+<def tag="search-card" for="Category">
+  <div class="category media col-md-4" param="default" merge>
+    <if test="&this.photo.exists?">
+      <%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid", width: "50%"),
+                   category_path(this), class: "pull-left") %>
+    </if>
+    <div class="media-body">
+      <h3 class="media-header"><%= link_to( this.name, category_path(this)) %></h3>
+      <div param="description">
+        <view:description/>
+      </div>
+    </div>
+  </div>
+</def>

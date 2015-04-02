@@ -21,7 +21,9 @@
       <div class="col-md-8">
         <% this.in_groups_of(4) do |group| %>
           <div class="row">
-            <mini-card repeat="&group"/>
+            <div class="row-same-height">
+              <mini-card repeat="&group"/>
+            </div>
           </div>
         <% end %>
       </div>
