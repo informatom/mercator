@@ -14,20 +14,48 @@
   </content-header:>
 
   <content-body:>
-    <ul class="nav nav-tabs" id="products-tabs">
-      <li class="active"><a href="#properties" data-toggle="tab"><t key="attributes.properties"/></a></li>
-      <li><a href="#related" data-toggle="tab"><t key="attributes.related_products"/></a></li>
-      <li><a href="#recommended" data-toggle="tab"><t key="attributes.recommended_products"/></a> </li>
-      <li><a href="#supplies" data-toggle="tab"><t key="attributes.supplies"/></a> </li>
+    <ul class="nav nav-tabs" id="product-tabs">
+      <if test="&this.values.any?">
+        <li class="active">
+          <a href="#properties" data-toggle="tab" name="properties">
+            <t key="attributes.properties"/>
+          </a>
+        </li>
+      </if>
+      <if test="&this.related_products.active.any?">
+        <li>
+          <a href="#related" data-toggle="tab" name="related">
+            <t key="attributes.related_products"/>
+          </a>
+        </li>
+      </if>
+      <if test="&this.recommended_products.active.any?">
+        <li>
+          <a href="#recommended" data-toggle="tab"  name="recommended">
+            <t key="attributes.recommended_products"/>
+          </a>
+        </li>
+      </if>
+      <if test="&this.supplies.active.any?">
+        <li>
+          <a href="#supplies" data-toggle="tab" name="supplies">
+            <t key="attributes.supplies"/>
+          </a>
+        </li>
+      </if>
       <if test="&this.number.split('-')[0] == 'HP'">
-        <li><a href="#syndication" data-toggle="tab"><t key="attributes.syndication"/></a> </li>
+        <li>
+          <a href="#syndication" data-toggle="tab" name="syndication">
+            <t key="attributes.syndication"/>
+          </a>
+        </li>
       </if>
     </ul>
 
     <set icecatid="&this.try(:icecat_product_id)"/>
 
     <div class="tab-content">
-      <div class="tab-pane active threecolumned" id="properties">
+      <div class="tab-pane active threecolumned" id="properties" >
         <div repeat="&this.tabled_values" class="dontbreak">
           <h3><view: with="&this[0]" class="blue"/></h3>
           <dl class="dl-horizontal">

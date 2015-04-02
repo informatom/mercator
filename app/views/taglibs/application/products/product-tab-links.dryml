@@ -1,0 +1,39 @@
+<def tag="product-tab-links">
+  <ul class="list-unstyled">
+    <if test="&this.values.any?">
+      <li>
+        <a href="#properties" onclick="$('[name=properties]').tab('show')">
+          <i class="glyphicon glyphicon-search"></i> <t key="attributes.properties"/>
+        </a>
+      </li>
+    </if>
+    <if test="&this.related_products.active.any?">
+      <li>
+        <a href="#related" onclick="$('[name=related]').tab('show')">
+          <i class="glyphicon glyphicon-search"></i> <t key="attributes.related_products"/>
+        </a>
+      </li>
+    </if>
+    <if test="&this.recommended_products.active.any?">
+      <li>
+        <a href="#recommended" onclick="$('[name=recommended]').tab('show')">
+          <i class="glyphicon glyphicon-search"></i> <t key="attributes.recommended_products"/>
+        </a>
+      </li>
+    </if>
+    <if test="&this.supplies.active.any?">
+      <li>
+        <a href="#supplies" onclick="$('[name=supplies]').tab('show')">
+          <i class="glyphicon glyphicon-search"></i> <t key="attributes.supplies"/>
+        </a>
+      </li>
+    </if>
+    <if test="&this.number.split('-')[0] == 'HP'">
+      <li>
+        <a href="#syndication" onclick="$('[name=syndication]').tab('show')">
+          <i class="glyphicon glyphicon-search"></i> <t key="attributes.syndication"/>
+        </a>
+      </li>
+    </if>
+  </ul>
+</def>

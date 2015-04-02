@@ -35,12 +35,16 @@
     </div>
 
     <div class="col-md-4">
+      <product-tab-links/>
+      <hr/>
+
+      <h4><t key="attributes.warranty" />:</h4>
       <p><small><view:warranty/></small></p>
 
+      <hr/>
+      <h4><t key="attributes.delivery_time" />:</h4>
       <p>
-        <small>
-          <t key="attributes.delivery_time" /> <view with="&inventory.delivery_time" />
-        </small>
+        <view with="&inventory.delivery_time" />
       </p>
 
       <set inventories="&Inventory.where(product_id: this.id)"/>
@@ -55,6 +59,8 @@
       </if>
 
       <if test="&this.features">
+        <hr/>
+        <h4><t key="activerecord.models.feature.other" />:</h4>
         <ul>
           <li repeat="&this.features"><view:text/></li>
         </ul>
