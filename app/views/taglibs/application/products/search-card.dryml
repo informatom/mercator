@@ -3,7 +3,10 @@
     <set inventory="&this.determine_inventory"/>
     <span class="pull-left">
       <if test="&this.photo.exists?">
-        <p><%= link_to( image_tag( this.photo.url(:thumb),  class: "media-object img-polaroid", width: "50%" ), product_path(this)) %></p>
+        <p><%= link_to(image_tag(this.photo.url(:thumb),
+                                 class: "media-object img-polaroid",
+                                 width: "50%" ),
+                       product_path(this)) %></p>
       </if>
     </span>
 
