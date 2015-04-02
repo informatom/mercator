@@ -20,16 +20,20 @@
           <t key="mercator.more_info" />
         </a>
       </h4>
-      <add-to-basket-button inventory="&inventory"/>
+      <p>
+        <add-to-basket-button inventory="&inventory"/>
 
-      <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
-        <if test="&session[:compared].include?(this.id)">
-          <dont-compare-product />
+        <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
+          <if test="&session[:compared].include?(this.id)">
+            <dont-compare-product />
+          </if>
+          <else>
+            <compare-product />
+          </else>
         </if>
-        <else>
-          <compare-product />
-        </else>
-      </if>
+        &nbsp;
+      </p>
+      <p><compare-link/></p>
     </div>
 
     <div class="col-xs-4">

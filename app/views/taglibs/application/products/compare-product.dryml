@@ -1,7 +1,7 @@
 <def tag="compare-product">
   <transition-link transition="compare" method="put">
     <if test="&ContentElement.find_by(name_de: 'produkt-vergleichen')">
-      <photo name="produkt-vergleichen" class="card-button pull-right"/>
+      <photo name="produkt-vergleichen" class="card-button"/>
     </if>
     <else>
       <div class="btn btn-primary">

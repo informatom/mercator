@@ -1,0 +1,11 @@
+<def tag="basket-info">
+  <if test="&current_user.basket">
+    <a with="&current_user.basket" class="basket btn btn-success">
+      <%= fa_icon "shopping-cart", class:"fa-lg" %>
+      <span part="summary">
+        <view with="&current_user.basket.lineitems.count" no-wrapper/> Pos. /
+        <view with="&number_to_currency(current_user.basket.sum_incl_vat)" no-wrapper/> <%= fa_icon "eur" %>
+      </span>
+    </a>
+  </if>
+</def>

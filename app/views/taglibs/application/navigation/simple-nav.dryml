@@ -1,0 +1,15 @@
+<def tag="simple-nav">
+  <ul>
+    <repeat>
+      <li>
+        <if test="&this.menu">
+          <a href="#"><view:title no-wrapper/></a>
+          <simple-nav with="&this.children"/>
+        </if>
+        <else>
+          <a href="/#{this.url}"><view:title no-wrapper/></a>
+        </else>
+      </li>
+    </repeat>
+  </ul>
+</def>

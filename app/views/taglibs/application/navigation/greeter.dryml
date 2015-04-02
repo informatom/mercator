@@ -1,0 +1,3 @@
+<def tag="greeter" >
+  Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
+</def>

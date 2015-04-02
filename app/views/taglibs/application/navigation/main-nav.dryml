@@ -1,0 +1,11 @@
+<def tag="main-nav">
+  <navigation class="main-nav" without-live-search merge-attrs>
+    <default:>
+      <webpage-navigation with="&Webpage.roots.published"/>
+    </default:>
+    <right:>
+      <li><online-consulting-link/></li>
+      <li><video-chat-link/></li>
+    </right:>
+  </navigation>
+</def>

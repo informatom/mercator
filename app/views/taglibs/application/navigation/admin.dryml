@@ -1,0 +1,11 @@
+<def tag="admin" >
+  <div class="top-right">
+    <if test="&current_user.administrator?">
+      <a href='/admin' target="admin"><%= fa_icon "cog", class: "text-danger fa-2x" %></a>
+    </if>
+    <if test="&current_user.sales?">
+      <a href='/sales' target="sales"><%= fa_icon "building", class: "text-success fa-2x" %></a>
+      <a href='/contracting' target="contracting"><%= fa_icon "university", class: "text-warning fa-2x" %></a>
+    </if>
+  </div>
+</def>

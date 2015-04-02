@@ -18,7 +18,10 @@
         <h1><view /></h1>
         <p><i><view:long-description/></i></p>
         <card repeat="&this.children.active"/>
-        <overview-card repeat="&@products"/>
+        <repeat with="&@products">
+          <overview-card/>
+          <hr/>
+        </repeat>
       </div>
     </div>
   </content-body:>

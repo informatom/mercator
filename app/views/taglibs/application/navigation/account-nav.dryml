@@ -1,60 +1,3 @@
-<def tag="main-nav">
-  <navigation class="main-nav" without-live-search merge-attrs>
-    <default:>
-      <webpage-navigation with="&Webpage.roots.published"/>
-    </default:>
-    <right:>
-      <li><online-consulting-link/></li>
-      <li><video-chat-link/></li>
-    </right:>
-  </navigation>
-</def>
-
-
-<def tag="webpage-navigation">
-  <repeat>
-    <if test="&this.menu">
-      <li class='nav-item dropdown'>
-        <a class="dropdown-toggle" id="drop#{this.id}" data-toggle="dropdown" href="#">
-          <view:title/>
-          <b class="caret"></b>
-        </a>
-
-        <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
-          <repeat with="&this.children.where(state: :published)">
-            <nav-item href="/#{this.url}">
-              <view:title/>
-            </nav-item>
-          </repeat>
-        </ul>
-      </li>
-    </if>
-
-    <else>
-      <nav-item href="/#{this.url}">
-        <view:title/>
-      </nav-item>
-    </else>
-  </repeat>
-</def>
-
-
-<def tag="simple-nav">
-  <ul>
-    <repeat>
-      <li>
-        <if test="&this.menu">
-          <a href="#"><view:title no-wrapper/></a>
-          <simple-nav with="&this.children"/>
-        </if>
-        <else>
-          <a href="/#{this.url}"><view:title no-wrapper/></a>
-        </else>
-      </li>
-    </repeat>
-  </ul>
-</def>
-
 <def tag='account-nav' attrs='include-search' >
   <div class='nav-collapse collapse'>
   <do with='&current_user'>
@@ -63,7 +6,7 @@
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
       <if test="&current_user.basket">
         <li param='basket'>
-          <nav-item with="&current_user.basket">
+          <nav-item with="&current_user.basket" >
             <%= fa_icon "shopping-cart", class:"fa-lg" %>
             <span part="summaryxxx" style="display: inline">
               <%= current_user.basket.lineitems.count %> Pos.
@@ -151,84 +94,4 @@
     </ul>
   </do>
   </div>
-</def>
-
-
-<def tag="language-selector" >
-  <a class="dropdown-toggle" id="droplang" data-toggle="dropdown" href="#">
-    <if test="&I18n.locale == :de"><image src="de.png"/></if>
-    <if test="&I18n.locale == :en"><image src="en.png"/></if>
-    <b class="caret"></b>
-  </a>
-
-  <ul class="dropdown-menu" role="menu" aria-labelledby="droplang">
-    <li class='nav-item' param='administration'>
-      <a href='/?locale=de'><image src="de.png"/> Deutsch</a>
-    </li>
-    <li class='nav-item' param='sales'>
-      <a href='/?locale=en'><image src="en.png"/> English</a>
-    </li>
-  </ul>
-</def>
-
-
-<def tag="language-selector-plain" >
-  <span class="dropdown" >
-    <a id="droplang" data-toggle="dropdown" href="#">
-      <if test="&I18n.locale == :de"><image src="de.png"/></if>
-      <if test="&I18n.locale == :en"><image src="en.png"/></if>
-      <b class="caret"></b>
-    </a>
-
-    <ul class="dropdown-menu" role="menu" aria-labelledby="droplang">
-      <li class='nav-item' param='administration'>
-        <a href='/?locale=de'><image src="de.png"/> Deutsch</a>
-      </li>
-      <li class='nav-item' param='sales'>
-        <a href='/?locale=en'><image src="en.png"/> English</a>
-      </li>
-    </ul>
-  </span>
-</def>
-
-
-<def tag="greeter" >
-  Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
-</def>
-
-
-<def tag="admin" >
-  <div class="top-right">
-    <if test="&current_user.administrator?">
-      <a href='/admin' target="admin"><%= fa_icon "cog", class: "text-danger fa-2x" %></a>
-    </if>
-    <if test="&current_user.sales?">
-      <a href='/sales' target="sales"><%= fa_icon "building", class: "text-success fa-2x" %></a>
-      <a href='/contracting' target="contracting"><%= fa_icon "university", class: "text-warning fa-2x" %></a>
-    </if>
-  </div>
-</def>
-
-<def tag="basket-info">
-  <if test="&current_user.basket">
-    <a with="&current_user.basket" class="basket">
-      <%= fa_icon "shopping-cart", class:"fa-lg" %>
-      <span part="summary" class="label label-danger" style="display: inline">
-        <view with="&current_user.basket.lineitems.count" no-wrapper/> Pos. /
-        <view with="&number_to_currency(current_user.basket.sum_incl_vat)" no-wrapper/> <%= fa_icon "eur" %>
-      </span>
-    </a>
-  </if>
-</def>
-
-
-<def tag="compare-link">
-  <if test="&session[:compared]">
-    <a href="&comparison_products_path">
-      <%= fa_icon "gift", class: "fa-lg" %> <%= fa_icon "arrows-h", class: "fa-lg" %>
-      <%= fa_icon "gift", class: "fa-lg" %>
-      <span class="label label-info"><%= session[:compared].count %> Art.</span>
-    </a>
-    &nbsp;
-  </if>
 </def>

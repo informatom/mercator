@@ -1,0 +1,7 @@
+<include src="taglibs/application/categories/*"/>
+<include src="taglibs/application/conversations/*"/>
+<include src="taglibs/application/navigation/*"/>
+<include src="taglibs/application/offers/*"/>
+<include src="taglibs/application/orders/*"/>
+<include src="taglibs/application/products/*"/>
+<include src="taglibs/application/webpages/*"/>

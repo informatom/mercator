@@ -1,0 +1,11 @@
+
+<def tag="compare-link">
+  <if test="&session[:compared]">
+    <a href="&comparison_products_path" class="btn btn-info">
+      <%= fa_icon "gift", class: "fa-lg" %> <%= fa_icon "arrows-h", class: "fa-lg" %>
+      <%= fa_icon "gift", class: "fa-lg" %>
+      <%= session[:compared].count %> Art.
+    </a>
+    &nbsp;
+  </if>
+</def>

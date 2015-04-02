@@ -1,0 +1,18 @@
+<def tag="language-selector-plain" >
+  <span class="dropdown" >
+    <a id="droplang" data-toggle="dropdown" href="#">
+      <if test="&I18n.locale == :de"><image src="de.png"/></if>
+      <if test="&I18n.locale == :en"><image src="en.png"/></if>
+      <b class="caret"></b>
+    </a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="droplang">
+      <li class='nav-item' param='administration'>
+        <a href='/?locale=de'><image src="de.png"/> Deutsch</a>
+      </li>
+      <li class='nav-item' param='sales'>
+        <a href='/?locale=en'><image src="en.png"/> English</a>
+      </li>
+    </ul>
+  </span>
+</def>
