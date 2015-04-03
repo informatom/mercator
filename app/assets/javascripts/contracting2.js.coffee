@@ -1,6 +1,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require_tree ./contracting/vendor
+#= require hobo_bootstrap
+#= require hobo_bootstrap_ui
 #= require ember
 #= require ember-data
 #= require_self

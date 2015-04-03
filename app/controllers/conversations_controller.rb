@@ -48,6 +48,7 @@ class ConversationsController < ApplicationController
   end
 
   def do_initiate
+    debugger
     do_creator_action :initiate do
       self.this.update(customer: current_user)
       self.this.delay.inform_sales(locale: I18n.locale) # we fork into delayed handling

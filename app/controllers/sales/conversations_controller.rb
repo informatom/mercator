@@ -41,4 +41,10 @@ class Sales::ConversationsController < Sales::SalesSiteController
       session[:current_conversation_id] = this.id
     end
   end
+
+  def destroy
+    hobo_destroy do
+      redirect_to sales_conversations_path
+    end
+  end
 end
