@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
   # after_filter :track_action
+  after_filter :allow_iframe
 
   def auto_log_in
     self.current_user = User.find_by_remember_token(params[:remember_token]) if params[:remember_token]
@@ -106,4 +107,9 @@ protected
 #  def track_action
 #    ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
 #  end
+
+  def allow_iframe
+    # We allow embedding in iframes
+    response.headers.delete "X-Frame-Options"
+  end
 end
