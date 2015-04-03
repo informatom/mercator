@@ -7,12 +7,9 @@ function contentelementsgrid() {
 
     toolbar: {
       items: [
-        { type: 'button', id: 'newContentElement', img: 'fa fa-plus',
-          caption: I18n.t('js.cm.ContentElement.create') },
-        { type: 'button', id: 'editContentElement', img: 'fa fa-edit', disabled: true,
-          caption: I18n.t('js.cm.ContentElement.edit') },
-        { type: 'button', id: 'deleteContentElement', img: 'fa fa-trash', disabled: true,
-          caption: I18n.t('js.cm.ContentElement.delete') }
+        { type: 'button', id: 'newContentElement', img: 'fa fa-plus' },
+        { type: 'button', id: 'editContentElement', img: 'fa fa-edit', disabled: true },
+        { type: 'button', id: 'deleteContentElement', img: 'fa fa-trash', disabled: true }
       ],
       onClick: function (target, data) {
         var selection = w2ui.contentelementsgrid.getSelection()

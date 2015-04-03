@@ -2,6 +2,28 @@ function webpageForm() {
   $('#webpageForm').w2form({
     name: 'webpageForm',
     url: 'contentmanager/front/manage_webpage/0',
+
+formHTML:
+      '<div class="w2ui-page page-0">'+
+      '  <div style="float: left">'+
+      '    <input name="title_de" placeholder="' + I18n.t('attributes.title_de') + '"/><br/><br/>' +
+      '    <input name="title_en" placeholder="' + I18n.t('attributes.title_en') + '"/><br/><br/>'+
+      '    <input name="url" placeholder="Url"/><br/><br/>'+
+      '    <input name="slug" placeholder="Slug"/><br/><br/>'+
+      '    <input name="seo_description" placeholder="' + I18n.t('attributes.seo_description') + '"/><br/><br/>'+
+      '    <input name="position" placeholder="' + I18n.t('attributes.position') + '"/><br/><br/>'+
+      '    <input name="page_template_id" placeholder="' + I18n.t('attributes.page_template') + '"/><br/><br/>'+
+      '  </div>'+
+      '</div>'+
+      '<div class="w2ui-buttons">'+
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">' + w2utils.lang('Save') +
+      '   </button>' +
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">' + w2utils.lang('Delete') +
+      '   </button></br></br>' +
+      '   <button class="w2ui-btn w2ui-btn-blue" name="create">' + w2utils.lang('Add New') +
+      '   </button>' +
+      '</div>',
+
     fields : [
       { field: 'title_de', type: 'text', required: true,
         html: { caption: I18n.t("attributes.title_de") } },
