@@ -75,7 +75,7 @@ class ConversationsController < ApplicationController
   def suggestions
     response.headers.delete('X-Frame-Options')
     @conversation = Conversation.find(params[:id])
-    @this = @products = @conversation.products.paginate(:page => 1, :per_page => @conversation.products.count)
+    self.this = @products = @conversation.products.paginate(:page => 1, :per_page => @conversation.products.count)
     hobo_index
   end
 end

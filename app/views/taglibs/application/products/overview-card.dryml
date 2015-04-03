@@ -2,8 +2,7 @@
 
 <def tag="overview-card" for="Product" >
   <div class="row product-overview-card" part="overview-card" id="overview-card-#{this.id}">
-    <set inventory="&@inventory || this.determine_inventory"/>
-
+    <set inventory="&@inventory.present? ? @inventory : this.determine_inventory"/>
     <div class="col-xs-4 text-center">
       <h5><view with="&inventory.number or number" /></h5>
 
