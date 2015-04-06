@@ -112,9 +112,14 @@
               </div>
             </div>
           </form>
-
           <hr/>
+
           <my-creator-link with="&Offer" creator="build" class="btn-primary"/>
+          <hr/>
+
+          <a href="&edit_admin_user_path(@this.customer)" class="btn btn-warning" target="admin">
+            <t key="hobo.actions.edit" model="&this.customer.name"/>
+          </a>
         </div>
       </div>
    </content-body:>
