@@ -26,7 +26,7 @@
               <br/><br/>
             </div>
             <div>
-              <b><t key="attributes.discount-rel"/>:</b>
+              <b><t key="attributes.discount_rel"/>:</b>
               <click-editor-innards:discount-rel/><br/><br/>
             </div>
             <p><my-transition-link transition="add_position" class="btn-primary"/></p>
