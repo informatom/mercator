@@ -165,15 +165,19 @@ en:
     sender: Sender
     seo_description: Description (SEO)
     severity: Severity
-    shipping_country: Shipping Country
-    shipping_c_o: Shipping c/o
-    shipping_city: Shipping City
-    shipping_detail: Shipping Detail
+    shipping_country: Country (Shipping)
+    shipping_company: Company (Shipping)
+    shipping_city: City (Shipping)
+    shipping_detail: Detail (Shipping)
+    shipping_first_name: First Name (Shipping)
+    shipping_gender: Salutation (Shipping)
     shipping_method: Shipping Method
-    shipping_name: Shipping Name
-    shipping_phone: Shipping Phone Number
-    shipping_postalcode: Shipping Postal Code
-    shipping_street: Shipping Street
+    shipping_name: Name (Shipping)
+    shipping_phone: Phone Number (Shipping)
+    shipping_postalcode: Postal Code (Shipping)
+    shipping_street: Street (Street)
+    shipping_surname: Surname (Street)
+    shipping_title: Title (Street)
     Sites: Sites
     size: Size
     squeel_condition: Condition (SQueeL)

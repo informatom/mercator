@@ -176,6 +176,7 @@ de:
     shipping_first_name: Vorname (Lieferung)
     shipping_gender: Anrede (Lieferung)
     shipping_method: Versandart
+    shipping_phone: Telefon (Lieferung)
     shipping_postalcode: Postleitzahl (Lieferung)
     shipping_street: Straße (Lieferung)
     shipping_surname: Familienname (Lieferung)
