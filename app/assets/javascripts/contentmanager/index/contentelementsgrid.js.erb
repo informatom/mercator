@@ -80,12 +80,19 @@ function contentelementsgrid() {
 
     onClick: function(event) {
       registerDraggables()
+
       event.onComplete = function () {
         var selection = this.getSelection()
         if (selection.length == 1) {
           this.toolbar.enable('editContentElement')
           this.toolbar.enable('deleteContentElement')
           previewImage(this.get(selection).recid)
+          $.ajax({
+            url:"/contentmanager/front/set_seleted_content_element/" + this.get(selection).recid,
+            method: "POST",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script'
+          })
         } else {
           this.toolbar.disable('editContentElement')
           this.toolbar.disable('deleteContentElement')

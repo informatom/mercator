@@ -3,7 +3,8 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   hobo_controller
   respond_to :html, :json, :js
 
-  def index; end
+  def index
+  end
 
   def show_foldertree
     render json: childrenarray(objects: Folder.arrange(order: :position),
@@ -26,6 +27,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
       webpage = Webpage.new
     else
       webpage = Webpage.find(params[:id])
+      session[:selected_webpage_id] = webpage.id
     end
 
     if params[:cmd] == "save-record"
@@ -130,6 +132,12 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def get_thumbnails
     @content_elements = ContentElement.where(folder_id: params[:id]).where.not(photo_file_name: nil)
+    session[:selected_folder_id] = params[:id].to_i
+  end
+
+  def set_seleted_content_element
+    session[:selected_content_element_id] = params[:id].to_i
+    render json: { status: "success" }
   end
 
   def delete_assignment
