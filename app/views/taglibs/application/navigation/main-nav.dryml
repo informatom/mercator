@@ -1,11 +1,24 @@
 <def tag="main-nav">
-  <navigation class="main-nav" without-live-search merge-attrs>
-    <default:>
-      <webpage-navigation with="&Webpage.roots.published"/>
-    </default:>
-    <right:>
-      <li><online-consulting-link/></li>
-      <li><video-chat-link/></li>
-    </right:>
-  </navigation>
+  <if test="&Constant.find_by_key('menu').try(:value) == 'collapsing'">
+    <div class="navbar-default">
+      <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Menü</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+  </if>
+
+  <div class="#{Constant.find_by_key('menu').try(:value) == 'collapsing' ? 'collapse navbar-collapse' : ''}" id="navbar-collapse-1">
+    <navigation class="main-nav" without-live-search merge-attrs>
+      <default:>
+        <webpage-navigation with="&Webpage.roots.published" class="testtest" />
+      </default:>
+      <right:>
+        <li><online-consulting-link/></li>
+        <li><video-chat-link/></li>
+      </right:>
+    </navigation>
+  </div>
 </def>
