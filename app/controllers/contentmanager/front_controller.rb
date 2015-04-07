@@ -36,6 +36,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
       webpage.position         = attrs[:position]
       webpage.title_de         = attrs[:title_de]
       webpage.title_en         = attrs[:title_en]
+      webpage.state            = attrs[:state][:id]
       webpage.url              = attrs[:url]
       webpage.slug             = attrs[:slug]
       webpage.seo_description  = attrs[:seo_description]
@@ -53,6 +54,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
           recid:            webpage.id,
           title_de:         webpage.title_de,
           title_en:         webpage.title_en,
+          state:            {id: webpage.state},
           url:              webpage.url,
           slug:             webpage.slug,
           seo_description:  webpage.seo_description,

@@ -15,7 +15,7 @@ class Webpage < ActiveRecord::Base
 
   attr_accessible :title_de, :title_en, :page_content_element_assignments, :content_elements,
                   :position, :parent_id, :parent, :position, :page_template, :url, :ancestry,
-                  :slug, :seo_description
+                  :slug, :seo_description, :state
   translates :title
   has_ancestry orphan_strategy: :adopt
 
@@ -111,4 +111,7 @@ class Webpage < ActiveRecord::Base
       (title + " <em style='color: green'>" + I18n.t("mercator.states.#{state}") + "</em>").html_safe
     end
   end
+
+  # this makes state editable from form
+  Webpage.attr_protected[:default] = Webpage.attr_protected[:default].subtract(["state"])
 end

@@ -8,6 +8,7 @@ formHTML:
       '  <div style="float: left">'+
       '    <input name="title_de" placeholder="' + I18n.t('attributes.title_de') + '"/><br/><br/>' +
       '    <input name="title_en" placeholder="' + I18n.t('attributes.title_en') + '"/><br/><br/>'+
+      '    <input name="state" placeholder="' + I18n.t('attributes.state') + '"/><br/><br/>' +
       '    <input name="url" placeholder="Url"/><br/><br/>'+
       '    <input name="slug" placeholder="Slug"/><br/><br/>'+
       '    <input name="seo_description" placeholder="' + I18n.t('attributes.seo_description') + '"/><br/><br/>'+
@@ -25,19 +26,26 @@ formHTML:
       '</div>',
 
     fields : [
-      { field: 'title_de', type: 'text', required: true,
+      { name: 'title_de', type: 'text', required: true,
         html: { caption: I18n.t("attributes.title_de") } },
-      { field: 'title_en', type: 'text',
+      { name: 'title_en', type: 'text',
         html: { caption: I18n.t("attributes.title_en") } },
-      { field: 'url', type: 'text',
+      { name: 'state', type: 'list', required : true,
+        options: {
+          items: <%= a = Webpage::Lifecycle.states.*[0].map {
+            |state| "{id: '" + state.to_s + "', text: I18n.t('mercator.states." + state.to_s + "')}"
+          }.to_s.gsub('"','') %>
+        },
+      },
+      { name: 'url', type: 'text',
         html: { caption: 'URL' } },
-      { field: 'slug', type: 'text',
+      { name: 'slug', type: 'text',
         html: { caption: 'Slug' } },
-      { field: 'seo_description', type: 'text',
+      { name: 'seo_description', type: 'text',
         html: { caption: I18n.t("attributes.seo_description") } },
-      { field: 'position', type: 'int', required: true,
+      { name: 'position', type: 'int', required: true,
         html: { caption: I18n.t("attributes.position") } },
-      { field: 'page_template_id', type: 'list', required: true, options: { items: pagetemplates },
+      { name: 'page_template_id', type: 'list', required: true, options: { items: pagetemplates },
         html: { caption: I18n.t("attributes.page_template") } }
     ],
 
