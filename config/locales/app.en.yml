@@ -840,6 +840,7 @@ en:
       published_but_hidden: hidden
       squeel: SQueeL
       standard: ordinary Category
+      switched_off: switched off
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories

@@ -100,14 +100,14 @@ function categoryForm() {
       { name: 'squeel_condition',    type: 'text' },
       { name: 'state',               type: 'list', required : true,
         options: {
-          items: <%= a = Category::Lifecycle.states.*[0].map {
+          items: <%= Category::Lifecycle.states.*[0].map {
             |state| "{id: '" + state.to_s + "', text: I18n.t('mercator.states." + state.to_s + "')}"
           }.to_s.gsub('"','') %>
         }
       },
       { name: 'usage',               type: 'list', required : true,
         options: {
-          items: <%= a = Category::Usage.values.map {
+          items: <%= Category::Usage.values.map {
             |value| "{id: '" + value + "', text: I18n.t('mercator.states." + value.to_s + "')}"
           }.to_s.gsub('"','') %>
         }

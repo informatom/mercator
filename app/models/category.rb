@@ -56,7 +56,7 @@ class Category < ActiveRecord::Base
 
   lifecycle do
     state :new, :default => true
-    state :active, :deprecated
+    state :active, :deprecated, :switched_off
 
     transition :activate,
                {:new => :active},
@@ -75,6 +75,16 @@ class Category < ActiveRecord::Base
 
     transition :reactivate,
                { :deprecated => :active },
+               :available_to => "User.administrator",
+               :subsite => "admin"
+
+    transition :switch_off,
+               { :deprecated => :switched_off },
+               :available_to => "User.administrator",
+               :subsite => "admin"
+
+    transition :switch_on,
+               { :switched_off => :deprecated },
                :available_to => "User.administrator",
                :subsite => "admin"
   end
