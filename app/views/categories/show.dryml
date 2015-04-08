@@ -20,7 +20,6 @@
         <card repeat="&this.children.active"/>
         <repeat with="&@products">
           <overview-card/>
-          <hr/>
         </repeat>
       </div>
     </div>
