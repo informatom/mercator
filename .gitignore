@@ -3,7 +3,6 @@
 
 app/views/taglibs/auto/*
 app/views/page_templates/*
-app/assets/stylesheets/front/glypha.ttf
 
 config/hobo_routes.rb
 config/private_pub.yml
