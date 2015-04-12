@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def login
     if  params[:fromfront] == "true"
-      last_user_id = current_user.id
+      last_user_id = current_user.id if current_user
       logout()
     end
 
