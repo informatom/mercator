@@ -142,6 +142,10 @@ class Offer < ActiveRecord::Base
     offeritems.sum('value') - discount
   end
 
+  def sum_before_discount
+    offeritems.sum('value')
+  end
+
   def discount
     self.discount_rel = 0 unless discount_rel
     offeritems.any? ? discount_rel * offeritems.sum('value') / 100 : 0

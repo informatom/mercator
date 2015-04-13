@@ -2,6 +2,15 @@
 
 <def tag="summary-card" for="Offer">
   <table class="table well table-striped table-condensed">
+    <tr>
+      <td><t key='mercator.sum_excl_vat'/></td>
+      <td>
+        <div class="text-right">
+          <view with="&number_to_currency(this.sum_before_discount)"/>
+        </div>
+      </td>
+    </tr>
+
     <if test="&this.discount_rel != 0">
       <tr class="order-darkgrey">
         <td>- <view:discount-rel/>% <t key='attributes.discount'/></td>
@@ -12,15 +21,6 @@
         </td>
       </tr>
     </if>
-
-    <tr>
-      <td><t key='mercator.sum_excl_vat'/></td>
-      <td>
-        <div class="text-right">
-          <view with="&number_to_currency(this.sum)"/>
-        </div>
-      </td>
-    </tr>
 
     <repeat:vat-items>
       <tr>
