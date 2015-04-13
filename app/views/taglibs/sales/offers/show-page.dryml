@@ -12,22 +12,22 @@
           <div class="col-md-4">
             <div part="complete">
               <strong><t key="attributes.valid_to" />:</strong>
-              <click-editor-innards:valid-until update="all">
+              <live-editor-innards:valid-until update="all">
                 <view: class="label label-warning"/>
-              </click-editor-innards:valid-until>
+              </live-editor-innards:valid-until>
               <br/><br/>
               <strong><t key="activerecord.attributes.offer.complete" />:</strong>
               <unless:complete>
                 <span class="label label-important"><t key="hobo.boolean_no" /></span>
               </unless:complete>
-              <click-editor-innards:complete update="complete">
+              <live-editor-innards:complete update="complete">
                 <view: class="label label-success"/>
-              </click-editor-innards:complete>
+              </live-editor-innards:complete>
               <br/><br/>
             </div>
             <div>
               <b><t key="attributes.discount_rel"/>:</b>
-              <click-editor-innards:discount-rel/><br/><br/>
+              <live-editor-innards:discount-rel/><br/><br/>
             </div>
             <p><my-transition-link transition="add_position" class="btn-primary"/></p>
           </div>
@@ -54,49 +54,53 @@
               <repeat with="&this.offeritems.order_by(:position)">
                 <tr part="offeritem" id="&this.id">
                   <td>
-                    <click-editor-innards:position update="offeritems">
-                      <input: class="input-mini"/>
-                    </click-editor-innards:position>
+                    <live-editor-innards:position update="offeritems" >
+                      <input: size="3"/>
+                    </live-editor-innards:position>
                     </td>
                   <td><if:product><%= image_tag this.photo.url(:thumb), width: "25%" %></if></td>
                   <td>
                     <div class="text-right">
-                      <click-editor-innards:amount update="offeritems">
-                        <input: class="input-mini"/>
-                      </click-editor-innards:amount>
+                      <live-editor-innards:amount update="offeritems">
+                        <input: size="3"/>
+                      </live-editor-innards:amount>
                     </div>
                   </td>
                   <td>
-                    <click-editor-innards:unit>
-                      <input: class="input-mini"/>
-                    </click-editor-innards:unit>
+                    <live-editor-innards:unit>
+                      <input: size="3"/>
+                    </live-editor-innards:unit>
                   </td>
                   <td>
-                    <click-editor-innards:product-number update="offeritems" >
-                      <input: replace><name-one:product-number complete-target="&Product.new()" completer="number_sales"/></input:>
-                    </click-editor-innards:product-number>
+                    <live-editor-innards:product-number>
+                      <input: replace>
+                        <name-one:product-number complete-target="&Product.new()"
+                                                 completer="number_sales"
+                                                 autocomplete="off" onClick="debugger" />
+                      </input:>
+                    </live-editor-innards:product-number>
                   </td>
                   <td>
-                    <click-editor-innards:description-de>
+                    <live-editor-innards:description-de>
                       <input: class="input-xlarge"/>
-                    </click-editor-innards:description-de><br/>
-                    <em><t key='attributes.delivery_time'/>:</em> <click-editor-innards:delivery-time/>
+                    </live-editor-innards:description-de><br/>
+                    <em><t key='attributes.delivery_time'/>:</em> <live-editor-innards:delivery-time/>
                   </td>
                   <td> <div class="text-right"> EUR</div> </td>
                   <td>
-                    <click-editor-innards:product-price update="offeritems">
-                      <input: class="input-mini"/>
-                    </click-editor-innards:product-price>
+                    <live-editor-innards:product-price update="offeritems">
+                      <input: size="3"/>
+                    </live-editor-innards:product-price>
                   </td>
                   <td>
-                    <click-editor-innards:discount-abs update="offeritems">
-                      <input: class="input-mini"/>
-                    </click-editor-innards:discount-abs>
+                    <live-editor-innards:discount-abs update="offeritems">
+                      <input: size="3"/>
+                    </live-editor-innards:discount-abs>
                   </td>
                   <td>
-                    <click-editor-innards:vat update="offeritems">
-                      <input: class="input-mini"/>
-                    </click-editor-innards:vat>
+                    <live-editor-innards:vat update="offeritems">
+                      <input: size="3"/>
+                    </live-editor-innards:vat>
                   </td>
                   <td>
                     <div class="text-right">

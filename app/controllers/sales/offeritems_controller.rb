@@ -14,8 +14,13 @@ class Sales::OfferitemsController < Sales::SalesSiteController
       @this.amount         = @amount          if @amount
       @this.product_price  = @product_price   if @product_price
       @this.discount_abs   = @discount_abs    if @discount_abs
-      @this.product_number = @product_number if @product_number
-      @this.product_id     = Product.find_by(number: @this.product_number).try(:id)
+      @this.product_number = @product_number
+      if product = Product.find_by(number: @this.product_number)
+        @this.product_id     = product.id
+        @this.description_de = product.description_de
+        @this.description_en = product.description_en
+        @this.delivery_time  = product.delivery_time
+      end
       @this.save
 
       if @this.product_id
