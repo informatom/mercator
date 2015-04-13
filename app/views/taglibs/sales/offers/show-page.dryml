@@ -67,12 +67,12 @@
                     </div>
                   </td>
                   <td>
-                    <live-editor-innards:unit>
+                    <live-editor-innards:unit update="offeritems">
                       <input: size="3"/>
                     </live-editor-innards:unit>
                   </td>
                   <td>
-                    <live-editor-innards:product-number>
+                    <live-editor-innards:product-number update="offeritems">
                       <input: replace>
                         <name-one:product-number complete-target="&Product.new()"
                                                  completer="number_sales"
@@ -81,7 +81,7 @@
                     </live-editor-innards:product-number>
                   </td>
                   <td>
-                    <live-editor-innards:description-de>
+                    <live-editor-innards:description-de update="offeritems">
                       <input: class="input-xlarge"/>
                     </live-editor-innards:description-de><br/>
                     <em><t key='attributes.delivery_time'/>:</em> <live-editor-innards:delivery-time/>
