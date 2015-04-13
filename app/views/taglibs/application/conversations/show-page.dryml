@@ -1,6 +1,14 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
-    <content-header: ></content-header: >
+    <before-container: >
+      <if test="&current_user && current_user.sales?">
+        <div class="container">
+          <div class="alert alert-danger" role="alert">
+            <t key="mercator.customer_view"/>
+          </div>
+        </div>
+      </if>
+    </before-container: >
 
     <content-body:>
       <h2 id="header">
@@ -110,7 +118,7 @@
       <%= subscribe_to "/" + CONFIG[:system_id] + "/conversations/" + this.id.to_s %>
       <%= subscribe_to "/" + CONFIG[:system_id] + "/orders/" + current_user.basket.id.to_s %>
 
-      <% ["messages", "links", "downloads", "offers", "consultant", "summary"].each do |part| %>
+      <% ["messages", "links", "downloads", "offers", "consultant", "summary", "suggestions"].each do |part| %>
         <form id="#{part}-form" style="display:none;" action="refresh" update="#{part}">
           <input name="id" value="#{this.id}" type="hidden"/>
         </form>

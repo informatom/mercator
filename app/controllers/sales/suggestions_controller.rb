@@ -5,15 +5,17 @@ class Sales::SuggestionsController < Sales::SalesSiteController
   auto_actions :all
 
   def destroy
-    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ Suggestion.find(params[:id]).conversation_id.to_s,
-                          type: "suggestions")
-    hobo_destroy
+    hobo_destroy do
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ self.this.conversation_id.to_s,
+                            type: "suggestions")
+    end
   end
 
   def update
-    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ Suggestion.find(params[:id]).conversation_id.to_s,
-                          type: "suggestions")
-    hobo_update
+    hobo_update do
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ self.this.conversation_id.to_s,
+                            type: "suggestions")
+    end
   end
 
   def create

@@ -46,4 +46,8 @@ class Link < ActiveRecord::Base
       return false
     end
   end
+
+  def no_suggestion?
+    not /\/conversations\/\d*\/suggestions/.match(URI(url).path)
+  end
 end

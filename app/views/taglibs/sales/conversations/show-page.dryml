@@ -48,6 +48,10 @@
         </div>
 
         <div class="col-md-4">
+          <a href="&conversation_path(self.this)" target="_customer_view" class="btn btn-default">
+            <t key="mercator.customer_view"/>
+          </a>
+
           <h3><%= t("attributes.suggestions") %> </h3>
           <form with="&@suggestion" update="suggestions" reset-form>
             <div class="form-group form-group-sm">

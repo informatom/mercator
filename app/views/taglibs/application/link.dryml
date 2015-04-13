@@ -1,5 +1,5 @@
 <def tag="card" for="Link">
-  <if test="&this.url.present?">
+  <if test="&this.url.present? && this.no_suggestion?">
     <li class="list-group-item">
       <view:updated-at for='datetime' format="&:concise"/>: <a href="&this.url" target="_links"><view:url/></a>
     </li>
