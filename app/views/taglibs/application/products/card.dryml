@@ -28,6 +28,8 @@
         </if>
       </div>
       <p><compare-link/></p>
+
+      <p if="&current_user && current_user.sales"><add-to-suggestions-link/></p>
     </div>
 
     <div class="col-md-5">

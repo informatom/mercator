@@ -851,6 +851,7 @@ de:
     stored_delivery_addresses: Gespeicherte Lieferadressen
     stored_billing_addresses: Gespeicherte Rechnungsadressen
     subcategories: Unterkategorien
+    suggest: Vorschlagen
     sum_excl_vat: Summe exkl. Mwst
     sum_incl_vat: Gesamtpreis
     switch_user: Account wechseln

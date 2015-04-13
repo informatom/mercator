@@ -15,4 +15,16 @@ class Sales::SuggestionsController < Sales::SalesSiteController
                           type: "suggestions")
     hobo_update
   end
+
+  def create
+    hobo_create do
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ self.this.conversation_id.to_s,
+                            type: "suggestions")
+    end
+  end
+
+  def show
+    session[:current_conversation_id] = this.id
+    hobo_show
+  end
 end

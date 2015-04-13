@@ -844,6 +844,7 @@ en:
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories
+    suggest: Suggest
     sum_excl_vat: Sum excl. VAT
     sum_incl_vat: Total
     switch_user: Switch User Account

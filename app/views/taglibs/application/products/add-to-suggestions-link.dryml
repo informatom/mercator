@@ -1,0 +1,11 @@
+<def tag="add-to-suggestions-link">
+  <set conversationid="&session[:current_conversation_id]"/>
+
+  <if conversation-id>
+    <form action="/sales/suggestions" update="suggestions">
+      <input name="suggestion[conversation_id]" value="#{conversationid}" type="hidden"/>
+      <input name="suggestion[product_id]" value="#{this.id}" type="hidden"/>
+      <submit label="#{t('mercator.suggest')}"/>
+    </form>
+  </if>
+</def>

@@ -33,6 +33,8 @@
         &nbsp;
       </p>
       <p><compare-link/></p>
+
+      <p if="&current_user && current_user.sales"><add-to-suggestions-link/></p>
     </div>
 
     <div class="col-xs-4">
