@@ -3,7 +3,7 @@ class Link < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    url   :string, :required
+    url   :string
     title :string
     timestamps
   end

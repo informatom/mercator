@@ -1,5 +1,7 @@
 <def tag="card" for="Link">
-  <li class="list-group-item">
-    <view:updated-at for='datetime' format="&:concise"/>: <a href="&this.url"><view:url/></a>
-  </li>
+  <if test="&this.url.present?">
+    <li class="list-group-item">
+      <view:updated-at for='datetime' format="&:concise"/>: <a href="&this.url" target="_links"><view:url/></a>
+    </li>
+  </if>
 </def>
