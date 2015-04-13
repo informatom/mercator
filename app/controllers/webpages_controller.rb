@@ -10,7 +10,7 @@ class WebpagesController < ApplicationController
     self.this = @webpage = Webpage.friendly.find(params[:id])
 
     hobo_show do
-      if ["published", "published_but_hidden"].include? @webpage.state
+      if @webpage.visible_for?(user: current_user)
         render "page_templates/" + self.this.page_template.name
       else
         redirect_to :root, status: 303

@@ -8,7 +8,10 @@
         </a>
 
         <ul class="dropdown-menu" role="menu" aria-labelledby="drop#{this.id}">
-          <repeat with="&this.children.where(state: :published)">
+          <set webpages="&current_user.present? && current_user.contentmanager? ?
+                         this.children.where(state: [:published, :draft]) :
+                         this.children.where(state: :published)"/>
+          <repeat with="&webpages">
             <nav-item href="/#{this.url}">
               <view:title/>
             </nav-item>

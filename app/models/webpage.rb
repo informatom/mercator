@@ -112,6 +112,14 @@ class Webpage < ActiveRecord::Base
     end
   end
 
+  def visible_for?(user: nil)
+    if user && user.contentmanager?
+      ["draft", "published", "published_but_hidden"].include?(state)
+    else
+      ["published", "published_but_hidden"].include?(state)
+    end
+  end
+
   # this makes state editable from form
   Webpage.attr_protected[:default] = Webpage.attr_protected[:default].subtract(["state"])
 end
