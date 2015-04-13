@@ -42,6 +42,8 @@ class Sales::OfferitemsController < Sales::SalesSiteController
       flash[:notice] = nil
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.offer_id.to_s,
                             type: "all")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.offer.conversation_id.to_s,
+                            type: "offers")
       redirect_to session[:return_to]
     end
   end

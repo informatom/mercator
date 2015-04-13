@@ -52,12 +52,10 @@ class Sales::OffersController < Sales::SalesSiteController
 
   def update
     hobo_update do
-      if params[:offer][:shipping_company]
-        PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
-                              type: "offers")
-      end
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
+                            type: "offers")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.id.to_s,
+                            type: "all")
     end
-    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.id.to_s,
-                          type: "all")
   end
 end
