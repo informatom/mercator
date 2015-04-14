@@ -57,22 +57,22 @@
 
 <def tag="metatags">
   <if test="&@product && @product.id">
-    <link rel="canonical" href="& 'http://' + Constant.find_by_key('shop_domain').value + product_path( @product )"/>
+    <link rel="canonical" href="& 'http://' + Constant::SHOPDOMAIN + product_path( @product )"/>
     <meta name="description" if="&@product.description.present?" content="&@product.description" />
     <else>
       <meta name="description" content="&@product.title" />
     </else>
   </if>
   <if test="&@category && @category.id">
-    <link rel="canonical" href="& 'http://' + Constant.find_by_key('shop_domain').value + category_path( @category )"/>
+    <link rel="canonical" href="& 'http://' + Constant::SHOPDOMAIN + category_path( @category )"/>
     <meta name="description" content="&@category.description" />
   </if>
   <if test="&self.this.class == Webpage && self.this.id">
-    <link rel="canonical" href="& 'http://' + Constant.find_by_key('cms_domain').value + webpage_path(self.this)"/>
+    <link rel="canonical" href="& 'http://' + Constant::CMSDOMAIN + webpage_path(self.this)"/>
     <meta name="description" content="&self.this.seo_description" />
   </if>
    <if test="&self.this.class == Blogpost && self.this.id">
-    <link rel="canonical" href="& 'http://' + Constant.find_by_key('cms_domain').value + blogpost_path(self.this)"/>
+    <link rel="canonical" href="& 'http://' + Constant::CMSDOMAIN + blogpost_path(self.this)"/>
     <meta name="description" content="&self.this.title" />
   </if>
 </def>

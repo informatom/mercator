@@ -6,7 +6,9 @@ class FrontController < ApplicationController
 
   def home
     @home = Webpage.where(slug: "home").first
-    if @home
+    if request.domain == Constant::SHOPDOMAIN
+      redirect_to "/categories"
+    elsif @home
       redirect_to "/webpages/home"
     else
       redirect_to action: :index

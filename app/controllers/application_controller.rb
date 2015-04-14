@@ -40,16 +40,14 @@ class ApplicationController < ActionController::Base
 
 # Domainseperation
   def domain_cms_redirect
-    cms_domain = Constant.find_by_key('cms_domain').value
-    return if request.url.include?(cms_domain)
+    return if request.url.include?(Constant::CMSDOMAIN)
 
-    podcast_domain = Constant.find_by_key('podcast_domain').try(:value)
-    return if podcast_domain && request.url.include?(podcast_domain)
+    return if Constant::PODCASTDOMAIN && request.url.include?(Constant::PODCASTDOMAIN)
 
     new_url = case request.port
-              when 80  then 'http://' + cms_domain + request.path
-              when 443 then 'https://' + cms_domain + request.path
-              else          'http://' + cms_domain + ":" + request.port.to_s + request.path
+              when 80  then 'http://' + Constant::CMSDOMAIN + request.path
+              when 443 then 'https://' + Constant::CMSDOMAIN + request.path
+              else          'http://' + Constant::CMSDOMAIN + ":" + request.port.to_s + request.path
               end
 
     current_user.remember_me
@@ -59,13 +57,12 @@ class ApplicationController < ActionController::Base
   end
 
   def domain_shop_redirect
-    shop_domain = Constant.find_by_key('shop_domain').value
-    return if (request == nil || (request.url.include?(shop_domain)))
+    return if (request == nil || (request.url.include?(Constant::SHOPDOMAIN)))
 
     new_url = case request.port
-              when 80  then 'http://' + shop_domain + request.path
-              when 443 then 'https://' + shop_domain + request.path
-              else          'http://' + shop_domain + ":" + request.port.to_s + request.path
+              when 80  then 'http://' + Constant::SHOPDOMAIN + request.path
+              when 443 then 'https://' + Constant::SHOPDOMAIN + request.path
+              else          'http://' + Constant::SHOPDOMAIN + ":" + request.port.to_s + request.path
               end
 
     current_user.remember_me
