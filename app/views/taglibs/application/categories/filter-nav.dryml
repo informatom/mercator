@@ -21,7 +21,7 @@
   </script>
 
   <if test="&@facets">
-    <div class="twocolumned">
+    <div class="twocolumned hidden-xs hidden-sm">
       <div repeat="&this.filters" class="dontbreak">
         <h5><view with="&this[0]"/></h5>
         <repeat with="&this[1]">

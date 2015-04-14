@@ -10,7 +10,7 @@
       <div class="col-md-4">
         <category-list-nav category-id="&this.id"/>
         <if test="&@products">
-          <filter-nav />
+          <filter-nav/>
         </if>
       </div>
 
