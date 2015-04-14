@@ -6,6 +6,8 @@ class FrontController < ApplicationController
 
   def home
     @home = Webpage.where(slug: "home").first
+    logger.debug "request.domain:" + request.domain
+    logger.debug "Constant::SHOPDOMAIN:" + Constant::SHOPDOMAIN
     if request.domain == Constant::SHOPDOMAIN
       redirect_to "/categories"
     elsif @home
