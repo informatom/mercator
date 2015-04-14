@@ -51,7 +51,7 @@ class Offeritem < ActiveRecord::Base
                if: "Date.today <= offer.valid_until && offer.complete == false && offer.state == 'valid'"
 
     transition :delete_from_offer, {:in_progress => :in_progress}, available_to: "User.sales", subsite: "sales" do
-      self.delete
+      self.destroy
     end
   end
 

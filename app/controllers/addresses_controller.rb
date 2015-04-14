@@ -69,7 +69,7 @@ class AddressesController < ApplicationController
 
   def do_trash
     do_transition_action :trash do
-      self.this.delete
+      self.this.destroy
       redirect_to enter_addresses_path({:order_id => params[:order_id]})
     end
   end

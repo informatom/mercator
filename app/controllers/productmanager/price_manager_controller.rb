@@ -253,7 +253,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
   def delete_price
     price = Price.find(params[:id])
-    if price.delete
+    if price.destroy
       render nothing: true
     else
       render json: price.errors.first
@@ -267,7 +267,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
              :status => 403 and return
     end
 
-    if inventory.delete
+    if inventory.destroy
       render nothing: true
     else
       render json: inventory.errors.first

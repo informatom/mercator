@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :restrict_with_error, inverse_of: :user
 
-  has_many :conversations, dependent: :restrict_with_error, inverse_of: :customer, foreign_key: :customer_id
+  has_many :conversations, dependent: :restrict, inverse_of: :customer, foreign_key: :customer_id
 
   include Gravtastic
   gravtastic :default => "http://www.informatom.com/assets/images/unknown-user.png"
@@ -229,7 +229,7 @@ class User < ActiveRecord::Base
          user.surname == "Gast" &&
          user.state == "guest" &&
          user.gtc_confirmed_at == nil
-        if user.delete
+        if user.destroy
           JobLogger.info("Deleted User " + user.id.to_s + " successfully.")
         else
           JobLogger.error("Deleted User " + user.id.to_s + " failed!")

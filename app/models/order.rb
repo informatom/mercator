@@ -156,7 +156,7 @@ class Order < ActiveRecord::Base
       self.lineitems
           .find_by(position: 10000,
                    product_number: Constant.find_by_key("shipping_cost_article").value)
-          .try(:delete)
+          .try(:destroy)
     end
 
     transition :pickup_shipment, {:accepted_offer => :accepted_offer},
@@ -165,7 +165,7 @@ class Order < ActiveRecord::Base
       self.lineitems
           .find_by(position: 10000,
                    product_number: Constant.find_by_key("shipping_cost_article").value)
-          .try(:delete)
+          .try(:destroy)
     end
 
     transition :parcel_service_shipment, {:basket => :basket},
@@ -188,9 +188,7 @@ class Order < ActiveRecord::Base
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user,
                if: "lineitems.any?" do
-      lineitems.each do |lineitem|
-        lineitem.delete
-      end
+      lineitems.destroy_all
     end
   end
 
@@ -322,7 +320,7 @@ class Order < ActiveRecord::Base
                gtc_confirmed_at: basket.gtc_confirmed_at)
       end
 
-      basket.delete
+      basket.destroy
       return positions_merged
     end
   end
@@ -396,11 +394,11 @@ class Order < ActiveRecord::Base
   def delete_if_obsolete
     case lineitems.count
     when 0 # empty?
-      delete
+      destroy
     when 1 # only shipping cost?
       if lineitems[0].product_number == Constant.find_by_key("shipping_cost_article").value
-        lineitems[0].delete
-        delete
+        lineitems[0].destroy
+        destroy
       end
     else
       false
@@ -416,7 +414,7 @@ class Order < ActiveRecord::Base
 
     Order.all.each do |basket|
       if basket.lineitems.count == 0 && Time.now - basket.created_at > 1.hours
-        if basket.delete
+        if basket.destroy
           JobLogger.info("Deleted order " + basket.id.to_s + " successfully.")
         else
           JobLogger.error("Deleted order " + basket.id.to_s + " failed!")

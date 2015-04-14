@@ -134,7 +134,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
              :status => 403 and return
     end
 
-    if category.delete
+    if category.destroy
       render nothing: true
     else
       render json: category.errors.first

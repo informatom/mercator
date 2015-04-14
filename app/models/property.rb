@@ -71,13 +71,13 @@ class Property < ActiveRecord::Base
        properties.each do |property|
          values_to_move = Value.where(property_id: property.id)
          values_to_move.update_all(property_id: we_keep_id) or JobLogger.error("Could not update values!")
-         property.delete or JobLogger.error("Could not delete Property " + property.id.to_s + "!")
+         property.destroy or JobLogger.error("Could not delete Property " + property.id.to_s + "!")
        end
     end
 
     Property.all.each do |property|
       if property.values.count == 0
-        property.delete or JobLogger.error("Could not delete Property " + property.id.to_s + "!")
+        property.destroy or JobLogger.error("Could not delete Property " + property.id.to_s + "!")
       end
     end
   end

@@ -57,7 +57,7 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
 
   def delete_productrelation
     productrelation = Productrelation.find(params[:id])
-    if productrelation.delete
+    if productrelation.destroy
       render nothing: true
     else
       render json: productrelation.errors.first
@@ -94,7 +94,7 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
 
   def delete_supplyrelation
     supplyrelation = Supplyrelation.find(params[:id])
-    if supplyrelation.delete
+    if supplyrelation.destroy
       render nothing: true
     else
       render json: supplyrelation.errors.first
@@ -160,7 +160,7 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
 
   def delete_recommendation
     recommendation = Recommendation.find(params[:id])
-    if recommendation.delete
+    if recommendation.destroy
       render nothing: true
     else
       render json: recommendation.errors.first
@@ -210,7 +210,7 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
 
   def delete_categorization
     categorization = Categorization.find(params[:id])
-    if categorization.delete
+    if categorization.destroy
       render nothing: true
     else
       render json: categorization.errors.first

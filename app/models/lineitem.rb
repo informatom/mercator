@@ -64,7 +64,7 @@ class Lineitem < ActiveRecord::Base
                {:active => :active},
                if: "acting_user.basket == order",
                available_to: :all do
-      self.delete
+      self.destroy
     end
 
     transition :transfer_to_basket,
@@ -114,7 +114,7 @@ class Lineitem < ActiveRecord::Base
     transition :remove_one, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order" do
       if self.amount == 1
-        self.delete
+        self.destroy
       else
         self.increase_amount(customer_id: acting_user.id, amount: -1)
       end
@@ -177,7 +177,7 @@ class Lineitem < ActiveRecord::Base
 
   def merge(lineitem: nil)
     increase_amount(amount: lineitem.amount)
-    lineitem.delete
+    lineitem.destroy
   end
 
 
@@ -254,7 +254,7 @@ class Lineitem < ActiveRecord::Base
 
   def self.cleanup_orphaned
     Lineitem.all.each do |lineitem|
-      lineitem.delete unless lineitem.order
+      lineitem.destroy unless lineitem.order
     end
   end
 end

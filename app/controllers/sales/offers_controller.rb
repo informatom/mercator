@@ -42,7 +42,7 @@ class Sales::OffersController < Sales::SalesSiteController
                                               unit:           lineitem.unit,
                                               delivery_time:  lineitem.delivery_time)
         if @offeritem.save
-          lineitem.delete
+          lineitem.destroy
         end
       end
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,

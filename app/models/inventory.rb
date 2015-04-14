@@ -123,7 +123,7 @@ class Inventory < ActiveRecord::Base
   def self.delete_orphans
     Inventory.each do |inventory|
       unless inventory.prices.any?
-        inventory.delete
+        inventory.destroy
         JobLogger.info("Inventory " + inventory.number + " deleted.")
       end
     end

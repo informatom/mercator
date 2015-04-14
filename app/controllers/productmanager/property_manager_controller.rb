@@ -150,7 +150,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
 
   def delete_value
     value = Value.find(params[:id])
-    if value.delete
+    if value.destroy
       render nothing: true
     else
       render json: value.errors.first
@@ -227,7 +227,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
 
   def delete_feature
     feature = Feature.find(params[:id])
-    if feature.delete
+    if feature.destroy
       render nothing: true
     else
       render json: feature.errors.first

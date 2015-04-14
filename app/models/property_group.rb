@@ -56,13 +56,13 @@ class PropertyGroup < ActiveRecord::Base
        property_groups.each do |property_group|
          values_to_move = Value.where(property_group_id: property_group.id)
          values_to_move.update_all(property_group_id: we_keep_id) or JobLogger.error("Could not update values!")
-         property_group.delete or JobLogger.error("Could not delete PropertyGroup " + property_group.id.to_s + "!")
+         property_group.destroy or JobLogger.error("Could not delete PropertyGroup " + property_group.id.to_s + "!")
        end
     end
 
     PropertyGroup.all.each do |property_group|
       if property_group.values.count == 0
-        property_group.delete or JobLogger.error("Could not delete PropertyGroup " + property_group.id.to_s + "!")
+        property_group.destroy or JobLogger.error("Could not delete PropertyGroup " + property_group.id.to_s + "!")
       end
     end
   end

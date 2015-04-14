@@ -100,7 +100,7 @@ class Webpage < ActiveRecord::Base
 
   def delete_orphaned_page_content_element_assignments
     page_content_element_assignments.each do |assignment|
-      assignment.delete unless page_template.placeholder_list.include?(assignment.used_as)
+      assignment.destroy unless page_template.placeholder_list.include?(assignment.used_as)
     end
   end
 
