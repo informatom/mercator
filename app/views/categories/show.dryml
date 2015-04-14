@@ -7,16 +7,25 @@
 
   <content-body:>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-4 hidden-xs hidden-sm">
         <category-list-nav category-id="&this.id"/>
         <if test="&@products">
           <filter-nav/>
         </if>
       </div>
 
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12">
         <h1><view /></h1>
-        <p><i><view:long-description/></i></p>
+
+        <p>
+          <button class="btn btn-default visible-xs"
+                  data-toggle="collapse"
+                  data-target="#content-collapse-#{this.id}"
+                  aria-controls="content-collapse-#{this.id}">
+            <t key="mercator.show"/> <t key="attributes.description"/>
+          </button>
+        </p>
+        <p class="content-collapse in" id="content-collapse-#{this.id}"><i><view:long-description no-wrapper/></i></p>
         <card repeat="&this.children.active"/>
         <repeat with="&@products">
           <overview-card/>

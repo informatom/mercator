@@ -1,21 +1,14 @@
 <def tag="add-to-basket-button" attrs="inventory">
   <if test="&Constant.find_by_key('inventories_are_variations').try(:value) == 'true' && inventory">
-      <%= link_to(fa_icon("shopping-cart", class:"fa-lg") + " " +
-                  I18n.t("activerecord.attributes.product.lifecycle.transitions.add_to_basket"),
-                  add_to_basket_inventory_path(inventory.id),
-                  class: "btn btn-success") %>
+    <%= link_to(fa_icon("shopping-cart", class:"fa-lg") + " " +
+                I18n.t("activerecord.attributes.product.lifecycle.transitions.add_to_basket"),
+                add_to_basket_inventory_path(inventory.id),
+                class: "btn btn-success") %>
   </if>
   <else>
-    <transition-link transition="add_to_basket" method="put">
-      <if test="&ContentElement.find_by(name_de: 'in-den-warenkorb')">
-         <photo name="in-den-warenkorb" class="card-button pull-left"/>
-      </if>
-      <else>
-        <div class="btn btn-success">
-          <%= fa_icon "shopping-cart", class:"fa-lg" %>
-          <t key="activerecord.attributes.product.lifecycle.transitions.add_to_basket"/>
-        </div><br/> <br/>
-      </else>
+    <transition-link transition="add_to_basket" method="put" class="btn btn-success">
+      <%= fa_icon "shopping-cart", class:"fa-lg" %>
+      <t key="activerecord.attributes.product.lifecycle.transitions.add_to_basket"/>
     </transition-link>
   </else>
 </def>

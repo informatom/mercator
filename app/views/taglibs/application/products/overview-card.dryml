@@ -3,7 +3,7 @@
 <def tag="overview-card" for="Product" >
   <div class="row product-overview-card" part="overview-card" id="overview-card-#{this.id}">
     <set inventory="&@inventory.present? ? @inventory : this.determine_inventory"/>
-    <div class="col-xs-4 text-center">
+    <div class="col-sm-4 text-center">
       <h5><view with="&inventory.number or number" /></h5>
 
       <div class="thumbnail">
@@ -21,7 +21,8 @@
       </h4>
       <p>
         <add-to-basket-button inventory="&inventory"/>
-
+      </p>
+      <p>
         <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
           <if test="&session[:compared].include?(this.id)">
             <dont-compare-product />
@@ -37,14 +38,19 @@
       <p if="&current_user && current_user.sales"><add-to-suggestions-link/></p>
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-sm-4">
       <h4>
         <%= link_to(inventory.name || name,
                     product_path(this, inventory_id: inventory.id)) %>
       </h4>
 
-      <h4><t key="attributes.description" />:</h4>
-      <view:description />
+      <button class="btn btn-default visible-xs"
+              data-toggle="collapse"
+              data-target="#product-collapse-#{this.id}"
+              aria-controls="product-collapse-#{this.id}">
+        <t key="mercator.show"/> <t key="attributes.description"/>
+      </button>
+      <p class="content-collapse in" id="product-collapse-#{this.id}"><i><view:description no-wrapper/></i></p>
 
       <set inventories="&Inventory.where(product_id: this.id)"/>
       <if test="&inventories.pluck(:size).uniq.count > 1">
@@ -58,14 +64,22 @@
       </if>
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-sm-4">
       <div class="text-right">
         <price-tag with="&inventory"/>
       </div>
 
       <if test="&this.features.any?">
         <h4><t key="activerecord.models.feature.other" />:</h4>
-        <ul>
+
+        <button class="btn btn-default visible-xs"
+                data-toggle="collapse"
+                data-target="#feature-collapse-#{this.id}"
+                aria-controls="feature-collapse-#{this.id}">
+          <t key="mercator.show"/> <t key="activerecord.models.feature.other"/>
+        </button>
+
+        <ul class="content-collapse in" id="feature-collapse-#{this.id}">
           <li repeat="&this.features"><view:text/></li>
         </ul>
       </if>
@@ -76,8 +90,8 @@
         </small>
       </p>
 
-      <p><video-chat-link/></p>
-      <p><online-consulting-link/></p>
+      <p class="hidden-xs"><video-chat-link/></p>
+      <p class="hidden-xs"><online-consulting-link/></p>
     </div>
   </div>
 </def>

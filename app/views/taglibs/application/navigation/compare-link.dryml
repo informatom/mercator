@@ -6,6 +6,5 @@
       <%= fa_icon "gift", class: "fa-lg" %>
       <%= session[:compared].count %> Art.
     </a>
-    &nbsp;
   </if>
 </def>

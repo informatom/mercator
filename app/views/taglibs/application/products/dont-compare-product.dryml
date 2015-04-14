@@ -1,16 +1,9 @@
 <def tag="dont-compare-product">
-  <transition-link transition="dont_compare" method="put">
-    <if test="&ContentElement.find_by(name_de: 'produkt-entfernen')">
-      <photo name="produkt-entfernen" class="card-button pull-right"/>
-    </if>
-    <else>
-      <div class="btn btn-default">
-        <span class="fa-stack fa-lg">
-          <%= fa_icon "arrows-h", class:"fa-lg fa-stack-1x" %>
-          <%= fa_icon "ban", class:"fa-stack-2x text-danger" %>
-        </span>
-        <t key="activerecord.attributes.product.lifecycle.transitions.dont_compare"/>
-      </div>
-    </else>
+  <transition-link transition="dont_compare" method="put" class="btn btn-default">
+    <span class="fa-stack fa-lg">
+      <%= fa_icon "arrows-h", class:"fa-lg fa-stack-1x" %>
+      <%= fa_icon "ban", class:"fa-stack-2x text-danger" %>
+    </span>
+    <t key="activerecord.attributes.product.lifecycle.transitions.dont_compare"/>
   </transition-link>
 </def>

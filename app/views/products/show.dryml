@@ -56,25 +56,28 @@
 
     <div class="tab-content">
       <div class="tab-pane active threecolumned" id="properties" >
-        <div repeat="&this.tabled_values" class="dontbreak">
-          <h3><view: with="&this[0]" class="blue"/></h3>
-          <dl class="dl-horizontal">
-            <repeat with="&this[1]">
-              <dt> <view with="&this[0]"/> </dt>
-              <dd>
-                <if test="&this[1].include?('Icecat.biz')">
-                  <a href="http://prf.icecat.biz/index.cgi?product_id=#{icecatid};mi%3Dstart;smi%3Dproduct;shopname%3DopenICEcat-url;lang%3Dde"
-                     target="_blank">
+        <repeat with="&this.tabled_values">
+          <div class="dontbreak">
+            <h3><view: with="&this[0]" class="blue"/></h3>
+            <dl class="dl-horizontal">
+              <repeat with="&this[1]">
+                <dt> <view with="&this[0]"/> </dt>
+                <dd>
+                  <if test="&this[1].include?('Icecat.biz')">
+                    <a href="http://prf.icecat.biz/index.cgi?product_id=#{icecatid};mi%3Dstart;smi%3Dproduct;shopname%3DopenICEcat-url;lang%3Dde"
+                       target="_blank">
+                      <view with="&this[1]"/>
+                    </a>
+                  </if>
+                  <else>
                     <view with="&this[1]"/>
-                  </a>
-                </if>
-                <else>
-                  <view with="&this[1]"/>
-                </else>
-              </dd>
-            </repeat>
-          </dl>
-        </div>
+                  </else>
+                </dd>
+              </repeat>
+            </dl>
+          </div>
+          <div class="clearfix"></div>
+        </repeat>
       </div>
 
       <div class="tab-pane" id="related">

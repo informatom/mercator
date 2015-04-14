@@ -7,11 +7,17 @@
       <h3><%= link_to( this.name, category_path(this)) %></h3>
       <div class="row">
         <div class="col-md-6">
-          <view:description/>
+          <button class="btn btn-default visible-xs"
+                  data-toggle="collapse"
+                  data-target="#category-collapse-#{this.id}"
+                  aria-controls="category-collapse-#{this.id}">
+            <t key="mercator.show"/> <t key="attributes.description"/>
+          </button>
+          <p class="content-collapse in" id="category-collapse-#{this.id}"><i><view:description no-wrapper/></i></p>
         </div>
         <div class="col-md-6">
-          <p><video-chat-link/></p>
-          <p><online-consulting-link/></p>
+          <p class="hidden-xs"><video-chat-link/></p>
+          <p class="hidden-xs"><online-consulting-link/></p>
 
           <view with="&this.active_product_count" /> <t key="mercator.products_available" /><br/>
           <t key="mercator.starting_from" /> <strong><view with="&number_to_currency(this.starting_from)"/></strong>
@@ -21,3 +27,4 @@
     </div>
   </div>
 </def>
+

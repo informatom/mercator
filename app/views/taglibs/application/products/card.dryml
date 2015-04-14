@@ -20,23 +20,35 @@
                       product_path(this, inventory_id: inventory.id)) %>
         </div>
 
-        <add-to-basket-button inventory="&inventory" />
+        <p><add-to-basket-button inventory="&inventory" /></p>
 
         <if test="&Constant.find_by_key('no_product_comparison').try(:value) != 'true'">
-          <if test="&session[:compared].include?(this.id)"><dont-compare-product /></if>
-          <else><compare-product /></else>
+          <p>
+            <if test="&session[:compared].include?(this.id)">
+              <dont-compare-product />
+            </if>
+            <else>
+              <compare-product />
+            </else>
+          </p>
         </if>
-      </div>
       <p><compare-link/></p>
-
       <p if="&current_user && current_user.sales"><add-to-suggestions-link/></p>
+      </div>
     </div>
 
     <div class="col-md-5">
       <price-tag with="&inventory"/>
-      <h4><t key="attributes.description" />:</h4>
 
-      <view:long-description />
+      <h4 class="hidden-xs"><t key="attributes.description" />:</h4>
+
+      <button class="btn btn-default visible-xs"
+              data-toggle="collapse"
+              data-target="#product-collapse-#{this.id}"
+              aria-controls="product-collapse-#{this.id}">
+        <t key="mercator.show"/> <t key="attributes.description"/>
+      </button>
+      <p class="content-collapse in" id="product-collapse-#{this.id}"><view:long-description no-wrapper/></p>
     </div>
 
     <div class="col-md-4">
@@ -65,8 +77,16 @@
 
       <if test="&this.features">
         <hr/>
-        <h4><t key="activerecord.models.feature.other" />:</h4>
-        <ul>
+        <h4 class="hidden-xs"><t key="activerecord.models.feature.other" />:</h4>
+
+        <button class="btn btn-default visible-xs"
+                data-toggle="collapse"
+                data-target="#feature-collapse-#{this.id}"
+                aria-controls="feature-collapse-#{this.id}">
+          <t key="mercator.show"/> <t key="activerecord.models.feature.other"/>
+        </button>
+
+        <ul class="content-collapse in" id="feature-collapse-#{this.id}">
           <li repeat="&this.features"><view:text/></li>
         </ul>
       </if>
