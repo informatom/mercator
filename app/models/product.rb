@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
     title_de            :string, :required
     title_en            :string
     number              :string, :required, :unique, name: true
-    description_de      :text, :required
+    description_de      :text
     description_en      :text
     long_description_de :cktext
     long_description_en :cktext
