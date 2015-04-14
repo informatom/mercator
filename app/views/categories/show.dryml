@@ -25,7 +25,9 @@
             <t key="mercator.show"/> <t key="attributes.description"/>
           </button>
         </p>
-        <p class="content-collapse in" id="content-collapse-#{this.id}"><i><view:long-description no-wrapper/></i></p>
+        <div class="content-collapse in" id="content-collapse-#{this.id}">
+          <i><view:long-description no-wrapper/></i>
+        </div>
         <card repeat="&this.children.active"/>
         <repeat with="&@products">
           <overview-card/>
