@@ -7,13 +7,15 @@
       <h3><%= link_to( this.name, category_path(this)) %></h3>
       <div class="row">
         <div class="col-md-6">
-          <button class="btn btn-default visible-xs"
-                  data-toggle="collapse"
-                  data-target="#category-collapse-#{this.id}"
-                  aria-controls="category-collapse-#{this.id}">
-            <t key="mercator.show"/> <t key="attributes.description"/>
-          </button>
-          <p class="content-collapse in" id="category-collapse-#{this.id}"><i><view:description no-wrapper/></i></p>
+          <p>
+            <button class="btn btn-default visible-xs"
+                    data-toggle="collapse"
+                    data-target="#category-collapse-#{this.id}"
+                    aria-controls="category-collapse-#{this.id}">
+              <t key="mercator.show"/> <t key="attributes.description"/>
+            </button>
+          </p>
+          <div class="content-collapse in" id="category-collapse-#{this.id}"><i><view:description no-wrapper/></i></div>
         </div>
         <div class="col-md-6">
           <p class="hidden-xs"><video-chat-link/></p>
@@ -27,4 +29,3 @@
     </div>
   </div>
 </def>
-
