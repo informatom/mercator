@@ -8,6 +8,11 @@ class Guest < Hobo::Model::Guest
     false
   end
 
+  def contentmanager?
+    false
+  end
+
+
   def sales
     false
   end
