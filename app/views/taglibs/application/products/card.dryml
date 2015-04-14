@@ -42,13 +42,17 @@
 
       <h4 class="hidden-xs"><t key="attributes.description" />:</h4>
 
-      <button class="btn btn-default visible-xs"
-              data-toggle="collapse"
-              data-target="#product-collapse-#{this.id}"
-              aria-controls="product-collapse-#{this.id}">
-        <t key="mercator.show"/> <t key="attributes.description"/>
-      </button>
-      <p class="content-collapse in" id="product-collapse-#{this.id}"><view:long-description no-wrapper/></p>
+      <p>
+        <button class="btn btn-default visible-xs"
+                data-toggle="collapse"
+                data-target="#product-collapse-#{this.id}"
+                aria-controls="product-collapse-#{this.id}">
+          <t key="mercator.show"/> <t key="attributes.description"/>
+        </button>
+      </p>
+      <div class="content-collapse in" id="product-collapse-#{this.id}">
+        <view:long-description no-wrapper/>
+      </div>
     </div>
 
     <div class="col-md-4">
