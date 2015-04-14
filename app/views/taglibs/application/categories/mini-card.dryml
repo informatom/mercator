@@ -1,7 +1,7 @@
 <def tag="mini-card" polymorphic />
 
 <def tag="mini-card" for="Category">
-  <div class="col-md-3 col-md-height col-bottom text-center category-card clickable" style="" id="cat#{this.id}">
+  <div class="col-xs-6 col-md-3 col-md-height col-bottom text-center category-card clickable" style="" id="cat#{this.id}">
     <image src="&this.photo.url :thumb" />
     <h5><view /></h5>
   </div>
