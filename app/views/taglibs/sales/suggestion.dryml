@@ -1,7 +1,27 @@
 <def tag="card" for="Suggestion">
-   <delete-button label="X" param class="btn-danger btn-xs pull-right" />
-   <name/>
-   <if test="&session[:current_offer_id]">
-     <my-transition-link with="&this.product" transition="add_to_offer" ajax/>
-   </if>
+   <div class="row">
+     <div class="col-xs-8">
+       <name/>
+     </div>
+
+     <div class="col-xs-2">
+       <if test="&session[:current_offer_id]">
+         <set offer = "&Offer.find(session[:current_offer_id])"/>
+         <if test="&offer.state.to_s == 'in_progress'">
+          <transition-link with="&this.product"
+                           transition="add_to_offer"
+                           method="put"
+                           class="btn btn-default btn-xs"
+                           ajax>
+            <t key="activerecord.attributes.product.lifecycle.transitions.add_to_offer"/>
+            (<view with="&offer.id" />)
+          </transition-link>
+         </if>
+       </if>
+     </div>
+
+     <div class="col-xs-2">
+       <delete-button label="x" param class="btn-danger btn-xs" />
+     </div>
+  </div>
 </def>

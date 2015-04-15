@@ -61,8 +61,10 @@ class Sales::OffersController < Sales::SalesSiteController
 
   def show
     hobo_show do
-      session[:current_offer_id] = this.id
+      session[:current_offer_id] = @this.id
     end
+  PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
+                        type: "suggestions")
   end
 
   def refresh
