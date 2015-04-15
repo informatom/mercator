@@ -794,7 +794,7 @@ de:
       unfilterable_properties: Nicht filterbare Eigenschaften
     protocol:
       one: Protokoll
-      data_to_be_stored: Es sollon folgende Daten protokolliert werden
+      data_to_be_stored: Es sollen folgende Daten protokolliert werden
       text_customer_sales: Feedbacktext, ich und Berater(in)
       text_sales: Feedbacktext und Berater(in)
       text_customer: Feedbacktext und ich
