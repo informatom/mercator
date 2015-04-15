@@ -1,3 +1,7 @@
 <def tag="card" for="Suggestion">
-   <delete-button label="X" param class="btn-danger btn-xs pull-right" /> <name/>
+   <delete-button label="X" param class="btn-danger btn-xs pull-right" />
+   <name/>
+   <if test="&session[:current_offer_id]">
+     <my-transition-link with="&this.product" transition="add_to_offer" ajax/>
+   </if>
 </def>

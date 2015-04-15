@@ -489,6 +489,7 @@ en:
         lifecycle:
           transitions:
             add_to_basket: Add to Basket
+            add_to_offer: Add to Offer
             compare: Compare Product
             dont_compare: Remove Product
             activate: Activate Product

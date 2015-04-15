@@ -25,7 +25,7 @@ class Sales::OfferitemsController < Sales::SalesSiteController
       @this.save
 
       if params[:offeritem][:product_number] && product
-        @this.new_pricing
+        @this.new_pricing()
       else
         @this.update(value: (@this.product_price - @this.discount_abs) * @this.amount)
       end

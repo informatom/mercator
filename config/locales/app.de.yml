@@ -498,6 +498,7 @@ de:
             activate: Aktivieren
             deactivate: Deaktivieren
             reactivate: Reaktivieren
+            add_to_offer: Anbieten
       property/datatypes:
         textual: textartig
         numeric: numerisch

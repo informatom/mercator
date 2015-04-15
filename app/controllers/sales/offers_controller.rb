@@ -58,4 +58,15 @@ class Sales::OffersController < Sales::SalesSiteController
                             type: "all")
     end
   end
+
+  def show
+    hobo_show do
+      session[:current_offer_id] = this.id
+    end
+  end
+
+  def refresh
+    self.this = Offer.find(params[:id])
+    hobo_show
+  end
 end

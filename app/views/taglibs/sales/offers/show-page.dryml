@@ -5,6 +5,16 @@
     </content-header:>
 
     <field-list: replace >
+      <%= subscribe_to "/" + CONFIG[:system_id] + "/offers/" + this.id.to_s %>
+      <form id="all-form" style="display:none;" action="refresh" update="all">
+        <input name="id" value="#{this.id}" type="hidden"/>
+      </form>
+      <script>
+        PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/offers/<%= this.id.to_s -%>", function(data, channel) {
+          $("form#" + data.type + "-form").submit();
+        });
+      </script>
+
       <do part="all">
         <div class="row">
           <div class="col-md-4"> <billing-address-card /> </div>

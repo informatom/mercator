@@ -36,7 +36,7 @@
 </def>
 
 <def tag="my-transition-link" attrs="transition">
-  <transition-link transition="#{transition}" method="put" class="btn btn-primary" merge-attrs>
+  <transition-link transition="#{transition}" method="put" class="btn btn-default" merge-attrs>
     <t key="activerecord.attributes.#{this.class.model_name.element}.lifecycle.transitions.#{transition}"/>
   </transition-link>
 </def>

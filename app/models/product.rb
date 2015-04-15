@@ -76,6 +76,8 @@ class Product < ActiveRecord::Base
     transition :deactivate, { :new => :deprecated }, :available_to => "User.administrator", :subsite => "admin"
     transition :deactivate, { :active => :deprecated }, :available_to => "User.administrator", :subsite => "admin"
     transition :reactivate, { :deprecated => :active }, :available_to => "User.administrator", :subsite => "admin"
+
+    transition :add_to_offer, {:active => :active}, :available_to => "User.sales", :subsite => "sales"
   end
 
   # --- Permissions --- #
