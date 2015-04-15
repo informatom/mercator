@@ -9,6 +9,7 @@
         </div>
       </if>
     </before-container: >
+    <content-header:></content-header:>
 
     <content-body:>
       <h2 id="header">

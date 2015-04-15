@@ -1,5 +1,9 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
+    <content-header:>
+      <h2><t key="activerecord.models.conversation.one"/> &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h2>
+    </content-header:>
+
     <content-body:>
       <div class="row">
         <div class="col-md-8">
