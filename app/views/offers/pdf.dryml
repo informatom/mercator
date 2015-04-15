@@ -14,7 +14,7 @@
          else
            url_prefix = request.protocol + request.host
          end %>
-      <%= image_tag url_prefix + ContentElement.find_by(name_de: "logo").photo.url %>
+      <%= image_tag url_prefix + ContentElement.find_by(name_de: "logo").photo.url, width: "200" %>
       <h1 class="heading"><view:name /></h1>
     </content-header:>
 
