@@ -1,0 +1,7 @@
+<def tag="card" for="Offer">
+  <card class="offer" param="default" merge>
+    <header: param>
+      <h4><a target="offer"><name /></a></h4>
+    </header:>
+  </card>
+</def>
