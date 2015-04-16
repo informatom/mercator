@@ -162,7 +162,6 @@ class Category < ActiveRecord::Base
 
     if products.where(state: :active).count > 0 || children.where(state: :active).count > 0
       lifecycle.reactivate!(User::JOBUSER)
-      debugger
       JobLogger.info("Category " + name_de + " reactivated.")
     end
   end
