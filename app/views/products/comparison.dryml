@@ -31,19 +31,11 @@
           <tr>
             <th class="grey"><t key='attributes.Price'/></th>
             <td repeat>
-              <span class="h3">
-                <%= number_to_currency( this.determine_inventory.determine_price(customer_id: current_user.id) ) %>
-                <t key="mercator.excl_vat" />
-              </span> <br/>
-              <%= number_to_currency(this.determine_inventory.determine_price(incl_vat: true, customer_id: current_user.id)) %>
-              <t key="mercator.incl_vat" /><br/>
+              <set inventory="&this.determine_inventory"/>
+              <price-tag with="&inventory"/>
 
-              <transition-link transition="add_to_basket" method="put">
-                <photo name="in-den-warenkorb" class="card-button" style="width: 133px;"/>
-              </transition-link>
-              <transition-link transition="dont_compare" method="put">
-                <photo name="produkt-entfernen" class="card-button" style="width: 133px;"/>
-              </transition-link>
+              <p><add-to-basket-button inventory="&inventory" /></p>
+              <p><dont-compare-product /></p>
             </td>
           </tr>
 
@@ -64,12 +56,8 @@
           <tr>
             <th></th>
             <td repeat>
-              <transition-link transition="add_to_basket" method="put">
-                <photo name="in-den-warenkorb" class="card-button" style="width: 133px;"/>
-              </transition-link>
-              <transition-link transition="dont_compare" method="put">
-                <photo name="produkt-entfernen" class="card-button" style="width: 133px;"/>
-              </transition-link>
+              <p><add-to-basket-button inventory="&this.determine_inventory" /></p>
+              <p><dont-compare-product /></p>
             </td>
           </tr>
         </tbody>

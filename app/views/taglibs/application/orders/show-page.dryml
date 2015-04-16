@@ -148,7 +148,8 @@
                       </td>
                       <td></td>
                       <td>
-                        <my-transition-link transition="add_to_basket" class="btn btn-success btn-sm" />
+                        <add-to-basket-button inventory="&this.determine_inventory"
+                                              class="btn-sm"/>
                       </td>
                     </tr>
                   </repeat>

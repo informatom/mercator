@@ -6,7 +6,7 @@
                 class: "btn btn-success") %>
   </if>
   <else>
-    <transition-link transition="add_to_basket" method="put" class="btn btn-success">
+    <transition-link transition="add_to_basket" method="put" class="btn btn-success" merge>
       <%= fa_icon "shopping-cart", class:"fa-lg" %>
       <t key="activerecord.attributes.product.lifecycle.transitions.add_to_basket"/>
     </transition-link>
