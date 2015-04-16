@@ -10,6 +10,8 @@ function productForm() {
         html: { caption: I18n.t("attributes.title_en") } },
       { name: 'number', type: 'text', required: true,
         html: { caption: I18n.t("attributes.number") } },
+      { name: 'alternative_number', type: 'text',
+        html: { caption: I18n.t("attributes.alternative_number") } },
       { name: 'state', type: 'list', required: true,
         options: {
           items: <%= Product::Lifecycle.states.*[0].map {

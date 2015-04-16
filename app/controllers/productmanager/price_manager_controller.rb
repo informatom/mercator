@@ -23,6 +23,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       product.title_de            = attrs[:title_de]
       product.title_en            = attrs[:title_en]
       product.number              = attrs[:number]
+      product.alternative_number  = attrs[:alternative_number]
       product.description_de      = attrs[:description_de]
       product.description_en      = attrs[:description_en]
       product.long_description_de = attrs[:long_description_de]
@@ -45,6 +46,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
             status: "success",
             record: {
               number:              product.number,
+              alternative_number:  product.alternative_number,
               state:               {id: product.state},
               title_de:            product.title_de,
               title_en:            product.title_en,
