@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
     title_de            :string, :required
     title_en            :string
     number              :string, :required, :unique, name: true
+    alternative_number  :string
     description_de      :text
     description_en      :text
     long_description_de :cktext
@@ -24,7 +25,7 @@ class Product < ActiveRecord::Base
                   :long_description_de, :long_description_en,
                   :photo, :document, :productrelations, :supplyrelations,
                   :inventories, :recommendations, :legacy_id, :categories, :categorizations,
-                  :warranty_de, :warranty_en, :not_shippable
+                  :warranty_de, :warranty_en, :not_shippable, :alternative_number
 
   translates :title, :description, :long_description, :warranty
   has_paper_trail

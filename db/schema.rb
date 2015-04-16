@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326114252) do
+ActiveRecord::Schema.define(version: 20150416140037) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -90,14 +90,14 @@ ActiveRecord::Schema.define(version: 20150326114252) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                          default: "new"
+    t.string   "state",                                                           default: "new"
     t.datetime "key_timestamp"
     t.string   "name_en"
     t.integer  "legacy_id"
-    t.text     "description_de"
-    t.text     "description_en"
-    t.text     "long_description_de"
-    t.text     "long_description_en"
+    t.text     "description_de",        limit: 16777215
+    t.text     "description_en",        limit: 16777215
+    t.text     "long_description_de",   limit: 16777215
+    t.text     "long_description_en",   limit: 16777215
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
@@ -106,9 +106,9 @@ ActiveRecord::Schema.define(version: 20150326114252) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.text     "filters"
-    t.decimal  "filtermin",             precision: 10, scale: 2
-    t.decimal  "filtermax",             precision: 10, scale: 2
+    t.text     "filters",               limit: 16777215
+    t.decimal  "filtermin",                              precision: 10, scale: 2
+    t.decimal  "filtermax",                              precision: 10, scale: 2
     t.string   "erp_identifier"
     t.string   "usage"
     t.string   "squeel_condition"
@@ -205,8 +205,8 @@ ActiveRecord::Schema.define(version: 20150326114252) do
   create_table "content_elements", force: true do |t|
     t.string   "name_de"
     t.string   "name_en"
-    t.text     "content_de"
-    t.text     "content_en"
+    t.text     "content_de",            limit: 16777215
+    t.text     "content_en",            limit: 16777215
     t.string   "markup"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -339,7 +339,7 @@ ActiveRecord::Schema.define(version: 20150326114252) do
   add_index "features", ["product_id"], name: "index_features_on_product_id", using: :btree
 
   create_table "feedbacks", force: true do |t|
-    t.text     "content"
+    t.text     "content",         limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -377,8 +377,8 @@ ActiveRecord::Schema.define(version: 20150326114252) do
   create_table "gtcs", force: true do |t|
     t.string   "title_de"
     t.string   "title_en"
-    t.text     "content_de"
-    t.text     "content_en"
+    t.text     "content_de", limit: 16777215
+    t.text     "content_en", limit: 16777215
     t.date     "version_of"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -465,6 +465,27 @@ ActiveRecord::Schema.define(version: 20150326114252) do
   end
 
   add_index "logentries", ["user_id"], name: "index_logentries_on_user_id", using: :btree
+
+  create_table "mercator_icecat_metadata", force: true do |t|
+    t.string   "path"
+    t.datetime "icecat_updated_at"
+    t.string   "quality"
+    t.string   "product_number"
+    t.string   "cat_id"
+    t.string   "on_market"
+    t.string   "model_name"
+    t.string   "product_view"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.string   "supplier_id"
+    t.string   "icecat_product_id"
+    t.string   "prod_id"
+  end
+
+  add_index "mercator_icecat_metadata", ["icecat_product_id"], name: "index_mercator_icecat_metadata_on_icecat_product_id", using: :btree
+  add_index "mercator_icecat_metadata", ["prod_id"], name: "index_mercator_icecat_metadata_on_prod_id", using: :btree
+  add_index "mercator_icecat_metadata", ["product_id"], name: "index_mercator_icecat_metadata_on_product_id", using: :btree
 
   create_table "mercator_mpay24_confirmations", force: true do |t|
     t.string   "operation"
@@ -641,7 +662,7 @@ ActiveRecord::Schema.define(version: 20150326114252) do
 
   create_table "page_templates", force: true do |t|
     t.string   "name"
-    t.text     "content"
+    t.text     "content",    limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "legacy_id"
@@ -706,7 +727,7 @@ ActiveRecord::Schema.define(version: 20150326114252) do
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                 default: "new"
+    t.string   "state",                                  default: "new"
     t.datetime "key_timestamp"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -716,15 +737,16 @@ ActiveRecord::Schema.define(version: 20150326114252) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.text     "description_de"
-    t.text     "description_en"
+    t.text     "description_de",        limit: 16777215
+    t.text     "description_en",        limit: 16777215
     t.string   "title_en"
     t.integer  "legacy_id"
-    t.text     "long_description_de"
-    t.text     "long_description_en"
-    t.text     "warranty_de"
-    t.text     "warranty_en"
+    t.text     "long_description_de",   limit: 16777215
+    t.text     "long_description_en",   limit: 16777215
+    t.text     "warranty_de",           limit: 16777215
+    t.text     "warranty_en",           limit: 16777215
     t.boolean  "not_shippable"
+    t.string   "alternative_number"
   end
 
   add_index "products", ["state"], name: "index_products_on_state", using: :btree
@@ -900,11 +922,11 @@ ActiveRecord::Schema.define(version: 20150326114252) do
   add_index "values", ["state"], name: "index_values_on_state", using: :btree
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
+    t.string   "item_type",                   null: false
+    t.integer  "item_id",                     null: false
+    t.string   "event",                       null: false
     t.string   "whodunnit"
-    t.text     "object"
+    t.text     "object",     limit: 16777215
     t.datetime "created_at"
   end
 
