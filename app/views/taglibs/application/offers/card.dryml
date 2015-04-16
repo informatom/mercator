@@ -5,7 +5,11 @@
     </header:>
     <body: param>
       <summary-card/>
-      <a action="show" if="&can_view?" param="show-link" class="btn btn-primary btn-sm">
+      <a action="show"
+         if="&can_view?"
+         param="show-link"
+         class="btn btn-primary btn-sm"
+         target="offer">
         <ht key="offer.actions.show">Show</ht>
       </a>
     </body:>
