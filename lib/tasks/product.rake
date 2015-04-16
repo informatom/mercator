@@ -105,7 +105,7 @@ namespace :products do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: products:first_activation")
     Inventory.all.each do |inventory|
-      inventory.product.lifecycle.activate!(User.where(administrator: true).first) unless inventory.product.state == "active"
+      inventory.product.lifecycle.activate!(User::JOBUSER) unless inventory.product.state == "active"
       JobLogger.info("Product activated: " + inventory.number)
     end
 

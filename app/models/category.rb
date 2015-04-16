@@ -137,8 +137,8 @@ class Category < ActiveRecord::Base
   end
 
   def try_deprecation
-    return if [:squeel, :mercator, :auto, :orphans].include?(usage)
-    return if state != "active" && state != "new"
+    return if ["squeel", "mercator", "auto", "orphans"].include?(usage)
+    return if !lifecycle.available_transitions.*.name.include?(:deactivate)
     return if products.where(state: "active").count > 0
 
     @any_child_active = false
@@ -148,8 +148,23 @@ class Category < ActiveRecord::Base
     end
     return if @any_child_active == true
 
-    lifecycle.deactivate!(User.where(administrator: true).first)
+    lifecycle.deactivate!(User::JOBUSER)
     JobLogger.info("Category " + name_de + " deactivated.")
+  end
+
+  def try_reactivation
+    children.each do |child|
+      child.try_reactivation
+    end
+
+    return if !lifecycle.available_transitions.*.name.include?(:reactivate)
+    return if ["mercator", "auto", "orphans"].include?(usage)
+
+    if products.where(state: :active).count > 0 || children.where(state: :active).count > 0
+      lifecycle.reactivate!(User::JOBUSER)
+      debugger
+      JobLogger.info("Category " + name_de + " reactivated.")
+    end
   end
 
   def property_groups_hash
@@ -268,6 +283,14 @@ class Category < ActiveRecord::Base
 
   def self.deprecate
     Category.roots.each {|category| category.try_deprecation}
+  end
+
+  def self.reactivate
+    JobLogger.info("=" * 50)
+    JobLogger.info("Category reactivation job started.")
+    Category.roots.each {|category| category.try_reactivation}
+    JobLogger.info("Category reactivation job stopped.")
+    JobLogger.info("=" * 50)
   end
 
   def self.update_property_hash
