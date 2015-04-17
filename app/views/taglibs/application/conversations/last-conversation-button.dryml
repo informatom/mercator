@@ -1,0 +1,10 @@
+<def tag="last-conversation-button">
+  <if test="&current_user.class == User && current_user.conversations.any?">
+    <a href="&conversation_url(current_user.conversations.order(:created_at).last, port: request.port)"
+       class="btn btn-default"
+       target="conversation">
+      <%= fa_icon "user-plus", class:"fa-lg" %>
+      <t key="mercator.last_conversation" />
+    </a>
+  </if>
+</def>

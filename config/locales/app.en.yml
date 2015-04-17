@@ -625,6 +625,8 @@ en:
   male: Mr.
   no_info: ""
 
+### MERCATOR ###
+
   mercator:
     actions:
       delete: Delete
@@ -664,6 +666,7 @@ en:
     drop_here: "Files can be dropped into this page via drag and drop."
     email_sent: "We have sent you an email with a login link, if you hale registered with that address. This link is valid for 10 minutes and can only be used once."
     excl_vat: excl. VAT
+    existing_conversation: Do you want to return to your last conversation?
     feedback_placeholder: "Please enter your personal feedback here and select below the information te be protocolled."
     feedback_request: We would like to get your feedback to increase the quality of our services!
     file_and_image_upload: File and Image Upload
@@ -694,6 +697,7 @@ en:
       number: Invoice Number
       one: Invoice
       other: Invoices
+    last_conversation: Last Concersation
     last_x: "The last %{x} "
     messages:
       content_element:

@@ -1,5 +1,13 @@
 <extend tag="initiate-page" for="Conversation">
   <old-initiate-page merge>
+    <before-content:>
+      <if test="&current_user.class == User && current_user.conversations.any?">
+        <p>
+          <t key="mercator.existing_conversation"/> <last-conversation-button/>
+        </p>
+      </if>
+    </before-content:>
+
     <before-form:>
       <div class="row">
         <div class="col-md-9">

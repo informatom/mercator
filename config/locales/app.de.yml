@@ -629,6 +629,8 @@ de:
   female: Frau
   no_info: ""
 
+### MERCATOR ###
+
   mercator:
     actions:
       delete: Löschen
@@ -668,6 +670,7 @@ de:
     drop_here: "Dateien können auch einfach per Drag and Drop in die Seite gezogen werden."
     email_sent: "Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."
     excl_vat: excl. Mwst.
+    existing_conversation: "Wollen Sie zu Ihrer letzten Konversation zurückkehren?"
     feedback_placeholder: "Geben Sie hier Ihr persönliches Feedback ein und wählen Sie anschließend unterhalb aus, welche Informationen protokolliert werden sollen."
     feedback_request: Wir möchten unsere Beratungsqualität verbessern und bitten Sie daher um Feedback
     file_and_image_upload: Datei und Bild-Upload
@@ -698,6 +701,7 @@ de:
       number: Rechnungsnummer
       one: Rechnung
       other: Rechnungen
+    last_conversation: "Letzte Beratung"
     last_x: "Die letzten %{x} "
     messages:
       content_element:
