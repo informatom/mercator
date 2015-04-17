@@ -952,6 +952,9 @@ en:
         title: Inventory and Price Manager
         cannot_delete_inventory:
           prices: The inventory is still referenced in prices and cannot be deleted therefore.
+        icecat_not_updated: Icecat Data could not be updated.
+        icecat_updated: Icecat Data was suceesfully updated.
+        product_not_found: Product not found.
       Product:
         moved_to: Product moved to Category
         one: Product

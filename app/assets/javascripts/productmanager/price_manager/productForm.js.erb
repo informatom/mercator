@@ -58,7 +58,23 @@ function productForm() {
           this.record['number'] = w2ui.productForm.record['number']
           this.refresh()
         }
-      }
+      },
+      <% if Rails.application.config.try(:icecat) == true %>
+        update_icecat: {
+          caption: 'Update Icecat',
+          class: 'w2ui-btn-blue',
+          onClick: function () {
+            $.ajax({
+              url:"/productmanager/price_manager/import_icecat/" + this.recid,
+              method: "GET"
+            }).done(function(response, textStatus, jqXHR) {
+              w2alert(jqXHR.responseText)
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+              w2alert(jqXHR.responseText)
+            })
+          }
+        }
+      <% end %>
     }
   })
 }

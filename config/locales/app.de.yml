@@ -959,6 +959,9 @@ de:
         title: Inventar- und Preismanager
         cannot_delete_inventory:
           prices: "Der Bestand wird noch in Preisen referenziert und kann daher nicht gelöscht werden."
+        icecat_not_updated: Icecat Daten konnten nicht aktualisiert werden.
+        icecat_updated: Icecat Daten wurden erfolgreich aktualisiert.
+        product_not_found: Produkt nicht gefunden
       Product:
         moved_to: Artikel verschoben in Kategorie
         one: Artikel

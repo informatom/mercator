@@ -265,7 +265,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   def delete_inventory
     inventory = Inventory.find(params[:id])
     if inventory.prices.any?
-      render :text => I18n.t("mercator.price_manager.cannot_delete_inventory.prices"),
+      render :text => I18n.t("js.pm.price_manager.cannot_delete_inventory.prices"),
              :status => 403 and return
     end
 
@@ -273,6 +273,21 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       render nothing: true
     else
       render json: inventory.errors.first
+    end
+  end
+
+  def import_icecat
+    product = Product.find(params[:id])
+    unless product && Rails.application.config.try(:icecat) == true
+      render :text => I18n.t("js.pm.price_manager.icecat_not_updated"),
+             :status => 403 and return
+    end
+
+    if product.update_from_icecat(from_today: false)
+      render :text => I18n.t("js.pm.price_manager.icecat_updated")
+    else
+      render :text => I18n.t("js.pm.price_manager.icecat_not_updated"),
+             :status => 403 and return
     end
   end
 end
