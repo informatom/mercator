@@ -47,4 +47,11 @@ class Sales::ConversationsController < Sales::SalesSiteController
       redirect_to sales_conversations_path
     end
   end
+
+  def index
+    self.this = Conversation.paginate(:page => params[:page])
+                            .search([params[:search], :name, :customer_id, :consultant_id ])
+                            .order_by(parse_sort_param(:name, :updated_at, :created_at, :customer_id, :consultant_id))
+    hobo_index
+  end
 end

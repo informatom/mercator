@@ -55,6 +55,7 @@ en:
     created_at: Created at
     current_password: Current Password
     customer: Customer
+    customer_id: Customer Id
     delivery_time: Delivery Time
     description: Description
     description_de: Description GER
