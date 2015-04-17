@@ -54,6 +54,12 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def call_for_consultant
+    do_transition_action :call_for_consultant do
+      self.this.delay.inform_sales(locale: I18n.locale) # we fork into delayed handling
+    end
+  end
+
   def do_feedback
     do_transition_action :feedback do
       @feedback = Feedback.new(content: params[:conversation][:content])

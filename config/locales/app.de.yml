@@ -424,6 +424,7 @@ de:
             initiate: Konversation starten
           transitions:
             feedback: Feedback abgeben
+            call_for_consultant: Berater rufen
       inventory:
         alternative_number: alternative Artikelnummer
         number: Artikelnummer
@@ -825,6 +826,7 @@ de:
       callback: "Bitten rufen Sie mich zurück, meine Telefonnummer ist:"
       holidays: "Wir haben heute einen Feiertag. Sie können uns aber gerne eine Nachricht hinterlassen."
       new_conversation: "Haben Sie Zeit, eine Anfrage anzunehmen?"
+      old_conversation: "Haben Sie Zeit, eine alte Anfrage wiederaufzunehmen?"
       out_of_office_hours: "Sie kontaktieren uns außerhalb unserer Geschäftszeiten. Unsere Geschäftszeiten sind "
       sorry: "Derzeit ist leider keiner unserer Mitarbeiter verfügbar. Bitte versuchen Sie es in Kürze nochmals oder bleiben Sie auf dieser Seite."
       success: "Guten Tag! Mein Name ist %{first_name} %{surname}. Wie kann ich Ihnen helfen?"
