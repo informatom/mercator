@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   EditorType = HoboFields::Types::EnumString.for("wysiwyg", "html")
 
   JOBUSER = self.find_by(surname: "Job User")
+  ROBOT   = self.find_by(surname: "Robot")
 
   fields do
     gender           User::Gender
@@ -239,10 +240,6 @@ class User < ActiveRecord::Base
 
     JobLogger.info("Finished Cronjob runner: User.cleanup_deprecated")
     JobLogger.info("=" * 50)
-  end
-
-  def self.robot
-    User.find_by(surname: "Robot")
   end
 
   def self.no_sales_logged_in

@@ -1,0 +1,53 @@
+<extend tag="initiate-form" for="Conversation">
+  <old-initiate-form merge>
+    <actions: replace>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="media">
+                <div class="media-left">
+                  <%= image_tag(User::ROBOT.photo.url(:thumb), class: "media-object img-polaroid") %>
+                </div>
+                <div class="media-body">
+                  <t key="mercator.your_consultant"/>:<br/><br/>
+                  <view: with="&User::ROBOT.name"/>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="alert alert-info">
+                <view with="&this.messages.first" />
+              </div>
+            </div>
+          </div>
+
+          <actions: restore/>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="blue"><%= t("attributes.offers") %></h3>
+          <collection:offers part="offers"/>
+
+          <h3 class="blue"><%= t("attributes.suggestions") %></h3>
+          <ul class="list-group">
+            <collection:suggestions part="suggestions"/>
+          </ul>
+
+          <h3 class="blue"><%= t("attributes.downloads") %></h3>
+          <ul class="list-group">
+            <collection:downloads part="downloads"/>
+          </ul>
+
+          <div part="links">
+            <h3 class="blue"><%= t("attributes.links") %></h3>
+            <ul class="list-group">
+              <collection:links />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </actions:>
+  </old-initiate-form>
+</extend>
+

@@ -83,7 +83,7 @@ class Conversation < ActiveRecord::Base
       end
 
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/personal/"+ consultant.id.to_s,
-                            sender: User.robot.name,
+                            sender: User::ROBOT.name,
                             content: message,
                             conversation: id)
       sleep 5
@@ -95,7 +95,7 @@ class Conversation < ActiveRecord::Base
     unless consultant_id
       message = Message.create(conversation_id: id,
                                reciever: customer,
-                               sender: User.robot,
+                               sender: User::ROBOT,
                                content: I18n.t('mercator.salutation.sorry'))
 
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ id.to_s,

@@ -36,14 +36,14 @@ class ConversationsController < ApplicationController
       if Holidays.on(Date.today, holiday_country_code).any?
         I18n.t('mercator.salutation.holidays')
       elsif Constant.office_hours?
-        I18n.t('mercator.salutation.call', first_name: User.robot.first_name, surname: User.robot.surname)
+        I18n.t('mercator.salutation.call', first_name: User::ROBOT.first_name, surname: User::ROBOT.surname)
       else
         I18n.t('mercator.salutation.out_of_office_hours') + Constant.pretty_office_hours
       end
 
     self.this.messages << Message.new(conversation_id: this.id,
                                       reciever: this.customer,
-                                      sender: User.robot,
+                                      sender: User::ROBOT,
                                       content: message_content)
   end
 

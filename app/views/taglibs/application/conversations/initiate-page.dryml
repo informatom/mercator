@@ -1,24 +1,16 @@
 <extend tag="initiate-page" for="Conversation">
   <old-initiate-page merge>
-    <before-content:>
+    <content-header: param>
       <if test="&current_user.class == User && current_user.conversations.any?">
         <p>
           <t key="mercator.existing_conversation"/> <last-conversation-button/>
         </p>
       </if>
-    </before-content:>
 
-    <before-form:>
-      <div class="row">
-        <div class="col-md-9">
-          <div class="alert alert-info">
-            <view with="&this.messages.first" />
-          </div>
-        </div>
-        <div class="col-md-3">
-          <photo-card with="&User.robot" />
-        </div>
-      </div>
-    </before-form:>
+      <h2 id="header">
+         <%= fa_icon "weixin", class:"fa-lg" %> &nbsp;
+         <t key="mercator.start_conversation"/>
+      </h2>
+    </content-header:>
   </old-initiate-page>
 </extend>
