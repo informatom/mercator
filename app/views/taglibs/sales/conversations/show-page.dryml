@@ -7,11 +7,45 @@
     <content-body:>
       <div class="row">
         <div class="col-md-8">
+        <set conversation-id="&this.id.to_s"/>
+
           <form with="&@message" update="mymessages" reset-form>
             <div class="form-group form-group-sm">
               <label class="col-sm-1 control-label"><t key="mercator.new_message" /></label>
               <div class="col-sm-10">
-                <input:content class="form-control" autocomplete="off" />
+                <input:content class="form-control" autocomplete="off" id="watched_message_field" />
+
+                <script>
+                  $('#watched_message_field').on('input', throttle(function() {
+                      jQuery.ajax({
+                        url: "/sales/conversations/<%= conversation_id -%>/typing",
+                        type: "POST",
+                        data: { message: $('#watched_message_field').val()}
+                      });
+                    }, 1000));
+
+                  function throttle(fn, threshhold, scope) {
+                    threshhold || (threshhold = 250);
+                    var last,
+                        deferTimer;
+                    return function () {
+                      var context = scope || this;
+
+                      var now = +new Date,
+                          args = arguments;
+                      <%= "if (last && now < last + threshhold) {".html_safe -%>
+                        clearTimeout(deferTimer);
+                        deferTimer = setTimeout(function () {
+                          last = now;
+                          fn.apply(context, args);
+                        }, threshhold);
+                      } else {
+                        last = now;
+                        fn.apply(context, args);
+                      }
+                    };
+                  }
+                </script>
               </div>
             </div>
           </form>

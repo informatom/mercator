@@ -25,6 +25,13 @@ class Sales::ConversationsController < Sales::SalesSiteController
     redirect_to sales_conversation_path(this)
   end
 
+  def typing
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ params[:id].to_s,
+                          type: "typing",
+                          message: params[:message])
+    render nothing: true if request.xhr?
+  end
+
   def show
     hobo_show do
       if current_user.id == this.customer_id

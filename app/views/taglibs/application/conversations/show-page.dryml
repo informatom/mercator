@@ -32,8 +32,9 @@
                     <%= image_tag(this.photo.url(:thumb), class: "media-object img-polaroid") %>
                   </div>
                   <div class="media-body">
-                    <t key="mercator.your_consultant"/>:<br/><br/>
-                    <view:first-name/> <view:surname/>
+                    <p><t key="mercator.your_consultant"/>:<br/>
+                    <view:first-name/> <view:surname/></p>
+                    <strong><div class="mark" id='typing-indicator'></div></strong>
                   </div>
                 </div>
               </if>
@@ -126,7 +127,14 @@
 
       <script>
           PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/conversations/<%= this.id.to_s -%>", function(data, channel) {
-            $("form#" + data.type + "-form").submit();
+            if(data.type == "typing") {
+              $("#typing-indicator").html(data.message);
+            } else {
+              $("form#" + data.type + "-form").submit();
+              if(data.type == "messages"){
+                $("#typing-indicator").html('');
+              };
+            }
           });
       </script>
       <script>
