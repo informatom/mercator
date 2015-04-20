@@ -56,6 +56,7 @@ class ConversationsController < ApplicationController
 
   def call_for_consultant
     do_transition_action :call_for_consultant do
+      self.this.update(consultant_id: nil)
       self.this.delay.inform_sales(locale: I18n.locale) # we fork into delayed handling
     end
   end
