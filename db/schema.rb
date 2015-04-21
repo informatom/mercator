@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416140037) do
+ActiveRecord::Schema.define(version: 20150421063240) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -895,6 +895,7 @@ ActiveRecord::Schema.define(version: 20150416140037) do
     t.boolean  "contentmanager",                       default: false
     t.boolean  "productmanager",                       default: false
     t.string   "editor"
+    t.boolean  "waiting"
   end
 
   add_index "users", ["erp_account_nr"], name: "index_users_on_erp_account_nr", using: :btree

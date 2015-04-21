@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
     erp_contact_nr   :string
     locale           :string
     call_priority    :integer
+    waiting          :boolean
     editor           EditorType
     timestamps
   end
@@ -41,7 +42,8 @@ class User < ActiveRecord::Base
                   :password_confirmation, :current_password, :administrator, :legacy_id, :sales,
                   :sales_manager, :contentmanager, :productmanager, :logged_in, :last_login_at,
                   :login_count, :addresses, :billing_addresses, :conversations, :confirmation,
-                  :photo, :erp_account_nr, :erp_contact_nr, :order_id, :phone, :locale, :editor
+                  :photo, :erp_account_nr, :erp_contact_nr, :order_id, :phone, :locale, :editor,
+                  :waiting
 
   attr_accessor :confirmation, :type => :boolean
   attr_accessor :order_id, :type => :integer
