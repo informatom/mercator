@@ -1,9 +1,9 @@
 <page title="Video Chat">
   <content:>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <video id="myvideo" muted autoplay style="height: 180px; width: 100%; display: block;"></video>
     </div>
-    <div id="others" class="col-md-9"></div>
+    <div id="others" class="col-sm-9"></div>
     <div style="height:500px;">&nbsp;</div>
     <audio style="display:none;" id="ding">
       <source src="/sounds/ding.mp3" type="audio/mpeg" />
@@ -38,7 +38,7 @@
           $('#others').append(element)
         } else {
           element = $('<div id="' + peer.id +
-                      '"><video autoplay style="height: 180px; width: 100%" /></div>')
+                      '"><video autoplay style="max-height: 100%;max-width: 100%" /></div>')
           $('#others').append(element)
           jQuery("#ding")[0].play();
         }
