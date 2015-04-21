@@ -823,6 +823,7 @@ en:
       callback: "Please, give me a call, my phone number is:"
       holidays: "Doday, we are on holidays. Please feel free to leave us a message!"
       new_conversation: "Can you pick up a new conversation?"
+      new_video_chat: "Can you pick up a new video chat?"
       old_conversation: "Can you pick up an old conversation?"
       out_of_office_hours: "You are contacting us outside office hours. They are "
       sorry: "Unfortunately, we have no sales representative available for you right now. Please try later or stay at this page."

@@ -1,0 +1,54 @@
+<page title="Video Chat">
+  <content:>
+    <div id="mainContainer" class="main-container">
+      <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+          <video id="myvideo" muted autoplay style="height: 180px; width: 100%; display: block;"></video>
+        </div>
+      </div>
+      <div id="others"></div>
+    </div>
+    <div style="height:500px;">&nbsp;</div>
+  </content:>
+
+  <custom-scripts:>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <javascript name="application/EventEmitter.min.js" />
+    <javascript name="application/palava.js" />
+
+
+    <script type="text/javascript">
+      var channel, session;
+      channel = new palava.WebSocketChannel('ws://palava.informatom.com');
+      session = new palava.Session({ roomId: "mercator-<%= CONFIG[:system_id] -%>-<%= @channel_id -%>",
+                                     channel: channel });
+
+      session.on('local_stream_ready', function(stream) {
+        palava.browser.attachMediaStream($('#myvideo'), stream)
+        session.room.join() })
+
+      session.on('peer_stream_ready', function(peer) {
+        var element;
+        if (peer.isLocal()) { return }
+        if ($('#' + peer.id).length > 0) {
+          element = $('#' + peer.id)
+          $('#others').append(element)
+        } else {
+          element = $('<div class="col-xs-6 col-md-3"><div class="thumbnail" id="' + peer.id +
+                      '"><video style="height: 180px; width: 100%" autoplay /></div></div>')
+          $('#others').append(element)
+        }
+        palava.browser.attachMediaStream(element.children('div').children('video')[0], peer.getStream())
+      })
+
+      session.on('peer_left', function(peer) {
+        $('#' + peer.id).remove()
+      })
+
+      session.init({
+        identity: new palava.Identity({ userMediaConfig: { audio: true, video: true } }),
+        options: { stun: 'stun:palava.informatom.com', joinTimeout: 500 }
+      })
+    </script>
+  </custom-scripts:>
+</page>

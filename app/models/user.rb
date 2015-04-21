@@ -199,6 +199,36 @@ class User < ActiveRecord::Base
       end
   end
 
+  def call_for_chat_partner(locale: nil)
+    I18n.locale = locale
+
+    [0, 1, 2, 3, 4].each do |attempt|
+      consultant = User.assign_consultant(position: attempt)
+      break unless consultant
+
+      message = I18n.t('mercator.salutation.new_video_chat')
+
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/personal/"+ consultant.id.to_s,
+                            sender: User::ROBOT.name,
+                            content: message,
+                            video_channel_id: id)
+      sleep 5
+      self.reload
+      return unless waiting
+    end
+
+    self.reload
+    unless consultant_id
+      message = Message.create(reciever_id: id,
+                               sender: User::ROBOT,
+                               content: I18n.t('mercator.salutation.sorry'))
+
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/personal/"+ id.to_s,
+                            sender: message.sender.name,
+                            content: message.content)
+    end
+  end
+
   #--- Class Methods --- #
 
   def self.initialize()

@@ -38,8 +38,21 @@
                 }
               }
             });
-          }
-          else {
+          } else if (data.video_channel_id) {
+            message = Messenger().post({
+              message: "<strong>" + data.sender + "</strong>: " + data.content,
+              hideAfter: 300,
+              showCloseButton: true,
+              actions: {
+                take: {
+                  label: "<%= I18n.t("mercator.take")%>",
+                  action: function(){
+                    window.location.href = "/videochat/" + data.video_channel_id + "/pickup";
+                  }
+                }
+              }
+            });
+          } else {
             message = Messenger().post({
               message: "<strong>" + data.sender + "</strong>: " + data.content,
               hideAfter: 300,
