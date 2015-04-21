@@ -1,21 +1,20 @@
 <page title="Video Chat">
   <content:>
-    <div id="mainContainer" class="main-container">
-      <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-          <video id="myvideo" muted autoplay style="height: 180px; width: 100%; display: block;"></video>
-        </div>
-      </div>
-      <div id="others"></div>
+    <div class="col-md-3">
+      <video id="myvideo" muted autoplay style="height: 180px; width: 100%; display: block;"></video>
     </div>
+    <div id="others" class="col-md-9"></div>
     <div style="height:500px;">&nbsp;</div>
+    <audio style="display:none;" id="ding">
+      <source src="/sounds/ding.mp3" type="audio/mpeg" />
+      <source src="/sounds/ding.ogg" type="audio/ogg" />
+      <embed src="/sounds/ding.mp3" />
+    </audio>
   </content:>
 
   <custom-scripts:>
-    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <javascript name="application/EventEmitter.min.js" />
     <javascript name="application/palava.js" />
-
 
     <script type="text/javascript">
       var channel, session;
@@ -25,20 +24,25 @@
 
       session.on('local_stream_ready', function(stream) {
         palava.browser.attachMediaStream($('#myvideo'), stream)
-        session.room.join() })
+        session.room.join();
+      })
 
       session.on('peer_stream_ready', function(peer) {
         var element;
-        if (peer.isLocal()) { return }
+        if (peer.isLocal()) {
+          return;
+        }
+
         if ($('#' + peer.id).length > 0) {
           element = $('#' + peer.id)
           $('#others').append(element)
         } else {
-          element = $('<div class="col-xs-6 col-md-3"><div class="thumbnail" id="' + peer.id +
-                      '"><video style="height: 180px; width: 100%" autoplay /></div></div>')
+          element = $('<div id="' + peer.id +
+                      '"><video autoplay style="height: 180px; width: 100%" /></div>')
           $('#others').append(element)
+          jQuery("#ding")[0].play();
         }
-        palava.browser.attachMediaStream(element.children('div').children('video')[0], peer.getStream())
+        palava.browser.attachMediaStream(element.children('video')[0], peer.getStream())
       })
 
       session.on('peer_left', function(peer) {

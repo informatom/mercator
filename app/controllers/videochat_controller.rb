@@ -19,6 +19,11 @@ class VideochatController < ApplicationController
     User.find(session[:user].split(":")[1])
   end
 
+  def current_user=(new_user)
+    session[:user] = (new_user.nil? || new_user.guest?) ? nil : new_user.typed_id
+    @current_user = new_user
+  end
+
 private
 
   def logged_in?
