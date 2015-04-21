@@ -218,7 +218,7 @@ class User < ActiveRecord::Base
     end
 
     self.reload
-    unless consultant_id
+    if waiting
       message = Message.create(reciever_id: id,
                                sender: User::ROBOT,
                                content: I18n.t('mercator.salutation.sorry'))

@@ -1,5 +1,6 @@
 class VideochatController < ApplicationController
   before_filter :domain_cms_redirect
+  layout nil
 
   def show
     @channel_id = current_user.id
