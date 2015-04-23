@@ -73,14 +73,13 @@
           <ul class="list-group">
             <collection:downloads part="downloads"/>
           </ul>
-
           <div part="links">
             <h3 class="blue"><%= t("attributes.links") %></h3>
             <ul class="list-group">
               <collection:links />
             </ul>
-
             <if test="&this.last_link && this.last_link.url.length > 7 && Time.now - this.last_link.created_at < 10">
+
               <div id="cobrowsing-area" class="hidden" part="cobrowsing">
                 <iframe src="#{this.last_link.url}" width="100%" height="800">
                   <p>

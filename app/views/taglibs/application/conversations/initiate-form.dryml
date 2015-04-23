@@ -39,7 +39,7 @@
             <collection:downloads part="downloads"/>
           </ul>
 
-          <div part="links">
+          <div>
             <h3 class="blue"><%= t("attributes.links") %></h3>
             <ul class="list-group">
               <collection:links />
