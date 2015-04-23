@@ -226,7 +226,7 @@ class Order < ActiveRecord::Base
 
 
   def shippable?
-    !lineitems.*.product.*.not_shippable.any?
+    !lineitems.*.product.*.try(:not_shippable).any?
   end
 
   def accepted_offer?
