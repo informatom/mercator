@@ -2,7 +2,7 @@
 <def tag="price-tag" for="Inventory">
   <if test="&Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'">
     <span class="h3"><%= number_to_currency(this.determine_price(incl_vat: true, customer_id: current_user.id)) %></span>
-    <nobr><t key="mercator.incl_vat" /></nobr>
+    <span class="nobr"><t key="mercator.incl_vat" /></span>
   </if>
   <else>
     <span class="h3 text-right">
