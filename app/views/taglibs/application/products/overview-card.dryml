@@ -90,7 +90,6 @@
         </small>
       </p>
 
-      <p class="hidden-xs"><video-chat-link/></p>
       <p class="hidden-xs"><online-consulting-link/></p>
     </div>
   </div>

@@ -18,7 +18,6 @@
           <div class="content-collapse in" id="category-collapse-#{this.id}"><i><view:description no-wrapper/></i></div>
         </div>
         <div class="col-md-6">
-          <p class="hidden-xs"><video-chat-link/></p>
           <p class="hidden-xs"><online-consulting-link/></p>
 
           <view with="&this.active_product_count" /> <t key="mercator.products_available" /><br/>
