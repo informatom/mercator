@@ -55,8 +55,7 @@ class Conversation < ActiveRecord::Base
   def view_permitted?(field)
     acting_user.administrator? ||
     acting_user.sales? ||
-    customer_is?(acting_user) ||
-    new_record?
+    customer_is?(acting_user)
   end
 
   #--- Instance Methods ---#
