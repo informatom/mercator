@@ -7,12 +7,12 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",
         "xmlns:atom" => "http://www.w3.org/2005/Atom",
         :version => "2.0" do
   xml.channel do
-    xml.atom :link, href: rss_feed_url(:rss), rel: "self", type: "application/rss+xml"
+    xml.atom :link, href: rss_feed_url(:rss, locale: nil), rel: "self", type: "application/rss+xml"
 
     xml.title "Layer 8"
     xml.description "Layer 8 ist der österreichischer IT-Podcast powered by Informatom. Ihr Host Stefan Haslinger stellt in unregelmäßiger Folge interessante Persönlichkeiten der österreichischen IT-Szene vor und plaudert mit ihnen über Business, Technolgie, Menschen und Trivia."
     xml.itunes :summary, "Layer 8 ist der österreichischer IT-Podcast powered by Informatom. Ihr Host Stefan Haslinger stellt in unregelmäßiger Folge interessante Persönlichkeiten der österreichischen IT-Szene vor und plaudert mit ihnen über Business, Technolgie, Menschen und Trivia."
-    xml.link rss_feed_url(:rss)
+    xml.link rss_feed_url(:rss, locale: nil)
     xml.itunes :image, href: request.protocol + request.host_with_port + asset_path("logo.png")
     xml.language "de-de"
     xml.itunes :subtitle, "Der österreichische IT-Podcast"
