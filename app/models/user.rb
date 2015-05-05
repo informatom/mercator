@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :restrict_with_error, inverse_of: :user
 
-  has_many :conversations, dependent: :restrict, inverse_of: :customer, foreign_key: :customer_id
+  has_many :conversations, dependent: :restrict_with_error, inverse_of: :customer, foreign_key: :customer_id
 
   include Gravtastic
   gravtastic :default => "http://www.informatom.com/assets/images/unknown-user.png"
