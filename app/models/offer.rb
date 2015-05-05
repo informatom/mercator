@@ -42,7 +42,7 @@ class Offer < ActiveRecord::Base
   validates :user, :presence => true
 
   belongs_to :consultant, :class_name => 'User'
-  validates :consultant_id, :presence => true
+  validates :consultant, :presence => true
 
   belongs_to :conversation
 

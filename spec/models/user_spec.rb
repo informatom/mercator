@@ -6,7 +6,7 @@ describe User do
     expect(build(:user)).to be_valid
   end
 
-  it {should validate_presence_of(:name)}
+  it {should validate_presence_of(:surname)}
 
   it {should have_many(:addresses)}
   it {should have_many(:billing_addresses)}

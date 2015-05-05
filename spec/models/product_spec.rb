@@ -9,7 +9,6 @@ describe Product do
 
   it {should validate_presence_of(:title_de)}
   it {should validate_presence_of(:number)}
-  it {should validate_presence_of(:description_de)}
   it {should validate_uniqueness_of(:number)}
 
   it {should have_many(:property_groups)}

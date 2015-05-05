@@ -11,7 +11,6 @@ describe Conversation do
   it {should validate_presence_of(:customer)}
 
   it {should belong_to(:consultant)}
-  it {should validate_presence_of(:consultant)}
 
   it "is versioned" do
     should respond_to(:versions)

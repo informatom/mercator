@@ -13,11 +13,7 @@ class Contract < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :customer, :class_name => 'User'
-#  validates :customer, :presence => true
-
   belongs_to :consultant, :class_name => 'User'
-#  validates :consultant, :presence => true
-
   belongs_to :conversation
 
   has_many :contractitems, dependent: :destroy, accessible: true

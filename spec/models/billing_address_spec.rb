@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe BillingAddress do
-  it "is valid with first_name, surname, c_o, detail, street, postal code, city, country, vat_number" do
+  it "is valid with company, title, first_name, surname, email_address, detail, street," +
+     "postal code, city, country, phone vat_number" do
     build(:country).save
     expect(build(:billing_address)).to be_valid
   end

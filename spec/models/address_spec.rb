@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Address do
-  it "is valid with first_name, surname, c_o, detail, street, postal code, city, country" do
+  it "is valid with company, title, first_name, surname, detail, street, postal code, city, " +
+     "country, phone" do
     build(:country).save
     expect(build(:address)).to be_valid
   end
