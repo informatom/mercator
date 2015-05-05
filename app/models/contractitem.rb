@@ -34,9 +34,9 @@ class Contractitem < ActiveRecord::Base
 
   validates :position, numericality: { only_integer: true }
   validates :amount, numericality: true
-# validates :product_price, numericality: true
+  validates :product_price, numericality: { allow_nil: true }
   validates :vat, numericality: true
-#  validates :value, numericality: true
+  validates :value, numericality: { allow_nil: true }
 
   belongs_to :user
   belongs_to :contract

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Order do
-  it "is valid with billing_method, billing_name, billing_c_o, billing_detail,
+  it "is valid with billing_method, billing_first_name, billing_surname, billing_c_o, billing_detail,
       billing_street, billing_postalcode, billing_city, billing_country,
       shipping_method, shipping_name, shipping_c_o, shipping_detail, shipping_street,
       shipping_postalcode, shipping_city, shipping_country, gtc_confirmed_at,

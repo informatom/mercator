@@ -11,8 +11,6 @@ describe Message do
   it {should validate_presence_of(:sender)}
 
   it {should belong_to(:reciever)}
-  it {should validate_presence_of(:reciever)}
-
   it {should belong_to(:conversation)}
 
   it "is versioned" do

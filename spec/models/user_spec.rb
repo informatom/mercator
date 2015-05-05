@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  it "is valid with a name, email_address, last_login_at, gtc_confirmed_at,
+  it "is valid with a first_name, surname, email_address, last_login_at, gtc_confirmed_at,
       gtc_version_of, erp_account_nr, erp_contact_nr but without administrator" do
     expect(build(:user)).to be_valid
   end

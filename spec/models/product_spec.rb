@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Product do
   it "is valid with title_de, title_en, number, description_de, description_en,
       long_description_de, long_description_en, warranty_de, warranty_en,
-      novelty, topseller, document, photo" do
+      document, photo" do
     expect(build(:product)).to be_valid
   end
 

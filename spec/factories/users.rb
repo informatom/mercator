@@ -1,7 +1,8 @@
 FactoryGirl.define do
 
   factory :user do
-    name             "John Doe"
+    first_name       "John"
+    surname          "Doe"
     email_address    "john.doe@informatom.com"
     sales            false
     sales_manager    false
@@ -15,7 +16,8 @@ FactoryGirl.define do
   end
 
   factory :admin, class: User do
-    name "Albert Administator"
+    first_name "Albert"
+    surname "Administator"
     email_address "albert.administator@informatom.com"
     administrator true
     password "secret123"
@@ -27,7 +29,8 @@ FactoryGirl.define do
   end
 
   factory :sales, class: User do
-    name "Sammy Sales Representative"
+    first_name "Sammy"
+    surname "Sales Representative"
     email_address "sammy.sales@informatom.com"
     sales true
     sales_manager false
@@ -41,7 +44,8 @@ FactoryGirl.define do
   end
 
   factory :salesmanager, class: User do
-    name "Sally Sales Manager"
+    first_name "Sally"
+    surname "Sales Manager"
     email_address "sally.salesmanager@informatom.com"
     sales true
     sales_manager true
