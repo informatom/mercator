@@ -9,12 +9,15 @@ describe Category do
 
   it {should validate_presence_of(:name_de)}
   it {should validate_presence_of(:name_en)}
+
   it {should validate_numericality_of(:position).only_integer}
   it {should validate_presence_of(:position)}
 
-  it "is versioned" do
-    should respond_to(:versions)
-  end
+  it {should have_many(:products)}
+  it {should have_many(:categorizations)}
+
+  it {should have_many(:values)}
+  it {should have_many(:properties)}
 
   it "is in a tree structure" do
     should respond_to(:parent)
@@ -28,6 +31,7 @@ describe Category do
     should respond_to(:photo)
   end
 
-  it {should have_many(:products)}
-  it {should have_many(:categorizations)}
+  it "is versioned" do
+    should respond_to(:versions)
+  end
 end

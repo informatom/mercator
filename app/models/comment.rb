@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    content  :text
+    content  :text, :required
     ancestry :string, :index => true
     timestamps
   end

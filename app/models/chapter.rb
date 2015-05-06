@@ -10,6 +10,8 @@ class Chapter < ActiveRecord::Base
   end
   attr_accessible :start, :title, :href, :podcast, :podcast_id
 
+  has_paper_trail
+
   belongs_to :podcast
 
   # --- Permissions --- #

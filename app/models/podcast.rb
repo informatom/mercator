@@ -11,6 +11,7 @@ class Podcast < ActiveRecord::Base
     timestamps
   end
   attr_accessible :number, :title, :shownotes, :duration, :published_at, :ogg, :mp3
+  has_paper_trail
 
   self.per_page = 3 # Anzahl Seiteneinträge will_paginate
   default_scope { order('podcasts.published_at DESC') }
