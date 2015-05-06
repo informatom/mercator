@@ -1,10 +1,11 @@
 class PodcastsController < ApplicationController
+  before_filter :domain_cms_redirect
+  after_filter :track_action
+
   hobo_model_controller
   auto_actions :index, :show
-
   index_action :archive, :feed, :ogg
 
-  before_filter :domain_cms_redirect
 
   def index
     page = params[:page] ? params[:page].to_i : 1
@@ -37,13 +38,16 @@ class PodcastsController < ApplicationController
     hobo_index
   end
 
+
   def feed
     @podcasts = Podcast.where.not(published_at: nil)
   end
 
+
   def ogg
     @podcasts = Podcast.where.not(published_at: nil)
   end
+
 
   def show
     hobo_show do

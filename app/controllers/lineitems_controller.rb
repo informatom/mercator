@@ -1,8 +1,10 @@
 class LineitemsController < ApplicationController
   before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
   auto_actions :destroy, :lifecycle
+
 
   def do_delete_from_basket
     do_transition_action :delete_from_basket do
@@ -12,6 +14,7 @@ class LineitemsController < ApplicationController
     end
   end
 
+
   def do_transfer_to_basket
     do_transition_action :transfer_to_basket do
       flash[:success] = I18n.t("mercator.messages.lineitem.transfer.success")
@@ -19,6 +22,7 @@ class LineitemsController < ApplicationController
       redirect_to session[:return_to]
     end
   end
+
 
   def do_add_one
     do_transition_action :add_one do
@@ -28,6 +32,7 @@ class LineitemsController < ApplicationController
     end
   end
 
+
   def do_remove_one
     do_transition_action :remove_one do
       flash[:success] = I18n.t("mercator.messages.lineitem.decrease_amount.success")
@@ -36,11 +41,13 @@ class LineitemsController < ApplicationController
     end
   end
 
+
   def do_enable_upselling
     do_transition_action :enable_upselling do
       redirect_to session[:return_to]
     end
   end
+
 
   def do_disable_upselling
     do_transition_action :disable_upselling do

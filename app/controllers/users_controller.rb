@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  after_filter :track_action
 
   hobo_user_controller
-
   auto_actions :all, :except => [ :index, :new, :create ]
   auto_actions :lifecycle
 
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   include UsersControllerExtensions if Rails.application.config.try(:erp) == "mesonic"
 
   autocomplete :surname
+
 
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   def login
     if  params[:fromfront] == "true"
@@ -56,6 +58,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def login_via_email
     do_transition_action :login_via_email do
       self.current_user = User.find(params[:id])
@@ -65,11 +68,13 @@ class UsersController < ApplicationController
     end
   end
 
+
   def logout
     current_basket.delete_if_obsolete
     current_user.update(logged_in: false) unless current_user.class == Guest
     hobo_logout
   end
+
 
   def switch
     last_user_id = current_user.id
@@ -81,6 +86,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def request_email_login
     user = User.find_by_email_address(params[:email_address])
     if user
@@ -89,12 +95,14 @@ class UsersController < ApplicationController
     end
   end
 
+
   def do_activate
     do_transition_action :activate do
       flash[:notice] = I18n.t("mercator.messages.user.activated")
       redirect_to :root
     end
   end
+
 
   def accept_gtc
     @current_gtc = Gtc.order(version_of: :desc).first
@@ -103,6 +111,7 @@ class UsersController < ApplicationController
       self.this.order_id = params[:order_id]
     end
   end
+
 
   def do_accept_gtc
     do_transition_action :accept_gtc do
@@ -126,6 +135,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   def upgrade
     if current_user.update_attributes(params[:user])

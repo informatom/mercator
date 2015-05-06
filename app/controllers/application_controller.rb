@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
-  # after_filter :track_action
   after_filter :allow_iframe
 
   def auto_log_in
@@ -100,10 +99,9 @@ class ApplicationController < ActionController::Base
 
 protected
 
-#  FIXME! Commented out because uploads kill it ...
-#  def track_action
-#    ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
-#  end
+  def track_action
+    ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
+  end
 
   def allow_iframe
     # We allow embedding in iframes

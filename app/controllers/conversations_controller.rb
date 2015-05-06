@@ -1,8 +1,10 @@
 class ConversationsController < ApplicationController
+  after_filter :track_action
 
   hobo_model_controller
   auto_actions :show, :index, :lifecycle
   show_action :suggestions
+
 
   def refresh
     self.this = Conversation.find(params[:id])

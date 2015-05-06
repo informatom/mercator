@@ -1,15 +1,16 @@
 class OffersController < ApplicationController
-
   before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
-
   auto_actions :show, :lifecycle
+
 
   def refresh
     self.this = Offer.find(params[:id])
     hobo_show
   end
+
 
   def do_copy
     do_transition_action :copy do
@@ -98,6 +99,7 @@ class OffersController < ApplicationController
       end
     end
   end
+
 
   def show
     hobo_show do |format|

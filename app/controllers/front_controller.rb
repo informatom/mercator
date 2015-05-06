@@ -1,8 +1,11 @@
 class FrontController < ApplicationController
+  after_filter :track_action
 
   hobo_controller
 
+
   def index; end
+
 
   def home
     @home = Webpage.where(slug: "home").first
@@ -15,9 +18,11 @@ class FrontController < ApplicationController
     end
   end
 
+
   def summary
     redirect_to user_login_path unless current_user.administrator?
   end
+
 
   def search
     if params[:query]

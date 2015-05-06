@@ -1,9 +1,10 @@
 class OfferitemsController < ApplicationController
   before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
-
   auto_actions :lifecycle
+
 
   def do_copy
     do_transition_action :copy do

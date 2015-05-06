@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
-
   before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
   show_action :payment_status
+
 
   # location: mercator/vendor/engines/mercator_mpay24/app/controllers/
   #           orders_controller_extensions.rb
@@ -51,6 +52,7 @@ class OrdersController < ApplicationController
       render action: :confirm
     end
   end
+
 
   def do_pay
     self.this = @order = Order.find(params[:id])

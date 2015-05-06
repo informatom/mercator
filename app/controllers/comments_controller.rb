@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
+  before_filter :domain_cms_redirect
+  after_filter :track_action
+
   hobo_model_controller
   auto_actions :new, :create
 
-  before_filter :domain_cms_redirect
 
   def new
     @comment = self.this = Comment.new()

@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
+  before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
   auto_actions :show, :index
-
-  before_filter :domain_shop_redirect
 
 
   def show

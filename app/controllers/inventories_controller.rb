@@ -1,6 +1,6 @@
 class InventoriesController < ApplicationController
-
   before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
   show_action :add_to_basket

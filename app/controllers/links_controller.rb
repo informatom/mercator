@@ -2,6 +2,7 @@ class LinksController < ApplicationController
   hobo_model_controller
   auto_actions :create
 
+
   def create
     hobo_create do
       unless this.url[0..6] == "http://"

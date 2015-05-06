@@ -1,9 +1,11 @@
 class BlogpostsController < ApplicationController
+  before_filter :domain_cms_redirect
+  after_filter :track_action
+
   hobo_model_controller
   auto_actions :index, :show
   index_action :feed
 
-  before_filter :domain_cms_redirect
 
   def index
     page = params[:page] ? params[:page].to_i : 1

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-
   before_filter :domain_shop_redirect
+  after_filter :track_action
 
   hobo_model_controller
   auto_actions :show, :lifecycle
@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
     @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
     hobo_show
   end
+
 
   def refresh
     @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
