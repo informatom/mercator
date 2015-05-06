@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Offer do
-  it "is valid with valid_until, billing_name, billing_c_o, billing_detail,
-      billing_street, billing_postalcode, billing_city, billing_country,
-      shipping_name, shipping_detail, shipping_street, shipping_postalcode,
-      shipping_city, shipping_country, valid_until, complete, discount_rel " do
+  it "is valid with billing_company, billing_gender, billing_title, billing_first_name, " +
+     "billing_surname, billing_detail, billing_street, billing_postalcode, billing_city," +
+     "billing_country, billing_phone, shipping_company, shipping_gender, shipping_title," +
+     "shipping_first_name, shipping_surname, shipping_detail, shipping_street, shipping_postalcode," +
+     "shipping_city, shipping_country, shipping_phone, valid_until, complete, discount_rel" do
     expect(build(:offer)).to be_valid
   end
 

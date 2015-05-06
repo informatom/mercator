@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Category do
-  it "is valid with name_de, name_en, position, photo, document, filter" do
+  it "is valid with name_de, name_en, description_de, description_en, long_description_de," +
+     "long_description_en, ancestry, position, legacy_id, filters, filtermin, filtermax," +
+     "erp_identifier, usage, squeel_condition, photo, document" do
     expect(build(:category)).to be_valid
   end
 

@@ -10,7 +10,7 @@ describe Property do
   it {should validate_numericality_of(:position)}
 
   it {should validate_presence_of(:datatype)}
-  it { should ensure_inclusion_of(:datatype).in_array(%w(textual numeric flag)) }
+  it {should validate_inclusion_of(:datatype).in_array(%w(textual numeric flag)) }
 
   it {should have_many(:property_groups)}
   it {should have_many(:products)}
