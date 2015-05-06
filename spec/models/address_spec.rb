@@ -7,6 +7,7 @@ describe Address do
     expect(build(:address)).to be_valid
   end
 
+  it {should validate_presence_of(:company)}
   it {should validate_presence_of(:first_name)}
   it {should validate_presence_of(:surname)}
   it {should validate_presence_of(:street)}

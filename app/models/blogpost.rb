@@ -16,10 +16,12 @@ class Blogpost < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :content_element
-  belongs_to :post_category
-  has_many :comments
+  validates_presence_of :content_element
 
+  belongs_to :post_category
   validates_presence_of :post_category
+
+  has_many :comments
 
   acts_as_taggable_on :blogtags
 
