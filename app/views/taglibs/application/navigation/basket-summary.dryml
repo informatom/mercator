@@ -1,0 +1,6 @@
+<def tag="basket-summary">
+  <span part="summary">
+    <view with="&current_user.basket.lineitems.count" no-wrapper/> Pos. /
+    <view with="&number_to_currency(current_user.basket.sum_incl_vat)" no-wrapper/>
+  </span>
+</def>

@@ -8,10 +8,7 @@
         <li param='basket'>
           <nav-item with="&current_user.basket" >
             <%= fa_icon "shopping-cart", class:"fa-lg" %>
-            <span part="summaryxxx" style="display: inline">
-              <%= current_user.basket.lineitems.count %> Pos.
-              <%= number_to_currency(current_user.basket.sum_incl_vat) %> <%= fa_icon "eur" %>
-            </span>
+            <basket-summary/>
           </nav-item>
         </li>
       </if>
