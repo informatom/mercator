@@ -13,14 +13,14 @@ class Property < ActiveRecord::Base
     timestamps
   end
 
-  default_scope { order(position: :asc) }
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
                   :position, :legacy_id, :datatype, :icecat_id
-  has_paper_trail
   translates :name, :description, :unit
-  acts_as_list
+  has_paper_trail
+  default_scope { order('properties.position ASC') }
 
   validates :position, numericality: true
+
   validates :datatype,inclusion: { in: %w(textual numeric flag) }
 
   has_many :property_groups, :through => :values

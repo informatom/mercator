@@ -19,7 +19,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
   end
 
   def manage_products
-    if params[:cmd] == "save-records"
+    if params[:cmd] == "save-records" && params[:changes]
       params[:changes].each do |key, change|
         product = Product.find(change[:recid])
         product.state = change[:state][:id]

@@ -170,7 +170,7 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
   end
 
   def manage_features
-    if params[:cmd] == "save-records"
+    if params[:cmd] == "save-records" && params[:changes]
       params[:changes].each do |key, change|
         feature = Feature.find(change[:recid])
 
