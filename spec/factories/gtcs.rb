@@ -1,6 +1,5 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+
   factory :gtc do
     title_de "Minimale AGBS"
     title_en "Minimal GTCs"

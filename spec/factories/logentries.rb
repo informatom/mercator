@@ -1,6 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+
   factory :logentry do
+    severity "info"
+    message  "Just sme message."
   end
 end

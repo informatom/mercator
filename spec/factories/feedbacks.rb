@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :feedback do
     content      "Some feedback"
     conversation

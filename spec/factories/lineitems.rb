@@ -34,5 +34,4 @@ FactoryGirl.define do
     upselling      "true"
     discount_abs   42.34
   end
-
 end

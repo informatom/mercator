@@ -1,6 +1,5 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+
   factory :offeritem do
     offer
     user           {offer.user}

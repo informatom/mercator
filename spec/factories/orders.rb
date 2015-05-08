@@ -33,5 +33,4 @@ FactoryGirl.define do
     erp_order_number    "o123"
     discount_rel        "2.5"
   end
-
 end

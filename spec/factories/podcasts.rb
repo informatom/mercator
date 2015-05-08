@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :podcast do
     number 1
     title       "First Podcast"

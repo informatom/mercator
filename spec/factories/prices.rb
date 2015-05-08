@@ -10,5 +10,4 @@ FactoryGirl.define do
     scale_to   100
     promotion  true
   end
-
 end

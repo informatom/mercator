@@ -22,5 +22,4 @@ FactoryGirl.define do
     just_imported           true
     alternative_number      "slip-4-2"
   end
-
 end

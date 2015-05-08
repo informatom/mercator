@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :recommendation do
     reason_de   "Fantastisches Produkt"
     reason_en   "Fantastic Product"
