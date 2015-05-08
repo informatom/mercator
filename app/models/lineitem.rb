@@ -30,6 +30,7 @@ class Lineitem < ActiveRecord::Base
   validates :product_price, numericality: true
   validates :vat, numericality: true
   validates :value, numericality: true
+  validates :discount_abs, numericality: :true
 
   belongs_to :user, :creator => true
 

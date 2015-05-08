@@ -9,13 +9,13 @@ describe Offer do
     expect(build(:offer)).to be_valid
   end
 
+  it {should validate_presence_of(:valid_until)}
+
   it {should belong_to(:user)}
   it {should validate_presence_of(:user)}
 
   it {should belong_to(:consultant)}
   it {should validate_presence_of(:consultant)}
-
-  it {should validate_presence_of(:valid_until)}
 
   it {should have_many(:offeritems)}
   it {should belong_to(:conversation)}

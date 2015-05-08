@@ -1,7 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 
 #HAS:20140109 needed for fixture_file_upload()
 include ActionDispatch::TestProcess

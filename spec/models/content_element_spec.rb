@@ -8,6 +8,12 @@ describe ContentElement do
   it {should validate_presence_of :name_de}
   it {should validate_uniqueness_of :name_de}
 
+  it {should have_many :page_content_element_assignments}
+  it {should have_many :webpages}
+
+  it {should belong_to :folder}
+  it {should validate_presence_of :folder}
+
   it "is versioned" do
     should respond_to(:versions)
   end
@@ -19,7 +25,4 @@ describe ContentElement do
   it "has a photo attached" do
     should respond_to(:photo)
   end
-
-  it {should have_many(:page_content_element_assignments)}
-  it {should have_many(:webpages)}
 end

@@ -8,7 +8,8 @@ class PageContentElementAssignment < ActiveRecord::Base
   end
   attr_accessible :used_as, :webpage, :content_element, :webpage_id, :content_element_id
 
-  validates :used_as, :presence => true, :uniqueness => {:scope => :webpage_id}
+  validates :used_as, :presence => true,
+                      :uniqueness => {:scope => :webpage_id}
 
   has_paper_trail
 
