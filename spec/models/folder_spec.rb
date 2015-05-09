@@ -12,4 +12,9 @@ describe Folder do
   it "is versioned" do
     should respond_to :versions
   end
+
+  it "is in a tree structure" do
+    should respond_to :parent
+    should respond_to :children
+  end
 end

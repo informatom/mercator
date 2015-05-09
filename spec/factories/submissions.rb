@@ -5,6 +5,6 @@ FactoryGirl.define do
     email   "max.mustermann@private.org"
     phone   "+43 123456789"
     message "I would viko to be contacted"
-    answer  "Called on April 1st, 2014"
+    answer  "8"
   end
 end

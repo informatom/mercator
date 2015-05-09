@@ -12,6 +12,8 @@ class Submission < ActiveRecord::Base
   end
   attr_accessible :name, :email, :phone, :message, :answer
 
+  has_paper_trail
+
   validates_format_of :answer, :with => %r{8}
 
   # --- Permissions --- #
