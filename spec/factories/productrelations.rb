@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :productrelation do
-    product         {product}
-    related_product {second_product}
+    product
+    association :related_product, factory: :second_product
   end
 end

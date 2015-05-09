@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Conversation do
   it "is valid with name, customer, consultant" do
-    expect(build(:conversation)).to be_valid
+    expect(build :conversation).to be_valid
   end
 
   it {should validate_presence_of :name}

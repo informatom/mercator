@@ -1,20 +1,24 @@
 require 'spec_helper'
 
 describe Categorization do
-  it {should validate_presence_of(:position)}
+  it "is valid with position, product, category" do
+    expect(build :categorization).to be_valid
+  end
 
-  it {should belong_to(:product)}
-  it {should belong_to(:category)}
+  it {should validate_presence_of :position}
 
-  it {should validate_presence_of(:product)}
-  it {should validate_presence_of(:category_id)}
-  it {should validate_uniqueness_of(:category_id)}
+  it {should belong_to :product}
+  it {should belong_to :category}
+
+  it {should validate_presence_of :product}
+  it {should validate_presence_of :category_id}
+  it {should validate_uniqueness_of :category_id}
 
   it "acts as a list" do
-  	should respond_to(:move_to_top)
+  	should respond_to :move_to_top
   end
 
   it "is versioned" do
-    should respond_to(:versions)
+    should respond_to :versions
   end
 end

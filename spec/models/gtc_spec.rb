@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Gtc do
   it "is valid with titel_de, titel_en, content_de, content_en, version_of" do
-    expect(build(:gtc)).to be_valid
+    expect(build :gtc).to be_valid
   end
 
   it {should validate_presence_of :title_de}

@@ -4,7 +4,7 @@ describe Contractitem do
   it "is valid with contract, user, position, product, product_number,
       description_de, description_en, amount, unit, product_price,
       vat, discount_abs, toner, value, volume" do
-    expect(build :contractitem ).to be_valid
+    expect(build :contractitem).to be_valid
   end
 
   it {should validate_presence_of :position}
@@ -16,7 +16,7 @@ describe Contractitem do
   it {should validate_numericality_of :vat}
   it {should validate_numericality_of :value}
 
-  it {should belong_to :contract }
+  it {should belong_to :contract}
   it {should validate_presence_of :contract}
 
   it {should belong_to :user}
@@ -26,10 +26,10 @@ describe Contractitem do
   it {should have_many :consumableitems}
 
   it "acts as a list" do
-    should respond_to(:move_to_top)
+    should respond_to :move_to_top
   end
 
   it "is versioned" do
-    should respond_to(:versions)
+    should respond_to :versions
   end
 end
