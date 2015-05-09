@@ -38,10 +38,10 @@ class Order < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
-  include OrderExtensions if Rails.application.config.try(:erp) == "mesonic"
+  include OrderExtensions if defined? Constant? && Rails.application.config.try(:erp) == "mesonic"
 
   # can be found in mercator/vendor/engines/mercator_mpay24/app/models/order_extensions.rb
-  include Mpay24OrderExtensions if Rails.application.config.try(:payment) == "mpay24"
+  include Mpay24OrderExtensions if defined? Constant? && Rails.application.config.try(:payment) == "mpay24"
 
   attr_accessible :billing_method, :billing_company,:billing_gender, :billing_title,
                   :billing_first_name, :billing_surname, :billing_detail, :billing_street,
