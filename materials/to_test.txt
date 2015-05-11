@@ -1,5 +1,4 @@
 category
-comment
 content_element
 conversation
 gtc

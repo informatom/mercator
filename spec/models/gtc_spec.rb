@@ -14,4 +14,15 @@ describe Gtc do
   it "is versioned" do
     is_expected.to respond_to :versions
   end
+
+# ---CLass Methods  --- #
+
+  context "current" do
+    it "returns the latest date" do
+      build (:older_gtc)
+      build (:newer_gtc)
+      build (:gtc)
+      expect(Gtc.current).to be("2014-01-23")
+    end
+  end
 end
