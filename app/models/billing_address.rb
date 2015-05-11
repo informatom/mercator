@@ -75,7 +75,7 @@ class BillingAddress < ActiveRecord::Base
     user_is?(acting_user)
   end
 
-  #--- Class Methods ---#
+  #--- Instance Methods ---#
 
   def if_country_exists
     errors.add(:base, "Unbekanntes Land") unless Country.find_by_name(country)

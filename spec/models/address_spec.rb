@@ -21,4 +21,23 @@ describe Address do
   it "is versioned" do
     should respond_to :versions
   end
+
+
+## Instance Methods
+
+  context "if_country_exists" do
+    it "return error for non-existing country" do
+      @address = build(:address, country: "Wonderland")
+      @address.if_country_exists
+      expect(@address.errors.messages[:base]).to include("Unbekanntes Land")
+    end
+
+    it "return no error for existing country" do
+      create(:country)
+
+      @address = build(:address)
+      @address.if_country_exists
+      expect(@address.errors.messages[:base]).to be_nil
+    end
+  end
 end

@@ -22,4 +22,23 @@ describe BillingAddress do
   it "is versioned" do
     should respond_to :versions
   end
+
+
+## Instance Methods
+
+  context "if_country_exists" do
+    it "return error for non-existing country" do
+      @billingaddress = build(:billing_address, country: "Wonderland")
+      @billingaddress.if_country_exists
+      expect(@billingaddress.errors.messages[:base]).to include("Unbekanntes Land")
+    end
+
+    it "return no error for existing country" do
+      create(:country)
+
+      @billingaddress = build(:billing_address)
+      @billingaddress.if_country_exists
+      expect(@billingaddress.errors.messages[:base]).to be_nil
+    end
+  end
 end
