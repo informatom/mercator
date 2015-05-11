@@ -25,4 +25,32 @@ describe ContentElement do
   it "has a photo attached" do
     is_expected.to respond_to :photo
   end
+
+# ---  CLass Methods  --- #
+
+  context "find_by_name" do
+    it "can be found by name" do
+      expect(ContentElement).to respond_to(:find_by_name)
+    end
+  end
+
+  context "image" do
+    it "returns nil if no image found" do
+      expect(ContentElement.image(name: "not existing")).to eql(nil)
+    end
+
+    it "finds content element by name_de and returns photo" do
+      create(:content_element)
+      expect(ContentElement.image(name: "Ich bin der deutsche Titel")).to be_an_instance_of Paperclip::Attachment
+    end
+
+    it "finds content element by name_en and returns photo" do
+      create(:content_element)
+      expect(ContentElement.image(name: "I am the english title")).to be_an_instance_of Paperclip::Attachment
+    end
+
+  end
+
+# ---  Instance Methods  --- #
+
 end

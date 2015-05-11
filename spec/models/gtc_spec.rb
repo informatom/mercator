@@ -15,7 +15,7 @@ describe Gtc do
     is_expected.to respond_to :versions
   end
 
-# ---CLass Methods  --- #
+# ---  CLass Methods  --- #
 
   context "current" do
     it "returns the latest date" do

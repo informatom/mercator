@@ -1,7 +1,7 @@
-category
 content_element
+
+category
 conversation
-gtc
 inventory
 lineitem
 offer

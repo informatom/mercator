@@ -24,7 +24,7 @@ describe Blogpost do
   end
 
 
-# ---CLass Methods  --- #
+# ---  CLass Methods  --- #
 
   context "self.latest" do
     before :each do
@@ -65,7 +65,7 @@ describe Blogpost do
   end
 
 
-  # ---Instance Methods  --- #
+  # ---  Instance Methods  --- #
 
   context "name" do
     it "returns name" do

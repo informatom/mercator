@@ -16,7 +16,7 @@ describe Country do
     is_expected.to respond_to :versions
   end
 
-# ---CLass Methods  --- #
+# ---  CLass Methods  --- #
 
   context "find_by_name" do
     it "can be found by name" do

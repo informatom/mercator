@@ -15,7 +15,7 @@ describe Suggestion do
     is_expected.to respond_to :versions
   end
 
-# ---Instance Methods  --- #
+# ---  Instance Methods  --- #
 
   context "name" do
     it "returns a nicely formatted product name and number" do

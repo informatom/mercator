@@ -13,7 +13,7 @@ describe Constant do
   end
 
 
-# ---CLass Methods  --- #
+# ---  CLass Methods  --- #
 
   context "office hours" do
     it "returns false out of office hours" do

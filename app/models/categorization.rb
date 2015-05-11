@@ -37,7 +37,7 @@ class Categorization < ActiveRecord::Base
   end
 
 
-  # ---CLass Methods  --- #
+  # ---  CLass Methods  --- #
 
   def self.complement(product: nil, category: nil)
     Categorization.find_or_create_by(product_id: product.id, category_id: category.id) do |category|
