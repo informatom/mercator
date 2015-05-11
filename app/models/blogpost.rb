@@ -51,11 +51,11 @@ class Blogpost < ActiveRecord::Base
   # --- Class methods --- #
 
   def self.latest
-    self.joins(:content_element)
+    self.order('created_at DESC')
+        .joins(:content_element)
         .merge(ContentElement.where
                              .not(ContentElement.current_locale_column(:content) => [nil, ""]))
         .limit(5)
-        .order('created_at DESC')
   end
 
   # --- Instance methods --- #
