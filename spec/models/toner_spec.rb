@@ -11,11 +11,11 @@ describe Toner do
   it {should have_many :contractitems}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
   it "allows xls updload" do
-    should respond_to :xls
-    should respond_to :xls=
+    is_expected.to respond_to :xls
+    is_expected.to respond_to :xls=
   end
 end

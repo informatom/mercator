@@ -13,6 +13,14 @@ describe Country do
   it {should validate_uniqueness_of :code}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
+  end
+
+# Class Methods
+
+  context "find_by_name" do
+    it "can be found by name" do
+      expect(Country).to respond_to(:find_by_name)
+    end
   end
 end

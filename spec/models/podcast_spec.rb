@@ -16,14 +16,14 @@ describe Podcast do
   it {should have_many :chapters}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
   it "has an mp3 attached" do
-    should respond_to(:mp3)
+    is_expected.to respond_to(:mp3)
   end
 
   it "has an ogg attached" do
-    should respond_to(:ogg)
+    is_expected.to respond_to(:ogg)
   end
 end

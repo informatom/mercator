@@ -10,7 +10,7 @@ describe Webpage do
 
   it {should validate_numericality_of :position}
 
-  it {should respond_to :name}
+  it {is_expected.to respond_to :name}
 
   it {should belong_to :page_template}
   it {should validate_presence_of :page_template}
@@ -19,11 +19,11 @@ describe Webpage do
   it {should have_many :content_elements}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
   it "is in a tree structure" do
-    should respond_to :parent
-    should respond_to :children
+    is_expected.to respond_to :parent
+    is_expected.to respond_to :children
   end
 end

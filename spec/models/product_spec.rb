@@ -33,13 +33,13 @@ describe Product do
   it {should have_many :features}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
   it "has a document attached" do
-    should respond_to :document
+    is_expected.to respond_to :document
   end
   it "has a photo attached" do
-    should respond_to :photo
+    is_expected.to respond_to :photo
   end
 end

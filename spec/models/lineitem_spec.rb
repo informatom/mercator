@@ -35,10 +35,10 @@ describe Lineitem do
   it {should belong_to :inventory}
 
   it "acts as a list" do
-    should respond_to :move_to_top
+    is_expected.to respond_to :move_to_top
   end
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 end

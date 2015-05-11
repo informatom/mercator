@@ -77,16 +77,23 @@ class Value < ActiveRecord::Base
 
   def display
     case state
+
     when "textual"
       title + " " + unit.to_s
+
     when "numeric"
       if amount.to_i == amount
         amount.to_i.to_s + " " + unit.to_s
       else
         amount.to_s + " " + unit.to_s
       end
+
     when "flag"
-      flag == true ? "ja" : "nein"
+      if flag == true
+        I18n.t("hobo.boolean_yes")
+      else
+        I18n.t("hobo.boolean_no")
+      end
     end
   end
 end

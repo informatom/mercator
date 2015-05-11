@@ -20,10 +20,10 @@ describe Inventory do
   it {should have_many :prices}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
   it "has a photo attached" do
-    should respond_to :photo
+    is_expected.to respond_to :photo
   end
 end

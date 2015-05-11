@@ -10,11 +10,11 @@ describe Folder do
   it {should have_many :content_elements}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
   it "is in a tree structure" do
-    should respond_to :parent
-    should respond_to :children
+    is_expected.to respond_to :parent
+    is_expected.to respond_to :children
   end
 end

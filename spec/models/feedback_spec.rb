@@ -12,6 +12,6 @@ describe Feedback do
   it {should belong_to :conversation}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 end

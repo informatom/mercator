@@ -20,18 +20,18 @@ describe Category do
   it {should have_many :properties}
 
   it "is in a tree structure" do
-    should respond_to :parent
-    should respond_to :children
+    is_expected.to respond_to :parent
+    is_expected.to respond_to :children
   end
 
   it "has a document attached" do
-    should respond_to :document
+    is_expected.to respond_to :document
   end
   it "has a photo attached" do
-    should respond_to :photo
+    is_expected.to respond_to :photo
   end
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 end

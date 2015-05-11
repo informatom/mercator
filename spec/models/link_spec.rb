@@ -6,7 +6,7 @@ describe Link do
   end
 
   it "is versioned" do
-    should respond_to(:versions)
+    is_expected.to respond_to(:versions)
   end
 
   it {should belong_to(:conversation)}

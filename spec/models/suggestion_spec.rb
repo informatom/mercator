@@ -12,6 +12,14 @@ describe Suggestion do
   it {should validate_presence_of :conversation}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
+  end
+
+# Instance methods
+
+  context "name" do
+    it "returns a nicely formatted product name and number" do
+      expect(build(:suggestion).name).eql? "(123):Artikel Eins Zwei Drei"
+    end
   end
 end

@@ -16,11 +16,11 @@ describe Blogpost do
   it {should have_many :comments}
 
   it "is taggable" do
-    should respond_to :blogtags
+    is_expected.to respond_to :blogtags
   end
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
 

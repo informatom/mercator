@@ -20,11 +20,11 @@ describe BillingAddress do
   it {should validate_presence_of :user}
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 
 
-## Instance Methods
+# Instance Methods
 
   context "if_country_exists" do
     it "return error for non-existing country" do

@@ -1,16 +1,10 @@
-Models
-======
-
 category.rb
 comment.rb
 constant.rb
 content_element.rb
 conversation.rb
-country.rb
 gtc.rb
-guest.rb
 inventory.rb
-job_logger.rb
 lineitem.rb
 link.rb
 offer.rb
@@ -25,5 +19,4 @@ property_group.rb
 shipping_cost.rb
 suggestion.rb
 user.rb
-value.rb
 webpage.rb

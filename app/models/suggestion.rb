@@ -42,6 +42,6 @@ class Suggestion < ActiveRecord::Base
 
   def name
     # strangely otherwise the product name completer fails in conversation
-    product ? "(" + product.number + ") " + product.title : ""
+    product ? "(" + product.number.to_s + ") " + product.title : ""
   end
 end

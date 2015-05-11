@@ -12,7 +12,6 @@ class Guest < Hobo::Model::Guest
     false
   end
 
-
   def sales
     false
   end
@@ -22,11 +21,11 @@ class Guest < Hobo::Model::Guest
   end
 
   def name
-    "Gast"
+    I18n.t("mercator.guest")
   end
 
   def surname
-    "Gast"
+    I18n.t("mercator.guest")
   end
 
   attr_accessor :basket

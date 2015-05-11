@@ -13,6 +13,6 @@ describe Submission do
   it { should_not allow_value("anything else").for(:answer) }
 
   it "is versioned" do
-    should respond_to :versions
+    is_expected.to respond_to :versions
   end
 end
