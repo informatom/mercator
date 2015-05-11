@@ -10,7 +10,6 @@ offer
 offeritem
 order
 page_template
-post_category
 product
 property
 property_group

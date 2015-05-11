@@ -35,7 +35,7 @@ class Link < ActiveRecord::Base
     conversation.customer_is?(acting_user)
   end
 
-# --- Class Methods --- #
+# --- Instance Methods --- #
 
   def local?
     if url.split("/")[2] == Constant::CMSDOMAIN ||  url.split("/")[2] == Constant::SHOPDOMAIN
