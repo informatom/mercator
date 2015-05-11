@@ -17,6 +17,5 @@ product.rb
 property.rb
 property_group.rb
 shipping_cost.rb
-suggestion.rb
 user.rb
 webpage.rb
