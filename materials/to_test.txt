@@ -1,7 +1,6 @@
 Models
 ======
 
-categorization.rb
 category.rb
 comment.rb
 constant.rb
