@@ -47,18 +47,18 @@ describe Value do
       value = build(:value,
                     state: "textual",
                     amount: nil,
+                    unit_de: nil,
+                    unit_en: nil,
                     flag: nil)
-      expect(value.display).eql? "Deutscher Wert "
+      expect(value.display).to eql("English Value ")
     end
 
     it "textual value with unit properly" do
       value = build(:value,
                     state: "textual",
                     amount: nil,
-                    unit_de: nil,
-                    unit_en: nil,
                     flag: nil)
-      expect(value.display).eql? "Deutscher Wert kg"
+      expect(value.display).to eql("English Value kg")
     end
 
     it "numeric value without unit properly" do
@@ -69,7 +69,7 @@ describe Value do
                     unit_de: nil,
                     unit_en: nil,
                     flag: nil)
-      expect(value.display).eql? "42 "
+      expect(value.display).to eql("42 ")
     end
 
     it "numeric value with unit properly" do
@@ -78,7 +78,7 @@ describe Value do
                     title_de: nil,
                     title_en: nil,
                     flag: nil)
-      expect(value.display).eql? "42 kg"
+      expect(value.display).to eql("42 kg")
     end
 
     it "boolean (flag) value properly" do
@@ -89,7 +89,7 @@ describe Value do
                     amount: nil,
                     unit_de: nil,
                     unit_en: nil)
-      expect(value.display).eql? "Ja"
+      expect(value.display).to eql("Yes")
     end
   end
 end

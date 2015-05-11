@@ -17,19 +17,22 @@ describe Constant do
 
   context "office hours" do
     it "returns false out of office hours" do
+      create(:office_hours)
       monday_night = Time.new(2015, 05, 11, 4, 00, 0, "+00:00")
-      expect(Constant.office_hours?(time: monday_night)).eql? false
+      expect(Constant.office_hours?(time: monday_night)).to eql(false)
     end
 
     it "returns true during office hours" do
+      create(:office_hours)
       monday_afternoon = Time.new(2015, 05, 11, 14, 00, 0, "+00:00")
-      expect(Constant.office_hours?(time: monday_afternoon)).eql? true
+      expect(Constant.office_hours?(time: monday_afternoon)).to eql(true)
     end
   end
 
   context "pretty_office_hours" do
     it "returns a string" do
-      expect(Constant.pretty_office_hours.class).eql? String
+      create(:office_hours)
+      expect(Constant.pretty_office_hours.class).to eql(String)
     end
   end
 end

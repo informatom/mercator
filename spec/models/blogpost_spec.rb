@@ -52,7 +52,7 @@ describe Blogpost do
     end
 
     it "returns 5 blogposts" do
-      expect(Blogpost.latest.count).eql? 5
+      expect(Blogpost.latest.count).to eql 5
     end
 
     it "returns the latest blogposts" do
@@ -70,7 +70,7 @@ describe Blogpost do
   context "name" do
     it "returns name" do
       @blogpost = build(:blogpost)
-      expect(@blogpost.name).eql? @blogpost.title
+      expect(@blogpost.name).to eql(@blogpost.title)
     end
   end
 end

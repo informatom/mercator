@@ -1,6 +1,5 @@
 category.rb
 comment.rb
-constant.rb
 content_element.rb
 conversation.rb
 gtc.rb

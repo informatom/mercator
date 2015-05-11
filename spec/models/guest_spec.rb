@@ -23,15 +23,15 @@ describe Guest do
   end
 
   it "responds to locale?" do
-    expect(@guest.locale).eql? "de"
+    expect(@guest.locale).to eql(:de)
   end
 
   it "responds to name?" do
-    expect(@guest.name).eql? "Gast"
+    expect(@guest.name).to eql("Guest")
   end
 
   it "responds to surname?" do
-    expect(@guest.surname).eql? "Gast"
+    expect(@guest.surname).to eql("Guest")
   end
 
   it "responds to basket?" do

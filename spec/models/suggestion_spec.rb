@@ -19,7 +19,7 @@ describe Suggestion do
 
   context "name" do
     it "returns a nicely formatted product name and number" do
-      expect(build(:suggestion).name).eql? "(123):Artikel Eins Zwei Drei"
+      expect(build(:suggestion).name).to eql("(123) Article One Two Three")
     end
   end
 end

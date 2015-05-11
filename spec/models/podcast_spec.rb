@@ -26,4 +26,15 @@ describe Podcast do
   it "has an ogg attached" do
     is_expected.to respond_to(:ogg)
   end
+
+  #--- Instance Methods --- #
+
+  context "chapter string" do
+    it "returns samething" do
+      @chapter = create(:chapter)
+      create(:chapter, podcast_id: @chapter.podcast.id)
+      expect(@chapter.podcast.chapterstring[0][:start]).to eql("00:00:30")
+      expect(@chapter.podcast.chapterstring[0][:title]).to eql("Cool Chapter")
+    end
+  end
 end
