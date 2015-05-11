@@ -19,4 +19,12 @@ describe Comment do
     is_expected.to respond_to :parent
     is_expected.to respond_to :children
   end
+
+  # ---  Instance Methods  --- #
+
+  context "text_begin" do
+    it "truncates comment" do
+      expect(build(:long_comment).text_begin.split(":")[1].length).to be(101)
+    end
+  end
 end

@@ -39,6 +39,6 @@ class Comment < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def text_begin
-    "#{user.email}: #{text.truncate(100)}"
+    "#{user.email_address}: #{content.truncate(100)}"
   end
 end
