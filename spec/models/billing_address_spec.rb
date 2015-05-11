@@ -24,7 +24,7 @@ describe BillingAddress do
   end
 
 
-# Instance Methods
+# ---  Instance Methods  --- #
 
   context "if_country_exists" do
     it "return error for non-existing country" do

@@ -23,7 +23,7 @@ describe Categorization do
   end
 
 
-  # ---CLass Methods  --- #
+# ---  CLass Methods  --- #
 
   context "complement" do
     it "creates categorization if there isn't one" do

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe JobLogger, :type => :model do
 
 
-# Class methods
+# ---CLass Methods  --- #
 
   context "info" do
     it "creates an info log entry" do

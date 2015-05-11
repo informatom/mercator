@@ -13,4 +13,12 @@ describe PostCategory do
     is_expected.to respond_to :parent
     is_expected.to respond_to :children
   end
+
+# ---  Instance Methods  --- #
+
+  context "position" do
+    it "returns 0" do
+      expect(build(:post_category).position).to eq(0)
+    end
+  end
 end
