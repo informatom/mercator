@@ -18,6 +18,7 @@ class Message < ActiveRecord::Base
 
   validates :sender, :presence => true
 
+
   # --- Permissions --- #
 
   def create_permitted?

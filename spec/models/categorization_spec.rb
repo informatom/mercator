@@ -21,4 +21,20 @@ describe Categorization do
   it "is versioned" do
     should respond_to :versions
   end
+
+
+  # ---CLass Methods  --- #
+
+  context "complement" do
+    it "creates categorization if there isn't one" do
+      expect{Categorization.complement(product: create(:product),
+                                       category: create(:category))}.to change{Categorization.count}.by(1)
+    end
+
+    it "doesn't create categorization if there is already" do
+      @categorization = create(:categorization)
+      expect{Categorization.complement(product: @categorization.product,
+                                       category: @categorization.category)}.to_not change{Categorization.count}
+    end
+  end
 end
