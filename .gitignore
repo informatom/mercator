@@ -25,3 +25,4 @@ vendor/customers/*
 vendor/customer
 
 Gemfile.lock
+coverage
