@@ -7,11 +7,11 @@ FactoryGirl.define do
     content_en "Some terms and conditions"
     version_of "2014-01-22"
 
-    factory :older_gtc
+    factory :older_gtc do
       version_of "2014-01-21"
     end
 
-    factory :newer_gtc
+    factory :newer_gtc do
       version_of "2014-01-23"
     end
   end
