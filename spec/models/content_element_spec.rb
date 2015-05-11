@@ -52,5 +52,19 @@ describe ContentElement do
   end
 
 # ---  Instance Methods  --- #
+  context "thumb_url" do
+    it "returns thumb url" do
+      @content_element = create(:content_element)
+      expect(@content_element.thumb_url).to include("/system/content_elements/photos/",
+                                                    "/small/dummy_image.jpg?")
+    end
+  end
 
+  context "photo_url" do
+    it "returns photo url" do
+      @content_element = create(:content_element)
+      expect(@content_element.photo_url).to include("/system/content_elements/photos/",
+                                                    "/original/dummy_image.jpg?")
+    end
+  end
 end
