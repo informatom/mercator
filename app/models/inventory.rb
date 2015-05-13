@@ -114,14 +114,14 @@ class Inventory < ActiveRecord::Base
 
 
   def selectortext
-    I18n.t('attributes.size') + ': ' + size + ' / ' + I18n.t('mercator.storage.' + storage)
+    I18n.t('attributes.size') + ': ' + (size || "") + ' / ' + I18n.t('mercator.storage.' + storage)
   end
 
 
 #--- Class methods ---#
 
   def self.delete_orphans
-    Inventory.each do |inventory|
+    Inventory.all.each do |inventory|
       unless inventory.prices.any?
         inventory.destroy
         JobLogger.info("Inventory " + inventory.number + " deleted.")

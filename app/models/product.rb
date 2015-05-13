@@ -219,9 +219,11 @@ class Product < ActiveRecord::Base
     return products
   end
 
-  def self.show_diffs_of_double_priced_in_stdout
-    with_at_least_two_prices.each do |product|
-      puts product.number, product.prices[0].attributes.to_a - product.prices[1].attributes.to_a
+  def self.diffs_of_double_priced
+    with_at_least_x_prices(2).each do |product|
+      ap product.number
+      ap product.prices[0]
+      ap product.prices[1]
     end
   end
 

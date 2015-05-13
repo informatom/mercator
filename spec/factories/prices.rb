@@ -7,7 +7,14 @@ FactoryGirl.define do
     valid_from "1.1.2012"
     valid_to   "1.1.2113"
     scale_from 1
-    scale_to   100
+    scale_to   6
     promotion  true
+
+    factory :reduced_price do
+      inventory nil
+      value 38
+      scale_from 7
+      scale_to 100
+    end
   end
 end

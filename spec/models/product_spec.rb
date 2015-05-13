@@ -42,4 +42,35 @@ describe Product do
   it "has a photo attached" do
     is_expected.to respond_to :photo
   end
+
+  #--- Class Methods --- #
+
+  context "find_by_name" do
+    it "can be found by name" do
+      expect(Product).to respond_to(:find_by_name)
+    end
+  end
+
+  context "with_at_least_x_prices" do
+    it "finds products with two prices" do
+      @inventory_with_two_prices = create(:inventory_with_two_prices)
+      expect(Product.with_at_least_x_prices(2)).to eql [@inventory_with_two_prices.product]
+    end
+  end
+
+  context "diffs_of_double_priced" do
+    it "outputs the diffs" do
+      @inventory_with_two_prices = create(:inventory_with_two_prices)
+      expect(Product.diffs_of_double_priced).to eql [@inventory_with_two_prices.product]
+    end
+  end
+
+  context "activate_all" do
+    it "activates new products" do
+      User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
+      User::JOBUSER = create(:jobuser)
+      create(:new_product)
+      expect{Product.activate_all}.to change{Product.active.count}.by(1)
+    end
+  end
 end

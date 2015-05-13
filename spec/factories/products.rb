@@ -12,6 +12,10 @@ FactoryGirl.define do
     warranty_en         "One year with evereal restrictions"
     photo               { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
     document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+
+    factory :new_product do
+      state "new"
+    end
   end
 
   factory :second_product , class: Product do

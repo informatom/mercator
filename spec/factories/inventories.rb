@@ -4,14 +4,15 @@ FactoryGirl.define do
     product
     name_de                 "Halbschuh Größe 37"
     name_en                 "Slipper Size 8"
-    number                  "slip-42"
-    amount                  42
+    number                  "slipper-42"
+    amount                  12
+    size                    "42"
     unit                    "Stk."
     comment_de              "in 3 Wochen lieferbar"
     comment_en              "available in 3 weeks"
     weight                  0.5
     charge                  "ABC42"
-    storage                 "Filiale 1"
+    storage                 "DG"
     delivery_time           "2 Wochen"
     erp_updated_at          "2014-01-22 15:23"
     erp_vatline             20
@@ -20,6 +21,13 @@ FactoryGirl.define do
     erp_characteristic_flag 42
     infinite                true
     just_imported           true
-    alternative_number      "slip-4-2"
+    alternative_number      "slipper-4-2"
+
+    factory :inventory_with_two_prices do
+      after(:create) do |inventory, evaluator|
+        create(:price,         inventory: inventory)
+        create(:reduced_price, inventory: inventory)
+      end
+    end
   end
 end

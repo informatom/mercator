@@ -17,4 +17,25 @@ describe ShippingCost do
   it "is versioned" do
     is_expected.to respond_to :versions
   end
+
+  #--- Class Methods --- #
+
+  context "determine" do
+    before :each do
+      @order = build(:order)
+      @country_unspecific_shipping_cost = create(:country_unspecific_shipping_cost)
+    end
+
+    it "determines country unspecific costs" do
+      create(:country)
+      expect(ShippingCost.determine(order: @order,
+                                    shipping_method: "parcel_service_shipment")).to eql @country_unspecific_shipping_cost
+    end
+
+    it "determines country specific costs" do
+      @country_specific_shipping_cost = create(:shipping_cost)
+      expect(ShippingCost.determine(order: @order,
+                                    shipping_method: "parcel_service_shipment")).to eql @country_specific_shipping_cost
+    end
+  end
 end

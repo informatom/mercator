@@ -854,6 +854,9 @@ en:
       squeel: SQueeL
       standard: ordinary Category
       switched_off: switched off
+    storage:
+      DG: Domgasse
+      LG: Lerchenf.Gürtel
     stored_delivery_addresses: Stored Delivery Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories
