@@ -1,5 +1,3 @@
-content_element
-
 category
 conversation
 inventory

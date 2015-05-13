@@ -51,7 +51,9 @@ describe ContentElement do
 
   end
 
+
 # ---  Instance Methods  --- #
+
   context "thumb_url" do
     it "returns thumb url" do
       @content_element = create(:content_element)
@@ -65,6 +67,79 @@ describe ContentElement do
       @content_element = create(:content_element)
       expect(@content_element.photo_url).to include("/system/content_elements/photos/",
                                                     "/original/dummy_image.jpg?")
+    end
+  end
+
+  context 'parse' do
+    context 'html' do
+      before :each do
+        @content_element = build(:content_element_with_html)
+        @parsed_string = Capybara.string(@content_element.parse)
+      end
+
+      it "doesn't modify length" do
+        expect(@content_element.parse.length).to eql(@content_element.content.length)
+      end
+
+      it "html still has the level one heading" do
+        expect(@parsed_string).to have_selector("h1")
+      end
+
+      it "html still has no level two heading" do
+        expect(@parsed_string).not_to have_selector("h2")
+      end
+
+      it "html still has no level three heading" do
+        expect(@parsed_string).not_to have_selector("h3")
+      end
+    end
+
+    context 'markdown' do
+      before :each do
+        @content_element = build(:content_element_with_markdown)
+        @parsed_string = Capybara.string(@content_element.parse)
+      end
+
+      it "html still has the level one heading" do
+        expect(@parsed_string).to have_selector("h1")
+      end
+
+      it "html still has no level two heading" do
+        expect(@parsed_string).not_to have_selector("h2")
+      end
+
+      it "html has a level three heading" do
+        expect(@parsed_string).to have_selector("h3")
+      end
+    end
+
+    context 'textile' do
+      before :each do
+        @content_element = build(:content_element_with_textile)
+        @parsed_string = Capybara.string(@content_element.parse)
+      end
+
+      it "html still has the level one heading" do
+        expect(@parsed_string).to have_selector("h1")
+      end
+
+      it "html has a level two heading" do
+        expect(@parsed_string).to have_selector("h2")
+      end
+
+      it "html still has no level three heading" do
+        expect(@parsed_string).not_to have_selector("h3")
+      end
+    end
+
+    it "parses document tag" do
+      @parsed_string = Capybara.string(create(:content_element_with_photo_tag).parse)
+      expect(@parsed_string).to have_xpath("//img[@alt='photo_name']")
+    end
+
+    it "parses photo tag" do
+      @parsed_string = Capybara.string(create(:content_element_with_document_tag).parse)
+      expect(@parsed_string).to have_xpath("//a[@name='document_name']")
     end
   end
 end

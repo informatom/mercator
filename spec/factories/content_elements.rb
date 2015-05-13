@@ -36,5 +36,35 @@ FactoryGirl.define do
       content_de nil
       content_en nil
     end
+
+    factory :content_element_with_html do
+      content_en <<END_HEREDOC
+
+some <h1>Level one heading in html</h1>
+
+h2. Level two heading in textile
+
+### Level thraee heading in markdown
+
+END_HEREDOC
+
+      factory :content_element_with_textile do
+        markup "textile"
+      end
+
+      factory :content_element_with_markdown do
+        markup "markdown"
+      end
+    end
+
+    factory :content_element_with_photo_tag do
+      name "photo_name"
+      content_en '<photo name="photo_name"/>'
+    end
+
+    factory :content_element_with_document_tag do
+      name "document_name"
+      content_en '<document name="document_name"/>'
+    end
   end
 end
