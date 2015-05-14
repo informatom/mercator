@@ -1,6 +1,5 @@
 Model Tests:
 
-02 page_template
 03 offeritem
 03 conversation
 06 offer

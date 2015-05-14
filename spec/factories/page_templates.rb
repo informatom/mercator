@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :page_template do
-    name "Standard"
+    name "rspec_test_template"
     content "<span>some  html</span>"
   end
 end

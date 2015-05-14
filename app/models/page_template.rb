@@ -34,11 +34,12 @@ class PageTemplate < ActiveRecord::Base
     acting_user.contentmanager?
   end
 
-  # --- Instance Methods --- #
-
   def view_permitted?(field)
     true
   end
+
+
+  # --- Instance Methods --- #
 
   def save_to_disk
     extension = dryml? ? ".dryml" : ".html.erb"
