@@ -70,6 +70,53 @@ describe Product do
   end
 
 
+  context "delivery_time" do
+    it "returns delivery time if inventory present" do
+      @product = create(:product_with_inventory)
+      expect(@product.delivery_time).to eql("2 Wochen")
+    end
+
+    it "returns standard delivery time if no inventory present" do
+      @product = create(:product)
+      expect(@product.delivery_time).to eql("On request")
+    end
+  end
+
+  context "values" do
+    before :each do
+      @product = create(:product)
+      @property_group = create(:property_group)
+      property = create(:property)
+      property_two   = create(:property, name_en: "Property 2")
+      property_three = create(:property, name_en: "Property 3")
+      @value = create(:flag_value, product: @product,
+                                   property_group: @property_group,
+                                   property: property)
+      @value_two = create(:numeric_value, product: @product,
+                                          property_group: @property_group,
+                                          property: property_two)
+      @value_three = create(:textual_value, product: @product,
+                                            property_group: @property_group,
+                                            property: property_three)
+    end
+
+    context "tabled_values" do
+      it "returns tabled values" do
+        expected_result = {"I Am the English Title"=> {"Size"=>"Yes",
+                                                       "Property 2"=>"13 kg",
+                                                       "Property 3"=>"text value text "}}
+        expect(Hash[@product.tabled_values.to_a]).to eql(expected_result)
+      end
+    end
+
+    context "hashed_values" do
+      it "returns hashed values" do
+        expected_result = {@property_group.id => [@value, @value_two, @value_three]}
+        expect(@product.hashed_values).to eql(expected_result)
+      end
+    end
+  end
+
   context "determine_inventory" do
     before :each do
       @product = create(:product_with_two_inventories)

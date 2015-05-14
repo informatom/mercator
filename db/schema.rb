@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421063240) do
+ActiveRecord::Schema.define(version: 20150514060935) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -743,7 +743,7 @@ ActiveRecord::Schema.define(version: 20150421063240) do
     t.datetime "key_timestamp"
   end
 
-  add_index "properties", ["icecat_id"], name: "index_properties_on_icecat_id", unique: true, using: :btree
+  add_index "properties", ["icecat_id"], name: "index_properties_on_icecat_id", using: :btree
   add_index "properties", ["state"], name: "index_properties_on_state", using: :btree
 
   create_table "property_groups", force: true do |t|

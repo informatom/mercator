@@ -149,11 +149,13 @@ class User < ActiveRecord::Base
     ( administrator? && ( field == :first_name || field == :surname ) )
   end
 
+
   #--- Instance Methods ---#
 
   def signed_up?
     state=="active"
   end
+
 
   def name
     name = [title, first_name, surname].join " "
@@ -163,13 +165,16 @@ class User < ActiveRecord::Base
     return name
   end
 
+
   def gtc_accepted_current?
     gtc_version_of == Gtc.current
   end
 
+
   def basket
     Order.find_by(user_id: id, state: :basket) or Order.create(user_id: id)
   end
+
 
   def parked_basket
     parked_baskets = orders.parked
@@ -185,6 +190,7 @@ class User < ActiveRecord::Base
     return parked_baskets.last
   end
 
+
   def sync_agb_with_basket
       # If user has already confirmed ...
       if gtc_version_of == Gtc.current
@@ -198,6 +204,7 @@ class User < ActiveRecord::Base
                 gtc_confirmed_at: basket.gtc_confirmed_at)
       end
   end
+
 
   def call_for_chat_partner(locale: nil)
     I18n.locale = locale
@@ -229,6 +236,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
   #--- Class Methods --- #
 
   def self.initialize()
@@ -237,6 +245,7 @@ class User < ActiveRecord::Base
     new_user.lifecycle.create_key!(new_user)
     return new_user
   end
+
 
   def self.assign_consultant(position: 0)
     available_consultants = User.sales.where(logged_in: true).order(:call_priority)
@@ -251,6 +260,7 @@ class User < ActiveRecord::Base
       [number.to_s, MercatorMesonic::AktMandant.mesocomp, MercatorMesonic::AktMandant.mesoyear].join("-")
     end
   end
+
 
   def self.cleanup_deprecated
     JobLogger.info("=" * 50)
@@ -273,6 +283,7 @@ class User < ActiveRecord::Base
     JobLogger.info("Finished Cronjob runner: User.cleanup_deprecated")
     JobLogger.info("=" * 50)
   end
+
 
   def self.no_sales_logged_in
     unless User.assign_consultant

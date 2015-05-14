@@ -9,7 +9,7 @@ class Property < ActiveRecord::Base
 
     position       :integer, :required
     legacy_id      :integer
-    icecat_id      :integer, :unique, :index => true
+    icecat_id      :integer, :index => true
     timestamps
   end
 
