@@ -29,5 +29,11 @@ FactoryGirl.define do
         create(:reduced_price, inventory: inventory)
       end
     end
+
+    factory :inventory_with_lower_price do
+      after(:create) do |inventory, evaluator|
+        create(:lower_price, inventory: inventory)
+      end
+    end
   end
 end

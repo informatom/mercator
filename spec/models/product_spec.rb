@@ -122,8 +122,8 @@ describe Product do
     context "search_data" do
       it "returns search data" do
         create(:dummy_customer)
-        expected_result = {:title => "Artikel Eins Zwei Drei",
-                           :title_de => "Artikel Eins Zwei Drei",
+        expected_result = {:title => "default product",
+                           :title_de => "default product",
                            :title_en => "Article One Two Three",
                            :number => "123",
                            :description => "Deutsch: Lorem ipsum dolor sit amet, consectetur" +
@@ -219,7 +219,7 @@ describe Product do
     it "activates new products" do
       User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
       User::JOBUSER = create(:jobuser)
-      create(:new_product)
+      @product = create(:new_product)
       expect{Product.activate_all}.to change{Product.active.count}.by(1)
     end
   end

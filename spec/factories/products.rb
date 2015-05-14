@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :product do
-    title_de            "Artikel Eins Zwei Drei"
+    title_de            "default product"
     title_en            "Article One Two Three"
     number              "123"
     state "active"
@@ -15,25 +15,33 @@ FactoryGirl.define do
     document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
 
     factory :new_product do
-      state "new"
+      number "new_product"
+      state    "new"
     end
 
     factory :product_with_inventory do
-      number "another number"
+      number "product_with_inventory"
       after(:create) do |product, evaluator|
         create(:inventory, product: product)
       end
     end
 
     factory :product_with_inventory_and_two_prices do
-      number "again another number"
+      number "product_with_inventory_and_two_prices"
       after(:create) do |product, evaluator|
         create(:inventory_with_two_prices, product: product)
       end
     end
 
+    factory :product_with_inventory_and_lower_price do
+      number "cheaper product"
+      after(:create) do |product, evaluator|
+        create(:inventory_with_lower_price, product: product)
+      end
+    end
+
     factory :product_in_category do
-      number "yet another number"
+      number "product_in_category"
       after(:create) do |product, evaluator|
         create(:categorization, category_id: create(:category).id,
                                 product_id: product.id)
@@ -41,7 +49,7 @@ FactoryGirl.define do
     end
 
     factory :product_with_two_inventories do
-      number "puuhh ... another product number"
+      number "product_with_two_inventories "
       after(:create) do |product, evaluator|
         create(:inventory, product: product)
         create(:inventory, product: product,

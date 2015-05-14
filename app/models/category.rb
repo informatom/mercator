@@ -288,7 +288,9 @@ class Category < ActiveRecord::Base
   end
 
   def self.update_property_hash
-    Category.order(id: :asc).load.each {|category| category.update_property_hash}
+    Category.order(id: :asc).load.each do |category|
+      category.update_property_hash
+    end
   end
 
   def self.reindexing_and_filter_updates

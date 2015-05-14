@@ -16,5 +16,12 @@ FactoryGirl.define do
       scale_from 7
       scale_to 100
     end
+
+    factory :lower_price do
+      inventory nil
+      value 38
+      scale_from 1
+      scale_to 100
+    end
   end
 end
