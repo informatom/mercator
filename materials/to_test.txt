@@ -1,6 +1,6 @@
 Model Tests:
 
-5 / 14 product
+2 / 14 product
 
 01 property
 01 property_group

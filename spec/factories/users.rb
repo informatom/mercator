@@ -13,6 +13,10 @@ FactoryGirl.define do
     gtc_version_of   "2014-01-22"
     erp_account_nr   "a123"
     erp_contact_nr   "b123"
+
+    factory :dummy_customer do
+      surname "Dummy Customer"
+    end
   end
 
   factory :admin, class: User do

@@ -82,13 +82,16 @@ describe Product do
     end
   end
 
+
   context "values" do
     before :each do
       @product = create(:product)
       @property_group = create(:property_group)
-      property = create(:property)
-      property_two   = create(:property, name_en: "Property 2")
-      property_three = create(:property, name_en: "Property 3")
+      property = create(:property, state: "filterable")
+      property_two   = create(:property, name_en: "Property 2",
+                                         state: "filterable")
+      property_three = create(:property, name_en: "Property 3",
+                                         state: "filterable")
       @value = create(:flag_value, product: @product,
                                    property_group: @property_group,
                                    property: property)
@@ -113,6 +116,39 @@ describe Product do
       it "returns hashed values" do
         expected_result = {@property_group.id => [@value, @value_two, @value_three]}
         expect(@product.hashed_values).to eql(expected_result)
+      end
+    end
+
+    context "search_data" do
+      it "returns search data" do
+        create(:dummy_customer)
+        expected_result = {:title => "Artikel Eins Zwei Drei",
+                           :title_de => "Artikel Eins Zwei Drei",
+                           :title_en => "Article One Two Three",
+                           :number => "123",
+                           :description => "Deutsch: Lorem ipsum dolor sit amet, consectetur" +
+                                           " adipisicing elit. Ullam, aliquid.",
+                           :description_de => "Deutsch: Lorem ipsum dolor sit amet, consectetur" +
+                                              " adipisicing elit. Ullam, aliquid.",
+                           :description_en => "English: Lorem ipsum dolor sit amet, consectetur" +
+                                              " adipisicing elit. Similique, repellat!",
+                           :long_description => "Deutsch: Lorem ipsum dolor sit amet, consectetur" +
+                                                " adipisicing elit. Ullam, aliquid.",
+                           :warranty => "Ein Jahr mit gewissen Einschränkungen",
+                           :category_ids => [],
+                           :state => "active",
+                           :price => nil,
+                           "Size" => "Yes",
+                           "Property 2" => "13 kg",
+                           "Property 3" => "text value text"}
+        expect(@product.search_data).to eql(expected_result)
+      end
+    end
+
+    context "property_hash" do
+      it "returns property_hash" do
+        expected_result = {"Size"=>"Yes", "Property 2"=>"13 kg", "Property 3"=>"text value text"}
+        expect(@product.property_hash).to eql(expected_result)
       end
     end
   end

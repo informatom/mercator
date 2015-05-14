@@ -186,7 +186,7 @@ class Product < ActiveRecord::Base
 
   def property_hash
     Hash[values.select { |value| value.property.state == "filterable"}
-               .map { |value| [value.property.name_de, value.display.rstrip] }]
+               .map { |value| [value.property.name, value.display.rstrip] }]
   end
 
 
