@@ -1,9 +1,5 @@
 Model Tests:
 
-2 / 14 product
-
-01 property
-01 property_group
 02 page_template
 03 offeritem
 03 conversation

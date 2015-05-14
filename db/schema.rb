@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514060935) do
+ActiveRecord::Schema.define(version: 20150514073132) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -755,7 +755,7 @@ ActiveRecord::Schema.define(version: 20150514060935) do
     t.integer  "icecat_id"
   end
 
-  add_index "property_groups", ["icecat_id"], name: "index_property_groups_on_icecat_id", unique: true, using: :btree
+  add_index "property_groups", ["icecat_id"], name: "index_property_groups_on_icecat_id", using: :btree
 
   create_table "recommendations", force: true do |t|
     t.string   "reason_de"

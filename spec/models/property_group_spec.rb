@@ -17,4 +17,29 @@ describe PropertyGroup do
   it "is versioned" do
     is_expected.to respond_to(:versions)
   end
+
+  #--- Class Methods --- #
+
+  context "dedup" do
+    before :each do
+      @product = create(:product)
+      @property_group = create(:property_group)
+      @property = create(:property)
+      @value = create(:textual_value, property: @property,
+                                      property_group: @property_group,
+                                      product: @product)
+      @another_property_group = create(:property_group)
+      @another_value = create(:textual_value, property: @property,
+                                              property_group: @another_property_group,
+                                              product: @product)
+    end
+
+    it "deletes duplicate properties after values have been removed" do
+      expect{PropertyGroup.dedup}.to change{PropertyGroup.all.count}.by(-1)
+    end
+
+    it "doesn't delete values" do
+      expect{Property.dedup}.not_to change{Value.all.count}
+    end
+  end
 end

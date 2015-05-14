@@ -6,7 +6,7 @@ class PropertyGroup < ActiveRecord::Base
     name_de   :string, :required
     name_en   :string
     position  :integer, :required
-    icecat_id :integer, :unique, :index => true
+    icecat_id :integer, :index => true
     timestamps
   end
 
