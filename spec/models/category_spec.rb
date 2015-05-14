@@ -34,4 +34,94 @@ describe Category do
   it "is versioned" do
     is_expected.to respond_to :versions
   end
+
+
+  #--- Instance Methods ---#
+
+  context "search data" do
+    it "returns search date hash" do
+      @category = create(:category)
+      expected_result = {:name => "Drucker",
+                         :name_de => "Drucker",
+                         :name_en => "Printer",
+                         :description => "Tolle Drucker",
+                         :description_de => "Tolle Drucker",
+                         :description_en => "Fantastic Printers",
+                         :long_description => "In der Tat tolle Drucker",
+                         :long_description_de => "In der Tat tolle Drucker",
+                         :long_description_en => "Fantastic Printers, indeed.",
+                         :state => "active"}
+      expect(@category.search_data).to eql(expected_result)
+    end
+  end
+
+
+  #--- Class Methods --- #
+
+  context "find_by_name" do
+    it "can be found by name" do
+      expect(Category).to respond_to(:find_by_name)
+    end
+  end
+
+  context "mercator do" do
+    it "returns the mercator category" do
+      expect(Category.mercator.usage).to eql("mercator")
+    end
+  end
+
+  context "auto do" do
+    it "returns the auto category" do
+      expect(Category.auto.usage).to eql("auto")
+    end
+  end
+
+  context "novelties do" do
+    it "returns the novelties category" do
+      expect(Category.novelties.usage).to eql("squeel")
+    end
+  end
+
+  context "topseller do" do
+    it "returns the topseller category" do
+      expect(Category.topseller.usage).to eql("squeel")
+    end
+  end
+
+  context "orphans do" do
+    it "returns the orphans category" do
+      expect(Category.orphans.usage).to eql("orphans")
+    end
+  end
+
+  context "deprecate" do
+    it "deprecates active category without active product" do
+      @category = create(:category, state: "active")
+      @new_category = create(:category, state: "new_active",
+                                        name_de: "Neue Kategorie")
+      @category_with_product = create(:category, name_de: "Kategorie mit Produkt")
+      @product = create(:product, state: "active")
+      create(:categorization, category: @category_with_product, product: @product)
+
+      User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
+      User::JOBUSER = create(:jobuser)
+
+      expect{Category.deprecate}.to change{Category.deprecated.count}.by(1)
+    end
+  end
+
+  context "reactivate" do
+    it "reactivates category with active product" do
+      @category = create(:category, state: "deprecated")
+      @category_with_product = create(:category, name_de: "Kategorie mit Produkt",
+                                                 state: "deprecated")
+      @product = create(:product, state: "active")
+      create(:categorization, category: @category_with_product, product: @product)
+
+      User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
+      User::JOBUSER = create(:jobuser)
+
+      expect{Category.reactivate}.to change{Category.active.count}.by(1)
+    end
+  end
 end

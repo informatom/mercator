@@ -1,6 +1,7 @@
 FactoryGirl.define do
 
   factory :category do
+    state               "active"
     name_de             "Drucker"
     name_en             "Printer"
     description_de      "Tolle Drucker"
@@ -16,7 +17,9 @@ FactoryGirl.define do
     erp_identifier      "0815"
     usage               :standard
     squeel_condition    ""
-    photo               { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
-    document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+    photo               { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg',
+                                              'image/jpg') }
+    document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf',
+                                              'application/pdf') }
   end
 end

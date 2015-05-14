@@ -1,5 +1,7 @@
 Model Tests:
 
+9 / 22 category
+
 03 offeritem
 03 conversation
 06 offer
@@ -7,8 +9,6 @@ Model Tests:
 12 user
 14 lineitem
 19 order
-22 category
-
 
 Controller Tests:
 

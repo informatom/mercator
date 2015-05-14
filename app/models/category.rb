@@ -68,11 +68,6 @@ class Category < ActiveRecord::Base
                :available_to => "User.administrator",
                :subsite => "admin"
 
-    transition :deactivate,
-               { :new => :deprecated },
-               :available_to => "User.administrator",
-               :subsite => "admin"
-
     transition :reactivate,
                { :deprecated => :active },
                :available_to => "User.administrator",
