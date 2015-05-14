@@ -30,9 +30,6 @@ class Product < ActiveRecord::Base
   translates :title, :description, :long_description, :warranty
   has_paper_trail
 
-  def self.active_and_number_contains(number)
-    Product.active.number_contains(number)
-  end
 
   searchkick language: "German"
 
@@ -65,6 +62,7 @@ class Product < ActiveRecord::Base
 
   has_many :features, :inverse_of => :product
 
+
   lifecycle do
     state :new, :default => true
     state :announced, :active, :deprecated
@@ -80,6 +78,7 @@ class Product < ActiveRecord::Base
 
     transition :add_to_offer, {:active => :active}, :available_to => "User.sales", :subsite => "sales"
   end
+
 
   # --- Permissions --- #
 
@@ -102,6 +101,7 @@ class Product < ActiveRecord::Base
     true
   end
 
+
   # --- Instance Methods --- #
 
   def determine_price(amount: 1, date: Time.now(), incl_vat: false, customer_id: nil)
@@ -118,11 +118,13 @@ class Product < ActiveRecord::Base
     end
   end
 
+
   def delivery_time(amount: 1, date: Time.now())
     inventory = determine_inventory(amount: amount)
     delivery_time = inventory ? inventory.delivery_time : I18n.t("mercator.on_request")
     return delivery_time
   end
+
 
   def tabled_values
     nested_hash = ActiveSupport::OrderedHash.new
@@ -135,6 +137,7 @@ class Product < ActiveRecord::Base
     return nested_hash
   end
 
+
   def hashed_values
     nested_hash = ActiveSupport::OrderedHash.new
     values = Value.includes(:property_group) #eager loading relation ...
@@ -144,14 +147,16 @@ class Product < ActiveRecord::Base
     return hashed_values
   end
 
+
   def determine_inventory(amount: 1)
     amount_requested = amount
-    if Constant.find_by_key("fifo").value == "true"
+    if Constant.find_by_key("fifo").try(:value) == "true"
       inventories.order(created_at: :asc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # FIFO
     else
       inventories.order(created_at: :desc).where{(amount >= my{amount_requested}) | (infinite == true)}.first # LIFO
     end
   end
+
 
   # --- Searchkick Instance Methods --- #
 
@@ -178,10 +183,12 @@ class Product < ActiveRecord::Base
       price:            @price }.merge(property_hash)
   end
 
+
   def property_hash
     Hash[values.select { |value| value.property.state == "filterable"}
                .map { |value| [value.property.name_de, value.display.rstrip] }]
   end
+
 
   #--- Class Methods --- #
 
@@ -189,11 +196,13 @@ class Product < ActiveRecord::Base
     find_by_number(param)
   end
 
+
   def self.deprecate
     Product.where(state: ["active", "new"]).each do |product|
       product.lifecycle.deactivate!(User::JOBUSER) unless product.inventories.any?
     end
   end
+
 
   def self.catch_orphans
     @orphans = Category.orphans
@@ -211,6 +220,7 @@ class Product < ActiveRecord::Base
     end
   end
 
+
   def self.with_at_least_x_prices(x)
     products = []
     Product.all.each do |product|
@@ -218,6 +228,7 @@ class Product < ActiveRecord::Base
     end
     return products
   end
+
 
   def self.diffs_of_double_priced
     with_at_least_x_prices(2).each do |product|
@@ -227,11 +238,17 @@ class Product < ActiveRecord::Base
     end
   end
 
+
   def self.activate_all
     Product.all.each do |product|
       if product.lifecycle.available_transitions.*.name.include?(:activate)
         product.lifecycle.activate!(User::JOBUSER)
       end
     end
+  end
+
+
+  def self.active_and_number_contains(number)
+    Product.active.number_contains(number)
   end
 end

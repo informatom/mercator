@@ -34,6 +34,8 @@ class PageTemplate < ActiveRecord::Base
     acting_user.contentmanager?
   end
 
+  # --- Instance Methods --- #
+
   def view_permitted?(field)
     true
   end

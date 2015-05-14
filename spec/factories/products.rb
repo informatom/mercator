@@ -3,7 +3,8 @@ FactoryGirl.define do
   factory :product do
     title_de            "Artikel Eins Zwei Drei"
     title_en            "Article One Two Three"
-    number              123
+    number              "123"
+    state "active"
     description_de      "Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid."
     description_en      "English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!"
     long_description_de "Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid."
@@ -16,12 +17,44 @@ FactoryGirl.define do
     factory :new_product do
       state "new"
     end
+
+    factory :product_with_inventory do
+      number "another number"
+      after(:create) do |product, evaluator|
+        create(:inventory, product: product)
+      end
+    end
+
+    factory :product_with_inventory_and_two_prices do
+      number "again another number"
+      after(:create) do |product, evaluator|
+        create(:inventory_with_two_prices, product: product)
+      end
+    end
+
+    factory :product_in_category do
+      number "yet another number"
+      after(:create) do |product, evaluator|
+        create(:categorization, category_id: create(:category).id,
+                                product_id: product.id)
+      end
+    end
+
+    factory :product_with_two_inventories do
+      number "puuhh ... another product number"
+      after(:create) do |product, evaluator|
+        create(:inventory, product: product)
+        create(:inventory, product: product,
+                           created_at: Time.now - 1.day)
+      end
+    end
   end
 
   factory :second_product , class: Product do
     title_de            "Artikel Zwei"
     title_en            "Article Two"
     number              42
+    state "active"
     description_de      "Deutsch: Noch ein Text."
     description_en      "English: Another Text!"
     long_description_de "Deutsch: Noch ein Text."

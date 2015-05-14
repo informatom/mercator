@@ -71,11 +71,13 @@ class Webpage < ActiveRecord::Base
     true
   end
 
+
   # --- Instance Methods --- #
 
   def menu
     state == "published" && children.published.any?
   end
+
 
   def content_element(name_or_used_as)
     assignment = PageContentElementAssignment.find_by(webpage_id: id, used_as: name_or_used_as)
@@ -85,9 +87,11 @@ class Webpage < ActiveRecord::Base
     content_element ||= ContentElement.find_by(name_en: name_or_used_as)
   end
 
+
   def content_element_name(name_or_used_as)
     content_element.name.html_safe if content_element = content_element(name_or_used_as)
   end
+
 
   def add_missing_page_content_element_assignments
     page_template.placeholder_list.each do |placeholder|
@@ -98,11 +102,13 @@ class Webpage < ActiveRecord::Base
     end
   end
 
+
   def delete_orphaned_page_content_element_assignments
     page_content_element_assignments.each do |assignment|
       assignment.destroy unless page_template.placeholder_list.include?(assignment.used_as)
     end
   end
+
 
   def title_with_status
     if state == "published"
@@ -112,6 +118,7 @@ class Webpage < ActiveRecord::Base
     end
   end
 
+
   def visible_for?(user: nil)
     if user && user.contentmanager?
       ["draft", "published", "published_but_hidden"].include?(state)
@@ -119,6 +126,7 @@ class Webpage < ActiveRecord::Base
       ["published", "published_but_hidden"].include?(state)
     end
   end
+
 
   # this makes state editable from form
   Webpage.attr_protected[:default] = Webpage.attr_protected[:default].subtract(["state"])

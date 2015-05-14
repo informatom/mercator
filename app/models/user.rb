@@ -118,10 +118,6 @@ class User < ActiveRecord::Base
                available_to: :key_holder, if: "Time.now() - self.key_timestamp < 10.minutes"
   end
 
-  def signed_up?
-    state=="active"
-  end
-
   # --- Permissions --- #
 
   def create_permitted?
@@ -154,6 +150,10 @@ class User < ActiveRecord::Base
   end
 
   #--- Instance Methods ---#
+
+  def signed_up?
+    state=="active"
+  end
 
   def name
     name = [title, first_name, surname].join " "
