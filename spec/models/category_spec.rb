@@ -69,6 +69,26 @@ describe Category do
   end
 
 
+  context "active siblings" do
+    it "displays the active siblings" do
+      @category = create(:category, name_en: "Pa")
+      @sister_category  = create(:category, parent_id: @category.id, name_en: "Sister")
+      @brother_category = create(:category, parent_id: @category.id, name_en: "Brother")
+      expect(@brother_category.active_siblings).to eql [@sister_category]
+    end
+  end
+
+
+  context "active_children" do
+    it "displays the active siblings" do
+      @category = create(:category, name_en: "Pa")
+      @sister_category  = create(:category, parent_id: @category.id, name_en: "Sister")
+      @brother_category = create(:category, parent_id: @category.id, name_en: "Brother")
+      expect(@category.active_children.to_a).to eql [@sister_category, @brother_category]
+    end
+  end
+
+
   context "try_deprecation" do
     before :each do
       User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
@@ -111,6 +131,64 @@ describe Category do
     it "does not reactivate deprecated category without product" do
       @category = create(:category, state: "deprecated")
       expect{@category.try_reactivation}.not_to change{Category.active.count}
+    end
+  end
+
+  context "testing the property hash methods" do
+    before :each do
+      @category = create :category
+      @product = create :product
+      create :categorization, product: @product, category: @category
+      @property_group = create :property_group
+      property = create :property, state: "filterable"
+      property_two   = create :property, name_de: "Property 2",
+                                         state: "filterable"
+      property_three = create :property, name_de: "Property 3",
+                                         state: "filterable"
+      @value = create :flag_value, product: @product,
+                                   property_group: @property_group,
+                                   property: property
+      @value_two = create :numeric_value, product: @product,
+                                          property_group: @property_group,
+                                          property: property_two
+      @value_three = create :textual_value, product: @product,
+                                            property_group: @property_group,
+                                            property: property_three
+    end
+
+    context "property_groups_hash" do
+      it "displays the property groups hash" do
+
+        @expected_property_hash = {"property group"=>["property", "Property 2", "Property 3"]}
+        expect(@category.property_groups_hash).to eql @expected_property_hash
+      end
+    end
+
+
+    context "update_property_hash" do
+      it "updates the filters attribute" do
+        @expected_property_hash = {"property group"=>["property", "Property 2", "Property 3"]}
+        @category.update_property_hash
+        expect(@category.filters).to eql @expected_property_hash
+      end
+    end
+  end
+
+
+  context "starting_from" do
+    it "" , :focus => true do
+    end
+  end
+
+
+  context "up_to" do
+    it "" , :focus => true do
+    end
+  end
+
+
+  context "name_with_status" do
+    it "" , :focus => true do
     end
   end
 

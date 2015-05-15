@@ -1,6 +1,6 @@
 Model Tests:
 
-12 / 22 category
+07 / 22 category
 
 03 offeritem
 03 conversation

@@ -1,8 +1,8 @@
 FactoryGirl.define do
 
   factory :property do
-    name_de   "Größe"
-    name_en   "Size"
+    name_de   "property"
+    name_en   "property"
     position  1
     datatype  "textual"
     icecat_id 42
