@@ -39,6 +39,36 @@ describe Category do
 
   #--- Instance Methods ---#
 
+  context "active_product_count" do
+    it "counts the active products also from the subcategories" do
+      @category = create(:category_with_active_product)
+      @child = create(:category_with_active_product, parent_id: @category.id,
+                                                     name_de: "child category")
+      expect(@category.active_product_count).to eql 2
+    end
+  end
+
+
+  context "ancestors" do
+    it "returns the ancesters as a array" do
+      @category = create(:category)
+      @child = create(:category, parent_id: @category.id)
+      @grandchild = create(:category, parent_id: @child.id)
+      expect(@grandchild.ancestors).to eql [@category, @child]
+    end
+  end
+
+
+  context "ancestor_string" do
+    it "returns the ancesterstring" do
+      @category = create(:category, name_en: "Grandpa")
+      @child = create(:category, parent_id: @category.id, name_en: "Pa")
+      @grandchild = create(:category, parent_id: @child.id)
+      expect(@grandchild.ancestor_string).to eql "Grandpa - Pa"
+    end
+  end
+
+
   context "try_deprecation" do
     before :each do
       User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line

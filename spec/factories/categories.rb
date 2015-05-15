@@ -21,5 +21,13 @@ FactoryGirl.define do
                                               'image/jpg') }
     document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf',
                                               'application/pdf') }
+
+    factory :category_with_active_product do
+      name_de "category_with_active_product"
+      after(:create) do |category, evaluator|
+        create(:categorization, product: create(:product, number: category.name_de + "'s product"),
+                                category: category)
+      end
+    end
   end
 end
