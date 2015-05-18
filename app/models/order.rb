@@ -323,7 +323,7 @@ class Order < ActiveRecord::Base
                gtc_confirmed_at: basket.gtc_confirmed_at)
       end
 
-      basket.reload # otherwise destroy in next line fails, if lineitem has been moved over
+      basket.reload # otherwise destroy in next line fails, if a lineitem has been moved over
       basket.destroy
       return positions_merged
     end
