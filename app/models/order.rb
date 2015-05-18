@@ -304,10 +304,12 @@ class Order < ActiveRecord::Base
 
 
   def merge(basket: nil)
+    # This method is deprecated...
     if basket.id != id #first run or second run?
       positions_merged = "merged" if lineitems.present? && basket.lineitems.present?
       basket.lineitems.each do |lineitem|
-        duplicate = lineitems.where(product_id: lineitem.product_id).first
+        duplicate = lineitems.where(product_id: lineitem.product_id, inventory_id: lineitem.inventory_id).first
+
         if duplicate.present?
           duplicate.merge(lineitem: lineitem)
         else
@@ -321,6 +323,7 @@ class Order < ActiveRecord::Base
                gtc_confirmed_at: basket.gtc_confirmed_at)
       end
 
+      basket.reload # otherwise destroy in next line fails, if lineitem has been moved over
       basket.destroy
       return positions_merged
     end

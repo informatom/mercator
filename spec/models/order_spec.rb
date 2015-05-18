@@ -196,5 +196,69 @@ describe Order do
   end
 
 
+  context "merge", focus: true do
+    before :each do
+      @user = create(:user)
+      @order = create(:order, gtc_version_of: Date.new(2014,1,1),
+                              user: @user)
+      @product = create(:product)
+      @second_product = create(:second_product)
+
+      @inventory = create(:inventory_with_two_prices, product: @product)
+      @lineitem = create(:lineitem, product: @product,
+                                    order: @order,
+                                    amount: 3)
+      @fourth_lineitem = create(:lineitem, inventory: @inventory,
+                                           product: @product,
+                                           order: @order,
+                                           amount: 7)
+
+      @second_order = create(:order, gtc_version_of: Date.new(2014,5,1),
+                                     user: @user)
+      @second_lineitem = create(:lineitem, product: @product,
+                                           order: @second_order,
+                                           amount: 4)
+      @third_lineitem = create(:lineitem, product: @second_product,
+                                          order: @second_order,
+                                          amount: 4)
+      @fifth_lineitem = create(:lineitem, inventory: @inventory,
+                                          product: @product,
+                                          order: @second_order,
+                                          amount: 11)
+    end
+
+    it "merges two baskets into one" do
+      expect{@order.merge(basket: @second_order)}.to change {Order.count}.by(-1)
+    end
+
+    it "adds up amounts without inventories correctly" do
+      @order.merge(basket: @second_order)
+      @lineitem.reload
+      expect(@lineitem.amount).to eql 7
+    end
+
+    it "adds up amounts with inventories correctly" do
+      @order.merge(basket: @second_order)
+      @fourth_lineitem.reload
+      expect(@fourth_lineitem.amount).to eql 18
+    end
+
+    it "moves lineitems, that are new" do
+      @order.merge(basket: @second_order)
+      @third_lineitem.reload
+      expect(@third_lineitem.order).to eql(@order)
+    end
+
+    it "updates gtc_version to later one" do
+      @order.merge(basket: @second_order)
+      @order.reload
+      expect(@order.gtc_version_of).to eql(Date.new(2014,5,1))
+    end
+
+    it "returns 'merged'" do
+      expect(@order.merge(basket: @second_order)).to eql "merged"
+    end
+  end
+
   # --- Class Methods --- #
 end
