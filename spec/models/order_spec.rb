@@ -116,33 +116,85 @@ describe Order do
     end
   end
 
-  context "add_product", focus: true do
-    it "adds a lineitem to the basket, if there has not been any for that product" do
+
+  context "add_product" do
+    before :each do
       @order = create(:order)
-      @product = create(:product)
-      expect{@order.add_product(@product)}.to change{@order.lineitems.count}.by(1)
+      @product = create(:product_with_inventory_and_two_prices)
+    end
+
+    it "adds a lineitem to the basket, if there has not been any for that product" do
+      expect{@order.add_product(product: @product)}.to change{@order.lineitems.count}.by(1)
     end
 
     it "creates a lineitem with the correct amount" do
-      @order = create(:order)
-      @product = create(:product)
-      @order.add_product(@product, amount: 5)
-      expect(@order.lineitem.first.amount).to eql(5)
+      @order.add_product(product: @product,
+                         amount: 5)
+      @order.reload
+      expect(@order.lineitems.first.amount).to eql 5
     end
 
-
     it "increases the amount for the correct lineitem if there was already a lineitem for the product" do
-      @order = create(:order)
-      @lineitem = create(:lineitem, order: @order, amount: 4)
-      expect{@order.add_product(@product)}.to change{@lineitem.amount}.by(1)
+      @lineitem = create(:lineitem, order: @order,
+                                    product: @product,
+                                    amount: 4)
+      @order.add_product(product: @product)
+      @lineitem.reload
+      expect(@lineitem.amount).to eql 5
     end
 
     it "increases by the correct amount" do
-      @order = create(:order)
-      @lineitem = create(:lineitem, order: @order, amount: 4)
-      expect{@order.add_product(@product, amount: 5)}.to change{@lineitem.amount}.by(5)
+      @lineitem = create(:lineitem, product: @product,
+                                    order: @order,
+                                    amount: 4)
+      @order.add_product(product: @product,
+                                amount: 5)
+      @lineitem.reload
+      expect(@lineitem.amount).to eql 9
     end
   end
+
+
+  context "add_inventory" do
+    before :each do
+      @order = create(:order)
+      @product = create(:product)
+      @inventory = create(:inventory_with_two_prices, product: @product)
+    end
+
+    it "adds a lineitem to the basket, if there has not been any for that inventory" do
+      expect{@order.add_inventory(inventory: @inventory)}.to change{@order.lineitems.count}.by(1)
+    end
+
+    it "creates a lineitem with the correct amount" do
+      @order.add_inventory(inventory: @inventory,
+                           amount: 5)
+      @order.reload
+      expect(@order.lineitems.first.amount).to eql 5
+    end
+
+    it "increases the amount for the correct lineitem if there was already a lineitem for the inventory" do
+      @lineitem = create(:lineitem, order: @order,
+                                    inventory: @inventory,
+                                    product: @product,
+                                    amount: 4)
+      @order.add_inventory(inventory: @inventory)
+      @lineitem.reload
+      expect(@lineitem.amount).to eql 5
+    end
+
+    it "increases by the correct amount" do
+      @lineitem = create(:lineitem, inventory: @inventory,
+                                    order: @order,
+                                    product: @product,
+                                    amount: 4)
+      @order.add_inventory(inventory: @inventory,
+                           amount: 5)
+      @lineitem.reload
+      expect(@lineitem.amount).to eql 9
+    end
+  end
+
 
   # --- Class Methods --- #
 end

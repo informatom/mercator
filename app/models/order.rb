@@ -304,7 +304,7 @@ class Order < ActiveRecord::Base
 
 
   def merge(basket: nil)
-    if basket.id !=id #first run or second run?
+    if basket.id != id #first run or second run?
       positions_merged = "merged" if lineitems.present? && basket.lineitems.present?
       basket.lineitems.each do |lineitem|
         duplicate = lineitems.where(product_id: lineitem.product_id).first
