@@ -229,6 +229,7 @@ class Order < ActiveRecord::Base
     !lineitems.*.product.*.try(:not_shippable).any?
   end
 
+
   def accepted_offer?
     self.state == "accepted_offer"
   end

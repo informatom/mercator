@@ -19,4 +19,100 @@ describe Order do
   it "is versioned" do
     is_expected.to respond_to :versions
   end
+
+
+  # --- Instance Methods --- #
+
+  context "basket?" do
+    it "returns true for basket" do
+      @order = create(:order, state: "basket")
+      expect(@order.basket?).to eql(true)
+    end
+
+    it "it returns false, if no basket" do
+      @order = create(:order, state: "ordered")
+      expect(@order.basket?).to eql(false)
+    end
+  end
+
+
+  context "shippable?" do
+    it "returns true if all lineitems are shippable" do
+      @order = create(:order)
+      @lineitem = create(:lineitem, order: @order)
+      expect(@order.shippable?).to eql(true)
+    end
+
+    it "returns false if at least one lineitems is not shippable" do
+      @order = create(:order)
+      @product = create(:product, not_shippable: true)
+      @lineitem = create(:lineitem, order: @order,
+                                    product: @product)
+      expect(@order.shippable?).to eql(false)
+    end
+  end
+
+
+  context "accepted_offer?" do
+    it "returns true for accepted_offer" do
+      @order = create(:order, state: "accepted_offer")
+      expect(@order.accepted_offer?).to eql(true)
+    end
+
+    it "it returns false, if no accepted_offer" do
+      @order = create(:order, state: "ordered")
+      expect(@order.accepted_offer?).to eql(false)
+    end
+  end
+
+  context "order calculations" do
+    before :each do
+      @order = create(:order, discount_rel: 10)
+      @product = create(:product)
+      create(:lineitem, order: @order, value: 5, product: @product)
+      create(:lineitem, order: @order, value: 7, product: @product)
+    end
+
+    context "sum" do
+      it "returns sum of order" do
+        expect(@order.sum).to eql(10.8)
+      end
+    end
+
+
+    context "vat" do
+      it "returns vat of order" do
+        expect(@order.vat).to eql(2.16)
+      end
+    end
+
+
+    context "sum_incl_vat" do
+      it "returns sum including vat of order" do
+        expect(@order.sum_incl_vat).to eql(12.96)
+      end
+    end
+
+
+    context "vat_items" do
+      it "returns hash of vat items" do
+        create(:lineitem, order: @order, value: 7, product: @product, vat: 10)
+        expect(@order.vat_items).to eql({BigDecimal.new("10") => BigDecimal.new("0.63"),
+                                         BigDecimal.new("20") => BigDecimal.new("2.16")})
+      end
+    end
+
+    context "name", focus: true do
+      it "returns name for basket" do
+        expect(@order.name).to include("Basket from")
+      end
+
+      it "returns name for accepted offer" do
+        @order.state = "accepted_offer"
+        expect(@order.name).to include("Order from")
+      end
+    end
+  end
+
+  # --- Class Methods --- #
 end
