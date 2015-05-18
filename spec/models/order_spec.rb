@@ -65,6 +65,7 @@ describe Order do
     end
   end
 
+
   context "order calculations" do
     before :each do
       @order = create(:order, discount_rel: 10)
@@ -102,7 +103,8 @@ describe Order do
       end
     end
 
-    context "name", focus: true do
+
+    context "name" do
       it "returns name for basket" do
         expect(@order.name).to include("Basket from")
       end
@@ -111,6 +113,34 @@ describe Order do
         @order.state = "accepted_offer"
         expect(@order.name).to include("Order from")
       end
+    end
+  end
+
+  context "add_product", focus: true do
+    it "adds a lineitem to the basket, if there has not been any for that product" do
+      @order = create(:order)
+      @product = create(:product)
+      expect{@order.add_product(@product)}.to change{@order.lineitems.count}.by(1)
+    end
+
+    it "creates a lineitem with the correct amount" do
+      @order = create(:order)
+      @product = create(:product)
+      @order.add_product(@product, amount: 5)
+      expect(@order.lineitem.first.amount).to eql(5)
+    end
+
+
+    it "increases the amount for the correct lineitem if there was already a lineitem for the product" do
+      @order = create(:order)
+      @lineitem = create(:lineitem, order: @order, amount: 4)
+      expect{@order.add_product(@product)}.to change{@lineitem.amount}.by(1)
+    end
+
+    it "increases by the correct amount" do
+      @order = create(:order)
+      @lineitem = create(:lineitem, order: @order, amount: 4)
+      expect{@order.add_product(@product, amount: 5)}.to change{@lineitem.amount}.by(5)
     end
   end
 
