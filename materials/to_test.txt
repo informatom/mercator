@@ -1,14 +1,12 @@
 Model Tests:
 
 7 / 19 order
-
-45:
-03 offeritem
-03 conversation
-06 offer
-07 webpage
-12 user
-14 lineitem
+3 / 3 offeritem
+3 / 3 conversation
+6 / 6 offer
+7 / 7 webpage
+12 / 12 user
+5 / 10 lineitem
 
 
 Controller Tests:
