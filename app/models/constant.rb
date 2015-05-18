@@ -47,8 +47,8 @@ class Constant < ActiveRecord::Base
     today_sym = time.strftime("%^a").to_sym
     return false unless office_hours[today_sym]
 
-    start_of_work = Time.parse(office_hours[today_sym][0])
-    end_of_work = Time.parse(office_hours[today_sym][1])
+    start_of_work = Time.parse(time.to_date.to_s + " " + office_hours[today_sym][0])
+    end_of_work = Time.parse(time.to_date.to_s + " " + office_hours[today_sym][1])
 
     return time < end_of_work && time > start_of_work
   end

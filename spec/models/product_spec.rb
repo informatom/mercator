@@ -103,14 +103,16 @@ describe Product do
                                             property: property_three)
     end
 
+
     context "tabled_values" do
       it "returns tabled values" do
-        expected_result = {"I Am the English Title"=> {"Size"=>"Yes",
+        expected_result = {"property group"=> {"property"=>"Yes",
                                                        "Property 2"=>"13 kg",
                                                        "Property 3"=>"text value text "}}
         expect(Hash[@product.tabled_values.to_a]).to eql(expected_result)
       end
     end
+
 
     context "hashed_values" do
       it "returns hashed values" do
@@ -118,6 +120,7 @@ describe Product do
         expect(@product.hashed_values).to eql(expected_result)
       end
     end
+
 
     context "search_data" do
       it "returns search data" do
@@ -138,20 +141,22 @@ describe Product do
                            :category_ids => [],
                            :state => "active",
                            :price => nil,
-                           "Size" => "Yes",
+                           "property" => "Yes",
                            "Property 2" => "13 kg",
                            "Property 3" => "text value text"}
         expect(@product.search_data).to eql(expected_result)
       end
     end
 
+
     context "property_hash" do
       it "returns property_hash" do
-        expected_result = {"Size"=>"Yes", "Property 2"=>"13 kg", "Property 3"=>"text value text"}
+        expected_result = {"property"=>"Yes", "Property 2"=>"13 kg", "Property 3"=>"text value text"}
         expect(@product.property_hash).to eql(expected_result)
       end
     end
   end
+
 
   context "determine_inventory" do
     before :each do

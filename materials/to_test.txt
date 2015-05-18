@@ -1,15 +1,15 @@
 Model Tests:
 
-03 / 22 category
+19 / 19 order
 
-64:
+45:
 03 offeritem
 03 conversation
 06 offer
 07 webpage
 12 user
 14 lineitem
-19 order
+
 
 Controller Tests:
 

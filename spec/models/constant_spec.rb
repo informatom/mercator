@@ -22,12 +22,14 @@ describe Constant do
       expect(Constant.office_hours?(time: monday_night)).to eql(false)
     end
 
+
     it "returns true during office hours" do
       create(:office_hours)
       monday_afternoon = Time.new(2015, 05, 11, 14, 00, 0, "+00:00")
       expect(Constant.office_hours?(time: monday_afternoon)).to eql(true)
     end
   end
+
 
   context "pretty_office_hours" do
     it "returns a string" do

@@ -134,6 +134,7 @@ describe Category do
     end
   end
 
+
   context "testing the property hash methods" do
     before :each do
       @category = create :category
@@ -156,6 +157,7 @@ describe Category do
                                             property: property_three
     end
 
+
     context "property_groups_hash" do
       it "displays the property groups hash" do
 
@@ -175,20 +177,37 @@ describe Category do
   end
 
 
-  context "starting_from" do
-    it "" , :focus => true do
+  context "starting_from and up_to" do
+    before :each do
+      @category = create(:category)
+      @child_category = create(:category, parent: @category,
+                                          filtermin: 17,
+                                          filtermax: 117)
     end
-  end
 
+    context "starting_from" do
+      it "returns minimal price for active products" do
+        expect(@category.starting_from).to eql(17)
+      end
+    end
 
-  context "up_to" do
-    it "" , :focus => true do
+    context "up_to" do
+      it "returns maximum price for active products" do
+        expect(@category.up_to).to eql(4242)
+      end
     end
   end
 
 
   context "name_with_status" do
-    it "" , :focus => true do
+    it "returns name if active" do
+      @category = create(:category)
+      expect(@category.name_with_status).to eql("Printer")
+    end
+
+    it "returns name with styled status unless active" do
+      @category = create(:category, state: "new")
+      expect(@category.name_with_status).to eql("Printer <em style='color: green'>new</em>")
     end
   end
 
