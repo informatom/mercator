@@ -30,7 +30,7 @@ describe Offer do
   context "name" do
     it "displays the name" do
       @offer = create(:offer)
-      expect(@offer.name).to include "Offer 1 from"
+      expect(@offer.name).to include "Offer " + @offer.id + " from"
     end
   end
 
@@ -50,7 +50,7 @@ describe Offer do
   end
 
 
-  context "sum_before_discount", focus: true do
+  context "sum_before_discount" do
     it "returns the sum" do
       @offer = create(:offer)
       @product = create(:product)

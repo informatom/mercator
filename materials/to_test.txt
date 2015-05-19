@@ -1,7 +1,6 @@
 Model Tests:
 
 7 / 19 order
-3 / 3 offeritem
 3 / 3 conversation
 7 / 7 webpage
 12 / 12 user

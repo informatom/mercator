@@ -196,7 +196,7 @@ describe Order do
   end
 
 
-  context "merge", focus: true do
+  context "merge" do
     before :each do
       @user = create(:user)
       @order = create(:order, gtc_version_of: Date.new(2014,1,1),

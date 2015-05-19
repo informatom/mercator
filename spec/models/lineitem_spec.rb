@@ -229,7 +229,7 @@ describe Lineitem do
       end
 
       it "sets vat" do
-        expect(@new_lineitem.vat).to eql 20
+        expect(@new_lineitem.vat).to eql 10
       end
     end
 
@@ -319,7 +319,7 @@ describe Lineitem do
       end
 
       it "sets vat" do
-        expect(@new_lineitem.vat).to eql 20
+        expect(@new_lineitem.vat).to eql 10
       end
     end
 

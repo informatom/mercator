@@ -109,10 +109,9 @@ class Offeritem < ActiveRecord::Base
 
 
   def new_pricing
-    price =
-      Product.find(product_id)
-             .determine_price(amount: self.amount,
-                              customer_id: user_id)
+    price = Product.find(product_id)
+                   .determine_price(amount: self.amount,
+                                    customer_id: user_id)
     self.update(product_price: price)
     self.update(value: (self.product_price - self.discount_abs) * self.amount)
   end
