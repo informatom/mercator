@@ -30,7 +30,7 @@ describe Offer do
   context "name" do
     it "displays the name" do
       @offer = create(:offer)
-      expect(@offer.name).to include "Offer " + @offer.id + " from"
+      expect(@offer.name).to include "Offer " + @offer.id.to_s + " from"
     end
   end
 
