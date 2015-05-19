@@ -132,24 +132,29 @@ class Offer < ActiveRecord::Base
     user_is?(acting_user)
   end
 
+
   # --- Instance Methods --- #
 
   def name
     I18n.t('activerecord.models.offer.one') + " " + id.to_s + " " + I18n.t('mercator.from') + " " + I18n.l(created_at).to_s
   end
 
+
   def sum
     offeritems.sum('value') - discount
   end
+
 
   def sum_before_discount
     offeritems.sum('value')
   end
 
+
   def discount
     self.discount_rel = 0 unless discount_rel
     offeritems.any? ? discount_rel * offeritems.sum('value') / 100 : 0
   end
+
 
   def sum_incl_vat
     if offeritems.any?
@@ -158,6 +163,7 @@ class Offer < ActiveRecord::Base
       0
     end
   end
+
 
   def vat_items
     vat_items = Hash.new

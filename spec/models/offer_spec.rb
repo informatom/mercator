@@ -23,4 +23,97 @@ describe Offer do
   it "is versioned" do
     is_expected.to respond_to :versions
   end
+
+
+  # --- Instance Methods --- #
+
+  context "name" do
+    it "displays the name" do
+      @offer = create(:offer)
+      expect(@offer.name).to include "Offer 1 from"
+    end
+  end
+
+
+  context "sum" do
+    it "returns the sum minus discount" do
+      @offer = create(:offer, discount_rel: 10)
+      @product = create(:product)
+      @offeritem = create(:offeritem, value: 7,
+                                      offer: @offer,
+                                      product: @product)
+      @offeritem = create(:offeritem, value: 11,
+                                      offer: @offer,
+                                      product: @product)
+      expect(@offer.sum).to eql(16.2)
+    end
+  end
+
+
+  context "sum_before_discount", focus: true do
+    it "returns the sum" do
+      @offer = create(:offer)
+      @product = create(:product)
+      @offeritem = create(:offeritem, value: 7,
+                                      offer: @offer,
+                                      product: @product)
+      @offeritem = create(:offeritem, value: 11,
+                                      offer: @offer,
+                                      product: @product)
+      expect(@offer.sum_before_discount).to eql(18)
+    end
+  end
+
+
+  context "discount" do
+    it "returns the sum" do
+      @offer = create(:offer, discount_rel: 10)
+      @product = create(:product)
+      @offeritem = create(:offeritem, value: 7,
+                                      offer: @offer,
+                                      product: @product)
+      @offeritem = create(:offeritem, value: 11,
+                                      offer: @offer,
+                                      product: @product)
+      expect(@offer.discount).to eql(1.8)
+    end
+
+    it "gives 0 if no discount_rel" do
+      @offer = create(:offer)
+      expect(@offer.discount).to eql(0)
+    end
+  end
+
+
+  context "sum_incl_vat" do
+    it "returns the sum incl vat" do
+      @offer = create(:offer, discount_rel: 10)
+      @product = create(:product)
+      @offeritem = create(:offeritem, value: 7,
+                                      offer: @offer,
+                                      product: @product)
+      @offeritem = create(:offeritem, value: 11,
+                                      offer: @offer,
+                                      product: @product,
+                                      vat: 10)
+      expect(@offer.sum_incl_vat).to eql(18.45)
+    end
+  end
+
+
+  context "vat_items" do
+    it "returns the vat_items" do
+      @offer = create(:offer, discount_rel: 10)
+      @product = create(:product)
+      @offeritem = create(:offeritem, value: 7,
+                                      offer: @offer,
+                                      product: @product)
+      @offeritem = create(:offeritem, value: 11,
+                                      offer: @offer,
+                                      product: @product,
+                                      vat: 10)
+      expect(@offer.vat_items).to eql({BigDecimal.new("10") => BigDecimal.new("0.99"),
+                                       BigDecimal.new("20") => BigDecimal.new("1.26")})
+    end
+  end
 end

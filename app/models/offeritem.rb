@@ -78,6 +78,7 @@ class Offeritem < ActiveRecord::Base
     acting_user.administrator?
   end
 
+
   # --- Instance Methods --- #
 
   def update_from_product(product_number: nil, amount: 1, discount_abs: 0)
@@ -101,9 +102,11 @@ class Offeritem < ActiveRecord::Base
     end
   end
 
+
   def vat_value(discount_rel: 0)
     vat * value * ( 100 - discount_rel) / 100 / 100
   end
+
 
   def new_pricing
     price =
