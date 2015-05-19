@@ -137,4 +137,213 @@ describe Lineitem do
       expect(@lineitem.value_incl_vat).to eql 6221.88
     end
   end
+
+
+  context "gross_price" do
+    it "calculates the gross price" do
+      @lineitem = create(:lineitem)
+      expect(@lineitem.gross_price).to eql 148.14
+    end
+  end
+
+
+  context "undiscounted_gross_value" do
+    it "calculates the gross price" do
+      @lineitem = create(:lineitem)
+      expect(@lineitem.undiscounted_gross_value).to eql 6221.88
+    end
+  end
+
+
+  # --- Class Methods --- #
+
+  context "create_from_product" do
+    before :each do
+      @product = create(:product_with_inventory_and_two_prices)
+      @user = create(:user)
+      @order = create(:order, user: @user)
+    end
+
+    it "creates a new lineitem" do
+      expect{Lineitem.create_from_product(product: @product,
+                                          user_id: @user.id,
+                                          order_id: @order.id,
+                                          position: 1)}.to change {Lineitem.count}.by 1
+    end
+
+    context "setting attributes" do
+      before :each do
+        @new_lineitem = Lineitem.create_from_product(product: @product,
+                                            user_id: @user.id,
+                                            order_id: @order.id,
+                                            position: 1,
+                                            amount: 7)
+      end
+
+      it "sets user_id" do
+        expect(@new_lineitem.user_id).to eql @user.id
+      end
+
+      it "sets order_id" do
+        expect(@new_lineitem.order_id).to eql @order.id
+      end
+
+      it "sets position" do
+        expect(@new_lineitem.position).to eql 1
+      end
+
+      it "sets product_id" do
+        expect(@new_lineitem.product_id).to eql @product.id
+      end
+
+      it "sets product_number" do
+        expect(@new_lineitem.product_number).to eql @product.number
+      end
+
+      it "sets description_de" do
+        expect(@new_lineitem.description_de).to eql @product.title_de
+      end
+
+      it "sets description_en" do
+        expect(@new_lineitem.description_en).to eql @product.title_en
+      end
+
+      it "sets delivery_time" do
+        expect(@new_lineitem.delivery_time).to eql @product.delivery_time
+      end
+
+      it "sets amount" do
+        expect(@new_lineitem.amount).to eql 7
+      end
+
+      it "sets unit" do
+        expect(@new_lineitem.unit).to eql @product.inventories.first.unit
+      end
+
+      it "sets product_price" do
+        expect(@new_lineitem.product_price).to eql 38
+      end
+
+      it "sets value" do
+        expect(@new_lineitem.value).to eql(7 * 38)
+      end
+
+      it "sets vat" do
+        expect(@new_lineitem.vat).to eql 20
+      end
+    end
+
+    it "runs a new pricing procedure" do
+      expect_any_instance_of(Lineitem).to receive(:new_pricing)
+      Lineitem.create_from_product(product: @product,
+                                   user_id: @user.id,
+                                   order_id: @order.id,
+                                   position: 1)
+    end
+  end
+
+
+  context "create_from_inventory" do
+    before :each do
+      @inventory = create(:inventory_with_two_prices)
+      @user = create(:user)
+      @order = create(:order, user: @user)
+    end
+
+    it "creates a new lineitem" do
+      expect{Lineitem.create_from_inventory(inventory: @inventory,
+                                            user_id: @user.id,
+                                            order_id: @order.id,
+                                            position: 1)}.to change {Lineitem.count}.by 1
+    end
+
+    context "setting attributes" do
+      before :each do
+        @new_lineitem = Lineitem.create_from_inventory(inventory: @inventory,
+                                                       user_id: @user.id,
+                                                       order_id: @order.id,
+                                                       position: 1,
+                                                       amount: 7)
+      end
+
+      it "sets user_id" do
+        expect(@new_lineitem.user_id).to eql @user.id
+      end
+
+      it "sets order_id" do
+        expect(@new_lineitem.order_id).to eql @order.id
+      end
+
+      it "sets position" do
+        expect(@new_lineitem.position).to eql 1
+      end
+
+      it "sets product_id" do
+        expect(@new_lineitem.product_id).to eql @inventory.product.id
+      end
+
+      it "sets inventory_id" do
+        expect(@new_lineitem.inventory_id).to eql @inventory.id
+      end
+
+      it "sets product_number" do
+        expect(@new_lineitem.product_number).to eql @inventory.number
+      end
+
+      it "sets description_de" do
+        expect(@new_lineitem.description_de).to eql @inventory.product.title_de
+      end
+
+      it "sets description_en" do
+        expect(@new_lineitem.description_en).to eql @inventory.product.title_en
+      end
+
+      it "sets delivery_time" do
+        expect(@new_lineitem.delivery_time).to eql @inventory.delivery_time
+      end
+
+      it "sets amount" do
+        expect(@new_lineitem.amount).to eql 7
+      end
+
+      it "sets unit" do
+        expect(@new_lineitem.unit).to eql @inventory.unit
+      end
+
+      it "sets product_price" do
+        expect(@new_lineitem.product_price).to eql 38
+      end
+
+      it "sets value" do
+        expect(@new_lineitem.value).to eql(7 * 38)
+      end
+
+      it "sets vat" do
+        expect(@new_lineitem.vat).to eql 20
+      end
+    end
+
+    it "runs a new pricing procedure" do
+      expect_any_instance_of(Lineitem).to receive(:new_pricing)
+      Lineitem.create_from_inventory(inventory: @inventory,
+                                     user_id: @user.id,
+                                     order_id: @order.id,
+                                     position: 1)
+    end
+  end
+
+
+  context "cleanup_orphaned" do
+    it "deletes orphans" do
+      @lineitem = create(:lineitem)
+      @lineitem.update_attribute(:order_id, nil)
+      @lineitem.update_attribute(:user_id, nil) # we have to force it ....
+      expect{Lineitem.cleanup_orphaned}.to change{Lineitem.count}.by -1
+    end
+
+    it "doesn't delete lineitems with orders" do
+      @lineitem = create(:lineitem)
+      expect{Lineitem.cleanup_orphaned}.not_to change{Lineitem.count}
+    end
+  end
 end

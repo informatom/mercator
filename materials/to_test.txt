@@ -6,7 +6,6 @@ Model Tests:
 6 / 6 offer
 7 / 7 webpage
 12 / 12 user
-5 / 10 lineitem
 
 
 Controller Tests:

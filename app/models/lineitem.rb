@@ -164,15 +164,15 @@ class Lineitem < ActiveRecord::Base
     price =
       if self.inventory_id
         Inventory.find(inventory_id)
-                 .determine_price(amount: self.amount,
+                 .determine_price(amount: amount,
                                   customer_id: user_id)
       else
         Product.find(product_id)
-               .determine_price(amount: self.amount,
+               .determine_price(amount: amount,
                                 customer_id: user_id)
       end
     self.update(product_price: price)
-    self.update(value: (self.product_price - self.discount_abs) * self.amount)
+    self.update(value: (product_price - discount_abs) * amount)
   end
 
 
@@ -205,7 +205,6 @@ class Lineitem < ActiveRecord::Base
   #--- Class Methods --- #
 
   def self.create_from_product(user_id: nil, product: nil, amount: 1, position:nil, order_id: nil)
-    price = product.determine_price(amount: amount, customer_id: user_id)
     inventory = product.determine_inventory(amount: amount)
     vat = inventory.determine_vat(amount: amount)
 
@@ -219,20 +218,24 @@ class Lineitem < ActiveRecord::Base
                             delivery_time:  product.delivery_time,
                             amount:         amount,
                             unit:           inventory.unit,
+                            product_price:  1, # temporary
+                            value:          1 * amount, # temporary
                             vat:            vat)
-    lineitem.new_pricing
 
     unless lineitem.save
-      raise "Lineitem connot be created"
+      raise "Lineitem connot be created: " + lineitem.errors.messages.to_s
     end
+
+    lineitem.new_pricing
+    return lineitem
   end
 
 
-  def self.create_from_inventory(user_id: nil, inventory: nil, amount: 1, position:nil, order_id: nil)
-    price = inventory.determine_price(amount: amount, customer_id: user_id)
+  def self.create_from_inventory(user_id: nil, inventory: nil, amount: 1, position: nil, order_id: nil)
     vat = inventory.determine_vat(amount: amount)
-
     product = inventory.product
+    delivery_time = inventory.delivery_time || product.delivery_time
+
     lineitem = Lineitem.new(user_id:        user_id,
                             order_id:       order_id,
                             position:       position,
@@ -241,15 +244,19 @@ class Lineitem < ActiveRecord::Base
                             product_number: inventory.number,
                             description_de: product.title_de,
                             description_en: product.title_en,
-                            delivery_time:  (inventory.delivery_time || product.delivery_time),
+                            delivery_time:  delivery_time,
                             amount:         amount,
                             unit:           inventory.unit,
+                            product_price:  1, # temporary
+                            value:          1 * amount, # temporary
                             vat:            vat)
-    lineitem.new_pricing
 
     unless lineitem.save
       raise "Lineitem connot be created"
     end
+
+    lineitem.new_pricing
+    return lineitem
   end
 
 
