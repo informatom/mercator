@@ -15,6 +15,7 @@ FactoryGirl.define do
       value 38
       scale_from 7
       scale_to 100
+      vat 10
     end
 
     factory :lower_price do

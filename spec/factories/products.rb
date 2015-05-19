@@ -61,7 +61,7 @@ FactoryGirl.define do
   factory :second_product , class: Product do
     title_de            "Artikel Zwei"
     title_en            "Article Two"
-    number              42
+    number              "42"
     state "active"
     description_de      "Deutsch: Noch ein Text."
     description_en      "English: Another Text!"

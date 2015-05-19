@@ -87,17 +87,17 @@ class Offeritem < ActiveRecord::Base
     if product
       inventory = product.determine_inventory(amount: amount)
       vat = inventory.determine_vat(amount: amount)
+
       update(product_id:     product.id,
-             product_number: product.number,
              description_de: product.title_de,
              description_en: product.title_en,
              delivery_time:  product.delivery_time,
              unit:           inventory.unit,
              vat:            vat)
+
       self.new_pricing
     else
       update(product_id:     nil,
-             product_number: product_number,
              delivery_time:  nil)
     end
   end
