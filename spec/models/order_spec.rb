@@ -500,10 +500,27 @@ describe Order do
 
   # --- Class Methods --- #
 
-  context "cleanup_deprecated", focus: true do
+  context "cleanup_deprecated" do
+    it "doesn't touch new baskets" do
+      create(:order)
+      expect{Order.cleanup_deprecated}.not_to change{Order.count}
+    end
+
+    it "deletes_if_obsolete for baskets older than one hour" do
+      @order = create(:order)
+      @order.update(created_at: Time.now - 2.hours) # we fake the creation date
+      expect{Order.cleanup_deprecated}.to change{Order.count}.by -1
+    end
   end
 
 
   context "notify_in_payment" do
+    it "sends emails for orders in status in payment not older than 1 day" do
+      create(:constant_service_mail)
+      create(:mail_subject)
+      @order = create(:order, state: "in_payment", updated_at: Time.now - 2.hours)
+      expect(OrderMailer).to receive(:notify_in_payment).and_return( double("OrderMailer", :deliver => true))
+      Order.notify_in_payment
+    end
   end
 end

@@ -422,12 +422,10 @@ class Order < ActiveRecord::Base
     JobLogger.info("Starting Cronjob runner: Order.cleanup_deprecated")
 
     Order.all.each do |basket|
-      if basket.lineitems.count == 0 && Time.now - basket.created_at > 1.hours
-        if basket.destroy
-          JobLogger.info("Deleted order " + basket.id.to_s + " successfully.")
-        else
-          JobLogger.error("Deleted order " + basket.id.to_s + " failed!")
-        end
+      if Time.now - basket.created_at > 1.hours && basket.delete_if_obsolete
+        JobLogger.info("Deleted order " + basket.id.to_s + " successfully.")
+      else
+        JobLogger.error("Deleting order " + basket.id.to_s + " failed!")
       end
     end
 

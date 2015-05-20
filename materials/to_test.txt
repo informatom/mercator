@@ -1,10 +1,14 @@
 Model Tests:
 
-5 / 19 order
+2 / 19 order
 3 / 3 conversation
 7 / 7 webpage
 12 / 12 user
 
+
+Mailer Tests:
+
+all
 
 Controller Tests:
 
