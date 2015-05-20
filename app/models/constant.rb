@@ -11,9 +11,11 @@ class Constant < ActiveRecord::Base
   attr_accessible :key, :value
   has_paper_trail
 
-  CMSDOMAIN     = self.find_by_key('cms_domain').try(:value)     if defined? Constant
-  SHOPDOMAIN    = self.find_by_key('shop_domain').try(:value)    if defined? Constant
-  PODCASTDOMAIN = self.find_by_key('podcast_domain').try(:value) if defined? Constant
+  if Constant.table_exists? # enable initial schema loading
+    CMSDOMAIN     = self.find_by_key('cms_domain').try(:value)
+    SHOPDOMAIN    = self.find_by_key('shop_domain').try(:value)
+    PODCASTDOMAIN = self.find_by_key('podcast_domain').try(:value)
+  end
 
   # --- Permissions --- #
 
