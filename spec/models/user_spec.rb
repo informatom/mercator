@@ -123,7 +123,7 @@ describe User do
   end
 
 
-  context "sync_agb_with_basket", focus: true do
+  context "sync_agb_with_basket" do
     before :each do
       @older_gtc = create(:older_gtc)
       @newer_gtc = create(:newer_gtc)
@@ -149,5 +149,52 @@ describe User do
     end
   end
 
+
+  context "call_for_chat_partner", focus: true do
+    pending "pending"
+  end
+
+
   #--- Class Methods --- #
+
+  context "initialize" do
+    it "creates a user" do
+      expect{User.initialize}.to change{User.count}.by 1
+    end
+
+    it "set the user's surname " do
+      @user = User.initialize
+      expect(@user.surname).to eql "Gast"
+    end
+
+    it "sets the user's email " do
+      @user = User.initialize
+      expect(@user.email_address).to include "mercator.informatom.com"
+    end
+
+    it "creates a user key" do
+      @user = User.initialize
+      expect(@user.lifecycle.key).not_to eql nil
+    end
+  end
+
+
+  context "assign_consultant", focus: true do
+    pending "pending"
+  end
+
+
+  context "mesoprim", focus: true do
+    pending "pending"
+  end
+
+
+  context "cleanup_deprecated", focus: true do
+    pending "pending"
+  end
+
+
+  context "no_sales_logged_in", focus: true do
+    pending "pending"
+  end
 end
