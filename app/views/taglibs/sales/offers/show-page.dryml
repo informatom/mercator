@@ -86,7 +86,7 @@
                       <input: replace>
                         <name-one:product-number complete-target="&Product.new()"
                                                  completer="number_sales"
-                                                 autocomplete="off" onClick="debugger" />
+                                                 autocomplete="off" />
                       </input:>
                     </live-editor-innards:product-number>
                   </td>
