@@ -55,7 +55,7 @@ describe User do
   end
 
 
-  context "name"
+  context "name" do
     it "returns the name" do
       @user = create(:user, state: "active")
       expect(@user.name).to eql "Mr. John Doe"
@@ -93,26 +93,60 @@ describe User do
     it "returns the existant basket, if there is one" do
       @basket = @user.basket
       expect(@user.basket).to eql @basket
+    end
   end
 
 
-  context "parked_basket", focus: true do
+  context "parked_basket" do
     before :each do
       @user = create(:user)
       @parked_basket = create(:order, user: @user,
                                       state: "parked")
       @lineitem = create(:lineitem, order: @parked_basket)
-      @absolete_parked_basket = create(@order, user: @user,
+      @absolete_parked_basket = create(:order, user: @user,
                                                state: "parked")
       @admin = create(:admin)
       allow(@absolete_parked_basket).to receive(:acting_user) { @admin }
+
+      create(:constant_shipping_cost)
+      create(:shipping_cost_article)
     end
 
     it "returns parked basket" do
-
+      expect(@user.parked_basket).to eql @parked_basket
     end
 
+    it "cleans up parked baskets" do
+      @user.parked_basket
+      expect(Order.exists?(@absolete_parked_basket)).to eql false
+    end
+  end
 
+
+  context "sync_agb_with_basket", focus: true do
+    before :each do
+      @older_gtc = create(:older_gtc)
+      @newer_gtc = create(:newer_gtc)
+    end
+
+    it "updates basket version if user version is newer" do
+      @user = create(:user, gtc_version_of: @newer_gtc.version_of)
+      @basket = create(:order, gtc_version_of: @older_gtc.version_of,
+                               state: "basket",
+                               user: @user)
+      @user.sync_agb_with_basket
+      @basket.reload
+      expect(@basket.gtc_version_of).to eql @newer_gtc.version_of
+    end
+
+    it "updates user version if basket version is newer" do
+      @user = create(:user, gtc_version_of: @older_gtc.version_of)
+      @basket = create(:order, gtc_version_of: @newer_gtc.version_of,
+                               state: "basket",
+                               user: @user)
+      @user.sync_agb_with_basket
+      expect(@user.gtc_version_of).to eql @newer_gtc.version_of
+    end
   end
 
   #--- Class Methods --- #

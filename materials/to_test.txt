@@ -2,7 +2,7 @@ Model Tests:
 
 3 conversation
 7 webpage
-8 user
+6 user
 
 
 Mailer Tests:

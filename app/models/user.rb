@@ -177,32 +177,23 @@ class User < ActiveRecord::Base
 
 
   def parked_basket
-    parked_baskets = orders.parked
-
     # A bit of cleanup here...
-    if parked_baskets.any?
-      parked_baskets.each do |parked_basket|
-        parked_basket.delete_if_obsolete
-      end
+    orders.parked.each do |basket|
+      basket.delete_if_obsolete
     end
 
-    parked_baskets = orders.parked
-    return parked_baskets.last
+    orders.parked.last
   end
 
 
   def sync_agb_with_basket
       # If user has already confirmed ...
-      if gtc_version_of == Gtc.current
-        basket.update(gtc_version_of:   Gtc.current,
-                      gtc_confirmed_at: gtc_confirmed_at)
-      end
+      basket.update(gtc_version_of:   gtc_version_of,
+                    gtc_confirmed_at: gtc_confirmed_at) if gtc_version_of > basket.gtc_confirmed_at
 
       # If user had confirmed, when he was guest ...
-      if gtc_version_of == Gtc.current
-         update(gtc_version_of:   Gtc.current,
-                gtc_confirmed_at: basket.gtc_confirmed_at)
-      end
+      update(gtc_version_of:   basket.gtc_version_of,
+             gtc_confirmed_at: basket.gtc_confirmed_at) if basket.gtc_version_of > gtc_version_of
   end
 
 
