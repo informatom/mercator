@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
   #--- Instance Methods ---#
 
   def signed_up?
-    state=="active"
+    state == "active"
   end
 
 

@@ -37,4 +37,26 @@ describe User do
   it "has a photo attached" do
     is_expected.to respond_to :photo
   end
+
+
+  #--- Instance Methods ---#
+
+
+  context "signed_up?" do
+    it "returns true, if state is active" do
+      @user = create(:user, state: "active")
+      expect(@user.signed_up?).to eql true
+    end
+
+    it "returns true, if state is inactive" do
+      @user = create(:user, state: "inactive")
+      expect(@user.signed_up?).to eql false
+    end
+  end
+
+  context "name", focus: true do
+    pending "..."
+  end
+
+  #--- Class Methods --- #
 end
