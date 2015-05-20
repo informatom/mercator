@@ -54,8 +54,65 @@ describe User do
     end
   end
 
-  context "name", focus: true do
-    pending "..."
+
+  context "name"
+    it "returns the name" do
+      @user = create(:user, state: "active")
+      expect(@user.name).to eql "Mr. John Doe"
+    end
+  end
+
+
+  context "gtc_accepted_current?" do
+    before :each do
+      create(:older_gtc)
+      @current_gtc = create(:newer_gtc)
+      @user = create(:user)
+    end
+
+    it "returns false if the accepted gtc isn't the current one" do
+      expect(@user.gtc_accepted_current?).to eql false
+    end
+
+    it "returns true if the accepted gtc is the current one" do
+      @user.update(gtc_version_of: @current_gtc.version_of)
+      expect(@user.gtc_accepted_current?).to eql true
+    end
+  end
+
+
+  context "basket" do
+    before :each do
+      @user = create(:user)
+    end
+
+    it "returns a new basket if none existant" do
+      expect(@user.basket.state.to_s).to eql "basket"
+    end
+
+    it "returns the existant basket, if there is one" do
+      @basket = @user.basket
+      expect(@user.basket).to eql @basket
+  end
+
+
+  context "parked_basket", focus: true do
+    before :each do
+      @user = create(:user)
+      @parked_basket = create(:order, user: @user,
+                                      state: "parked")
+      @lineitem = create(:lineitem, order: @parked_basket)
+      @absolete_parked_basket = create(@order, user: @user,
+                                               state: "parked")
+      @admin = create(:admin)
+      allow(@absolete_parked_basket).to receive(:acting_user) { @admin }
+    end
+
+    it "returns parked basket" do
+
+    end
+
+
   end
 
   #--- Class Methods --- #

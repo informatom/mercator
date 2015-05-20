@@ -162,7 +162,7 @@ class User < ActiveRecord::Base
     if gender && gender != "no_info"
       name = I18n.t("activerecord.attributes.user/genders."+ gender) + " " + name
     end
-    return name
+    return name.squeeze(" ")
   end
 
 

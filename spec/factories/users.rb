@@ -2,6 +2,7 @@ FactoryGirl.define do
 
   factory :user do
     first_name       "John"
+    gender           :male
     surname          "Doe"
     email_address    "john.doe@informatom.com"
     sales            false
