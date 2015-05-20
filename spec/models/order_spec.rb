@@ -309,7 +309,7 @@ describe Order do
   end
 
 
-  context "add_shipment_costs", focus: true do
+  context "add_shipment_costs" do
     before :each do
       @user = create(:user)
       @order = create(:order, user: @user)
@@ -321,8 +321,15 @@ describe Order do
 
     context "with mesonic" do
       before :each do
+        @erp_constant = Rails.application.config.erp # store it, to be able to ....
+        Rails.application.config.erp = "mesonic"
+
         @order.add_shipment_costs
         @shipping_cost_lineitem = @order.lineitems.first
+      end
+
+      after :each do
+        Rails.application.config.erp = @erp_constant # ... restore it
       end
 
       it "creates shipping cost lineitem" do
@@ -377,13 +384,14 @@ describe Order do
     context "without mesonic" do
       before :each do
         @shipping_cost = create(:shipping_cost)
+        @erp_constant = Rails.application.config.erp # store it, to be able to ....
         Rails.application.config.erp = "no mesonic!"
         @order.add_shipment_costs
         @shipping_cost_lineitem = @order.lineitems.first
       end
 
       after :each do
-        Rails.application.config.erp = "mesonic"
+        Rails.application.config.erp = @erp_constant # ... restore it
       end
 
       it "creates shipping cost lineitem" do
@@ -408,7 +416,6 @@ describe Order do
 
       it "has description_en set" do
         expect(@shipping_cost_lineitem.description_en).to eql "Shipping Costs"
-        @debugger
       end
 
       it "has amount set" do
@@ -438,5 +445,65 @@ describe Order do
   end
 
 
+  context "shipping_cost derivation methods" do
+    before :each do
+      @user = create(:user)
+      @order = create(:order, user: @user)
+      allow(@order).to receive(:acting_user) { @user }
+
+      create(:constant_shipping_cost)
+      @product_versandspesen = create(:shipping_cost_article)
+
+      @order.add_shipment_costs
+      @shipping_cost_lineitem = @order.lineitems.first
+    end
+
+    context "shipping_cost" do
+      it "returns shipping costs" do
+        expect(@order.shipping_cost).to eql @shipping_cost_lineitem.value
+      end
+    end
+
+    context "shipping_cost_vat" do
+      it "returns shipping cost vat" do
+        expect(@order.shipping_cost_vat).to eql @shipping_cost_lineitem.vat
+      end
+    end
+  end
+
+
+  context "delete_if_obsolete" do
+    before :each do
+      @user = create(:user)
+      @admin = create(:admin)
+      @order = create(:order, user: @admin)
+      allow(@order).to receive(:acting_user) { @admin }
+      create(:constant_shipping_cost)
+      create(:shipping_cost_article)
+    end
+
+    it "deletes order if no lineitem" do
+      expect{@order.delete_if_obsolete}.to change {Order.count}.by -1
+    end
+
+    it "deletes order if only lineitem is shipping costs" do
+      @order.add_shipment_costs
+      expect{@order.delete_if_obsolete}.to change {Order.count}.by -1
+    end
+
+    it "does not delete item with regular lineitem" do
+      create(:lineitem, order: @order)
+      expect{@order.delete_if_obsolete}.to_not change {Order.count}
+    end
+  end
+
+
   # --- Class Methods --- #
+
+  context "cleanup_deprecated", focus: true do
+  end
+
+
+  context "notify_in_payment" do
+  end
 end

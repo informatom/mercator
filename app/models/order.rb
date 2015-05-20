@@ -406,6 +406,7 @@ class Order < ActiveRecord::Base
     when 1 # only shipping cost?
       if lineitems[0].product_number == Constant.find_by_key("shipping_cost_article").value
         lineitems[0].destroy
+        self.reload
         destroy
       end
     else
