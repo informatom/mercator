@@ -332,7 +332,11 @@ class Order < ActiveRecord::Base
 
   def billing_address_filled?
     # all obligatory fields in billing address are filled?
-    billing_surname && billing_street &&  billing_postalcode && billing_city && billing_country
+    if billing_surname && billing_street &&  billing_postalcode && billing_city && billing_country
+      return true
+    else
+      return false
+    end
   end
 
 

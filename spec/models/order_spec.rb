@@ -81,6 +81,18 @@ describe Order do
     end
 
 
+    context "discount" do
+      it "returns discount if any" do
+        expect(@order.discount).to eql 1.2
+      end
+
+      it "returns 0 discount if nono given" do
+        @order.update(discount_rel: 0)
+        expect(@order.discount).to eql 0
+      end
+    end
+
+
     context "vat" do
       it "returns vat of order" do
         expect(@order.vat).to eql(2.16)
@@ -259,6 +271,172 @@ describe Order do
       expect(@order.merge(basket: @second_order)).to eql "merged"
     end
   end
+
+
+  context "billing_address_filled?" do
+    before :each do
+      @order = create(:order)
+    end
+
+    it "returns true if all billing data filled" do
+      expect(@order.billing_address_filled?).to eql true
+    end
+
+    it "returns false if surname missing" do
+      @order.update(billing_surname: nil)
+      expect(@order.billing_address_filled?).to eql false
+    end
+
+    it "returns false if street missing" do
+      @order.update(billing_street: nil)
+      expect(@order.billing_address_filled?).to eql false
+    end
+
+    it "returns false if postalcode missing" do
+      @order.update(billing_postalcode: nil)
+      expect(@order.billing_address_filled?).to eql false
+    end
+
+    it "returns false if city missing" do
+        @order.update(billing_city: nil)
+      expect(@order.billing_address_filled?).to eql false
+    end
+
+    it "returns false if country missing" do
+        @order.update(billing_country: nil)
+      expect(@order.billing_address_filled?).to eql false
+    end
+  end
+
+
+  context "add_shipment_costs", focus: true do
+    before :each do
+      @user = create(:user)
+      @order = create(:order, user: @user)
+      allow(@order).to receive(:acting_user) { @user }
+
+      create(:constant_shipping_cost)
+      @product_versandspesen = create(:shipping_cost_article)
+    end
+
+    context "with mesonic" do
+      before :each do
+        @order.add_shipment_costs
+        @shipping_cost_lineitem = @order.lineitems.first
+      end
+
+      it "creates shipping cost lineitem" do
+        expect{@order.add_shipment_costs}.to change {@order.lineitems.count}.by 1
+      end
+
+      it "has user_id set" do
+        expect(@shipping_cost_lineitem.user_id).to eql @user.id
+      end
+
+      it "has position set" do
+        expect(@shipping_cost_lineitem.position).to eql 10000
+      end
+
+      it "has product_number set" do
+        expect(@shipping_cost_lineitem.product_number).to eql "VERSANDSPESEN"
+      end
+
+      it "has description_de set" do
+        expect(@shipping_cost_lineitem.description_de).to eql "Versandkostenanteil"
+      end
+
+      it "has description_en set" do
+        expect(@shipping_cost_lineitem.description_en).to eql "Shipping Costs"
+      end
+
+      it "has amount set" do
+        expect(@shipping_cost_lineitem.amount).to eql 1
+      end
+
+      it "has unit set" do
+        expect(@shipping_cost_lineitem.unit).to eql "Pau."
+      end
+
+      it "has vat set" do
+        expect(@shipping_cost_lineitem.vat).to eql 20
+      end
+
+      it "has product_price set" do
+        expect(@shipping_cost_lineitem.product_price).to eql 12
+      end
+
+      it "has value set" do
+        expect(@shipping_cost_lineitem.value).to eql 12
+      end
+
+      it "has product_id set" do
+        expect(@shipping_cost_lineitem.product_id).to eql @product_versandspesen.id
+      end
+    end
+
+    context "without mesonic" do
+      before :each do
+        @shipping_cost = create(:shipping_cost)
+        Rails.application.config.erp = "no mesonic!"
+        @order.add_shipment_costs
+        @shipping_cost_lineitem = @order.lineitems.first
+      end
+
+      after :each do
+        Rails.application.config.erp = "mesonic"
+      end
+
+      it "creates shipping cost lineitem" do
+        expect{@order.add_shipment_costs}.to change {@order.lineitems.count}.by 1
+      end
+
+      it "has user_id set" do
+        expect(@shipping_cost_lineitem.user_id).to eql @user.id
+      end
+
+      it "has position set" do
+        expect(@shipping_cost_lineitem.position).to eql 10000
+      end
+
+      it "has product_number set" do
+        expect(@shipping_cost_lineitem.product_number).to eql "VERSANDSPESEN"
+      end
+
+      it "has description_de set" do
+        expect(@shipping_cost_lineitem.description_de).to eql "Versandkostenanteil"
+      end
+
+      it "has description_en set" do
+        expect(@shipping_cost_lineitem.description_en).to eql "Shipping Costs"
+        @debugger
+      end
+
+      it "has amount set" do
+        expect(@shipping_cost_lineitem.amount).to eql 1
+      end
+
+      it "has unit set" do
+        expect(@shipping_cost_lineitem.unit).to eql "Pau."
+      end
+
+      it "has vat set" do
+        expect(@shipping_cost_lineitem.vat).to eql @shipping_cost.vat
+      end
+
+      it "has product_price set" do
+        expect(@shipping_cost_lineitem.product_price).to eql @shipping_cost.value
+      end
+
+      it "has value set" do
+        expect(@shipping_cost_lineitem.value).to eql @shipping_cost.value
+      end
+
+      it "has product_id set" do
+        expect(@shipping_cost_lineitem.product_id).to eql nil
+      end
+    end
+  end
+
 
   # --- Class Methods --- #
 end

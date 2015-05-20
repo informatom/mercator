@@ -58,15 +58,18 @@ class Conversation < ActiveRecord::Base
     customer_is?(acting_user)
   end
 
+
   #--- Instance Methods ---#
 
   def collaborators
     [consultant, customer]
   end
 
+
   def last_link
     links.recent(1)[0]
   end
+
 
   def inform_sales(locale: :en)
     I18n.locale = locale

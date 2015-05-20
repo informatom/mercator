@@ -56,6 +56,13 @@ FactoryGirl.define do
                            created_at: Time.now - 1.day)
       end
     end
+
+    factory :shipping_cost_article do
+      number "VERSANDSPESEN"
+      after(:create) do |product, evaluator|
+        create(:inventory, product: product, number: "VERSANDSPESEN")
+      end
+    end
   end
 
   factory :second_product , class: Product do

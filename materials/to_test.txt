@@ -1,6 +1,6 @@
 Model Tests:
 
-7 / 19 order
+5 / 19 order
 3 / 3 conversation
 7 / 7 webpage
 12 / 12 user
@@ -19,4 +19,4 @@ Gems:
 all
 
 Possibly later:
-01 @content_element.parse()
+1 @content_element.parse()

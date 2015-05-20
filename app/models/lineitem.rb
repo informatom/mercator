@@ -48,7 +48,7 @@ class Lineitem < ActiveRecord::Base
 
     create :insert_shipping, :available_to => :all, become: :shipping_costs,
            params: [:position, :product_number, :product_id, :offer_id, :description_de,
-                    :amount, :unit, :product_price, :vat, :value,
+                    :description_en, :amount, :unit, :product_price, :vat, :value,
                     :order_id, :user_id, :delivery_time]
 
     create :from_offeritem, :available_to => :all, become: :active,

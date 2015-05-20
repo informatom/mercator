@@ -23,5 +23,11 @@ FactoryGirl.define do
       key :fifo
       value "true"
     end
+
+    factory :constant_shipping_cost do
+      key :shipping_cost_article
+      value "VERSANDSPESEN"
+    end
+
   end
 end
