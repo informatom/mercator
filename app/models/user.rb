@@ -256,6 +256,7 @@ class User < ActiveRecord::Base
     return consultant
   end
 
+
   def self.mesoprim(number: nil)
     if Rails.application.config.try(:erp) == "mesonic"
       [number.to_s, MercatorMesonic::AktMandant.mesocomp, MercatorMesonic::AktMandant.mesoyear].join("-")

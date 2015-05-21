@@ -179,22 +179,84 @@ describe User do
   end
 
 
-  context "assign_consultant", focus: true do
-    pending "pending"
+  context "assign_consultant" do
+    it "assigns a consultant that is logged_in" do
+      @consultant = create(:sales, logged_in: true)
+      expect(User.assign_consultant).to eql @consultant
+    end
+
+    it "assigns a consultant that is logged_in according to position" do
+      @consultant = create(:sales, logged_in: true)
+      @another_consultant = create(:sales, logged_in: true,
+                                           email_address: "another_consultant@informatom.com")
+      expect(User.assign_consultant(position: 1)).to eql @another_consultant
+    end
   end
 
 
-  context "mesoprim", focus: true do
-    pending "pending"
+  context "mesoprim" do
+    it "returns mesoprim" do
+      expect(User.mesoprim(number: "test")).to eql "test-2004-1380"
+    end
   end
 
 
-  context "cleanup_deprecated", focus: true do
-    pending "pending"
+  context "cleanup_deprecated" do
+    it "deletes a derpecated user" do
+      @user = User.initialize()
+      @user.save
+      @user.update(created_at: Time.now - 5.hours)
+      expect{User.cleanup_deprecated}.to change{User.count}.by -1
+    end
+
+    it "leaves a user with an order untouched" do
+      @user = User.initialize()
+      @user.save
+      @user.update(created_at: Time.now - 5.hours)
+      order = create(:order, user: @user)
+      expect{User.cleanup_deprecated}.not_to change{User.count}
+    end
+
+    it "leaves a user with a surname" do
+      @user = User.initialize()
+      @user.save
+      @user.update(created_at: Time.now - 5.hours,
+                   surname: "Mustermann")
+      expect{User.cleanup_deprecated}.not_to change{User.count}
+    end
+
+    it "leaves a user with confirmed gtc" do
+      @user = User.initialize()
+      @user.save
+      @user.update(created_at: Time.now - 5.hours,
+                   gtc_confirmed_at: Date.today)
+      expect{User.cleanup_deprecated}.not_to change{User.count}
+    end
+
+    it "leaves a user younger than 1 hour" do
+      @user = User.initialize()
+      @user.save
+      expect{User.cleanup_deprecated}.not_to change{User.count}
+    end
+
+
+    it "leaves an active user with an order untouched" do
+      @user = create(:user)
+      expect{User.cleanup_deprecated}.not_to change{User.count}
+    end
   end
 
 
-  context "no_sales_logged_in", focus: true do
-    pending "pending"
+  context "no_sales_logged_in" do
+    it 'duos not send email if consultant is logged in' do
+      @consultant = create(:sales, logged_in: true)
+      expect(UserMailer).not_to receive(:consultant_missing)
+      User.no_sales_logged_in
+    end
+
+    it "sends email if no consultant is logged in" do
+      expect(UserMailer).to receive(:consultant_missing).and_return( double("OrderMailer", :deliver => true))
+      User.no_sales_logged_in
+    end
   end
 end

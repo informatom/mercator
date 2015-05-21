@@ -46,6 +46,7 @@ FactoryGirl.define do
     last_login_at "2014-01-22 15:23"
   end
 
+
   factory :sales, class: User do
     first_name "Sammy"
     surname "Sales Representative"
@@ -60,6 +61,7 @@ FactoryGirl.define do
     erp_account_nr "a123"
     erp_contact_nr "b123"
   end
+
 
   factory :salesmanager, class: User do
     first_name "Sally"

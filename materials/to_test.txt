@@ -1,8 +1,7 @@
 Model Tests:
 
 1 conversation
-3 webpage
-6 user
+1 user
 
 
 Mailer Tests:

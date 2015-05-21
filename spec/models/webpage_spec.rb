@@ -88,8 +88,21 @@ describe Webpage do
   end
 
 
-  context "add_missing_page_content_element_assignments", focus: true do
-    pending "pending"
+  context "add_missing_page_content_element_assignments" do
+    it "adds missing page content element assignments from page template placeholder list" do
+      @page_template = create(:page_template)
+      @page_template.placeholder_list.add("tag_one")
+      @page_template.placeholder_list.add("tag_two")
+      @page_template.placeholder_list.add("tag_three")
+
+      @webpage = create(:webpage, page_template: @page_template)
+      @content_element = create(:content_element)
+      create(:page_content_element_assignment, webpage: @webpage,
+                                               content_element: @content_element,
+                                               used_as: "tag_one" )
+
+      expect{@webpage.add_missing_page_content_element_assignments}.to change{PageContentElementAssignment.count}.by 2
+    end
   end
 
 
