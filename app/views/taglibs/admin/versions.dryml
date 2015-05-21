@@ -5,7 +5,7 @@
     <li repeat="&self.this.versions.reverse">
        <a href="./#{instanceid}/edit?version=#{self.this.id}">
          <view with="&self.this.created_at" no-wrapper/>
-        </a>
+        </a> - <view with="&User.find(self.this.whodunnit).try(:name)" no-wrapper/>
     </li>
   </ul>
   <unless test="&self.this.versions">
