@@ -9,6 +9,8 @@
 //= require application
 //= require_tree ./admin
 //= require codemirror
+
+// seems currently broken
 //= require codemirror/modes/htmlmixed
 //= require codemirror/modes/xml
 //= require codemirror/modes/javascript

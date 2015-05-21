@@ -189,13 +189,21 @@ class User < ActiveRecord::Base
 
 
   def sync_agb_with_basket
-      # If user has already confirmed ...
-      basket.update(gtc_version_of:   gtc_version_of,
-                    gtc_confirmed_at: gtc_confirmed_at) if gtc_version_of > basket.gtc_confirmed_at
+    if basket.gtc_confirmed_at.present?
+      if !basket.gtc_confirmed_at.present? || gtc_version_of > basket.gtc_confirmed_at
+        # If user has already confirmed ...
+        basket.update(gtc_version_of:   gtc_version_of,
+                      gtc_confirmed_at: gtc_confirmed_at)
+      end
+    end
 
-      # If user had confirmed, when he was guest ...
-      update(gtc_version_of:   basket.gtc_version_of,
-             gtc_confirmed_at: basket.gtc_confirmed_at) if basket.gtc_version_of > gtc_version_of
+    if gtc_version_of.present?
+      if !basket.gtc_version_of.present? || basket.gtc_version_of > gtc_version_of
+        # If user had confirmed, when he was guest ...
+        update(gtc_version_of:   basket.gtc_version_of,
+               gtc_confirmed_at: basket.gtc_confirmed_at)
+      end
+    end
   end
 
 

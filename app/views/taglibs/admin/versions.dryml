@@ -1,0 +1,11 @@
+<def tag="versions">
+  <h3>Versions</h3>
+  <set instanceid="&self.this.id"/>
+  <ul>
+    <li repeat="&self.this.versions">
+       <a href="./#{instanceid}/edit?version=#{self.this.id}">
+         <view with="&self.this.created_at" no-wrapper/>
+        </a>
+    </li>
+  </ul>
+</def>
