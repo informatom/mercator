@@ -93,7 +93,7 @@ describe Webpage do
   end
 
 
-  context "delete_orphaned_page_content_element_assignments", focus: true do
+  context "delete_orphaned_page_content_element_assignments" do
     it "deletes content element assignment without entry in placholder list of page template" do
       @webpage = create(:webpage)
       @content_element = create(:content_element)
