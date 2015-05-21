@@ -23,4 +23,30 @@ describe Conversation do
   it "is versioned" do
     is_expected.to respond_to :versions
   end
+
+
+  #--- Instance Methods ---#
+
+  context "collaborators" do
+    it "gives an array with customer and consultant" do
+      @conversation = create(:conversation)
+      expect(@conversation.collaborators).to eql [@conversation.consultant, @conversation.customer]
+    end
+  end
+
+
+  context "last_link" do
+    it "returns tha last link" do
+      @conversation = create(:conversation)
+      @link = create(:link, created_at: Time.now - 1.hour,
+                            conversation: @conversation)
+      @later_link = create(:link, conversation: @conversation)
+      expect(@conversation.last_link).to eql @later_link
+    end
+  end
+
+
+  context "inform_sales", focus: true do
+    pending "pending"
+  end
 end
