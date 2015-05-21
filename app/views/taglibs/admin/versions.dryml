@@ -1,11 +1,14 @@
 <def tag="versions">
-  <h3>Versions</h3>
+  <h3><t key="mercator.older_versions"/></h3>
   <set instanceid="&self.this.id"/>
   <ul>
-    <li repeat="&self.this.versions">
+    <li repeat="&self.this.versions.reverse">
        <a href="./#{instanceid}/edit?version=#{self.this.id}">
          <view with="&self.this.created_at" no-wrapper/>
         </a>
     </li>
   </ul>
+  <unless test="&self.this.versions">
+    <p><t key="mercator.older_versions_dont_exist"/></p>
+  </unless>
 </def>

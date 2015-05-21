@@ -776,6 +776,8 @@ de:
     no_product_with_this_name: Kein Produkt mit dieser Bezeichnung gefunden
     not_shippable: "Diese Bestellung enthält einen Artikel, der nicht versandt werden darf. Holen Sie Ihre Bestellung daher bitte in der Filiale Domgasse in Wien selbst ab."
     offer_email_login: "Wenn Sie bereits registriert sind und sich per E-Mail anmelden möchten, senden wir Ihnen gerne einen Anmelde-Link zu."
+    older_versions: Ältere Versionen
+    older_versions_dont_exist: Es sind keine älteren Versionen verfügbar.
     on_request: Auf Anfrage
     open(pl): offene
     open_deliveries: Offene Lieferungen

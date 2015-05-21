@@ -7,7 +7,6 @@ class Admin::PageTemplatesController < Admin::AdminSiteController
     if params[:version]
       self.this = PageTemplate.find(params[:id]).versions.find(params[:version]).reify
     end
-
     hobo_show
   end
 
