@@ -1,9 +1,3 @@
-Model Tests:
-
-1 conversation
-1 user
-
-
 Mailer Tests:
 
 all

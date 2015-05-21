@@ -35,6 +35,10 @@ FactoryGirl.define do
     factory :jobuser do
       surname "Job User"
     end
+
+    factory :robot do
+      surname "Robot"
+    end
   end
 
   factory :content_manager, class: User do
