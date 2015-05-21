@@ -89,7 +89,7 @@ class Webpage < ActiveRecord::Base
 
 
   def content_element_name(name_or_used_as)
-    content_element.name.html_safe if content_element = content_element(name_or_used_as)
+    content_element(name_or_used_as).try(:name).try(:html_safe)
   end
 
 

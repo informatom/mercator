@@ -37,6 +37,15 @@ FactoryGirl.define do
     end
   end
 
+  factory :content_manager, class: User do
+    first_name "Carlo"
+    surname "Content Manager"
+    email_address "carlo.contentmanager@informatom.com"
+    contentmanager true
+    password "secret123"
+    last_login_at "2014-01-22 15:23"
+  end
+
   factory :sales, class: User do
     first_name "Sammy"
     surname "Sales Representative"
