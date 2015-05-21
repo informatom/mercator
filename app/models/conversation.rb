@@ -106,6 +106,7 @@ class Conversation < ActiveRecord::Base
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/personal/"+ message.reciever_id.to_s,
                             sender: message.sender.name,
                             content: message.content)
+      return "message sent"
     end
   end
 end

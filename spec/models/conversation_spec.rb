@@ -49,7 +49,13 @@ describe Conversation do
   context "inform_sales" do
     it "returns nil if no consultant is logged in" do
       @user = create(:user)
-      expect(@user.inform_sales(locale: "en")).to eql nil
+      @robot = create(:robot)
+      User.send(:remove_const, :ROBOT) # just to avoid warning in the next line
+      User::ROBOT = @robot
+
+      @conversation = create(:conversation, customer: @user,
+                                            consultant: nil)
+      expect(@conversation.inform_sales(locale: "en")).to eql "message sent"
     end
 
     context "if consultants or logged in" do
@@ -93,7 +99,7 @@ describe Conversation do
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/" + @user.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/" + @conversation.id.to_s,
                                                         type: "messages")
         expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @user.id.to_s,
                                                         sender: @robot.name,

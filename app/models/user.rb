@@ -234,6 +234,7 @@ class User < ActiveRecord::Base
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/personal/"+ id.to_s,
                             sender: message.sender.name,
                             content: message.content)
+      return "message sent"
     end
   end
 

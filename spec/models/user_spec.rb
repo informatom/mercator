@@ -152,8 +152,12 @@ describe User do
 
   context "call_for_chat_partner" do
     it "returns nil if no consultant is logged in" do
-      @user = create(:user)
-      expect(@user.call_for_chat_partner(locale: "en")).to eql nil
+      @user = create(:user, waiting: true)
+      @robot = create(:robot)
+      User.send(:remove_const, :ROBOT) # just to avoid warning in the next line
+      User::ROBOT = @robot
+
+      expect(@user.call_for_chat_partner(locale: "en")).to eql "message sent"
     end
 
     context "if consultants or logged in" do
