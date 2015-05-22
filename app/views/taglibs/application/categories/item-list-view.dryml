@@ -1,10 +1,10 @@
-<def tag="item-list-view" attrs="category-id, ancestor-ids">
+<def tag="item-list-view" attrs="category-id">
   <if test='&this.children'> - </if>
   <else> &nbsp; </else>
   <view class="grey"/> (<view with="&this.active_product_count" />)
 
   <repeat with="&this.children.active">
-    <set ancestor-ids = "&Category.find(category_id).ancestor_ids"/>
+    <set ancestor-ids = "&category_id ? Category.find(category_id).ancestor_ids : []"/>
     <if test="&this.id == category_id ||
                (this.sibling_ids & ancestor_ids).present?  ||
                this.sibling_ids.include?(category_id)">
