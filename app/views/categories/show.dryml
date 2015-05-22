@@ -8,7 +8,7 @@
   <content-body:>
     <div class="row">
       <div class="col-lg-4 hidden-xs hidden-sm">
-        <category-list-nav category-id="&this.id"/>
+        <category-list-nav category-id="&this.id" />
         <if test="&@products">
           <filter-nav/>
         </if>

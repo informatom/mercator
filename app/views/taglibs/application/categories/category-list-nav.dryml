@@ -2,7 +2,7 @@
   <repeat with="&Category.where(ancestry: nil).active">
     <ul class="list-unstyled">
       <li style="border-bottom: thin dotted #868686;">
-        <item-list-view category-id="&category_id" />
+        <item-list-view category-id="&category_id"/>
       </li>
     </ul>
   </repeat>

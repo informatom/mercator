@@ -1,6 +1,6 @@
 <def tag="category-nav">
   <repeat with="&this.ancestors">
-    <if test="active_siblings">
+    <if test="&active_siblings">
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
