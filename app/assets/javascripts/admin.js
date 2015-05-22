@@ -12,9 +12,10 @@
 
 // seems currently broken
 //= require codemirror/modes/htmlmixed
+//= require codemirror/addons/mode/multiplex
+//= require codemirror/modes/htmlembedded
 //= require codemirror/modes/xml
 //= require codemirror/modes/javascript
 //= require codemirror/modes/css
 //= require codemirror/modes/ruby
-//= require codemirror/modes/htmlembedded
 //= require hobo_w2ui
