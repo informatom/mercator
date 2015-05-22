@@ -4,11 +4,6 @@ class Contracting::FrontController < Contracting::ContractingSiteController
 
   def index; end
 
-  def summary
-    if !current_user.administrator? && !current_user.sales?
-      redirect_to user_login_path
-    end
-  end
 
   def search
     if params[:query]

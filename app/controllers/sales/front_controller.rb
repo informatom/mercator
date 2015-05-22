@@ -5,15 +5,11 @@ class Sales::FrontController < Sales::SalesSiteController
   def index
   end
 
+
   def refresh
     render partial: "recent_conversations"
   end
 
-  def summary
-    if !current_user.administrator? && !current_user.sales?
-      redirect_to user_login_path
-    end
-  end
 
   def search
     if params[:query]

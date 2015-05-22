@@ -38,5 +38,16 @@ FactoryGirl.define do
       key   :order_notify_in_payment_mail_subject
       value "subject"
     end
+
+    factory :constant_shop_domain do
+      key :shop_domain
+      value "shop.domain.com"
+    end
+
+    factory :constant_cms_domain do
+      key :cms_domain
+      value "cms.domain.com"
+    end
+
   end
 end

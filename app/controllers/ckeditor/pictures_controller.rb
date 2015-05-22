@@ -5,10 +5,12 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
     respond_with(@pictures, :layout => "ckeditor/application")
   end
 
+
   def create
     @picture = Ckeditor::Picture.new
 	  respond_with_asset(@picture)
   end
+
 
   def destroy
     @picture.destroy
@@ -16,7 +18,6 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
   end
 
   protected
-
     def find_asset
       @picture = Ckeditor.picture_model.get!(params[:id])
     end

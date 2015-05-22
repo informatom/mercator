@@ -6,12 +6,14 @@ class ApplicationController < ActionController::Base
   before_filter :remember_uri
   after_filter :allow_iframe
 
+
   def auto_log_in
     self.current_user = User.find_by_remember_token(params[:remember_token]) if params[:remember_token]
     if self.current_user.guest?
       self.current_user = session[:last_user] ? User.find(session[:last_user]) : User.initialize
     end
   end
+
 
   def set_locale
     I18n.locale = params[:locale] || session[:locale] || current_user.locale || I18n.default_locale
@@ -20,24 +22,30 @@ class ApplicationController < ActionController::Base
                                                 current_user.locale != I18n.locale.to_s
   end
 
+
   def remember_uri
     session[:return_to] = request.referrer
     session[:compared] ||= []
   end
 
+
   def default_url_options(options={})
     { :locale => I18n.locale }
   end
+
 
   def user_for_paper_trail
     logged_in? ? current_user : 'Guest'
   end
 
+
   def current_basket
     current_user.basket if current_user
   end
 
-# Domainseperation
+
+### Domainseperation ###
+
   def domain_cms_redirect
     return if request.url.include?(Constant::CMSDOMAIN)
 
@@ -55,6 +63,7 @@ class ApplicationController < ActionController::Base
     redirect_to new_url, :status => 301
   end
 
+
   def domain_shop_redirect
     return if (request == nil || (request.url.include?(Constant::SHOPDOMAIN)))
 
@@ -70,6 +79,7 @@ class ApplicationController < ActionController::Base
     redirect_to new_url, :status => 301
   end
 
+
   def request_param(parameter)
     query = request.query_string
 
@@ -80,6 +90,7 @@ class ApplicationController < ActionController::Base
       return nil
     end
   end
+
 
   def page_path_param(parameter)
     query ||= URI::parse(params[:page_path]).query
@@ -92,16 +103,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def miniprofiler
     # enable this in a before_filter for profiling in production
     Rack::MiniProfiler.authorize_request
   end
+
 
 protected
 
   def track_action
     ahoy.track "Processed #{controller_name}##{action_name}", request.filtered_parameters
   end
+
 
   def allow_iframe
     # We allow embedding in iframes

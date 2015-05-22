@@ -28,10 +28,12 @@ class BlogpostsController < ApplicationController
     hobo_index
   end
 
+
   def feed
     @blogposts = Blogpost.where.not(publishing_date: nil)
     render 'feed.rss'
   end
+
 
   def show
     hobo_show do
