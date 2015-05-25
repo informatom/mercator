@@ -27,7 +27,8 @@ class Podcast < ActiveRecord::Base
   # Allow ".ogg" as an extension for files with the mime type "video/ogg".
   application_ogg = MIME::Types["application/ogg"].first
   application_ogg.extensions << "ogg"
-  MIME::Types.index_extensions(application_ogg)
+  # HAS: 20150525 not necessary any more?
+  #MIME::Types.index_extensions(application_ogg)
 
   # --- Permissions --- #
 
