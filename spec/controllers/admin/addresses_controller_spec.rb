@@ -8,8 +8,7 @@ describe Admin::AddressesController, :type => :controller do
 
       country = create(:country)
       @instance = create(:address, country: country.name_de)
-      @instance_attributes = attributes_for(:address, company: nil)
-      @delete_redirect = admin_addresses_url
+      @index_url = admin_addresses_url
     end
 
     it_behaves_like("crud actions")

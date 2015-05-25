@@ -39,7 +39,7 @@ module MercatorSharedContexts
 
     describe 'PATCH #update' do
       it "with_incorrect data it redirects to #show" do
-        patch :update, id: @instance, address: @instance_attributes
+        patch :update, id: @instance, instance: {key: "value"}
         expect(response).to render_template :edit
       end
     end
