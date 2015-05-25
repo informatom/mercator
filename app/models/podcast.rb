@@ -24,10 +24,12 @@ class Podcast < ActiveRecord::Base
   has_attached_file :ogg
 
   validates_attachment :ogg, content_type: { content_type: ['audio/ogg', 'video/ogv', 'application/ogg'] }
+
   # Allow ".ogg" as an extension for files with the mime type "video/ogg".
   application_ogg = MIME::Types["application/ogg"].first
   application_ogg.extensions << "ogg"
-  # HAS: 20150525 not necessary any more?
+
+  # HAS: 20150525 not necessary any more according to https://github.com/mime-types/ruby-mime-types/issues/84#event-313166199
   #MIME::Types.index_extensions(application_ogg)
 
   # --- Permissions --- #
