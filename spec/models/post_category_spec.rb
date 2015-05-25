@@ -5,6 +5,8 @@ describe PostCategory do
     expect(build :post_category).to be_valid
   end
 
+  it {should validate_presence_of :name_de}
+
   it "is versioned" do
     is_expected.to respond_to :versions
   end

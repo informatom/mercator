@@ -8,21 +8,16 @@ admin
 ├── folders_controller
 ├── front_controller
 
-├── inventories_controller
 ├── lineitems_controller
 ├── logentries_controller
 ├── offers_controller
 ├── orders_controller
-├── page_content_element_assignments_controller
 ├── page_templates_controller
-├── podcasts_controller
-├── post_categories_controller
 ├── prices_controller
-├── productrelations_controller
 ├── products_controller
 ├── properties_controller
 ├── property_groups_controller
-├── recommendations_controller
+
 ├── shipping_costs_controller
 ├── submissions_controller
 ├── supplyrelations_controller

@@ -3,7 +3,7 @@ class PostCategory < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name_de  :string
+    name_de  :string, :required
     name_en  :string
     ancestry :string, :index => true
     timestamps
