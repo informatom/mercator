@@ -3,9 +3,7 @@ class FrontController < ApplicationController
 
   hobo_controller
 
-
   def index; end
-
 
   def home
     @home = Webpage.where(slug: "home").first

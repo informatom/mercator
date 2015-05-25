@@ -2,15 +2,17 @@ Controller Tests
 ================
 
 admin
-├── admin_site_controller
+├── front_controller
+
+├── offers_controller
+
+├── page_templates_controller
+
 ├── categories_controller
 ├── content_elements_controller
 ├── folders_controller
-├── front_controller
 ├── logentries_controller
-├── offers_controller
 ├── orders_controller
-├── page_templates_controller
 ├── prices_controller
 ├── products_controller
 ├── properties_controller
@@ -34,7 +36,6 @@ contracting
 ├── contracts_controller
 ├── front_controller
 ├── toners_controller
-└── users_controller
 
 productmanager
 ├── front_controller
@@ -46,7 +47,6 @@ productmanager
 sales
 ├── conversations_controller
 ├── downloads_controller
-├── feedbacks_controller
 ├── front_controller
 ├── links_controller
 ├── messages_controller
@@ -55,7 +55,6 @@ sales
 ├── products_controller
 ├── sales_site_controller
 ├── suggestions_controller
-└── users_controller
 
 12 addresses_controller
 17 application_controller
