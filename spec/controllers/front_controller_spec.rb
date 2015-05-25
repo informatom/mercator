@@ -51,7 +51,7 @@ describe FrontController, :type => :controller do
     describe 'GET #search' do
       it 'runs a search' do
         get :search, query: "search term"
-        expect(assigns(:search_results)).to eql ["Kategorien", @category, "Artikel", @product]
+        expect(assigns(:search_results)).to eql ["Categories", @category, "Products", @product]
       end
 
       it 'renders the #search template' do
@@ -64,7 +64,7 @@ describe FrontController, :type => :controller do
     describe 'POST #search' do
       it 'runs a search' do
         post :search, query: "search term"
-        expect(assigns(:search_results)).to eql ["Kategorien", @category, "Artikel", @product]
+        expect(assigns(:search_results)).to eql ["Categories", @category, "Products", @product]
       end
 
       it 'renders the #search template' do

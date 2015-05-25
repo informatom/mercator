@@ -23,7 +23,7 @@ describe Guest do
   end
 
   it "responds to locale?" do
-    expect(@guest.locale).to eql(:de)
+    expect(@guest.locale).to eql(:en)
   end
 
   it "responds to name?" do

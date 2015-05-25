@@ -4,14 +4,10 @@ Controller Tests
 admin
 ├── admin_site_controller
 ├── categories_controller
-├── comments_controller
-├── constants_controller
 ├── content_elements_controller
-├── countries_controller
-├── features_controller
 ├── folders_controller
 ├── front_controller
-├── gtcs_controller
+
 ├── inventories_controller
 ├── lineitems_controller
 ├── logentries_controller
@@ -93,6 +89,12 @@ submissions_controller
 users_controller
 videochat_controller
 webpages_controller
+
+
+Lifecycle Actions
+=================
+
+all
 
 
 Mailer Tests

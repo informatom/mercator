@@ -28,5 +28,6 @@ FactoryGirl.define do
   factory :textual_value, class: Value do
     state     "textual"
     title_de  "text value text"
+    title_en  "text value text"
   end
 end
