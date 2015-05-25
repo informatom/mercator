@@ -39,7 +39,8 @@ module MercatorSharedContexts
 
     describe 'PATCH #update' do
       it "with_incorrect data it redirects to #show" do
-        patch :update, id: @instance, instance: {key: "value"}
+        patch :update, id: @instance,
+                       @instance.class.to_s.underscore => @invalid_attributes
         expect(response).to render_template :edit
       end
     end
@@ -47,7 +48,7 @@ module MercatorSharedContexts
     describe 'DELETE #destroy' do
       it "redirects to #index" do
         delete :destroy, id: @instance
-        expect(response).to redirect_to @delete_redirect
+        expect(response).to be_redirect
       end
     end
   end
