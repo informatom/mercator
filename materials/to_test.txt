@@ -7,8 +7,6 @@ admin
 ├── content_elements_controller
 ├── folders_controller
 ├── front_controller
-
-├── lineitems_controller
 ├── logentries_controller
 ├── offers_controller
 ├── orders_controller
@@ -17,10 +15,6 @@ admin
 ├── products_controller
 ├── properties_controller
 ├── property_groups_controller
-
-├── shipping_costs_controller
-├── submissions_controller
-├── supplyrelations_controller
 ├── users_controller
 ├── values_controller
 └── webpages_controller
