@@ -18,4 +18,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.include MercatorMacros
+  config.include MercatorSharedContexts
 end
