@@ -3,8 +3,6 @@ Controller Tests
 
 admin
 ├── admin_site_controller
-├── billing_addresses_controller
-├── blogposts_controller
 ├── categories_controller
 ├── categorizations_controller
 ├── chapters_controller
