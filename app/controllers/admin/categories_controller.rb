@@ -4,7 +4,7 @@ class Admin::CategoriesController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all
-  index_action :deprecate
+  index_action :deprecate, :reindex
 
   autocomplete :name, :query_scope => [:name_de_contains]
 
@@ -81,6 +81,17 @@ class Admin::CategoriesController < Admin::AdminSiteController
     Category.deprecate
     JobLogger.info("Finished Task: products:deprecate_categories")
     JobLogger.info("=" * 50)
+    redirect_to admin_logentries_path
+  end
+
+
+  def reindex
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Task: categories:reindex")
+    Category.reindex
+    JobLogger.info("Finished Task: categories:reindex")
+    JobLogger.info("=" * 50)
+
     redirect_to admin_logentries_path
   end
 

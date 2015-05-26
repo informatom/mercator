@@ -812,6 +812,8 @@ en:
     refreshes: "This page refreshes after a few seconds. If you cancelled the payment, you can start all over again."
     register_different_email: register a different e-mail address.
     registered_for: Registered for
+    reindex_categories: Rebuild search engine index for categories
+    reindex_products: Rebuild search engine index for products
     remove_filter: Remove Filter
     repeat: Repeat
     reply: Reply

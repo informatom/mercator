@@ -47,6 +47,19 @@
           </a>
         </p>
 
+        <p>
+          <a href="&reindex_admin_products_path" class="btn btn-info">
+            <t key="mercator.reindex_products"/>
+          </a>
+        </p>
+
+        <p>
+          <a href="&reindex_admin_categories_path" class="btn btn-info">
+            <t key="mercator.reindex_categories"/>
+          </a>
+        </p>
+
+
       </section>
     </header>
 

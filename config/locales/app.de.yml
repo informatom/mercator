@@ -816,6 +816,8 @@ de:
     refreshes: "Diese Seite aktualiert sich nach einigen Sekunden automatisch. Sie können, falls Sie die Zahlung abgebrochen haben, erneut die Zahlung beginnen."
     register_different_email: eine andere E-mail Adresse registrieren.
     registered_for: registriert für
+    reindex_categories: Suchmaschinenindex für Kategorien aufbauen
+    reindex_products: Suchmaschinenindex für Produkte aufbauen
     remove_filter: Filter aufheben
     repeat: Wiederholen
     reply: Antworten

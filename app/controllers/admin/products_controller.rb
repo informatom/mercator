@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all, :new
-  index_action :catch_orphans, :index_invalid
+  index_action :catch_orphans, :index_invalid, :reindex
 
   autocomplete :number
 
@@ -28,7 +28,7 @@ class Admin::ProductsController < Admin::AdminSiteController
     JobLogger.info("=" * 50)
     JobLogger.info("Started Task: products:catch_orphans")
     Product.catch_orphans
-    JobLogger.info("Started Task: products:catch_erphans")
+    JobLogger.info("Finished Task: products:catch_erphans")
     JobLogger.info("=" * 50)
 
     redirect_to admin_logentries_path
@@ -37,5 +37,16 @@ class Admin::ProductsController < Admin::AdminSiteController
 
   def index_invalid
     @errorsarray = Product.all.reject{|p| p.valid?}.map{|p| [p.id, p.errors.messages]}
+  end
+
+
+  def reindex
+    JobLogger.info("=" * 50)
+    JobLogger.info("Started Task: products:reindex")
+    Product.reindex
+    JobLogger.info("Finished Task: products:reindex")
+    JobLogger.info("=" * 50)
+
+    redirect_to admin_logentries_path
   end
 end
