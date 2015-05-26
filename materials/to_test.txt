@@ -2,8 +2,6 @@ Controller Tests
 ================
 
 admin
-├── front_controller
-
 ├── offers_controller
 
 ├── page_templates_controller
@@ -21,21 +19,9 @@ admin
 ├── values_controller
 └── webpages_controller
 
-ckeditor
-├── attachment_files_controller
-└── pictures_controller
-
 contentmanager
 ├── contentmanager_site_controller
 └── front_controller
-
-contracting
-├── consumableitems_controller
-├── contracting_site_controller
-├── contractitems_controller
-├── contracts_controller
-├── front_controller
-├── toners_controller
 
 productmanager
 ├── front_controller
@@ -78,6 +64,13 @@ users_controller
 videochat_controller
 webpages_controller
 
+contracting
+├── consumableitems_controller
+├── contracting_site_controller
+├── contractitems_controller
+├── contracts_controller
+├── front_controller
+├── toners_controller
 
 Lifecycle Actions
 =================
