@@ -2,8 +2,6 @@ Controller Tests
 ================
 
 admin
-├── page_templates_controller
-
 ├── orders_controller
 ├── folders_controller
 ├── prices_controller
