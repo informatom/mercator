@@ -1,0 +1,3 @@
+<include src="taglibs/admin/categories/*"/>
+<include src="taglibs/admin/page_templates/*"/>
+<include src="taglibs/admin/products/*"/>
