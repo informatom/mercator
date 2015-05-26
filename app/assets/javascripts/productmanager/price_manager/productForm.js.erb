@@ -64,12 +64,16 @@ function productForm() {
           caption: 'Update Icecat',
           class: 'w2ui-btn-blue',
           onClick: function () {
+            w2ui.productForm.lock("Update ...",true)
             $.ajax({
               url:"/productmanager/price_manager/import_icecat/" + this.recid,
               method: "GET"
             }).done(function(response, textStatus, jqXHR) {
+              w2ui.productForm.reload()
+              w2ui.productForm.unlock()
               w2alert(jqXHR.responseText)
             }).fail(function(jqXHR, textStatus, errorThrown) {
+              w2ui.productForm.unlock()
               w2alert(jqXHR.responseText)
             })
           }
