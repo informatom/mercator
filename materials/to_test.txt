@@ -2,20 +2,19 @@ Controller Tests
 ================
 
 admin
-├── offers_controller
-
 ├── page_templates_controller
+
+├── orders_controller
+├── folders_controller
+├── prices_controller
+├── users_controller
 
 ├── categories_controller
 ├── content_elements_controller
-├── folders_controller
 ├── logentries_controller
-├── orders_controller
-├── prices_controller
 ├── products_controller
 ├── properties_controller
 ├── property_groups_controller
-├── users_controller
 ├── values_controller
 └── webpages_controller
 
@@ -31,38 +30,40 @@ productmanager
 └── relation_manager_controller
 
 sales
-├── conversations_controller
-├── downloads_controller
 ├── front_controller
 ├── links_controller
 ├── messages_controller
+├── sales_site_controller
+├── products_controller
+├── suggestions_controller
+
+├── conversations_controller
+├── downloads_controller
 ├── offeritems_controller
 ├── offers_controller
-├── products_controller
-├── sales_site_controller
-├── suggestions_controller
+
+messages_controller
+submissions_controller
+videochat_controller
+webpages_controller
+offeritems_controller
+links_controller
+inventories_controller
+front_controller
+comments_controller
 
 12 addresses_controller
 17 application_controller
 13 billing_addresses_controller
 08 blogposts_controller
 07 categories_controller
-04 comments_controller
 conversations_controller
-front_controller
-inventories_controller
 lineitems_controller
-links_controller
-messages_controller
-offeritems_controller
 offers_controller
 orders_controller
 podcasts_controller
 products_controller
-submissions_controller
 users_controller
-videochat_controller
-webpages_controller
 
 contracting
 ├── consumableitems_controller

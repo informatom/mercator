@@ -6,6 +6,7 @@ class Admin::ProductsController < Admin::AdminSiteController
 
   autocomplete :number
 
+
   def index
     if params[:search].present?
       @search = params[:search].split(" ").map{|word| "%" + word + "%"}
@@ -22,6 +23,7 @@ class Admin::ProductsController < Admin::AdminSiteController
     hobo_index
   end
 
+
   def catch_orphans
     JobLogger.info("=" * 50)
     JobLogger.info("Started Task: products:catch_orphans")
@@ -31,6 +33,7 @@ class Admin::ProductsController < Admin::AdminSiteController
 
     redirect_to admin_logentries_path
   end
+
 
   def index_invalid
     @errorsarray = Product.all.reject{|p| p.valid?}.map{|p| [p.id, p.errors.messages]}
