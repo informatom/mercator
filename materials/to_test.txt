@@ -2,8 +2,6 @@ Controller Tests
 ================
 
 admin
-├── users_controller
-
 ├── categories_controller
 ├── content_elements_controller
 ├── logentries_controller
@@ -67,6 +65,7 @@ contracting
 ├── contracts_controller
 ├── front_controller
 ├── toners_controller
+
 
 Lifecycle Actions
 =================
