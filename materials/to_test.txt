@@ -1,6 +1,20 @@
 Controller Tests
 ================
 
+sales
+├── front_controller
+├── links_controller
+├── messages_controller
+├── sales_site_controller
+├── products_controller
+├── suggestions_controller
+
+├── conversations_controller
+├── downloads_controller
+├── offeritems_controller
+├── offers_controller
+
+
 admin
 ├── categories_controller
 ├── content_elements_controller
@@ -22,18 +36,6 @@ productmanager
 ├── property_manager_controller
 └── relation_manager_controller
 
-sales
-├── front_controller
-├── links_controller
-├── messages_controller
-├── sales_site_controller
-├── products_controller
-├── suggestions_controller
-
-├── conversations_controller
-├── downloads_controller
-├── offeritems_controller
-├── offers_controller
 
 messages_controller
 submissions_controller

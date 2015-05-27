@@ -1,32 +1,35 @@
 module MercatorSharedContexts
   # We expect Hobo to be correct, so we only need to test if the response to the request is handled
 
-  shared_context 'crud actions' do
+  shared_context 'crud show index new edit' do
     it_behaves_like("crud show")
     it_behaves_like("crud index")
     it_behaves_like("crud new")
-    it_behaves_like("crud create")
     it_behaves_like("crud edit")
+  end
+
+  shared_context 'crud actions' do
+    it_behaves_like("crud show index new edit")
+    it_behaves_like("crud create")
     it_behaves_like("crud update")
     it_behaves_like("crud destroy")
   end
 
-
   shared_context 'crud except destroy' do
-    it_behaves_like("crud show")
-    it_behaves_like("crud index")
-    it_behaves_like("crud new")
+    it_behaves_like("crud show index new edit")
     it_behaves_like("crud create")
-    it_behaves_like("crud edit")
     it_behaves_like("crud update")
   end
 
   shared_context 'crud except create' do
-    it_behaves_like("crud show")
-    it_behaves_like("crud index")
-    it_behaves_like("crud new")
-    it_behaves_like("crud edit")
+    it_behaves_like("crud show index new edit")
     it_behaves_like("crud update")
+    it_behaves_like("crud destroy")
+  end
+
+  shared_context 'crud except update' do
+    it_behaves_like("crud show index new edit")
+    it_behaves_like("crud create")
     it_behaves_like("crud destroy")
   end
 
@@ -83,7 +86,7 @@ module MercatorSharedContexts
 
   shared_context 'crud update' do
     describe 'PATCH #update' do
-      it "with_incorrect data it redirects to #show" do
+      it "with_incorrect data it redirects to #edit" do
         patch :update, id: @instance,
                        @instance.class.to_s.underscore => @invalid_attributes
         expect(response).to render_template :edit
