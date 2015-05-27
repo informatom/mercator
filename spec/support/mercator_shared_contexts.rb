@@ -21,6 +21,15 @@ module MercatorSharedContexts
     it_behaves_like("crud update")
   end
 
+  shared_context 'crud except create' do
+    it_behaves_like("crud show")
+    it_behaves_like("crud index")
+    it_behaves_like("crud new")
+    it_behaves_like("crud edit")
+    it_behaves_like("crud update")
+    it_behaves_like("crud destroy")
+  end
+
 
   shared_context 'crud show' do
     describe 'GET #show' do

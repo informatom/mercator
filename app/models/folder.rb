@@ -3,7 +3,7 @@ class Folder < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name     :string
+    name     :string, :required
     ancestry :string, :index => true
     position :integer, :required
     timestamps

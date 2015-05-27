@@ -2,9 +2,6 @@ Controller Tests
 ================
 
 admin
-├── orders_controller
-├── folders_controller
-├── prices_controller
 ├── users_controller
 
 ├── categories_controller

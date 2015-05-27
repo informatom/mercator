@@ -5,7 +5,7 @@ class Admin::PricesController < Admin::AdminSiteController
 
   def destroy
     hobo_destroy do
-      render json: '{ status: "success" }' if request.xhr?
+      render json: {status: "success"} if request.xhr?
     end
   end
 end

@@ -14,9 +14,9 @@ class Admin::OrdersController < Admin::AdminSiteController
     key = I18n.t("activerecord.attributes.order.lifecycle.states").key(params[:search])
     params[:search] = key.to_s if key
 
-    self.this = Order.paginate(:page => params[:page])
-                     .search([params[:search], :state])
-                     .order_by(parse_sort_param(:state, :updated_at))
+    self.this = @orders = Order.paginate(:page => params[:page])
+                               .search([params[:search], :state])
+                               .order_by(parse_sort_param(:state, :updated_at))
     hobo_index
   end
 end
