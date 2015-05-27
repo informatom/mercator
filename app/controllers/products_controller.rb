@@ -9,7 +9,11 @@ class ProductsController < ApplicationController
 
   def show
     @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
-    hobo_show
+    hobo_show do
+      if ["new", "deprecated"].include? self.this.state
+        redirect_to :root, status: 303
+      end
+    end
   end
 
 
