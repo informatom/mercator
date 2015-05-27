@@ -115,6 +115,13 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       infinite = true  if attrs[:infinite] == "1"
       infinite = false if attrs[:infinite] == "0"
 
+      delivery_time =
+        if attrs[:delivery_time].class == String
+          attrs[:delivery_time]
+        else
+          attrs[:delivery_time][:text]
+        end
+
       inventory.name_de            = attrs[:name_de]
       inventory.name_en            = attrs[:name_en]
       inventory.number             = attrs[:number]
@@ -126,7 +133,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       inventory.size               = attrs[:size]
       inventory.charge             = attrs[:charge]
       inventory.storage            = attrs[:storage]
-      inventory.delivery_time      = attrs[:delivery_time][:text]
+      inventory.delivery_time      = delivery_time
       inventory.infinite           = infinite
       inventory.alternative_number = attrs[:alternative_number]
       inventory.product_id         = attrs[:product_id]
