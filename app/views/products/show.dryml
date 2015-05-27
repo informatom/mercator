@@ -108,12 +108,12 @@
 
       <if test="&this.number.split('-')[0] == 'HP'">
         <div class="tab-pane" id="syndication">
-          <div id="flix-minisite">&nbsp;</div>
+          <div id="flix-minisite"></div>
 
-          <div id="flix-inpage">&nbsp;</div>
+          <div id="flix-inpage"></div>
           <script type="text/javascript"
                   src="http://media.flixfacts.com/js/loader.js"
-                  data-flix-distributor="8887"
+                  data-flix-distributor="10698"
                   data-flix-language="at"
                   data-flix-mpn="#{this.number.split('-')[1]}"
                   data-flix-ean=""
@@ -122,8 +122,7 @@
                   data-flix-inpage="flix-inpage"
                   data-flix-button-image=""
                   data-flix-fallback-language="en"
-                  data-flix-price="">
-          </script>
+                  data-flix-price=""></script>
         </div>
       </if>
     </div>
