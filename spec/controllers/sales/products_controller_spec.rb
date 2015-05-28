@@ -70,7 +70,7 @@ describe Sales::ProductsController, :type => :controller do
       end
 
       it "has the pricing run" do
-        expect_any_instance_of(Offeritem).to receive(:new_pricing)
+        expect(@added_item).to receive(:new_pricing)
         get :add_to_offer, id: @instance.id
       end
 
