@@ -2,7 +2,6 @@ Controller Tests
 ================
 
 sales
-├── links_controller
 ├── messages_controller
 ├── products_controller
 ├── suggestions_controller
