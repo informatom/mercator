@@ -38,6 +38,7 @@ class Message < ActiveRecord::Base
     acting_user.administrator? ||
     acting_user.sales ||
     reciever_is?(acting_user) ||
-    sender_is?(acting_user)
+    sender_is?(acting_user) ||
+    new_record?
   end
 end

@@ -1,6 +1,29 @@
 Controller Tests
 ================
 
+messages_controller
+submissions_controller
+videochat_controller
+webpages_controller
+offeritems_controller
+links_controller
+inventories_controller
+front_controller
+comments_controller
+
+12 addresses_controller
+17 application_controller
+13 billing_addresses_controller
+08 blogposts_controller
+07 categories_controller
+conversations_controller
+lineitems_controller
+offers_controller
+orders_controller
+podcasts_controller
+products_controller
+users_controller
+
 sales
 ├── conversations_controller
 ├── downloads_controller
@@ -27,29 +50,6 @@ productmanager
 ├── productmanager_site_controller
 ├── property_manager_controller
 └── relation_manager_controller
-
-messages_controller
-submissions_controller
-videochat_controller
-webpages_controller
-offeritems_controller
-links_controller
-inventories_controller
-front_controller
-comments_controller
-
-12 addresses_controller
-17 application_controller
-13 billing_addresses_controller
-08 blogposts_controller
-07 categories_controller
-conversations_controller
-lineitems_controller
-offers_controller
-orders_controller
-podcasts_controller
-products_controller
-users_controller
 
 contracting
 ├── consumableitems_controller
