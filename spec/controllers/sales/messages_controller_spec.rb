@@ -31,7 +31,7 @@ describe Sales::MessagesController, :type => :controller do
         expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "messages")
         expect(PrivatePub).to receive(:publish_to).with("/0004/personal/"+ @instance.reciever.id.to_s,
-                                                        sender: " Sammy Sales Representative",
+                                                        sender: "Mr. Sammy Sales Representative",
                                                         content: @instance.content)
 
         post :create, message: attributes_for(:message, conversation_id: @conversation.id,
