@@ -1,12 +1,12 @@
 Controller Tests
 ================
 
-messages_controller
+links_controller
+
 submissions_controller
 videochat_controller
 webpages_controller
 offeritems_controller
-links_controller
 inventories_controller
 front_controller
 comments_controller

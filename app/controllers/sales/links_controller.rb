@@ -4,11 +4,12 @@ class Sales::LinksController < Sales::SalesSiteController
 
   auto_actions :all
 
+
   def create
     hobo_create do
       if this.url.present?
         unless this.url[0..6] == "http://"
-          this.url =  "http://" + this.url
+          this.url = "http://" + this.url
         end
 
         uri = URI(this.url)
