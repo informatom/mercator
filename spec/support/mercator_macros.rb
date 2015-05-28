@@ -12,11 +12,13 @@ module MercatorMacros
     allow(controller).to receive(:current_user) { @admin }
   end
 
+
   def act_as_user
     @user = create(:user, email_address: "another.user@informatom.com")
     allow(controller).to receive(:logged_in?) {true}
     allow(controller).to receive(:current_user) { @user }
   end
+
 
   def act_as_sales
     @sales = create(:sales, email_address: "another.sales.consultant@informatom.com")
@@ -24,9 +26,17 @@ module MercatorMacros
     allow(controller).to receive(:current_user) { @sales }
   end
 
+
   def act_as_salesmanager
-    @salesmanager = create(:salesmanager, email_address: "another.sales.consultant@informatom.com")
+    @salesmanager = create(:salesmanager)
     allow(controller).to receive(:logged_in?) {true}
     allow(controller).to receive(:current_user) { @salesmanager }
+  end
+
+
+  def act_as_productmanager
+    @productmanager = create(:productmanager)
+    allow(controller).to receive(:logged_in?) {true}
+    allow(controller).to receive(:current_user) { @productmanager }
   end
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Sales::DownloadsController do
+describe Sales::DownloadsController, :type => :controller do
 
 end

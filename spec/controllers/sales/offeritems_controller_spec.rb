@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Sales::OfferitemsController do
+describe Sales::OfferitemsController, :type => :controller do
 
 end
