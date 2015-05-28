@@ -26,7 +26,8 @@ class Sales::SuggestionsController < Sales::SalesSiteController
   end
 
   def show
-    session[:current_conversation_id] = this.id
-    hobo_show
+    hobo_show do
+      session[:current_conversation_id] = self.this.id
+    end
   end
 end
