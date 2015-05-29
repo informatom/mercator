@@ -2,7 +2,6 @@ Controller Tests
 ================
 
 contracting
-├── contractitems_controller
 ├── contracts_controller
 ├── contracting_site_controller
 ├── front_controller
