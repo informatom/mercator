@@ -1,8 +1,6 @@
 Controller Tests
 ================
 
-submissions_controller
-videochat_controller
 webpages_controller
 offeritems_controller
 comments_controller
