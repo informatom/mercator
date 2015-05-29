@@ -34,38 +34,14 @@ describe Sales::ProductsController, :type => :controller do
         expect(response).to redirect_to sales_product_path(@instance)
       end
 
-      it "creates on offer position" do
+      it "creates on offer position with attributes set" do
         get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.count).to eql 1
-      end
-
-      it "creates on offer position with the user set" do
-        get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.first.user).to eql @offer.user
-      end
-
-      it "creates on offer position with the product id set" do
-        get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.first.product_id).to eql @instance.id
-      end
-
-      it "creates on offer position with the product number set" do
-        get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.first.product_number).to eql @instance.number
-      end
-
-      it "creates on offer position with the german description set" do
-        get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.first.description_de).to eql @instance.description_de
-      end
-
-      it "creates on offer position with the english description set" do
-        get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.first.description_en).to eql @instance.description_en
-      end
-
-      it "creates on offer position with delivery time set set" do
-        get :add_to_offer, id: @instance.id
         expect(@offer.offeritems.first.delivery_time).to eql @instance.delivery_time
       end
 

@@ -5,8 +5,6 @@ submissions_controller
 videochat_controller
 webpages_controller
 offeritems_controller
-inventories_controller
-front_controller
 comments_controller
 
 12 addresses_controller
@@ -21,6 +19,15 @@ orders_controller
 podcasts_controller
 products_controller
 users_controller
+
+contracting
+├── consumableitems_controller
+├── contracting_site_controller
+├── contractitems_controller
+├── contracts_controller
+├── front_controller
+
+├── toners_controller
 
 sales
 ├── conversations_controller
@@ -49,14 +56,6 @@ productmanager
 ├── property_manager_controller
 └── relation_manager_controller
 
-contracting
-├── consumableitems_controller
-├── contracting_site_controller
-├── contractitems_controller
-├── contracts_controller
-├── front_controller
-├── toners_controller
-
 
 Lifecycle Actions
 =================
@@ -75,11 +74,6 @@ Engines
 
 alle
 
-
-Gems
-====
-
-all
 
 
 Possibly later

@@ -15,6 +15,9 @@ Mercator::Application.configure do
 
   config.action_controller.allow_forgery_protection    = false
   config.action_mailer.delivery_method = :test
+
+  config.action_mailer.raise_delivery_errors = false
+
   config.active_record.mass_assignment_sanitizer = :strict
   config.active_support.deprecation = :stderr
 
