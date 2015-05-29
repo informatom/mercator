@@ -50,7 +50,7 @@ describe Contracting::ConsumableitemsController, :type => :controller do
         it "renders json" do
           patch :update, id: @instance.id,
                          consumableitem:  attributes_for(:consumableitem, contractitem_id: @contractitem.id)
-          expect(response.body).to be_json_eql(@instance.to_json).excluding("contractitem_id")
+          expect(response.body).to be_json_eql(@instance.to_json).excluding("contractitem_id" )
         end
       end
 
@@ -58,7 +58,7 @@ describe Contracting::ConsumableitemsController, :type => :controller do
       describe 'DELETE #destroy' do
         it "renders json" do
           delete :destroy, id: @instance
-          expect(response.body).to be_json_eql(@instance.to_json).excluding("contractitem_id")
+          expect(response.body).to be_json_eql({}.to_json)
         end
       end
     end

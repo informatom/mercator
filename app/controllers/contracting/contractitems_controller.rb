@@ -8,32 +8,37 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
   end
 
   def index
-    hobo_index do
-      render json: this
+    hobo_index do |format|
+      format.json { render json: this }
+      format.html {}
     end
   end
 
   def show
-    hobo_show do
-      render json: this
+    hobo_show do |format|
+      format.json { render json: this }
+      format.html {}
     end
   end
 
-  def create
-    hobo_create do
-      render json: this
+   def create
+    hobo_create do |format|
+      format.json { render json: this }
+      format.html {}
     end
   end
 
   def update
-    hobo_update do
-      render json: this
+    hobo_update do |format|
+      format.json { render json: this }
+      format.html {}
     end
   end
 
   def destroy
-    hobo_destroy do
-      render json: nil
+    hobo_destroy do |format|
+      format.json { render json: {} }
+      format.html {}
     end
   end
 end

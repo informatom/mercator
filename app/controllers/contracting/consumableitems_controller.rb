@@ -10,35 +10,35 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   def index
     hobo_index do |format|
       format.json { render json: this }
-      format.html { hobo_index }
+      format.html {}
     end
   end
 
   def show
     hobo_show do |format|
       format.json { render json: this }
-      format.html { hobo_show }
+      format.html {}
     end
   end
 
    def create
     hobo_create do |format|
       format.json { render json: this }
-      format.html { hobo_create }
+      format.html {}
     end
   end
 
   def update
     hobo_update do |format|
       format.json { render json: this }
-      format.html { hobo_update }
+      format.html {}
     end
   end
 
   def destroy
     hobo_destroy do |format|
-      format.json { render json: this }
-      format.html { hobo_destroy }
+      format.json { render json: {} }
+      format.html {}
     end
   end
 end
