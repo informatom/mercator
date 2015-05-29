@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Contracting::FrontController do
+describe Contracting::FrontController, :type => :controller do
 
 end

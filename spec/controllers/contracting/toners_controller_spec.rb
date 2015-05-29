@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Contracting::TonersController do
+describe Contracting::TonersController, :type => :controller do
 
 end

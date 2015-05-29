@@ -1,8 +1,6 @@
 Controller Tests
 ================
 
-offeritems_controller
-
 contracting
 ├── consumableitems_controller
 ├── contracting_site_controller

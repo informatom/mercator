@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Contracting::ContractitemsController do
+describe Contracting::ContractitemsController, :type => :controller do
 
 end
