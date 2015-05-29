@@ -2,7 +2,6 @@ Controller Tests
 ================
 
 offeritems_controller
-comments_controller
 
 12 addresses_controller
 17 application_controller
