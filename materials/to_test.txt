@@ -3,19 +3,6 @@ Controller Tests
 
 offeritems_controller
 
-12 addresses_controller
-17 application_controller
-13 billing_addresses_controller
-08 blogposts_controller
-07 categories_controller
-conversations_controller
-lineitems_controller
-offers_controller
-orders_controller
-podcasts_controller
-products_controller
-users_controller
-
 contracting
 ├── consumableitems_controller
 ├── contracting_site_controller
@@ -24,6 +11,21 @@ contracting
 ├── front_controller
 
 ├── toners_controller
+
+
+blogposts_controller
+lineitems_controller
+
+addresses_controller
+application_controller
+billing_addresses_controller
+categories_controller
+conversations_controller
+offers_controller
+orders_controller
+podcasts_controller
+products_controller
+users_controller
 
 sales
 ├── conversations_controller

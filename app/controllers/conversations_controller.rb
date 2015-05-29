@@ -11,6 +11,7 @@ class ConversationsController < ApplicationController
     hobo_show
   end
 
+
   def show
     hobo_show do
       if current_user.class == Guest || current_user.id == this.customer_id
@@ -26,6 +27,7 @@ class ConversationsController < ApplicationController
                              sender_id: sender_id)
     end
   end
+
 
   def initiate
     self.this = Conversation.new(customer: current_user, name: I18n.t("mercator.salutation.callback"))
@@ -49,6 +51,7 @@ class ConversationsController < ApplicationController
                                       content: message_content)
   end
 
+
   def do_initiate
     do_creator_action :initiate do
       self.this.update(customer: current_user)
@@ -56,12 +59,14 @@ class ConversationsController < ApplicationController
     end
   end
 
+
   def call_for_consultant
     do_transition_action :call_for_consultant do
       self.this.update(consultant_id: nil)
       self.this.delay.inform_sales(locale: I18n.locale) # we fork into delayed handling
     end
   end
+
 
   def do_feedback
     do_transition_action :feedback do
@@ -80,6 +85,7 @@ class ConversationsController < ApplicationController
       end
     end
   end
+
 
   def suggestions
     @conversation = Conversation.find(params[:id])

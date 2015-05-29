@@ -24,6 +24,7 @@ class OfferitemsController < ApplicationController
                                                      value:          this.value,
                                                      unit:           this.unit,
                                                      delivery_time:  this.delivery_time)
+
       if @lineitem.save
         flash[:success] = I18n.t("mercator.messages.offeritem.transfer.success")
         flash[:notice] = nil

@@ -36,6 +36,7 @@ class Sales::OfferitemsController < Sales::SalesSiteController
                           type: "offers")
   end
 
+
   def do_delete_from_offer
     do_transition_action :delete_from_offer do
       flash[:success] = I18n.t("mercator.messages.offeritem.delete_from_offer.success")

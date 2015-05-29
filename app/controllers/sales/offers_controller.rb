@@ -4,6 +4,7 @@ class Sales::OffersController < Sales::SalesSiteController
 
   auto_actions :all, :lifecycle
 
+
   def build
     conversation = Conversation.find(session[:current_conversation_id])
     customer = conversation.customer
@@ -23,6 +24,7 @@ class Sales::OffersController < Sales::SalesSiteController
 
     creator_page_action :build
   end
+
 
   def do_build
     do_creator_action :build do
@@ -50,6 +52,7 @@ class Sales::OffersController < Sales::SalesSiteController
     end
   end
 
+
   def update
     hobo_update do
       PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
@@ -59,6 +62,7 @@ class Sales::OffersController < Sales::SalesSiteController
     end
   end
 
+
   def show
     hobo_show do
       session[:current_offer_id] = @this.id
@@ -66,6 +70,7 @@ class Sales::OffersController < Sales::SalesSiteController
   PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
                         type: "suggestions")
   end
+
 
   def refresh
     self.this = Offer.find(params[:id])
