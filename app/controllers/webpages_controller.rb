@@ -4,7 +4,9 @@ class WebpagesController < ApplicationController
 
   hobo_model_controller
   auto_actions :show
-  index_action :viewtest
+
+  #HAS 20150529 deprecated?
+  # index_action :viewtest
 
 
   def show
@@ -12,7 +14,7 @@ class WebpagesController < ApplicationController
 
     hobo_show do
       if @webpage.visible_for?(user: current_user)
-        render "page_templates/" + self.this.page_template.name
+        render "page_templates/" + @webpage.page_template.name
       else
         redirect_to :root, status: 303
       end

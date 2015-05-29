@@ -39,4 +39,11 @@ module MercatorMacros
     allow(controller).to receive(:logged_in?) {true}
     allow(controller).to receive(:current_user) { @productmanager }
   end
+
+
+  def act_as_contentmanager
+    @contentmanager = create(:contentmanager)
+    allow(controller).to receive(:logged_in?) {true}
+    allow(controller).to receive(:current_user) { @contentmanager }
+  end
 end

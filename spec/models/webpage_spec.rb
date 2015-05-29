@@ -168,22 +168,22 @@ describe Webpage do
 
     context "content manager" do
       before :each do
-        @content_manager = create(:content_manager)
+        @contentmanager = create(:contentmanager)
       end
 
       it "returns true for published webpage" do
         @webpage = create(:webpage, state: "published")
-        expect(@webpage.visible_for?(user: @content_manager)).to eql true
+        expect(@webpage.visible_for?(user: @contentmanager)).to eql true
       end
 
       it "returns true for published but hidden webpage" do
         @webpage = create(:webpage, state: "published_but_hidden")
-        expect(@webpage.visible_for?(user: @content_manager)).to eql true
+        expect(@webpage.visible_for?(user: @contentmanager)).to eql true
       end
 
       it "returns false for draft webpage" do
         @webpage = create(:webpage, state: "draft")
-        expect(@webpage.visible_for?(user: @content_manager)).to eql true
+        expect(@webpage.visible_for?(user: @contentmanager)).to eql true
       end
     end
   end

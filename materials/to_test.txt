@@ -1,7 +1,6 @@
 Controller Tests
 ================
 
-webpages_controller
 offeritems_controller
 comments_controller
 
