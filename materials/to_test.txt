@@ -2,8 +2,6 @@ Controller Tests
 ================
 
 contracting
-├── contracting_site_controller
-
 ├── toners_controller
 
 blogposts_controller
