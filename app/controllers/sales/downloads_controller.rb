@@ -10,11 +10,13 @@ class Sales::DownloadsController < Sales::SalesSiteController
     hobo_destroy
   end
 
+
   def update
     PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ Download.find(params[:id]).conversation.id.to_s,
                           type: "downloads")
     hobo_update
   end
+
 
   def create
     if params[:download][:document].content_type.split("/")[0] == "image"

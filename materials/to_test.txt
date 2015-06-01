@@ -1,8 +1,8 @@
 Controller Tests
 ================
 
-blogposts_controller
-lineitems_controller
+podcasts_controller
+
 addresses_controller
 application_controller
 billing_addresses_controller
@@ -10,25 +10,26 @@ categories_controller
 conversations_controller
 offers_controller
 orders_controller
-podcasts_controller
 products_controller
 users_controller
 
 sales
-├── conversations_controller
 ├── downloads_controller
+
+├── conversations_controller
 ├── offeritems_controller
 ├── offers_controller
 
 admin
-├── categories_controller
 ├── content_elements_controller
-├── logentries_controller
 ├── products_controller
+└── webpages_controller
+
+├── categories_controller
+├── logentries_controller
 ├── properties_controller
 ├── property_groups_controller
 ├── values_controller
-└── webpages_controller
 
 contentmanager
 ├── contentmanager_site_controller

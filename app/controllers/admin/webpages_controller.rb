@@ -10,6 +10,7 @@ class Admin::WebpagesController < Admin::AdminSiteController
     hobo_show
   end
 
+
   def edit
     @this = Webpage.friendly.find(params[:id])
     hobo_edit(redirect: contentmanager_front_path) do
@@ -17,11 +18,13 @@ class Admin::WebpagesController < Admin::AdminSiteController
     end
   end
 
+
   def create
     hobo_create(redirect: contentmanager_front_path) do
       session[:selected_webpage_id] = this.id
     end
   end
+
 
   def update
     self.this = Webpage.friendly.find(params[:id])
@@ -29,6 +32,7 @@ class Admin::WebpagesController < Admin::AdminSiteController
       session[:selected_webpage_id] = this.id
     end
   end
+
 
   def destroy
     begin
@@ -48,6 +52,7 @@ class Admin::WebpagesController < Admin::AdminSiteController
     end
   end
 
+
   def index
     if params[:search].present?
       @search = params[:search].split(" ").map{|word| "%" + word + "%"}
@@ -63,11 +68,13 @@ class Admin::WebpagesController < Admin::AdminSiteController
     hobo_index
   end
 
+
   def do_publish
     do_transition_action :publish, redirect: contentmanager_front_path do
       session[:selected_webpage_id] = this.id
     end
   end
+
 
   def do_archive
     do_transition_action :archive, redirect: contentmanager_front_path do
@@ -75,11 +82,13 @@ class Admin::WebpagesController < Admin::AdminSiteController
     end
   end
 
+
   def do_hide
     do_transition_action :hide, redirect: contentmanager_front_path do
       session[:selected_webpage_id] = this.id
     end
   end
+
 
   def do_unhide
     do_transition_action :unhide, redirect: contentmanager_front_path do
