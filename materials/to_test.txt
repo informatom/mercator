@@ -2,9 +2,7 @@ Controller Tests
 ================
 
 contracting
-├── contracts_controller
 ├── contracting_site_controller
-├── front_controller
 
 ├── toners_controller
 
