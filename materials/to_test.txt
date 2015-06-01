@@ -3,7 +3,6 @@ Controller Tests
 
 blogposts_controller
 lineitems_controller
-
 addresses_controller
 application_controller
 billing_addresses_controller
