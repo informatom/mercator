@@ -7,7 +7,11 @@ class Contracting::TonersController < ApplicationController
   index_action :upload, :do_upload
 
   def do_upload
-    @liste =  Roo::CSV.new(params[:xls].path, csv_options: {encoding: Encoding::UTF_16LE, col_sep: "\t", :row_sep => "\r\n"})
+    @liste =  Roo::CSV.new(params[:xls].path, csv_options: {
+                                                encoding: Encoding::UTF_16LE,
+                                                col_sep: "\t",
+                                                row_sep: "\r\n"})
+
     @liste.each_with_index do |row, index|
       next if index == 0
       @toner = Toner.find_or_initialize_by(vendor_number: row[4])
