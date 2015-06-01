@@ -9,7 +9,8 @@ class Contract < ActiveRecord::Base
     timestamps
   end
   attr_accessible :runtime, :startdate, :user_id, :user_id, :consultant, :consultant_id,
-                  :conversation, :conversation_id, :term,  :created_at, :updated_at
+                  :conversation, :conversation_id, :term,  :created_at, :updated_at,
+                  :customer_id, :customer
   has_paper_trail
 
   belongs_to :customer, :class_name => 'User'

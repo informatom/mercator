@@ -8,7 +8,6 @@ contracting
 
 ├── toners_controller
 
-
 blogposts_controller
 lineitems_controller
 

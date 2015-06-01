@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :contract do
-    startdate "2.3.2014"
+    startdate Date.new(2014, 3, 6)
     runtime 36
 
     association :customer, factory: :user
