@@ -41,11 +41,13 @@ class PodcastsController < ApplicationController
 
   def feed
     @podcasts = Podcast.where.not(published_at: nil)
+    render 'feed.rss'
   end
 
 
   def ogg
     @podcasts = Podcast.where.not(published_at: nil)
+    render 'ogg.rss'
   end
 
 

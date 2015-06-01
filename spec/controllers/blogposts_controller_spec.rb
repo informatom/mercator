@@ -63,6 +63,8 @@ describe BlogpostsController, :type => :controller do
                                                       title_de: "Jänner 2015",
                                                       post_category_id: @post_category.id,
                                                       content_element_id: @content_element.id)
+      get :index, month: Date.new(2015,1,5)
+      expect(assigns(:blogposts).count).to eql 1
     end
   end
 
