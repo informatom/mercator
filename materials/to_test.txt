@@ -64,16 +64,8 @@ Bechlem
 
 access
 base
-vbrand
 vcategory
-vdescriptor
-videntifier
-vitem2item
-vitem_media
-vitem_printer
-vitem
 vitem_supply
-vqualifier
 
 application_controller
 consumables_controller
@@ -122,7 +114,6 @@ kontenstamm
 order_item
 order
 price
-system
 webartikel
 zahlungsart
 
