@@ -7,8 +7,9 @@ class Contentmanager::ContentmanagerSiteController < ApplicationController
   private
 
   def contentmanager_required
-    redirect_to user_login_path unless logged_in? &&
-                                       (current_user.contentmanager? || current_user.administrator?)
+    unless logged_in? &&
+           (current_user.contentmanager? || current_user.administrator?)
+      redirect_to user_login_path
+    end
   end
-
 end

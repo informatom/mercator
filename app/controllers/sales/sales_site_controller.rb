@@ -7,6 +7,12 @@ class Sales::SalesSiteController < ApplicationController
   private
 
   def sales_required
-    redirect_to home_page unless logged_in? && current_user.sales?
+    unless logged_in? &&
+           (current_user.sales? || current_user.administrator? ||
+                                   current_user.contentmanager? ||
+                                   current_user.salesmanager?
+                                   current_user.productmanager?)
+      redirect_to home_page
+    end
   end
 end

@@ -43,6 +43,12 @@ FactoryGirl.define do
       email_address "sammy.sales@informatom.com"
       sales true
 
+      factory :second_sales do
+        first_name "Steve"
+        surname "Second Sales Representative"
+        email_address "sammy.second_sales@informatom.com"
+      end
+
       factory :contentmanager do
         first_name "Carlo"
         surname "Content Manager"

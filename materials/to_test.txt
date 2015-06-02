@@ -1,7 +1,6 @@
 Controller Tests
 ================
 
-51 sales/offeritems_controller
 64 sales/conversations_controller
 78 sales/offers_controller
 
@@ -70,6 +69,7 @@ vitem_supply
 application_controller
 consumables_controller
 
+
 Icecat
 ======
 metadata_controller
@@ -79,6 +79,7 @@ metadatum
 product_extensions
 
 MPay
+
 ====
 confirmation
 payment
@@ -88,6 +89,7 @@ admin/payments_controller
 application_controller
 confirmations_controller
 orders_controller_extensions
+
 
 Mesonic
 =======
