@@ -14,7 +14,7 @@ describe Contracting::TonersController, :type => :controller do
   end
 
 
-  describe "POST #do_upload" do
+  describe "PUT #do_upload" do
     before :each do
       @tonerliste = fixture_file_upload("#{Rails.root}/spec/factories/tonerliste.csv",
                                         "text/csv")

@@ -1,16 +1,6 @@
 Controller Tests
 ================
 
-65 categories_controller
-75 products_controller
-76 addresses_controller
-95 conversations_controller
-96 orders_controller
-112 offers_controller
-124 application_controller
-124 billing_addresses_controller
-149 users_controller
-
 51 sales/offeritems_controller
 64 sales/conversations_controller
 78 sales/offers_controller
@@ -23,6 +13,16 @@ Controller Tests
 80 admin/property_groups_controller
 97 admin/properties_controller
 122 admin/categories_controller
+
+65 categories_controller
+75 products_controller
+76 addresses_controller
+95 conversations_controller
+96 orders_controller
+112 offers_controller
+124 application_controller
+124 billing_addresses_controller
+149 users_controller
 
 14 contentmanager/contentmanager_site_controller
 192 contentmanager/front_controller

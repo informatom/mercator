@@ -17,7 +17,7 @@ describe OfferitemsController, :type => :controller do
     end
 
 
-    describe 'POST #do_copy' do
+    describe 'PUT #do_copy' do
       it "creates a new lineitem in the basket with the carroect attributes" do
         put :do_copy, id: @offeritem.id
         expect(@basket.lineitems.count).to eql 1
