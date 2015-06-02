@@ -1,9 +1,6 @@
 Controller Tests
 ================
 
-64 sales/conversations_controller
-78 sales/offers_controller
-
 62 admin/content_elements_controller
 98 admin/webpages_controller
 

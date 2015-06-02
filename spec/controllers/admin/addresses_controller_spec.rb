@@ -6,8 +6,8 @@ describe Admin::AddressesController, :type => :controller do
     before :each do
       no_redirects and act_as_admin
 
-      country = create(:country)
-      @instance = create(:address, country: country.name_de)
+      @country = create(:country)
+      @instance = create(:address, country: @country.name_de)
       @invalid_attributes = attributes_for(:address, country: nil)
     end
 

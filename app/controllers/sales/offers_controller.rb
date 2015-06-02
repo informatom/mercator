@@ -5,23 +5,43 @@ class Sales::OffersController < Sales::SalesSiteController
   auto_actions :all, :lifecycle
 
 
+  def show
+    hobo_show do
+      session[:current_offer_id] = @this.id
+    end
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
+                          type: "suggestions")
+  end
+
+
+  def update
+    hobo_update do
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
+                            type: "offers")
+      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.id.to_s,
+                            type: "all")
+    end
+  end
+
+
   def build
     conversation = Conversation.find(session[:current_conversation_id])
     customer = conversation.customer
-    self.this = Offer.new(consultant_id: conversation.consultant_id,
-                          conversation_id: conversation.id,
-                          user_id: conversation.customer_id,
-                          valid_until: Date.today + 1.month)
+    self.this = @offer = Offer.new(consultant_id: conversation.consultant_id,
+                                   conversation_id: conversation.id,
+                                   user_id: conversation.customer_id,
+                                   valid_until: Date.today + 1.month)
 
     billing_address = customer.billing_addresses.recent(1)[0]
 
     self.this.attributes = billing_address.namely([:company, :gender, :title, :first_name, :surname,
-                                                   :detail, :street, :postalcode, :city, :country], prefix: "billing_") if billing_address
+                                                   :detail, :street, :postalcode, :city, :country, :phone],
+                                                   prefix: "billing_") if billing_address
 
     shipping_address = customer.addresses.recent(1)[0]
     self.this.attributes = shipping_address.namely([:company, :gender, :title, :first_name, :surname,
-                                                   :detail, :street, :postalcode, :city, :country], prefix: "shipping_") if shipping_address
-
+                                                   :detail, :street, :postalcode, :city, :country, :phone],
+                                                   prefix: "shipping_") if shipping_address
     creator_page_action :build
   end
 
@@ -53,27 +73,10 @@ class Sales::OffersController < Sales::SalesSiteController
   end
 
 
-  def update
-    hobo_update do
-      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
-                            type: "offers")
-      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/offers/"+ @this.id.to_s,
-                            type: "all")
-    end
-  end
-
-
-  def show
-    hobo_show do
-      session[:current_offer_id] = @this.id
-    end
-  PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ @this.conversation_id.to_s,
-                        type: "suggestions")
-  end
-
-
   def refresh
     self.this = Offer.find(params[:id])
-    hobo_show
+    hobo_show do
+      render :show
+    end
   end
 end

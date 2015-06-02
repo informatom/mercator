@@ -43,8 +43,9 @@ class Offeritem < ActiveRecord::Base
     state :in_progress, :default => true
 
     create :add, :available_to => "User.sales", become: :in_progress,
-           params: [:position, :product_id, :product_number, :description_de, :amount,
-                    :unit, :product_price, :vat, :value, :offer_id, :user_id],
+           params: [:position, :product_id, :product_number, :description_de, :description_en,
+                    :amount, :unit, :product_price, :vat, :value, :offer_id, :user_id,
+                    :delivery_time],
            subsite: "sales"
 
     transition :copy, {:in_progress => :in_progress}, available_to: :user,

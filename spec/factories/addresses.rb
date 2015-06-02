@@ -3,6 +3,7 @@ FactoryGirl.define do
   factory :address do
     user
     company    "Bigcorp"
+    gender     "male"
     title      "Dr"
     first_name "John"
     surname    "Doe"

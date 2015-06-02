@@ -8,7 +8,7 @@ class Productmanager::ProductmanagerSiteController < ApplicationController
 
   def productmanager_required
     unless logged_in? &&
-                      (current_user.productmanager? || current_user.administrator?)
+           (current_user.productmanager? || current_user.administrator?)
       redirect_to user_login_path
     end
   end
