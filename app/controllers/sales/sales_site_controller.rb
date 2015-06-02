@@ -10,7 +10,7 @@ class Sales::SalesSiteController < ApplicationController
     unless logged_in? &&
            (current_user.sales? || current_user.administrator? ||
                                    current_user.contentmanager? ||
-                                   current_user.salesmanager? ||
+                                   current_user.sales_manager? ||
                                    current_user.productmanager?)
       redirect_to home_page
     end
