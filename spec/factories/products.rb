@@ -4,7 +4,7 @@ FactoryGirl.define do
     title_de            "default product"
     title_en            "Article One Two Three"
     number              "123"
-    state "active"
+    state               "active"
     description_de      "Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid."
     description_en      "English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!"
     long_description_de "Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid."

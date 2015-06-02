@@ -11,4 +11,10 @@ class Admin::AdminSiteController < ApplicationController
       redirect_to user_login_path
     end
   end
+
+  def productmanager_required
+    unless logged_in? && current_user.productmanager?
+      redirect_to user_login_path
+    end
+  end
 end

@@ -1,7 +1,11 @@
 class Admin::ProductsController < Admin::AdminSiteController
 
   hobo_model_controller
-  auto_actions :all, :new
+
+  skip_before_filter :admin_required
+  before_filter :productmanager_required
+
+  auto_actions :all
   index_action :catch_orphans, :index_invalid, :reindex
 
   autocomplete :number
