@@ -20,6 +20,7 @@ describe Admin::LogentriesController, :type => :controller do
 
       it "searches for severity" do
         get :index, search: {"0"=> {field: "severity", value: "info"}}
+        expect(assigns(:logentries)).to match_array([@instance])
       end
 
       it "searches for message" do
@@ -42,7 +43,7 @@ describe Admin::LogentriesController, :type => :controller do
         get :index
         expect(response.body).to be_json_eql({status: "success",
                                               total: 1,
-                                              records: [{recid: 1,
+                                              records: [{recid: @instance.id,
                                                           severity: "info",
                                                           message: "Just a message.",
                                                           created_at: "2015-06-03 10:53:47"}]}.to_json)

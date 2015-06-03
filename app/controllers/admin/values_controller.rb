@@ -4,15 +4,15 @@ class Admin::ValuesController < Admin::AdminSiteController
   auto_actions :all
 
   def index
-    values = Value.includes(:property).includes(:product).includes(:property_group)
+    @values = Value.includes(:property).includes(:product).includes(:property_group)
     if params[:sort]
-      values = values.order(params[:sort]["0"][:field] || :title_de => params[:sort]["0"][:direction].downcase.to_sym)
+      @values = @values.order(params[:sort]["0"][:field] || :title_de => params[:sort]["0"][:direction].downcase.to_sym)
     end
     if params[:search]
-        values = values.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
+        @values = @values.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
     end
-    total = values.count
-    values = values.limit(params[:limit] || 100)
+    total = @values.count
+    @values = @values.limit(params[:limit] || 100)
                    .offset(params[:offset] || 0)
 
     respond_to do |format|
@@ -21,7 +21,7 @@ class Admin::ValuesController < Admin::AdminSiteController
         render json: {
           status: "success",
           total: total,
-          records: values.collect {
+          records: @values.collect {
             |value| {
               recid:          value.id,
               product_number: (value.product.number if value.product),
