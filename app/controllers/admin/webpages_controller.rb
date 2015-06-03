@@ -5,17 +5,26 @@ class Admin::WebpagesController < Admin::AdminSiteController
 
   autocomplete :name, :query_scope => [:title_de_contains]
 
-  def show
-    @this = Webpage.friendly.find(params[:id])
-    hobo_show
+
+  def index
+    if params[:search].present?
+      @search = params[:search].split(" ").map{|word| "%" + word + "%"}
+      self.this = @webpages = Webpage.paginate(:page => params[:page])
+                                     .where{(title_de.matches_any my{@search}) |
+                                            (title_en.matches_any my{@search}) |
+                                            (state.matches_any my{@search})}
+                                    .order_by(parse_sort_param(:title_de, :title_en, :state, :url, :position, :slug, :this))
+    else
+      self.this = @webpages = Webpage.paginate(:page => params[:page])
+                                     .order_by(parse_sort_param(:title_de, :title_en, :state, :url, :position, :slug, :this))
+    end
+    hobo_index
   end
 
 
-  def edit
-    @this = Webpage.friendly.find(params[:id])
-    hobo_edit(redirect: contentmanager_front_path) do
-      session[:selected_webpege_id] = this.id
-    end
+  def show
+    self.this = @webpage = Webpage.friendly.find(params[:id])
+    hobo_show
   end
 
 
@@ -26,8 +35,16 @@ class Admin::WebpagesController < Admin::AdminSiteController
   end
 
 
+  def edit
+    self.this = @webpage = Webpage.friendly.find(params[:id])
+    hobo_edit do
+      session[:selected_webpage_id] = this.id
+    end
+  end
+
+
   def update
-    self.this = Webpage.friendly.find(params[:id])
+    self.this = @webpage = Webpage.friendly.find(params[:id])
     hobo_update(redirect: contentmanager_front_path) do
       session[:selected_webpage_id] = this.id
     end
@@ -50,22 +67,6 @@ class Admin::WebpagesController < Admin::AdminSiteController
     hobo_destroy do
       render nothing: true if request.xhr?
     end
-  end
-
-
-  def index
-    if params[:search].present?
-      @search = params[:search].split(" ").map{|word| "%" + word + "%"}
-      self.this = Webpage.paginate(:page => params[:page])
-                          .where{(title_de.matches_any my{@search}) |
-                                 (title_en.matches_any my{@search}) |
-                                 (state.matches_any my{@search})}
-                         .order_by(parse_sort_param(:title_de, :title_en, :state, :url, :position, :slug, :this))
-    else
-      self.this = Webpage.paginate(:page => params[:page])
-                         .order_by(parse_sort_param(:title_de, :title_en, :state, :url, :position, :slug, :this))
-    end
-    hobo_index
   end
 
 

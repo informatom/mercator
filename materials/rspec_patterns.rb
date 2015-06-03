@@ -19,8 +19,15 @@ describe 'PATCH #update', focus: true do
 describe 'DELETE #destroy', focus: true do
   delete :destroy, id: @instance
 
+# Lifecycle
+describe "GET #action" do
+  get :action, id: @instance
+describe "PUT #do_action" do
+  put :do_action, id: @instance.id
+
 it "renders nothing for xhr request" do
    xhr :post, :action, id: @instance, params:
+   expect(response.body).to eql(" ")
 
 expect(response).to redirect_to
 expect(session[:key]).to eql
