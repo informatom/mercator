@@ -26,7 +26,7 @@ describe Sales::DownloadsController, :type => :controller do
         post :create, download: attributes_for(:download, conversation_id: @conversation.id)
       end
 
-      it "moves to photo if document is a photo", focus: true do
+      it "moves to photo if document is a photo" do
         @photo = fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg')
         post :create, download: attributes_for(:download, photo: nil,
                                                           conversation_id: @conversation.id,

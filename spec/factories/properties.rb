@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :property do
-    name_de   "property"
+    name_de   "Eigenschaft"
     name_en   "property"
     position  1
     datatype  "textual"

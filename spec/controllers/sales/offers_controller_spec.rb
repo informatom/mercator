@@ -88,7 +88,7 @@ describe Sales::OffersController, :type => :controller do
     end
 
 
-    describe "PUT #do_build", focus: true do
+    describe "PUT #do_build" do
       before :each do
         @basket = create(:order, user_id: @user.id)
         @lineitem = create(:lineitem, order_id: @basket.id,

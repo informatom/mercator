@@ -102,6 +102,7 @@ en:
       blank: can't be blank
       present: must be blank
       confirmation: ! "doesn't match %{attribute}"
+      data_meets_state: Data provided does not fit the Datatyp!
       empty: can't be empty
       equal_to: must be equal to %{count}
       even: must be even

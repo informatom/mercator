@@ -30,7 +30,7 @@ describe Admin::PropertyGroupsController, :type => :controller do
         expect(response.body).to be_json_eql({status: "success",
                                               total: 1,
                                               records: [{recid: @instance.id,
-                                                         name_de: "property group",
+                                                         name_de: "Eigenschaftengruppe",
                                                          name_en: "property group",
                                                          position: 42}]}.to_json)
       end

@@ -16,7 +16,7 @@ describe Sales::ConversationsController, :type => :controller do
     it_behaves_like("crud except destroy")
 
 
-    describe 'DELETE #destroy', focus: true do
+    describe 'DELETE #destroy' do
       it "redirects to sales_conversations_path" do
         act_as_admin
         delete :destroy, id: @instance
