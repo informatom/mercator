@@ -5,13 +5,11 @@ class OrdersController < ApplicationController
   hobo_model_controller
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
-  show_action :payment_status
 
 
-  # location: mercator/vendor/engines/mercator_mpay24/app/controllers/
-  #           orders_controller_extensions.rb
   if Rails.application.config.try(:payment) == "mpay24"
     include OrdersControllerExtensions
+  # from mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
   end
 
 
@@ -34,7 +32,7 @@ class OrdersController < ApplicationController
     self.this = @order = Order.find(params[:id])
 
     if Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production"
-      # A quick ckeck, if erp_account_number is current
+      # A quick check, if erp_account_number is current
       # (User could have been changed since last job run)
       current_user.update_erp_account_nr()
 
@@ -90,7 +88,6 @@ class OrdersController < ApplicationController
 
   show_action :payment_status do
     @order = self.this = Order.find(params[:id])
-
     render "confirm"
   end
 end

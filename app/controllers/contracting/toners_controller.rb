@@ -2,11 +2,10 @@ class Contracting::TonersController < ApplicationController
   require 'roo'
 
   hobo_model_controller
-
   auto_actions :all
-  index_action :upload, :do_upload
+  index_action :upload
 
-  def do_upload
+  index_action :do_upload do
     @liste =  Roo::CSV.new(params[:xls].path, csv_options: {
                                                 encoding: Encoding::UTF_16LE,
                                                 col_sep: "\t",

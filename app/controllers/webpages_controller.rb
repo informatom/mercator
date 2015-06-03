@@ -5,9 +5,6 @@ class WebpagesController < ApplicationController
   hobo_model_controller
   auto_actions :show
 
-  #HAS 20150529 deprecated?
-  # index_action :viewtest
-
 
   def show
     self.this = @webpage = Webpage.friendly.find(params[:id])

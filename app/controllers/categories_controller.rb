@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                           { match: { state: 'active' } } ,
                                                           { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } },
-                                 facets: this.filters.values.flatten)
+                                 facets: this.filters.values.flatten) if this.filters
 
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
@@ -49,15 +49,14 @@ class CategoriesController < ApplicationController
 
 
   def index
-    @categories = Category.where(ancestry: nil).active
-    self.this = @categories
+    self.this = @categories = Category.where(ancestry: nil).active
     hobo_index
   end
 
 
   def refresh
     # params[:id] sends product_id, not category_id, so:
-    self.this = Category.find(params[:page_path].split("/")[2].split("-")[0])
+    self.this = @category = Category.find(params[:page_path].split("/")[2].split("-")[0])
 
     @inventory = Inventory.find(params[:inventory_id])
     hobo_show

@@ -70,13 +70,13 @@ describe Admin::PropertyGroupsController, :type => :controller do
     describe 'POST #create' do
       it "sets session seleted value if value id given" do
         post :create, property_group: @attributes,
-                      page_path: "http://marcator.informatom.com/path?product_id=17&value_id=23"
+                      page_path: "http://mercator.informatom.com/path?product_id=17&value_id=23"
         expect(session[:seleted_value]).to eql 23
       end
 
       it "redirects to productmanager property manager path of this product if product id given" do
         post :create, property_group: @attributes,
-                      page_path: "http://marcator.informatom.com/path?product_id=17"
+                      page_path: "http://mercator.informatom.com/path?product_id=17"
         expect(response).to redirect_to productmanager_property_manager_path(17)
       end
     end
@@ -93,13 +93,13 @@ describe Admin::PropertyGroupsController, :type => :controller do
     describe 'PATCH #update' do
       it "sets session seleted value if value id given" do
         patch :update, id: @instance, property_group: { name_de: "neuer Name" },
-                       page_path: "http://marcator.informatom.com/path?product_id=17&value_id=23"
+                       page_path: "http://mercator.informatom.com/path?product_id=17&value_id=23"
         expect(session[:seleted_value]).to eql 23
       end
 
       it "redirects to productmanager property manager path of this product if product id given" do
         patch :update, id: @instance, property_group: { name_de: "neuer Name" },
-                       page_path: "http://marcator.informatom.com/path?product_id=17"
+                       page_path: "http://mercator.informatom.com/path?product_id=17"
         expect(response).to redirect_to productmanager_property_manager_path(17)
       end
     end

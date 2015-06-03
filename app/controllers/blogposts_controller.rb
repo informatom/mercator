@@ -4,7 +4,6 @@ class BlogpostsController < ApplicationController
 
   hobo_model_controller
   auto_actions :index, :show
-  index_action :feed
 
 
   def index
@@ -29,7 +28,7 @@ class BlogpostsController < ApplicationController
   end
 
 
-  def feed
+  index_action :feed do
     @blogposts = Blogpost.where.not(publishing_date: nil)
     render 'feed.rss'
   end

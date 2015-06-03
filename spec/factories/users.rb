@@ -17,7 +17,8 @@ FactoryGirl.define do
 
 
     factory :dummy_customer do
-      surname "Dummy Customer"
+      surname       "Dummy Customer"
+      email_address "dummy.customer@informatom.com"
     end
 
 
@@ -29,10 +30,12 @@ FactoryGirl.define do
 
       factory :jobuser do
         surname "Job User"
+        email_address "jobuser@informatom.com"
       end
 
       factory :robot do
         surname "Robot"
+        email_address "robot@informatom.com"
       end
     end
 

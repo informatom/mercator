@@ -1,15 +1,10 @@
 class Admin::ProductsController < Admin::AdminSiteController
-
-  hobo_model_controller
-
   skip_before_filter :admin_required
   before_filter :productmanager_required
 
+  hobo_model_controller
   auto_actions :all
-  index_action :catch_orphans, :index_invalid, :reindex
-
   autocomplete :number
-
 
   def index
     if params[:search].present?
@@ -28,7 +23,7 @@ class Admin::ProductsController < Admin::AdminSiteController
   end
 
 
-  def catch_orphans
+  index_action :catch_orphans do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Task: products:catch_orphans")
     Product.catch_orphans
@@ -39,12 +34,12 @@ class Admin::ProductsController < Admin::AdminSiteController
   end
 
 
-  def index_invalid
+  index_action :index_invalid do
     @errorsarray = Product.all.reject{|p| p.valid?}.map{|p| [p.id, p.errors.messages]}
   end
 
 
-  def reindex
+  index_action :reindex do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Task: products:reindex")
     Product.reindex

@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
 
   hobo_model_controller
   auto_actions :show, :lifecycle
-  index_action :comparison
 
 
   def show
@@ -55,7 +54,7 @@ class ProductsController < ApplicationController
   end
 
 
-  def comparison
+  index_action :comparison do
     @nested_hash = ActiveSupport::OrderedHash.new
 
     @this = @products = Product.where(id: session[:compared]).paginate(:page => 1, :per_page => session[:compared].length)

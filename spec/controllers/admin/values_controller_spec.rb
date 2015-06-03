@@ -14,6 +14,7 @@ describe Admin::ValuesController, :type => :controller do
 
     it_behaves_like("crud actions")
 
+
     describe 'GET #index' do
       it "finds the records" do
         get :index

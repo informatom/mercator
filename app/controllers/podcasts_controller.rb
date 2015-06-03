@@ -4,7 +4,6 @@ class PodcastsController < ApplicationController
 
   hobo_model_controller
   auto_actions :index, :show
-  index_action :archive, :feed, :ogg
 
 
   def index
@@ -24,7 +23,7 @@ class PodcastsController < ApplicationController
   end
 
 
-  def archive
+  index_action :archive do
     self.this = Podcast.where.not(published_at: nil)
                        .paginate(page: params[:page], :per_page => 10)
                        .order(published_at: :desc)
@@ -39,13 +38,13 @@ class PodcastsController < ApplicationController
   end
 
 
-  def feed
+  index_action :feed do
     @podcasts = Podcast.where.not(published_at: nil)
     render 'feed.rss'
   end
 
 
-  def ogg
+  index_action :ogg do
     @podcasts = Podcast.where.not(published_at: nil)
     render 'ogg.rss'
   end

@@ -3,6 +3,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
   hobo_controller
   respond_to :html, :json, :js, :text
 
+
   def index
     if request_param(:product_id)
       @selected_product = Product.find(request_param(:product_id))
@@ -13,10 +14,12 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     end
   end
 
+
   def show_categorytree
     render json: childrenarray(objects: Category.arrange(order: :position),
                                name_method: :name_with_status).to_json
   end
+
 
   def manage_products
     if params[:cmd] == "save-records" && params[:changes]
@@ -55,6 +58,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       }
     }
   end
+
 
   def manage_category
     if params[:recid] == "0"
@@ -112,10 +116,12 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     end
   end
 
+
   def update_categories
     reorder_categories(categories: params[:categories], parent_id: nil)
     render nothing: true
   end
+
 
   def delete_category
     if params[:id] != "0"
@@ -140,6 +146,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       render json: category.errors.first
     end
   end
+
 
   def update_categorization
     categorization = Categorization.where(product_id:  params[:product_id],
