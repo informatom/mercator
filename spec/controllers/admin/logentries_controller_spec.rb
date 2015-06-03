@@ -13,7 +13,7 @@ describe Admin::LogentriesController, :type => :controller do
 
 
     describe 'GET #index' do
-      it "renders the :index template" do
+      it "finds the records" do
         get :index
         expect(assigns(:logentries).count).to eql 1
       end

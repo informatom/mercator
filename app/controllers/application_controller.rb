@@ -93,7 +93,9 @@ class ApplicationController < ActionController::Base
 
 
   def page_path_param(parameter)
-    query ||= URI::parse(params[:page_path]).query
+    if params[:page_path]
+      query ||= URI::parse(params[:page_path]).query
+    end
 
     if query.present?
       query_params = CGI.parse(query)

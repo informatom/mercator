@@ -6,15 +6,15 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
 
 
   def index
-    property_groups = PropertyGroup.all
+    @property_groups = PropertyGroup.all
 
     respond_to do |format|
       format.html { respond_with [] }
       format.json {
         render json: {
           status: "success",
-          total: property_groups.count,
-          records: property_groups.collect {
+          total: @property_groups.count,
+          records: @property_groups.collect {
             |property_group| {
               recid:      property_group.id,
               name_de:    property_group.name_de,

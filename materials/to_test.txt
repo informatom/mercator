@@ -1,7 +1,6 @@
 Controller Tests
 ================
 
-086 admin/property_groups_controller
 097 admin/properties_controller
 122 admin/categories_controller
 
@@ -24,7 +23,7 @@ Controller Tests
 236 productmanager/property_manager_controller
 299 productmanager/price_manager_controller
 ___________
-2399 (2655)
+2313 (2655)
 
 Lifecycle Actions
 =================

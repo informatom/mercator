@@ -15,7 +15,7 @@ describe Admin::ValuesController, :type => :controller do
     it_behaves_like("crud actions")
 
     describe 'GET #index' do
-      it "renders the :index template" do
+      it "finds the records" do
         get :index
         expect(assigns(:values).count).to eql 1
       end
