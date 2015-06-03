@@ -30,6 +30,7 @@ class Admin::LogentriesController < Admin::AdminSiteController
     end
 
     total = @logentries.count
+
     @logentries = @logentries.limit(params[:limit] || 100)
                            .offset(params[:offset] || 0)
 

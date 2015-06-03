@@ -43,7 +43,7 @@ describe Value do
   # --- Instance Methods --- #
 
   context "display" do
-    it "textual value without unit properly" do
+    it "allows textual value without unit" do
       value = build(:value,
                     state: "textual",
                     amount: nil,
@@ -53,7 +53,7 @@ describe Value do
       expect(value.display).to eql("English Value ")
     end
 
-    it "textual value with unit properly" do
+    it "allows textual value with unit" do
       value = build(:value,
                     state: "textual",
                     amount: nil,
@@ -61,7 +61,7 @@ describe Value do
       expect(value.display).to eql("English Value kg")
     end
 
-    it "numeric value without unit properly" do
+    it "allows numeric value without unit" do
       value = build(:value,
                     state: "numeric",
                     title_de: nil,
@@ -72,7 +72,7 @@ describe Value do
       expect(value.display).to eql("42 ")
     end
 
-    it "numeric value with unit properly" do
+    it "allows numeric value with unit properly" do
       value = build(:value,
                     state: "numeric",
                     title_de: nil,
@@ -81,7 +81,7 @@ describe Value do
       expect(value.display).to eql("42 kg")
     end
 
-    it "boolean (flag) value properly" do
+    it "allows boolean (flag) value" do
       value = build(:value,
                     state: "flag",
                     title_de: nil,

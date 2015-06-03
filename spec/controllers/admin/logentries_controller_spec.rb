@@ -12,7 +12,7 @@ describe Admin::LogentriesController, :type => :controller do
     it_behaves_like("crud edit")
 
 
-    describe 'GET #index', focus: true do
+    describe 'GET #index' do
       it "renders the :index template" do
         get :index
         expect(assigns(:logentries).count).to eql 1
@@ -30,6 +30,22 @@ describe Admin::LogentriesController, :type => :controller do
       it "searches returns nil if nothing found" do
         get :index, search: {"0"=> {field: "message", value: "not here"}}
         expect(assigns(:logentries)).to match_array([])
+      end
+
+      it "responds empty for html requests" do
+        get :index
+        expect(response.body).to eql ""
+      end
+
+      it "responds with correct json" do
+        request.headers["accept"] = 'application/json'
+        get :index
+        expect(response.body).to be_json_eql({status: "success",
+                                              total: 1,
+                                              records: [{recid: 1,
+                                                          severity: "info",
+                                                          message: "Just a message.",
+                                                          created_at: "2015-06-03 10:53:47"}]}.to_json)
       end
     end
 
