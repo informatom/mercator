@@ -1,4 +1,4 @@
-class Admin::@LogentriesController < Admin::AdminSiteController
+class Admin::LogentriesController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all
@@ -26,7 +26,7 @@ class Admin::@LogentriesController < Admin::AdminSiteController
     end
 
     if params[:search]
-        @logentries = @logentries.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
+      @logentries = @logentries.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
     end
 
     total = @logentries.count
@@ -55,7 +55,7 @@ class Admin::@LogentriesController < Admin::AdminSiteController
 
   def destroy
     hobo_destroy do
-      render json: '{ status: "success" }' if request.xhr?
+      render json: { status: "success" } if request.xhr?
     end
   end
 end
