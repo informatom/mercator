@@ -1,34 +1,35 @@
 Controller Tests
 ================
 
-62 admin/content_elements_controller
-98 admin/webpages_controller
+062 admin/content_elements_controller
+098 admin/webpages_controller
 
-46 admin/logentries_controller
-50 admin/values_controller
-80 admin/property_groups_controller
-97 admin/properties_controller
+046 admin/logentries_controller
+050 admin/values_controller
+080 admin/property_groups_controller
+097 admin/properties_controller
 122 admin/categories_controller
 
-65 categories_controller
-75 products_controller
-76 addresses_controller
-95 conversations_controller
-96 orders_controller
+065 categories_controller
+075 products_controller
+076 addresses_controller
+095 conversations_controller
+096 orders_controller
 112 offers_controller
 124 application_controller
 124 billing_addresses_controller
 149 users_controller
 
-14 contentmanager/contentmanager_site_controller
+014 contentmanager/contentmanager_site_controller
 192 contentmanager/front_controller
 
-13 productmanager/productmanager_site_controller
+013 productmanager/productmanager_site_controller
 189 productmanager/front_controller
 235 productmanager/relation_manager_controller
 236 productmanager/property_manager_controller
 299 productmanager/price_manager_controller
-
+===
+2649
 
 Lifecycle Actions
 =================
