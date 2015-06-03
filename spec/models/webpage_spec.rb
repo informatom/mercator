@@ -39,7 +39,8 @@ describe Webpage do
       @child_webpage = create(:webpage, title_de: "Child page",
                                         state: "published",
                                         parent: @webpage,
-                                        page_template: @page_template)
+                                        page_template: @page_template,
+                                        slug: "child page")
       expect(@webpage.menu).to eql true
     end
 

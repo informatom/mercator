@@ -1,6 +1,15 @@
 Controller Tests
 ================
 
+014 contentmanager/contentmanager_site_controller
+192 contentmanager/front_controller
+
+013 productmanager/productmanager_site_controller
+189 productmanager/front_controller
+235 productmanager/relation_manager_controller
+236 productmanager/property_manager_controller
+299 productmanager/price_manager_controller
+
 065 categories_controller
 075 products_controller
 076 addresses_controller
@@ -10,15 +19,6 @@ Controller Tests
 124 application_controller
 124 billing_addresses_controller
 149 users_controller
-
-014 contentmanager/contentmanager_site_controller
-192 contentmanager/front_controller
-
-013 productmanager/productmanager_site_controller
-189 productmanager/front_controller
-235 productmanager/relation_manager_controller
-236 productmanager/property_manager_controller
-299 productmanager/price_manager_controller
 ___________
 2094 (2655)
 

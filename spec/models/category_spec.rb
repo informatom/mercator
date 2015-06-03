@@ -161,7 +161,7 @@ describe Category do
     context "property_groups_hash" do
       it "displays the property groups hash" do
 
-        @expected_property_hash = {"property group"=>["property", "Property 2", "Property 3"]}
+        @expected_property_hash = {"Eigenschaftengruppe" => ["Eigenschaft", "Property 2", "Property 3"]}
         expect(@category.property_groups_hash).to eql @expected_property_hash
       end
     end
@@ -169,7 +169,7 @@ describe Category do
 
     context "update_property_hash" do
       it "updates the filters attribute" do
-        @expected_property_hash = {"property group"=>["property", "Property 2", "Property 3"]}
+        @expected_property_hash = {"Eigenschaftengruppe" => ["Eigenschaft", "Property 2", "Property 3"]}
         @category.update_property_hash
         expect(@category.filters).to eql @expected_property_hash
       end
