@@ -3,8 +3,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   hobo_controller
   respond_to :html, :json, :js
 
-  def index
-  end
+  def index; end
 
   def show_foldertree
     render json: childrenarray(objects: Folder.arrange(order: :position),
@@ -12,15 +11,18 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
                                folder: true).to_json
   end
 
+
   def show_webpagestree
     render json: childrenarray(objects: Webpage.arrange(order: :position),
                                name_method: :title_with_status).to_json
   end
 
+
   def update_webpages
     reorder_webpages(webpages: params[:webpages], parent_id: nil)
     render nothing: true
   end
+
 
   def manage_webpage
     if params[:recid] == "0"
@@ -65,6 +67,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     end
   end
 
+
   def show_assignments
     webpage = Webpage.find(params[:id])
 
@@ -86,10 +89,12 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     }
   end
 
+
   def update_folders
     reorder_folders(folders: params[:folders], parent_id: nil)
     render nothing: true
   end
+
 
   def show_content_elements
     @content_elements = ContentElement.where(folder_id: params[:id])
@@ -101,6 +106,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     }
   end
 
+
   def update_content_element
     content_element = ContentElement.find(params[:id])
     @old_folder_id = content_element.folder_id
@@ -108,11 +114,13 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     render text: @old_folder_id
   end
 
+
   def update_page_content_element_assignment
     page_content_element_assignment = PageContentElementAssignment.find(params[:id])
     page_content_element_assignment.update(content_element_id: params[:content_element_id])
     render text: page_content_element_assignment.webpage_id
   end
+
 
   def content_element
     content_element = (params[:recid] == "0") ? NullObject.new() : ContentElement.find(params[:recid])
@@ -132,15 +140,18 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     }
   end
 
+
   def get_thumbnails
     @content_elements = ContentElement.where(folder_id: params[:id]).where.not(photo_file_name: nil)
     session[:selected_folder_id] = params[:id].to_i
   end
 
+
   def set_seleted_content_element
     session[:selected_content_element_id] = params[:id].to_i
     render json: { status: "success" }
   end
+
 
   def delete_assignment
     page_content_element_assignment = PageContentElementAssignment.find(params[:id])
@@ -152,6 +163,7 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
     end
   end
 
+
 protected
   def reorder_webpages(webpages: nil, parent_id: nil)
     webpages.each do |position, webpages|
@@ -162,6 +174,7 @@ protected
       reorder_webpages(webpages: webpages["children"], parent_id: webpage.id) if webpages["children"]
     end
   end
+
 
   def reorder_folders(folders: nil, parent_id: nil)
     folders.each do |position, folders|
@@ -176,6 +189,7 @@ protected
       end
     end
   end
+
 
   def childrenarray(objects: nil, name_method: nil, folder: false)
     childrenarray = []
