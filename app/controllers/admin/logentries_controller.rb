@@ -1,22 +1,36 @@
-class Admin::LogentriesController < Admin::AdminSiteController
+class Admin::@LogentriesController < Admin::AdminSiteController
 
   hobo_model_controller
   auto_actions :all
 
   def index
-    logentries = Logentry
+    @logentries = Logentry
+
     if params[:sort]
-      sortparam = params[:sort]["0"][:field] == "recid" ? "id" : params[:sort]["0"][:field]
+      sortparam =
+        if params[:sort]["0"][:field] == "recid"
+          "id"
+        else
+          params[:sort]["0"][:field]
+        end
       sortparam ||= :id
-      direction = "DESC"
-      direction = "ASC" if params[:sort]["0"][:direction] == "asc"
-      logentries = logentries.order(sortparam + ' ' + direction)
+
+      direction =
+        if params[:sort]["0"][:direction] == "asc"
+          "ASC"
+        else
+          "DESC"
+        end
+
+      @logentries = @logentries.order(sortparam + ' ' + direction)
     end
+
     if params[:search]
-        logentries = logentries.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
+        @logentries = @logentries.where("#{params[:search]["0"][:field]} LIKE '%#{params[:search]["0"][:value]}%'")
     end
-    total = logentries.count
-    logentries = logentries.limit(params[:limit] || 100)
+
+    total = @logentries.count
+    @logentries = @logentries.limit(params[:limit] || 100)
                            .offset(params[:offset] || 0)
 
     respond_to do |format|
@@ -25,7 +39,7 @@ class Admin::LogentriesController < Admin::AdminSiteController
         render json: {
           status: "success",
           total: total,
-          records: logentries.collect {
+          records: @logentries.collect {
             |logentry| {
               recid:          logentry.id,
               severity:       logentry.severity,
@@ -37,6 +51,7 @@ class Admin::LogentriesController < Admin::AdminSiteController
       }
     end
   end
+
 
   def destroy
     hobo_destroy do
