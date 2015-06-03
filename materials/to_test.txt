@@ -1,7 +1,6 @@
 Controller Tests
 ================
 
-014 contentmanager/contentmanager_site_controller
 192 contentmanager/front_controller
 
 013 productmanager/productmanager_site_controller
