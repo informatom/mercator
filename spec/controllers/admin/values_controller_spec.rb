@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ValuesController , :type => :controller do
+describe Admin::ValuesController, :type => :controller do
 
   describe "crud actions" do
     before :each do

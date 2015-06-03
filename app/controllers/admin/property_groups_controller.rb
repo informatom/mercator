@@ -4,6 +4,7 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
   auto_actions :all
   autocomplete :name
 
+
   def index
     property_groups = PropertyGroup.all
 
@@ -28,6 +29,7 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
     end
   end
 
+
   def destroy
     begin
       @property_group = PropertyGroup.find(params[:id])
@@ -46,12 +48,14 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
     end
   end
 
+
   def new
     if request_param(:product_id)
       @cancelpath = productmanager_property_manager_path(request_param(:product_id).to_i)
     end
     hobo_new
   end
+
 
   def create
     if product_id = page_path_param(:product_id).try(:to_i)
@@ -62,12 +66,14 @@ class Admin::PropertyGroupsController < Admin::AdminSiteController
     end
   end
 
+
   def edit
     if request_param(:product_id)
       @cancelpath = productmanager_property_manager_path(request_param(:product_id).to_i)
     end
     hobo_edit
   end
+
 
   def update
     if product_id = page_path_param(:product_id).try(:to_i)
