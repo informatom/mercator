@@ -110,17 +110,17 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
 
   def update_content_element
-    content_element = ContentElement.find(params[:id])
-    @old_folder_id = content_element.folder_id
-    content_element.update(folder_id: params[:folder_id])
+    @content_element = ContentElement.find(params[:id])
+    @old_folder_id = @content_element.folder_id
+    @content_element.update(folder_id: params[:folder_id])
     render text: @old_folder_id
   end
 
 
   def update_page_content_element_assignment
-    page_content_element_assignment = PageContentElementAssignment.find(params[:id])
-    page_content_element_assignment.update(content_element_id: params[:content_element_id])
-    render text: page_content_element_assignment.webpage_id
+    @page_content_element_assignment = PageContentElementAssignment.find(params[:id])
+    @page_content_element_assignment.update(content_element_id: params[:content_element_id])
+    render text: @page_content_element_assignment.webpage_id
   end
 
 

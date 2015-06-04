@@ -355,12 +355,111 @@ describe Contentmanager::FrontController, :type => :controller do
         post :update_folders, folders: @folder_param
       end
     end
+
+
+    describe "GET #show_content_elements" do
+      before :each do
+        @folder = create(:folder)
+        @content_element = create(:content_element, folder_id: @folder.id)
+        @second_content_element = create(:content_element, folder_id: @folder.id,
+                                                           name_de: "noch ein Baustein")
+        JsonSpec.configure {exclude_keys "created_at", "updated_at", "photo_url", "thumb_url"}
+      end
+
+      it "reads the content elements" do
+        get :show_content_elements, id: @folder.id
+        expect(assigns(:content_elements)).to match_array [@content_element, @second_content_element]
+      end
+
+      it "renders content elements the json" do
+        get :show_content_elements, id: @folder.id
+        expect(response.body).to be_json_eql({ records: [{ content_de: "Ich bin der deutsche Inhalt",
+                                                           content_en: "I am the English content",
+                                                           document_file_name: "dummy_document.pdf",
+                                                           markup: "html",
+                                                           name_de: "Ich bin der deutsche Titel",
+                                                           name_en: "I am the english title",
+                                                           photo_file_name: "dummy_image.jpg",
+                                                           recid: @content_element.id },
+                                                         { content_de: "Ich bin der deutsche Inhalt",
+                                                           content_en: "I am the English content",
+                                                           document_file_name: "dummy_document.pdf",
+                                                           markup: "html",
+                                                           name_de: "noch ein Baustein",
+                                                           name_en: "I am the english title",
+                                                           photo_file_name: "dummy_image.jpg",
+                                                           recid: @second_content_element.id }],
+                                               status: "success",
+                                               total: 2 }.to_json)
+      end
+    end
+
+
+    describe "POST #update_content_element" do
+      before :each do
+        @old_folder = create(:folder, position: 0)
+        @new_folder = create(:folder, position: 1)
+        @content_element = create(:content_element, folder_id: @old_folder.id)
+      end
+
+      it "reads the right content element" do
+        post :update_content_element, id: @content_element.id,
+                                      folder_id: @new_folder.id
+        expect(assigns(:content_element)).to eql @content_element
+      end
+
+      it "updates the folder id" do
+        post :update_content_element, id: @content_element.id,
+                                      folder_id: @new_folder.id
+        expect(assigns(:content_element).folder_id).to eql @new_folder.id
+      end
+
+      it "returns the old folder id" do
+        post :update_content_element, id: @content_element.id,
+                                      folder_id: @new_folder.id
+        expect(response.body).to eql @old_folder.id.to_s
+      end
+    end
+
+
+    describe "POST update_page_content_element_assignment", focus: true do
+      before :each do
+        @page_template = create(:page_template)
+        @page_template.placeholder_list.add("tag_one")
+        @page_template.save # otherwise placeholders are not persisted
+
+        @webpage = create(:webpage, page_template_id: @page_template.id)
+
+        @content_element = create(:content_element)
+        @assignment = create(:page_content_element_assignment, webpage_id: @webpage.id,
+                                                               content_element_id: nil,
+                                                               used_as: "tag_one")
+      end
+
+      it "reads the right page content element assignment" do
+        post :update_page_content_element_assignment, id: @assignment.id,
+                                                      content_element_id: @content_element.id
+        expect(assigns(:page_content_element_assignment)).to eql @assignment
+      end
+
+      it "updates the content element id" do
+        post :update_page_content_element_assignment, id: @assignment.id,
+                                                      content_element_id: @content_element.id
+        expect(assigns(:page_content_element_assignment).content_element_id).to eql @content_element.id
+      end
+
+      it "returns the webpage id" do
+        post :update_page_content_element_assignment, id: @assignment.id,
+                                                      content_element_id: @content_element.id
+        expect(response.body).to eql assigns(:page_content_element_assignment).webpage_id.to_s
+      end
+    end
+
+
+
   end
 
-    # get    'front/show_content_elements/:id'  => 'front#show_content_elements'
     # get    'front/get_thumbnails/:id'         => 'front#get_thumbnails'
-    # post   'front/update_page_content_element_assignment/:id' => 'front#update_page_content_element_assignment'
-    # post   'front/update_content_element/:id' => 'front#update_content_element'
     # post   'front/folder'                     => 'front#folder'
     # post   'front/delete_folder/:id'          => 'front#delete_folder'
     # post   'front/content_element'            => 'front#content_element'
