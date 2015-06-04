@@ -422,7 +422,7 @@ describe Contentmanager::FrontController, :type => :controller do
     end
 
 
-    describe "POST update_page_content_element_assignment", focus: true do
+    describe "POST update_page_content_element_assignment" do
       before :each do
         @page_template = create(:page_template)
         @page_template.placeholder_list.add("tag_one")
@@ -456,15 +456,97 @@ describe Contentmanager::FrontController, :type => :controller do
     end
 
 
+    describe "DELETE #delete_assignment" do
+      before :each do
+        @page_template = create(:page_template)
+        @page_template.placeholder_list.add("tag_one")
+        @page_template.save # otherwise placeholders are not persisted
+
+        @webpage = create(:webpage, page_template_id: @page_template.id)
+
+        @content_element = create(:content_element)
+        @assignment = create(:page_content_element_assignment, webpage_id: @webpage.id,
+                                                               content_element_id: @content_element.id,
+                                                               used_as: "tag_one")
+      end
+
+      it "reads the right page content element assignment" do
+        post :delete_assignment, id: @assignment.id
+        expect(assigns(:page_content_element_assignment)).to eql @assignment
+      end
+
+      it "updates the content element id" do
+        post :delete_assignment, id: @assignment.id
+        expect(assigns(:page_content_element_assignment).content_element_id).to eql nil
+      end
+
+      it "returns the webpage id" do
+        post :delete_assignment, id: @assignment.id
+        expect(response.body).to eql assigns(:page_content_element_assignment).webpage_id.to_s
+      end
+    end
+
+
+    describe "POST #content_element" do
+      before :each do
+        @content_element = create(:content_element)
+      end
+
+      it "reads the content element" do
+        post :content_element, recid: @content_element.id
+        expect(assigns(:content_element)).to eql @content_element
+      end
+
+      it "returns the json data" do
+        post :content_element, recid: @content_element.id
+        expect(response.body).to be_json_eql({record: {content_de: "Ich bin der deutsche Inhalt",
+                                                       content_en: "I am the English content",
+                                                       document: "dummy_image.jpg",
+                                                       markup: "html",
+                                                       name_de: "Ich bin der deutsche Titel",
+                                                       name_en: "I am the english title",
+                                                       photo: "dummy_image.jpg",
+                                                       recid: @content_element.id },
+                                              status: "success"} .to_json)
+      end
+    end
+
+
+    describe "GET #get_thumbnails" do
+      before :each do
+        @folder = create(:folder, position: 1)
+        @content_element_without_photo = create(:content_element, photo: nil,
+                                                                  folder_id: @folder.id,
+                                                                  name_de: "ohne Photo")
+        @content_element_with_photo = create(:content_element, folder_id: @folder.id,
+                                                               name_de: "mit Photo")
+      end
+
+      it "reads the content elements" do
+        get :get_thumbnails, id: @folder.id
+        expect(assigns(:content_elements)).to match_array [@content_element_with_photo]
+      end
+
+      it "sets in session the selected folder id" do
+        get :get_thumbnails, id: @folder.id
+        expect(session[:selected_folder_id]).to eql @folder.id
+      end
+    end
+
+
+    describe "POST #set_seleted_content_element" do
+      it "sets in session the selected oontent element id" do
+        post :set_seleted_content_element, id: 17
+        expect(session[:selected_content_element_id]).to eql 17
+      end
+
+      it "renders json success: true" do
+        post :set_seleted_content_element, id: 17
+        expect(response.body).to be_json_eql({ status: "success" } .to_json)
+      end
+    end
 
   end
-
-    # get    'front/get_thumbnails/:id'         => 'front#get_thumbnails'
-    # post   'front/folder'                     => 'front#folder'
-    # post   'front/delete_folder/:id'          => 'front#delete_folder'
-    # post   'front/content_element'            => 'front#content_element'
-    # delete 'front/assignment/:id'             => 'front#delete_assignment'
-    # post   'front/set_seleted_content_element/:id' => 'front#set_seleted_content_element'
 
   # reorder_webpages is tested inherently by update_webpages
   # reorder_folders is tested inherently by update_f

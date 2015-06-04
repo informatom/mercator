@@ -125,37 +125,43 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
 
   def delete_assignment
-    page_content_element_assignment = PageContentElementAssignment.find(params[:id])
+    @page_content_element_assignment = PageContentElementAssignment.find(params[:id])
 
-    if page_content_element_assignment.update(content_element_id: nil)
-      render text: page_content_element_assignment.webpage_id
+    if @page_content_element_assignment.update(content_element_id: nil)
+      render text: @page_content_element_assignment.webpage_id
     else
-      render json: page_content_element_assignment.errors.first
+      render json: @page_content_element_assignment.errors.first
     end
   end
 
 
   def content_element
-    content_element = (params[:recid] == "0") ? NullObject.new() : ContentElement.find(params[:recid])
+    @content_element =
+      if params[:recid] == "0"
+        NullObject.new()
+      else
+        ContentElement.find(params[:recid])
+      end
 
     render json: {
       status: "success",
       record: {
-        recid:      content_element.id,
-        name_de:    content_element.name_de,
-        name_en:    content_element.name_en,
-        markup:     content_element.markup,
-        content_de: content_element.content_de,
-        content_en: content_element.content_en,
-        photo:      content_element.photo_file_name,
-        document:   content_element.photo_file_name
+        recid:      @content_element.id,
+        name_de:    @content_element.name_de,
+        name_en:    @content_element.name_en,
+        markup:     @content_element.markup,
+        content_de: @content_element.content_de,
+        content_en: @content_element.content_en,
+        photo:      @content_element.photo_file_name,
+        document:   @content_element.photo_file_name
       }
     }
   end
 
 
   def get_thumbnails
-    @content_elements = ContentElement.where(folder_id: params[:id]).where.not(photo_file_name: nil)
+    @content_elements = ContentElement.where(folder_id: params[:id])
+                                      .where.not(photo_file_name: nil)
     session[:selected_folder_id] = params[:id].to_i
   end
 
