@@ -351,8 +351,8 @@ describe Contentmanager::FrontController, :type => :controller do
       end
 
       it "calls reorder folders intrinsically" do
-        expect(controller).to receive(:reorder_folders).with(folders: @folder_param, parent_id: nil)
-        post :update_folders, folders: @folder_param
+        expect(controller).to receive(:reorder_folders).with(folders: @folders_param, parent_id: nil)
+        post :update_folders, folders: @folders_param
       end
     end
 

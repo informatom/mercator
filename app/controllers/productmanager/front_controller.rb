@@ -62,55 +62,55 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
 
   def manage_category
     if params[:recid] == "0"
-      category = Category.new
+      @category = Category.new
     else
-      category = Category.find(params[:id])
+      @category = Category.find(params[:id])
     end
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
-      category.name_de             = attrs[:name_de]
-      category.name_en             = attrs[:name_en]
-      category.description_de      = attrs[:description_de]
-      category.description_en      = attrs[:description_en]
-      category.long_description_de = attrs[:long_description_de]
-      category.long_description_en = attrs[:long_description_en]
-      category.state               = attrs[:state][:id]
+      @category.name_de             = attrs[:name_de]
+      @category.name_en             = attrs[:name_en]
+      @category.description_de      = attrs[:description_de]
+      @category.description_en      = attrs[:description_en]
+      @category.long_description_de = attrs[:long_description_de]
+      @category.long_description_en = attrs[:long_description_en]
+      @category.state               = attrs[:state][:id]
       attrs[:position] = 0 if attrs[:position] == ""
-      category.position            = attrs[:position]
-      category.filtermin           = attrs[:filtermin]
-      category.filtermax           = attrs[:filtermax]
-      category.parent_id           = attrs[:parent_id]
-      category.usage               = attrs[:usage][:id]
-      category.squeel_condition    = attrs[:squeel_condition]
-      success = category.save
+      @category.position            = attrs[:position]
+      @category.filtermin           = attrs[:filtermin]
+      @category.filtermax           = attrs[:filtermax]
+      @category.parent_id           = attrs[:parent_id]
+      @category.usage               = attrs[:usage][:id]
+      @category.squeel_condition    = attrs[:squeel_condition]
+      success = @category.save
     end
 
     if success == false
       render json: { status: "error",
-                     message: category.errors.first }
+                     message: @category.errors.first }
     else
       render json: {
         status: "success",
         record: {
-          recid:               category.id,
-          name_de:             category.name_de,
-          name_en:             category.name_en,
-          description_de:      category.description_de,
-          description_en:      category.description_en,
-          long_description_de: category.long_description_de,
-          long_description_en: category.long_description_en,
-          position:            category.position,
-          state:               {id: category.state},
-          filters:             category.filters.to_s,
-          filtermin:           category.filtermin,
-          filtermax:           category.filtermax,
-          created_at:          I18n.l(category.created_at),
-          updated_at:          I18n.l(category.updated_at),
-          parent_name:         (category.parent.name if category.parent),
-          parent_id:           (category.parent.id   if category.parent),
-          usage:               {id: category.usage},
-          squeel_condition:    category.squeel_condition
+          recid:               @category.id,
+          name_de:             @category.name_de,
+          name_en:             @category.name_en,
+          description_de:      @category.description_de,
+          description_en:      @category.description_en,
+          long_description_de: @category.long_description_de,
+          long_description_en: @category.long_description_en,
+          position:            @category.position,
+          state:               {id: @category.state},
+          filters:             @category.filters.to_s,
+          filtermin:           @category.filtermin,
+          filtermax:           @category.filtermax,
+          created_at:          I18n.l(@category.created_at),
+          updated_at:          I18n.l(@category.updated_at),
+          parent_name:         (@category.parent.name if @category.parent),
+          parent_id:           (@category.parent.id   if @category.parent),
+          usage:               {id: @category.usage},
+          squeel_condition:    @category.squeel_condition
         }
       }
     end
@@ -124,9 +124,9 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
 
 
   def delete_category
-    if params[:id] != "0"
+    begin
       category = Category.find(params[:id])
-    else
+    rescue
       render :text => I18n.t("js.pm.Category.cannot_delete.no_category_selected"),
              :status => 403 and return
     end
@@ -135,6 +135,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       render :text => I18n.t("js.pm.Category.cannot_delete.children"),
              :status => 403 and return
     end
+
     if category.products.any?
       render :text => I18n.t("js.pm.Category.cannot_delete.products"),
              :status => 403 and return
@@ -149,14 +150,14 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
 
 
   def update_categorization
-    categorization = Categorization.where(product_id:  params[:product_id],
+    @categorization = Categorization.where(product_id:  params[:product_id],
                                           category_id: params[:old_category_id])
-                                   .first
-    if categorization.update(category_id: params[:new_category_id])
-      category_name =  Category.find(params[:new_category_id]).name
-      render text: category_name
+                                    .first
+    if @categorization.update(category_id: params[:new_category_id])
+      @category_name =  Category.find(params[:new_category_id]).name
+      render text: @category_name
     else
-      render text: categorization.errors.first, :status => 403
+      render text: @categorization.errors.first, :status => 403
     end
   end
 
