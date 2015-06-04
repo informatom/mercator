@@ -1,7 +1,5 @@
-2067 Controller Tests (2655/2067)
+1875 Controller Tests (2655/2067)
 =================================
-
-192 contentmanager/front_controller
 
 189 productmanager/front_controller
 235 productmanager/relation_manager_controller
@@ -107,5 +105,5 @@
 
 011 @content_element.parse()
 
-----------------
-5065 / 200 = 25
+----------------------
+4873 (5065 / 200 = 25)

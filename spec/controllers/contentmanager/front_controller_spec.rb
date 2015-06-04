@@ -549,6 +549,6 @@ describe Contentmanager::FrontController, :type => :controller do
   end
 
   # reorder_webpages is tested inherently by update_webpages
-  # reorder_folders is tested inherently by update_f
+  # reorder_folders is tested inherently by update_folders
   # childrenarray is tested inherently by show_foldertree and show_webpagestree
 end

@@ -33,13 +33,13 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       end
     end
 
-    category = Category.find(params[:id])
-    products = category.products
+    @category = Category.find(params[:id])
+    @products = @category.products
 
     render json: {
       status: "success",
-      total: products.count,
-      records: products.collect {
+      total: @products.count,
+      records: @products.collect {
         |product| {
           recid: product.id,
           number: product.number,
@@ -160,8 +160,8 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     end
   end
 
-protected
 
+protected
   def childrenarray(objects: nil, name_method: nil, folder: false)
     childrenarray = []
     objects.each do |object, children|
@@ -175,6 +175,7 @@ protected
     end
     return childrenarray
   end
+
 
   def reorder_categories(categories: nil,
                          parent_id: nil,
