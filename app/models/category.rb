@@ -54,6 +54,9 @@ class Category < ActiveRecord::Base
   has_many :values, :through => :products
   has_many :properties, :through => :products
 
+
+  # --- Lifecycle --- #
+
   lifecycle do
     state :new, :default => true
     state :active, :deprecated, :switched_off
@@ -83,6 +86,7 @@ class Category < ActiveRecord::Base
                :available_to => "User.administrator",
                :subsite => "admin"
   end
+
 
   # --- Permissions --- #
 

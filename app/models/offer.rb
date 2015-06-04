@@ -48,6 +48,9 @@ class Offer < ActiveRecord::Base
 
   has_many :offeritems, dependent: :destroy, accessible: true
 
+
+  # --- Lifecycle --- #
+
   lifecycle do
     state :in_progress, :default => true
     state :pending_approval, :valid, :invalid, :accepted
@@ -108,6 +111,7 @@ class Offer < ActiveRecord::Base
                             type: "all")
     end
   end
+
 
   # --- Permissions --- #
 

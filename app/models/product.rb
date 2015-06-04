@@ -63,6 +63,8 @@ class Product < ActiveRecord::Base
   has_many :features, :inverse_of => :product
 
 
+  # --- Lifecycle --- #
+
   lifecycle do
     state :new, :default => true
     state :announced, :active, :deprecated

@@ -25,6 +25,7 @@ class Conversation < ActiveRecord::Base
   has_many :products, :through => :suggestions
   has_many :suggestions
 
+
   # --- Lifecycles --- #
 
   lifecycle do
@@ -35,6 +36,7 @@ class Conversation < ActiveRecord::Base
     transition :feedback, {:active => :active}, available_to: :customer, params: [:content, :mode]
     transition :call_for_consultant, {:active => :active}, available_to: :customer
   end
+
 
   # --- Permissions --- #
 

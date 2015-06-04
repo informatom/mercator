@@ -27,6 +27,9 @@ class Property < ActiveRecord::Base
   has_many :products, :through => :values
   has_many :values, dependent: :destroy, :inverse_of => :property, :accessible => true
 
+
+  # --- Lifecycle --- #
+
   lifecycle do
     state :filterable, :default => true
     state :unfilterable
@@ -39,6 +42,7 @@ class Property < ActiveRecord::Base
                :available_to => "User.administrator",
                :subsite => "admin"
   end
+
 
   # --- Permissions --- #
 

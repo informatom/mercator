@@ -1,5 +1,5 @@
-Controller Tests
-================
+2067 Controller Tests (2655/2067)
+=================================
 
 192 contentmanager/front_controller
 
@@ -17,97 +17,95 @@ Controller Tests
 124 application_controller
 124 billing_addresses_controller
 149 users_controller
-___________
-2067 (2655)
-
-Lifecycle Actions
-=================
-
-Address
-BillingAddress
-Category
-Conversation
-Lineitem
-Offer
-Offeritem
-Order
-Product
-Property
-User
-Value
-Webpage
 
 
-Mailer Tests
+463 Lifecycle Actions
+=====================
+
+013 Address
+013 BillingAddress
+033 Category
+012 Conversation
+085 Lineitem
+054 Offer
+020 Offeritem
+123 Order
+019 Product
+016 Property
+050 User
+008 Value
+017 Webpage
+
+
+055 Mailer Tests
+================
+
+017 order_mailer
+038 user_mailer
+
+
+190 Bechlem
+===========
+
+049 access
+026 base
+038 vcategory
+017 vitem_supply
+060 consumables_controller
+
+
+438 Icecat
+==========
+
+048 access
+316 metadatum
+060 product_extensions
+014 metadata_controller
+
+347 MPay
+========
+
+079 confirmation
+066 payment
+099 mpay24_order_extension
+
+019 admin/payments_controller
+050 confirmations_controller
+034 orders_controller_extensions
+
+
+1494 Mesonic
 ============
+025 application_controler
+014 users_controller_extensions
 
-order_mailer
-user_mailer
+024 inventory_extensions
+045 order_extensions
+099 user_extensions
 
-
-Bechlem
-=======
-
-access
-base
-vcategory
-vitem_supply
-
-application_controller
-consumables_controller
-
-
-Icecat
-======
-metadata_controller
-application_controller
-access
-metadatum
-product_extensions
-
-MPay
-
-====
-confirmation
-payment
-mpay24_order_extension
-
-admin/payments_controller
-application_controller
-confirmations_controller
-orders_controller_extensions
+027 akt_mandant
+084 artikelstamm
+017 belegart
+085 bild
+040 category
+017 eigenschaft
+029 ersatzartikel
+079 kontakte_stamm
+075 kontenstamm_adresse
+046 kontenstamm_fakt
+046 kontenstamm_fibu
+070 kontenstamm
+104 order_item
+135 order
+051 price
+357 webartikel
+025 zahlungsart
 
 
-Mesonic
-=======
-application_controler
-users_controller_extensions
+011 Possibly later
+==================
 
-inventory_extensions
-order_extensions
-user_extensions
+011 @content_element.parse()
 
-akt_mandant
-artikelstamm
-base
-belegart
-bild
-category
-eigenschaft
-ersatzartikel
-kontakte_stamm
-kontenstamm_adresse
-kontenstamm_fakt
-kontenstamm_fibu
-kontenstamm
-order_item
-order
-price
-webartikel
-zahlungsart
-
-
-Possibly later
-==============
-
-1 @content_element.parse()
+----------------
+5065 / 200 = 25

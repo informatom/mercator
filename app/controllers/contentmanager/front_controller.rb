@@ -26,42 +26,43 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def manage_webpage
     if params[:recid] == "0"
-      webpage = Webpage.new
+      @webpage = Webpage.new
     else
-      webpage = Webpage.find(params[:id])
-      session[:selected_webpage_id] = webpage.id
+      @webpage = Webpage.find(params[:id])
     end
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
-      webpage.parent_id        = attrs[:parent_id] if attrs[:parent_id]
-      webpage.position         = attrs[:position]
-      webpage.title_de         = attrs[:title_de]
-      webpage.title_en         = attrs[:title_en]
-      webpage.state            = attrs[:state][:id]
-      webpage.url              = attrs[:url]
-      webpage.slug             = attrs[:slug]
-      webpage.seo_description  = attrs[:seo_description]
-      webpage.page_template_id = attrs[:page_template_id][:id]
-      success = webpage.save
+      @webpage.parent_id        = attrs[:parent_id] if attrs[:parent_id]
+      @webpage.position         = attrs[:position]
+      @webpage.title_de         = attrs[:title_de]
+      @webpage.title_en         = attrs[:title_en]
+      @webpage.state            = attrs[:state][:id]
+      @webpage.url              = attrs[:url]
+      @webpage.slug             = attrs[:slug]
+      @webpage.seo_description  = attrs[:seo_description]
+      @webpage.page_template_id = attrs[:page_template_id][:id]
+      success = @webpage.save
     end
+
+    session[:selected_webpage_id] = @webpage.id
 
     if success == false
       render json: { status: "error",
-                     message: webpage.errors.first }
+                     message: @webpage.errors.first }
     else
       render json: {
         status: "success",
         record: {
-          recid:            webpage.id,
-          title_de:         webpage.title_de,
-          title_en:         webpage.title_en,
-          state:            {id: webpage.state},
-          url:              webpage.url,
-          slug:             webpage.slug,
-          seo_description:  webpage.seo_description,
-          position:         webpage.position,
-          page_template_id: {id: webpage.page_template_id}
+          recid:            @webpage.id,
+          title_de:         @webpage.title_de,
+          title_en:         @webpage.title_en,
+          state:            {id: @webpage.state},
+          url:              @webpage.url,
+          slug:             @webpage.slug,
+          seo_description:  @webpage.seo_description,
+          position:         @webpage.position,
+          page_template_id: {id: @webpage.page_template_id}
         }
       }
     end
@@ -69,17 +70,18 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
 
   def show_assignments
-    webpage = Webpage.find(params[:id])
+    @webpage = Webpage.find(params[:id])
 
-    webpage.add_missing_page_content_element_assignments
-    webpage.delete_orphaned_page_content_element_assignments
-    webpage.reload
+    @webpage.add_missing_page_content_element_assignments
+    @webpage.delete_orphaned_page_content_element_assignments
+    @webpage.reload
 
-    assignments = webpage.page_content_element_assignments
+    @assignments = @webpage.page_content_element_assignments
+
     render json: {
       status: "success",
-      total: assignments.count,
-      records: assignments.collect {
+      total: @assignments.count,
+      records: @assignments.collect {
         |assignment| {
           recid: assignment.id,
           used_as: assignment.used_as,
@@ -122,6 +124,17 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
 
+  def delete_assignment
+    page_content_element_assignment = PageContentElementAssignment.find(params[:id])
+
+    if page_content_element_assignment.update(content_element_id: nil)
+      render text: page_content_element_assignment.webpage_id
+    else
+      render json: page_content_element_assignment.errors.first
+    end
+  end
+
+
   def content_element
     content_element = (params[:recid] == "0") ? NullObject.new() : ContentElement.find(params[:recid])
 
@@ -153,25 +166,18 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
   end
 
 
-  def delete_assignment
-    page_content_element_assignment = PageContentElementAssignment.find(params[:id])
-
-    if page_content_element_assignment.update(content_element_id: nil)
-      render text: page_content_element_assignment.webpage_id
-    else
-      render json: page_content_element_assignment.errors.first
-    end
-  end
-
-
 protected
   def reorder_webpages(webpages: nil, parent_id: nil)
     webpages.each do |position, webpages|
       webpage = Webpage.find(webpages["key"])
       if webpage.position != position.to_i || webpage.parent_id != parent_id
-        webpage.update(position: position, parent_id: parent_id)
+        webpage.update(position: position,
+                       parent_id: parent_id)
       end
-      reorder_webpages(webpages: webpages["children"], parent_id: webpage.id) if webpages["children"]
+      if webpages["children"]
+        reorder_webpages(webpages: webpages["children"],
+                         parent_id: webpage.id)
+      end
     end
   end
 

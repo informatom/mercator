@@ -71,7 +71,8 @@ class User < ActiveRecord::Base
   gravtastic :default => "http://www.informatom.com/assets/images/unknown-user.png"
   gravtastic :email_address
 
-  # --- Signup lifecycle --- #
+
+  # --- Lifecycle --- #
 
   lifecycle do
 
@@ -119,6 +120,7 @@ class User < ActiveRecord::Base
     transition :login_via_email, {:active => :active},
                available_to: :key_holder, if: "Time.now() - self.key_timestamp < 10.minutes"
   end
+
 
   # --- Permissions --- #
 

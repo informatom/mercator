@@ -47,10 +47,14 @@ class Value < ActiveRecord::Base
     end
   end
 
+
+  # --- Lifecycle --- #
+
   lifecycle do
     state :textual, default: true
     state :numeric, :flag
   end
+
 
   # --- Permissions --- #
 

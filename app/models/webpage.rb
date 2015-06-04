@@ -36,6 +36,9 @@ class Webpage < ActiveRecord::Base
 
   alias_attribute :name, :title_de
 
+
+  # --- Lifecycle --- #
+
   lifecycle do
     state :draft, :default => true
     state :published, :published_but_hidden, :archived
@@ -49,6 +52,7 @@ class Webpage < ActiveRecord::Base
     transition :unhide, { :published_but_hidden => :published },
                :available_to => "User.administrator", :subsite => "admin"
   end
+
 
   # --- Permissions --- #
 

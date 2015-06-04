@@ -118,8 +118,10 @@
 </def>
 
 <def tag="video-chat-link">
-  <set path="&webpage_url(Webpage.find_by(slug: 'videochat'), port: request.port)"/>
-  <a href="&path" target="videochat">
-    <%= fa_icon "video-camera", class: "fa-lg" %> Video Chat
-  </a>
+  <if test="&Webpage.find_by(slug: 'videochat')">
+    <set path="&webpage_path(Webpage.find_by(slug: 'videochat'), port: request.port)"/>
+    <a href="&path" target="videochat">
+      <%= fa_icon "video-camera", class: "fa-lg" %> Video Chat
+    </a>
+  </if>
 </def>

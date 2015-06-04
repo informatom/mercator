@@ -37,6 +37,7 @@ class Offeritem < ActiveRecord::Base
 
   belongs_to :product
 
+
   # --- Lifecycles --- #
 
   lifecycle do
@@ -55,6 +56,7 @@ class Offeritem < ActiveRecord::Base
       self.destroy
     end
   end
+
 
   # --- Permissions --- #
 

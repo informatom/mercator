@@ -8,6 +8,7 @@ class Admin::AdminSiteController < ApplicationController
 
   def admin_required
     unless logged_in? && current_user.administrator?
+      debugger
       redirect_to user_login_path
     end
   end

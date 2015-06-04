@@ -192,6 +192,7 @@ class Order < ActiveRecord::Base
     end
   end
 
+
   # --- Permissions --- #
 
   def create_permitted?
