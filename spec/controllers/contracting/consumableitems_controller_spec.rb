@@ -41,7 +41,23 @@ describe Contracting::ConsumableitemsController, :type => :controller do
       describe 'POST #create' do
         it "renders json" do
           post :create, consumableitem: attributes_for(:consumableitem, contractitem_id: @contractitem.id)
-          expect(response.body).to be_json_eql(@instance.to_json).excluding("contractitem_id")
+          expect(response.body).to be_json_eql({consumableitem: { amount: 1,
+                                                                  balance6: "99.99",
+                                                                  consumption1: 3,
+                                                                  consumption2: 4,
+                                                                  consumption3: 5,
+                                                                  consumption4: 6,
+                                                                  consumption5: 7,
+                                                                  consumption6: 8,
+                                                                  contract_type: "standard",
+                                                                  description_de: "ein Verbrauchsmaterial",
+                                                                  description_en: "a consumaeble item",
+                                                                  position: 1,
+                                                                  product_line: "shiny",
+                                                                  product_number: "123",
+                                                                  term: 2,
+                                                                  theyield: 12000,
+                                                                  wholesale_price: "12.5" }}.to_json)
         end
       end
 
