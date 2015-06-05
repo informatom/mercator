@@ -8,7 +8,8 @@ describe PropertyGroup do
   it {should validate_presence_of(:name_de)}
 
   it {should validate_presence_of(:position)}
-  it {should validate_numericality_of(:position)}
+# conflicts with acts_as_list
+# it {should validate_numericality_of(:position)}
 
   it {should have_many(:properties)}
   it {should have_many(:products)}

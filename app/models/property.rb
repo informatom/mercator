@@ -13,6 +13,8 @@ class Property < ActiveRecord::Base
     timestamps
   end
 
+  acts_as_list # needed for updating order in property manager
+
   attr_accessible :name_de, :name_en, :description_de, :description_en, :value, :unit_de, :unit_en,
                   :position, :legacy_id, :datatype, :icecat_id
   translates :name, :description, :unit

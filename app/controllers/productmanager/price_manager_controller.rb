@@ -3,11 +3,13 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
   hobo_controller
   respond_to :html, :json, :js, :text
 
+
   def index
     @product = Product.find(params[:id])
     constant = Constant.find_by_key("prices_are_set_by_erp_and_therefore_not_editable")
     @prices_editable = !(constant && constant.value == "true")
   end
+
 
   def manage_product
     if params[:recid] == "0"
@@ -65,6 +67,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
     end
   end
 
+
   def show_inventories
     inventories = Inventory.where(product_id: params[:id])
 
@@ -100,6 +103,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       }
     }
   end
+
 
   def manage_inventory
     if params[:recid] == "0"
@@ -182,6 +186,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
     end
   end
 
+
   def show_prices
     prices = Price.where(inventory_id: params[:id])
 
@@ -204,6 +209,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       }
     }
   end
+
 
   def manage_price
     if params[:recid] == "0"
@@ -260,6 +266,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
     end
   end
 
+
   def delete_price
     price = Price.find(params[:id])
     if price.destroy
@@ -268,6 +275,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       render json: price.errors.first
     end
   end
+
 
   def delete_inventory
     inventory = Inventory.find(params[:id])
@@ -282,6 +290,7 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       render json: inventory.errors.first
     end
   end
+
 
   def import_icecat
     product = Product.find(params[:id])

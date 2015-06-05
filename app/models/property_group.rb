@@ -10,6 +10,8 @@ class PropertyGroup < ActiveRecord::Base
     timestamps
   end
 
+  acts_as_list # needed for updating order in property manager
+
   attr_accessible :name_de, :name_en, :position, :icecat_id
   translates :name
   has_paper_trail

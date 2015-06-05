@@ -1,7 +1,6 @@
-1686 Controller Tests (2655/2067/1686)
+1451 Controller Tests (2655/1451)
 ======================
 
-235 productmanager/relation_manager_controller
 236 productmanager/property_manager_controller
 299 productmanager/price_manager_controller
 
@@ -105,4 +104,4 @@
 011 @content_element.parse()
 
 ----------------------
-4684 (5065) / 200 = 23.4)
+4449 (5065) / 200 = 22.2)

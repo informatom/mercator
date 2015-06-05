@@ -29,5 +29,20 @@ FactoryGirl.define do
     state     "textual"
     title_de  "text value text"
     title_en  "text value text"
+
+    factory :second_value do
+      title_de "zweiter Wert"
+      title_en "second Value"
+    end
+
+    factory :third_value do
+      title_de "dritter Wert"
+      title_en "third Value"
+    end
+
+    factory :fourth_value do
+      title_de "vierter Wert"
+      title_en "fourth Value"
+    end
   end
 end
