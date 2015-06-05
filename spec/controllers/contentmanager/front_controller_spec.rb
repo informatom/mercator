@@ -136,6 +136,10 @@ describe Contentmanager::FrontController, :type => :controller do
           JsonSpec.configure {exclude_keys "created_at", "updated_at"}
         end
 
+        after :each do
+          JsonSpec.configure {exclude_keys "created_at", "updated_at", "id"}
+        end
+
         it "creates a new webpage if save record with recid 0" do
           post :manage_webpage, @params
           expect(assigns(:webpage)).to be_a Webpage
@@ -281,6 +285,10 @@ describe Contentmanager::FrontController, :type => :controller do
         JsonSpec.configure {exclude_keys "created_at", "updated_at"}
       end
 
+      after :each do
+        JsonSpec.configure {exclude_keys "created_at", "updated_at", "id"}
+      end
+
       it "reads the webpage" do
         get :show_assignments, id: @webpage.id
         expect(assigns(:webpage)).to eql @webpage
@@ -364,6 +372,10 @@ describe Contentmanager::FrontController, :type => :controller do
         @second_content_element = create(:content_element, folder_id: @folder.id,
                                                            name_de: "noch ein Baustein")
         JsonSpec.configure {exclude_keys "created_at", "updated_at", "photo_url", "thumb_url"}
+      end
+
+      after :each do
+        JsonSpec.configure {exclude_keys "created_at", "updated_at", "id"}
       end
 
       it "reads the content elements" do

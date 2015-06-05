@@ -222,6 +222,10 @@ describe Productmanager::FrontController, :type => :controller do
           JsonSpec.configure {exclude_keys "created_at", "updated_at"}
         end
 
+        after :each do
+          JsonSpec.configure {exclude_keys "created_at", "updated_at", "id"}
+        end
+
         it "creates a new category if save record with recid 0" do
           post :manage_category, @params
           expect(assigns(:category)).to be_a Category
@@ -294,6 +298,10 @@ describe Productmanager::FrontController, :type => :controller do
                                 squeel_condition: "test"},
                                 id: @category.id.to_s}
           JsonSpec.configure {exclude_keys "created_at", "updated_at"}
+        end
+
+        after :each do
+          JsonSpec.configure {exclude_keys "created_at", "updated_at", "id"}
         end
 
         it "reads the right record" do
