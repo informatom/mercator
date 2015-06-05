@@ -3,17 +3,19 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
   hobo_controller
   respond_to :html, :json, :js, :text
 
+
   def index
     @product = Product.find(params[:id])
   end
 
+
   def show_products
-    products = Product.all
+    @products = Product.all
 
     render json: {
       status: "success",
-      total: products.count,
-      records: products.collect {
+      total: @products.count,
+      records: @products.collect {
         |product| {
           recid: product.id,
           number: product.number,
@@ -27,12 +29,14 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
+
   def show_productrelations
-    productrelations = Product.find(params[:id]).productrelations
+    @productrelations = Product.find(params[:id]).productrelations
+
     render json: {
       status: "success",
-      total: productrelations.count,
-      records: productrelations.collect {
+      total: @productrelations.count,
+      records: @productrelations.collect {
         |productrelation| {
           recid: productrelation.id,
           related_product_number: productrelation.related_product.number,
@@ -43,33 +47,36 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
+
   def create_productrelation
-    productrelation = Productrelation.new(product_id:         params[:product_id],
+    @productrelation = Productrelation.new(product_id:         params[:product_id],
                                           related_product_id: params[:related_product_id])
 
-    if productrelation.save
+    if @productrelation.save
       render nothing: true
     else
       render json: { status: "error",
-                     message: productrelation.errors.first }
+                     message: @productrelation.errors.first }
     end
   end
+
 
   def delete_productrelation
-    productrelation = Productrelation.find(params[:id])
-    if productrelation.destroy
+    @productrelation = Productrelation.find(params[:id])
+    if @productrelation.destroy
       render nothing: true
     else
-      render json: productrelation.errors.first
+      render json: @productrelation.errors.first
     end
   end
 
+
   def show_supplyrelations
-    supplyrelations = Product.find(params[:id]).supplyrelations
+    @supplyrelations = Product.find(params[:id]).supplyrelations
     render json: {
       status: "success",
-      total: supplyrelations.count,
-      records: supplyrelations.collect {
+      total: @supplyrelations.count,
+      records: @supplyrelations.collect {
         |supplyrelation| {
           recid: supplyrelation.id,
           supply_number: supplyrelation.supply.number,
@@ -80,26 +87,29 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
-  def create_supplyrelation
-    supplyrelation = Supplyrelation.new(product_id: params[:product_id],
-                                        supply_id:  params[:supply_id])
 
-    if supplyrelation.save
+  def create_supplyrelation
+    @supplyrelation = Supplyrelation.new(product_id: params[:product_id],
+                                         supply_id:  params[:supply_id])
+
+    if @supplyrelation.save
       render nothing: true
     else
       render json: { status: "error",
-                     message: supplyrelation.errors.first }
+                     message: @supplyrelation.errors.first }
     end
   end
 
+
   def delete_supplyrelation
-    supplyrelation = Supplyrelation.find(params[:id])
-    if supplyrelation.destroy
+    @supplyrelation = Supplyrelation.find(params[:id])
+    if @supplyrelation.destroy
       render nothing: true
     else
-      render json: supplyrelation.errors.first
+      render json: @supplyrelation.errors.first
     end
   end
+
 
   def manage_recommendations
     if params[:cmd] == "save-records"
@@ -118,11 +128,11 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
       end
     end
 
-    recommendations = Product.find(params[:id]).recommendations
+    @recommendations = Product.find(params[:id]).recommendations
     render json: {
       status: "success",
-      total: recommendations.count,
-      records: recommendations.collect {
+      total: @recommendations.count,
+      records: @recommendations.collect {
         |recommendation| {
           recid: recommendation.id,
           supply_number: recommendation.recommended_product.number,
@@ -135,44 +145,48 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
+
   def create_recommendation
     if Recommendation.where(product_id:             params[:record][:product_id],
                             recommended_product_id: params[:record][:recommended_product_id]).any?
       render json: { status: "error",
                      message: I18n.t("mercator.recommendation_exists") } and return
     else
-      recommendation = Recommendation.new
+      @recommendation = Recommendation.new
     end
 
     attrs = params[:record]
-    recommendation.product_id             = attrs[:product_id]
-    recommendation.recommended_product_id = attrs[:recommended_product_id]
-    recommendation.reason_de              = attrs[:reason_de]
-    recommendation.reason_en              = attrs[:reason_en]
+    @recommendation.product_id             = attrs[:product_id]
+    @recommendation.recommended_product_id = attrs[:recommended_product_id]
+    @recommendation.reason_de              = attrs[:reason_de]
+    @recommendation.reason_en              = attrs[:reason_en]
 
-    if recommendation.save
+    if @recommendation.save
       render json: { status: "success" }
     else
       render json: { status: "error",
-                     message: recommendation.errors.first }
+                     message: @recommendation.errors.first }
     end
   end
+
 
   def delete_recommendation
-    recommendation = Recommendation.find(params[:id])
-    if recommendation.destroy
+    @recommendation = Recommendation.find(params[:id])
+    if @recommendation.destroy
       render nothing: true
     else
-      render json: recommendation.errors.first
+      render json: @recommendation.errors.first
     end
   end
 
+
   def show_categorizations
-    categorizations = Product.find(params[:id]).categorizations
+    @categorizations = Product.find(params[:id]).categorizations
+
     render json: {
       status: "success",
-      total: categorizations.count,
-      records: categorizations.collect {
+      total: @categorizations.count,
+      records: @categorizations.collect {
         |categorization| {
           recid: categorization.id,
           category_name:   categorization.category.name,
@@ -185,10 +199,12 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
     }
   end
 
+
   def show_categorytree
     render json: childrenarray(objects: Category.arrange(order: :position),
                                name_method: :name_with_status).to_json
   end
+
 
   def add_categorization
     if Categorization.where(category_id: params[:category_id],
@@ -197,28 +213,29 @@ class Productmanager::RelationManagerController < Productmanager::Productmanager
                      message: I18n.t("mercator.relation_manager.categorization_exists") } and return
     end
 
-    categorization = Categorization.new(position:    1,
-                                        category_id: params[:category_id],
-                                        product_id:  params[:product_id] )
-    if categorization.save
+    @categorization = Categorization.new(position:    1,
+                                         category_id: params[:category_id],
+                                         product_id:  params[:product_id] )
+    if @categorization.save
       render nothing: true
     else
       render json: { status: "error",
-                     message: categorization.errors.first }
+                     message: @categorization.errors.first }
     end
   end
+
 
   def delete_categorization
-    categorization = Categorization.find(params[:id])
-    if categorization.destroy
+    @categorization = Categorization.find(params[:id])
+    if @categorization.destroy
       render nothing: true
     else
-      render json: categorization.errors.first
+      render json: @categorization.errors.first
     end
   end
 
-protected
 
+protected
   def childrenarray(objects: nil, name_method: nil, folder: false)
     childrenarray = []
     objects.each do |object, children|

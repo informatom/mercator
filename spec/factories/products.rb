@@ -78,5 +78,13 @@ FactoryGirl.define do
     warranty_en         "One month with evereal restrictions"
     photo               { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
     document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+
+    factory :third_product do
+      number   "number 3"
+      title_de "Artikel Drei"
+      title_en "Article Three"
+      photo    nil
+      document nil
+    end
   end
 end

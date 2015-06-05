@@ -1005,6 +1005,7 @@ en:
         one: Recommendation
         other: Recommendations
       relation_manager:
+        categorization_exists: This categorization already exists.
         title: "Relations for"
       sales_subsite_name: Sales
       Supplyrelation:

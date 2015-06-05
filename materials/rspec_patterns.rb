@@ -32,3 +32,4 @@ it "renders nothing for xhr request" do
 expect(response).to redirect_to
 expect(session[:key]).to eql
 expect(response.body).to be_json_eql(@instance.to_json).excluding("contractitem_id")
+expect(response.body).to be_json_eql("test".to_json)

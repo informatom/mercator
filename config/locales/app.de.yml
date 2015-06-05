@@ -1009,6 +1009,7 @@ de:
         one: Empfehlung
         other: Empfehlungen
       relation_manager:
+        categorization_exists: "Diese Zuordnung evistiert bereits."
         title: "Zuordnungen für "
       sales_subsite_name: Vertriebswesen
       Supplyrelation:
