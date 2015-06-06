@@ -1,5 +1,4 @@
-1215 Controller Tests (2655/1215)
-======================
+=== 1215 Controller Tests (2655/1215) ===
 
 299 productmanager/price_manager_controller
 
@@ -14,8 +13,7 @@
 149 users_controller
 
 
-463 Lifecycle Actions
-=====================
+=== 463 Lifecycle Actions ===
 
 013 Address
 013 BillingAddress
@@ -32,15 +30,13 @@
 017 Webpage
 
 
-055 Mailer Tests
-================
+=== 055 Mailer Tests ===
 
 017 order_mailer
 038 user_mailer
 
 
-190 Bechlem
-===========
+=== 190 Bechlem ===
 
 049 access
 026 base
@@ -49,16 +45,15 @@
 060 consumables_controller
 
 
-438 Icecat
-==========
+=== 438 Icecat ===
 
 048 access
 316 metadatum
 060 product_extensions
 014 metadata_controller
 
-347 MPay
-========
+
+=== 347 MPay ===
 
 079 confirmation
 066 payment
@@ -69,8 +64,8 @@
 034 orders_controller_extensions
 
 
-1494 Mesonic
-============
+=== 1435 Mesonic ===
+
 025 application_controler
 014 users_controller_extensions
 
@@ -79,28 +74,24 @@
 099 user_extensions
 
 027 akt_mandant
-084 artikelstamm
-017 belegart
-085 bild
-040 category
-017 eigenschaft
 029 ersatzartikel
-079 kontakte_stamm
-075 kontenstamm_adresse
+040 category
 046 kontenstamm_fakt
 046 kontenstamm_fibu
+051 price
 070 kontenstamm
+075 kontenstamm_adresse
+079 kontakte_stamm
+084 artikelstamm
+085 bild
 104 order_item
 135 order
-051 price
 357 webartikel
-025 zahlungsart
 
 
-011 Possibly later
-==================
+=== 011 Possibly later ===
 
 011 @content_element.parse()
 
 ----------------------
-4213 (5065) / 200 = 21.1)
+4153 (5065) / 200 = 2.8)
