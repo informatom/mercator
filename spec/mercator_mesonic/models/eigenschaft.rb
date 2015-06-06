@@ -5,7 +5,7 @@ describe MercatorMesonic::Eigenschaft do
   # ---  Class Methods  --- #
 
   context "setup" do
-    it "knows its class name" do
+    it "knows its table name" do
       expect(MercatorMesonic::Eigenschaft.table_name).to eql "t070"
     end
 

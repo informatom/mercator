@@ -5,7 +5,7 @@ describe MercatorMesonic::Zahlungsart do
   # ---  Class Methods  --- #
 
   context "setup" do
-    it "knows its class name" do
+    it "knows its table name" do
       expect(MercatorMesonic::Zahlungsart.table_name).to eql "T286"
     end
 

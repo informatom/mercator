@@ -49,5 +49,14 @@ FactoryGirl.define do
       value "cms.domain.com"
     end
 
+    factory :mpay_test_username do
+      key   :mpay_test_username
+      value "12345"
+    end
+
+    factory :mpay_test_password do
+      key   :mpay_test_password
+      value "secret"
+    end
   end
 end

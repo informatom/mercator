@@ -5,7 +5,7 @@ describe MercatorMesonic::Belegart do
   # ---  Class Methods  --- #
 
   context "setup" do
-    it "knows its class name" do
+    it "knows its table name" do
       expect(MercatorMesonic::Belegart.table_name).to eql "T357"
     end
 
