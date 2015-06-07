@@ -232,7 +232,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
 
     describe "POST #manage_inventory" do
       context "read record" do
-        it "reads the right product" do
+        it "reads the right inventory" do
           post :manage_inventory, cmd: "get-record", recid: @inventory.id, format: :text
           expect(assigns(:inventory)).to eql @inventory
         end
@@ -296,7 +296,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
                                product_id: @product.id.to_s } }
         end
 
-        it "reads the right product" do
+        it "reads the right inventory" do
           post :manage_inventory, @attrs
           expect(assigns(:inventory)).to eql @inventory
         end
@@ -372,7 +372,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
                                                  text: "2-4 Tage"} } }
         end
 
-        it "creates a new product" do
+        it "creates a new inventory" do
           post :manage_inventory, @attrs
           expect(assigns(:inventory)).to be_a Inventory
         end
@@ -482,12 +482,201 @@ describe Productmanager::PriceManagerController, :type => :controller do
     end
 
 
-    describe "POT #manage_price", focus: true do
+    describe "POT #manage_price" do
+      context "read record" do
+        it "reads the right price" do
+          post :manage_price, cmd: "get-record", recid: @price.id, format: :text
+          expect(assigns(:price)).to eql @price
+        end
+
+        it "returns the correct json" do
+          post :manage_price, cmd: "get-record", recid: @price.id, format: :text
+          expect(response.body).to be_json_eql({ record: { inventory_id: 1,
+                                                           promotion: true,
+                                                           recid: 1,
+                                                           scale_from: "1.0",
+                                                           scale_to: "6.0",
+                                                           valid_from: "2012-01-01",
+                                                           valid_to: "2113-01-01",
+                                                           value: "42.0",
+                                                           vat: "20.0" },
+                                                 status: "success"}.to_json )
+        end
+      end
+
+
+      context "edit record" do
+        before :each do
+          @attrs = { format: :text,
+                     cmd:"save-record",
+                     recid: @price.id.to_s,
+                     record:{ recid: @price.id.to_s,
+                              value: "88",
+                              vat: "21",
+                              valid_from: "04.09.2014",
+                              valid_to: "10.09.2014",
+                              scale_from: "1",
+                              scale_to: "2",
+                              promotion: "1",
+                              inventory_id: @inventory.id.to_s } }
+        end
+
+        it "reads the right product" do
+          post :manage_price, @attrs
+          expect(assigns(:price)).to eql @price
+        end
+
+        it "updates the attributes accordingly" do
+          post :manage_price, @attrs
+          expect(assigns(:price).value).to eql 88
+          expect(assigns(:price).vat).to eql 21
+          expect(assigns(:price).valid_from).to eql Date.new(2014, 9, 4)
+          expect(assigns(:price).valid_to).to eql Date.new(2014, 9, 10)
+          expect(assigns(:price).scale_from).to eql 1
+          expect(assigns(:price).scale_to).to eql 2
+          expect(assigns(:price).promotion).to eql true
+          expect(assigns(:price).inventory_id).to eql @inventory.id
+        end
+
+        it "returns the correct json" do
+          post :manage_price, @attrs
+          expect(response.body).to be_json_eql({ record: { inventory_id: @inventory.id,
+                                                           promotion: true,
+                                                           recid: @price.id,
+                                                           scale_from: "1.0",
+                                                           scale_to: "2.0",
+                                                           valid_from: "2014-09-04",
+                                                           valid_to: "2014-09-10",
+                                                           value: "88.0",
+                                                           vat: "21.0" },
+                                                 status: "success" }.to_json)
+        end
+      end
+
+
+      context "create record" do
+        before :each do
+          @attrs =  { format: :text,
+                      cmd: "save-record",
+                      recid: "0",
+                      record: { inventory_id: @inventory.id.to_s,
+                                value: "8",
+                                vat: "9",
+                                valid_from: "03.06.2015",
+                                valid_to: "05.06.2015",
+                                scale_from: "5",
+                                scale_to: "6",
+                                promotion: "1" } }
+        end
+
+        it "creates a new product" do
+          post :manage_price, @attrs
+          expect(assigns(:price)).to be_a Price
+        end
+
+        it "updates the attributes accordingly" do
+          post :manage_price, @attrs
+          expect(assigns(:price).value).to eql 8
+          expect(assigns(:price).vat).to eql 9
+          expect(assigns(:price).valid_from).to eql Date.new(2015, 6, 3)
+          expect(assigns(:price).valid_to).to eql Date.new(2015, 6, 5)
+          expect(assigns(:price).scale_from).to eql 5
+          expect(assigns(:price).scale_to).to eql 6
+          expect(assigns(:price).promotion).to eql true
+          expect(assigns(:price).inventory_id).to eql @inventory.id
+        end
+
+        it "returns the correct json" do
+          post :manage_price, @attrs
+          expect(response.body).to be_json_eql({ record: { inventory_id: @inventory.id,
+                                                           promotion: true,
+                                                           recid: assigns(:price).id,
+                                                           scale_from: "5.0",
+                                                           scale_to: "6.0",
+                                                           valid_from: "2015-06-03",
+                                                           valid_to: "2015-06-05",
+                                                           value: "8.0",
+                                                           vat: "9.0" },
+                                                 status: "success" }.to_json)
+        end
+      end
     end
 
 
-    # delete 'price_manager/price/:id'            => 'price_manager#delete_price'
-    # delete 'price_manager/inventory/:id'        => 'price_manager#delete_inventory'
+    describe "DELETE #delete_price" do
+      it "finds the right price" do
+        post :delete_price, id: @price.id
+        expect(assigns(:price)).to eql @price
+      end
 
+      it "deletes the price" do
+        post :delete_price, id: @price.id
+        expect(Price.where(id: @price.id)).to be_empty
+      end
+
+      it "renders nothing" do
+        post :delete_price, id: @price.id
+        expect(response.body).to eql(" ")
+      end
+    end
+
+
+    describe "DELETE #delete_inventory" do
+      context "no prices" do
+        before :each do
+          @inventory.prices.delete_all
+        end
+
+        it "finds the right inventory" do
+          post :delete_inventory, id: @inventory.id
+          expect(assigns(:inventory)).to eql @inventory
+        end
+
+        it "deletes the inventory, if there are no prices" do
+          post :delete_inventory, id: @inventory.id
+          expect(Inventory.where(id: @inventory.id)).to be_empty
+        end
+
+        it "renders nothing, if there are no prices" do
+          post :delete_inventory, id: @inventory.id
+          expect(response.body).to eql(" ")
+        end
+      end
+
+      context "with prices" do
+        it "leaves the inventory, if there are prices" do
+          post :delete_inventory, id: @inventory.id
+          expect(Inventory.find(@inventory.id)).to eql @inventory
+        end
+
+        it "redirects 403, if there are prices" do
+          post :delete_inventory, id: @inventory.id
+          expect(response).to have_http_status(403)
+        end
+      end
+    end
+
+
+    describe "GET import_icecat" do
+      it "reads the right product" do
+        allow_any_instance_of(Product).to receive(:update_from_icecat) {true}
+        get :import_icecat, id: @product.id
+        expect(assigns(:product)).to eql @product
+      end
+
+      it "calls the right method" do
+        allow_any_instance_of(Product).to receive(:update_from_icecat) {true}
+        expect_any_instance_of(Product).to receive(:update_from_icecat)
+        get :import_icecat, id:  @product.id
+      end
+
+      it "redirects 403, if product could not be updated" do
+        allow_any_instance_of(Product).to receive(:update_from_icecat) {false}
+        expect_any_instance_of(Product).to receive(:update_from_icecat)
+
+        get :import_icecat, id:  @product.id
+        expect(response).to have_http_status(403)
+      end
+    end
   end
 end

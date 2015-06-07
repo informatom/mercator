@@ -213,9 +213,9 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
   def manage_price
     if params[:recid] == "0"
-      price = Price.new
+      @price = Price.new
     else
-      price = Price.find(params[:recid])
+      @price = Price.find(params[:recid])
     end
 
     if params[:cmd] == "save-record"
@@ -225,22 +225,21 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
       promotion = true if attrs[:promotion] == "1"
       promotion = false if attrs[:promotion] == "0"
 
-      price.value        = attrs[:value]
-      price.vat          = attrs[:vat]
-      price.vat          = attrs[:vat]
-      price.valid_from   = attrs[:valid_from]
-      price.valid_to     = attrs[:valid_to]
-      price.scale_from   = attrs[:scale_from]
-      price.scale_to     = attrs[:scale_to]
-      price.promotion    = promotion
-      price.inventory_id = attrs[:inventory_id]
+      @price.value        = attrs[:value]
+      @price.vat          = attrs[:vat]
+      @price.valid_from   = attrs[:valid_from]
+      @price.valid_to     = attrs[:valid_to]
+      @price.scale_from   = attrs[:scale_from]
+      @price.scale_to     = attrs[:scale_to]
+      @price.promotion    = promotion
+      @price.inventory_id = attrs[:inventory_id]
 
-      success = price.save
+      success = @price.save
     end
 
     if success == false
       render json: { status: "error",
-                     message: price.errors.first }
+                     message: @price.errors.first }
     else
       respond_to do |format|
         format.html # show.html.erb
@@ -248,17 +247,17 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           render json: {
             status: "success",
             record: {
-              recid:        price.id,
-              value:        price.value,
-              vat:          price.vat,
-              valid_from:   (I18n.l(price.valid_from) if price.valid_from),
-              valid_to:     (I18n.l(price.valid_to) if price.valid_to),
-              scale_from:   price.scale_from,
-              scale_to:     price.scale_to,
-              promotion:    price.promotion,
-              created_at:   I18n.l(price.created_at),
-              updated_at:   I18n.l(price.updated_at),
-              inventory_id: price.inventory_id
+              recid:        @price.id,
+              value:        @price.value,
+              vat:          @price.vat,
+              valid_from:   (I18n.l(@price.valid_from) if @price.valid_from),
+              valid_to:     (I18n.l(@price.valid_to) if @price.valid_to),
+              scale_from:   @price.scale_from,
+              scale_to:     @price.scale_to,
+              promotion:    @price.promotion,
+              created_at:   I18n.l(@price.created_at),
+              updated_at:   I18n.l(@price.updated_at),
+              inventory_id: @price.inventory_id
             }
           }
         }
@@ -268,38 +267,38 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
 
   def delete_price
-    price = Price.find(params[:id])
-    if price.destroy
+    @price = Price.find(params[:id])
+    if @price.destroy
       render nothing: true
     else
-      render json: price.errors.first
+      render json: @price.errors.first
     end
   end
 
 
   def delete_inventory
-    inventory = Inventory.find(params[:id])
-    if inventory.prices.any?
+    @inventory = Inventory.find(params[:id])
+    if @inventory.prices.any?
       render :text => I18n.t("js.pm.price_manager.cannot_delete_inventory.prices"),
              :status => 403 and return
     end
 
-    if inventory.destroy
+    if @inventory.destroy
       render nothing: true
     else
-      render json: inventory.errors.first
+      render json: @inventory.errors.first
     end
   end
 
 
   def import_icecat
-    product = Product.find(params[:id])
-    unless product && Rails.application.config.try(:icecat) == true
+    @product = Product.find(params[:id])
+    unless @product && Rails.application.config.try(:icecat) == true
       render :text => I18n.t("js.pm.price_manager.icecat_not_updated"),
              :status => 403 and return
     end
 
-    if product.update_from_icecat(from_today: false)
+    if @product.update_from_icecat(from_today: false)
       render :text => I18n.t("js.pm.price_manager.icecat_updated")
     else
       render :text => I18n.t("js.pm.price_manager.icecat_not_updated"),

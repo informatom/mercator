@@ -1,6 +1,4 @@
-=== 1215 Controller Tests (2655/1215) ===
-
-299 productmanager/price_manager_controller
+=== 916 Controller Tests (2655/916) ===
 
 065 categories_controller
 075 products_controller
@@ -91,4 +89,4 @@
 011 @content_element.parse()
 
 ----------------------
-4063 (5065) / 200 = 20.4)
+3764 / 200 = 18.9 (5065/4063/3764)
