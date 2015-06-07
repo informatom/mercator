@@ -58,5 +58,10 @@ FactoryGirl.define do
       key   :mpay_test_password
       value "secret"
     end
+
+    factory :prices_are_set_by_erp_and_therefore_not_editable do
+      key   :prices_are_set_by_erp_and_therefore_not_editable
+      value "true"
+    end
   end
 end

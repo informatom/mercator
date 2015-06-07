@@ -13,33 +13,33 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
   def manage_product
     if params[:recid] == "0"
-      product = Product.new
-      product.categorizations.new(position: 999, category: Category.auto)
+      @product = Product.new
+      @product.categorizations.new(position: 999, category: Category.auto)
     else
-      product = Product.find(params[:recid])
+      @product = Product.find(params[:recid])
     end
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
 
-      product.title_de            = attrs[:title_de]
-      product.title_en            = attrs[:title_en]
-      product.number              = attrs[:number]
-      product.alternative_number  = attrs[:alternative_number]
-      product.description_de      = attrs[:description_de]
-      product.description_en      = attrs[:description_en]
-      product.long_description_de = attrs[:long_description_de]
-      product.long_description_en = attrs[:long_description_en]
-      product.warranty_de         = attrs[:warranty_de]
-      product.warranty_en         = attrs[:warranty_en]
-      product.state               = attrs[:state][:id]
+      @product.title_de            = attrs[:title_de]
+      @product.title_en            = attrs[:title_en]
+      @product.number              = attrs[:number]
+      @product.alternative_number  = attrs[:alternative_number]
+      @product.description_de      = attrs[:description_de]
+      @product.description_en      = attrs[:description_en]
+      @product.long_description_de = attrs[:long_description_de]
+      @product.long_description_en = attrs[:long_description_en]
+      @product.warranty_de         = attrs[:warranty_de]
+      @product.warranty_en         = attrs[:warranty_en]
+      @product.state               = attrs[:state][:id]
 
-      success = product.save
+      success = @product.save
     end
 
     if success == false
       render json: { status: "error",
-                     message: product.errors.first }
+                     message: @product.errors.first }
     else
       respond_to do |format|
         format.html # show.html.erb
@@ -47,19 +47,19 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           render json: {
             status: "success",
             record: {
-              number:              product.number,
-              alternative_number:  product.alternative_number,
-              state:               {id: product.state},
-              title_de:            product.title_de,
-              title_en:            product.title_en,
-              description_de:      product.description_de,
-              description_en:      product.description_en,
-              long_description_de: product.long_description_de,
-              long_description_en: product.long_description_en,
-              warranty_de:         product.warranty_de,
-              warranty_en:         product.warranty_en,
-              created_at:          I18n.l(product.created_at),
-              updated_at:          I18n.l(product.updated_at)
+              number:              @product.number,
+              alternative_number:  @product.alternative_number,
+              state:               {id: @product.state},
+              title_de:            @product.title_de,
+              title_en:            @product.title_en,
+              description_de:      @product.description_de,
+              description_en:      @product.description_en,
+              long_description_de: @product.long_description_de,
+              long_description_en: @product.long_description_en,
+              warranty_de:         @product.warranty_de,
+              warranty_en:         @product.warranty_en,
+              created_at:          I18n.l(@product.created_at),
+              updated_at:          I18n.l(@product.updated_at)
             }
           }
         }
@@ -69,12 +69,12 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
 
   def show_inventories
-    inventories = Inventory.where(product_id: params[:id])
+    @inventories = Inventory.where(product_id: params[:id])
 
     render json: {
       status: "success",
-      total: inventories.count,
-      records: inventories.collect {
+      total: @inventories.count,
+      records: @inventories.collect {
         |inventory| {
           recid:                   inventory.id,
           name_de:                 inventory.name_de,
@@ -107,9 +107,9 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
   def manage_inventory
     if params[:recid] == "0"
-      inventory = Inventory.new
+      @inventory = Inventory.new
     else
-      inventory = Inventory.find(params[:recid])
+      @inventory = Inventory.find(params[:recid])
     end
 
     if params[:cmd] == "save-record"
@@ -126,28 +126,28 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           attrs[:delivery_time][:text]
         end
 
-      inventory.name_de            = attrs[:name_de]
-      inventory.name_en            = attrs[:name_en]
-      inventory.number             = attrs[:number]
-      inventory.amount             = attrs[:amount]
-      inventory.unit               = attrs[:unit]
-      inventory.comment_de         = attrs[:comment_de]
-      inventory.comment_en         = attrs[:comment_en]
-      inventory.weight             = attrs[:weight]
-      inventory.size               = attrs[:size]
-      inventory.charge             = attrs[:charge]
-      inventory.storage            = attrs[:storage]
-      inventory.delivery_time      = delivery_time
-      inventory.infinite           = infinite
-      inventory.alternative_number = attrs[:alternative_number]
-      inventory.product_id         = attrs[:product_id]
+      @inventory.name_de            = attrs[:name_de]
+      @inventory.name_en            = attrs[:name_en]
+      @inventory.number             = attrs[:number]
+      @inventory.amount             = attrs[:amount]
+      @inventory.unit               = attrs[:unit]
+      @inventory.comment_de         = attrs[:comment_de]
+      @inventory.comment_en         = attrs[:comment_en]
+      @inventory.weight             = attrs[:weight]
+      @inventory.size               = attrs[:size]
+      @inventory.charge             = attrs[:charge]
+      @inventory.storage            = attrs[:storage]
+      @inventory.delivery_time      = delivery_time
+      @inventory.infinite           = infinite
+      @inventory.alternative_number = attrs[:alternative_number]
+      @inventory.product_id         = attrs[:product_id]
 
-      success = inventory.save
+      success = @inventory.save
     end
 
     if success == false
       render json: { status: "error",
-                     message: inventory.errors.first }
+                     message: @inventory.errors.first }
     else
       respond_to do |format|
         format.html # show.html.erb
@@ -155,30 +155,30 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
           render json: {
             status: "success",
             record: {
-              recid:                   inventory.id,
-              name_de:                 inventory.name_de,
-              name_en:                 inventory.name_en,
-              number:                  inventory.number,
-              amount:                  inventory.amount,
-              unit:                    inventory.unit,
-              comment_de:              inventory.comment_de,
-              comment_en:              inventory.comment_en,
-              weight:                  inventory.weight,
-              size:                    inventory.size,
-              charge:                  inventory.charge,
-              storage:                 inventory.storage,
-              delivery_time:           inventory.delivery_time,
-              erp_updated_at:          (I18n.l(inventory.erp_updated_at) if inventory.erp_updated_at),
-              erp_vatline:             inventory.erp_vatline,
-              erp_article_group:       inventory.erp_article_group,
-              erp_provision_code:      inventory.erp_provision_code,
-              erp_characteristic_flag: inventory.erp_characteristic_flag,
-              infinite:                inventory.infinite,
-              just_imported:           inventory.just_imported,
-              alternative_number:      inventory.alternative_number,
-              created_at:              I18n.l(inventory.created_at),
-              updated_at:              I18n.l(inventory.updated_at),
-              product_id:              inventory.product_id
+              recid:                   @inventory.id,
+              name_de:                 @inventory.name_de,
+              name_en:                 @inventory.name_en,
+              number:                  @inventory.number,
+              amount:                  @inventory.amount,
+              unit:                    @inventory.unit,
+              comment_de:              @inventory.comment_de,
+              comment_en:              @inventory.comment_en,
+              weight:                  @inventory.weight,
+              size:                    @inventory.size,
+              charge:                  @inventory.charge,
+              storage:                 @inventory.storage,
+              delivery_time:           @inventory.delivery_time,
+              erp_updated_at:          (I18n.l(@inventory.erp_updated_at) if @inventory.erp_updated_at),
+              erp_vatline:             @inventory.erp_vatline,
+              erp_article_group:       @inventory.erp_article_group,
+              erp_provision_code:      @inventory.erp_provision_code,
+              erp_characteristic_flag: @inventory.erp_characteristic_flag,
+              infinite:                @inventory.infinite,
+              just_imported:           @inventory.just_imported,
+              alternative_number:      @inventory.alternative_number,
+              created_at:              I18n.l(@inventory.created_at),
+              updated_at:              I18n.l(@inventory.updated_at),
+              product_id:              @inventory.product_id
             }
           }
         }
@@ -188,12 +188,12 @@ class Productmanager::PriceManagerController < Productmanager::ProductmanagerSit
 
 
   def show_prices
-    prices = Price.where(inventory_id: params[:id])
+    @prices = Price.where(inventory_id: params[:id])
 
     render json: {
       status: "success",
-      total: prices.count,
-      records: prices.collect {
+      total: @prices.count,
+      records: @prices.collect {
         |price| {
           recid:      price.id,
           value:      price.value,

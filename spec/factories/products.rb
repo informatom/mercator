@@ -4,6 +4,7 @@ FactoryGirl.define do
     title_de            "default product"
     title_en            "Article One Two Three"
     number              "123"
+    alternative_number  "alternative 123"
     state               "active"
     description_de      "Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid."
     description_en      "English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!"
@@ -54,6 +55,17 @@ FactoryGirl.define do
         create(:inventory, product: product)
         create(:inventory, product: product,
                            created_at: Time.now - 1.day)
+      end
+    end
+
+    factory :product_with_two_inventories_and_two_prices_each do
+      number "product_with_inventory_and_two_prices"
+      after(:create) do |product, evaluator|
+        create(:inventory_with_two_prices, product: product)
+        create(:inventory_with_two_prices, product: product,
+                                           created_at: Time.now - 1.day,
+                                           name_de: "zweites Inventar",
+                                           name_en: "second inventory")
       end
     end
 
