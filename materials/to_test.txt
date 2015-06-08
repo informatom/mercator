@@ -10,21 +10,17 @@
 149 users_controller
 
 
-=== 463 Lifecycle Actions ===
+=== 402 Lifecycle Actions ===
 
+012 Conversation
 013 Address
 013 BillingAddress
-033 Category
-012 Conversation
-085 Lineitem
-054 Offer
-020 Offeritem
-123 Order
 019 Product
-016 Property
+033 Category
+054 Offer
+085 Lineitem
+123 Order
 050 User
-008 Value
-017 Webpage
 
 
 === 055 Mailer Tests ===
@@ -88,4 +84,4 @@
 011 @content_element.parse()
 
 ----------------------
-3699 / 200 = 18.5 (5065/4063/3764)
+3638 / 200 = 18.5 (5065/4063/3764/3638)

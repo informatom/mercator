@@ -105,6 +105,20 @@ describe Sales::OfferitemsController, :type => :controller do
         put :do_delete_from_offer, id: @instance.id
         expect(response).to redirect_to users_path
       end
+
+      it "is available for in_progress" do
+        @instance.state = "in_progress"
+        expect(@instance.lifecycle.can_delete_from_offer? @sales).to be
+      end
+    end
+
+
+    describe "POST add" do
+      it "is available" do
+        @offer = create(:offer, user_id: @user.id,
+                                consultant_id: @sales.id)
+        expect(Offeritem::Lifecycle.can_add? @sales).to be
+      end
     end
   end
 end

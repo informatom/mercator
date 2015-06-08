@@ -724,7 +724,7 @@ describe Productmanager::PropertyManagerController, :type => :controller do
     end
 
 
-    describe "DELETE #delete_feature", focus: true do
+    describe "DELETE #delete_feature" do
       before :each do
         @feature = create(:feature)
       end

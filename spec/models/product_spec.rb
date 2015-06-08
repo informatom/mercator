@@ -115,7 +115,7 @@ describe Product do
 
 
     context "hashed_values" do
-      it "returns hashed values", focus: true do
+      it "returns hashed values" do
         expected_result = {@property_group.id => [@value_three, @value_two, @value]}
         expect(@product.hashed_values).to eql(expected_result)
       end

@@ -18,7 +18,7 @@ describe OfferitemsController, :type => :controller do
 
 
     describe 'PUT #do_copy' do
-      it "creates a new lineitem in the basket with the carroect attributes" do
+      it "creates a new lineitem in the basket with the correct attributes" do
         put :do_copy, id: @offeritem.id
         expect(@basket.lineitems.count).to eql 1
         expect(@basket.lineitems.first.user_id).to eql @user.id
@@ -46,6 +46,31 @@ describe OfferitemsController, :type => :controller do
       it "redirects to return_to" do
         put :do_copy, id: @offeritem.id
         expect(response).to redirect_to order_path(@basket)
+      end
+
+      it "is available for in_progress" do
+        expect(@offeritem.lifecycle.can_copy? @user).to be
+      end
+
+      it "checks for validity" do
+        expect(@offeritem.instance_eval(Offeritem::Lifecycle.transitions
+                                                            .find {|t| t.name = :copy}
+                                                            .options[:if])).to be
+      end
+
+      it "is not avaliable for complete offers" do
+        @offeritem.offer.complete = true
+        expect(@offeritem.lifecycle.can_copy? @user).to be false
+      end
+
+      it "is not avaliable for old offers" do
+        @offeritem.offer.valid_until = Date.today - 1.day
+        expect(@offeritem.lifecycle.can_copy? @user).to be false
+      end
+
+      it "is not avaliable for invalid offers" do
+        @offeritem.offer.state ="invalid"
+        expect(@offeritem.lifecycle.can_copy? @user).to be false
       end
     end
   end

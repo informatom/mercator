@@ -123,6 +123,16 @@ describe Admin::WebpagesController, :type => :controller do
           put :do_publish, id: @instance.id
           expect(session[:selected_webpage_id]).to eql @instance.id
         end
+
+        it "is available for state draft" do
+          @instance.state = "draft"
+          expect(@instance.lifecycle.can_publish? @admin).to be
+        end
+
+        it "is available for archived" do
+          @instance.state = "archived"
+          expect(@instance.lifecycle.can_publish? @admin).to be
+        end
       end
 
 
@@ -137,6 +147,16 @@ describe Admin::WebpagesController, :type => :controller do
           @instance.update(state: "published")
           put :do_archive, id: @instance.id
           expect(session[:selected_webpage_id]).to eql @instance.id
+        end
+
+        it "is available for published" do
+          @instance.state = "published"
+          expect(@instance.lifecycle.can_archive? @admin).to be
+        end
+
+        it "is available for published_but_hidden" do
+          @instance.state = "published_but_hidden"
+          expect(@instance.lifecycle.can_archive? @admin).to be
         end
       end
 

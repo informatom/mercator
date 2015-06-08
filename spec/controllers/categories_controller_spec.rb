@@ -151,7 +151,7 @@ describe CategoriesController, :type => :controller do
     end
 
 
-    describe "POST #refresh" , focus: true do
+    describe "POST #refresh" do
       it "assigns the category" do
         @product = create(:product)
         post :refresh, id: @product.id,

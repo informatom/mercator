@@ -65,7 +65,7 @@ describe Admin::CategoriesController, :type => :controller do
   end
 
 
-  describe "GET #edit_properties", focus: true do
+  describe "GET #edit_properties" do
     before :each do
       no_redirects and act_as_admin
 

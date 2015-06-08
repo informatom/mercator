@@ -128,6 +128,11 @@ describe Admin::PropertiesController, :type => :controller do
         put :do_filter, id: @instance.id, category_id: @category.id
         expect(response).to redirect_to edit_properties_admin_category_path(@category)
       end
+
+      it "is available for unfilterable" do
+        @instance.state = "unfilterable"
+        expect(@instance.lifecycle.can_filter? @admin).to be
+      end
     end
 
 
@@ -152,6 +157,11 @@ describe Admin::PropertiesController, :type => :controller do
       it "redirects to edit_properties_admin_category_path for the category provided" do
         put :do_dont_filter, id: @instance.id, category_id: @category.id
         expect(response).to redirect_to edit_properties_admin_category_path(@category)
+      end
+
+      it "is available for filterable" do
+        @instance.state = "filterable"
+        expect(@instance.lifecycle.can_dont_filter? @admin).to be
       end
     end
   end

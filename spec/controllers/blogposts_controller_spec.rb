@@ -14,8 +14,6 @@ describe BlogpostsController, :type => :controller do
                                             name_en: "My Category")
     @second_post_category = create(:post_category, name_de: "Meine zweite Kategorie",
                                                    name_en: "My Second Category")
-
-
   end
 
 
