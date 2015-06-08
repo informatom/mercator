@@ -1,4 +1,3 @@
-
 <def tag="compare-link">
   <if test="&session[:compared]">
     <a href="&comparison_products_path" class="btn btn-info">

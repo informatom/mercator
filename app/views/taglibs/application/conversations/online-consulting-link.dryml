@@ -1,5 +1,5 @@
 <def tag="online-consulting-link">
-  <a href="&initiate_conversations_url(port: request.port)" class="btn btn-default" target="conversation">
+  <a href="&initiate_conversations_path" class="btn btn-default" target="conversation">
     <%= fa_icon "user-plus", class:"fa-lg" %>
     <t key="mercator.start_conversation" />
   </a>
