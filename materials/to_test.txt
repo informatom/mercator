@@ -1,6 +1,5 @@
-=== 916 Controller Tests (2655/916) ===
+=== 851 Controller Tests (2655/916) ===
 
-065 categories_controller
 075 products_controller
 076 addresses_controller
 095 conversations_controller
@@ -89,4 +88,4 @@
 011 @content_element.parse()
 
 ----------------------
-3764 / 200 = 18.9 (5065/4063/3764)
+3699 / 200 = 18.5 (5065/4063/3764)

@@ -24,8 +24,7 @@ class CategoriesController < ApplicationController
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                           { match: { state: 'active' } } ,
                                                           { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } },
-                                 facets: this.filters.values.flatten) if this.filters
-
+                                 facets: this.filters.values.flatten) if this.filters.any?
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                             { match: { state: 'active' } },
@@ -36,7 +35,7 @@ class CategoriesController < ApplicationController
       else
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                 { match: { state: 'active' } } ] + matcharray } },
-                                 facets: this.filters.values.flatten) if this.filters
+                                 facets: this.filters.values.flatten) if this.filters.any?
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                             { match: { state: 'active' } } ] + matcharray } } ).results
@@ -55,10 +54,11 @@ class CategoriesController < ApplicationController
 
 
   def refresh
-    # params[:id] sends product_id, not category_id, so:
-    self.this = @category = Category.find(params[:page_path].split("/")[2].split("-")[0])
+    @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
 
-    @inventory = Inventory.find(params[:inventory_id])
-    hobo_show
+    hobo_show do
+      # params[:id] sends product_id, not category_id, so:
+      self.this = @category = Category.find(params[:page_path].split("/")[2].split("-")[0])
+    end
   end
 end
