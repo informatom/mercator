@@ -79,11 +79,12 @@ class User < ActiveRecord::Base
     state :inactive, default: true
     state :guest, :active
 
-    create :signup, :available_to => "Guest",
-      params: [:gender, :title, :first_name, :surname, :email_address, :phone, :password, :password_confirmation],
-      become: :inactive, new_key: true  do
-      UserMailer.activation(self, lifecycle.key).deliver
-    end
+    # HAS 20150608: We dont't need any direct signup, users are created automatically
+    # create :signup, :available_to => "Guest",
+    #   params: [:gender, :title, :first_name, :surname, :email_address, :phone, :password, :password_confirmation],
+    #   become: :inactive, new_key: true  do
+    #   UserMailer.activation(self, lifecycle.key).deliver
+    # end
 
     transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
     transition :create_key, {:guest => :active}, available_to: :all, new_key: true

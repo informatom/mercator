@@ -134,7 +134,7 @@ de:
       login:
         success: "Sie haben sich angemeldet."
         error: "You did not provide a valid %{login} and Password!"
-      logout: "Sie haben sich abgemeldet."
+      logout: "Sie können sich nun anmelden."
       reset_password: "Ihr Passwort wurde zurückgesetzt."
       permission_denied: "Zugriff verweigert"
       not_found: "Die angeforderte Seite konnte nicht gefunden werden."
