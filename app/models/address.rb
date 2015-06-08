@@ -74,4 +74,9 @@ class Address < ActiveRecord::Base
       errors.add(:base, "Unbekanntes Land")
     end
   end
+
+
+  def name
+    surname + ", " + city
+  end
 end

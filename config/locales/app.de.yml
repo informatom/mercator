@@ -237,6 +237,11 @@ de:
           attributes:
             answer:
               invalid: "ist falsch - Sind Sie ein Roboter?"
+        user:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                many: "Der Benutzer kann wegen abhängiger Datensätze nicht gelöscht werden."
     models:
       address:
         one: Lieferadresse

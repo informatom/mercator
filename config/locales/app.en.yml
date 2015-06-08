@@ -233,6 +233,11 @@ en:
           attributes:
             answer:
               invalid: "is wrong - are you a robot?"
+        user:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                many: "The user record cannot be deleted because of dependend records."
     models:
       address:
         one: Shipping Address
