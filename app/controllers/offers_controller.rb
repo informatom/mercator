@@ -6,9 +6,9 @@ class OffersController < ApplicationController
   auto_actions :show, :lifecycle
 
 
-  def refresh
+  show_action :refresh do
     self.this = Offer.find(params[:id])
-    hobo_show
+    show_response
   end
 
 

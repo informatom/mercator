@@ -6,8 +6,8 @@ class ConversationsController < ApplicationController
 
 
   show_action :refresh do
-    self.this = Conversation.find(params[:id])
-    render :show
+    self.this = @conversation = Conversation.find(params[:id])
+    show_response
   end
 
 

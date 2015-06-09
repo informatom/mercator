@@ -34,11 +34,9 @@ class Sales::ConversationsController < Sales::SalesSiteController
   end
 
 
-  def refresh
+  show_action :refresh do
     self.this = @conversation = Conversation.find(params[:id])
-    hobo_show do
-      render :show
-    end
+    show_response
   end
 
 

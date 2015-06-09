@@ -16,8 +16,8 @@ class ProductsController < ApplicationController
   end
 
   show_action :refresh do
-    @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
-    render :show
+    self.this = @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
+    show_response
   end
 
 

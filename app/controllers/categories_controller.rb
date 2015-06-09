@@ -58,6 +58,6 @@ class CategoriesController < ApplicationController
     self.this = @category = Category.find(params[:page_path].split("/")[2].split("-")[0])
 
     @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
-    render :show
+    show_response
   end
 end

@@ -13,9 +13,9 @@ class OrdersController < ApplicationController
   end
 
 
-  def refresh
-    self.this = Order.find(params[:id])
-    hobo_show
+  show_action :refresh do
+    self.this = @order = Order.find(params[:id])
+    show_response
   end
 
 

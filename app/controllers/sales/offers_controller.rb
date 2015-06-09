@@ -73,10 +73,8 @@ class Sales::OffersController < Sales::SalesSiteController
   end
 
 
-  def refresh
-    self.this = Offer.find(params[:id])
-    hobo_show do
-      render :show
-    end
+  show_action :refresh do
+    self.this = @offer = Offer.find(params[:id])
+    show_response
   end
 end
