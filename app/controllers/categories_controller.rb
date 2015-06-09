@@ -53,12 +53,11 @@ class CategoriesController < ApplicationController
   end
 
 
-  def refresh
-    @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
+  show_action :refresh do
+    # params[:id] sends product_id, not category_id, so:
+    self.this = @category = Category.find(params[:page_path].split("/")[2].split("-")[0])
 
-    hobo_show do
-      # params[:id] sends product_id, not category_id, so:
-      self.this = @category = Category.find(params[:page_path].split("/")[2].split("-")[0])
-    end
+    @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
+    render :show
   end
 end

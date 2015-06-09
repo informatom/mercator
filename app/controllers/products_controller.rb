@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :domain_shop_redirect
+  before_filter :domain_shop_redirect, except: :refresh
   after_filter :track_action
 
   hobo_model_controller
@@ -15,10 +15,9 @@ class ProductsController < ApplicationController
     end
   end
 
-
-  def refresh
+  show_action :refresh do
     @inventory = Inventory.find(params[:inventory_id]) if params[:inventory_id]
-    hobo_show
+    render :show
   end
 
 
@@ -57,9 +56,11 @@ class ProductsController < ApplicationController
   index_action :comparison do
     @nested_hash = ActiveSupport::OrderedHash.new
 
-    @this = @products = Product.where(id: session[:compared]).paginate(:page => 1, :per_page => session[:compared].length)
+    self.this = @products = Product.where(id: session[:compared]).paginate(:page => 1, :per_page => session[:compared].length)
 
-    redirect_to :root and return unless @products.any?
+    unless @products.any?
+      redirect_to :root and return
+    end
 
     @products = @products.sort_by { |a| session[:compared].index(a.id)}
     values = Value.where(product_id: session[:compared]).sort_by { |a| [a.property_group.position, a.property.position]}
