@@ -1,15 +1,15 @@
 class OrdersController < ApplicationController
   before_filter :domain_shop_redirect
-  after_filter :track_action
+#  after_filter :track_action
 
   hobo_model_controller
   auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
 
+  # from mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
   if Rails.application.config.try(:payment) == "mpay24"
     include OrdersControllerExtensions
-  # from mercator/vendor/engines/mercator_mpay24/app/controllers/orders_controller_extensions.rb
   end
 
 
