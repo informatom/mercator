@@ -12,9 +12,9 @@ class Constant < ActiveRecord::Base
   has_paper_trail
 
   if Constant.table_exists? # enable initial schema loading
-    CMSDOMAIN     = self.find_by_key('cms_domain').try(:value)
-    SHOPDOMAIN    = self.find_by_key('shop_domain').try(:value)
-    PODCASTDOMAIN = self.find_by_key('podcast_domain').try(:value)
+    CMSDOMAIN          = self.find_by_key('cms_domain').try(:value)
+    SHOPDOMAIN         = self.find_by_key('shop_domain').try(:value)
+    PODCASTDOMAIN      = self.find_by_key('podcast_domain').try(:value)
   end
 
   # --- Permissions --- #
@@ -55,6 +55,7 @@ class Constant < ActiveRecord::Base
     return time < end_of_work && time > start_of_work
   end
 
+
   def self.pretty_office_hours
     begin
       office_hours = eval(Constant.find_by(key: :office_hours).value)
@@ -70,5 +71,15 @@ class Constant < ActiveRecord::Base
     end
     output[-1, 1] = "."
     return output
+  end
+
+
+  def self.page_title_prefix
+    self.find_by_key('page_title_prefix').try(:value)
+  end
+
+
+  def self.page_title_postfix
+    self.find_by_key('page_title_postfix').try(:value)
   end
 end

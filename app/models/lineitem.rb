@@ -64,67 +64,55 @@ class Lineitem < ActiveRecord::Base
                     :description_en, :amount, :unit, :product_price, :vat, :discount_abs,
                     :value, :order_id, :user_id, :delivery_time]
 
-    transition :delete_from_basket,
-               {:active => :active},
-               if: "acting_user.basket == order",
-               available_to: :all do
-      self.destroy
-    end
+    transition :delete_from_basket, {:active => :active}, available_to: :all,
+               if: "acting_user.basket == order" do
+                 self.destroy
+               end
 
-    transition :transfer_to_basket,
-               {:active => :active},
-               if: "acting_user == order.user",
-               available_to: :all do
-      parked_basket = order
-      self.update(order: acting_user.basket)
-      parked_basket.delete_if_obsolete
-    end
+    transition :transfer_to_basket, {:active => :active}, available_to: :all,
+               if: "acting_user == order.user" do
+                 parked_basket = order
+                 self.update(order: acting_user.basket)
+                 parked_basket.delete_if_obsolete
+               end
 
-    transition :enable_upselling,
-               {:active => :active},
-               if: "acting_user.basket == order && !upselling && product && product.supplies.any?",
-               available_to: :all do
-      self.update(upselling: true)
-    end
+    transition :enable_upselling, {:active => :active}, available_to: :all,
+               if: "acting_user.basket == order && !upselling && product && product.supplies.any?" do
+                 self.update(upselling: true)
+               end
 
-    transition :enable_upselling,
-               {:blocked => :blocked},
-               if: "acting_user.basket == order && !upselling && product && product.supplies.any?",
-               available_to: :all do
-      self.update(upselling: true)
-    end
+    transition :enable_upselling, {:blocked => :blocked}, available_to: :all,
+               if: "acting_user.basket == order && !upselling && product && product.supplies.any?" do
+                 self.update(upselling: true)
+               end
 
-    transition :disable_upselling,
-               {:active => :active},
-               if: "acting_user.basket == order && upselling",
-               available_to: :all do
-      self.update(upselling: false)
-    end
+    transition :disable_upselling, {:active => :active}, available_to: :all,
+               if: "acting_user.basket == order && upselling" do
+                 self.update(upselling: false)
+               end
 
-    transition :disable_upselling,
-               {:blocked => :blocked},
-               if: "acting_user.basket == order && upselling",
-               available_to: :all do
-      self.update(upselling: false)
-    end
+    transition :disable_upselling, {:blocked => :blocked}, available_to: :all,
+               if: "acting_user.basket == order && upselling" do
+                 self.update(upselling: false)
+               end
 
     transition :add_one, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order" do
-      self.increase_amount(customer_id: acting_user.id)
-      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
-                            type: "basket")
-    end
+                 self.increase_amount(customer_id: acting_user.id)
+                 PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
+                                       type: "basket")
+               end
 
     transition :remove_one, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order" do
-      if self.amount == 1
-        self.destroy
-      else
-        self.increase_amount(customer_id: acting_user.id, amount: -1)
-      end
-      PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
-                            type: "basket")
-    end
+                 if self.amount == 1
+                   self.destroy
+                 else
+                   self.increase_amount(customer_id: acting_user.id, amount: -1)
+                 end
+                 PrivatePub.publish_to("/" + CONFIG[:system_id] + "/orders/"+ acting_user.basket.id.to_s,
+                                       type: "basket")
+               end
   end
 
 
