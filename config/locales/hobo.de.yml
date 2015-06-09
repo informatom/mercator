@@ -158,7 +158,7 @@ de:
       # you better define the heading.* in the specific collection namespace
       #heading:
       add_form_heading: "%{model} hinzufügen"
-      empty_message: "Keine Enträge"
+      empty_message: "Keine Einträge"
 
     # default hobo form translation
     form:
