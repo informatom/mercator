@@ -43,7 +43,7 @@ class Order < ActiveRecord::Base
   end
 
   # can be found in mercator/vendor/engines/mercator_mpay24/app/models/order_extensions.rb
-  if (Constant.table_exists? && Rails.application.config.try(:payment) == "mpay24"
+  if Constant.table_exists? && Rails.application.config.try(:payment) == "mpay24"
     include Mpay24OrderExtensions
   end
 
