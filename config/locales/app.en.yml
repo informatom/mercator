@@ -831,7 +831,7 @@ en:
     salutation:
       call: "Hello! My name is %{first_name} %{surname}. Please give me I title for your call and I'm getting a sales representative for you."
       callback: "Please, give me a call, my phone number is:"
-      holidays: "Doday, we are on holidays. Please feel free to leave us a message!"
+      holidays: "Today, we are on holidays. Please feel free to leave us a message!"
       new_conversation: "Can you pick up a new conversation?"
       new_video_chat: "Can you pick up a new video chat?"
       old_conversation: "Can you pick up an old conversation?"

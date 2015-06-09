@@ -63,5 +63,10 @@ FactoryGirl.define do
       key   :prices_are_set_by_erp_and_therefore_not_editable
       value "true"
     end
+
+    factory :holiday_country_code do
+      key :holiday_country_code
+      value :es
+    end
   end
 end

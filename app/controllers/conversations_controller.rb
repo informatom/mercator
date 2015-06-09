@@ -3,12 +3,11 @@ class ConversationsController < ApplicationController
 
   hobo_model_controller
   auto_actions :show, :index, :lifecycle
-  show_action :suggestions
 
 
-  def refresh
+  show_action :refresh do
     self.this = Conversation.find(params[:id])
-    hobo_show
+    render :show
   end
 
 
@@ -30,14 +29,16 @@ class ConversationsController < ApplicationController
 
 
   def initiate
-    self.this = Conversation.new(customer: current_user, name: I18n.t("mercator.salutation.callback"))
-    current_basket.update(conversation_id: this.id)
+    self.this = @conversation = Conversation.new(customer: current_user, name: I18n.t("mercator.salutation.callback"))
+
     creator_page_action :initiate
 
-    holiday_country_code = Constant.find_by_key('holiday_country_code').try(:value).try(:to_sym) || :at
+    current_basket.update(conversation_id: self.this.id)
 
-    message_content =
-      if Holidays.on(Date.today, holiday_country_code).any?
+    @holiday_country_code = Constant.find_by_key('holiday_country_code').try(:value).try(:to_sym) || :at
+
+    @message_content =
+      if Holidays.on(Date.today, @holiday_country_code).any?
         I18n.t('mercator.salutation.holidays')
       elsif Constant.office_hours?
         I18n.t('mercator.salutation.call', first_name: User::ROBOT.first_name, surname: User::ROBOT.surname)
@@ -48,7 +49,7 @@ class ConversationsController < ApplicationController
     self.this.messages << Message.new(conversation_id: this.id,
                                       reciever: this.customer,
                                       sender: User::ROBOT,
-                                      content: message_content)
+                                      content: @message_content)
   end
 
 
@@ -87,7 +88,7 @@ class ConversationsController < ApplicationController
   end
 
 
-  def suggestions
+  show_action :suggestions do
     @conversation = Conversation.find(params[:id])
     self.this = @products = @conversation.products.paginate(:page => 1, :per_page => @conversation.products.count)
     hobo_index

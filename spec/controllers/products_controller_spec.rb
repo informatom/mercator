@@ -104,7 +104,7 @@ describe ProductsController, :type => :controller do
     end
 
 
-    describe "GET #comparison", focus: true do
+    describe "GET #comparison" do
       before :each do
         @filterable_property = create(:property, state: "filterable")
         @unfilterable_property = create(:property, state: "unfilterable")
