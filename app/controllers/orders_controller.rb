@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 #  after_filter :track_action
 
   hobo_model_controller
-#  auto_actions_for :user, :index
+  auto_actions_for :user, :index
   auto_actions :show, :lifecycle
 
 
