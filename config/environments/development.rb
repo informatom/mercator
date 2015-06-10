@@ -16,6 +16,8 @@ Mercator::Application.configure do
   config.assets.compress = false
   config.assets.debug = true
 
+  config.log_level = :info
+
 # config.hobo.show_translation_keys = true
 
   ActionMailer::Base.smtp_settings = { :domain => "localhost", :enable_starttls_auto => false }

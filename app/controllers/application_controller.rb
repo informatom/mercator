@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
   after_filter :allow_iframe
+  before_filter  :log_database_access if Rails.env == "development"
+
+
+  def log_database_access
+    Rails.logger.level = 0
+  end
 
 
   def auto_log_in
@@ -16,6 +22,8 @@ class ApplicationController < ActionController::Base
 
 
   def set_locale
+    Rails.logger.level = 0
+
     I18n.locale = params[:locale] || session[:locale] || current_user.locale || I18n.default_locale
     session[:locale] = I18n.locale
     current_user.update(locale: I18n.locale) if current_user.class != Guest &&

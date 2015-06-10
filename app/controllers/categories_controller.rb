@@ -43,6 +43,8 @@ class CategoriesController < ApplicationController
         @minslider = @min
         @maxslider = @max
       end
+      # Ordering:
+      @products = Product.where(id: @products.collect(&:id)).includes(:categorizations).order("categorizations.position")
     end
   end
 
