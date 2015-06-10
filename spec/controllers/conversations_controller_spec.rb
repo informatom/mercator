@@ -97,6 +97,10 @@ describe ConversationsController, :type => :controller do
         expect(assigns(:conversation).messages.first.sender_id).to eql User::ROBOT.id
         expect(assigns(:conversation).messages.first.content).to eql assigns(:message_content)
       end
+
+      it "is available" do
+        expect(Conversation::Lifecycle.can_initiate? @user).to be
+      end
     end
 
 
@@ -122,6 +126,10 @@ describe ConversationsController, :type => :controller do
       it "informs sales" do
         expect_any_instance_of(Conversation).to receive_message_chain(:delay, :inform_sales)
         get :call_for_consultant, id: @conversation.id
+      end
+
+      it "is available for customer" do
+        expect(@conversation.lifecycle.can_call_for_consultant? @user).to be
       end
     end
 
@@ -154,6 +162,10 @@ describe ConversationsController, :type => :controller do
         expect(assigns(:feedback).user_id).to eql nil
         expect(assigns(:feedback).conversation_id).to eql nil
         expect(assigns(:feedback).consultant_id).to eql @sales.id
+      end
+
+      it "is available for customer" do
+        expect(@conversation.lifecycle.can_feedback? @user).to be
       end
     end
 

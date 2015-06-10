@@ -65,13 +65,8 @@ describe Sales::ConversationsController, :type => :controller do
 
     describe "GET #refresh" do
       it "loads the conversation" do
-        get :refresh, id: @instance.id
+        xhr :post, :refresh, id: @instance.id, render: "whatever"
         expect(assigns(:conversation)).to eql @instance
-      end
-
-      it "renders show" do
-        get :refresh, id: @instance.id
-        expect(response).to render_template :show
       end
     end
 
@@ -129,6 +124,17 @@ describe Sales::ConversationsController, :type => :controller do
         xhr :post, :typing, id: @instance.id,
                    message: "my message"
         expect(response.body).to eql(" ")
+      end
+    end
+
+
+    describe "upload" do
+      it "is available for sales" do
+        expect(@instance.lifecycle.can_upload? @sales).to be
+      end
+
+      it "is available for cutstomer" do
+        expect(@instance.lifecycle.can_upload? @user).to be
       end
     end
   end
