@@ -44,6 +44,7 @@ function productsGrid() {
 
     columns: [
       { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      { field: 'position', caption: I18n.t("attributes.position"), size: '40px', sortable: true, editable: { type: 'int' }, attr: "align=right" },
       { field: 'number', caption: I18n.t("attributes.number"), size: '100px',
         render: function (record) {
           return '<div id ="product-' + record.recid + '" class="draggable">' + record.number + '</div>'
@@ -101,6 +102,8 @@ function productsGrid() {
       ]
     }],
 
+    sortData: [{ field: 'position', direction: 'asc' }],
+
     onClick: function(event) {
       event.onComplete = function () {
         var selection = this.getSelection()
@@ -129,6 +132,27 @@ function productsGrid() {
             w2ui.productsgrid.scrollIntoView(index)
           }, 100)
         }
+      }
+    },
+
+    onChange: function(event) {
+      if (event.column == 1) {
+        $.ajax({
+          url:"/productmanager/front/update_categorization_order/",
+          method: "POST",
+          data: {
+            authenticity_token: csrf_token,
+            value_original: event.value_original,
+            value_new: event.value_new,
+            category_id: selected_category_id,
+            product_id: event.recid
+          },
+          dataType: 'script',
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          w2alert(jqXHR.responseText)
+        }).always(function() {
+          w2ui.productsgrid.load('/productmanager/front/manage_products/' + selected_category_id)
+        })
       }
     },
 

@@ -25,7 +25,10 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     if params[:cmd] == "save-records" && params[:changes]
       params[:changes].each do |key, change|
         product = Product.find(change[:recid])
-        product.state = change[:state][:id]
+
+        if change[:state].present?
+          product.state = change[:state][:id]
+        end
 
         unless product.save
           render json: { status: "error", message: product.errors.first } and return
@@ -42,6 +45,7 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
       records: @products.collect {
         |product| {
           recid: product.id,
+          position: Categorization.find_by(product_id: product.id, category_id: @category.id ).position,
           number: product.number,
           title_de: product.title_de,
           title_en: product.title_en,
@@ -159,6 +163,15 @@ class Productmanager::FrontController < Productmanager::ProductmanagerSiteContro
     else
       render text: @categorization.errors.first, :status => 403
     end
+  end
+
+
+  def update_categorization_order
+    @categorization = Categorization.find_by(position: params[:value_original],
+                                             category_id: params[:category_id],
+                                             product_id: params[:product_id])
+    @categorization.insert_at(params[:value_new].to_i)
+    render nothing: true
   end
 
 
