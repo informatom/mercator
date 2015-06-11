@@ -137,4 +137,50 @@ describe Admin::CategoriesController, :type => :controller do
       end
     end
   end
+
+
+  context "lifecycle actions" do
+    before :each do
+      no_redirects and act_as_productmanager
+      @instance = create(:category)
+    end
+
+    describe "activate" do
+      it "is available for new" do
+        @instance.state = "new"
+        expect(@instance.lifecycle.can_activate? @productmanager).to be
+      end
+    end
+
+
+    describe "deactivate" do
+      it "is available for active" do
+        @instance.state = "active"
+        expect(@instance.lifecycle.can_deactivate? @productmanager).to be
+      end
+    end
+
+
+    describe "reactivate" do
+      it "is available for deprecated" do
+        @instance.state = "deprecated"
+        expect(@instance.lifecycle.can_reactivate? @productmanager).to be
+      end
+    end
+
+
+    describe "switch_off" do
+      it "is available for deprecated" do
+        @instance.state = "deprecated"
+        expect(@instance.lifecycle.can_switch_off? @productmanager).to be
+      end
+    end
+
+    describe "switch_on" do
+      it "is available for switched_off" do
+        @instance.state = "switched_off"
+        expect(@instance.lifecycle.can_switch_on? @productmanager).to be
+      end
+    end
+  end
 end

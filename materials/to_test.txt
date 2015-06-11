@@ -6,9 +6,8 @@
 149 users_controller
 
 
-=== 345 Lifecycle Actions ===
+=== 312 Lifecycle Actions ===
 
-033 Category
 085 Lineitem
 
 054 Offer
@@ -80,4 +79,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------
-3231 / 200 = 16.3 (5065/3263)
+3198 / 200 = 16.0 (5065/3263)

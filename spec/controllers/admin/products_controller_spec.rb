@@ -109,7 +109,7 @@ describe Admin::ProductsController, :type => :controller do
     end
 
 
-    describe "deactivate" do
+    describe "reactivate" do
       it "is available for deprecated" do
         @instance.state = "deprecated"
         expect(@instance.lifecycle.can_reactivate? @productmanager).to be
