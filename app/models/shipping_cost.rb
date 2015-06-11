@@ -37,7 +37,7 @@ class ShippingCost < ActiveRecord::Base
 
   #--- Class Methods --- #
 
-  def self.determine(order: nil, shipping_method: DEFAULT_SHIPPING_METHOD)
+  def self.determine(order: nil, shipping_method: Order::DEFAULT_SHIPPING_METHOD)
     country = Country.where(name_de: order.shipping_country).first
     country_specific_costs = where(country_id: country.id, shipping_method: shipping_method)
     if country_specific_costs.any?

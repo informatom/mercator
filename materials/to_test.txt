@@ -1,6 +1,5 @@
-=== 681 Controller Tests (2655/916/681) ===
+=== 605 Controller Tests (2655/916/681) ===
 
-076 addresses_controller
 124 billing_addresses_controller
 096 orders_controller
 112 offers_controller
@@ -85,4 +84,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------
-3479 / 200 = 17.4 (5065/4063/3764/3638/3472)
+3403 / 200 = 17.1 (5065/3472/3403)

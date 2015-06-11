@@ -1,23 +1,23 @@
 require 'spec_helper'
 
-describe AddressesController, :type => :controller do
+describe BillingAddressesController, :type => :controller do
   before :each do
     no_redirects and act_as_user
     @country = create(:country)
-    @instance = create(:address, country: @country.name_de,
-                                 user_id: @user.id)
-    @invalid_attributes = attributes_for(:address, first_name: nil)
+    @instance = create(:billing_address, country: @country.name_de,
+                                         user_id: @user.id)
+    @invalid_attributes = attributes_for(:billing_address, first_name: nil)
   end
 
   describe "crud actions" do
     it_behaves_like("crud except update")
 
 
-    context "auto actions" do
+    context "auto actions", focus: true do
       describe "GET #index_for_user" do
         it "renders index template" do
           get :index_for_user, user_id: @user.id
-          expect(response.body).to render_template "addresses/index_for_user"
+          expect(response.body).to render_template "billing_addresses/index_for_user"
         end
       end
 
@@ -25,7 +25,7 @@ describe AddressesController, :type => :controller do
       describe "GET #new_for_user" do
         it "renders new template" do
           get :new_for_user, user_id: @user.id
-          expect(response.body).to render_template "addresses/new_for_user"
+          expect(response.body).to render_template "billing_addresses/new_for_user"
         end
       end
 
@@ -33,8 +33,8 @@ describe AddressesController, :type => :controller do
       describe "POST #create_for_user" do
         it "redirects" do
           post :create_for_user, user_id: @user.id,
-                                 address: attributes_for(:address, country: @country.name_de,
-                                                                   user_id: @user.id)
+                                 address: attributes_for(:billing_address, country: @country.name_de,
+                                                                           user_id: @user.id)
           expect(response).to be_redirect
         end
       end

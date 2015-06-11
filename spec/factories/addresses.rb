@@ -13,5 +13,19 @@ FactoryGirl.define do
     city       "Vienna"
     country    "Österreich"
     phone      "+43123456789"
+
+    factory :second_address do
+        company    "small corp"
+        gender     "female"
+        title      "Mga"
+        first_name "Jane"
+        surname    "Done"
+        detail     "Department of Hope"
+        street     "Sesame Street 1"
+        postalcode "5678"
+        city       "Graz"
+        country    "Österreich"
+        phone      "+4311111111"
+    end
   end
 end
