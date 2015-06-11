@@ -29,6 +29,11 @@ describe Sales::ProductsController, :type => :controller do
         request.session[:current_offer_id] = @offer.id
       end
 
+      it "is available for active" do
+        @instance.state = "active"
+        expect(@instance.lifecycle.can_add_to_offer? @productmanager).to be
+      end
+
       it "can be run" do
         get :add_to_offer, id: @instance.id
         expect(response).to redirect_to sales_product_path(@instance)

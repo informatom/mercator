@@ -34,11 +34,11 @@ expect(session[:key]).to eql
 expect(response.body).to be_json_eql(@instance.to_json).excluding("contractitem_id")
 expect(response.body).to be_json_eql("test".to_json)
 
-it "is available for archived" do
-  @instance.state = "archived"
+it "is available for active", focus: true do
+  @instance.state = "active"
   expect(@instance.lifecycle.can_publish? @admin).to be
 end
 
-it "is available" do
+it "is available", focus: true do
   expect(Offeritem::Lifecycle.can_add? @sales).to be
 end

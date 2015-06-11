@@ -85,4 +85,35 @@ describe Admin::ProductsController, :type => :controller do
       expect(response).to redirect_to admin_logentries_path
     end
   end
+
+
+  describe "lifecycle actions" do
+    describe "activate" do
+      it "is available for new" do
+        @instance.state = "new"
+        expect(@instance.lifecycle.can_activate? @productmanager).to be
+      end
+    end
+
+
+    describe "deactivate" do
+      it "is available for new" do
+        @instance.state = "new"
+        expect(@instance.lifecycle.can_deactivate? @productmanager).to be
+      end
+
+      it "is available for active" do
+        @instance.state = "active"
+        expect(@instance.lifecycle.can_deactivate? @productmanager).to be
+      end
+    end
+
+
+    describe "deactivate" do
+      it "is available for deprecated" do
+        @instance.state = "deprecated"
+        expect(@instance.lifecycle.can_reactivate? @productmanager).to be
+      end
+    end
+  end
 end

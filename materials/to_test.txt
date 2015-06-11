@@ -1,4 +1,4 @@
-=== 481 Controller Tests (2655/916/681) ===
+=== 481 Controller Tests (2655/481) ===
 
 096 orders_controller
 112 offers_controller
@@ -6,11 +6,8 @@
 149 users_controller
 
 
-=== 390 Lifecycle Actions ===
+=== 345 Lifecycle Actions ===
 
-013 Address
-013 BillingAddress
-019 Product
 033 Category
 085 Lineitem
 
@@ -83,4 +80,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------
-3279 / 200 = 17.1 (5065/3472/3403)
+3231 / 200 = 16.3 (5065/3263)

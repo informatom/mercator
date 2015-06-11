@@ -41,6 +41,11 @@ describe ProductsController, :type => :controller do
 
   context "lifecycle actions" do
     describe "PUT #do_add_to_basket" do
+      it "is available for active" do
+        @product.state = "active"
+        expect(@product.lifecycle.can_add_to_basket? @user).to be
+      end
+
       it "sets flash messages" do
         put :do_add_to_basket, id: @product.id
         expect(flash[:success]).to eql "The product was added to the basket."
@@ -66,6 +71,11 @@ describe ProductsController, :type => :controller do
 
 
     describe "PUT #do_compare" do
+      it "is available for active" do
+        @product.state = "active"
+        expect(@product.lifecycle.can_compare? @user).to be
+      end
+
       it "adds id to session[:compared]" do
         post :do_compare, id: @product.id
         expect(session[:compared]).to match_array [@product.id]
@@ -85,6 +95,11 @@ describe ProductsController, :type => :controller do
 
 
     describe "PUT #do_dont_compare" do
+      it "is available for active" do
+        @product.state = "active"
+        expect(@product.lifecycle.can_dont_compare? @user).to be
+      end
+
       it "adds id to session[:compared]" do
         session[:compared] = [11, 22, 33, @product.id]
         post :do_dont_compare, id: @product.id

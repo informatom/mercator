@@ -175,7 +175,7 @@ describe AddressesController, :type => :controller do
         @order = create(:order)
       end
 
-      it "is available for archived" do
+      it "is available for active" do
         @instance.state = "active"
         expect(@instance.lifecycle.can_use? @user).to be
       end
@@ -218,7 +218,7 @@ describe AddressesController, :type => :controller do
     end
 
     describe "PUT #do_trash" do
-      it "is available for archived" do
+      it "is available for active" do
         @instance.state = "active"
         expect(@instance.lifecycle.can_trash? @user).to be
       end
