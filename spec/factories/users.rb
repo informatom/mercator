@@ -21,6 +21,18 @@ FactoryGirl.define do
       email_address "dummy.customer@informatom.com"
     end
 
+    factory :active_user do
+      surname       "Activeuser"
+      email_address "active.user@informatom.com"
+      state        "active"
+    end
+
+    factory :guest_user do
+      surname       "Guestuser"
+      email_address "guest.user@informatom.com"
+      state         "guest"
+    end
+
 
     factory :admin do
       first_name "Albert"

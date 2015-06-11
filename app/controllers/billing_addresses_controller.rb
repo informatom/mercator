@@ -48,20 +48,21 @@ class BillingAddressesController < ApplicationController
 
   def do_enter
     do_creator_action :enter do
+      @billing_address = self.this
       self.this.user = current_user
-      order = Order.where(id: params[:billing_address][:order_id], user_id: current_user.id ).first
+      @order = Order.find(params[:billing_address][:order_id])
 
       if current_user.state == "guest"
-
         if this.valid?
-            current_user.attributes = this.namely [:gender, :title, :first_name, :surname, :email_address, :phone]
-          if current_user.save
+          if current_user.update(this.namely [:gender, :title, :first_name, :surname,
+                                              :email_address, :phone])
+            current_user.lifecycle.generate_key unless current_user.lifecycle.key
             UserMailer.activation(current_user, current_user.lifecycle.key).deliver
           else
             self.this.email_address = nil
             self.this.errors.clear
             self.this.errors.add(:email_address, I18n.t("mercator.messages.user.update_email.error"))
-            render action: :enter, order_id: order.id and return
+            render action: :enter, order_id: @order.id and return
           end
         end
       end
@@ -75,42 +76,42 @@ class BillingAddressesController < ApplicationController
           end
         end
 
-        order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
+        @order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
                                         :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"
-        order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
+        @order.attributes = this.namely [:company, :gender, :title, :first_name, :surname,
                                         :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"
-        order.billing_method = Order::DEFAULT_BILLING_METHOD
-        order.save
+        @order.billing_method = Order::DEFAULT_BILLING_METHOD
+        @order.save
 
         Address.create(this.namely([:company, :gender, :title, :first_name, :surname,
                                     :detail, :street, :postalcode, :city, :country, :phone])
                        .merge(user_id: current_user.id))
 
-        order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless order.shipping_method
-        redirect_to order_path(order)
+        @order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless @order.shipping_method
+        redirect_to order_path(@order)
       end
     end
   end
 
+
   def do_use
     do_transition_action :use do
-      order = Order.where(id: params[:order_id], user_id: current_user.id ).first
-      order.update(this.namely([:company, :gender, :title, :first_name, :surname,
+      @order = Order.find(params[:order_id])
+      @order.update(this.namely([:company, :gender, :title, :first_name, :surname,
                                 :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"))
 
       if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
         current_user.update_mesonic(billing_address: self.this)
       end
 
-      order.update(billing_method: Order::DEFAULT_BILLING_METHOD) unless order.billing_method
+      @order.update(billing_method: Order::DEFAULT_BILLING_METHOD) unless @order.billing_method
 
-      unless order.shipping_company
-        order.update(this.namely([:company, :gender, :title, :first_name, :surname,
-                                  :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
-        order.update(shipping_method: DEFAULT_SHIPPING_METHOD) unless order.shipping_method
+      unless @order.shipping_company
+        @order.update(this.namely([:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
+        @order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless @order.shipping_method
       end
 
-      redirect_to order_path(order)
+      redirect_to order_path(@order)
     end
   end
 

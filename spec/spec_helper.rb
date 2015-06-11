@@ -23,5 +23,4 @@ RSpec.configure do |config|
 
   config.include MercatorMacros
   config.include MercatorSharedContexts
-
 end

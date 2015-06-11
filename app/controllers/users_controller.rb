@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     do_transition_action :login_via_email do
       self.current_user = User.find(params[:id])
       create_auth_cookie
-      current_user.lifecycle.create_key!(current_user)
+      current_user.lifecycle.generate_key
       redirect_to home_page
     end
   end
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   def request_email_login
     user = User.find_by_email_address(params[:email_address])
     if user
-      user.lifecycle.create_key!(current_user)
+      user.lifecycle.generate_key
       UserMailer.login_link(user, user.lifecycle.key).deliver
     end
   end

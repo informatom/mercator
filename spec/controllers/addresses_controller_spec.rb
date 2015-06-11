@@ -135,7 +135,7 @@ describe AddressesController, :type => :controller do
         expect(assigns(:address).user_id).to eql @user.id
       end
 
-      it "updates order parameters" do
+      it "updates order attributes" do
         put :do_enter, id: @instance.id,
                        address: attributes_for(:second_address, order_id: @order.id)
         expect(assigns(:order).shipping_company).to eql "small corp"
@@ -166,7 +166,7 @@ describe AddressesController, :type => :controller do
     end
 
 
-    describe "PUT #do_use",focus: true do
+    describe "PUT #do_use" do
       before :each do
         @order = create(:order)
       end
@@ -201,14 +201,14 @@ describe AddressesController, :type => :controller do
         expect(assigns(:order).shipping_method).to eql :parcel_service_shipment
       end
 
-      it "redirects to order path", focus: true do
+      it "redirects to order path" do
         put :do_use, id: @instance.id,
                      order_id: @order.id
         expect(response).to redirect_to order_path(@order)
       end
     end
 
-    describe "PUT #do_trash",focus: true do
+    describe "PUT #do_trash" do
       it "deletes the record" do
         @order = create(:order)
         put :do_trash, id: @instance.id,

@@ -86,9 +86,6 @@ class User < ActiveRecord::Base
     #   UserMailer.activation(self, lifecycle.key).deliver
     # end
 
-    transition :create_key, {:inactive => :guest}, available_to: :all, new_key: true
-    transition :create_key, {[:guest, :active] => :active}, available_to: :all, new_key: true
-
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
@@ -245,7 +242,7 @@ class User < ActiveRecord::Base
   def self.initialize()
     new_user = create(surname: "Gast",
                       email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
-    new_user.lifecycle.create_key!(new_user)
+    new_user.lifecycle.generate_key
     return new_user
   end
 

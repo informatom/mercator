@@ -15,5 +15,20 @@ FactoryGirl.define do
     country       "Österreich"
     phone         "+43123456789"
     vat_number    "ATU66331917"
+
+    factory :second_billing_address do
+        company       "small corp"
+        gender        "female"
+        title         "Mga"
+        first_name    "Jane"
+        surname       "Done"
+        email_address "jane.done@informatom.com"
+        detail        "Department of Hope"
+        street        "Sesame Street 1"
+        postalcode    "5678"
+        city          "Graz"
+        country       "Österreich"
+        phone         "+4311111111"
+    end
   end
 end
