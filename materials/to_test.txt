@@ -8,12 +8,12 @@
 
 === 390 Lifecycle Actions ===
 
+013 Address
+013 BillingAddress
 019 Product
 033 Category
 085 Lineitem
 
-013 Address
-013 BillingAddress
 054 Offer
 123 Order
 050 User

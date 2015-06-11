@@ -35,8 +35,8 @@ class Address < ActiveRecord::Base
     state :active, default: true
 
     create :enter, :available_to => :all, become: :active,
-      params: [:company, :gender, :title, :first_name, :surname, :detail,
-               :street, :postalcode, :city, :country, :phone, :order_id]
+           params: [:company, :gender, :title, :first_name, :surname, :detail,
+                    :street, :postalcode, :city, :country, :phone, :order_id]
 
     transition :use, {:active => :active}, :available_to => :user
     transition :trash, {:active => :active}, :available_to => :user

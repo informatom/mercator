@@ -72,6 +72,10 @@ describe AddressesController, :type => :controller do
 
   context "lifecycle actions" do
     describe "GET #enter"  do
+      it "is available" do
+        expect(Address::Lifecycle.can_enter? @user).to be
+      end
+
       it "creates an address" do
         @order = create(:order)
         get :enter, id: @instance,
@@ -171,6 +175,11 @@ describe AddressesController, :type => :controller do
         @order = create(:order)
       end
 
+      it "is available for archived" do
+        @instance.state = "active"
+        expect(@instance.lifecycle.can_use? @user).to be
+      end
+
       it "finds the order" do
         put :do_use, id: @instance.id,
                      order_id: @order.id
@@ -209,6 +218,11 @@ describe AddressesController, :type => :controller do
     end
 
     describe "PUT #do_trash" do
+      it "is available for archived" do
+        @instance.state = "active"
+        expect(@instance.lifecycle.can_trash? @user).to be
+      end
+
       it "deletes the record" do
         @order = create(:order)
         put :do_trash, id: @instance.id,
