@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :domain_shop_redirect
-#  after_filter :track_action
+  after_filter :track_action
 
   hobo_model_controller
   auto_actions_for :user, :index
@@ -13,9 +13,25 @@ class OrdersController < ApplicationController
   end
 
 
+  def show
+    @current_gtc = Gtc.order(version_of: :desc).first
+    @parked_basket = current_user.parked_basket
+    hobo_show do
+      @current_user = current_user
+      @current_user.confirmation = false
+    end
+  end
+
+
   show_action :refresh do
     self.this = @order = Order.find(params[:id])
     show_response
+  end
+
+
+  show_action :payment_status do
+    @order = self.this = Order.find(params[:id])
+    render :confirm
   end
 
 
@@ -73,21 +89,5 @@ class OrdersController < ApplicationController
         render action: :show and return
       end
     end
-  end
-
-
-  def show
-    @current_gtc = Gtc.order(version_of: :desc).first
-    @parked_basket = current_user.parked_basket
-    hobo_show do
-      @current_user = current_user
-      @current_user.confirmation = false
-    end
-  end
-
-
-  show_action :payment_status do
-    @order = self.this = Order.find(params[:id])
-    render "confirm"
   end
 end

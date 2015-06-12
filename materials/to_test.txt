@@ -1,7 +1,6 @@
-=== 481 Controller Tests (2655/481) ===
+=== 369 Controller Tests (2655/481/369) ===
 
 096 orders_controller
-112 offers_controller
 124 application_controller
 149 users_controller
 
@@ -79,4 +78,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------
-3198 / 200 = 16.0 (5065/3263)
+3086 / 200 = 15.5 (5065/3263)

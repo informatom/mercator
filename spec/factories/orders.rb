@@ -34,5 +34,9 @@ FactoryGirl.define do
     discount_rel        "2.5"
 
     factory :basket
+
+    factory :parked_basket do
+      state "parked"
+    end
   end
 end

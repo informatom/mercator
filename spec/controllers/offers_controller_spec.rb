@@ -23,7 +23,7 @@ describe OffersController, :type => :controller do
 
 
     describe "POST #refresh" do
-      it "loads the conversation" do
+      it "loads the offer" do
         xhr :post, :refresh, id: @offer.id, render: "whatever"
         expect(assigns(:offer)).to eql @offer
       end
