@@ -41,4 +41,18 @@ describe Admin::OrdersController, :type => :controller do
       end
     end
   end
+
+
+  context "lifecycle actions" do
+    before :each do
+      no_redirects and act_as_admin
+    end
+
+    describe "PUT #do_shippment" do
+      it "is avalible for paid for admin" do
+        @paid_order = create(:order, state: "paid")
+        expect(@paid_order.lifecycle.can_shippment?(@admin)).to be
+      end
+    end
+  end
 end

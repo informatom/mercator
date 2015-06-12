@@ -6,7 +6,7 @@
 
 === 258 Lifecycle Actions ===
 
-123 Order
+123 Order *
 085 Lineitem
 
 050 User

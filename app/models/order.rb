@@ -91,10 +91,8 @@ class Order < ActiveRecord::Base
                     :shipping_surname, :shipping_detail, :shipping_street, :shipping_postalcode,
                     :shipping_city, :shipping_country, :discount_rel, :billing_method]
 
-    transition :order, {:basket => :ordered}
-    transition :payment, {:ordered => :paid}
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
-
+#*
     transition :cash_payment, {:basket => :basket}, available_to: :user,
                if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")

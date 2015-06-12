@@ -73,6 +73,13 @@ describe OrdersController, :type => :controller do
 
 
   context "lifecycle actions" do
+    describe "PUT #do_from_offer" do
+      it "is available", focus: true do
+        expect(Order::Lifecycle.can_from_offer? @user).to be
+      end
+    end
+
+
     describe "PUT #do_archive_parked_basket" do
       it "sets flash messages" do
         put :do_archive_parked_basket, id: @parked_basket.id
