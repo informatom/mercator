@@ -186,7 +186,7 @@ describe OrdersController, :type => :controller do
           expect(response.body).to render_template :show
         end
 
-        it "sets the flash messages", focus: true do
+        it "sets the flash messages" do
           put :do_pay, id: @basket.id
           expect(flash[:notice]).to eql nil
           expect(flash[:error]).to eql "some error text"

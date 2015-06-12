@@ -51,6 +51,10 @@ describe Sales::OffersController, :type => :controller do
 
 
     describe "GET #build" do
+      it "is available" do
+        expect(Offer::Lifecycle.can_build? @sales).to be
+      end
+
       it "creates a new offer" do
         get :build
         expect(assigns(:offer)).to be_an Offer
@@ -148,6 +152,152 @@ describe Sales::OffersController, :type => :controller do
         expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "offers")
         put :do_build, offer: @attributes
+      end
+    end
+
+
+    describe "GET #add_position" do
+      it "is available" do
+        expect(@instance.lifecycle.can_add_position? @sales).to be
+      end
+
+      it "creates a new offeritem" do
+        @instance.lifecycle.add_position!(@sales)
+        expect(@instance.offeritems.count).to eql 1
+      end
+
+      it "sets the attributes" do
+        @instance.lifecycle.add_position!(@sales)
+        @instance.reload
+        @offeritem = @instance.offeritems.first
+        expect(@offeritem.position).to eql 10
+        expect(@offeritem.vat).to eql 20
+        expect(@offeritem.offer_id).to eql @instance.id
+        expect(@offeritem.user_id).to eql @user.id
+        expect(@offeritem.description_de).to eql "dummy"
+        expect(@offeritem.amount).to eql 1
+        expect(@offeritem.product_price).to eql 0
+        expect(@offeritem.value).to eql 0
+        expect(@offeritem.unit).to eql "Stk."
+        expect(@offeritem.product_number).to eql "manuell"
+      end
+    end
+
+
+    describe "PUT #do_submit " do
+      it "is available for in progress" do
+        expect(@instance.lifecycle.can_submit? @sales).to be
+      end
+
+      it "checks validìty" do
+        @instance.update(valid_until: Date.today - 1.day)
+        put :do_submit, id: @instance.id
+        expect(response).to have_http_status 403
+      end
+
+      it "publishes to offers" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.id.to_s,
+                                                        type: "all")
+        put :do_submit, id: @instance.id
+      end
+    end
+
+
+    describe "PUT #do_place" do
+      context "in progress" do
+        it "is available for in progress" do
+          expect(@instance.lifecycle.can_place? @sales).to be
+        end
+
+        it "checks validìty" do
+          @instance.update(valid_until: Date.today - 1.day)
+          put :do_place, id: @instance.id
+          expect(response).to have_http_status 403
+        end
+
+        it "publishes to offers" do
+          expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.id.to_s,
+                                                          type: "all")
+          put :do_place, id: @instance.id
+        end
+      end
+
+      context "pending" do
+        before :each do
+          @pending_offer = create(:offer, user_id: @user.id,
+                                          consultant_id: @sales.id,
+                                          conversation_id: @conversation.id,
+                                          state: "pending_approval")
+          act_as_salesmanager
+        end
+
+        it "is not available for pending approval for sales" do
+          expect(@pending_offer.lifecycle.can_place? @sales).to be false
+        end
+
+        it "is not available for pending approval for sales" do
+          expect(@pending_offer.lifecycle.can_place? @salesmanager).to be
+        end
+
+        it "checks validìty" do
+          @pending_offer.update(valid_until: Date.today - 1.day)
+          put :do_place, id: @pending_offer.id
+          expect(response).to have_http_status 403
+        end
+
+        it "publishes to offers" do
+          expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @pending_offer.id.to_s,
+                                                          type: "all")
+          put :do_place, id: @pending_offer.id
+        end
+      end
+    end
+
+
+    describe "PUT #do_devalidate" do
+      before :each do
+        @not_valid_offer = create(:offer, user_id: @user.id,
+                                          consultant_id: @sales.id,
+                                          conversation_id: @conversation.id,
+                                          state: "valid",
+                                          valid_until: Date.today - 1.day)
+        act_as_user
+      end
+
+      it "is available for not any more valid approval" do
+        expect(@not_valid_offer.lifecycle.can_devalidate? @user).to be
+      end
+
+      it "is not available for valid approval" do
+        @not_valid_offer.update(valid_until: Date.today + 1.day)
+        @valid_offer = @not_valid_offer
+        expect(@valid_offer.lifecycle.can_devalidate? @user).to be false
+      end
+
+      it "publishes to offers" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @not_valid_offer.id.to_s,
+                                                        type: "all")
+        @not_valid_offer.lifecycle.devalidate!(@user)
+      end
+    end
+
+
+    describe "PUT #do_revise" do
+      before :each do
+        @invalid_offer = create(:offer, user_id: @user.id,
+                                        consultant_id: @sales.id,
+                                        conversation_id: @conversation.id,
+                                        state: "invalid")
+      end
+
+      it "is available invalid approval" do
+        expect(@invalid_offer.lifecycle.can_revise? @sales).to be
+      end
+
+      it "publishes to offers" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @invalid_offer.id.to_s,
+                                                        type: "all")
+        @invalid_offer.lifecycle.revise!(@sales)
       end
     end
 

@@ -1,13 +1,12 @@
 === 273 Controller Tests (2655/481/273) ===
 
-124 application_controller
 149 users_controller
+124 application_controller
 
 
-=== 312 Lifecycle Actions ===
+=== 258 Lifecycle Actions ===
 
 123 Order
-054 Offer
 085 Lineitem
 
 050 User
@@ -77,4 +76,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2990 / 200 = 15.5 (5065/3263/2290)
+2936 / 200 = 14.7 (5065/3263/2936)

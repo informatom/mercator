@@ -7,10 +7,11 @@ describe OffersController, :type => :controller do
       no_redirects and act_as_user
 
       @product = create(:product)
-
+      @sales = create(:sales)
       @offer = create(:offer, complete: false,
                               state: "valid",
-                              user_id: @user.id)
+                              user_id: @user.id,
+                              consultant_id: @sales.id)
       @offeritem = create(:offeritem, offer_id: @offer.id,
                                       user_id: @user.id,
                                       product_id: @product.id)
@@ -40,6 +41,26 @@ describe OffersController, :type => :controller do
 
     context "lifecycle actions" do
       describe "POST #do_copy" do
+        before :each do
+          @offer_in_progress = create(:offer, user_id: @user.id,
+                                              consultant_id: @sales.id,
+                                              state: "in_progress")
+        end
+
+        it "is not available for in progress" do
+          expect(@offer_in_progress.lifecycle.can_copy? @user).to be false
+        end
+
+        it "is not available for valid" do
+          expect(@offer.lifecycle.can_copy? @user).to be
+        end
+
+        it "checks validìty" do
+          @offer.update(valid_until: Date.today - 1.day)
+          put :do_copy, id: @offer.id
+          expect(response).to have_http_status 403
+        end
+
         it "derives the last position" do
           post :do_copy, id: @offer.id
           expect(assigns(:last_position)).to eql @lineitem.position
