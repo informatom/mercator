@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
       current_user.update_erp_account_nr()
 
       unless @order.push_to_mesonic()
-        flash[:error] = I18n.t "mercator.messages.order.place.failure"
+        flash[:error] = I18n.t "mercator.messages.order.place.error"
         flash[:notice] = nil
 
         render action: :error and return
@@ -71,20 +71,17 @@ class OrdersController < ApplicationController
   def do_pay
     self.this = @order = Order.find(params[:id])
 
-    if Rails.application.config.try(:payment) == "mpay24" &&
-       ["production", "staging", "development"].include?(Rails.env.to_s)
-
-      response = @order.pay(system: Rails.env.to_s)
+    if Rails.application.config.try(:payment) == "mpay24"
+      @response = @order.pay(system: Rails.env.to_s)
+      # The order is not pushed to Mesonic here, that's done by the payment processor
+      # that creates a confirmation and then pushes the order
     end
 
     do_transition_action :pay do
-      Order.create(user: current_user) # and create a new basket ...
-
-      if response.body[:select_payment_response][:location]
-        redirect_to response.body[:select_payment_response][:location]
+      if @response.body[:select_payment_response][:location]
+        redirect_to @response.body[:select_payment_response][:location]
       else
-        puts "Error:" + response.body[:select_payment_response][:err_text]
-        flash[:error] = response.body[:select_payment_response][:err_text]
+        flash[:error] = @response.body[:select_payment_response][:err_text]
         flash[:notice] = nil
         render action: :show and return
       end

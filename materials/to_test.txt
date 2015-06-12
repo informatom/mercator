@@ -1,16 +1,15 @@
-=== 369 Controller Tests (2655/481/369) ===
+=== 273 Controller Tests (2655/481/273) ===
 
-096 orders_controller
 124 application_controller
 149 users_controller
 
 
 === 312 Lifecycle Actions ===
 
+123 Order
+054 Offer
 085 Lineitem
 
-054 Offer
-123 Order
 050 User
 
 
@@ -77,5 +76,5 @@
 005 Constant.page_title_postfix()
 009 productmanager/front/update_categorization_order
 
-----------------------
-3086 / 200 = 15.5 (5065/3263)
+----------------------------------
+2990 / 200 = 15.5 (5065/3263/2290)
