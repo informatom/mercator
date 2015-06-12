@@ -31,7 +31,7 @@ describe ConversationsController, :type => :controller do
       expect(assigns(:message)).to be_a Message
     end
 
-    it "the attributes are set correctly" do
+    it "the attributes are set" do
       get :show, id: @conversation.id
       expect(assigns(:message).conversation_id).to eql @conversation.id
       expect(assigns(:message).sender_id).to eql @user.id
@@ -91,7 +91,7 @@ describe ConversationsController, :type => :controller do
                                                  "8:30-17:00 Thu: 8:30-17:00 Fri: 8:30-12:30."
       end
 
-      it "creates a message with all parameters set correctly" do
+      it "creates a message with all parameters set" do
         get :initiate
         expect(assigns(:conversation).messages.first.reciever_id).to eql @user.id
         expect(assigns(:conversation).messages.first.sender_id).to eql User::ROBOT.id

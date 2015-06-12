@@ -243,13 +243,13 @@ describe Order do
       expect{@order.merge(basket: @second_order)}.to change {Order.count}.by(-1)
     end
 
-    it "adds up amounts without inventories correctly" do
+    it "adds up amounts without inventories" do
       @order.merge(basket: @second_order)
       @lineitem.reload
       expect(@lineitem.amount).to eql 7
     end
 
-    it "adds up amounts with inventories correctly" do
+    it "adds up amounts with inventories" do
       @order.merge(basket: @second_order)
       @fourth_lineitem.reload
       expect(@fourth_lineitem.amount).to eql 18

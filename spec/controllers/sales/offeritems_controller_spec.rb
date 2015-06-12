@@ -27,7 +27,7 @@ describe Sales::OfferitemsController, :type => :controller do
 
 
     describe 'PATCH #update' do
-      it "sets attributes correctly for non existing product" do
+      it "sets attributes for non existing product" do
         patch :update, id: @instance,
                        offeritem: { amount: 13,
                                     product_price: 13,
@@ -49,7 +49,7 @@ describe Sales::OfferitemsController, :type => :controller do
         expect(assigns(:this).value).to eql 152.1
       end
 
-      it "sets more attributes correctly for an existing product" do
+      it "sets more attributes for an existing product" do
         patch :update, id: @instance,
                        offeritem: { amount: 13,
                                     product_price: 13,

@@ -63,7 +63,7 @@ describe Sales::ConversationsController, :type => :controller do
     end
 
 
-    describe "GET #refresh" do
+    describe "POST #refresh" do
       it "loads the conversation" do
         xhr :post, :refresh, id: @instance.id, render: "whatever"
         expect(assigns(:conversation)).to eql @instance

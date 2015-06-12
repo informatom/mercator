@@ -341,13 +341,13 @@ describe Category do
         create(:categorization, category: @category, product: @second_product)
       end
 
-      it "sets filtermin correctly" do
+      it "sets filtermin" do
         Category.reindexing_and_filter_updates
         @category.reload
         expect(@category.filtermin).to eql(38)
       end
 
-      it "sets filtermax correctly" do
+      it "sets filtermax" do
         Category.reindexing_and_filter_updates
         @category.reload
         expect(@category.filtermax).to eql(43)

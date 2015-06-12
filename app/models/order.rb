@@ -89,7 +89,7 @@ class Order < ActiveRecord::Base
                     :billing_postalcode, :billing_city, :billing_country, :shipping_company,
                     :shipping_phone, :shipping_gender, :shipping_title, :shipping_first_name,
                     :shipping_surname, :shipping_detail, :shipping_street, :shipping_postalcode,
-                    :shipping_city, :shipping_country, :discount_rel]
+                    :shipping_city, :shipping_country, :discount_rel, :billing_method]
 
     transition :order, {:basket => :ordered}
     transition :payment, {:ordered => :paid}

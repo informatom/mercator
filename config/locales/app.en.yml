@@ -727,9 +727,9 @@ en:
           success: The amount was decreased by one.
       offer:
         copy_to_offer:
-          success: The offer was copied into your current basket.
+          success: The offer positions were copied into your current basket.
         copy_to_order:
-          success: The offer was copied in e new order.
+          success: The offer was copied to a new order.
         expired: This offer is expired and cannot be accepted.
         in_progress: This offer is in progress and cannot be accepted yet.
         invalid: This offer is invalid and cannot be accepted.
