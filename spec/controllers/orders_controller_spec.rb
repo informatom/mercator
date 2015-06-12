@@ -61,7 +61,7 @@ describe OrdersController, :type => :controller do
 
   describe "POST #payment_status" do
     it "loads the order" do
-      xhr :post, :payment_status, id: @basket.id
+      post :payment_status, id: @basket.id
       expect(assigns(:order)).to eql @basket
     end
 
@@ -88,8 +88,12 @@ describe OrdersController, :type => :controller do
 
 
     describe "PUT #do_place", focus: true do
-      it "", focus: true do
+      it "loads the order" do
         put :do_place, id: @basket.id
+        expect(assigns(:order)).to eql @basket
+      end
+
+
     end
   end
 end
