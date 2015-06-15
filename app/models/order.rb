@@ -92,11 +92,13 @@ class Order < ActiveRecord::Base
                     :shipping_city, :shipping_country, :discount_rel, :billing_method]
 
     transition :shippment, {:paid => :shipped}, available_to: "User.administrator", subsite: "admin"
-#*
+
+
     transition :cash_payment, {:basket => :basket}, available_to: :user,
                if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
     end
+
     transition :cash_payment, {:accepted_offer => :accepted_offer}, available_to: :user,
                if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
@@ -131,26 +133,32 @@ class Order < ActiveRecord::Base
 
 
     transition :check, {:basket => :basket}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
+               if: "acting_user.gtc_accepted_current? && billing_address_filled? && shipping_method"
     transition :check, {:accepted_offer => :accepted_offer}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
+               if: "acting_user.gtc_accepted_current? && billing_address_filled? && shipping_method"
     transition :check, {:in_payment => :in_payment}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company && shipping_method"
+               if: "acting_user.gtc_accepted_current? && billing_address_filled? && shipping_method"
 
 
     transition :place, {[:basket, :accepted_offer] => :ordered}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company.present? && billing_method !='e_payment'"
+               if: "acting_user.gtc_accepted_current? && billing_address_filled? && billing_method !='e_payment'"
+
+#*
     transition :pay, {[:basket, :accepted_offer, :in_payment, :payment_failed] => :in_payment}, available_to: :user,
-               if: "acting_user.gtc_accepted_current? && billing_company.present? && billing_method =='e_payment'"
+               if: "acting_user.gtc_accepted_current? && billing_address_filled? && billing_method =='e_payment'"
+
 
     transition :failing_payment, {[:in_payment, :payment_failed, :paid] => :payment_failed},
                available_to: "User.find_by(surname: 'MPay24')"
+
     transition :successful_payment, {[:in_payment, :payment_failed, :paid] => :paid},
                available_to: "User.find_by(surname: 'MPay24')"
+
 
     transition :park, {:basket => :parked}, available_to: :user
 
     transition :archive_parked_basket, {:parked => :archived_basket}, available_to: :user
+
 
     transition :pickup_shipment, {:basket => :basket}, available_to: :user,
                if: "shipping_method != 'pickup_shipment'" do
@@ -187,6 +195,7 @@ class Order < ActiveRecord::Base
       end
       self.add_shipment_costs
     end
+
 
     transition :delete_all_positions, {:basket => :basket}, available_to: :user,
                if: "lineitems.any?" do
