@@ -26,35 +26,6 @@ describe LineitemsController, :type => :controller do
 
   describe "lifecycle actions" do
 
-    describe "PUT #do_delete_from_basket" do
-      it "sets flash messages" do
-        put :do_delete_from_basket, id: @instance.id
-        expect(flash[:success]).to eql "The order position was deleted."
-        expect(flash[:notice]).to eql nil
-      end
-
-      it "redirects_to return to" do
-        put :do_delete_from_basket, id: @instance.id
-        expect(response).to redirect_to users_path
-      end
-    end
-
-
-    describe "PUT #do_transfer_to_basket" do
-      it "sets flash messages" do
-        put :do_transfer_to_basket, id: @instance.id
-        expect(flash[:success]).to eql "The order position was copied into your current basket."
-        expect(flash[:notice]).to eql nil
-      end
-
-      it "redirects_to return to" do
-        put :do_transfer_to_basket, id: @instance.id
-        expect(response).to redirect_to users_path
-      end
-    end
-
-
-
     describe "PUT #do_add_one" do
       it "sets flash messages" do
         put :do_add_one, id: @instance.id
@@ -83,11 +54,15 @@ describe LineitemsController, :type => :controller do
     end
 
 
-    describe "PUT #do_enable_upselling" do
+    describe "PUT #do_enable_upselling", focus: true do
       it "redirects_to return to" do
         @instance.update(upselling: false)
         put :do_enable_upselling, id: @instance.id
         expect(response).to redirect_to users_path
+      end
+
+      it "is available" do
+        expect(@instance.lifecycle.can_enable_upselling? @user).to be
       end
     end
 
@@ -153,10 +128,21 @@ describe LineitemsController, :type => :controller do
                                       user_id: @user.id)
         expect(@lineitem.lifecycle.can_delete_from_basket? @user).to be false
       end
+
+      it "sets flash messages" do
+        put :do_delete_from_basket, id: @instance.id
+        expect(flash[:success]).to eql "The order position was deleted."
+        expect(flash[:notice]).to eql nil
+      end
+
+      it "redirects_to return to" do
+        put :do_delete_from_basket, id: @instance.id
+        expect(response).to redirect_to users_path
+      end
     end
 
 
-    describe "PUT #do_transfer_to_basket", focus: true do
+    describe "PUT #do_transfer_to_basket" do
       before :each do
         @order = create(:order, state: "active",
                                 user_id: @user.id)
@@ -167,7 +153,6 @@ describe LineitemsController, :type => :controller do
       it "is available for a lineitem in another order" do
         expect(@lineitem.lifecycle.can_transfer_to_basket? @user).to be
       end
-
 
       it "is not available for a lineitem from another user" do
         @second_user = create(:guest_user)
@@ -194,6 +179,17 @@ describe LineitemsController, :type => :controller do
                                              product_id: @supply.id)
         @lineitem.lifecycle.transfer_to_basket!(@user)
         expect(Order.find(@order.id)).to be_a Order
+      end
+
+      it "sets flash messages" do
+        put :do_transfer_to_basket, id: @instance.id
+        expect(flash[:success]).to eql "The order position was copied into your current basket."
+        expect(flash[:notice]).to eql nil
+      end
+
+      it "redirects_to return to" do
+        put :do_transfer_to_basket, id: @instance.id
+        expect(response).to redirect_to users_path
       end
     end
   end
