@@ -37,4 +37,8 @@ describe Guest do
   it "responds to basket?" do
     is_expected.to respond_to :basket
   end
+
+  it "responds to id" do
+    expect(@guest.id).to eql nil
+  end
 end

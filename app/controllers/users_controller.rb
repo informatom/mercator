@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   after_filter :track_action
 
   hobo_user_controller
-  auto_actions :all, :except => [ :index, :new, :create ]
+  auto_actions :all, :except => [ :index, :new, :create, :destroy ]
   auto_actions :lifecycle
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/controllers/users_controller_extensions.rb
@@ -11,32 +11,18 @@ class UsersController < ApplicationController
   autocomplete :surname
 
 
-  # Normally, users should be created via the user lifecycle, except
-  #  for the initial user created via the form on the front screen on
-  #  first run.  This method creates the initial user.
-  def create
-    hobo_create do
-      if valid?
-        self.current_user = this
-        flash[:notice] = t("hobo.messages.you_are_site_admin",
-                         :default=>"You are now the site administrator")
-        redirect_to home_page
-      end
-    end
-  end
-
-
   def login
-    if  params[:fromfront] == "true"
-      last_user_id = current_user.id if current_user.class == User
+    if params[:fromfront] == "true"
+      last_user_id = current_user.id
       logout()
     end
 
     hobo_login
+
     if logged_in?
       current_user.update(logged_in: true)
 
-      last_user = session[:last_user] ? User.find(session[:last_user]) : nil
+      last_user = User.find(session[:last_user]) if session[:last_user]
 
       if last_user
         last_basket = last_user.basket
@@ -80,6 +66,7 @@ class UsersController < ApplicationController
     last_user_id = current_user.id
     self.current_user.update(logged_in: false)
     current_basket.delete_if_obsolete
+
     hobo_logout do
       session[:last_user] = last_user_id
       redirect_to :user_login
@@ -91,7 +78,8 @@ class UsersController < ApplicationController
     user = User.find_by_email_address(params[:email_address])
     if user
       user.lifecycle.generate_key
-      UserMailer.login_link(user, user.lifecycle.key).deliver
+      UserMailer.login_link(user, user.lifecycle.key)
+                .deliver
     end
   end
 
@@ -106,6 +94,7 @@ class UsersController < ApplicationController
 
   def accept_gtc
     @current_gtc = Gtc.order(version_of: :desc).first
+
     transition_page_action :accept_gtc do
       self.this.confirmation = false
       self.this.order_id = params[:order_id]
@@ -115,23 +104,17 @@ class UsersController < ApplicationController
 
   def do_accept_gtc
     do_transition_action :accept_gtc do
+      order_id = params[:order_id] || params[:user][:order_id]
+
       if this.confirmation == "1"
         current_user.update(gtc_version_of: Gtc.current,
                             gtc_confirmed_at: Time.now())
         current_user.basket.update(gtc_version_of: Gtc.current,
                                    gtc_confirmed_at: Time.now())
-        if params[:order_id]
-          redirect_to order_path(params[:order_id])
-        else
-          redirect_to order_path(params[:user][:order_id])
-        end
+        redirect_to order_path(order_id)
       else
         flash[:error] = I18n.t("mercator.messages.user.accept_gtc.error")
-        if params[:user][:order_id]
-          redirect_to action: :accept_gtc, order_id: params[:user][:order_id]
-        else
-          redirect_to action: :accept_gtc, order_id: params[:order_id]
-        end
+        redirect_to action: :accept_gtc, order_id: order_id
       end
     end
   end

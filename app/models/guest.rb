@@ -28,5 +28,9 @@ class Guest < Hobo::Model::Guest
     I18n.t("mercator.guest")
   end
 
+  def id
+    nil
+  end
+
   attr_accessor :basket
 end

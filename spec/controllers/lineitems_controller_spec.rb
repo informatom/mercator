@@ -37,6 +37,28 @@ describe LineitemsController, :type => :controller do
         put :do_transfer_to_basket, id: @instance.id
         expect(response).to redirect_to users_path
       end
+
+      it "is available" do
+        expect(@instance.lifecycle.can_add_one? @user).to be
+      end
+
+      it "is not available for a lineitem in another order" do
+        @order = create(:order, state: "active",
+                                user_id: @user.id)
+        @lineitem = create(:lineitem, order_id: @order.id,
+                                      user_id: @user.id)
+        expect(@lineitem.lifecycle.can_add_one? @user).to be false
+      end
+
+      it "increases the amount" do
+        expect {@instance.lifecycle.add_one!(@user)}.to change {@instance.amount}.by 1
+      end
+
+      it "publishes to orders" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @basket.id.to_s,
+                                                       type: "basket")
+        @instance.lifecycle.add_one!(@user)
+      end
     end
 
 
@@ -51,18 +73,161 @@ describe LineitemsController, :type => :controller do
         put :do_transfer_to_basket, id: @instance.id
         expect(response).to redirect_to users_path
       end
+
+       it "is available" do
+        expect(@instance.lifecycle.can_remove_one? @user).to be
+      end
+
+      it "is not available for a lineitem in another order" do
+        @order = create(:order, state: "active",
+                                user_id: @user.id)
+        @lineitem = create(:lineitem, order_id: @order.id,
+                                      user_id: @user.id)
+        expect(@lineitem.lifecycle.can_remove_one? @user).to be false
+      end
+
+      it "decreases the amount" do
+        expect {@instance.lifecycle.remove_one!(@user)}.to change {@instance.amount}.by -1
+      end
+
+      it "deletes the lineitem if amount was 1" do
+        @instance.update(amount: 1)
+        @instance.lifecycle.remove_one!(@user)
+        expect(Lineitem.where(id: @instance.id)).to be_empty
+      end
+
+
+      it "publishes to orders" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @basket.id.to_s,
+                                                       type: "basket")
+        @instance.lifecycle.remove_one!(@user)
+      end
     end
 
 
-    describe "PUT #do_enable_upselling", focus: true do
+    describe "PUT #do_enable_upselling" do
       it "redirects_to return to" do
         @instance.update(upselling: false)
         put :do_enable_upselling, id: @instance.id
         expect(response).to redirect_to users_path
       end
 
-      it "is available" do
-        expect(@instance.lifecycle.can_enable_upselling? @user).to be
+
+      context "state is active" do
+        it "is available" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be
+        end
+
+        it "is not available if already upselling" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem's product has no supplies upselling" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "active")
+          @lineitem.product.supplyrelations.delete_all
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem has no product" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: nil,
+                                        upselling: false,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem's order is not basket" do
+          @second_order = create(:order, user_id: @user.id)
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @second_order.id,
+                                        product_id: nil,
+                                        upselling: false,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "changes upselling to true" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "active")
+          @lineitem.lifecycle.enable_upselling!(@user)
+          expect(@lineitem.upselling).to eql true
+        end
+      end
+
+
+      context "state is blocked" do
+        it "is available" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be
+        end
+
+        it "is not available if already upselling" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem's product has no supplies upselling" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "blocked")
+          @lineitem.product.supplyrelations.delete_all
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem has no product" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: nil,
+                                        upselling: false,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem's order is not basket" do
+          @second_order = create(:order, user_id: @user.id)
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @second_order.id,
+                                        product_id: nil,
+                                        upselling: false,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_enable_upselling? @user).to be false
+        end
+
+        it "changes upselling to true" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "blocked")
+          @lineitem.lifecycle.enable_upselling!(@user)
+          expect(@lineitem.upselling).to eql true
+        end
       end
     end
 
@@ -71,6 +236,81 @@ describe LineitemsController, :type => :controller do
       it "redirects_to return to" do
         put :do_disable_upselling, id: @instance.id
         expect(response).to redirect_to users_path
+      end
+
+      context "state is active" do
+        it "is available" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_disable_upselling? @user).to be
+        end
+
+        it "is not available if not upselling" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_disable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem's order is not basket" do
+          @second_order = create(:order, user_id: @user.id)
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @second_order.id,
+                                        product_id: nil,
+                                        state: "active")
+          expect(@lineitem.lifecycle.can_disable_upselling? @user).to be false
+        end
+
+        it "changes upselling to false" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        state: "active")
+          @lineitem.lifecycle.disable_upselling!(@user)
+          expect(@lineitem.upselling).to eql false
+        end
+      end
+
+
+      context "state is blocked" do
+        it "is available" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_disable_upselling? @user).to be
+        end
+
+        it "is not available if not upselling" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        upselling: false,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_disable_upselling? @user).to be false
+        end
+
+        it "is not available if lineitem's order is not basket" do
+          @second_order = create(:order, user_id: @user.id)
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @second_order.id,
+                                        product_id: nil,
+                                        state: "blocked")
+          expect(@lineitem.lifecycle.can_disable_upselling? @user).to be false
+        end
+
+        it "changes upselling to false" do
+          @lineitem = create(:lineitem, user_id: @user.id,
+                                        order_id: @basket.id,
+                                        product_id: @product.id,
+                                        state: "blocked")
+          @lineitem.lifecycle.disable_upselling!(@user)
+          expect(@lineitem.upselling).to eql false
+        end
       end
     end
 

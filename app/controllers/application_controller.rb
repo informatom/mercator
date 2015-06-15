@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
 
 
   def set_locale
-    Rails.logger.level = 0
-
-    I18n.locale = params[:locale] || session[:locale] || current_user.locale || I18n.default_locale
-    session[:locale] = I18n.locale
+    session[:locale] = I18n.locale = params[:locale] ||
+                                     session[:locale] ||
+                                     current_user.locale ||
+                                     I18n.default_locale
     current_user.update(locale: I18n.locale) if current_user.class != Guest &&
                                                 current_user.locale != I18n.locale.to_s
   end

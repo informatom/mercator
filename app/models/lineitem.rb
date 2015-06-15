@@ -77,7 +77,7 @@ class Lineitem < ActiveRecord::Base
                  parked_basket.delete_if_obsolete
                end
 
-#*
+
     transition :enable_upselling, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order && !upselling && product && product.supplies.any?" do
                  self.update(upselling: true)

@@ -1,12 +1,10 @@
 === 273 Controller Tests (2655/481/273) ===
 
-149 users_controller
+149 users_controller *
 124 application_controller
 
 
-=== 135 Lifecycle Actions ===
-
-085 Lineitem *
+=== 50 Lifecycle Actions ===
 
 050 User
 
@@ -75,4 +73,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2813 / 200 = 14.1 (5065/2936)
+2728 / 200 = 13.7 (5065/2936/2728)
