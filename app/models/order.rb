@@ -143,7 +143,6 @@ class Order < ActiveRecord::Base
     transition :place, {[:basket, :accepted_offer] => :ordered}, available_to: :user,
                if: "acting_user.gtc_accepted_current? && billing_address_filled? && billing_method !='e_payment'"
 
-#*
     transition :pay, {[:basket, :accepted_offer, :in_payment, :payment_failed] => :in_payment}, available_to: :user,
                if: "acting_user.gtc_accepted_current? && billing_address_filled? && billing_method =='e_payment'"
 
@@ -159,13 +158,11 @@ class Order < ActiveRecord::Base
 
     transition :archive_parked_basket, {:parked => :archived_basket}, available_to: :user
 
-
     transition :pickup_shipment, {:basket => :basket}, available_to: :user,
                if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
       self.lineitems
-          .find_by(position: 10000,
-                   product_number: Constant.find_by_key("shipping_cost_article").value)
+          .find_by(product_number: Constant.find_by_key("shipping_cost_article").value)
           .try(:destroy)
     end
 
@@ -173,11 +170,10 @@ class Order < ActiveRecord::Base
                available_to: :user, if: "shipping_method != 'pickup_shipment'" do
       self.update(shipping_method: "pickup_shipment")
       self.lineitems
-          .find_by(position: 10000,
-                   product_number: Constant.find_by_key("shipping_cost_article").value)
+          .find_by(product_number: Constant.find_by_key("shipping_cost_article").value)
           .try(:destroy)
     end
-
+#*
     transition :parcel_service_shipment, {:basket => :basket},
                available_to: :user, if: "shipping_method != 'parcel_service_shipment' && self.shippable?" do
       self.update(shipping_method: "parcel_service_shipment")

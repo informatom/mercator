@@ -202,7 +202,7 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #cash_payment" do
+    describe "PUT #do_cash_payment" do
       context "order is basket" do
         it "is available for basket" do
           @order = create(:order, billing_method: "e_payment",
@@ -276,7 +276,7 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #atm_payment" do
+    describe "PUT #do_atm_payment" do
       context "order is basket" do
         it "is available for basket" do
           @order = create(:order, billing_method: "e_payment",
@@ -350,7 +350,7 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #pre_payment" do
+    describe "PUT #do_pre_payment" do
       context "order is basket" do
         it "is available for basket" do
           @order = create(:order, billing_method: "e_payment",
@@ -401,7 +401,7 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #e_payment" do
+    describe "PUT #do_e_payment" do
       context "order is basket" do
         it "is available for basket" do
           @order = create(:order, billing_method: "pre_payment",
@@ -452,28 +452,29 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #check" do
+    describe "PUT #do_check" do
       before :each do
         @older_gtc = create(:older_gtc)
         @current_gtc = create(:newer_gtc)
+        @user.update(gtc_version_of: @current_gtc.version_of)
       end
 
 
       context "order is basket" do
         it "is available for basket" do
           @order = create(:order, user_id: @user.id)
-          @user.update(gtc_version_of: @current_gtc.version_of)
           expect(@order.lifecycle.can_check? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
           @order = create(:order, user_id: @user.id)
+          @user.update(gtc_version_of: @older_gtc.version_of)
           expect(@order.lifecycle.can_check? @user).to be_falsy
         end
 
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
-                                  billing_company: nil)
+                                  billing_city: nil)
           expect(@order.lifecycle.can_check? @user).to be_falsy
         end
 
@@ -489,19 +490,19 @@ describe OrdersController, :type => :controller do
         it "is available for accepted_offer" do
           @order = create(:order, user_id: @user.id,
                                   state: "accepted_offer")
-          @user.update(gtc_version_of: @current_gtc.version_of)
           expect(@order.lifecycle.can_check? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
           @order = create(:order, user_id: @user.id,
                                   state: "accepted_offer")
+          @user.update(gtc_version_of: @older_gtc.version_of)
           expect(@order.lifecycle.can_check? @user).to be_falsy
         end
 
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
-                                  billing_company: nil,
+                                  billing_city: nil,
                                   state: "accepted_offer")
           expect(@order.lifecycle.can_check? @user).to be_falsy
         end
@@ -519,11 +520,11 @@ describe OrdersController, :type => :controller do
         it "is available for in_payment" do
           @order = create(:order, user_id: @user.id,
                                   state: "in_payment")
-          @user.update(gtc_version_of: @current_gtc.version_of)
           expect(@order.lifecycle.can_check? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
+          @user.update(gtc_version_of: @older_gtc.version_of)
           @order = create(:order, user_id: @user.id,
                                   state: "in_payment")
           expect(@order.lifecycle.can_check? @user).to be_falsy
@@ -531,7 +532,7 @@ describe OrdersController, :type => :controller do
 
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
-                                  billing_company: nil,
+                                  billing_city: nil,
                                   state: "accepted_offer")
           expect(@order.lifecycle.can_check? @user).to be_falsy
         end
@@ -546,34 +547,35 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #place", focus: true do
+    describe "PUT #do_place" do
       before :each do
         @older_gtc = create(:older_gtc)
         @current_gtc = create(:newer_gtc)
+        @user.update(gtc_version_of: @current_gtc.version_of)
       end
 
 
       context "order is basket" do
         it "is available for basket" do
           @order = create(:order, user_id: @user.id)
-          @user.update(gtc_version_of: @current_gtc.version_of)
           expect(@order.lifecycle.can_place? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
           @order = create(:order, user_id: @user.id)
+          @user.update(gtc_version_of: @older_gtc.version_of)
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
-                                  billing_company: nil)
+                                  billing_city: nil)
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
-        it "is not available if billing method is not e-payment" do
+        it "is not available if billing method is e-payment" do
           @order = create(:order, user_id: @user.id,
-                                  billing_method: "pre_payment")
+                                  billing_method: "e_payment")
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
@@ -590,26 +592,26 @@ describe OrdersController, :type => :controller do
         it "is available for accepted_offer" do
           @order = create(:order, user_id: @user.id,
                                   state:"accepted_offer")
-          @user.update(gtc_version_of: @current_gtc.version_of)
           expect(@order.lifecycle.can_place? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
           @order = create(:order, user_id: @user.id,
                                   state:"accepted_offer")
+          @user.update(gtc_version_of: @older_gtc.version_of)
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
-                                  billing_company: nil,
+                                  billing_city: nil,
                                   state:"accepted_offer")
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
-        it "is not available if billing method is not e-payment" do
+        it "is not available if billing method is e-payment" do
           @order = create(:order, user_id: @user.id,
-                                  billing_method: "pre_payment",
+                                  billing_method: "e_payment",
                                   state:"accepted_offer")
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
@@ -620,6 +622,416 @@ describe OrdersController, :type => :controller do
           @user.update(gtc_version_of: @current_gtc.version_of)
           @order.lifecycle.place!(@user)
           expect(@order.state).to eql "ordered"
+        end
+      end
+    end
+
+
+    describe "PUT #do_pay" do
+      before :each do
+        @older_gtc = create(:older_gtc)
+        @current_gtc = create(:newer_gtc)
+        @user.update(gtc_version_of: @current_gtc.version_of)
+      end
+
+
+      context "order is basket" do
+        it "is available for basket" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment")
+          expect(@order.lifecycle.can_pay? @user).to be
+        end
+
+        it "is not available if gtc accepted is not current" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment")
+          @user.update(gtc_version_of: @older_gtc.version_of)
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing address is not filled" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_city: nil,
+                                  billing_method: "e_payment")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing method is not e_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "changes the state to ordered" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment")
+          @user.update(gtc_version_of: @current_gtc.version_of)
+          @order.lifecycle.pay!(@user)
+          expect(@order.state).to eql "in_payment"
+        end
+      end
+
+
+      context "order is accepted_offer" do
+        it "is available for accepted_offer" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "accepted_offer")
+          expect(@order.lifecycle.can_pay? @user).to be
+        end
+
+        it "is not available if gtc accepted is not current" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "accepted_offer")
+          @user.update(gtc_version_of: @older_gtc.version_of)
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing address is not filled" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_city: nil,
+                                  billing_method: "e_payment",
+                                  state: "accepted_offer")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing method is not e_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment",
+                                  state: "accepted_offer")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "changes the state to ordered" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "accepted_offer")
+          @user.update(gtc_version_of: @current_gtc.version_of)
+          @order.lifecycle.pay!(@user)
+          expect(@order.state).to eql "in_payment"
+        end
+      end
+
+
+      context "order is in_payment" do
+        it "is available for in_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_pay? @user).to be
+        end
+
+        it "is not available if gtc accepted is not current" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "in_payment")
+          @user.update(gtc_version_of: @older_gtc.version_of)
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing address is not filled" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_city: nil,
+                                  billing_method: "e_payment",
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing method is not e_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment",
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "changes the state to ordered" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "in_payment")
+          @user.update(gtc_version_of: @current_gtc.version_of)
+          @order.lifecycle.pay!(@user)
+          expect(@order.state).to eql "in_payment"
+        end
+      end
+
+
+      context "order is payment_failed" do
+        it "is available for payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_pay? @user).to be
+        end
+
+        it "is not available if gtc accepted is not current" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "payment_failed")
+          @user.update(gtc_version_of: @older_gtc.version_of)
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing address is not filled" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_city: nil,
+                                  billing_method: "e_payment",
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "is not available if billing method is not e_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment",
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_pay? @user).to be_falsy
+        end
+
+        it "changes the state to ordered" do
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "e_payment",
+                                  state: "payment_failed")
+          @user.update(gtc_version_of: @current_gtc.version_of)
+          @order.lifecycle.pay!(@user)
+          expect(@order.state).to eql "in_payment"
+        end
+      end
+    end
+
+
+    describe "PUT #do_failing_payment" do
+      before :each do
+        @mpay24_user = create(:mpay24_user)
+      end
+
+      context "order is in_payment" do
+        it "is available for mpay24_user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_failing_payment? @mpay24_user).to be
+        end
+
+        it "is not available for user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_failing_payment? @user).to be_falsy
+        end
+
+        it "changes the status to payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "in_payment")
+          @order.lifecycle.failing_payment!(@mpay24_user)
+          expect(@order.state).to eql "payment_failed"
+        end
+      end
+
+
+      context "order is payment_failed" do
+        it "is available for mpay24_user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_failing_payment? @mpay24_user).to be
+        end
+
+        it "is not available for user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_failing_payment? @user).to be_falsy
+        end
+
+        it "changes the status to payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "payment_failed")
+          @order.lifecycle.failing_payment!(@mpay24_user)
+          expect(@order.state).to eql "payment_failed"
+        end
+      end
+
+
+      context "order is paid" do
+        it "is available for mpay24_user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "paid")
+          expect(@order.lifecycle.can_failing_payment? @mpay24_user).to be
+        end
+
+        it "is not available for user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "paid")
+          expect(@order.lifecycle.can_failing_payment? @user).to be_falsy
+        end
+
+        it "changes the status to payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "paid")
+          @order.lifecycle.failing_payment!(@mpay24_user)
+          expect(@order.state).to eql "payment_failed"
+        end
+      end
+    end
+
+
+    describe "PUT #do_successful_payment" do
+      before :each do
+        @mpay24_user = create(:mpay24_user)
+      end
+
+      context "order is in_payment" do
+        it "is available for mpay24_user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_successful_payment? @mpay24_user).to be
+        end
+
+        it "is not available for user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "in_payment")
+          expect(@order.lifecycle.can_successful_payment? @user).to be_falsy
+        end
+
+        it "changes the status to payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "in_payment")
+          @order.lifecycle.successful_payment!(@mpay24_user)
+          expect(@order.state).to eql "paid"
+        end
+      end
+
+
+      context "order is payment_failed" do
+        it "is available for mpay24_user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_successful_payment? @mpay24_user).to be
+        end
+
+        it "is not available for user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_successful_payment? @user).to be_falsy
+        end
+
+        it "changes the status to payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "payment_failed")
+          @order.lifecycle.successful_payment!(@mpay24_user)
+          expect(@order.state).to eql "paid"
+        end
+      end
+
+
+      context "order is paid" do
+        it "is available for mpay24_user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "paid")
+          expect(@order.lifecycle.can_successful_payment? @mpay24_user).to be
+        end
+
+        it "is not available for user" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "paid")
+          expect(@order.lifecycle.can_successful_payment? @user).to be_falsy
+        end
+
+        it "changes the status to payment_failed" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "paid")
+          @order.lifecycle.successful_payment!(@mpay24_user)
+          expect(@order.state).to eql "paid"
+        end
+      end
+    end
+
+
+    describe "PUT #do_park" do
+      it "is available for basket" do
+        @order = create(:order, user_id: @user.id,
+                                state: "basket")
+        expect(@order.lifecycle.can_park? @user).to be
+      end
+
+      it "changes the status to parked" do
+        @order = create(:order, user_id: @user.id,
+                                state: "basket")
+        @order.lifecycle.park!(@user)
+        expect(@order.state).to eql "parked"
+      end
+    end
+
+
+    describe "PUT #do_archive_parked_basket" do
+      it "is available for parked basket" do
+        @order = create(:order, user_id: @user.id,
+                                state: "parked")
+        expect(@order.lifecycle.can_archive_parked_basket? @user).to be
+      end
+
+      it "changes the status to parked" do
+        @order = create(:order, user_id: @user.id,
+                                state: "parked")
+        @order.lifecycle.archive_parked_basket!(@user)
+        expect(@order.state).to eql "archived_basket"
+      end
+    end
+
+
+    describe "PUT #do_pickup_shipment", focus: true do
+      before :each do
+        @shipping_cost_article = create(:shipping_cost_article)
+        @inventory_versandspesen = create(:inventory_with_two_prices, number: @shipping_cost_article.number,
+                                                                      product_id: @shipping_cost_article.id)
+      end
+
+      context "order is basket" do
+        it "is available for basket" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "parcel_service_shipment")
+          expect(@order.lifecycle.can_pickup_shipment? @user).to be
+        end
+
+        it "updates the shipment method" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "parcel_service_shipment")
+          @order.lifecycle.pickup_shipment!(@user)
+          expect(@order.shipping_method).to eql "pickup_shipment"
+        end
+
+        it "deletes a shipping cost line" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "parcel_service_shipment")
+          allow(@order).to receive(:acting_user) { @user }
+          @order.add_shipment_costs
+          expect { @order.lifecycle.pickup_shipment!(@user) }.to change {@order.lineitems.count}.by -1
+        end
+      end
+
+
+      context "order is accepted_offer" do
+        it "is available for accepted_offer" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "parcel_service_shipment")
+          expect(@order.lifecycle.can_pickup_shipment? @user).to be
+        end
+
+        it "updates the shipment method" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "parcel_service_shipment")
+          @order.lifecycle.pickup_shipment!(@user)
+          expect(@order.shipping_method).to eql "pickup_shipment"
+        end
+
+        it "deletes a shipping cost line" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "parcel_service_shipment")
+          allow(@order).to receive(:acting_user) { @user }
+          @order.add_shipment_costs
+          expect { @order.lifecycle.pickup_shipment!(@user) }.to change {@order.lineitems.count}.by -1
         end
       end
     end

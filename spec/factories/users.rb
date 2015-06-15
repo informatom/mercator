@@ -33,6 +33,11 @@ FactoryGirl.define do
       state         "guest"
     end
 
+    factory :mpay24_user do
+      surname       "MPay24"
+      email_address "mpay24.user@informatom.com"
+    end
+
 
     factory :admin do
       first_name "Albert"
