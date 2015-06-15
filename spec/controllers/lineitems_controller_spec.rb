@@ -136,9 +136,64 @@ describe LineitemsController, :type => :controller do
     end
 
 
-    describe "PUT #do_delete_from_basket", focus: true do
+    describe "PUT #do_delete_from_basket" do
       it "is available" do
         expect(@instance.lifecycle.can_delete_from_basket? @user).to be
+      end
+
+      it 'deletes the lineitem' do
+        @instance.lifecycle.delete_from_basket!(@user)
+        expect(Lineitem.where(id: @instance.id)).to be_empty
+      end
+
+      it "is not available for a lineitem in another order" do
+        @order = create(:order, state: "active",
+                                user_id: @user.id)
+        @lineitem = create(:lineitem, order_id: @order.id,
+                                      user_id: @user.id)
+        expect(@lineitem.lifecycle.can_delete_from_basket? @user).to be false
+      end
+    end
+
+
+    describe "PUT #do_transfer_to_basket", focus: true do
+      before :each do
+        @order = create(:order, state: "active",
+                                user_id: @user.id)
+        @lineitem = create(:lineitem, order_id: @order.id,
+                                      user_id: @user.id)
+      end
+
+      it "is available for a lineitem in another order" do
+        expect(@lineitem.lifecycle.can_transfer_to_basket? @user).to be
+      end
+
+
+      it "is not available for a lineitem from another user" do
+        @second_user = create(:guest_user)
+        @order.update(user_id: @second_user.id)
+        @lineitem.update(user_id: @second_user.id)
+        @order.reload
+        @lineitem.reload
+        expect(@lineitem.lifecycle.can_transfer_to_basket? @user).to be false
+      end
+
+      it "moves the lineitem over to the basket" do
+        @lineitem.lifecycle.transfer_to_basket!(@user)
+        expect(@lineitem.order_id).to be @basket.id
+      end
+
+      it "deletes the parked basket if it is obsolete" do
+        @lineitem.lifecycle.transfer_to_basket!(@user)
+        expect(Order.where(id: @order.id)).to be_empty
+      end
+
+      it "deletes the parked basket if it is not obsolete" do
+        @another_lineitem = create(:lineitem, order_id: @order.id,
+                                             user_id: @user.id,
+                                             product_id: @supply.id)
+        @lineitem.lifecycle.transfer_to_basket!(@user)
+        expect(Order.find(@order.id)).to be_a Order
       end
     end
   end
