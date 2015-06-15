@@ -100,14 +100,45 @@ describe LineitemsController, :type => :controller do
     end
 
 
-    describe "POST #do_insert_shipping", focus: true do
-      it "is available", focus: true do
+    describe "POST #do_insert_shipping" do
+      it "is available" do
         expect(Lineitem::Lifecycle.can_insert_shipping? @user).to be
       end
 
       it "has state shipping_costs" do
-        @shipping_costs = Lineitem::Lifecycle.insert_shipping!(@user)
+        @shipping_costs = Lineitem::Lifecycle.insert_shipping(@user)
         expect(@shipping_costs.state).to eql "shipping_costs"
+      end
+    end
+
+
+    describe "POST #do_from_offeritem" do
+      it "is available" do
+        expect(Lineitem::Lifecycle.can_from_offeritem? @user).to be
+      end
+
+      it "has state active" do
+        @lineitem = Lineitem::Lifecycle.from_offeritem(@user)
+        expect(@lineitem.state).to eql "active"
+      end
+    end
+
+
+    describe "POST #do_blocked_from_offeritem" do
+      it "is available" do
+        expect(Lineitem::Lifecycle.can_blocked_from_offeritem? @user).to be
+      end
+
+      it "has state active" do
+        @lineitem = Lineitem::Lifecycle.blocked_from_offeritem(@user)
+        expect(@lineitem.state).to eql "blocked"
+      end
+    end
+
+
+    describe "PUT #do_delete_from_basket", focus: true do
+      it "is available" do
+        expect(@instance.lifecycle.can_delete_from_basket? @user).to be
       end
     end
   end

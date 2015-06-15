@@ -64,6 +64,7 @@ class Lineitem < ActiveRecord::Base
                     :description_en, :amount, :unit, :product_price, :vat, :discount_abs,
                     :value, :order_id, :user_id, :delivery_time]
 
+#*
     transition :delete_from_basket, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order" do
                  self.destroy
@@ -75,6 +76,7 @@ class Lineitem < ActiveRecord::Base
                  self.update(order: acting_user.basket)
                  parked_basket.delete_if_obsolete
                end
+
 
     transition :enable_upselling, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order && !upselling && product && product.supplies.any?" do
@@ -95,6 +97,7 @@ class Lineitem < ActiveRecord::Base
                if: "acting_user.basket == order && upselling" do
                  self.update(upselling: false)
                end
+
 
     transition :add_one, {:active => :active}, available_to: :all,
                if: "acting_user.basket == order" do

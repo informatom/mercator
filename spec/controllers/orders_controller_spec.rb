@@ -1169,7 +1169,7 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #do_delete_all_positions", focus: true do
+    describe "PUT #do_delete_all_positions" do
       it "is available for basket" do
         @order = create(:order, user_id: @user.id,
                                 state: "basket")
