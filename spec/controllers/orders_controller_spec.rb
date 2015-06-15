@@ -975,7 +975,7 @@ describe OrdersController, :type => :controller do
     end
 
 
-    describe "PUT #do_pickup_shipment", focus: true do
+    describe "PUT #do_pickup_shipment" do
       before :each do
         @shipping_cost_article = create(:shipping_cost_article)
         @inventory_versandspesen = create(:inventory_with_two_prices, number: @shipping_cost_article.number,
@@ -1033,6 +1033,170 @@ describe OrdersController, :type => :controller do
           @order.add_shipment_costs
           expect { @order.lifecycle.pickup_shipment!(@user) }.to change {@order.lineitems.count}.by -1
         end
+      end
+    end
+
+
+    describe "PUT #parcel_service_shipment" do
+      before :each do
+        @shipping_cost_article = create(:shipping_cost_article)
+        @inventory_versandspesen = create(:inventory_with_two_prices, number: @shipping_cost_article.number,
+                                                                      product_id: @shipping_cost_article.id)
+      end
+
+      context "order is basket" do
+        it "is available for basket" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "pickup_shipment")
+          expect(@order.lifecycle.can_parcel_service_shipment? @user).to be
+        end
+
+        it "updates the shipment method" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "pickup_shipment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.shipping_method).to eql "parcel_service_shipment"
+        end
+
+        it "adds a shipping cost line" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "pickup_shipment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.lineitems.find_by(product_number: @shipping_cost_article.number)).to be_a Lineitem
+        end
+
+        it "is not available for parcel service shipment" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "parcel_service_shipment")
+          expect(@order.lifecycle.can_parcel_service_shipment? @user).to be false
+        end
+
+        it "is not available for not shippable product" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "pickup_shipment")
+          @not_shippable_product = create(:product, number: "not shippable",
+                                           not_shippable: true)
+          create(:lineitem, order_id: @order.id,
+                            product_id: @not_shippable_product.id)
+          expect(@order.lifecycle.can_parcel_service_shipment? @user).to be false
+        end
+
+        it "updates the billing_method, if it was atm_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "pickup_shipment",
+                                  billing_method: "atm_payment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.billing_method).to be :e_payment
+        end
+
+        it "updates the billing_method, if it was cash_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "basket",
+                                  shipping_method: "pickup_shipment",
+                                  billing_method: "cash_payment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.billing_method).to be :e_payment
+        end
+      end
+
+
+      context "order is accepted_offer" do
+        it "is available for accepted_offer" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "pickup_shipment")
+          expect(@order.lifecycle.can_parcel_service_shipment? @user).to be
+        end
+
+        it "updates the shipment method" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "pickup_shipment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.shipping_method).to eql "parcel_service_shipment"
+        end
+
+        it "adds a shipping cost line" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "pickup_shipment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.lineitems.find_by(product_number: @shipping_cost_article.number)).to be_a Lineitem
+        end
+
+        it "is not available for parcel service shipment" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "parcel_service_shipment")
+          expect(@order.lifecycle.can_parcel_service_shipment? @user).to be false
+        end
+
+        it "is not available for not shippable product" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "pickup_shipment")
+          @not_shippable_product = create(:product, number: "not shippable",
+                                           not_shippable: true)
+          create(:lineitem, order_id: @order.id,
+                            product_id: @not_shippable_product.id)
+          expect(@order.lifecycle.can_parcel_service_shipment? @user).to be false
+        end
+
+        it "updates the billing_method, if it was atm_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "pickup_shipment",
+                                  billing_method: "atm_payment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.billing_method).to be :e_payment
+        end
+
+        it "updates the billing_method, if it was cash_payment" do
+          @order = create(:order, user_id: @user.id,
+                                  state: "accepted_offer",
+                                  shipping_method: "pickup_shipment",
+                                  billing_method: "cash_payment")
+          @order.lifecycle.parcel_service_shipment!(@user)
+          expect(@order.billing_method).to be :e_payment
+        end
+      end
+    end
+
+
+    describe "PUT #do_delete_all_positions", focus: true do
+      it "is available for basket" do
+        @order = create(:order, user_id: @user.id,
+                                state: "basket")
+        @lineitem = create(:lineitem, order_id: @order.id,
+                                      product_id: @product.id,
+                                      user_id: @user.id)
+        expect(@order.lifecycle.can_delete_all_positions? @user).to be
+      end
+
+      it "deletes all lineitems" do
+        @order = create(:order, user_id: @user.id,
+                                state: "basket")
+        @lineitem = create(:lineitem, order_id: @order.id,
+                                      product_id: @product.id,
+                                      user_id: @user.id)
+        @second_product = create(:second_product)
+        @onother_lineitem = create(:lineitem, order_id: @order.id,
+                                              product_id: @second_product.id,
+                                              user_id: @user.id)
+
+        expect {@order.lifecycle.delete_all_positions!(@user)}.to change {@order.lineitems.count}.by -2
+      end
+
+      it "is not available if there are no lineitems" do
+        @order = create(:order, user_id: @user.id,
+                                state: "basket")
+        expect(@order.lifecycle.can_delete_all_positions? @user).to be false
       end
     end
   end

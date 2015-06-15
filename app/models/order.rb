@@ -173,7 +173,7 @@ class Order < ActiveRecord::Base
           .find_by(product_number: Constant.find_by_key("shipping_cost_article").value)
           .try(:destroy)
     end
-#*
+
     transition :parcel_service_shipment, {:basket => :basket},
                available_to: :user, if: "shipping_method != 'parcel_service_shipment' && self.shippable?" do
       self.update(shipping_method: "parcel_service_shipment")
@@ -184,7 +184,7 @@ class Order < ActiveRecord::Base
     end
 
     transition :parcel_service_shipment, {:accepted_offer => :accepted_offer},
-               available_to: :user, if: "shipping_method != 'parcel_service_shipment'" do
+               available_to: :user, if: "shipping_method != 'parcel_service_shipment' && self.shippable?" do
       self.update(shipping_method: "parcel_service_shipment")
       if ["atm_payment", "cash_payment"].include?(billing_method)
         self.update(billing_method: Order::DEFAULT_BILLING_METHOD)
