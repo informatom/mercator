@@ -40,7 +40,7 @@ describe LineitemsController, :type => :controller do
     end
 
 
-   describe "PUT #do_transfer_to_basket" do
+    describe "PUT #do_transfer_to_basket" do
       it "sets flash messages" do
         put :do_transfer_to_basket, id: @instance.id
         expect(flash[:success]).to eql "The order position was copied into your current basket."
@@ -55,7 +55,7 @@ describe LineitemsController, :type => :controller do
 
 
 
-   describe "PUT #do_add_one" do
+    describe "PUT #do_add_one" do
       it "sets flash messages" do
         put :do_add_one, id: @instance.id
         expect(flash[:success]).to eql "The amount was increased by one."
@@ -69,7 +69,7 @@ describe LineitemsController, :type => :controller do
     end
 
 
-   describe "PUT #do_remove_one" do
+    describe "PUT #do_remove_one" do
       it "sets flash messages" do
         put :do_remove_one, id: @instance.id
         expect(flash[:success]).to eql "The amount was decreased by one."
@@ -83,7 +83,7 @@ describe LineitemsController, :type => :controller do
     end
 
 
-   describe "PUT #do_enable_upselling" do
+    describe "PUT #do_enable_upselling" do
       it "redirects_to return to" do
         @instance.update(upselling: false)
         put :do_enable_upselling, id: @instance.id
@@ -92,10 +92,22 @@ describe LineitemsController, :type => :controller do
     end
 
 
-   describe "PUT #do_disable_upselling" do
+    describe "PUT #do_disable_upselling" do
       it "redirects_to return to" do
         put :do_disable_upselling, id: @instance.id
         expect(response).to redirect_to users_path
+      end
+    end
+
+
+    describe "POST #do_insert_shipping", focus: true do
+      it "is available", focus: true do
+        expect(Lineitem::Lifecycle.can_insert_shipping? @user).to be
+      end
+
+      it "has state shipping_costs" do
+        @shipping_costs = Lineitem::Lifecycle.insert_shipping!(@user)
+        expect(@shipping_costs.state).to eql "shipping_costs"
       end
     end
   end
