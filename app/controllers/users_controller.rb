@@ -30,11 +30,14 @@ class UsersController < ApplicationController
                     .update_all(customer_id: current_user.id)
       end
 
-      current_basket.try(:delete_if_obsolete)
       @last_basket.try(:delete_if_obsolete)
 
       if @last_basket && !@last_basket.frozen?
+        # This strange hoop, to not create a useless basket:
+        @parked_basket_id = current_basket.id
         current_basket.lifecycle.park!(current_user)
+        Order.find(@parked_basket_id).delete_if_obsolete
+
         @last_basket.update(user_id: current_user.id)
         Lineitem.where(order_id: @last_basket.id)
                 .update_all(user_id: current_user.id)
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
 
   def login_via_email
     do_transition_action :login_via_email do
-      self.current_user = User.find(params[:id])
+      @current_user = self.current_user = User.find(params[:id])
       create_auth_cookie
       current_user.lifecycle.generate_key
       redirect_to home_page
@@ -75,10 +78,10 @@ class UsersController < ApplicationController
 
 
   def request_email_login
-    user = User.find_by_email_address(params[:email_address])
-    if user
-      user.lifecycle.generate_key
-      UserMailer.login_link(user, user.lifecycle.key)
+    @user = User.find_by_email_address(params[:email_address])
+    if @user
+      @user.lifecycle.generate_key
+      UserMailer.login_link(@user, @user.lifecycle.key)
                 .deliver
     end
   end

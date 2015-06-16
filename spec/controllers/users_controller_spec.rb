@@ -33,8 +33,9 @@ describe UsersController, :type => :controller do
   end
 
 
-  describe 'GET or POST #login', focus: true do
+  describe 'GET or POST #login' do
     before :each do
+      create(:constant_shipping_cost)
       @user = create(:user, state: "active")
     end
 
@@ -73,14 +74,113 @@ describe UsersController, :type => :controller do
                                               user_id: @guest.id)
         @last_conversation = create(:conversation, customer_id: @guest.id,
                                                    consultant_id: @sales.id)
+        session[:last_user] = @guest.id
       end
 
       it "derives the last user from the session" do
-        session[:last_user] = @guest.id
         post :login, login: "john.doe@informatom.com",
                      password: "secret123"
         expect(assigns(:last_user)).to eql @guest
       end
+
+      it "derives the last basket from the session" do
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        expect(assigns(:last_basket)).to eql @last_basket
+      end
+
+      it "assigns the existing conversation to the user" do
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        @last_conversation.reload
+        expect(@last_conversation.customer_id).to eql @user.id
+      end
+
+      it "deletes the last_basket, if obsolete" do
+        @last_basket_item.delete
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        expect(Order.where(id: @last_basket.id)).to be_empty
+      end
+
+      it "parkes the current basket, if a last basket exists and is not obsolete" do
+        create(:lineitem, order_id: @user.basket.id,
+                          user_id: @user.id,
+                          product_number: "my number",
+                          product_id: nil)
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        expect(Order.where(state: "parked").count).to be 1
+      end
+
+      it "deletes the current basket, if a last basket exists and is obsolete" do
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        expect(Order.where(state: "parked").count).to be 0
+      end
+
+      it "assigns the last basket as the current basket"  do
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        expect(@user.basket.id).to eql @last_basket.id
+      end
+
+      it "assigns the lineitems in the last basket to the current user" do
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        @last_basket_item.reload
+        expect(@last_basket_item.user_id).to eql @user.id
+      end
+    end
+
+
+    context "there is no last user" do
+      it "keep the basket untouched" do
+        @basket_id = @user.basket.id
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        @user.basket.reload
+        expect(@user.basket.id).to eql @basket_id
+      end
+
+      it "tries to sync agb with basket" do
+        expect_any_instance_of(User).to receive(:sync_agb_with_basket)
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+      end
+    end
+  end
+
+
+  describe "PUT #login_via_email" do
+    before :each do
+      @user = create(:user, state: "active")
+      @key = @user.lifecycle.generate_key
+      @user.save
+    end
+
+    it "finds the current_user", focus: true do
+      put :do_login_via_email, id: @user.id, key: @key
+      expect(assigns(:current_user).id).to eql @user.id
+    end
+
+    it "creats cookie" do
+      expect(controller).to receive(:create_auth_cookie)
+      put :do_login_via_email, id: @user.id,
+                               key: @key
+    end
+
+    it "generates a lifecycle key" do
+      put :do_login_via_email, id: @user.id,
+                               key: @key
+      @user.reload
+      expect(assigns(:current_user).lifecycle.key).to eql Digest::SHA1.hexdigest("#{@user.id}-#{@user.state}-#{@user.key_timestamp}")
+    end
+
+    it "redirects to hemo page" do
+      put :do_login_via_email, id: @user.id,
+                               key: @key
+      expect(response.body.to redirect_to home_page)
     end
   end
 end
