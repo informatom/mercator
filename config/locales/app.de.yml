@@ -484,7 +484,7 @@ de:
           transitions:
             cash_payment: Barzahlung
             atm_payment: Bankomat
-            pre_payment: Vorkasse
+            pre_payment: Vorauskassa
             e_payment: Online
             pickup_shipment: Abholung
             parcel_service_shipment: Paketdienst
