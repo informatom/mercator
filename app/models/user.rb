@@ -271,7 +271,7 @@ class User < ActiveRecord::Base
       if user.orders.count == 0 &&
          Time.now - user.created_at > 1.hours &&
          user.surname == "Gast" &&
-         user.state == "guest" &&
+         (user.state == "guest" || user.state == "inactive") &&
          user.gtc_confirmed_at == nil
         if user.destroy
           JobLogger.info("Deleted User " + user.id.to_s + " successfully.")

@@ -5,7 +5,7 @@ describe ProductsController, :type => :controller do
     no_redirects and act_as_user
     @product = create(:product_with_inventory_and_two_prices)
     @inventory = @product.inventories.first
-    request.env['HTTP_REFERER'] = users_path
+    request.env['HTTP_REFERER'] = categories_path
   end
 
 
@@ -33,8 +33,13 @@ describe ProductsController, :type => :controller do
 
   describe "POST #refresh" do
     it "reads inventory if given" do
-      post :refresh, id: @product.id, inventory_id: @inventory.id
+      xhr :post, :refresh, id: @product.id, inventory_id: @inventory.id, render: "whatever"
       expect(assigns(:inventory)).to eql @inventory
+    end
+
+    it "renders nothing" do
+      xhr :post, :refresh, id: @product.id, inventory_id: @inventory.id, render: "whatever"
+      expect(response.body).to eql ""
     end
   end
 
@@ -54,7 +59,7 @@ describe ProductsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_add_to_basket, id: @product.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
       it "publishes the message" do
@@ -89,7 +94,7 @@ describe ProductsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_compare, id: @product.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
     end
 
@@ -114,7 +119,7 @@ describe ProductsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_dont_compare, id: @product.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
     end
 
@@ -124,16 +129,16 @@ describe ProductsController, :type => :controller do
         @filterable_property = create(:property, state: "filterable")
         @unfilterable_property = create(:property, state: "unfilterable")
         @first_product = create(:product_with_inventory_and_lower_price)
-        create(:value, property_id: @filterable_property.id,
-                       product_id: @first_product.id,
-                       state: "textual",
-                       amount: nil,
-                       flag: nil)
-        create(:value, property_id: @unfilterable_property.id,
-                       product_id: @first_product.id,
-                       state: "textual",
-                       amount: nil,
-                       flag: nil)
+        @first_value = create(:value, property_id: @filterable_property.id,
+                                      product_id: @first_product.id,
+                                      state: "textual",
+                                      amount: nil,
+                                      flag: nil)
+        @second_value = create(:value, property_id: @unfilterable_property.id,
+                                       product_id: @first_product.id,
+                                       state: "textual",
+                                       amount: nil,
+                                       flag: nil)
 
         @second_product = create(:product_with_inventory_and_two_prices, number: "second product")
         @second_value = create(:value, property_id: @filterable_property.id,
@@ -152,8 +157,8 @@ describe ProductsController, :type => :controller do
 
       it "assigns nested hash" do
         get :comparison
-        expect(assigns(:nested_hash)).to eql({"property group" => { "property" => { 3 => "searched Value kg",
-                                                                                    2 => "English Value kg" }}})
+        expect(assigns(:nested_hash)).to eql({"property group" => { "property" => { @second_value.product_id => "searched Value kg",
+                                                                                    @first_value.product_id => "English Value kg" }}})
       end
 
       it "redirects if no products given" do

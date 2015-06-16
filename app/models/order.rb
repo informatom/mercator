@@ -98,8 +98,11 @@ class Order < ActiveRecord::Base
                if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
     end
-
     transition :cash_payment, {:accepted_offer => :accepted_offer}, available_to: :user,
+               if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
+      self.update(billing_method: "cash_payment")
+    end
+    transition :cash_payment, {:payment_failed => :payment_failed}, available_to: :user,
                if: "billing_method !='cash_payment' && shipping_method == 'pickup_shipment' " do
       self.update(billing_method: "cash_payment")
     end
@@ -112,12 +115,21 @@ class Order < ActiveRecord::Base
                if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
       self.update(billing_method: "atm_payment")
     end
+    transition :atm_payment, {:payment_failed => :payment_failed}, available_to: :user,
+               if: "billing_method !='atm_payment' && shipping_method == 'pickup_shipment'" do
+      self.update(billing_method: "atm_payment")
+    end
+
 
     transition :pre_payment, {:basket => :basket}, available_to: :user,
                if: "billing_method !='pre_payment'" do
       self.update(billing_method: "pre_payment")
     end
     transition :pre_payment, {:accepted_offer => :accepted_offer}, available_to: :user,
+               if: "billing_method !='pre_payment'" do
+      self.update(billing_method: "pre_payment")
+    end
+    transition :pre_payment, {:payment_failed => :payment_failed}, available_to: :user,
                if: "billing_method !='pre_payment'" do
       self.update(billing_method: "pre_payment")
     end
@@ -130,6 +142,12 @@ class Order < ActiveRecord::Base
                if: "billing_method !='e_payment' && Rails.application.config.try(:payment) == 'mpay24'" do
       self.update(billing_method: "e_payment")
     end
+    transition :e_payment, {:payment_failed => :payment_failed}, available_to: :user,
+               if: "billing_method !='e_payment' && Rails.application.config.try(:payment) == 'mpay24'" do
+      self.update(billing_method: "e_payment")
+    end
+
+
 
 
     transition :check, {:basket => :basket}, available_to: :user,

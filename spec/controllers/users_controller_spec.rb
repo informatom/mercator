@@ -152,7 +152,7 @@ describe UsersController, :type => :controller do
   end
 
 
-  describe "PUT #login_via_email"do
+  describe "PUT #login_via_email" do
     before :each do
       @user = create(:user, state: "active")
       @key = @user.lifecycle.generate_key
@@ -171,7 +171,7 @@ describe UsersController, :type => :controller do
                             key: @key
     end
 
-    it "generates a lifecycle key", focus: true do
+    it "generates a lifecycle key" do
       get :login_via_email, id: @user.id,
                             key: @key
       @user.reload
@@ -181,6 +181,32 @@ describe UsersController, :type => :controller do
     it "redirects to hemo page" do
       get :login_via_email, id: @user.id,
                             key: @key
+      expect(response.body).to redirect_to "http://test.host"
+    end
+  end
+
+
+  describe "logout" do
+    before :each do
+      act_as_user
+      @user.update(logged_in: true)
+      @user.basket
+    end
+
+    it "deletes an obsolete basket" do
+      @basket_id = @user.basket.id
+      get :logout
+      expect(Order.where(id: @basket_id)).to be_empty
+    end
+
+    it "sets logged_in to false" do
+      get :logout
+      @user.reload
+      expect(@user.logged_in).to eql false
+    end
+
+    it "calls hobo_logout", focus: true do
+      get :logout
       expect(response.body).to redirect_to "http://test.host"
     end
   end

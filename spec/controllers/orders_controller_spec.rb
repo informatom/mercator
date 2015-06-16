@@ -17,7 +17,7 @@ describe OrdersController, :type => :controller do
                       product_id: @product.id)
     @newer_gtc = create(:newer_gtc)
 
-    request.env['HTTP_REFERER'] = users_path
+    request.env['HTTP_REFERER'] = categories_path
   end
 
 
@@ -89,7 +89,7 @@ describe OrdersController, :type => :controller do
 
       it "redirects to" do
         put :do_archive_parked_basket, id: @parked_basket.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
     end
 
@@ -165,7 +165,7 @@ describe OrdersController, :type => :controller do
 
       context "successful payment" do
         before :each do
-          expect_any_instance_of(Order).to receive(:pay) { double(Struct, body: {select_payment_response: {location: users_path }})}
+          expect_any_instance_of(Order).to receive(:pay) { double(Struct, body: {select_payment_response: {location: categories_path }})}
         end
 
         it "triggers payment, if enabled" do
@@ -174,7 +174,7 @@ describe OrdersController, :type => :controller do
 
         it "redirects to location in select payment response / response" do
           put :do_pay, id: @basket.id
-          expect(response.body).to redirect_to users_path
+          expect(response.body).to redirect_to categories_path
         end
       end
 
@@ -273,6 +273,44 @@ describe OrdersController, :type => :controller do
           expect(response).to have_http_status(403)
         end
       end
+
+
+      context "order is payment_failed" do
+        it "is available for payment_failed" do
+          @order = create(:order, billing_method: "e_payment",
+                                  shipping_method: "pickup_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_cash_payment? @user).to be
+        end
+
+        it "sets cash_payment as billing_method" do
+          @order = create(:order, billing_method: "e_payment",
+                                  shipping_method: "pickup_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          @order.lifecycle.cash_payment!(@user)
+          expect(@order.billing_method).to eql "cash_payment"
+        end
+
+        it "it is not avaiilable for non pickup_shipmant" do
+          @order = create(:order, billing_method: "e_payment",
+                                  shipping_method: "parcel_service_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          put :do_cash_payment, id: @order.id
+          expect(response).to have_http_status(403)
+        end
+
+        it "it is not available for cash_payment" do
+          @order = create(:order, billing_method: "cash_payment",
+                                  shipping_method: "pickup_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          put :do_cash_payment, id: @order.id
+          expect(response).to have_http_status(403)
+        end
+      end
     end
 
 
@@ -347,6 +385,44 @@ describe OrdersController, :type => :controller do
           expect(response).to have_http_status(403)
         end
       end
+
+
+      context "order is payment_failed" do
+        it "is available for payment_failed" do
+          @order = create(:order, billing_method: "e_payment",
+                                  shipping_method: "pickup_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_atm_payment? @user).to be
+        end
+
+        it "sets atm_payment as billing_method" do
+          @order = create(:order, billing_method: "e_payment",
+                                  shipping_method: "pickup_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          @order.lifecycle.atm_payment!(@user)
+          expect(@order.billing_method).to eql "atm_payment"
+        end
+
+        it "it is not avaiilable for non pickup_shipmant" do
+          @order = create(:order, billing_method: "e_payment",
+                                  shipping_method: "parcel_service_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          put :do_atm_payment, id: @order.id
+          expect(response).to have_http_status(403)
+        end
+
+        it "it is not available for atm_payment" do
+          @order = create(:order, billing_method: "atm_payment",
+                                  shipping_method: "pickup_shipment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          put :do_atm_payment, id: @order.id
+          expect(response).to have_http_status(403)
+        end
+      end
     end
 
 
@@ -398,6 +474,32 @@ describe OrdersController, :type => :controller do
           expect(response).to have_http_status(403)
         end
       end
+
+
+      context "order is payment_failed" do
+        it "is available for payment_failed" do
+          @order = create(:order, billing_method: "e_payment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_pre_payment? @user).to be
+        end
+
+        it "sets pre_payment as billing_method" do
+          @order = create(:order, billing_method: "e_payment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          @order.lifecycle.pre_payment!(@user)
+          expect(@order.billing_method).to eql "pre_payment"
+        end
+
+        it "it is not available for pre_payment" do
+          @order = create(:order, billing_method: "pre_payment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          put :do_pre_payment, id: @order.id
+          expect(response).to have_http_status(403)
+        end
+      end
     end
 
 
@@ -445,6 +547,32 @@ describe OrdersController, :type => :controller do
           @order = create(:order, billing_method: "e_payment",
                                   user_id: @user.id,
                                   state: "accepted_offer")
+          put :do_e_payment, id: @order.id
+          expect(response).to have_http_status(403)
+        end
+      end
+
+
+      context "order is payment_failed" do
+        it "is available for payment_failed" do
+          @order = create(:order, billing_method: "pre_payment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          expect(@order.lifecycle.can_e_payment? @user).to be
+        end
+
+        it "sets e_payment as billing_method" do
+          @order = create(:order, billing_method: "pre_payment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
+          @order.lifecycle.e_payment!(@user)
+          expect(@order.billing_method).to eql "e_payment"
+        end
+
+        it "it is not available for e_payment" do
+          @order = create(:order, billing_method: "e_payment",
+                                  user_id: @user.id,
+                                  state: "payment_failed")
           put :do_e_payment, id: @order.id
           expect(response).to have_http_status(403)
         end

@@ -9,7 +9,7 @@ describe LineitemsController, :type => :controller do
                                   order_id: @basket.id,
                                   product_id: @product.id)
 
-    request.env['HTTP_REFERER'] = users_path
+    request.env['HTTP_REFERER'] = categories_path
     create(:constant_shipping_cost)
     create(:shipping_cost_article)
 
@@ -35,7 +35,7 @@ describe LineitemsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_transfer_to_basket, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
       it "is available" do
@@ -71,7 +71,7 @@ describe LineitemsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_transfer_to_basket, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
        it "is available" do
@@ -109,7 +109,7 @@ describe LineitemsController, :type => :controller do
       it "redirects_to return to" do
         @instance.update(upselling: false)
         put :do_enable_upselling, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
 
@@ -235,7 +235,7 @@ describe LineitemsController, :type => :controller do
     describe "PUT #do_disable_upselling" do
       it "redirects_to return to" do
         put :do_disable_upselling, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
       context "state is active" do
@@ -377,7 +377,7 @@ describe LineitemsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_delete_from_basket, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
     end
 
@@ -429,7 +429,7 @@ describe LineitemsController, :type => :controller do
 
       it "redirects_to return to" do
         put :do_transfer_to_basket, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
     end
   end

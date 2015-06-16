@@ -268,7 +268,7 @@ describe User do
 
 
   context "cleanup_deprecated" do
-    it "deletes a derpecated user" do
+    it "deletes a deprecated user" do
       @user = User.initialize()
       @user.save
       @user.update(created_at: Time.now - 5.hours)

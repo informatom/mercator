@@ -4,7 +4,7 @@ describe InventoriesController, :type => :controller do
   describe "lifecycle actions" do
     before :each do
       no_redirects and act_as_user
-      request.env['HTTP_REFERER'] = users_path
+      request.env['HTTP_REFERER'] = categories_path
 
       @instance = create(:inventory_with_two_prices)
       @order = create(:basket, user: @user)
@@ -13,7 +13,7 @@ describe InventoriesController, :type => :controller do
     describe "GET #add_to_basket" do
       it "can be run" do
         get :add_to_basket, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
       it "creates on order position with attributes set" do

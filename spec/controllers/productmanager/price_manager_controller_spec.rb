@@ -433,7 +433,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
       end
 
       it "returns the correct json" do
-        get :show_prices, id: @product.id
+        get :show_prices, id: @inventory.id
         expect(response.body).to be_json_eql({ records: [{ promotion: true,
                                                            recid: @inventory.prices[0].id,
                                                            scale_from: "1.0",

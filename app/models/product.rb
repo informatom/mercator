@@ -73,10 +73,14 @@ class Product < ActiveRecord::Base
     transition :compare, {:active => :active}, :available_to => :all
     transition :dont_compare, {:active => :active}, :available_to => :all
 
-    transition :activate, {:new => :active}, :available_to => "User.productmanager", :subsite => "admin"
-    transition :deactivate, { :new => :deprecated }, :available_to => "User.productmanager", :subsite => "admin"
-    transition :deactivate, { :active => :deprecated }, :available_to => "User.productmanager", :subsite => "admin"
-    transition :reactivate, { :deprecated => :active }, :available_to => "User.productmanager", :subsite => "admin"
+    transition :activate, {:new => :active}, :subsite => "admin",
+               :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :deactivate, { :new => :deprecated }, :subsite => "admin",
+    :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :deactivate, { :active => :deprecated }, :subsite => "admin",
+    :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :reactivate, { :deprecated => :active }, :subsite => "admin",
+    :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
 
     transition :add_to_offer, {:active => :active}, :available_to => "User.sales", :subsite => "sales"
   end

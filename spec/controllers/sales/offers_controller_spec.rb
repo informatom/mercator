@@ -304,13 +304,13 @@ describe Sales::OffersController, :type => :controller do
 
     describe "GET #refresh" do
       it "loads the offer" do
-        get :refresh, id: @instance.id
+        xhr :post, :refresh, id: @instance.id, render: "whatever"
         expect(assigns(:offer)).to eql @instance
       end
 
-      it "renders show" do
-        get :refresh, id: @instance.id
-        expect(response).to render_template :show
+      it "renders nothing" do
+        xhr :post, :refresh, id: @instance.id, render: "whatever"
+        expect(response.body).to eql ""
       end
     end
   end

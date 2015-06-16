@@ -19,7 +19,7 @@ describe Sales::OfferitemsController, :type => :controller do
       @invalid_attributes = attributes_for(:offeritem, position: nil,
                                                        offer_id: @offer.id,
                                                        user_id: @user.id)
-      request.env['HTTP_REFERER'] = users_path
+      request.env['HTTP_REFERER'] = categories_path
     end
 
 
@@ -103,7 +103,7 @@ describe Sales::OfferitemsController, :type => :controller do
 
       it "redirects to return to" do
         put :do_delete_from_offer, id: @instance.id
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to categories_path
       end
 
       it "is available for in_progress" do

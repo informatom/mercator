@@ -154,16 +154,18 @@ describe CategoriesController, :type => :controller do
     describe "POST #refresh" do
       it "assigns the category" do
         @product = create(:product)
-        post :refresh, id: @product.id,
-                       page_path: "http://www.orf.at#{@category.id}-text"
+        xhr :post, :refresh, id: @product.id,
+                             page_path: "/path/#{@category.id}-text",
+                             render: "whatever"
         expect(assigns(:category)).to eql @category
       end
 
       it "assigns inventory, when given" do
         @product = create(:product_with_inventory)
-        post :refresh, id: @product.id,
-                       inventory_id: @product.inventories.first.id,
-                       page_path: "http://www.orf.at#{@category.id}-text"
+        xhr :post, :refresh, id: @product.id,
+                             inventory_id: @product.inventories.first.id,
+                             page_path: "/path/#{@category.id}-text",
+                             render: "whatever"
         expect(assigns(:inventory)).to eql @product.inventories.first
       end
     end

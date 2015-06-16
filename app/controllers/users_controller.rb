@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     @user = User.find_by_email_address(params[:email_address])
     if @user
       @user.lifecycle.generate_key
-      @user.save
+      @user.save # Otherwise key_timstamp gets not persisted
       UserMailer.login_link(@user, @user.lifecycle.key)
                 .deliver
     end

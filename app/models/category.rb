@@ -61,11 +61,16 @@ class Category < ActiveRecord::Base
     state :new, :default => true
     state :active, :deprecated, :switched_off
 
-    transition :activate, {:new => :active}, :available_to => "User.productmanager", :subsite => "admin"
-    transition :deactivate, { :active => :deprecated }, :available_to => "User.productmanager", :subsite => "admin"
-    transition :reactivate, { :deprecated => :active }, :available_to => "User.productmanager", :subsite => "admin"
-    transition :switch_off, { :deprecated => :switched_off }, :available_to => "User.productmanager", :subsite => "admin"
-    transition :switch_on, { :switched_off => :deprecated }, :available_to => "User.productmanager", :subsite => "admin"
+    transition :activate, {:new => :active}, :subsite => "admin",
+               :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :deactivate, { :active => :deprecated }, :subsite => "admin",
+               :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :reactivate, { :deprecated => :active }, :subsite => "admin",
+               :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :switch_off, { :deprecated => :switched_off }, :subsite => "admin",
+               :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
+    transition :switch_on, { :switched_off => :deprecated }, :subsite => "admin",
+               :available_to => "acting_user if (acting_user.administrator? || acting_user.productmanager?)"
   end
 
 
