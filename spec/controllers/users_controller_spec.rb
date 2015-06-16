@@ -152,35 +152,36 @@ describe UsersController, :type => :controller do
   end
 
 
-  describe "PUT #login_via_email" do
+  describe "PUT #login_via_email"do
     before :each do
       @user = create(:user, state: "active")
       @key = @user.lifecycle.generate_key
       @user.save
     end
 
-    it "finds the current_user", focus: true do
-      put :do_login_via_email, id: @user.id, key: @key
+    it "finds the current_user" do
+      get :login_via_email, id: @user.id,
+                            key: @key
       expect(assigns(:current_user).id).to eql @user.id
     end
 
     it "creats cookie" do
       expect(controller).to receive(:create_auth_cookie)
-      put :do_login_via_email, id: @user.id,
-                               key: @key
+      get :login_via_email, id: @user.id,
+                            key: @key
     end
 
-    it "generates a lifecycle key" do
-      put :do_login_via_email, id: @user.id,
-                               key: @key
+    it "generates a lifecycle key", focus: true do
+      get :login_via_email, id: @user.id,
+                            key: @key
       @user.reload
-      expect(assigns(:current_user).lifecycle.key).to eql Digest::SHA1.hexdigest("#{@user.id}-#{@user.state}-#{@user.key_timestamp}")
+      expect(assigns(:current_user).lifecycle.key).to eql @user.lifecycle.key
     end
 
     it "redirects to hemo page" do
-      put :do_login_via_email, id: @user.id,
-                               key: @key
-      expect(response.body.to redirect_to home_page)
+      get :login_via_email, id: @user.id,
+                            key: @key
+      expect(response.body).to redirect_to "http://test.host"
     end
   end
 end
