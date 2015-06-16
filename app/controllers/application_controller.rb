@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
     if self.current_user.guest?
       self.current_user = session[:last_user] ? User.find(session[:last_user]) : User.initialize
     end
-
   end
 
 
