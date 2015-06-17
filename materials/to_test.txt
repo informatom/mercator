@@ -3,11 +3,6 @@
 124 application_controller
 
 
-=== 038 Mailer Tests ===
-
-038 user_mailer
-
-
 === 190 Bechlem ===
 
 017 vitem_supply
@@ -66,4 +61,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2512 / 200 = 12.6 (5065/2728/2529)
+2474 / 200 = 12.4 (5065/2728/2474)

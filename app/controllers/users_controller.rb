@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
 
   def logout
-    current_basket.delete_if_obsolete
+    current_basket.delete_if_obsolete if current_basket
     current_user.update(logged_in: false) unless current_user.class == Guest
     hobo_logout
   end

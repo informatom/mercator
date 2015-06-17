@@ -16,7 +16,7 @@ describe UserMailer do
   end
 
 
-  describe "activation", focus: true do
+  describe "activation" do
     it "has to set" do
       expect(UserMailer.activation(@user, "some key")).to deliver_to "john.doe@informatom.com"
     end
