@@ -42,7 +42,7 @@ describe Admin::PageTemplatesController, :type => :controller do
       @page_template = create(:page_template, name: "old version", created_at: Time.now - 24.hours)
       @page_template.update(name: "new_version")
 
-      get :edit, id: @page_template, version: 3
+      get :edit, id: @page_template, version: @page_template.versions.last.id
 
       expect(assigns(:page_template)).to eql(@page_template.versions.last.reify)
     end

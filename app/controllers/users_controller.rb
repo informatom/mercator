@@ -107,17 +107,17 @@ class UsersController < ApplicationController
 
   def do_accept_gtc
     do_transition_action :accept_gtc do
-      order_id = params[:order_id] || params[:user][:order_id]
+      @order_id = params[:order_id] || params[:user][:order_id]
 
       if this.confirmation == "1"
         current_user.update(gtc_version_of: Gtc.current,
                             gtc_confirmed_at: Time.now())
         current_user.basket.update(gtc_version_of: Gtc.current,
                                    gtc_confirmed_at: Time.now())
-        redirect_to order_path(order_id)
+        redirect_to order_path(@order_id)
       else
         flash[:error] = I18n.t("mercator.messages.user.accept_gtc.error")
-        redirect_to action: :accept_gtc, order_id: order_id
+        redirect_to action: :accept_gtc, order_id: @order_id
       end
     end
   end
@@ -125,11 +125,17 @@ class UsersController < ApplicationController
 
   def upgrade
     if current_user.update_attributes(params[:user])
+      current_user.lifecycle.generate_key
+      current_user.save
+
       UserMailer.activation(current_user, current_user.lifecycle.key).deliver
       flash[:notice] = I18n.t("mercator.messages.user.confirm_and_refresh")
     else
       flash[:error] = I18n.t("mercator.messages.user.upgrade.error")
     end
+
+    @user = current_user #testing access
+
     redirect_to params[:page_path]
   end
 end

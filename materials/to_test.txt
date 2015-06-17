@@ -1,6 +1,5 @@
-=== 273 Controller Tests (2655/481/273) ===
+=== 124 Controller Tests (2655/481/273) ===
 
-149 users_controller *
 124 application_controller
 
 
@@ -73,4 +72,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2728 / 200 = 13.7 (5065/2936/2728)
+2579 / 200 = 12.9 (5065/2728/2579)
