@@ -65,8 +65,18 @@ FactoryGirl.define do
     end
 
     factory :holiday_country_code do
-      key :holiday_country_code
+      key   :holiday_country_code
       value :es
+    end
+
+    factory :constant_order_confirmation_mail_subject do
+      key   :order_confirmation_mail_subject
+      value "order confirmation mail subject"
+    end
+
+    factory :constant_order_notify_in_payment_mail_subject do
+      key   :order_notify_in_payment_mail_subject
+      value "order notify in payment mail subject"
     end
   end
 end

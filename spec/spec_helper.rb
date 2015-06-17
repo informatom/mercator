@@ -6,6 +6,7 @@ SimpleCov.start 'rails'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require "email_spec"
 
 #HAS:20140109 needed for fixture_file_upload()
 include ActionDispatch::TestProcess
@@ -23,4 +24,7 @@ RSpec.configure do |config|
 
   config.include MercatorMacros
   config.include MercatorSharedContexts
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 end
