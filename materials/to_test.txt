@@ -1,6 +1,6 @@
 === 124 Controller Tests (2655/481/273) ===
 
-124 application_controller
+124 application_controller *
 
 
 === 190 Bechlem ===

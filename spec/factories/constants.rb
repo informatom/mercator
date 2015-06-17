@@ -19,6 +19,11 @@ FactoryGirl.define do
       value "shop.domain.com"
     end
 
+    factory :podcast_domain do
+      key   :podcast_domain
+      value "podcast.domain.com"
+    end
+
     factory :constant_fifo do
       key   :fifo
       value "true"
