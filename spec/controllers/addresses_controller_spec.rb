@@ -9,7 +9,7 @@ describe AddressesController, :type => :controller do
     @invalid_attributes = attributes_for(:address, first_name: nil)
   end
 
-  describe "crud actions" do
+  context "crud actions" do
     it_behaves_like("crud except update")
 
 

@@ -3,11 +3,6 @@
 124 application_controller
 
 
-=== 50 Lifecycle Actions ===
-
-050 User *
-
-
 === 055 Mailer Tests ===
 
 017 order_mailer
@@ -72,4 +67,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2579 / 200 = 12.9 (5065/2728/2579)
+2529 / 200 = 12.7 (5065/2728/2529)

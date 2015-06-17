@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::SupplyrelationsController , :type => :controller do
 
-  describe "crud actions" do
+  context "crud actions" do
     before :each do
       no_redirects and act_as_admin
 

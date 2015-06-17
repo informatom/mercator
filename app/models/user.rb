@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
 
 
     transition :request_password_reset, {:inactive => :inactive}, new_key: true do
-      UserMailer.activation(self, lifecycle.key).deliver
+      UserMailer.forgot_password(self, lifecycle.key).deliver
     end
 
     transition :request_password_reset, {[:active, :guest] => :active}, new_key: true do

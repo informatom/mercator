@@ -242,7 +242,7 @@ describe UsersController, :type => :controller do
   end
 
 
-  describe "POST #request_email_login" do
+  describe "POST #__email_login" do
     before :each do
       @user = create(:user)
     end
@@ -282,6 +282,19 @@ describe UsersController, :type => :controller do
       put :do_activate, id: @user.id, key: @key
       expect(response.body).to redirect_to root_path
     end
+
+    it "is available for inactive user" do
+      @user.lifecycle.provided_key = @key
+      expect(@user.lifecycle.can_activate?(@user)).to be
+    end
+
+    it "is available for guest user" do
+      @guest = create(:guest_user)
+      @guest.lifecycle.generate_key
+      @guest.save
+      @guest.lifecycle.provided_key = @guest.lifecycle.key
+      expect(@guest.lifecycle.can_activate?(@guest)).to be
+    end
   end
 
 
@@ -309,13 +322,34 @@ describe UsersController, :type => :controller do
       expect(assigns(:user).confirmation).to eql false
     end
 
-    it "is  available for active if gtc acceted is current", focus: true do
-      @user.lifecycle.accept_gtc!(@user)
-      expect(@user.lifecycle.can_accept_gtc? @user).to be
+
+    context "user is active" do
+      it "is available for active if gtc acceted is not current" do
+        @user.update(gtc_version_of: Gtc.current,
+                     gtc_confirmed_at: Time.now())
+        expect(@user.lifecycle.can_accept_gtc? @user).to be false
+      end
+
+      it "is not available for active if gtc acceted is current" do
+        expect(@user.lifecycle.can_accept_gtc? @user).to be
+      end
     end
 
-    it "is not available for active if gtc acceted not current", focus: true do
-      expect(@user.lifecycle.can_accept_gtc? @user).to be false
+
+    context "user is guest" do
+      before :each do
+        @guest = create(:guest_user)
+      end
+
+      it "is available for guest if gtc acceted is not current" do
+        @guest.update(gtc_version_of: Gtc.current,
+                     gtc_confirmed_at: Time.now())
+        expect(@guest.lifecycle.can_accept_gtc? @guest).to be false
+      end
+
+      it "is not available for guest if gtc acceted is current" do
+        expect(@guest.lifecycle.can_accept_gtc? @guest).to be
+      end
     end
   end
 
@@ -385,7 +419,7 @@ describe UsersController, :type => :controller do
   end
 
 
-  describe "POST #upgrade", focus: true do
+  describe "POST #upgrade" do
     before :each do
       act_as_user
       @user = create(:user, state: "guest")
@@ -435,6 +469,84 @@ describe UsersController, :type => :controller do
       post :upgrade, id: @user.id,
                      page_path: order_path(id: @basket.id)
       expect(response.body).to redirect_to order_path(id: @basket.id)
+    end
+  end
+
+
+  describe "PUT #do_request_password_reset" do
+    before :each do
+      act_as_user
+    end
+
+    it "is available for inactive user" do
+      @user = create(:user, state: "inactive")
+      expect(@user.lifecycle.can_request_password_reset?(@user)).to be
+    end
+
+    it "sends activation email for inactive user" do
+      @user = create(:user, state: "inactive")
+      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver)
+      @user.lifecycle.request_password_reset!(@user)
+    end
+
+    it "is available for active user" do
+      @user = create(:user, state: "active")
+      expect(@user.lifecycle.can_request_password_reset?(@user)).to be
+    end
+
+    it "sends activation email for active user" do
+      @user = create(:user, state: "active")
+      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver)
+      @user.lifecycle.request_password_reset!(@user)
+    end
+
+    it "is available for guest user" do
+      @user = create(:user, state: "guest")
+      expect(@user.lifecycle.can_request_password_reset?(@user)).to be
+    end
+
+    it "sends activation email for guest user" do
+      @user = create(:user, state: "guest")
+      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver)
+      @user.lifecycle.request_password_reset!(@user)
+    end
+  end
+
+
+  describe "GET #reset_password" do
+    before :each do
+      act_as_user
+    end
+
+    it "is available for active user" do
+      @user = create(:user, state: "active")
+      @user.lifecycle.provided_key = @user.lifecycle.generate_key
+      expect(@user.lifecycle.can_reset_password?(@user)).to be
+    end
+
+    it "is available without key for active user without password set" do
+      @user = create(:user, state: "active",
+                            password: nil)
+      expect(@user.lifecycle.can_reset_password?(@user)).to be
+    end
+  end
+
+
+  describe "login_via_email"  do
+    before :each do
+      act_as_user
+    end
+
+    it "is available for active user" do
+      @user = create(:user, state: "active")
+      @user.lifecycle.provided_key = @user.lifecycle.generate_key
+      expect(@user.lifecycle.can_login_via_email?(@user)).to be
+    end
+
+    it "is not available for active user for invalid key" do
+      @user = create(:user, state: "active")
+      @user.lifecycle.provided_key = @user.lifecycle.generate_key + "wrong"
+      expect(@user.lifecycle.can_login_via_email?(@user)).to be false
     end
   end
 end

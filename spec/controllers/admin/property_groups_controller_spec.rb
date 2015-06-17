@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin::PropertyGroupsController, :type => :controller do
-  describe "crud actions" do
+  context "crud actions" do
     before :each do
       no_redirects and act_as_admin
 

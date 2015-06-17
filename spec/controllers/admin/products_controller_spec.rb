@@ -6,7 +6,7 @@ describe Admin::ProductsController, :type => :controller do
     @instance = create(:product)
   end
 
-  describe "crud actions" do
+  context "crud actions" do
     before :each do
       @invalid_attributes = attributes_for(:product, title_de: nil).except(:state)
     end

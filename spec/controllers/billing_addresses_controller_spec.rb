@@ -9,7 +9,7 @@ describe BillingAddressesController, :type => :controller do
     @invalid_attributes = attributes_for(:billing_address, first_name: nil)
   end
 
-  describe "crud actions" do
+  context "crud actions" do
     context "auto actions" do
       describe "GET #index_for_user" do
         it "renders index template" do

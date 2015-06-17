@@ -19,7 +19,7 @@ describe LineitemsController, :type => :controller do
   end
 
 
-  describe "crud actions" do
+  context "crud actions" do
     it_behaves_like("crud destroy")
   end
 
