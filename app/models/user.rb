@@ -92,12 +92,15 @@ class User < ActiveRecord::Base
     transition :accept_gtc, {:guest => :guest}, available_to: :self,
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
+
     transition :activate, {[:inactive, :guest] => :active}, available_to: :key_holder
 
     transition :deactivate, {active: :inactive}, available_to: "User.administrator",
                subsite: "admin"
+
     transition :reactivate, {inactive: :active}, available_to: "User.administrator",
                subsite: "admin"
+
 
     transition :request_password_reset, {:inactive => :inactive}, new_key: true do
       UserMailer.activation(self, lifecycle.key).deliver
@@ -112,6 +115,7 @@ class User < ActiveRecord::Base
 
     transition :reset_password, {:active => :active}, available_to: :all,
                params: [ :password, :password_confirmation ], unless: :crypted_password
+
 
     transition :login_via_email, {:active => :active}, available_to: :key_holder,
                if: "Time.now() - self.key_timestamp < 10.minutes"

@@ -308,6 +308,15 @@ describe UsersController, :type => :controller do
       get :accept_gtc, id: @user.id
       expect(assigns(:user).confirmation).to eql false
     end
+
+    it "is  available for active if gtc acceted is current", focus: true do
+      @user.lifecycle.accept_gtc!(@user)
+      expect(@user.lifecycle.can_accept_gtc? @user).to be
+    end
+
+    it "is not available for active if gtc acceted not current", focus: true do
+      expect(@user.lifecycle.can_accept_gtc? @user).to be false
+    end
   end
 
 

@@ -5,7 +5,7 @@
 
 === 50 Lifecycle Actions ===
 
-050 User
+050 User *
 
 
 === 055 Mailer Tests ===
