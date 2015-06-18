@@ -20,6 +20,13 @@ module MercatorMacros
   end
 
 
+  def act_as_guest
+    @guest = Guest.new()
+    allow(controller).to receive(:logged_in?) {false}
+    allow(controller).to receive(:current_user) { @guest }
+  end
+
+
   def act_as_sales
     @sales = create(:sales, email_address: "another.sales.consultant@informatom.com")
     allow(controller).to receive(:logged_in?) {true}

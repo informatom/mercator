@@ -60,12 +60,12 @@ private
     redirect_to @new_url, :status => 301
   end
 
-#*
-  def request_param(parameter)
-    query = request.query_string
 
-    if query.present?
-      query_params = CGI.parse(query)
+  def request_param(parameter)
+    @query = request.query_string
+
+    if @query.present?
+      query_params = CGI.parse(@query)
       return query_params[parameter.to_s][0]
     else
       return nil
@@ -105,13 +105,19 @@ private
 
   def auto_log_in
     if params[:remember_token]
-      self.current_user = User.find_by_remember_token(params[:remember_token])
-      params.delete :remember_token
-      redirect_to request.path, :params => params, :status => 301
+      self.current_user = @found_user = User.find_by_remember_token(params[:remember_token])
+      @params = params.dup # dup for testing
+      @params.delete :remember_token
+      redirect_to request.path, :params => @params, :status => 301
     end
 
     if self.current_user.guest?
-      self.current_user = session[:last_user] ? User.find(session[:last_user]) : User.initialize
+      self.current_user = @current_user =
+        if session[:last_user]
+          User.find(session[:last_user])
+        else
+          User.initialize
+        end
     end
   end
 

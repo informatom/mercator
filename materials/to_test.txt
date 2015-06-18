@@ -1,6 +1,6 @@
-=== 124 Controller Tests (2655/481/273) ===
+=== 139 Controller Tests (2655/481/273) ===
 
-124 application_controller *
+139 application_controller *
 
 
 === 190 Bechlem ===
@@ -12,14 +12,6 @@
 060 consumables_controller
 
 
-=== 438 Icecat ===
-
-014 metadata_controller
-048 access
-060 product_extensions
-316 metadatum
-
-
 === 313 MPay ===
 
 066 payment
@@ -28,6 +20,14 @@
 
 019 admin/payments_controller
 050 confirmations_controller
+
+
+=== 438 Icecat ===
+
+014 metadata_controller
+048 access
+060 product_extensions
+316 metadatum
 
 
 === 1379 Mesonic ===
@@ -61,4 +61,4 @@
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2474 / 200 = 12.4 (5065/2728/2474)
+2489 / 200 = 12.5 (5065/2728/2489)
