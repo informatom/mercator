@@ -1,6 +1,6 @@
 === 060 Bechlem ===
 
-060 consumables_controller
+060 consumables_controller *
 
 
 === 313 MPay ===
