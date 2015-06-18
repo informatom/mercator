@@ -1,9 +1,5 @@
-=== 190 Bechlem ===
+=== 060 Bechlem ===
 
-017 vitem_supply
-026 base
-038 vcategory
-049 access
 060 consumables_controller
 
 
@@ -48,4 +44,4 @@
 357 webartikel
 
 ----------------------------------
-2320 / 200 = 11.6 (5065/2489/2320)
+2190 / 200 = 11.0 (5065/2489/2320)
