@@ -1,8 +1,3 @@
-=== 139 Controller Tests (2655/481/273) ===
-
-139 application_controller *
-
-
 === 190 Bechlem ===
 
 017 vitem_supply
@@ -53,12 +48,10 @@
 357 webartikel
 
 
-=== 030 Later ===
+=== 020 Later ===
 
 011 @content_element.parse()
-005 Constant.page_title_prefix()
-005 Constant.page_title_postfix()
 009 productmanager/front/update_categorization_order
 
 ----------------------------------
-2489 / 200 = 12.5 (5065/2728/2489)
+2340 / 200 = 11.7 (5065/2728/2489)

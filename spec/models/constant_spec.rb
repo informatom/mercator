@@ -15,7 +15,7 @@ describe Constant do
 
 # ---  CLass Methods  --- #
 
-  context "office hours" do
+  describe "office hours" do
     it "returns false out of office hours" do
       create(:office_hours)
       monday_night = Time.new(2015, 05, 11, 4, 00, 0, "+00:00")
@@ -31,10 +31,26 @@ describe Constant do
   end
 
 
-  context "pretty_office_hours" do
+  describe "pretty_office_hours" do
     it "returns a string" do
       create(:office_hours)
       expect(Constant.pretty_office_hours.class).to eql(String)
+    end
+  end
+
+
+  describe "page_title_prefix" do
+    it "returns page_title_prefix" do
+      create(:constant_page_title_prefix)
+      expect(Constant.page_title_prefix).to eql "some prefix"
+    end
+  end
+
+
+  describe "page_title_postfix" do
+    it "returns page_title_postfix" do
+      create(:constant_page_title_postfix)
+      expect(Constant.page_title_postfix).to eql "some postfix"
     end
   end
 end

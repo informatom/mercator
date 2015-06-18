@@ -83,5 +83,15 @@ FactoryGirl.define do
       key   :order_notify_in_payment_mail_subject
       value "order notify in payment mail subject"
     end
+
+    factory :constant_page_title_prefix do
+      key   :page_title_prefix
+      value "some prefix"
+    end
+
+    factory :constant_page_title_postfix do
+      key   :page_title_postfix
+      value "some postfix"
+    end
   end
 end
