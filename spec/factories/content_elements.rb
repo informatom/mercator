@@ -62,6 +62,11 @@ END_HEREDOC
       content_en '<photo name="photo_name"/>'
     end
 
+    factory :content_element_with_photo_tag_in_thumb_size do
+      name "photo_name"
+      content_en '<photo size="thumb" name="photo_name"/>'
+    end
+
     factory :content_element_with_document_tag do
       name "document_name"
       content_en '<document name="document_name"/>'

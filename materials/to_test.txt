@@ -47,11 +47,5 @@
 135 order
 357 webartikel
 
-
-=== 020 Later ===
-
-011 @content_element.parse()
-009 productmanager/front/update_categorization_order
-
 ----------------------------------
-2340 / 200 = 11.7 (5065/2489/2340)
+2320 / 200 = 11.6 (5065/2489/2320)

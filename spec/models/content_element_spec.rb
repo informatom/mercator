@@ -132,14 +132,21 @@ describe ContentElement do
       end
     end
 
-    it "parses document tag" do
+    it "parses photo tag" do
       @parsed_string = Capybara.string(create(:content_element_with_photo_tag).parse)
       expect(@parsed_string).to have_xpath("//img[@alt='photo_name']")
+      expect(@parsed_string.find("img")["src"]).to include "original"
     end
 
-    it "parses photo tag" do
+    it "parses document tag" do
       @parsed_string = Capybara.string(create(:content_element_with_document_tag).parse)
       expect(@parsed_string).to have_xpath("//a[@name='document_name']")
+    end
+
+    it "respects the photo size (e.g. thumb)" do
+      @parsed_string = Capybara.string(create(:content_element_with_photo_tag_in_thumb_size).parse)
+      expect(@parsed_string).to have_xpath("//img[@alt='photo_name']")
+      expect(@parsed_string.find("img")["src"]).to include "thumb"
     end
   end
 end
