@@ -489,6 +489,45 @@ describe Productmanager::FrontController, :type => :controller do
       end
     end
 
+
+    describe "POST #update_categorization_order" do
+      before :each do
+        @product = create(:product)
+        @category = create(:category)
+        @categorization = create(:categorization, product_id: @product.id,
+                                                  category_id: @category.id,
+                                                  position: 1 )
+        @second_product = create(:second_product)
+        @second_categorization = create(:categorization, product_id: @second_product.id,
+                                                         category_id: @category.id,
+                                                         position: 2 )
+      end
+
+      it "finds the categorization" do
+        post :update_categorization_order, value_original: 1,
+                                           category_id: @category.id,
+                                           product_id: @product.id,
+                                           value_new: 2
+        expect(assigns(:categorization)).to eql @categorization
+      end
+
+      it "calls insert at" do
+        expect_any_instance_of(Categorization).to receive(:insert_at).with 2
+        post :update_categorization_order, value_original: 1,
+                                           category_id: @category.id,
+                                           product_id: @product.id,
+                                           value_new: 2
+      end
+
+      it "changes the position" do
+        post :update_categorization_order, value_original: 1,
+                                           category_id: @category.id,
+                                           product_id: @product.id,
+                                           value_new: 2
+        expect(assigns(:categorization).position).to eql 2
+      end
+    end
+
     # childrenarray is tested inherently by show_categorytree
     # reorder_categories is tested inherently by update_categories
   end
