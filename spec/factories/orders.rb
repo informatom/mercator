@@ -38,5 +38,9 @@ FactoryGirl.define do
     factory :parked_basket do
       state "parked"
     end
+
+    factory :order_in_payment do
+      state "in_payment"
+    end
   end
 end

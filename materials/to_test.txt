@@ -1,7 +1,7 @@
-=== 313 MPay ===
+=== 247 MPay ===
 
-066 payment
-079 confirmation
+079 confirmation *
+
 099 mpay24_order_extension
 
 019 admin/payments_controller
@@ -39,4 +39,4 @@
 357 webartikel
 
 ----------------------------------
-2130 / 200 = 10.7 (5065/2190/2130)
+2064 / 200 = 10.47 (5065/2190/2130)

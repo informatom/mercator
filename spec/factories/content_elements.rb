@@ -44,7 +44,7 @@ some <h1>Level one heading in html</h1>
 
 h2. Level two heading in textile
 
-### Level thraee heading in markdown
+### Level three heading in markdown
 
 END_HEREDOC
 
