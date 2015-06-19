@@ -1,9 +1,10 @@
 === 168 MPay ===
 
-099 mpay24_order_extension
+019 admin/payments_controller*
 
-019 admin/payments_controller
 050 confirmations_controller
+
+099 mpay24_order_extension
 
 
 === 438 Icecat ===
