@@ -27,6 +27,7 @@ FactoryGirl.define do
       end
     end
 
+
     factory :product_with_inventory_and_two_prices do
       number "product_with_inventory_and_two_prices"
       after(:create) do |product, evaluator|
