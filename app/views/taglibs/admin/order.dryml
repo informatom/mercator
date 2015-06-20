@@ -115,7 +115,7 @@
               <tr class="info">
                 <td>
                   <view:id/><br/>
-                  <a href="&mercator_mpay24.admin_check_confirmation_path(this.id)"><t key="mercator.check_confirmation"/></a>
+                  <a href="&admin_check_confirmation_path(this.id)"><t key="mercator.check_confirmation"/></a>
                 </td>
                 <td><view:merchant-id/></td>
                 <td>
