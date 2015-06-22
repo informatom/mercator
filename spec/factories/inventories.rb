@@ -10,7 +10,7 @@ FactoryGirl.define do
     unit                    "Stk."
     comment_de              "in 3 Wochen lieferbar"
     comment_en              "available in 3 weeks"
-    weight                  0.5
+    weight                  5
     charge                  "ABC42"
     storage                 "DG"
     delivery_time           "2 Wochen"

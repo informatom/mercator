@@ -49,7 +49,7 @@ describe MercatorMesonic::KontenstammFakt do
 
   describe "default order" do
     it "returns mesoprim" do
-      expect(MercatorMesonic::KontenstammFakt.dtefault_order).to eql :mesoprim
+      expect(MercatorMesonic::KontenstammFakt.default_order).to eql :mesoprim
     end
   end
 
