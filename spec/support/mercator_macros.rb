@@ -53,4 +53,11 @@ module MercatorMacros
     allow(controller).to receive(:logged_in?) {true}
     allow(controller).to receive(:current_user) { @contentmanager }
   end
+
+
+  def act_as_mpay24
+    @mpay24_user = create(:mpay24_user)
+    allow(controller).to receive(:logged_in?) {true}
+    allow(controller).to receive(:current_user) { @mpay24_user }
+  end
 end
