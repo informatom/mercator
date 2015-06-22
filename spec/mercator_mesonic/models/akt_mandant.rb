@@ -35,6 +35,6 @@ describe MercatorMesonic::AktMandant do
   # ---  Instance Methods  --- #
 
   it "is readonly" do
-    expect(MercatorBechlem::Videntifier.new().readonly?).to eql true
+    expect(MercatorMesonic::AktMandant.new().readonly?).to eql true
   end
 end
