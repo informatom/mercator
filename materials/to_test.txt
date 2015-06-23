@@ -1,11 +1,10 @@
-=== 1008 (1339) Mesonic ===
+=== 957 (1339) Mesonic ===
 
-051 price * Zeile 14
+084 artikelstamm
 
 070 kontenstamm
 075 kontenstamm_adresse
 079 kontakte_stamm
-084 artikelstamm
 085 bild
 357 webartikel
 
@@ -25,4 +24,4 @@
 316 metadatum
 
 ----------------
-1446 / 200 = 7.3
+1395 / 200 = 7.3
