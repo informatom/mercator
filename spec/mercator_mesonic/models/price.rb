@@ -65,7 +65,7 @@ describe MercatorMesonic::Price do
   # ---  Instance Methods  --- #
 
   it "is readonly" do
-    expect(MercatorMesonic::Category.new().readonly?).to eql true
+    expect(MercatorMesonic::Price.new().readonly?).to eql true
   end
 
 
