@@ -1,8 +1,6 @@
-=== 718 Mesonic ===
+=== 643 Mesonic ===
 
-075 kontenstamm_adresse *
-
-079 kontakte_stamm
+079 kontakte_stamm *
 
 357 webartikel
 
@@ -22,4 +20,4 @@
 316 metadatum
 
 ----------------
-1156 / 200 = 5.8
+1081 / 200 = 5.56
