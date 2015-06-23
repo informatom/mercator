@@ -2,8 +2,8 @@ FactoryGirl.define do
 
   factory :order do
     user
-    billing_method      "Rechnung"
-    billing_gender      "Mr"
+    billing_method      "e_payment"
+    billing_gender      "male"
     billing_title       "Dr"
     billing_first_name  "Max"
     billing_surname     "Mustermann"
@@ -14,8 +14,9 @@ FactoryGirl.define do
     billing_city        "Musterstadt"
     billing_country     "Österreich"
     billing_phone       "+43123456789"
-    shipping_method     "Postversand"
-    shipping_gender     "Mr"
+    shipping_method     "parcel_service_shipment"
+    shipping_gender     "male"
+    shipping_title      "Dr."
     shipping_first_name "Max"
     shipping_surname    "Mustermann"
     shipping_company    "Bigcorp"

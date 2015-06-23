@@ -34,7 +34,10 @@ describe MercatorMesonic::OrderItem do
     end
 
     it "initializes a record" do
-      expect().to be_a MercatorMesonic::OrderItem
+      expect(MercatorMesonic::OrderItem.initialize_mesonic(mesonic_order: @mesonic_order,
+                                                                  lineitem: @lineitem,
+                                                                  customer: @user,
+                                                                  index: 17)).to be_a MercatorMesonic::OrderItem
     end
 
     it "sets the attributes" do

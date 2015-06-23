@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :auto_log_in, except: [:login, :logout, :login_via_email]
   before_filter :remember_uri
   after_filter  :allow_iframe
-  before_filter :log_database_access if Rails.env == "development"
+  before_filter :log_database_access if ["development", "test"].include? Rails.env
 
 
   def default_url_options(options={})
