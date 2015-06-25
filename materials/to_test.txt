@@ -1,6 +1,6 @@
 === 643 Mesonic ===
 
-079 kontakte_stamm *
+079 kontakte_stamm * (check from start!)
 
 357 webartikel
 
@@ -21,3 +21,7 @@
 
 ----------------
 1081 / 200 = 5.56
+
+
+Nachtrag:
+login via email auch von inactive
