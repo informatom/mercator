@@ -1,6 +1,7 @@
 FactoryGirl.define do
 
   factory :user do
+    title            "Dr"
     first_name       "John"
     gender           :male
     surname          "Doe"

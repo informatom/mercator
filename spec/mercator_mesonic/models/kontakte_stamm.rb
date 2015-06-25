@@ -90,11 +90,11 @@ describe MercatorMesonic::KontakteStamm do
                                                                kontaktenummer: "contact number")).to be_a MercatorMesonic::KontakteStamm
     end
 
-    it "sets the attributes", focus: true do
+    it "sets the attributes" do
       @new_record = MercatorMesonic::KontakteStamm.initialize_mesonic(user: @user,
                                                                       billing_address: @billing_address,
                                                                       kontonummer: "account number",
-                                                                      kontaktenummer: "contact number")
+                                                                      kontaktenummer: "47111")
       expect(@new_record.c033).to eql 0
       expect(@new_record.c040).to eql 1
       expect(@new_record.c042).to eql 0
@@ -102,24 +102,23 @@ describe MercatorMesonic::KontakteStamm do
       expect(@new_record.c054).to eql 0
       expect(@new_record.c059).to eql 0
       expect(@new_record.c060).to eql 0
-      expect(@new_record.c035).to eql 0
+      expect(@new_record.c035).to eql 2
       expect(@new_record.c001).to eql "Doe"
       expect(@new_record.c002).to eql "John"
-      expect(@new_record.c003).to eql 0
-      expect(@new_record.c005).to eql 0
-      expect(@new_record.c007).to eql 0
-      expect(@new_record.c009).to eql 0
-      expect(@new_record.c012).to eql 0
-      expect(@new_record.c046).to eql 0
-      expect(@new_record.c039).to eql kontonummer: "account number"
-      expect(@new_record.id).to eql "contact number"
-      expect(@new_record.c000).to eql "contact number"
-      expect(@new_record.c025).to eql 0
-      expect(@new_record.C061).to eql "contact number"
-      expect(@new_record.C0691).to eql 4
+      expect(@new_record.c003).to eql "Dr"
+      expect(@new_record.c005).to eql "Kärntner Straße 123"
+      expect(@new_record.c007).to eql "1234"
+      expect(@new_record.c009).to eql "Vienna"
+      expect(@new_record.c012).to eql "+43123456789"
+      expect(@new_record.c046).to eql "Österreich"
+      expect(@new_record.c039).to eql "account number"
+      expect(@new_record.c000).to eql 47111
+      expect(@new_record.c025).to eql "john.doe@informatom.com"
+      expect(@new_record.C061).to eql 47111
+      expect(@new_record.C069).to eql 4
       expect(@new_record.mesocomp).to eql @mesocomp
       expect(@new_record.mesoyear).to eql @mesoyear
-      expect(@new_record.mesoprim).to eql "account number-" + @mesocomp.to_s + "-" + @mesoyear.to_s
+      expect(@new_record.mesoprim).to eql "47111-" + @mesocomp.to_s + "-" + @mesoyear.to_s
     end
   end
 
