@@ -13,6 +13,7 @@ log/*
 materials/ivellio-vellin/*
 
 public/assets/*
+public/sitemaps/*
 public/system/*
 public/ckeditor_assets/*
 
