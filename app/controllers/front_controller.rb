@@ -10,7 +10,7 @@ class FrontController < ApplicationController
     if request.host == Constant::SHOPDOMAIN
       redirect_to "/categories"
     elsif @home
-      redirect_to "/webpages/home"
+      redirect_to "/home"
     else
       redirect_to action: :index
     end

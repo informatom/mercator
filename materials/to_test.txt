@@ -1,8 +1,4 @@
-=== 643 Mesonic ===
-
-079 kontakte_stamm * (check from start!)
-
-357 webartikel
+=== 564 Mesonic ===
 
 024 inventory_extensions
 045 order_extensions
@@ -11,6 +7,7 @@
 014 users_controller_extensions
 025 application_controler
 
+357 webartikel
 
 === 438 Icecat ===
 
@@ -20,8 +17,9 @@
 316 metadatum
 
 ----------------
-1081 / 200 = 5.56
+1002 / 200 = 5.1
 
 
 Nachtrag:
-login via email auch von inactive
+* login_via_email auch für state: :inactive
+* pages/, webpages/ get redirected in webpages_show

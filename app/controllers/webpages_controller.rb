@@ -7,6 +7,11 @@ class WebpagesController < ApplicationController
 
 
   def show
+    if ["webpages", "pages"].include? request.path.split("/")[1]
+      redirect_to request.url.sub(request.path.split("/")[1]+"/", ""), status: 301 and return
+    end
+
+
     self.this = @webpage = Webpage.friendly.find(params[:id])
 
     hobo_show do
