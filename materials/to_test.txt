@@ -1,4 +1,4 @@
-=== 564 Mesonic ===
+=== 540 Mesonic ===
 
 024 inventory_extensions
 045 order_extensions
@@ -11,15 +11,18 @@
 
 === 438 Icecat ===
 
-014 metadata_controller
 048 access
+
 060 product_extensions
+
+014 metadata_controller
+
 316 metadatum
 
 ----------------
-1002 / 200 = 5.1
+978 / 200 = 4,9
 
 
 Nachtrag:
-* login_via_email auch für state: :inactive
-* pages/, webpages/ get redirected in webpages_show
+* users#login_via_email: also for state: :inactive
+* webpages#show : pages/, webpages/ get redirected
