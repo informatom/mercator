@@ -1,7 +1,5 @@
-=== 540 Mesonic ===
+=== 495 Mesonic ===
 
-024 inventory_extensions
-045 order_extensions
 099 user_extensions
 
 014 users_controller_extensions
@@ -20,7 +18,7 @@
 316 metadatum
 
 ----------------
-978 / 200 = 4,9
+933 / 200 = 4,7
 
 
 Nachtrag:
