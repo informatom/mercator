@@ -686,19 +686,22 @@ describe OrdersController, :type => :controller do
 
       context "order is basket" do
         it "is available for basket" do
-          @order = create(:order, user_id: @user.id)
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment")
           expect(@order.lifecycle.can_place? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
-          @order = create(:order, user_id: @user.id)
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment")
           @user.update(gtc_version_of: @older_gtc.version_of)
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
-                                  billing_city: nil)
+                                  billing_city: nil,
+                                  billing_method: "pre_payment")
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
@@ -709,7 +712,8 @@ describe OrdersController, :type => :controller do
         end
 
         it "changes the state to ordered" do
-          @order = create(:order, user_id: @user.id)
+          @order = create(:order, user_id: @user.id,
+                                  billing_method: "pre_payment")
           @user.update(gtc_version_of: @current_gtc.version_of)
           @order.lifecycle.place!(@user)
           expect(@order.state).to eql "ordered"
@@ -720,13 +724,15 @@ describe OrdersController, :type => :controller do
       context "order is accepted_offer" do
         it "is available for accepted_offer" do
           @order = create(:order, user_id: @user.id,
-                                  state:"accepted_offer")
+                                  state:"accepted_offer",
+                                  billing_method: "pre_payment")
           expect(@order.lifecycle.can_place? @user).to be
         end
 
         it "is not available if gtc accepted is not current" do
           @order = create(:order, user_id: @user.id,
-                                  state:"accepted_offer")
+                                  state:"accepted_offer",
+                                  billing_method: "pre_payment")
           @user.update(gtc_version_of: @older_gtc.version_of)
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
@@ -734,7 +740,8 @@ describe OrdersController, :type => :controller do
         it "is not available if billing address is not filled" do
           @order = create(:order, user_id: @user.id,
                                   billing_city: nil,
-                                  state:"accepted_offer")
+                                  state:"accepted_offer",
+                                  billing_method: "pre_payment")
           expect(@order.lifecycle.can_place? @user).to be_falsy
         end
 
@@ -747,7 +754,8 @@ describe OrdersController, :type => :controller do
 
         it "changes the state to ordered" do
           @order = create(:order, user_id: @user.id,
-                           state:"accepted_offer")
+                           state:"accepted_offer",
+                           billing_method: "pre_payment")
           @user.update(gtc_version_of: @current_gtc.version_of)
           @order.lifecycle.place!(@user)
           expect(@order.state).to eql "ordered"
