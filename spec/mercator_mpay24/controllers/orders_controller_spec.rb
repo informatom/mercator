@@ -7,10 +7,10 @@ describe OrdersController, :type => :controller do
       no_redirects and act_as_admin
       create(:mpay_test_username)
       create(:mpay_test_password)
-      @test_message = "<merchantID></merchantID><mdxi><Order><Tid>0815/4711</Tid><Price>12.34</Price></Order></mdxi>"
+      @test_message = "<merchantID>undefined</merchantID><mdxi><Order><Tid>0815/4711</Tid><Price>12.34</Price></Order></mdxi>"
     end
 
-    context "Test Padment class" do
+    context "Test Payment class" do
       it "creates a test payment message" do
         response = instance_double(Savon::Response, :body => Hash.new(:location => "http://www.informatom.com"))
         allow(Order::MPAY_TEST_CLIENT).to receive(:call) { response }

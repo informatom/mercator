@@ -20,12 +20,12 @@ describe FrontController, :type => :controller do
       expect(response).to redirect_to categories_path(locale: nil)
     end
 
-    it 'redirects to "webpages/home" if there exists such a webpage and it is a cmsdomain request' do
+    it 'redirects to "home" if there exists such a webpage and it is a cmsdomain request' do
       allow(request).to receive(:host) { "cms.domain.com" }
       create(:webpage, slug: 'home')
 
       get :home
-      expect(response).to redirect_to '/webpages/home'
+      expect(response).to redirect_to '/home'
     end
 
     it 'redirects to "front#index" otherwise' do

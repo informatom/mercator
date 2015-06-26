@@ -20,7 +20,7 @@ describe MercatorIcecat::Access do
       expect(File).to exist(filename)
     end
 
-# Takes quite some time, so disabled ...
+# Takes quite some time and loads some 386 MB of data, so disabled ...
     # it "downloads the (full) index" do
     #   filename = Rails.root.join("vendor","catalogs","files.index.xml")
     #   File.delete(filename) if File.exist?(filename)

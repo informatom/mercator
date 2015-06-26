@@ -7,19 +7,18 @@ class WebpagesController < ApplicationController
 
 
   def show
+    self.this = @webpage = Webpage.friendly.find(params[:id])
+
+    unless  @webpage.visible_for?(user: current_user)
+      redirect_to :root, status: 303 and return
+    end
+
     if ["webpages", "pages"].include? request.path.split("/")[1]
       redirect_to request.url.sub(request.path.split("/")[1]+"/", ""), status: 301 and return
     end
 
-
-    self.this = @webpage = Webpage.friendly.find(params[:id])
-
     hobo_show do
-      if @webpage.visible_for?(user: current_user)
-        render "page_templates/" + @webpage.page_template.name
-      else
-        redirect_to :root, status: 303
-      end
+      render "page_templates/" + @webpage.page_template.name
     end
   end
 end

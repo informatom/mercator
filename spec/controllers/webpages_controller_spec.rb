@@ -19,15 +19,14 @@ describe WebpagesController, :type => :controller do
       @webpage = create(:webpage, state: "published",
                                   page_template: @page_template)
       get :show, id: @webpage.id
-
-      expect(response).to render_template :rspec_test_template
+      expect(response).to have_http_status(301)
     end
 
     it "draft webpages are hidden from user" do
       @draft = create(:webpage, state: "draft",
                                 page_template: @page_template)
       get :show, id: @draft.id
-      expect(response).to  have_http_status(303)
+      expect(response).to have_http_status(303)
     end
 
     it "draft webpages are presented for content manager" do
@@ -36,7 +35,7 @@ describe WebpagesController, :type => :controller do
       act_as_contentmanager
 
       get :show, id: @draft.id
-      expect(response).to render_template :rspec_test_template
+      expect(response).to have_http_status(301)
     end
   end
 end

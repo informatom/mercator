@@ -58,7 +58,7 @@ describe User do
   context "name" do
     it "returns the name" do
       @user = create(:user, state: "active")
-      expect(@user.name).to eql "Mr. John Doe"
+      expect(@user.name).to eql "Mr. Dr John Doe"
     end
   end
 

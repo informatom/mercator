@@ -27,10 +27,10 @@ FactoryGirl.define do
     </ShoppingCart>
     <Price>511.20</Price>
     <URL>
-      <Success>http://localhost:3000/orders/147/payment_status</Success>
-      <Error>http://localhost:3000/orders/147/payment_status</Error>
-      <Confirmation>http://www.informatom.com/mercator_mpay24/confirmation</Confirmation>
-      <Cancel>http://localhost:3000/orders/147-bestellung-vom-mo-9-feb-15/payment_status</Cancel>
+      <Success>http://shop.domain.com:3000/orders/147/payment_status</Success>
+      <Error>http://shop.domain.com:3000/orders/147/payment_status</Error>
+      <Confirmation>http://shop.domain.com:3000/mercator_mpay24/confirmation</Confirmation>
+      <Cancel>http://shop.domain.com:3000/orders/147-bestellung-vom-mo-9-feb-15/payment_status</Cancel>
     </URL>
   </Order>
 </mdxi>

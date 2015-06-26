@@ -99,10 +99,10 @@ describe Order do
                             </ShoppingCart>
                             <Price>6169.29</Price>
                             <URL>
-                              <Success>http://localhost/orders/" + @order.id.to_s + "/payment_status</Success>
-                              <Error>http://localhost/orders/" + @order.id.to_s + "/payment_status</Error>
-                              <Confirmation>http://localhost/mercator_mpay24/confirmation</Confirmation>
-                              <Cancel>http://localhost/orders/" + @order.id.to_s + "/payment_status</Cancel>
+                              <Success>http://shop.domain.com/orders/" + @order.id.to_s + "/payment_status</Success>
+                              <Error>http://shop.domain.com/orders/" + @order.id.to_s + "/payment_status</Error>
+                              <Confirmation>http://shop.domain.com/mercator_mpay24/confirmation</Confirmation>
+                              <Cancel>http://shop.domain.com/orders/" + @order.id.to_s + "/payment_status</Cancel>
                             </URL>
                           </Order>
                         </mdxi>

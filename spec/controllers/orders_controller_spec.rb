@@ -97,6 +97,7 @@ describe OrdersController, :type => :controller do
     describe "PUT #do_place" do
       before :each do
         @user.update(gtc_version_of: @newer_gtc.version_of)
+        @basket.update(billing_method: "pre_payment")
       end
 
       it "loads the order" do

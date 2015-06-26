@@ -202,7 +202,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
                                                            size: "42",
                                                            storage: "DG",
                                                            unit: "Stk.",
-                                                           weight: "0.5" },
+                                                           weight: "5.0" },
                                                          { alternative_number: "slipper-4-2",
                                                            amount: "12.0",
                                                            charge: "ABC42",
@@ -223,7 +223,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
                                                            size: "42",
                                                            storage: "DG",
                                                            unit: "Stk.",
-                                                           weight: "0.5" } ],
+                                                           weight: "5.0" } ],
                                                status: "success",
                                                total: 2 }.to_json)
       end
@@ -260,7 +260,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
                                                            size: "42",
                                                            storage: "DG",
                                                            unit: "Stk.",
-                                                           weight: "0.5" },
+                                                           weight: "5.0" },
                                                  status: "success"}.to_json )
         end
       end
