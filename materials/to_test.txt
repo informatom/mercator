@@ -1,6 +1,5 @@
-=== 396 Mesonic ===
+=== 382 Mesonic ===
 
-014 users_controller_extensions
 025 application_controler
 
 357 webartikel
@@ -15,8 +14,8 @@
 
 316 metadatum
 
-----------------
-834 / 200 = 4,7
+---------------
+820 / 200 = 4,1
 
 
 === Iteration 2 ===
