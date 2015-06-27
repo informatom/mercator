@@ -1,11 +1,9 @@
-048 Icecat - access *
-
 060 Icecat - product_extensions
 014 Icecat - metadata_controller
 316 Icecat - metadatum
 357 mesonic - webartikel
----------------
-795 / 200 = 4.0
+---------------------
+747 / 200 (795) = 3,8
 
 
 === Iteration 2 ===

@@ -32,17 +32,24 @@ describe MercatorIcecat::Access do
 
 
   describe "product" do
-    it "downloads xml five fore product", focus: true do
-      @product = create(:product, number: "HP-D5T59EA")
-      MercatorIcecat::Access.product(product_id: @product.id)
+    it "downloads xml file for for icecat_product_id" do
+      @metadatum = create(:metadatum)
+      expect(MercatorIcecat::Access.product(product_id: @metadatum.prod_id)
+                                   .length > 50000).to eql true
+    end
+
+    it "returns the product url for path" do
+      @metadatum = create(:metadatum)
+      expect(MercatorIcecat::Access.product(path: "/xml_s3/xml_server3.cgi?prod_id=D9190B;vendor=HP;lang=int;output=productxml")
+                                   .length > 50000).to eql true
     end
   end
 
 
-  describe "product_url", focus: true do
+  describe "product_url" do
     it "returns the product url" do
       @metadatum = create(:metadatum)
-      expect(MercatorIcecat::Access.product_url(product_id: @metadatum.product_id)).to eql "test"
+      expect(MercatorIcecat::Access.product_url(product_id: @metadatum.prod_id)).to eql "http://data.icecat.biz/xml_s3/xml_server3.cgi?prod_id=D9190B;vendor=HP;lang=int;output=productxml"
     end
   end
 end
