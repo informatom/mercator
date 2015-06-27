@@ -33,7 +33,7 @@ describe MercatorIcecat::Metadatum do
       File.delete(Rails.root.join("vendor","catalogs","files.index.xml"))
     end
 
-    it "imports daily metadata", focus: true do
+    it "imports daily metadata" do
       FileUtils.cp(Rails.root.join("vendor","engines","mercator_icecat", "materials", "icecat-test-index.xml"),
                    Rails.root.join("vendor","catalogs", Date.today.to_s + "-index.xml"))
 
@@ -55,5 +55,88 @@ describe MercatorIcecat::Metadatum do
     end
   end
 
+
+  describe "assign_products" do
+    before :each do
+      @product = create(:product, alternative_number: "D9190B")
+      @metadatum = create(:metadatum, product_id: nil)
+    end
+
+    it "works for missing products" do
+      MercatorIcecat::Metadatum.assign_products(only_missing: true)
+      @metadatum.reload
+      expect(@metadatum.product_id).to eql @product.id
+    end
+
+    it "works for all products" do
+      @metadatum.update(product_id: 17)
+
+      MercatorIcecat::Metadatum.assign_products(only_missing: false)
+      @metadatum.reload
+      expect(@metadatum.product_id).to eql @product.id
+    end
+  end
+
+
+  describe "download" do
+    before :each do
+      @filename = Rails.root.join("vendor", "xml", "1286.xml")
+      File.delete(@filename) if File.exist?(@filename)
+      @metadatum = create(:metadatum, product_id: 17)
+    end
+
+    after :each do
+      File.delete(@filename) if File.exist?(@filename)
+    end
+
+    it "downloads from today, if requested" do
+      MercatorIcecat::Metadatum.download(from_today: true)
+      expect(File).to exist(@filename)
+    end
+
+    it "dosn't download, if today requested and updated_at is older" do
+      @metadatum.update(updated_at: Time.now - 1.month)
+      MercatorIcecat::Metadatum.download(from_today: true)
+      expect(File).not_to exist(@filename)
+    end
+
+    it "downloads all, if requested" do
+      MercatorIcecat::Metadatum.download(from_today: false)
+      expect(File).to exist(@filename)
+    end
+  end
+
+
   # ---  Instance Methods  --- #
+
+  describe "download" do
+    before :each do
+      @filename = Rails.root.join("vendor", "xml", "1286.xml")
+      File.delete(@filename) if File.exist?(@filename)
+      @metadatum = create(:metadatum, product_id: nil)
+    end
+
+    after :each do
+      File.delete(@filename) if File.exist?(@filename)
+    end
+
+    it "downloads from today, if requested" do
+      @metadatum.download(overwrite: true)
+      expect(File).to exist(@filename)
+    end
+
+    it "returns nil, if no override and file exists" do
+      @metadatum.download(overwrite: true)
+      expect(@metadatum.download(overwrite: false)).to eql false
+    end
+
+    it "returns false, if no path in metadatum" do
+      @metadatum.update(path: nil)
+      expect(@metadatum.download(overwrite: true)).to eql false
+    end
+  end
+
+
+  describe "update_product", focus: true do
+  end
 end
