@@ -1,5 +1,5 @@
 mesonic - webartikel
-365 => 143 => 0.8
+112 => 0.6
 
 
 === Iteration 2 ===

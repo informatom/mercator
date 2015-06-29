@@ -216,7 +216,7 @@ describe MercatorMesonic::Webartikel do
     end
 
 
-    context "fireworks", focus: true do
+    context "fireworks" do
       before :each do
         @fireworks = create(:category, name_de: "Feuerwerk")
         @firework = create(:product, number: "HP-Q2428A")
@@ -256,13 +256,42 @@ describe MercatorMesonic::Webartikel do
 
 
   describe "import_and_return_product" do
-    it "" do
-      FIXME!
+    before :each do
+      @webartikel = MercatorMesonic::Webartikel.find("HP-CE989A")
+    end
+
+    it "creates a product" do
+      @webartikel.import_and_return_product
+      expect(@webartikel.instance_variable_get(:@product)).to be_a Product
+    end
+
+    it "creates an inventory" do
+      @webartikel.import_and_return_product
+      expect(@webartikel.instance_variable_get(:@inventory)).to be_a Inventory
+    end
+
+    it "creates a price" do
+      @webartikel.import_and_return_product
+      expect(@webartikel.instance_variable_get(:@price)).to be_a Price
+    end
+
+    it "creates categorizations" do
+      expect(@webartikel).to receive(:create_categorization)
+      @webartikel.import_and_return_product
+    end
+
+    it "creates recommendations" do
+      expect(@webartikel).to receive(:create_recommendations)
+      @webartikel.import_and_return_product
+    end
+
+    it "returns the product" do
+      expect(@webartikel.import_and_return_product).to be_a Product
     end
   end
 
 
-  describe "create_product" do
+  describe "create_product", focus: true do
     it "" do
       FIXME!
     end
