@@ -267,21 +267,58 @@ describe MercatorIcecat::Metadatum do
   end
 
 
-  describe "update_product_relations", focus: true do
+  describe "update_product_relations" do
     before :each do
-      @product = create(:product, alternative_number: "HP-K9J77EA",
-                                  photo: nil)
-      @metadatum = create(:second_metadatum, product_id: @product.id)
+      @product = create(:product, number: "HP-C8S57A")
+      @metadatum = create(:metadatum, product_id: @product.id,
+                                      path: "export/freexml.int/INT/19886543.xml",
+                                      cat_id: "210",
+                                      model_name: "MSA 2040 SAS Dual Controller Bundle",
+                                      supplier_id: "1",
+                                      icecat_product_id: "19886543",
+                                      prod_id: "C8S57A" )
       @metadatum.download(overwrite: true)
+
+      @related_product = create(:product, number: "HP-AJ941A")
+      @related_metadatum = create(:metadatum, product_id: @related_product.id,
+                                              path: "export/freexml.int/INT/3637150.xml",
+                                              cat_id: "210",
+                                              model_name: "AJ941A",
+                                              supplier_id: "1",
+                                              icecat_product_id: "3637150",
+                                              prod_id: "AJ941A")
+      @related_metadatum.download(overwrite: true)
+
+      @supply = create(:product, number: "HP-614988-B21")
+      @supply_metadatum = create(:metadatum, product_id: @supply.id,
+                                             path: "export/freexml.int/INT/5123007.xml",
+                                             cat_id: "182",
+                                             model_name: "Modular Smart Array SC08e 2-ports Ext PCIe x8 SAS Host Bus Adapter",
+                                             supplier_id: "1",
+                                             icecat_product_id: "5123007",
+                                             prod_id: "614988-B21")
+      @supply_metadatum.download(overwrite: true)
     end
 
     after :each do
-      @filename = Rails.root.join("vendor", "xml", "25880804.xml")
+      @filename = Rails.root.join("vendor", "xml", "19886543.xml")
+      File.delete(@filename) if File.exist?(@filename)
+
+      @filename = Rails.root.join("vendor", "xml", "3637150.xml")
+      File.delete(@filename) if File.exist?(@filename)
+
+      @filename = Rails.root.join("vendor", "xml", "5123007.xml")
       File.delete(@filename) if File.exist?(@filename)
     end
 
-    it "" do
-      !FIXME
+    it "creates the Productrelations if cat id is identical" do
+      @metadatum.update_product_relations
+      expect(@product.related_products.first).to eql @related_product
+    end
+
+    it "creates the Supplyrelations if cat id is different", focus: true do
+      @metadatum.update_product_relations
+      expect(@product.supplies.first).to eql @supply
     end
   end
 

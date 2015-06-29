@@ -6,5 +6,5 @@
 
 === Iteration 2 ===
 
-* users#login_via_email: also for state: :inactive
-* webpages#show : pages/, webpages/ get redirected
+003 users#login_via_email: also for state: :inactive
+004 webpages#show : pages/, webpages/ get redirected
