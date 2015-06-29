@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Inventory do
-  it "has many payments" do
+  it "has many mesonic_prices" do
     it {should have_many :mesonic_prices}
   end
 

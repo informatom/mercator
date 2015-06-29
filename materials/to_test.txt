@@ -1,7 +1,5 @@
-035 Icecat - metadatum
-362 mesonic - webartikel
----------------------
-397 / 200 = 2
+mesonic - webartikel
+362 => 280 => 1.4
 
 
 === Iteration 2 ===
