@@ -153,35 +153,70 @@ describe UsersController, :type => :controller do
 
 
   describe "PUT #login_via_email" do
-    before :each do
-      @user = create(:user, state: "active")
-      @key = @user.lifecycle.generate_key
-      @user.save
+    context "state: active" do
+      before :each do
+        @user = create(:user, state: "active")
+        @key = @user.lifecycle.generate_key
+        @user.save
+      end
+
+      it "finds the current_user" do
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(assigns(:current_user).id).to eql @user.id
+      end
+
+      it "creats cookie" do
+        expect(controller).to receive(:create_auth_cookie)
+        get :login_via_email, id: @user.id,
+                              key: @key
+      end
+
+      it "generates a lifecycle key" do
+        get :login_via_email, id: @user.id,
+                              key: @key
+        @user.reload
+        expect(assigns(:current_user).lifecycle.key).to eql @user.lifecycle.key
+      end
+
+      it "redirects to hemo page" do
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(response.body).to redirect_to "http://test.host"
+      end
     end
 
-    it "finds the current_user" do
-      get :login_via_email, id: @user.id,
-                            key: @key
-      expect(assigns(:current_user).id).to eql @user.id
-    end
+    context "state: inactive" do
+      before :each do
+        @user = create(:user, state: "inactive")
+        @key = @user.lifecycle.generate_key
+        @user.save
+      end
 
-    it "creats cookie" do
-      expect(controller).to receive(:create_auth_cookie)
-      get :login_via_email, id: @user.id,
-                            key: @key
-    end
+      it "finds the current_user" do
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(assigns(:current_user).id).to eql @user.id
+      end
 
-    it "generates a lifecycle key" do
-      get :login_via_email, id: @user.id,
-                            key: @key
-      @user.reload
-      expect(assigns(:current_user).lifecycle.key).to eql @user.lifecycle.key
-    end
+      it "creats cookie" do
+        expect(controller).to receive(:create_auth_cookie)
+        get :login_via_email, id: @user.id,
+                              key: @key
+      end
 
-    it "redirects to hemo page" do
-      get :login_via_email, id: @user.id,
-                            key: @key
-      expect(response.body).to redirect_to "http://test.host"
+      it "generates a lifecycle key" do
+        get :login_via_email, id: @user.id,
+                              key: @key
+        @user.reload
+        expect(assigns(:current_user).lifecycle.key).to eql @user.lifecycle.key
+      end
+
+      it "redirects to hemo page" do
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(response.body).to redirect_to "http://test.host"
+      end
     end
   end
 
@@ -537,16 +572,32 @@ describe UsersController, :type => :controller do
       act_as_user
     end
 
-    it "is available for active user" do
-      @user = create(:user, state: "active")
-      @user.lifecycle.provided_key = @user.lifecycle.generate_key
-      expect(@user.lifecycle.can_login_via_email?(@user)).to be
+    context "state: active" do
+      it "is available for active user" do
+        @user = create(:user, state: "active")
+        @user.lifecycle.provided_key = @user.lifecycle.generate_key
+        expect(@user.lifecycle.can_login_via_email?(@user)).to be
+      end
+
+      it "is not available for active user for invalid key" do
+        @user = create(:user, state: "active")
+        @user.lifecycle.provided_key = @user.lifecycle.generate_key + "wrong"
+        expect(@user.lifecycle.can_login_via_email?(@user)).to be false
+      end
     end
 
-    it "is not available for active user for invalid key" do
-      @user = create(:user, state: "active")
-      @user.lifecycle.provided_key = @user.lifecycle.generate_key + "wrong"
-      expect(@user.lifecycle.can_login_via_email?(@user)).to be false
+    context "state: inactive" do
+      it "is available for inactive user" do
+        @user = create(:user, state: "inactive")
+        @user.lifecycle.provided_key = @user.lifecycle.generate_key
+        expect(@user.lifecycle.can_login_via_email?(@user)).to be
+      end
+
+      it "is not available for inactive user for invalid key" do
+        @user = create(:user, state: "inactive")
+        @user.lifecycle.provided_key = @user.lifecycle.generate_key + "wrong"
+        expect(@user.lifecycle.can_login_via_email?(@user)).to be false
+      end
     end
   end
 end

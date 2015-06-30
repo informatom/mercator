@@ -1,4 +1,3 @@
 === Iteration 2 ===
 
 003 users#login_via_email: also for state: :inactive
-004 webpages#show : pages/, webpages/ get redirected
