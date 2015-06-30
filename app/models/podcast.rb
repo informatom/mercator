@@ -29,8 +29,7 @@ class Podcast < ActiveRecord::Base
   application_ogg = MIME::Types["application/ogg"].first
   application_ogg.extensions << "ogg"
 
-  # HAS: 20150525 not necessary any more according to https://github.com/mime-types/ruby-mime-types/issues/84#event-313166199
-  #MIME::Types.index_extensions(application_ogg)
+  MIME::Types.index_extensions(application_ogg)
 
   # --- Permissions --- #
 
