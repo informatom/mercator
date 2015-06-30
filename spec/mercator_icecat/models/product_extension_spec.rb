@@ -21,7 +21,7 @@ describe Product do
 
 
   describe "update_from_icecat" do
-    it "updates from icecat for each product", focus:true  do
+    it "updates from icecat for each product" do
       expect_any_instance_of(Product).to receive(:update_from_icecat)
       Product.update_from_icecat
     end

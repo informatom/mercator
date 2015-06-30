@@ -348,23 +348,119 @@ describe MercatorMesonic::Webartikel do
   end
 
 
-  describe "create_inventory", focus: true do
-    it "" do
-      FIXME!
+  describe "create_inventory" do
+    before :each do
+      @webartikel = MercatorMesonic::Webartikel.find("HP-CE989A")
+      @product = create(:product, number: "HP-CE989A")
+    end
+
+    it "creates an inventory" do
+      @webartikel.create_inventory(product: @product,
+                                   store: "a store",
+                                   size: "some size")
+      expect(@webartikel.instance_variable_get(:@inventory)).to be_a Inventory
+    end
+
+    it "sets attributes for the saved inventory" do
+      @webartikel.create_inventory(product: @product,
+                                   store: "a store",
+                                   size: "some size")
+      @inventory = Inventory.first
+      expect(@inventory.product_id).to eql @product.id
+      expect(@inventory.number).to eql "HP-CE989A"
+      expect(@inventory.name_de).to eql "HP LaserJet Enterprise 600 M601n"
+      expect(@inventory.comment_de).to eql "Ideal für Arbeitsgruppen mit fünf bis zehn Benutzern," +
+                                           " die einen zuverlässigen Drucker benötigen. "
+      expect(@inventory.weight).to eql 0.0
+      expect(@inventory.charge).to eql "25"
+      expect(@inventory.unit).to eql "Stk."
+      expect(@inventory.delivery_time).to eql "ca. 1-2 Tage"
+      expect(@inventory.amount).to eql 0
+      expect(@inventory.erp_updated_at).to eql Time.new(2012, 07, 12, 13, 05, 30)
+      expect(@inventory.erp_vatline).to eql 2
+      expect(@inventory.erp_article_group).to eql 80
+      expect(@inventory.erp_provision_code).to eql 1
+      expect(@inventory.erp_characteristic_flag).to eql 1
+      expect(@inventory.infinite).to eql true
+      expect(@inventory.just_imported).to eql true
+      expect(@inventory.alternative_number).to eql "CE989A#B19"
+      expect(@inventory.storage).to eql "a store"
+      expect(@inventory.size).to eql "some size"
+    end
+
+    it "returns the inventrory" do
+      expect(@webartikel.create_inventory(product: @product,
+                                          store: "a store",
+                                          size: "some size")).to be_a Inventory
     end
   end
 
 
   describe "create_price" do
-    it "" do
-      FIXME!
+    before :each do
+      @webartikel = MercatorMesonic::Webartikel.find("HP-CE989A")
+      @inventory = create(:inventory)
+    end
+
+    it "creates a price" do
+      @webartikel.create_price(inventory: @inventory)
+      expect(@webartikel.instance_variable_get(:@price)).to be_a Price
+    end
+
+    it "sets attributes for the saved price" do
+      @webartikel.create_price(inventory: @inventory)
+      @price = Price.first
+      expect(@price.scale_from).to eql 0.0
+      expect(@price.scale_to).to eql 9999
+      expect(@price.vat).to eql 20
+      expect(@price.inventory_id).to eql @inventory.id
+      expect(@price.value).to eql 413
+      expect(@price.promotion).to eql nil
+      expect(@price.valid_from).to eql Date.today
+      expect(@price.valid_to).to eql Date.new(9999,12,31)
+    end
+
+    it "respects brutto pricing" do
+      create(:constant, key: "import_gross_prices_from_erp",
+                        value: "true")
+      @webartikel.create_price(inventory: @inventory)
+      @price = Price.first
+      expect(@price.value).to eql 344.16667
+    end
+
+    it "respects promotions" do
+      # find the longest lasting promotion ...
+      @webartikel = MercatorMesonic::Webartikel.order(PreisdatumBIS: :desc).where.not(PreisdatumBIS: nil).first
+      @webartikel.create_price(inventory: @inventory)
+      @price = Price.first
+      expect(@price.promotion).to eql true
+      expect(@price.valid_from).to eql @webartikel.PreisdatumVON.to_date
+      expect(@price.valid_to).to eql @webartikel.PreisdatumBIS.to_date
+    end
+
+    it "returns the price" do
+      expect(@webartikel.create_price(inventory: @inventory)).to be_a Price
     end
   end
 
 
   describe "create_recommendations" do
-    it "" do
-      FIXME!
+    before :each do
+      @webartikel = MercatorMesonic::Webartikel.find("HP-CE989A")
+      @product = create(:product, number: "HP-CE989A")
+      @second_product = create(:product, number: "second product number")
+      create(:recommendation, product_id: @product.id,
+                              recommended_product_id: @second_product.id )
+    end
+
+    it "destroys recommendations first" do
+      expect(Recommendation.count).to eql 1
+      @webartikel.create_recommendations(product: @product)
+      expect(Recommendation.count).to eql 0
+    end
+
+    it "cannot bring results, as there are no recommendations in the database" do
+      expect(@webartikel.create_recommendations(product: @product)).to match_array []
     end
   end
 
@@ -382,8 +478,43 @@ describe MercatorMesonic::Webartikel do
 
 
   describe "create_categorization" do
-    it "" do
-      FIXME!
+    before :each do
+      @webartikel = MercatorMesonic::Webartikel.find("HP-CE989A")
+      @product = create(:product, number: "HP-CE989A")
+      @category = create(:category)
+      @categorization= create(:categorization, product_id: @product.id,
+                                               category_id: @category.id,
+                                               position: 1)
+    end
+
+    it "destroys all categorizations" do
+      expect(Categorization.count).to eql 1
+      @webartikel.create_categorization(product: @product)
+      expect(Categorization.where(id: @categorization.id)).to be_empty
+    end
+
+    it "assigns to auto, if no other categorization established" do
+      @webartikel.create_categorization(product: @product)
+      @product.reload
+      expect(@product.categorizations.first.category.name_de).to eql "importiert"
+    end
+
+    it "assigns to the category, if provided" do
+      @second_category = create(:category, name_de: "second category",
+                                           erp_identifier: "00020-00020-00023-00000-00000")
+
+      @webartikel.create_categorization(product: @product)
+      @product.reload
+      expect(@product.categorizations.first.category.name_de).to eql "second category"
+    end
+
+    it "finds a squeel condition an assigns it" do
+      @third_category = create(:category, name_de: "third category",
+                                          squeel_condition: "kontonummer43 == '274005'")
+
+      @webartikel.create_categorization(product: @product)
+      @product.reload
+      expect(@product.categorizations.first.category.name_de).to eql "third category"
     end
   end
 

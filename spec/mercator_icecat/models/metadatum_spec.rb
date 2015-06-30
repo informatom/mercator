@@ -316,7 +316,7 @@ describe MercatorIcecat::Metadatum do
       expect(@product.related_products.first).to eql @related_product
     end
 
-    it "creates the Supplyrelations if cat id is different", focus: true do
+    it "creates the Supplyrelations if cat id is different" do
       @metadatum.update_product_relations
       expect(@product.supplies.first).to eql @supply
     end

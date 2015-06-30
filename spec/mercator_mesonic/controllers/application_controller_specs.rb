@@ -21,7 +21,7 @@ describe MercatorMesonic::ApplicationController, :type => :controller do
   end
 
 
-  describe "admin_required", focus: true do
+  describe "admin_required" do
     before :each do
       act_as_user
     end
