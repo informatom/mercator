@@ -18,9 +18,30 @@ describe WebpagesController, :type => :controller do
     it "published webpages are presented to user" do
       @webpage = create(:webpage, state: "published",
                                   page_template: @page_template)
+      request.path = "/" + @webpage.id.to_s
+
+      get :show, id: @webpage.id
+      expect(response).to render_template :rspec_test_template
+    end
+
+    it "redirects if /webpages/ is in path" do
+      @webpage = create(:webpage, state: "published",
+                                  page_template: @page_template)
+      request.path = "/webpages/" + @webpage.id.to_s
+
       get :show, id: @webpage.id
       expect(response).to have_http_status(301)
     end
+
+    it "redirects if /pages/ is in path" do
+      @webpage = create(:webpage, state: "published",
+                                  page_template: @page_template)
+      request.path = "/pages/" + @webpage.id.to_s
+
+      get :show, id: @webpage.id
+      expect(response).to have_http_status(301)
+    end
+
 
     it "draft webpages are hidden from user" do
       @draft = create(:webpage, state: "draft",
