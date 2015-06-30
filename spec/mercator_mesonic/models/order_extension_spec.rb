@@ -111,7 +111,7 @@ describe Order do
       @order.push_to_mesonic
       expect(@order.erp_customer_number).to eql "691801-2004-1380"
       expect(@order.erp_billing_number).to eql "691801"
-      expect(@order.erp_order_number.length).to eql 18
+      expect(@order.erp_order_number.length > 16).to eql true
     end
 
     it "sends the order confirmatation" do

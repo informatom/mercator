@@ -291,14 +291,64 @@ describe MercatorMesonic::Webartikel do
   end
 
 
-  describe "create_product", focus: true do
-    it "" do
-      FIXME!
+  describe "create_product" do
+    before :each do
+      @webartikel = MercatorMesonic::Webartikel.find("HP-CE989A")
+      User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
+      User::JOBUSER = create(:jobuser)
+    end
+
+    it "find the product, if it exists already" do
+      @product = create(:product, number: "HP-CE989A")
+      @webartikel.create_product
+      expect(@webartikel.instance_variable_get(:@product).id).to eql @product.id
+    end
+
+    it "fills description if missing" do
+      @product = create(:product, number: "HP-CE989A",
+                                  description_de: nil)
+      @webartikel.create_product
+      expect(@webartikel.instance_variable_get(:@product).description_de).to eql "Ideal für" +
+        " Arbeitsgruppen mit fünf bis zehn Benutzern, die einen zuverlässigen Drucker benötigen. "
+    end
+
+    it "reactivates the product, if it already existed" do
+      @product = create(:product, number: "HP-CE989A",
+                                  state: "deprecated")
+      @webartikel.create_product
+      expect(@webartikel.instance_variable_get(:@product).state).to eql "active"
+    end
+
+    it "creates a new product, if none existed" do
+      @webartikel.create_product
+      expect(@webartikel.instance_variable_get(:@product)).to be_a Product
+    end
+
+    it "sets the product attributes, if no product existed" do
+      @webartikel.create_product
+      expect(@webartikel.instance_variable_get(:@product).number).to eql "HP-CE989A"
+      expect(@webartikel.instance_variable_get(:@product).title_de).to eql "HP LaserJet Enterprise 600 M601n"
+      expect(@webartikel.instance_variable_get(:@product).description_de).to eql "Ideal für" +
+        " Arbeitsgruppen mit fünf bis zehn Benutzern, die einen zuverlässigen Drucker benötigen. "
+    end
+
+    it "saves the product" do
+      @webartikel.create_product
+      expect(Product.first.number).to eql "HP-CE989A"
+    end
+
+    it "updates form icecat" do
+      expect_any_instance_of(Product).to receive(:update_from_icecat)
+      @webartikel.create_product
+    end
+
+    it "returns the product" do
+      expect(@webartikel.create_product).to be_a Product
     end
   end
 
 
-  describe "create_inventory" do
+  describe "create_inventory", focus: true do
     it "" do
       FIXME!
     end
