@@ -70,7 +70,7 @@ describe Inventory do
   context "selectortext" do
     it "return the selectortext" do
       @inventory = create(:inventory)
-      expect(@inventory.selectortext).to eql("Size: 42 / Domgasse")
+      expect(@inventory.selectortext).to eql("Größe: 42 / Domgasse")
     end
   end
 
