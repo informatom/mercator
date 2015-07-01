@@ -42,6 +42,10 @@ class BillingAddressesController < ApplicationController
                                                   :detail, :street, :postalcode, :city, :country, :phone]
     end
 
+    if Constant.find_by_key('default_country')  && ! self.this.country
+      self.this.country = Constant.find_by_key('default_country').value
+    end
+
     creator_page_action :enter
   end
 
