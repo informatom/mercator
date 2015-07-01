@@ -131,7 +131,7 @@
 <extend tag="login-page">
   <old-login-page merge>
     <after-content:>
-      <if test="&current_user.name == 'Gast'" >
+      <if test="&['Gast', 'Guest'].include? current_user.name" >
         <div class='row'>
           <div class='col-md-3'>&nbsp;</div>
           <div class='col-md-6'>
