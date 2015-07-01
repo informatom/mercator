@@ -137,4 +137,22 @@ class UsersController < ApplicationController
 
     redirect_to params[:page_path]
   end
+
+
+  def edit
+    hobo_edit do
+      if self.this.email_address.split("@")[1] == "mercator.informatom.com"
+        self.this.email_address = nil
+      end
+    end
+  end
+
+
+  show_action :account do
+    @user = self.this = User.find(params[:id])
+
+    if self.this.email_address.split("@")[1] == "mercator.informatom.com"
+      self.this.email_address = nil
+    end
+  end
 end

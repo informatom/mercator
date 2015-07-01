@@ -46,6 +46,10 @@ class BillingAddressesController < ApplicationController
       self.this.country = Constant.find_by_key('default_country').value
     end
 
+    if self.this.email_address.split("@")[1] == "mercator.informatom.com"
+      self.this.email_address = nil
+    end
+
     creator_page_action :enter
   end
 

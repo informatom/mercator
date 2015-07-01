@@ -1,0 +1,26 @@
+<extend tag="accept-gtc-form" for="User">
+  <span param="agb">
+    <div class="well">
+      <h2><view: with="&@current_gtc"/></h2>
+      <view: with="&@current_gtc.content"/>
+    </div>
+  </span>
+
+  <old-accept-gtc-form merge>
+    <field-list: fields="confirmation">
+      <confirmation-label:>
+        <input for="boolean"/>
+      </confirmation-label:>
+      <confirmation-view:>
+        <t key="mercator.gtc_confirmation_left" />&nbsp;
+        <t key="activerecord.models.gtc.one" />&nbsp;
+        <t key="mercator.gtc_confirmation_middle" />&nbsp;
+        <t key="mercator.gtc_confirmation_fagg" />&nbsp;
+        <t key="mercator.gtc_confirmation_right" />
+      </confirmation-view:>
+    </field-list:>
+    <prepend-actions:>
+      <hidden-field:order-id />
+    </prepend-actions:>
+  </old-accept-gtc-form>
+</extend>

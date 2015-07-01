@@ -1,0 +1,7 @@
+<def tag="photo-card">
+  <div class="well" style="margin-bottom: 20px;" merge-attrs >
+    <if><%= image_tag(this.photo.url(:thumb),  class: "media-object img-polaroid pull-right" ) %></if>
+    <t key="mercator.you_are_talking_to" />: <br/>
+    <view:first-name/> <view:surname/><br/><br/><br/><br/>
+  </div>
+</def>
