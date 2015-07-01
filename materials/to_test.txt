@@ -1,3 +1,1 @@
-=== Iteration 2 ===
-
-003 users#login_via_email: also for state: :inactive
+Currently nothing to test.

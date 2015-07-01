@@ -142,7 +142,7 @@ en:
     promotion: Promotion
     property: Property
     Property: Property
-    properties: Properties
+    properties: techn. Specs
     PropertyGroup: Property Group
     property_group: Property Group
     property_groups: Property Groups
@@ -190,7 +190,7 @@ en:
     suggestions: Suggestions
     supply: Supply
     supplyrelations: Supply Relations
-    supplies: Supplies
+    supplies: Accessories
     symbolic_image: Symbolic Photo
     syndication: More Info
     template: Website Template
@@ -656,8 +656,8 @@ en:
     cobrowsing_link: Cobrowsing Link
     comment: Comment
     coming_from: from
-    consumeables: Consumeables
-    consumeable_search_help: You can search for consumeables for your printer here. Select a printer series and / or enter some characters of the type of your HP printer.
+    consumeables: Supplies
+    consumeable_search_help: You can search for supplies for your printer here. Select a printer series and / or enter some characters of the type of your HP printer.
     contracting_subsite_name: Contracting
     contracting_subheading: Contracting Management for the Mercator Guided Selling System
     conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
