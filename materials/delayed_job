@@ -2,10 +2,10 @@
 # upstart-job for delayed_job
 
 set -e
-# FIXME! set APP_PATH approprietely
+# SETME! set APP_PATH approprietely
 APP_PATH="/var/rails/mercator"
 
-# FIXME! set user and environment approprietely
+# SETME! set user and environment approprietely
 start_job() {
         echo "Starting delayed job"
         sudo -iu rails bash -c "cd $APP_PATH && RAILS_ENV=production ./bin/delayed_job start"

@@ -4,7 +4,7 @@
 Constant.create(key: :site_name, value: "My Mercator")
 
 # System id, used at Messaging Server
-Constant.create(key: "system_id", value: "FIXME!")
+Constant.create(key: "system_id", value: "SETME!")
 
 # delivery times, in german, comma seperated
 Constant.create(key: :delivery_times_de, value: "1-2 Tage,2-4 Tage,1 Woche,auf Anfrage")
@@ -38,10 +38,10 @@ Constant.create(key: "holiday_country_code", value: "at")
 Constant.create(key: "prices_are_set_by_erp_and_therefore_not_editable", value: "false")
 
 # Credentials for MPay24 user, only necessary, if E-Payment is installed and enabled
-Constant.create(key: "mpay_test_username", value: "FIXME!")
-Constant.create(key: "mpay_test_password", value: "FIXME!")
-Constant.create(key: "mpay_production_username", value: "FIXME!")
-Constant.create(key: "mpay_production_password", value: "FIXME!")
+Constant.create(key: "mpay_test_username", value: "SETME!")
+Constant.create(key: "mpay_test_password", value: "SETME!")
+Constant.create(key: "mpay_production_username", value: "SETME!")
+Constant.create(key: "mpay_production_password", value: "SETME!")
 
 # Email subject for order confirmation email message
 Constant.create(key: "order_corfirmation_mail_subject", value: "Bestellinfo")
@@ -51,11 +51,11 @@ Constant.create(key: "order_notify_in_payment_mail_subject",
                 value: "neue Bestellungen im Status Bezahlung")
 
 # Credentials for twitter user, only necessary, when twitter timeline should be displayed
-Constant.create(key: "twitter_user", value: "FIXME!")
-Constant.create(key: "twitter_consumer_key", value: "FIXME!")
-Constant.create(key: "twitter_consumer_secret", value: "FIXME!")
-Constant.create(key: "twitter_oauth_token", value: "FIXME!")
-Constant.create(key: "twitter_uoauth_token_secret", value: "FIXME!")
+Constant.create(key: "twitter_user", value: "SETME!")
+Constant.create(key: "twitter_consumer_key", value: "SETME!")
+Constant.create(key: "twitter_consumer_secret", value: "SETME!")
+Constant.create(key: "twitter_oauth_token", value: "SETME!")
+Constant.create(key: "twitter_uoauth_token_secret", value: "SETME!")
 
 # Hide product comparison
 Constant.create(key: "no_product_comparison", value: "false")
@@ -86,12 +86,12 @@ Constant.create(key: "menu", value: "not_collapsing")
 ### Users ###
 
 # Your admin User
-User.create(surname: "FIXME!",
-            first_name: "FIXME!",
-            email_address: "FIXME!",
+User.create(surname: "SETME!",
+            first_name: "SETME!",
+            email_address: "SETME!",
             administrator: true,
-            password: "FIXME!",
-            password_confirmation: "FIXME!")
+            password: "SETME!",
+            password_confirmation: "SETME!")
 
 # Automatic ("robot") user credenitals, representing a sales representity
 User.create(surname: "Robot",
@@ -198,8 +198,8 @@ end
 # These templates are fine for a quick start, no customization necessary.
 Gtc.find_or_create_by(title_de: "AGB") do |gtc|
   gtc.title_en = "GTC"
-  gtc.content_de = "FIXME! Geben Sie hier Ihre Allgemeinen Geschäftsbedingungen ein!"
-  gtc.content_en = "<p>FIXME! Enter your GTCs here!"
+  gtc.content_de = "SETME! Geben Sie hier Ihre Allgemeinen Geschäftsbedingungen ein!"
+  gtc.content_en = "<p>SETME! Enter your GTCs here!"
   gtc.version_of = "2015-01-01"
   gtc.markup = "html"
 end
