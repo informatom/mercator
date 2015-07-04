@@ -55,6 +55,10 @@ cd /var/rails/mercator/vendor/customers/ivellio-staging
 git remote update
 git pull origin master
 
+cd /var/rails/mercator/vendor/customers/ivellio-production
+git remote update
+git pull origin master
+
 cd /var/rails/mercator/vendor/customers/mercator-demo-dev
 git remote update
 git pull origin master
