@@ -1,0 +1,54 @@
+#!/bin/bash
+ssh-add
+
+
+# Customers
+cd /var/rails/mercator/vendor/customers/informatom-dev
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/informatom-production
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/ivellio-dev
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/ivellio-staging
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/ivellio-production
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/mercator-demo-dev
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/mercator-demo-prod
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/miranda-dev
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/miranda-staging
+git add --all .
+git commit -am "$1"
+git push origin master
+
+cd /var/rails/mercator/vendor/customers/mercator-customer
+git add --all .
+git commit -am "$1"
+git push origin master
