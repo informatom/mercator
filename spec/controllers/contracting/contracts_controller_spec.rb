@@ -59,7 +59,7 @@ describe Contracting::ContractsController, :type => :controller do
       describe 'POST #create' do
         it "renders json" do
           post :create, contract: @attributes
-          expect(response.body).to be_json_eql({contract: @instance.attributes.merge({contractitem_ids: []})}.to_json)
+          expect(response.body).to be_json_eql({contract: Contract.first.attributes.merge({contractitem_ids: []})}.to_json)
             .excluding(:consultant_id, :conversation_id, :runtime, :customer_id)
         end
       end
