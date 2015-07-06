@@ -22,4 +22,5 @@ Mercator::Application.configure do
 
   ActionMailer::Base.smtp_settings = { :domain => "localhost", :enable_starttls_auto => false }
   config.ember.variant = :development
+  config.handlebars.precompile = false
 end

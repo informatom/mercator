@@ -4,6 +4,7 @@
 #= require hobo_bootstrap
 #= require hobo_bootstrap_ui
 #= require ember
+#= require ember-template-compiler
 #= require ember-data
 #= require_self
 #= require contracting/store
