@@ -104,6 +104,16 @@ describe BillingAddressesController, :type => :controller do
         expect(assigns(:billing_address).phone).to eql @user.phone
       end
 
+      it "sets billing address, if constant set" do
+        create(:constant, key: "default_country",
+                          value: "Österreich")
+        @order = create(:order)
+        @user = create(:active_user)
+        get :enter, id: @instance,
+                    order_id: @order.id
+        expect(assigns(:billing_address).country).to eql @country.name_de
+      end
+
       context "user had billing_address" do
         it "creates an billing_address" do
           @last_billing_address = create(:billing_address, user_id: @user.id)

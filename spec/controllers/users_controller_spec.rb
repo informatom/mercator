@@ -553,16 +553,32 @@ describe UsersController, :type => :controller do
       act_as_user
     end
 
-    it "is available for active user" do
-      @user = create(:user, state: "active")
-      @user.lifecycle.provided_key = @user.lifecycle.generate_key
-      expect(@user.lifecycle.can_reset_password?(@user)).to be
+    context "active user" do
+      it "is available for active user" do
+        @user = create(:user, state: "active")
+        @user.lifecycle.provided_key = @user.lifecycle.generate_key
+        expect(@user.lifecycle.can_reset_password?(@user)).to be
+      end
+
+      it "is available without key for active user without password set" do
+        @user = create(:user, state: "active",
+                              password: nil)
+        expect(@user.lifecycle.can_reset_password?(@user)).to be
+      end
     end
 
-    it "is available without key for active user without password set" do
-      @user = create(:user, state: "active",
-                            password: nil)
-      expect(@user.lifecycle.can_reset_password?(@user)).to be
+    context "inactive user" do
+      it "is available for inactive user" do
+        @user = create(:user, state: "inactive", password: nil)
+        @user.lifecycle.provided_key = @user.lifecycle.generate_key
+        expect(@user.lifecycle.can_reset_password?(@user)).to be
+      end
+
+      it "is available without key for inactive user without password set" do
+        @user = create(:user, state: "inactive",
+                              password: nil)
+        expect(@user.lifecycle.can_reset_password?(@user)).to be
+      end
     end
   end
 
