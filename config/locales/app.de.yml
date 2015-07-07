@@ -896,6 +896,7 @@ de:
     your_message: Geben Sie hier Ihre Nachricht ein ...
 
   js:
+  ### content manager ###
     cm:
       admin_subsite_name: Administration
       are_you_sure: Sind Sie sicher?
@@ -937,7 +938,7 @@ de:
         other: Webseiten
       website_structure: Webseitenstruktur
       will_be_deleted: wird gelöscht
-
+### product manager ###
     pm:
       admin_subsite_name: Administration
       are_you_sure: "Sind Sie Sicher?"
@@ -1029,3 +1030,5 @@ de:
         one: Wert
         other: Werte
         save: Wert speichern
+### contracting ###
+    con:

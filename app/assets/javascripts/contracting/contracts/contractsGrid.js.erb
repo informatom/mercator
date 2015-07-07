@@ -1,0 +1,109 @@
+function contractsGrid() {
+  $('#contractsGrid').w2grid({
+    name: 'contractsGrid',
+    multiSelect : false,
+    method: 'GET',
+    show: { toolbar: true, footer: true },
+
+    toolbar: {
+      items: [
+        { type: 'button', id: 'newContract', img: 'fa fa-plus' },
+        { type: 'button', id: 'editContract', img: 'fa fa-edit', disabled: true },
+        { type: 'button', id: 'deleteContract', img: 'fa fa-trash', disabled: true }
+      ],
+      onClick: function (target, data) {
+        var selection = w2ui.contractsGrid.getSelection()
+        switch (target) {
+        case 'newContract':
+          document.location = "/admin/contracts/new"
+        break
+        case 'editContract':
+          document.location = "/admin/contracts/" + selection[0] + "/edit"
+        break
+        case 'deleteContract':
+          w2confirm(I18n.t("js.cm.are_you_sure"), function (button) {
+            if (button =='Yes') {
+              w2popup.lock(w2utils.lang('Refreshing...'), true)
+              $.ajax({
+                url:"/admin/contracts/" + selection[0],
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2popup.lock.unlock()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+                w2popup.lock.unlock()
+              })
+            }
+          })
+        }
+      }
+    },
+
+    columns: [
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, hidden: true , attr: "align=center" },
+      {
+        field: 'name_de', caption: I18n.t("attributes.name_de"), size: '150px', sortable: true,
+        render: function (record) {
+          return '<div id ="content-element-' + record.recid + '" class="draggable">' + record.name_de + '</div>'
+        }
+      },
+      { field: 'name_en', caption: I18n.t("attributes.name_en"), size: '150px', sortable: true, hidden: true },
+      { field: 'markup', caption: I18n.t("attributes.markup"), size: '40px', hidden: true },
+      { field: 'content_de', caption: I18n.t("attributes.content_de"), size: '50%', sortable: true },
+      { field: 'content_en', caption: I18n.t("attributes.content_en"), size: '300px', sortable: true, hidden: true },
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true, hidden: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+      { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
+        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+      { field: 'document_file_name', caption: I18n.t("attributes.document"),  size: '150px', sortable: true },
+      { field: 'photo_file_name', caption: I18n.t("attributes.photo"), size: '150px', sortable: true },
+      { field: 'thumb_url', caption: I18n.t("attributes.thumbnail") + ' ' + I18n.t("attributes.path"), size: '150px', hidden: true },
+      { field: 'photo_url', caption: I18n.t("attributes.photo") + ' ' + I18n.t("attributes.path"), size: '150px', hidden: true }
+    ],
+
+    searches: [
+      { field: 'name_de', caption: I18n.t("attributes.name_de"), type: 'text' },
+      { field: 'name_en', caption: I18n.t("attributes.name_en"), type: 'text' },
+      { field: 'content_de', caption: I18n.t("attributes.content_de"), type: 'text' },
+      { field: 'content_en', caption: I18n.t("attributes.content_en"), type: 'text' },
+      { field: 'photo_file_name', caption: I18n.t("attributes.photo"), type: 'text' }
+    ],
+    sortData: [{ field: 'name_de', direction: 'asc' }],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          this.toolbar.enable('editContract')
+          this.toolbar.enable('deleteContract')
+          previewImage(this.get(selection).recid)
+          $.ajax({
+            url:"/contentmanager/front/set_seleted_contract/" + this.get(selection).recid,
+            method: "POST",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script'
+          })
+        } else {
+          this.toolbar.disable('editContract')
+          this.toolbar.disable('deleteContract')
+        }
+      }
+    },
+
+    onLoad: function(event) {
+      event.onComplete = function () {
+        this.select(selected_contract_id)
+        // onLoad is bit too early, according to the author, currently that's the way to go:
+        setTimeout(function() {
+          var index = w2ui.contractsGrid.get(selected_contract_id, true)
+          w2ui.contractsGrid.scrollIntoView(index)
+          w2ui.contractsGrid.toolbar.enable('editContract')
+          w2ui.contractsGrid.toolbar.enable('deleteContract')
+          registerDraggables()
+        }, 100)
+      }
+    }
+  })
+}

@@ -24,21 +24,21 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
    def create
     hobo_create do|format|
       format.json { render json: this }
-      format.html {}
+      format.html { hobo_create}
     end
   end
 
   def update
     hobo_update do|format|
       format.json { render json: this }
-      format.html {}
+      format.html { hobo_update }
     end
   end
 
   def destroy
     hobo_destroy do|format|
       format.json { render json: {} }
-      format.html {}
+      format.html { hobo_destroy }
     end
   end
 end

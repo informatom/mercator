@@ -1,0 +1,29 @@
+<def attrs='title, full-title, bottom-load-javascript' tag='page'>
+  <% full_title ||= "#{title} : #{app_name}" %>
+  <html merge-attrs>
+    <head param>
+      <title param><%= strip_tags full_title %></title>
+      <do param='stylesheets'>
+        <stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
+      </do>
+      <%= csrf_meta_tag %>
+      <do param='scripts'>
+        <javascript name='#{subsite || &apos;front&apos;}' param='application-javascript'/>
+        <do param='custom-scripts'>
+          <script type='text/javascript'>
+            <do param='custom-javascript'/>
+          </script>
+        </do>
+      </do>
+    </head>
+
+    <body param>
+      <div id="contracting" style="height: 100%"></div>
+    </body>
+
+    <do param="config"/>
+
+    <page-scripts param/>
+
+  </html>
+</def>

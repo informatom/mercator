@@ -39,6 +39,7 @@ Mercator::Application.configure do
     'i18n.js',
     'i18n/cm.js',
     'i18n/pm.js',
+    'i18n/con.js',
     'jquery.js',
     'jquery-migrate.js',
     'podlove-web-player-rails/index.js',

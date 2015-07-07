@@ -8,3 +8,6 @@ translations:
 
   - file: 'app/assets/javascripts/i18n/pm.js'
     only: [ '*.js.pm', '*.attributes', '*.mercator.states']
+
+  - file: 'app/assets/javascripts/i18n/con.js'
+    only: [ '*.js.con', '*.attributes', '*.mercator.states']
