@@ -1,4 +1,4 @@
-<def attrs='title, full-title, bottom-load-javascript' tag='page'>
+<def attrs='title, full-title, bottom-load-javascript' tag='panel'>
   <% full_title ||= "#{title} : #{app_name}" %>
   <html merge-attrs>
     <head param>

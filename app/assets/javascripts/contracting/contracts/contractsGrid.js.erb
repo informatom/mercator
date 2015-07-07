@@ -9,7 +9,8 @@ function contractsGrid() {
       items: [
         { type: 'button', id: 'newContract', img: 'fa fa-plus' },
         { type: 'button', id: 'editContract', img: 'fa fa-edit', disabled: true },
-        { type: 'button', id: 'deleteContract', img: 'fa fa-trash', disabled: true }
+        { type: 'button', id: 'deleteContract', img: 'fa fa-trash', disabled: true },
+        { type: 'button', id: 'editContractitems', img: 'fa fa-list', disabled: true }
       ],
       onClick: function (target, data) {
         var selection = w2ui.contractsGrid.getSelection()
@@ -19,6 +20,9 @@ function contractsGrid() {
         break
         case 'editContract':
           document.location = "/admin/contracts/" + selection[0] + "/edit"
+        break
+        case 'editContractitems':
+          document.location = "/contracting/contractitems?contract_id=" + selection[0]
         break
         case 'deleteContract':
           w2confirm(I18n.t("js.con.are_you_sure"), function (button) {
@@ -45,7 +49,7 @@ function contractsGrid() {
       { field: 'customer', caption: I18n.t("attributes.customer"), size: '200px', sortable: true },
       { field: 'consultant', caption: I18n.t("attributes.consultant"), size: '200px', sortable: true },
       { field: 'conversation', caption: I18n.t("attributes.conversation"), size: '200px', sortable: true },
-      { field: 'term', caption: I18n.t("attributes.term"), size: '50px', sortable: true, attr: "align=right" },
+      { field: 'term', caption: I18n.t("attributes.term"), size: '75px', sortable: true, attr: "align=right" },
 
       { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', sortable: true,
         render: 'date:yyyy-mm-dd' },
@@ -71,6 +75,7 @@ function contractsGrid() {
         var selection = this.getSelection()
         if (selection.length == 1) {
           this.toolbar.enable('editContract')
+          this.toolbar.enable('editContractitems')
           this.toolbar.enable('deleteContract')
           previewImage(this.get(selection).recid)
           $.ajax({
@@ -81,6 +86,7 @@ function contractsGrid() {
           })
         } else {
           this.toolbar.disable('editContract')
+          this.toolbar.disable('editContractitems')
           this.toolbar.disable('deleteContract')
         }
       }
@@ -94,6 +100,7 @@ function contractsGrid() {
           var index = w2ui.contractsGrid.get(selected_contract_id, true)
           w2ui.contractsGrid.scrollIntoView(index)
           w2ui.contractsGrid.toolbar.enable('editContract')
+          w2ui.contractsGrid.toolbar.enable('editContractitems')
           w2ui.contractsGrid.toolbar.enable('deleteContract')
         }, 100)
       }

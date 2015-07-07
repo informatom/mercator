@@ -1,12 +1,13 @@
 <panel>
   <config:>
-    <javascript name="contracting/contracts/index.js" />
+    <javascript name="contracting/contractitems/index.js" />
     <script>
       var csrf_token = "<%= form_authenticity_token %>"
       I18n = {}
       I18n.defaultLocale = "de"
       I18n.locale = "<%= I18n.locale %>"
       var selected_contract_id = "<%= session[:selected_contract_id] %>"
+      var request_id = "<%= request.parameters[:contract_id] %>"
     </script>
     <%= javascript_include_tag "i18n" %>
     <%= javascript_include_tag "i18n/con" %>

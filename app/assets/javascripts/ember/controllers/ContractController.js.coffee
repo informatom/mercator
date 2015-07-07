@@ -20,25 +20,3 @@ Contracting.ContractController = Ember.ObjectController.extend
 
       contractitem.save().then (contractitem) ->
         contract.get("contractitems").pushObject contractitem
-
-    save: ->
-      @wantstodelete = true
-      contract = @get("model")
-      contract.save()
-      return
-
-    delete: ->
-      contract = @get("model")
-
-      contract.get("contractitems").forEach (contractitem) ->
-        contractitem.get("consumableitems").forEach (consumableitem) ->
-          consumableitem.destroyRecord()
-        contractitem.destroyRecord()
-      contract.destroyRecord()
-      @transitionToRoute "/"
-
-    wantstodelete: false
-
-    toggle: (attribute) ->
-      @toggleProperty attribute
-      return
