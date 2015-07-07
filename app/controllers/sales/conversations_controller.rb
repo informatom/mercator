@@ -2,6 +2,7 @@ class Sales::ConversationsController < Sales::SalesSiteController
 
   hobo_model_controller
   auto_actions :all, :lifecycle
+  autocomplete :name
 
   def index
     self.this = @conversations = Conversation.paginate(:page => params[:page])

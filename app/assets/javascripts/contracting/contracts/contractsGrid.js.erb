@@ -23,17 +23,15 @@ function contractsGrid() {
         case 'deleteContract':
           w2confirm(I18n.t("js.con.are_you_sure"), function (button) {
             if (button =='Yes') {
-              w2popup.lock(w2utils.lang('Refreshing...'), true)
               $.ajax({
                 url:"/admin/contracts/" + selection[0],
                 method: "DELETE",
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
               }).done(function(response, textStatus, jqXHR) {
-                w2popup.lock.unlock()
+                w2ui.contractsGrid.load('contracts/manage_contracts')
               }).fail(function(jqXHR, textStatus, errorThrown) {
                 w2alert(jqXHR.responseText)
-                w2popup.lock.unlock()
               })
             }
           })

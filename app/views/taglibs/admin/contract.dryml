@@ -1,0 +1,28 @@
+<extend tag="form" for="Contract">
+  <old-form merge>
+   <field-list:>
+      <customer-view:>
+        <name-one class="form-control"
+                  complete-target="&User.new"
+                  completer="email_address_admin"
+                  autocomplete="off"
+                  value="&this.try(:email_address)" />
+      </customer-view:>
+
+      <consultant-view:>
+        <name-one class="form-control"
+                  complete-target="&User.new"
+                  completer="email_address_admin"
+                  autocomplete="off"
+                  value="&this.try(:email_address)" />
+      </consultant-view:>
+
+      <conversation-view:>
+        <name-one class="form-control"
+                  complete-target="&Conversation.new"
+                  completer="name_sales"
+                  autocomplete="off"/>
+      </conversation-view:>
+   </field-list:>
+  </old-form>
+</extend>

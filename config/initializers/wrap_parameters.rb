@@ -13,13 +13,3 @@ end
 ActiveSupport.on_load(:active_record) do
   self.include_root_in_json = true
 end
-
-ActiveModel::Serializer.root = false
-ActiveModel::ArraySerializer.root = false
-
-
-# ActiveModel::Serializer.root = false
-ActiveModel::Serializer.setup do |config|
-  config.embed = :id
-  config.embed_in_root = false
-end

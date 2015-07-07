@@ -3,10 +3,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
   auto_actions :all
   respond_to :html, :json
 
-  def default_serializer_options
-    {root: "contractitem" }
-  end
-
   def index
     hobo_index do |format|
       format.json { render json: this }

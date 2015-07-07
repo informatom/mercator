@@ -249,6 +249,10 @@ class User < ActiveRecord::Base
 
   #--- Class Methods --- #
 
+  def self.find_by_name(param)
+    find_by_email_address(param)
+  end
+
   def self.initialize()
     new_user = create(surname: "Gast",
                       email_address: Time.now.to_f.to_s + "@mercator.informatom.com")
