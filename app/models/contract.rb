@@ -3,7 +3,6 @@ class Contract < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    runtime   :integer
     term      :integer
     startdate :date
     timestamps
@@ -40,5 +39,16 @@ class Contract < ActiveRecord::Base
 #    user_is?(acting_user) ||
     acting_user.sales? ||
     acting_user.administrator?
+  end
+
+
+  # --- Instance Methods --- #
+
+  def enddate
+    if term
+      startdate + term.months - 1.day
+    else
+      startdate
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514073132) do
+ActiveRecord::Schema.define(version: 20150707073443) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -256,7 +256,6 @@ ActiveRecord::Schema.define(version: 20150514073132) do
   add_index "contractitems", ["user_id"], name: "index_contractitems_on_user_id", using: :btree
 
   create_table "contracts", force: true do |t|
-    t.integer  "runtime"
     t.date     "startdate"
     t.datetime "created_at"
     t.datetime "updated_at"

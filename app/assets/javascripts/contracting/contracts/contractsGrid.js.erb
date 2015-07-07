@@ -21,7 +21,7 @@ function contractsGrid() {
           document.location = "/admin/contracts/" + selection[0] + "/edit"
         break
         case 'deleteContract':
-          w2confirm(I18n.t("js.cm.are_you_sure"), function (button) {
+          w2confirm(I18n.t("js.con.are_you_sure"), function (button) {
             if (button =='Yes') {
               w2popup.lock(w2utils.lang('Refreshing...'), true)
               $.ajax({
@@ -41,36 +41,32 @@ function contractsGrid() {
       }
     },
 
+
     columns: [
-      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, hidden: true , attr: "align=center" },
-      {
-        field: 'name_de', caption: I18n.t("attributes.name_de"), size: '150px', sortable: true,
-        render: function (record) {
-          return '<div id ="content-element-' + record.recid + '" class="draggable">' + record.name_de + '</div>'
-        }
-      },
-      { field: 'name_en', caption: I18n.t("attributes.name_en"), size: '150px', sortable: true, hidden: true },
-      { field: 'markup', caption: I18n.t("attributes.markup"), size: '40px', hidden: true },
-      { field: 'content_de', caption: I18n.t("attributes.content_de"), size: '50%', sortable: true },
-      { field: 'content_en', caption: I18n.t("attributes.content_en"), size: '300px', sortable: true, hidden: true },
-      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true, hidden: true,
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, attr: "align=right" },
+      { field: 'customer', caption: I18n.t("attributes.customer"), size: '200px', sortable: true },
+      { field: 'consultant', caption: I18n.t("attributes.consultant"), size: '200px', sortable: true },
+      { field: 'conversation', caption: I18n.t("attributes.conversation"), size: '200px', sortable: true },
+      { field: 'term', caption: I18n.t("attributes.term"), size: '50px', sortable: true, attr: "align=right" },
+
+      { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', sortable: true,
+        render: 'date:yyyy-mm-dd' },
+      { field: 'enddate', caption: I18n.t("attributes.enddate"), size: '130px', sortable: true,
+        render: 'date:yyyy-mm-dd' },
+
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
       { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
         render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
-      { field: 'document_file_name', caption: I18n.t("attributes.document"),  size: '150px', sortable: true },
-      { field: 'photo_file_name', caption: I18n.t("attributes.photo"), size: '150px', sortable: true },
-      { field: 'thumb_url', caption: I18n.t("attributes.thumbnail") + ' ' + I18n.t("attributes.path"), size: '150px', hidden: true },
-      { field: 'photo_url', caption: I18n.t("attributes.photo") + ' ' + I18n.t("attributes.path"), size: '150px', hidden: true }
     ],
 
     searches: [
-      { field: 'name_de', caption: I18n.t("attributes.name_de"), type: 'text' },
-      { field: 'name_en', caption: I18n.t("attributes.name_en"), type: 'text' },
-      { field: 'content_de', caption: I18n.t("attributes.content_de"), type: 'text' },
-      { field: 'content_en', caption: I18n.t("attributes.content_en"), type: 'text' },
-      { field: 'photo_file_name', caption: I18n.t("attributes.photo"), type: 'text' }
+      { field: 'startdate', caption: I18n.t("attributes.startdate"), type: 'date' },
+      { field: 'customer', caption: I18n.t("attributes.customer"), type: 'text' },
+      { field: 'consultant', caption: I18n.t("attributes.consultant"), type: 'text' },
+      { field: 'conversation', caption: I18n.t("attributes.conversation"), type: 'text' },
     ],
-    sortData: [{ field: 'name_de', direction: 'asc' }],
+    sortData: [{ field: 'startdate', direction: 'desc' }],
 
     onClick: function(event) {
       event.onComplete = function () {
@@ -101,9 +97,10 @@ function contractsGrid() {
           w2ui.contractsGrid.scrollIntoView(index)
           w2ui.contractsGrid.toolbar.enable('editContract')
           w2ui.contractsGrid.toolbar.enable('deleteContract')
-          registerDraggables()
         }, 100)
       }
     }
   })
+
+  w2ui.contractsGrid.load('contracts/manage_contracts')
 }

@@ -72,6 +72,7 @@ en:
     downloads: Downloads
     duration: Duration
     email_address: Email Address
+    enddate: End Date
     erp_billing_number: ERP Billing Number
     erp_customer_number: ERP Customer Number
     erp_identifier: ERP Identifier
@@ -158,7 +159,6 @@ en:
     reciever: Reciever
     related_product: Related Product
     related_products: Related Products
-    runtime: Runtime
     sales: Sales Representative
     sales_manager: Sales Manager
     scale_from: Scale from
@@ -194,6 +194,7 @@ en:
     symbolic_image: Symbolic Photo
     syndication: More Info
     template: Website Template
+    term: term
     text: Text
     text_de: Text GER
     text_en: Text EN
@@ -892,6 +893,7 @@ en:
     your_message: Enter your message here ...
 
   js:
+### content manager ###
     cm:
       admin_subsite_name: Administration
       are_you_sure: Are you sure?
@@ -933,7 +935,7 @@ en:
         other: Web Pages
       website_structure: Website Sructure
       will_be_deleted: will be deleted
-
+### product manager ###
     pm:
       admin_subsite_name: Administration
       are_you_sure: "Are You Sure?"
@@ -1025,3 +1027,15 @@ en:
         one: Value
         other: Values
         save: Save Value
+### contracting ###
+    con:
+      admin_subsite_name: Administration
+      are_you_sure: "Are you sure?"
+      contracting_subsite_name: Contracting
+      Contract:
+        one: Contract
+        other: Contracts
+      frontend_subsite_name: Frontend
+      sales_subsite_name: Sales
+      title: Contracting
+      video_chat: Video Chat

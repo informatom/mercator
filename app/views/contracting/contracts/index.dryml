@@ -6,6 +6,7 @@
       I18n = {}
       I18n.defaultLocale = "de"
       I18n.locale = "<%= I18n.locale %>"
+      var selected_contract_id = "<%= session[:selected_contract_id] %>"
     </script>
     <%= javascript_include_tag "i18n" %>
     <%= javascript_include_tag "i18n/con" %>
