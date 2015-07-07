@@ -49,10 +49,6 @@ module Mercator
 
 #   config.hobo.show_translation_keys = true
 
-    config.ember.app_name = "Contracting"
-    config.handlebars.templates_root = "contracting/templates"
-    config.handlebars.precompile = true
-
     WillPaginate.per_page = 20
 
     Ahoy.track_visits_immediately = true   # User tracking

@@ -1,16 +1,13 @@
-<page title="Vertragswesen">
-  <head:>
-    <meta charset="utf-8"/>
-    <%= stylesheet_link_tag "contracting2", :media => "all" %>
-    <%= csrf_meta_tags %>
-  </head:>
-
-  <body: class="front-page">
-    <section class="content-body">
-      <script type="text/x-handlebars">
-        {{outlet}}
-      </script>
-      <%= javascript_include_tag "contracting2" %>
-    </section>
-  </body:>
+<page>
+  <config:>
+    <javascript name="contracting/contracts/index.js" />
+    <script>
+      var csrf_token = "<%= form_authenticity_token %>"
+      I18n = {}
+      I18n.defaultLocale = "de"
+      I18n.locale = "<%= I18n.locale %>"
+    </script>
+    <%= javascript_include_tag "i18n" %>
+    <%= javascript_include_tag "i18n/con" %>
+  </config>
 </page>
