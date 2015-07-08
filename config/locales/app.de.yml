@@ -2,8 +2,8 @@ de:
   attributes:
     actions: Aktionen
     administator: Administrator
-    Address: Adresse
-    addresses: Adressen
+    Address: Lieferadresse
+    addresses: Lieferadressen
     alternative_number: alternative Artikelnummer
     amount: Menge
     ancestry: Ancestry-String

@@ -2,8 +2,8 @@ en:
   attributes:
     actions: Actions
     administator: Administrator
-    Address: Address
-    addresses: Adresses
+    Address: Shipping Address
+    addresses: Shipping Addresses
     alternative_number: Alternate Product Number
     amount: Amount
     ancestry: Ancestry String
@@ -388,7 +388,7 @@ en:
       address:
         lifecycle:
           transitions:
-            use: Use Delivery Address
+            use: Use Shipping Address
             trash: Delete
       address/genders:
         male: Mr.
@@ -599,9 +599,9 @@ en:
             unhide: Page will be displayed in the menue structure again
   address:
     actions:
-      enter: Save and Use Delivery Address
+      enter: Save and Use Shipping Address
     enter:
-      heading: Change Delivery Address
+      heading: Change Shipping Address
   billing_address:
     actions:
       enter: Save and Use Billing Address
@@ -868,7 +868,7 @@ en:
     storage:
       DG: Domgasse
       LG: Lerchenf.Gürtel
-    stored_delivery_addresses: Stored Delivery Addresses
+    stored_delivery_addresses: Stored Shipping Addresses
     stored_billing_addresses: Stored Billing Addresses
     subcategories: Subcategories
     suggest: Suggest
