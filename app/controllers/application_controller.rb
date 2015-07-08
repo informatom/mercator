@@ -112,12 +112,9 @@ private
     end
 
     if self.current_user.guest?
-      self.current_user = @current_user =
-        if session[:last_user]
-          User.find(session[:last_user])
-        else
-          User.initialize
-        end
+      self.current_user = User.find_by(id: session[:last_user]) if session[:last_user]
+      self.current_user = User.initialize unless self.current_user.id
+      @current_user = self.current_user
     end
   end
 
