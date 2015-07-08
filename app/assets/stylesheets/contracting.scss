@@ -1,9 +1,9 @@
 /*
- * This is the stylesheet manifest file for the contracting subsite.
- * Files or plugins referenced from here or placed in the contracting/
- * directory will be included.
- *
- *= require_self
  *= require application
  *= require overrides
+ *= require hobo_w2ui
+ *= require contracting/overrides
+ *= require_self
+
+@import "font-awesome";
 */

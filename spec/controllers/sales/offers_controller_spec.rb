@@ -75,7 +75,7 @@ describe Sales::OffersController, :type => :controller do
         expect(assigns(:offer).billing_street).to eql "Kärntner Straße 123"
         expect(assigns(:offer).billing_postalcode).to eql "1234"
         expect(assigns(:offer).billing_city).to eql "Vienna"
-        expect(assigns(:offer).billing_country).to eql "österreich"
+        expect(assigns(:offer).billing_country).to eql "Österreich"
         expect(assigns(:offer).billing_phone).to eql "+43123456789"
         expect(assigns(:offer).shipping_company).to eql "Bigcorp"
         expect(assigns(:offer).shipping_gender).to eql "male"
@@ -86,7 +86,7 @@ describe Sales::OffersController, :type => :controller do
         expect(assigns(:offer).shipping_street).to eql "Kärntner Straße 123"
         expect(assigns(:offer).shipping_postalcode).to eql "1234"
         expect(assigns(:offer).shipping_city).to eql "Vienna"
-        expect(assigns(:offer).shipping_country).to eql "österreich"
+        expect(assigns(:offer).shipping_country).to eql "Österreich"
         expect(assigns(:offer).shipping_phone).to eql "+43123456789"
       end
     end

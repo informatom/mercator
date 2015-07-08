@@ -45,7 +45,7 @@ describe Contracting::ContractitemsController, :type => :controller do
         it "renders json" do
           post :create, contractitem: attributes_for(:contractitem, contract_id: @contract.id,
                                                                     user_id: @user.id)
-          expect(response.body).to be_json_eql({contractitem: @instance.attributes.merge({consumableitem_ids: []})}.to_json)
+          expect(response.body).to be_json_eql({contractitem: Contractitem.first.attributes.merge({consumableitem_ids: []})}.to_json)
             .excluding(:contract_id, :product_id, :product_price, :toner_id, :user_id, :value, :volume)
         end
       end

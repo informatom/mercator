@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                           { match: { state: 'active' } } ,
                                                           { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } },
-                                 facets: this.filters.values.flatten) if this.filters.any?
+                                 facets: this.filters.values.flatten) if (this.filters && this.filters.any?)
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                             { match: { state: 'active' } },
@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
       else
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                 { match: { state: 'active' } } ] + matcharray } },
-                                 facets: this.filters.values.flatten) if this.filters.any?
+                                 facets: this.filters.values.flatten) if (this.filters && this.filters.any?)
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                             { match: { state: 'active' } } ] + matcharray } } ).results

@@ -100,11 +100,25 @@ class Contentmanager::FrontController < Contentmanager::ContentmanagerSiteContro
 
   def show_content_elements
     @content_elements = ContentElement.where(folder_id: params[:id])
-    @serialized_content_elements = ActiveModel::ArraySerializer.new(@content_elements).as_json
     render json: {
       status: "success",
       total: @content_elements.count,
-      records: @serialized_content_elements
+      records: @content_elements.collect {
+        |content_element| {
+          recid:              content_element.id,
+          name_de:            content_element.name_de,
+          name_en:            content_element.name_en,
+          markup:             content_element.markup,
+          content_de:         ActionController::Base.helpers.strip_tags(content_element.content_de),
+          content_en:         ActionController::Base.helpers.strip_tags(content_element.content_en),
+          document_file_name: content_element.document_file_name,
+          photo_file_name:    content_element.photo_file_name,
+          thumb_url:          content_element.thumb_url,
+          photo_url:          content_element.photo_url,
+          created_at: content_element.created_at.utc.to_i*1000,
+          updated_at: content_element.updated_at.utc.to_i*1000
+        }
+      }
     }
   end
 

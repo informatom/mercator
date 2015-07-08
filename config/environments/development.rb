@@ -20,6 +20,6 @@ Mercator::Application.configure do
 
 # config.hobo.show_translation_keys = true
 
-  ActionMailer::Base.smtp_settings = { :domain => "localhost", :enable_starttls_auto => false }
-  config.ember.variant = :development
+  ActionMailer::Base.smtp_settings = { domain: "localhost",
+                                       enable_starttls_auto: false }
 end

@@ -76,6 +76,7 @@ de:
     downloads: Downloads
     duration: Dauer
     email_address: E-Mail Adresse
+    enddate: Enddatum
     erp_billing_number: ERP Rechnungsnummer
     erp_customer_number: ERP Kundennummer
     erp_identifier: ERP Referenz
@@ -162,7 +163,6 @@ de:
     reciever: Empfänger
     related_product: verwandtes Produkt
     related_products: verwandte Produkte
-    runtime: Laufzeit
     sales: Vertriebsmitarbeiter
     sales_manager: Vertriebsleiter
     scale_from: Staffel ab
@@ -198,6 +198,7 @@ de:
     symbolic_image: Symbolfoto
     syndication: weitere Infos
     template: Vorlage
+    term: Laufzeit
     text: Text
     text_de: Text DE
     text_en: Text EN
@@ -205,6 +206,7 @@ de:
     title: Titel
     title_de: Titel DE
     title_en: Titel EN
+    toner: Toner
     unit: Einheit
     unit_de: Einheit DE
     unit_en: Einheit EN
@@ -896,6 +898,7 @@ de:
     your_message: Geben Sie hier Ihre Nachricht ein ...
 
   js:
+  ### content manager ###
     cm:
       admin_subsite_name: Administration
       are_you_sure: Sind Sie sicher?
@@ -937,7 +940,7 @@ de:
         other: Webseiten
       website_structure: Webseitenstruktur
       will_be_deleted: wird gelöscht
-
+### product manager ###
     pm:
       admin_subsite_name: Administration
       are_you_sure: "Sind Sie Sicher?"
@@ -1029,3 +1032,15 @@ de:
         one: Wert
         other: Werte
         save: Wert speichern
+### contracting ###
+    con:
+      admin_subsite_name: Administration
+      are_you_sure: "Sind Sie Sicher?"
+      contracting_subsite_name: Vertragswesen
+      Contract:
+        one: Vertrag
+        other: Verträge
+      frontend_subsite_name: Frontend
+      sales_subsite_name: Vertriebswesen
+      title: Vertragswesen
+      video_chat: Video Chat

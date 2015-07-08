@@ -1,14 +1,3 @@
-in all Gemfiles:
-FIXME: Doku: Ubuntu Package is more current! install sudo apt-get install wkhtmltopdf
+currently nothing to do
 
-/home/stefan/daten/rails/mercator/spec/mercator_mesonic/models/order.rb line 97
- expect(@new_record.c034).to eql nil # FIXME: seriously? -> mesonic_kontenstamm_fakt.belegart.c014 is actually nil
-
-/home/stefan/daten/rails/mercator/vendor/engines/mercator_mesonic/app/models/inventory_extensions.rb line 24
-# FIXME! divide by tax rate if brutto pricing
-
-/home/stefan/daten/rails/mercator/vendor/engines/mercator_mesonic/app/models/mercator_mesonic/order.rb: line 31
-billing_method = order.mesonic_payment_id == 1004 ? mesonic_kontenstamm_fakt.c107 : order.mesonic_payment_id2 #HAS 20140325 FIXME
-
-/home/stefan/daten/rails/mercator/vendor/engines/mercator_mesonic/app/models/mercator_mesonic/order_item.rb: line 32
-c008: 0, # zeilenrabatt 1 und 2  #FIXME lineitem.discount_abs ?
+dummy image und dummy document

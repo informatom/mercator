@@ -10,8 +10,6 @@ Mercator::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
 
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify
@@ -37,6 +35,7 @@ Mercator::Application.configure do
     'i18n.js',
     'i18n/cm.js',
     'i18n/pm.js',
+    'i18n/con.js',
     'jquery.js',
     'jquery-migrate.js',
     'podlove-web-player-rails/index.js',
@@ -44,15 +43,11 @@ Mercator::Application.configure do
     'application/EventEmitter.min.js',
     'application/palava.js']
 
-  ActionMailer::Base.smtp_settings = {
-    :domain => CONFIG[:smtp_domain],
-    :enable_starttls_auto => false
-  }
-
-  config.ember.variant = :production
+  ActionMailer::Base.smtp_settings = { domain: CONFIG[:smtp_domain],
+                                       enable_starttls_auto: false }
 
   config.middleware.use ExceptionNotification::Rack,
-  :email => { :email_prefix => "[MERCATOR - " + CONFIG[:system_name] + "] ",
-              :sender_address => %{"notifier" <error@mercator.informatom.com>},
-              :exception_recipients => CONFIG[:exception_notification] }
+  :email => { email_prefix: "[MERCATOR - " + CONFIG[:system_name] + "] ",
+              sender_address: %{"notifier" <error@mercator.informatom.com>},
+              exception_recipients: CONFIG[:exception_notification] }
 end

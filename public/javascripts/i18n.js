@@ -18,8 +18,7 @@
     module.exports = factory(this);
   } else if (typeof define === 'function' && define.amd) {
     // AMD
-    var global=this;
-    define('i18n', function(){ return factory(global);});
+    define('i18n', (function(global){ return function(){ return factory(global); }})(this));
   } else {
     // Browser globals
     this.I18n = factory(this);
@@ -79,27 +78,12 @@
 
   // Other default options
   var DEFAULT_OPTIONS = {
-    // Set default locale. This locale will be used when fallback is enabled and
-    // the translation doesn't exist in a particular locale.
-      defaultLocale: "en"
-    // Set the current locale to `en`.
-    , locale: "en"
-    // Set the translation key separator.
-    , defaultSeparator: "."
-    // Set the placeholder format. Accepts `{placeholder}}` and `%{placeholder}`.}
-    , placeholder: /(?:\{\{|%\{)(.*?)(?:\}\}?)/gm
-    // Set if engine should fallback to the default locale when a translation
-    // is missing.
-    , fallbacks: false
-    // Set the default translation object.
-    , translations: {}
-    // Set missing translation behavior. 'message' will display a message
-    // that the translation is missing, 'guess' will try to guess the string
-    , missingBehaviour: 'message'
-    // if you use missingBehaviour with 'message', but want to know that the
-    // string is actually missing for testing purposes, you can prefix the
-    // guessed string by setting the value here. By default, no prefix!
-    , missingTranslationPrefix: ''
+    defaultLocale: "en",
+    locale: "en",
+    defaultSeparator: ".",
+    placeholder: /(?:\{\{|%\{)(.*?)(?:\}\}?)/gm,
+    fallbacks: false,
+    translations: {}
   };
 
   I18n.reset = function() {
@@ -122,13 +106,6 @@
 
     // Set the default translation object.
     this.translations = DEFAULT_OPTIONS.translations;
-
-    // Set the default missing behaviour
-    this.missingBehaviour = DEFAULT_OPTIONS.missingBehaviour;
-
-    // Set the default missing string prefix for guess behaviour
-    this.missingTranslationPrefix = DEFAULT_OPTIONS.missingTranslationPrefix;
-
   };
 
   // Much like `reset`, but only assign options if not already assigned
@@ -276,7 +253,18 @@
       , translations
     ;
 
-    scope = this.getFullScope(scope, options);
+    // Deal with the scope as an array.
+    if (scope.constructor === Array) {
+      scope = scope.join(this.defaultSeparator);
+    }
+
+    // Deal with the scope option provided through the second argument.
+    //
+    //    I18n.t('hello', {scope: 'greetings'});
+    //
+    if (options.scope) {
+      scope = [options.scope, scope].join(this.defaultSeparator);
+    }
 
     while (locales.length) {
       locale = locales.shift();
@@ -403,7 +391,7 @@
       }, this);
 
     if (!translationFound) {
-      return this.missingTranslation(scope, options);
+      return this.missingTranslation(scope);
     }
 
     if (typeof(translation) === "string") {
@@ -464,7 +452,7 @@
     }
 
     if (!translations) {
-      return this.missingTranslation(scope, options);
+      return this.missingTranslation(scope);
     }
 
     pluralizer = this.pluralization.get(options.locale);
@@ -484,21 +472,14 @@
   };
 
   // Return a missing translation message for the given parameters.
-  I18n.missingTranslation = function(scope, options) {
-    //guess intended string
-    if(this.missingBehaviour == 'guess'){
-      //get only the last portion of the scope
-      var s = scope.split('.').slice(-1)[0];
-      //replace underscore with space && camelcase with space and lowercase letter
-      return (this.missingTranslationPrefix.length > 0 ? this.missingTranslationPrefix : '') +
-          s.replace('_',' ').replace(/([a-z])([A-Z])/g,
-          function(match, p1, p2) {return p1 + ' ' + p2.toLowerCase()} );
-    }
+  I18n.missingTranslation = function(scope) {
+    var message = '[missing "';
 
-    var fullScope           = this.getFullScope(scope, options);
-    var fullScopeWithLocale = [this.currentLocale(), fullScope].join(this.defaultSeparator);
+    message += this.currentLocale() + ".";
+    message += slice.call(arguments).join(".");
+    message += '" translation]';
 
-    return '[missing "' + fullScopeWithLocale + '" translation]';
+    return message;
   };
 
   // Return a missing placeholder message for given parameters
@@ -839,25 +820,6 @@
 
     return this.toNumber(size, options);
   };
-
-  I18n.getFullScope = function(scope, options) {
-    options = this.prepareOptions(options);
-
-    // Deal with the scope as an array.
-    if (scope.constructor === Array) {
-      scope = scope.join(this.defaultSeparator);
-    }
-
-    // Deal with the scope option provided through the second argument.
-    //
-    //    I18n.t('hello', {scope: 'greetings'});
-    //
-    if (options.scope) {
-      scope = [options.scope, scope].join(this.defaultSeparator);
-    }
-
-    return scope;
-  }
 
   // Set aliases, so we can save some typing.
   I18n.t = I18n.translate;
