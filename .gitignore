@@ -4,6 +4,12 @@
 app/views/taglibs/auto/*
 app/views/page_templates/*
 
+app/assets/javascripts/i18n/cm.js
+app/assets/javascripts/i18n/pm.js
+app/assets/javascripts/i18n/con.js
+
+db/schema.rb
+
 config/hobo_routes.rb
 config/private_pub.yml
 config/delayed_job.sh
@@ -27,3 +33,5 @@ vendor/customer
 
 Gemfile.lock
 coverage
+
+
