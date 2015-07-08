@@ -1,6 +1,6 @@
 <def tag="greeter" >
   <if test="&current_user.surname == 'Gast'">
-    <a with="&current_user"><t key="mercator.create_account" /></a>
+    <a href="&edit_user_path(current_user)"><t key="mercator.create_account" /></a>
   </if>
   <else>
     Hallo, <a with="&current_user"><view with="&current_user.name" /></a>
