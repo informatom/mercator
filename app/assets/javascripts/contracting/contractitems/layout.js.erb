@@ -7,15 +7,17 @@ $(function () {
   $('#contracting').w2layout({
     name: 'contracting',
     panels: [
-      { type: 'top', size: 59, resizable: true, title: I18n.t("js.con.title"),
-        content: "<div id='menu'></div>" },
-      { type: 'main', title: I18n.t("js.con.Contract.one") + " " + request_id,
-        resizable: true, content: "<div id='contractitemsGrid' style='height:100%;'></div>" }
+      { type: 'top', size: 450, resizable: true, title: I18n.t("js.con.Contract.one"),
+        content: "<div id='menu'></div>" +
+                 "<div id='contractitemsGrid' style='height:100%;'></div>" },
+      { type: 'left', title: I18n.t("js.con.Contractitem.one"),
+        resizable: true, size: 800, content: "<div id='contractitemForm' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
         contractitemsGrid()
         menu()
+        contractitemForm()
       }
     }
   })

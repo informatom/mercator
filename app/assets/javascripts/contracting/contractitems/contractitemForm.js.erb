@@ -1,0 +1,161 @@
+function contractitemForm() {
+  $('#contractitemForm').w2form({
+    name: 'contractitemForm',
+
+    formHTML:
+      '<div class="w2ui-page page-0">'+
+      '  <div style="float: left">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t('attributes.position') + '</label>'+
+      '      <div><input name="position" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.user") + '</label>'+
+      '      <div><input name="user" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.product_number") + '</label>'+
+      '      <div><input name="product_number" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.product") + '</label>'+
+      '      <div><input name="product_id" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.toner") + '</label>'+
+      '      <div><input name="toner" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.description_de") + '</label>'+
+      '      <div><input name="description_de" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.description_en") + '</label>'+
+      '      <div><input name="description_en" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.options") + '</label>'+
+      '      <div><input name="options" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.unit") + '</label>'+
+      '      <div><input name="unit" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.product_price") + '</label>'+
+      '      <div><input name="product_price" /></div>'+
+      '    </div>'+
+      '  </div>'+
+
+      '  <div style="float: right; margin-right:20px;">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.vat") + '</label>'+
+      '      <div><input name="vat" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.value") + '</label>'+
+      '      <div><input name="value" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.discount_abs") + '</label>'+
+      '      <div><input name="discount_abs" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.term") + '</label>'+
+      '      <div><input name="term" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.startdate") + '</label>'+
+      '      <div><input name="startdate" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.volume_bw") + '</label>'+
+      '      <div><input name="volume_bw" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.volume_color") + '</label>'+
+      '      <div><input name="volume_color" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.marge") + '</label>'+
+      '      <div><input name="marge" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.monitoring_rate") + '</label>'+
+      '      <div><input name="monitoring_rate" /></div>'+
+      '    </div>'+
+      '  </div>'+
+      '</div>'+
+
+      '<div class="w2ui-buttons">'+
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
+      w2utils.lang("Save") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-blue" name="new">'+
+      w2utils.lang("Add New") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+
+      w2utils.lang("Delete") + '</button>' +
+      '</div>',
+
+    fields : [
+      { name: 'position',        type: 'int', required : true},
+      { name: 'user',            type: 'text' },
+      { name: 'product_number',  type: 'text' },
+      { name: 'product_id',      type: 'text' },
+      { name: 'toner',           type: 'text' },
+      { name: 'description_de',  type: 'text' },
+      { name: 'description_en',  type: 'text' },
+      { name: 'options',         type: 'int' },
+      { name: 'unit',            type: 'float' },
+      { name: 'product_price',   type: 'float' },
+      { name: 'vat',             type: 'float', },
+      { name: 'value',           type: 'float', },
+      { name: 'discount_abs',    type: 'float', },
+      { name: 'term',            type: 'int' },
+      { name: 'startdate',       type: 'date' },
+      { name: 'volume_bw',       type: 'int' },
+      { name: 'volume_color',    type: 'int' },
+      { name: 'marge',           type: 'float' },
+      { name: 'monitoring_rate', type: 'float' },
+    ],
+
+    actions: {
+      delete: {
+        onClick: function () {
+          $.ajax({
+            url:"/productmanager/front/category/" + w2ui.categoryForm.recid,
+            method: "DELETE",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            $("#categoryTree").fancytree("getTree").reload()
+            w2ui.categoryForm.clear()
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+          })
+        }
+      },
+      new: {
+        onClick: function () {
+          this.clear()
+          this.record.position = 0
+          this.refresh()
+        }
+      },
+      save: {
+        onClick: function () {
+          if (!this.url) {
+            this.url = w2ui.categoryForm.url = '/productmanager/front/manage_category/0'
+          }
+          this.save(
+            function(response) {
+              var tree = $("#categoryTree").fancytree("getTree")
+              tree.reload().done(function() {
+                tree.activateKey(response.record.recid.toString()).setExpanded()
+              })
+            }
+          )
+        }
+      },
+    }
+  })
+}

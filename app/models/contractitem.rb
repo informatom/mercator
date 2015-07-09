@@ -23,6 +23,7 @@ class Contractitem < ActiveRecord::Base
     timestamps
   end
 
+
   attr_accessible :position, :product_number, :description_de, :description_en, :amount, :unit, :volume,
                   :product_price, :vat, :value, :discount_abs, :user, :user_id, :contract_id, :contract,
                   :product, :product_id, :toner, :toner_id, :term, :startdate, :volume_bw, :volume_color,
@@ -66,8 +67,62 @@ class Contractitem < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-#    user_is?(acting_user) ||
+    user_is?(acting_user) ||
     acting_user.sales? ||
     acting_user.administrator?
+  end
+
+  # --- Instance Methods --- #
+
+  def price
+    consumableitems.*.value.reduce(:+)
+  end
+
+  def enddate
+    startdate + term.months - 1.days
+  end
+
+  def monthly_rate
+    price / term
+  end
+
+  def value
+    monthly_rate + monitoring_rate - discount_abs
+  end
+
+  def value_incl_vat
+    value * (100 + vat / 100)
+  end
+
+  def new_rate(n)
+    if [2, 3, 4, 5, 6].include? n
+      consumeableitems.map{|consumeableitems| consumeableitems.new_rate(n)}.reduce(:+)
+    end
+  end
+
+  def new_rate_with_monitoring(n)
+    if [2, 3, 4, 5, 6].include? n
+      new_rate(n) + monitoring_rate
+    end
+  end
+
+  def balance(n)
+    if [1, 2, 3, 4, 5, 6].include? n
+      consumeableitems.map{|consumeableitems| consumeableitems.balance(n)}.reduce(:+)
+    end
+  end
+
+  def months_without_rates(n)
+    if [1, 2, 3, 4, 5].include? n
+      if balance(n) < 0
+        (balance(n) / new_rate(n)).floor * -1
+      end
+    end
+  end
+
+  def next_month(n)
+    if [1, 2, 3, 4, 5].include? n
+      (months_without_rates(n) * new_rate(n+1) + balance(n)) * -1
+    end
   end
 end

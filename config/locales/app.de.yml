@@ -113,6 +113,7 @@ de:
     not_shippable: nicht versendbar
     number: Nummer
     offers: Angebote
+    options: Optionen
     order: Bestellung
     orders: Bestellungen
     webpage: Webseite
@@ -1041,6 +1042,9 @@ de:
       Contract:
         one: Vertrag
         other: Verträge
+      Contractitem:
+        one: Vertragsposition
+        other: Vetragspositionen
       frontend_subsite_name: Frontend
       sales_subsite_name: Vertriebswesen
       title: Vertragswesen
