@@ -140,6 +140,12 @@ class UsersController < ApplicationController
 
 
   def edit
+    if params[:id] == "guest"
+      # This is for the case, we are ready to login, but user decides to change a guest account
+      self.current_user = session[:last_user] ? User.find(session[:last_user]) : User.initialize
+      params[:id] = current_user.id
+    end
+
     hobo_edit do
       if self.this.email_address.split("@")[1] == "mercator.informatom.com"
         self.this.email_address = nil
