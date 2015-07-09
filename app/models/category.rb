@@ -349,12 +349,12 @@ class Category < ActiveRecord::Base
       # determine_price returns nil, if no price can be found
       category_prices =
         if Constant.find_by_key('display_only_brutto_prices').try(:value) == 'true'
-          category.products.*
+          category.products.active.*
                   .determine_price(customer_id: @price_user.id,
                                    incl_vat: true)
                   .compact
         else
-          category.products.*
+          category.products.active.*
                   .determine_price(customer_id: @price_user.id,
                                    incl_vat: false)
                   .compact
