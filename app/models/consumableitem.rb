@@ -3,23 +3,23 @@ class Consumableitem < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    position        :integer
+    position        :integer, :required
     product_number  :string
     contract_type   :string
     product_line    :string
     description_de  :string
     description_en  :string
-    amount          :integer
-    theyield        :integer
-    wholesale_price :decimal, :precision => 13, :scale => 5
-    term            :integer
-    consumption1    :integer
-    consumption2    :integer
-    consumption3    :integer
-    consumption4    :integer
-    consumption5    :integer
-    consumption6    :integer
-    balance6        :decimal, :precision => 13, :scale => 5
+    amount          :integer, :required, :default => 0
+    theyield        :integer, :required, :default => 0
+    wholesale_price :decimal, :required, :precision => 13, :scale => 5, :default => 0
+    term            :integer, :required, :default => 0
+    consumption1    :integer, :required, :default => 0
+    consumption2    :integer, :required, :default => 0
+    consumption3    :integer, :required, :default => 0
+    consumption4    :integer, :required, :default => 0
+    consumption5    :integer, :required, :default => 0
+    consumption6    :integer, :required, :default => 0
+    balance6        :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
 

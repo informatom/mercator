@@ -3,5 +3,8 @@ de:
   attributes:
     marge: Marge
     monitoring_rate: Monitoring
+    monthly_rate: Monatsbetrag
+    price: Preis
+    value_incl_vat: Wert incl. MWST
     volume_bw: Volumen S/W
     volume_color: Volumen Farbe

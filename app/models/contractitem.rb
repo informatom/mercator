@@ -3,23 +3,23 @@ class Contractitem < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    position        :integer, :required
+    position        :integer, :required, :default => 0
     product_number  :string
     description_de  :string, :required
     description_en  :string
-    amount          :integer
+    amount          :integer, :required, :default => 0
     unit            :string
-    volume          :integer
-    product_price   :decimal, :precision => 13, :scale => 5
-    vat             :decimal, :precision => 10, :scale => 2
-    value           :decimal, :precision => 13, :scale => 5
+    volume          :integer, :required, :default => 0
+    product_price   :decimal, :required, :precision => 13, :scale => 5, :default => 0
+    vat             :decimal, :required, :precision => 10, :scale => 2, :default => 0
+    value           :decimal, :required, :precision => 13, :scale => 5, :default => 0
     discount_abs    :decimal, :required, :scale => 2, :precision => 10, :default => 0
-    term            :integer
-    startdate       :date
-    volume_bw       :integer
-    volume_color    :integer
-    marge           :decimal, :precision => 13, :scale => 5
-    monitoring_rate :decimal, :precision => 13, :scale => 5
+    term            :integer, :required, :default => 0
+    startdate       :date, :required
+    volume_bw       :integer, :default => 0
+    volume_color    :integer, :default => 0
+    marge           :decimal, :required, :precision => 13, :scale => 5, :default => 0
+    monitoring_rate :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
 

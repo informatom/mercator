@@ -10,12 +10,16 @@ function contractitemForm() {
       '      <div><input name="position" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.user") + '</label>'+
+      '      <label>' + I18n.t("attributes.term") + '</label>'+
+      '      <div><input name="term" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.customer") + '</label>'+
       '      <div><input name="user" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.product_number") + '</label>'+
-      '      <div><input name="product_number" /></div>'+
+      '      <label>' + I18n.t("attributes.startdate") + '</label>'+
+      '      <div><input name="startdate" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.product") + '</label>'+
@@ -34,39 +38,19 @@ function contractitemForm() {
       '      <div><input name="description_en" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.options") + '</label>'+
-      '      <div><input name="options" /></div>'+
+      '      <label>' + I18n.t("attributes.amount") + '</label>'+
+      '      <div><input name="amount" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.unit") + '</label>'+
       '      <div><input name="unit" /></div>'+
       '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.product_price") + '</label>'+
-      '      <div><input name="product_price" /></div>'+
-      '    </div>'+
       '  </div>'+
 
       '  <div style="float: right; margin-right:20px;">'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.vat") + '</label>'+
-      '      <div><input name="vat" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.value") + '</label>'+
-      '      <div><input name="value" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.discount_abs") + '</label>'+
-      '      <div><input name="discount_abs" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.term") + '</label>'+
-      '      <div><input name="term" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.startdate") + '</label>'+
-      '      <div><input name="startdate" /></div>'+
+      '      <label>' + I18n.t("attributes.marge") + '</label>'+
+      '      <div><input name="marge" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.volume_bw") + '</label>'+
@@ -77,12 +61,28 @@ function contractitemForm() {
       '      <div><input name="volume_color" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.marge") + '</label>'+
-      '      <div><input name="marge" /></div>'+
+      '      <label>' + I18n.t("attributes.product_price") + '</label>'+
+      '      <div><input name="product_price" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.monitoring_rate") + '</label>'+
       '      <div><input name="monitoring_rate" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.discount_abs") + '</label>'+
+      '      <div><input name="discount_abs" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.options") + '</label>'+
+      '      <div><input name="options" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.value") + '</label>'+
+      '      <div><input name="value" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.vat") + '</label>'+
+      '      <div><input name="vat" /></div>'+
       '    </div>'+
       '  </div>'+
       '</div>'+
@@ -97,25 +97,25 @@ function contractitemForm() {
       '</div>',
 
     fields : [
-      { name: 'position',        type: 'int', required : true},
+      { name: 'position',        type: 'int', required: true, disabled: true},
+      { name: 'term',            type: 'int', required: true, default: 0 },
       { name: 'user',            type: 'text' },
-      { name: 'product_number',  type: 'text' },
-      { name: 'product_id',      type: 'text' },
+      { name: 'startdate',       type: 'date', required: true },
+      { name: 'product_id',      type: 'integer' },
       { name: 'toner',           type: 'text' },
-      { name: 'description_de',  type: 'text' },
+      { name: 'description_de',  type: 'text', required: true },
       { name: 'description_en',  type: 'text' },
-      { name: 'options',         type: 'int' },
-      { name: 'unit',            type: 'float' },
-      { name: 'product_price',   type: 'float' },
-      { name: 'vat',             type: 'float', },
-      { name: 'value',           type: 'float', },
-      { name: 'discount_abs',    type: 'float', },
-      { name: 'term',            type: 'int' },
-      { name: 'startdate',       type: 'date' },
-      { name: 'volume_bw',       type: 'int' },
-      { name: 'volume_color',    type: 'int' },
-      { name: 'marge',           type: 'float' },
-      { name: 'monitoring_rate', type: 'float' },
+      { name: 'amount',          type: 'integer', required: true },
+      { name: 'unit',            type: 'text' },
+      { name: 'marge',           type: 'currency', required: true },
+      { name: 'volume_bw',       type: 'int', required: true },
+      { name: 'volume_color',    type: 'int', required: true },
+      { name: 'product_price',   type: 'currency', required: true },
+      { name: 'monitoring_rate', type: 'currency', required: true },
+      { name: 'discount_abs',    type: 'currency', required: true },
+      { name: 'options',         type: 'text' },
+      { name: 'value',           type: 'currency', required: true },
+      { name: 'vat',             type: 'percent', required: true }
     ],
 
     actions: {

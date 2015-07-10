@@ -3,7 +3,7 @@ class Contract < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    term      :integer
+    term      :integer, :required, :default => 0
     startdate :date
     timestamps
   end
