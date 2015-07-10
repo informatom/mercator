@@ -76,6 +76,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       @contractitem.discount_abs    = attrs[:discount_abs]
       @contractitem.value           = attrs[:value]
       @contractitem.vat             = attrs[:vat]
+      @contractitem.contract_id     = attrs[:contract_id]
 
       success = @contractitem.save
     end
@@ -110,11 +111,22 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               value:           @contractitem.value,
               vat:             @contractitem.vat,
               created_at:      I18n.l(@contractitem.created_at),
-              updated_at:      I18n.l(@contractitem.updated_at)
+              updated_at:      I18n.l(@contractitem.updated_at),
+              contract_id:     @contractitem.contract_id
             }
           }
         }
       end
+    end
+  end
+
+
+  def delete
+    @contractitem = Contractitem.find(params[:id])
+    if @contractitem.destroy
+      render nothing: true
+    else
+      render json: @contractitem.errors.first
     end
   end
 end

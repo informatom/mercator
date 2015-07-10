@@ -1,6 +1,7 @@
 # Contractiong
 de:
   attributes:
+    contract: Vertrag
     marge: Marge
     monitoring_rate: Monitoring
     monthly_rate: Monatsbetrag

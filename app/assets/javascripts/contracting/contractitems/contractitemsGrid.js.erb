@@ -67,7 +67,12 @@ function contractitemsGrid() {
 
     onLoad: function(event) {
       event.onComplete = function () {
-        show_contractitem_details(selected_contractitem_id)
+        if (selected_contractitem_id) {
+          show_contractitem_details(selected_contractitem_id)
+        }
+        else {
+          initialize_contractitemForm()
+        }
       }
     }
   })
