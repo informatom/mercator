@@ -75,7 +75,7 @@ class Contractitem < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def price
-    consumableitems.*.value.reduce(:+)
+    consumableitems.*.value.reduce(:+) || 0
   end
 
   def enddate
@@ -96,7 +96,7 @@ class Contractitem < ActiveRecord::Base
 
   def new_rate(n)
     if [2, 3, 4, 5, 6].include? n
-      consumeableitems.map{|consumeableitems| consumeableitems.new_rate(n)}.reduce(:+)
+      consumeableitems.map{|consumeableitems| consumeableitems.new_rate(n)}.reduce(:+) || 0
     end
   end
 
@@ -108,7 +108,7 @@ class Contractitem < ActiveRecord::Base
 
   def balance(n)
     if [1, 2, 3, 4, 5, 6].include? n
-      consumeableitems.map{|consumeableitems| consumeableitems.balance(n)}.reduce(:+)
+      consumeableitems.map{|consumeableitems| consumeableitems.balance(n)}.reduce(:+) || 0
     end
   end
 

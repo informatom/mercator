@@ -4,45 +4,20 @@ function contractitemsGrid() {
     multiSelect : false,
     method: 'GET',
     show: { toolbar: true, footer: true },
+    url: 'contractitems/?contract_id=' + request_id,
 
     toolbar: {
       items: [
-        { type: 'button', id: 'newContract', img: 'fa fa-plus' },
-        { type: 'button', id: 'editContract', img: 'fa fa-edit', disabled: true },
-        { type: 'button', id: 'deleteContract', img: 'fa fa-trash', disabled: true },
-        { type: 'button', id: 'editContractitems', img: 'fa fa-tint', disabled: true }
+        { type: 'button', id: 'editConsumableitems', img: 'fa fa-tint', disabled: true }
       ],
       onClick: function (target, data) {
         var selection = w2ui.contractitemsGrid.getSelection()
         switch (target) {
-        case 'newContract':
-          document.location = "/admin/contractitems/new"
-        break
-        case 'editContract':
-          document.location = "/admin/contractitems/" + selection[0] + "/edit"
-        break
-        case 'editContractitems':
-          document.location = "/contracting/contractitems?contract_id=" + selection[0]
-        break
-        case 'deleteContract':
-          w2confirm(I18n.t("js.con.are_you_sure"), function (button) {
-            if (button =='Yes') {
-              $.ajax({
-                url:"/admin/contractitems/" + selection[0],
-                method: "DELETE",
-                data: { authenticity_token: csrf_token },
-                dataType: 'script',
-              }).done(function(response, textStatus, jqXHR) {
-                w2ui.contractitemsGrid.load('contractitems/manage_contractitems')
-              }).fail(function(jqXHR, textStatus, errorThrown) {
-                w2alert(jqXHR.responseText)
-              })
-            }
-          })
+        case 'editConsumableitems':
+          document.location = "/contracting/consumableitems?contractitem_id=" + selection[0]
         }
       }
     },
-
 
     columns: [
       { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', hidden: true },
@@ -83,38 +58,25 @@ function contractitemsGrid() {
       event.onComplete = function () {
         var selection = this.getSelection()
         if (selection.length == 1) {
-          this.toolbar.enable('editContract')
-          this.toolbar.enable('editContractitems')
-          this.toolbar.enable('deleteContract')
-          previewImage(this.get(selection).recid)
-          $.ajax({
-            url:"/contentmanager/front/set_seleted_contract/" + this.get(selection).recid,
-            method: "POST",
-            data: { authenticity_token: csrf_token },
-            dataType: 'script'
-          })
+          show_contractitem_details(selection[0])
         } else {
-          this.toolbar.disable('editContract')
-          this.toolbar.disable('editContractitems')
-          this.toolbar.disable('deleteContract')
+          this.toolbar.disable('editConsumableitems')
         }
       }
     },
 
     onLoad: function(event) {
       event.onComplete = function () {
-        this.select(selected_contract_id)
-        // onLoad is bit too early, according to the author, currently that's the way to go:
-        setTimeout(function() {
-          var index = w2ui.contractitemsGrid.get(selected_contract_id, true)
-          w2ui.contractitemsGrid.scrollIntoView(index)
-          w2ui.contractitemsGrid.toolbar.enable('editContract')
-          w2ui.contractitemsGrid.toolbar.enable('editContractitems')
-          w2ui.contractitemsGrid.toolbar.enable('deleteContract')
-        }, 100)
+        show_contractitem_details(selected_contractitem_id)
       }
     }
   })
+}
 
-  w2ui.contractitemsGrid.load('contractitems/manage_contractitems?contract_id=' + request_id)
+function show_contractitem_details(contractitem_id) {
+  w2ui.contractitemsGrid.toolbar.enable('editConsumableitems')
+  w2ui.contractitemsGrid.select(contractitem_id)
+
+  w2ui.contractitemForm.recid = contractitem_id
+  w2ui.contractitemForm.reload()
 }
