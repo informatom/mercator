@@ -1,0 +1,81 @@
+function consumableitemsGrid() {
+  $('#consumableitemsGrid').w2grid({
+    name: 'consumableitemsGrid',
+    multiSelect : false,
+    method: 'GET',
+    show: { toolbar: true, footer: true },
+    url: 'consumableitems/?contractitem_id=' + request_id,
+
+    columns: [
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', hidden: true },
+      { field: 'position', caption: I18n.t("attributes.position"), size: '50px', attr: "align=right", sortable: true },
+      { field: 'contract_type', caption: I18n.t("attributes.contract_type"), size: '50px' },
+      { field: 'product_number', caption: I18n.t("attributes.product_number"), size: '50px' },
+      { field: 'product_line', caption: I18n.t("attributes.product_line"), size: '50px' },
+      { field: 'description_de', caption: I18n.t("attributes.description_de"), size: '50px' },
+      { field: 'description_en', caption: I18n.t("attributes.description_en"), size: '50px' },
+      { field: 'amount', caption: I18n.t("attributes.amount"), size: '50px' },
+      { field: 'theyield', caption: I18n.t("attributes.theyield"), size: '50px' },
+      { field: 'wholesale_price', caption: I18n.t("attributes.wholesale_price"), size: '50px' },
+      { field: 'price', caption: I18n.t("attributes.price"), size: '50px' },
+      { field: 'value', caption: I18n.t("attributes.value"), size: '50px' },
+      { field: 'monthly_rate', caption: I18n.t("attributes.monthly_rate"), size: '50px' },
+      { field: 'term', caption: I18n.t("attributes.term"), size: '50px' },
+      { field: 'consumption1', caption: I18n.t("attributes.consumption") + ' 1', size: '50px' },
+      { field: 'consumption2', caption: I18n.t("attributes.consumption") + ' 2', size: '50px' },
+      { field: 'consumption3', caption: I18n.t("attributes.consumption") + ' 3', size: '50px' },
+      { field: 'consumption4', caption: I18n.t("attributes.consumption") + ' 4', size: '50px' },
+      { field: 'consumption5', caption: I18n.t("attributes.consumption") + ' 5', size: '50px' },
+      { field: 'consumption6', caption: I18n.t("attributes.consumption") + ' 6', size: '50px' },
+      { field: 'new_rate2', caption: I18n.t("attributes.new_rate") + ' 2', size: '50px' },
+      { field: 'new_rate3', caption: I18n.t("attributes.new_rate") + ' 3', size: '50px' },
+      { field: 'new_rate4', caption: I18n.t("attributes.new_rate") + ' 4', size: '50px' },
+      { field: 'new_rate5', caption: I18n.t("attributes.new_rate") + ' 5', size: '50px' },
+      { field: 'new_rate6', caption: I18n.t("attributes.new_rate") + ' 6', size: '50px' },
+      { field: 'balance1', caption: I18n.t("attributes.balance") + ' 1', size: '50px' },
+      { field: 'balance2', caption: I18n.t("attributes.balance") + ' 2', size: '50px' },
+      { field: 'balance3', caption: I18n.t("attributes.balance") + ' 3', size: '50px' },
+      { field: 'balance4', caption: I18n.t("attributes.balance") + ' 4', size: '50px' },
+      { field: 'balance5', caption: I18n.t("attributes.balance") + ' 5', size: '50px' },
+      { field: 'balance6', caption: I18n.t("attributes.balance") + ' 6', size: '50px' },
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px',
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
+      { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px',
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
+    ],
+
+    searches: [
+      { field: 'product_number', caption: I18n.t("attributes.product_number"), type: 'date' }
+    ],
+    sortData: [{ field: 'position', direction: 'asc' }],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          show_consumableitem_details(selection[0])
+        } else {
+          this.toolbar.disable('editConsumableitems')
+        }
+      }
+    },
+
+    onLoad: function(event) {
+      event.onComplete = function () {
+        if (selected_contractitem_id) {
+          show_consumableitem_details(selected_contractitem_id)
+        }
+        else {
+          initialize_consumableitemForm()
+        }
+      }
+    }
+  })
+}
+
+function show_consumableitem_details(consumableitem_id) {
+  w2ui.consumableitemsGrid.select(consumableitem_id)
+
+  w2ui.consumlableitemForm.recid = consumableitem_id
+  w2ui.consumlableitemForm.reload()
+}
