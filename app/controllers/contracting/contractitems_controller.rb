@@ -30,6 +30,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               discount_abs:    contractitem.discount_abs,
               term:            contractitem.term,
               startdate:       contractitem.startdate,
+              enddate:         contractitem.enddate,
               volume_bw:       contractitem.volume_bw,
               volume_color:    contractitem.volume_color,
               marge:           contractitem.marge,
@@ -128,5 +129,74 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
     else
       render json: @contractitem.errors.first
     end
+  end
+
+
+  show_action :calendar do
+    @contractitem = Contractitem.find(params[:id])
+
+    render json: {
+      status: "success",
+      total: 7,
+      records: [
+        {
+          title: "Jahresbeginn",
+          year1: l(@contractitem.startdate),
+          year2: l(@contractitem.startdate + 1.year),
+          year3: l(@contractitem.startdate + 2.year),
+          year4: l(@contractitem.startdate + 3.year),
+          year5: l(@contractitem.startdate + 4.year),
+          year6: l(@contractitem.startdate + 5.year)
+        }, {
+          title: "Jahresende",
+          year1: l(@contractitem.startdate + 1.year - 1.day),
+          year2: l(@contractitem.startdate + 2.year - 1.day),
+          year3: l(@contractitem.startdate + 3.year - 1.day),
+          year4: l(@contractitem.startdate + 4.year - 1.day),
+          year5: l(@contractitem.startdate + 5.year - 1.day),
+          year6: l(@contractitem.startdate + 6.year - 1.day)
+        }, {
+          title: "Monate ohne Rate",
+          year1: @contractitem.months_without_rates(1),
+          year2: @contractitem.months_without_rates(2),
+          year3: @contractitem.months_without_rates(3),
+          year4: @contractitem.months_without_rates(4),
+          year5: @contractitem.months_without_rates(5),
+          year6: '---'
+        }, {
+          title: "Folgeraten (EUR)",
+          year1: '---',
+          year2: @contractitem.new_rate(2),
+          year3: @contractitem.new_rate(3),
+          year4: @contractitem.new_rate(4),
+          year5: @contractitem.new_rate(5),
+          year6: @contractitem.new_rate(6)
+        }, {
+          title: "Folgemonat",
+          year1: @contractitem.next_month(1),
+          year2: @contractitem.next_month(2),
+          year3: @contractitem.next_month(3),
+          year4: @contractitem.next_month(4),
+          year5: @contractitem.next_month(5),
+          year6: '---'
+        }, {
+          title: "Folgeraten mit Monitoring (EUR)",
+          year1: '---',
+          year2: @contractitem.new_rate_with_monitoring(2),
+          year3: @contractitem.new_rate_with_monitoring(3),
+          year4: @contractitem.new_rate_with_monitoring(4),
+          year5: @contractitem.new_rate_with_monitoring(5),
+          year6: @contractitem.new_rate_with_monitoring(6)
+        }, {
+          title: "Summe Gutschrift/Nachzahlung",
+          year1: @contractitem.balance(1),
+          year2: @contractitem.balance(2),
+          year3: @contractitem.balance(3),
+          year4: @contractitem.balance(4),
+          year5: @contractitem.balance(5),
+          year6: @contractitem.balance(6)
+        }
+      ]
+    }
   end
 end

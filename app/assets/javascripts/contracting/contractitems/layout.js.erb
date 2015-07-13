@@ -11,13 +11,16 @@ $(function () {
         content: "<div id='menu'></div>" +
                  "<div id='contractitemsGrid' style='height:100%;'></div>" },
       { type: 'left', title: I18n.t("js.con.Contractitem.one"),
-        resizable: true, size: 800, content: "<div id='contractitemForm' style='height:100%;'></div>" }
+        resizable: true, size: 800, content: "<div id='contractitemForm' style='height:100%;'></div>" },
+      { type: 'main', title: I18n.t("js.con.calendar"),
+        resizable: true, size: 800, content: "<div id='calendarGrid' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
         contractitemsGrid()
         menu()
         contractitemForm()
+        calendarGrid()
       }
     }
   })

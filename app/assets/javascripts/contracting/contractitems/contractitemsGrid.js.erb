@@ -24,8 +24,8 @@ function contractitemsGrid() {
       { field: 'position', caption: I18n.t("attributes.position"), size: '50px', attr: "align=right", sortable: true },
       { field: 'user', caption: I18n.t("attributes.customer"), size: '200px' },
       { field: 'term', caption: I18n.t("attributes.term"), size: '50px' },
-      { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', render: 'date:yyyy-mm-dd'},
-      { field: 'enddate', caption: I18n.t("attributes.enddate"), size: '130px', render: 'date:yyyy-mm-dd'},
+      { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', render: 'date:dd.mm.yyyy'},
+      { field: 'enddate', caption: I18n.t("attributes.enddate"), size: '130px', render: 'date:dd.mm.yyyy'},
       { field: 'product_number', caption: I18n.t("attributes.product_number"), size: '50px' },
       { field: 'toner', caption: I18n.t("attributes.toner"), size: '50px' },
       { field: 'product_price', caption: I18n.t("attributes.product_price"), size: '50px', render: 'currency' },
@@ -44,9 +44,9 @@ function contractitemsGrid() {
       { field: 'vat', caption: I18n.t("attributes.vat"), size: '50px', render: 'percent' },
       { field: 'value_incl_vat', caption: I18n.t("attributes.value_incl_vat"), size: '50px', render: 'currency' },
       { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px',
-        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
       { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px',
-        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
     ],
 
     searches: [
@@ -84,4 +84,7 @@ function show_contractitem_details(contractitem_id) {
 
   w2ui.contractitemForm.recid = contractitem_id
   w2ui.contractitemForm.reload()
+
+  w2ui.calendarGrid.url = 'contractitems/' + contractitem_id + '/calendar'
+  w2ui.calendarGrid.reload()
 }

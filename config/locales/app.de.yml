@@ -1038,6 +1038,7 @@ de:
     con:
       admin_subsite_name: Administration
       are_you_sure: "Sind Sie Sicher?"
+      calendar: Kalender
       contracting_subsite_name: Vertragswesen
       Contract:
         one: Vertrag

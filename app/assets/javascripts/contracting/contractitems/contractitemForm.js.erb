@@ -159,8 +159,9 @@ function initialize_contractitemForm() {
   var form = w2ui.contractitemForm
   form.clear()
   form.record['position'] = 0
+  form.record['startdate'] = '<%= I18n.l Date.today() %>'
   form.record['term'] = 0
-  form.record['amount'] = 0
+  form.record['amount'] = 1
   form.record['marge'] = 0
   form.record['volume_bw'] = 0
   form.record['volume_color'] = 0
@@ -168,7 +169,7 @@ function initialize_contractitemForm() {
   form.record['monitoring_rate'] = 0
   form.record['discount_abs'] = 0
   form.record['value'] = 0
-  form.record['vat'] = 0
+  form.record['vat'] = 20
   form.record['contract_id'] = request_id
   form.refresh()
 }
