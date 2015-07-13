@@ -38,6 +38,7 @@ Mercator::Application.configure do
     'productmanager/relation_manager/index.js',
     'contracting/contracts/index.js',
     'contracting/contractitems/index.js',
+    'contracting/consumableitems/index.js',
     'i18n.js',
     'i18n/cm.js',
     'i18n/pm.js',
