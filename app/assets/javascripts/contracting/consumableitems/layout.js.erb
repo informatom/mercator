@@ -7,11 +7,11 @@ $(function () {
   $('#contracting').w2layout({
     name: 'contracting',
     panels: [
-      { type: 'top', size: 450, resizable: true, title: I18n.t("js.con.Contractitem.one"),
+      { type: 'top', size: 600, resizable: true, title: I18n.t("js.con.Contractitem.one"),
         content: "<div id='menu'></div>" +
                  "<div id='consumableitemsGrid' style='height:100%;'></div>" },
-      { type: 'left', title: I18n.t("js.con.Consumableitem.one"),
-        resizable: true, size: 800, content: "<div id='consumableitemForm' style='height:100%;'></div>" }
+      { type: 'left', title: I18n.t("attributes.consumable_item"),
+        resizable: true, size: 1050, content: "<div id='consumableitemForm' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {

@@ -1,9 +1,170 @@
 function consumableitemForm() {
-  $('#contractitemForm').w2form({
-    name: 'contractitemForm',
-    url: 'contractitems/manage'
+  $('#consumableitemForm').w2form({
+    name: 'consumableitemForm',
+    url: 'consumableitems/manage',
+
+    formHTML:
+      '<div class="w2ui-page page-0">'+
+      '  <div style="float: left; width: 340px">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t('attributes.position') + '</label>'+
+      '      <div><input name="position" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.contract_type") + '</label>'+
+      '      <div><input name="contract_type" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.product_number") + '</label>'+
+      '      <div><input name="product_number" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.product_line") + '</label>'+
+      '      <div><input name="product_line" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.description") + '(DE) </label>'+
+      '      <div><input name="description_de" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.description") + '(EN) </label>'+
+      '      <div><input name="description_en" /></div>'+
+      '    </div>'+
+      '  </div>'+
+
+      '  <div style="float: left; width: 340px">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t('attributes.amount') + '</label>'+
+      '      <div><input name="amount" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.theyield") + '</label>'+
+      '      <div><input name="theyield" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.wholesale_price") + '</label>'+
+      '      <div><input name="wholesale_price" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.term") + '</label>'+
+      '      <div><input name="term" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.balance") + ' 6</label>'+
+      '      <div><input name="balance6" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.contractitem") + '</label>'+
+      '      <div><input name="contractitem_id" /></div>'+
+      '    </div>'+
+      '  </div>'+
+
+      '  <div style="float: left; width: 340px">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consumption") + ' 1</label>'+
+      '      <div><input name="consumption1" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consumption") + ' 2</label>'+
+      '      <div><input name="consumption2" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consumption") + ' 3</label>'+
+      '      <div><input name="consumption3" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consumption") + ' 4</label>'+
+      '      <div><input name="consumption4" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consumption") + ' 5</label>'+
+      '      <div><input name="consumption5" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consumption") + ' 6</label>'+
+      '      <div><input name="consumption6" /></div>'+
+      '    </div>'+
+        '</div>'+
+      '</div>'+
+
+      '<div class="w2ui-buttons">'+
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
+      w2utils.lang("Save") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-blue" name="new">'+
+      w2utils.lang("Add New") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+
+      w2utils.lang("Delete") + '</button>' +
+      '</div>',
+
+    fields : [
+      { name: 'position',        type: 'int', required: true },
+      { name: 'contract_type',   text: 'int' },
+      { name: 'product_number',  text: 'int', required: true },
+      { name: 'product_line',    text: 'int' },
+      { name: 'description_de',  text: 'int', required: true },
+      { name: 'description_en',  text: 'int' },
+      { name: 'amount',          type: 'int', required: true },
+      { name: 'wholesale_price', type: 'currency', required: true },
+      { name: 'term',            type: 'int', required: true },
+      { name: 'balance6',        type: 'currency', required: true },
+      { name: 'contractitem_id', type: 'integer', required: true, disabled: true },
+      { name: 'consumption1',    type: 'int', required: true },
+      { name: 'consumption2',    type: 'int', required: true },
+      { name: 'consumption3',    type: 'int', required: true },
+      { name: 'consumption4',    type: 'int', required: true },
+      { name: 'consumption5',    type: 'int', required: true },
+      { name: 'consumption6',    type: 'int', required: true }
+    ],
+
+    actions: {
+      delete: {
+        onClick: function () {
+          $.ajax({
+            url:"/contracting/consumableitem/delete/" + w2ui.consumableitemForm.recid,
+            method: "DELETE",
+            data: { authenticity_token: csrf_token },
+            dataType: 'script',
+          }).done(function(response, textStatus, jqXHR) {
+            w2ui.consumableitemsGrid.reload()
+            initialize_consumableitemForm()
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            w2alert(jqXHR.responseText)
+          })
+        }
+      },
+      new: {
+        onClick: function () {
+          initialize_consumableitemForm()
+        }
+      },
+      save: {
+        onClick: function () {
+          selected_consumableitem_id = this.recid
+          this.save(
+            function(response) {
+              w2ui.consumableitemsGrid.reload()
+            }
+          )
+        }
+      }
+    }
   })
 }
 
 function initialize_consumableitemForm() {
+  var form = w2ui.consumableitemForm
+  form.clear()
+  form.record['position'] = 0
+  form.record['amount'] = 1
+  form.record['wholesale_price'] = 1
+  form.record['term'] = 12
+  form.record['balance6'] = 0
+  form.record['consumption1'] = 0
+  form.record['consumption2'] = 0
+  form.record['consumption3'] = 0
+  form.record['consumption4'] = 0
+  form.record['consumption5'] = 0
+  form.record['consumption6'] = 0
+  form.record['contractitem_id'] = request_id
+  form.refresh()
 }

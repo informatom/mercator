@@ -53,4 +53,14 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       }
     end
   end
+
+
+  def delete
+    @consumableitem = Consumableitem.find(params[:id])
+    if @consumableitem.destroy
+      render nothing: true
+    else
+      render json: @consumableitem.errors.first
+    end
+  end
 end

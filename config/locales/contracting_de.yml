@@ -1,12 +1,22 @@
 # Contractiong
 de:
   attributes:
+    balance: Gutschrift / Nachzahlung in Jahr
     contract: Vertrag
+    consumption: Verbrauch
+    consumable_item: Verbrauch
+    contractitem: Vertragsposition
+    contract_type: Vertragstyp
+    full_amount: Menge Gesamt (Stk.)
     marge: Marge
     monitoring_rate: Monitoring
     monthly_rate: Monatsbetrag
+    new_rate: Neuberechnung Jahr
     price: Preis
+    product_line: Produktlinie
+    theyield: Reichweite (Seiten)
     value_incl_vat: Wert incl. MWST
     volume_bw: Volumen S/W
     volume_color: Volumen Farbe
+    wholesale_price: HEK (EUR)
     year: Jahr

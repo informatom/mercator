@@ -52,14 +52,14 @@ function contractsGrid() {
       { field: 'term', caption: I18n.t("attributes.term"), size: '75px', sortable: true, attr: "align=right" },
 
       { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', sortable: true,
-        render: 'date:yyyy-mm-dd' },
+        render: 'date:dd.mm.yyyy' },
       { field: 'enddate', caption: I18n.t("attributes.enddate"), size: '130px', sortable: true,
-        render: 'date:yyyy-mm-dd' },
+        render: 'date:dd.mm.yyyy' },
 
       { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true,
-        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
       { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
-        render: 'datetime:yyyy-mm-dd|hh24:mm:ss' },
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
     ],
 
     searches: [
