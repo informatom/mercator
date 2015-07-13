@@ -119,16 +119,20 @@ function consumableitemForm() {
     actions: {
       delete: {
         onClick: function () {
-          $.ajax({
-            url:"/contracting/consumableitem/delete/" + w2ui.consumableitemForm.recid,
-            method: "DELETE",
-            data: { authenticity_token: csrf_token },
-            dataType: 'script',
-          }).done(function(response, textStatus, jqXHR) {
-            w2ui.consumableitemsGrid.reload()
-            initialize_consumableitemForm()
-          }).fail(function(jqXHR, textStatus, errorThrown) {
-            w2alert(jqXHR.responseText)
+          w2confirm( I18n.t("js.con.are_you_sure"), function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/contracting/consumableitem/delete/" + w2ui.consumableitemForm.recid,
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2ui.consumableitemsGrid.reload()
+                initialize_consumableitemForm()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
           })
         }
       },

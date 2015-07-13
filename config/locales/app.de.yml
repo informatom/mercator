@@ -1039,6 +1039,9 @@ de:
       admin_subsite_name: Administration
       are_you_sure: "Sind Sie Sicher?"
       calendar: Kalender
+      cannot_delete_contract: Kann Vertrag nicht löschen. Es gibt Vertragspositionen.
+      cannot_delete_contractitem: Kann Vertragsposition nicht löschen. Es gibt Verbräuche.
+      cannot_delete_consumableitem: Kann Verbrauch nicht löschen. Wenigstens einer der 6 Verbräuche ist größer 0.
       contracting_subsite_name: Vertragswesen
       Contract:
         one: Vertrag

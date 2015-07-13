@@ -4,7 +4,7 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   respond_to :html, :json
 
   def index
-    @consumableitems = Consumableitem.where(contractitem_id: params[:contract_id])
+    @consumableitems = Consumableitem.where(contractitem_id: params[:contractitem_id])
 
     respond_to do |format|
       format.html
@@ -55,8 +55,75 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   end
 
 
+  def manage
+    if params[:recid] == "0"
+      @consumableitem = Consumableitem.new
+    else
+      @consumableitem = Consumableitem.find(params[:recid])
+    end
+
+    if params[:cmd] == "save-record"
+      attrs = params[:record]
+
+      @consumableitem.position        = attrs[:position]
+      @consumableitem.contract_type   = attrs[:contract_type]
+      @consumableitem.product_number  = attrs[:product_number]
+      @consumableitem.product_line    = attrs[:product_line]
+      @consumableitem.description_de  = attrs[:description_de]
+      @consumableitem.description_en  = attrs[:description_en]
+      @consumableitem.amount          = attrs[:amount]
+      @consumableitem.wholesale_price = attrs[:wholesale_price]
+      @consumableitem.term            = attrs[:term]
+      @consumableitem.balance6        = attrs[:balance6]
+      @consumableitem.consumption1    = attrs[:consumption1]
+      @consumableitem.consumption2    = attrs[:consumption2]
+      @consumableitem.consumption3    = attrs[:consumption3]
+      @consumableitem.consumption4    = attrs[:consumption4]
+      @consumableitem.consumption5    = attrs[:consumption5]
+      @consumableitem.consumption6    = attrs[:consumption6]
+      @consumableitem.contractitem_id = attrs[:contractitem_id]
+
+      success = @consumableitem.save
+    end
+
+    if success == false
+      render json: { status: "error",
+                     message: @consumableitem.errors.first }
+    else
+      render json: {
+        status: "success",
+        record: {
+          position:        @consumableitem.position,
+          contract_type:   @consumableitem.contract_type,
+          product_number:  @consumableitem.product_number,
+          product_line:    @consumableitem.product_line,
+          description_de:  @consumableitem.description_de,
+          description_en:  @consumableitem.description_en,
+          amount:          @consumableitem.amount,
+          wholesale_price: @consumableitem.wholesale_price,
+          term:            @consumableitem.term,
+          balance6:        @consumableitem.balance6,
+          consumption1:    @consumableitem.consumption1,
+          consumption2:    @consumableitem.consumption2,
+          consumption3:    @consumableitem.consumption3,
+          consumption4:    @consumableitem.consumption4,
+          consumption5:    @consumableitem.consumption5,
+          consumption6:    @consumableitem.consumption6,
+          contractitem_id: @consumableitem.contractitem_id
+        }
+      }
+    end
+  end
+
+
   def delete
     @consumableitem = Consumableitem.find(params[:id])
+    if @consumableitem.consumption1 + @consumableitem.consumption2 + @consumableitem.consumption3 +
+       @consumableitem.consumption4 + @consumableitem.consumption5 + @consumableitem.consumption6 > 0
+      render :text => I18n.t("js.con.cannot_delete_consumableitem"),
+             :status => 403 and return
+    end
+
     if @consumableitem.destroy
       render nothing: true
     else

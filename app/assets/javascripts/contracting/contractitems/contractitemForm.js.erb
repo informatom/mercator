@@ -122,16 +122,20 @@ function contractitemForm() {
     actions: {
       delete: {
         onClick: function () {
-          $.ajax({
-            url:"/contracting/contractitem/delete/" + w2ui.contractitemForm.recid,
-            method: "DELETE",
-            data: { authenticity_token: csrf_token },
-            dataType: 'script',
-          }).done(function(response, textStatus, jqXHR) {
-            w2ui.contractitemsGrid.reload()
-            initialize_contractitemForm()
-          }).fail(function(jqXHR, textStatus, errorThrown) {
-            w2alert(jqXHR.responseText)
+          w2confirm( I18n.t("js.con.are_you_sure"), function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/contracting/contractitem/delete/" + w2ui.contractitemForm.recid,
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2ui.contractitemsGrid.reload()
+                initialize_contractitemForm()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
           })
         }
       },
@@ -153,7 +157,6 @@ function contractitemForm() {
     }
   })
 }
-
 
 function initialize_contractitemForm() {
   var form = w2ui.contractitemForm

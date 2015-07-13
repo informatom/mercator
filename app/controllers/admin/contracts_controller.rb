@@ -16,6 +16,12 @@ class Admin::ContractsController < Admin::AdminSiteController
   end
 
   def destroy
+    @contract = Contract.find(params[:id])
+    if @contract.contractitems.any?
+      render :text => I18n.t("js.con.cannot_delete_contract"),
+             :status => 403 and return
+    end
+
     hobo_destroy do
       session[:selected_contract_id] = nil
       render nothing: true if request.xhr?

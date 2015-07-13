@@ -1,4 +1,6 @@
 class Contracting::ContractitemsController < Contracting::ContractingSiteController
+  include ActionView::Helpers::NumberHelper
+
   hobo_model_controller
   auto_actions :index
   respond_to :html, :text
@@ -86,44 +88,45 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       render json: { status: "error",
                      message: @contractitem.errors.first }
     else
-      respond_to do |format|
-        format.html # show.html.erb
-        format.text {
-          render json: {
-            status: "success",
-            record: {
-              recid:           @contractitem.id,
-              position:        @contractitem.position,
-              term:            @contractitem.term,
-              user:            (@contractitem.user.email_address if @contractitem.user),
-              startdate:       I18n.l(@contractitem.startdate),
-              product_number:  (@contractitem.product.number if @contractitem.product),
-              toner:           (@contractitem.toner.article_number if @contractitem.toner),
-              description_de:  @contractitem.description_de,
-              description_en:  @contractitem.description_en,
-              amount:          @contractitem.amount,
-              unit:            @contractitem.unit,
-              marge:           @contractitem.marge,
-              volume_bw:       @contractitem.volume_bw,
-              volume_color:    @contractitem.volume_color,
-              product_price:   @contractitem.product_price,
-              monitoring_rate: @contractitem.monitoring_rate,
-              discount_abs:    @contractitem.discount_abs,
-              value:           @contractitem.value,
-              vat:             @contractitem.vat,
-              created_at:      I18n.l(@contractitem.created_at),
-              updated_at:      I18n.l(@contractitem.updated_at),
-              contract_id:     @contractitem.contract_id
-            }
-          }
+      render json: {
+        status: "success",
+        record: {
+          recid:           @contractitem.id,
+          position:        @contractitem.position,
+          term:            @contractitem.term,
+          user:            (@contractitem.user.email_address if @contractitem.user),
+          startdate:       I18n.l(@contractitem.startdate),
+          product_number:  (@contractitem.product.number if @contractitem.product),
+          toner:           (@contractitem.toner.article_number if @contractitem.toner),
+          description_de:  @contractitem.description_de,
+          description_en:  @contractitem.description_en,
+          amount:          @contractitem.amount,
+          unit:            @contractitem.unit,
+          marge:           @contractitem.marge,
+          volume_bw:       @contractitem.volume_bw,
+          volume_color:    @contractitem.volume_color,
+          product_price:   @contractitem.product_price,
+          monitoring_rate: @contractitem.monitoring_rate,
+          discount_abs:    @contractitem.discount_abs,
+          value:           @contractitem.value,
+          vat:             @contractitem.vat,
+          created_at:      I18n.l(@contractitem.created_at),
+          updated_at:      I18n.l(@contractitem.updated_at),
+          contract_id:     @contractitem.contract_id
         }
-      end
+      }
     end
   end
 
 
   def delete
     @contractitem = Contractitem.find(params[:id])
+
+    if @contractitem.consumableitems.any?
+      render :text => I18n.t("js.con.cannot_delete_contractitem"),
+             :status => 403 and return
+    end
+
     if @contractitem.destroy
       render nothing: true
     else
@@ -166,35 +169,35 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
         }, {
           title: "Folgeraten (EUR)",
           year1: '---',
-          year2: @contractitem.new_rate(2),
-          year3: @contractitem.new_rate(3),
-          year4: @contractitem.new_rate(4),
-          year5: @contractitem.new_rate(5),
-          year6: @contractitem.new_rate(6)
+          year2: number_to_currency(@contractitem.new_rate(2)),
+          year3: number_to_currency(@contractitem.new_rate(3)),
+          year4: number_to_currency(@contractitem.new_rate(4)),
+          year5: number_to_currency(@contractitem.new_rate(5)),
+          year6: number_to_currency(@contractitem.new_rate(6))
         }, {
           title: "Folgemonat",
-          year1: @contractitem.next_month(1),
-          year2: @contractitem.next_month(2),
-          year3: @contractitem.next_month(3),
-          year4: @contractitem.next_month(4),
-          year5: @contractitem.next_month(5),
+          year1: @contractitem.next_month(1).round,
+          year2: @contractitem.next_month(2).round,
+          year3: @contractitem.next_month(3).round,
+          year4: @contractitem.next_month(4).round,
+          year5: @contractitem.next_month(5).round,
           year6: '---'
         }, {
           title: "Folgeraten mit Monitoring (EUR)",
-          year1: '---',
-          year2: @contractitem.new_rate_with_monitoring(2),
-          year3: @contractitem.new_rate_with_monitoring(3),
-          year4: @contractitem.new_rate_with_monitoring(4),
-          year5: @contractitem.new_rate_with_monitoring(5),
-          year6: @contractitem.new_rate_with_monitoring(6)
+          year1:'---',
+          year2: number_to_currency(@contractitem.new_rate_with_monitoring(2)),
+          year3: number_to_currency(@contractitem.new_rate_with_monitoring(3)),
+          year4: number_to_currency(@contractitem.new_rate_with_monitoring(4)),
+          year5: number_to_currency(@contractitem.new_rate_with_monitoring(5)),
+          year6: number_to_currency(@contractitem.new_rate_with_monitoring(6))
         }, {
           title: "Summe Gutschrift/Nachzahlung",
-          year1: @contractitem.balance(1),
-          year2: @contractitem.balance(2),
-          year3: @contractitem.balance(3),
-          year4: @contractitem.balance(4),
-          year5: @contractitem.balance(5),
-          year6: @contractitem.balance(6)
+          year1: number_to_currency(@contractitem.balance(1)),
+          year2: number_to_currency(@contractitem.balance(2)),
+          year3: number_to_currency(@contractitem.balance(3)),
+          year4: number_to_currency(@contractitem.balance(4)),
+          year5: number_to_currency(@contractitem.balance(5)),
+          year6: number_to_currency(@contractitem.balance(6))
         }
       ]
     }
