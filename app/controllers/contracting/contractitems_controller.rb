@@ -20,7 +20,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               position:        contractitem.position,
               user:            (contractitem.user.email_address if contractitem.user),
               product_number:  (contractitem.product.number if contractitem.product),
-              toner:           (contractitem.toner.article_number if contractitem.toner),
+              toner:           (contractitem.toner.vendor_number if contractitem.toner),
               description_de:  contractitem.description_de,
               description_en:  contractitem.description_en,
               amount:          contractitem.amount,
@@ -56,17 +56,13 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
-
-      user_id = User.find_by(email_address: attrs[:user]).try(:id)
-      toner_id = Toner.find_by(article_number: attrs[:toner]).try(:id)
-      product_id = Product.find_by(number: attrs[:product_number]).try(:id)
-
       @contractitem.position        = attrs[:position]
       @contractitem.term            = attrs[:term]
-      @contractitem.user_id         = user_id
+      @contractitem.user_id         = attrs[:user_id]
       @contractitem.startdate       = attrs[:startdate]
-      @contractitem.product_id      = product_id
-      @contractitem.toner_id        = toner_id
+      @contractitem.product_number  = attrs[:product_number]
+      @contractitem.product_id      = attrs[:product_id]
+      @contractitem.toner_id        = attrs[:toner_id]
       @contractitem.description_de  = attrs[:description_de]
       @contractitem.description_en  = attrs[:description_en]
       @contractitem.amount          = attrs[:amount]
@@ -95,9 +91,12 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           position:        @contractitem.position,
           term:            @contractitem.term,
           user:            (@contractitem.user.email_address if @contractitem.user),
+          user_id:         @contractitem.user_id,
           startdate:       I18n.l(@contractitem.startdate),
-          product_number:  (@contractitem.product.number if @contractitem.product),
-          toner:           (@contractitem.toner.article_number if @contractitem.toner),
+          product_number:  @contractitem.product_number,
+          product_id:      @contractitem.product_id,
+          toner:           (@contractitem.toner.description if @contractitem.toner),
+          toner_id:        @contractitem.toner_id,
           description_de:  @contractitem.description_de,
           description_en:  @contractitem.description_en,
           amount:          @contractitem.amount,

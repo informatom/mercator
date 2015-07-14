@@ -1,0 +1,41 @@
+function productsGrid(domelement, url) {
+  if (w2ui[domelement] != undefined) {
+    w2ui[domelement].destroy()
+  }
+
+  $('#' + domelement).w2grid({
+    name: domelement,
+    multiSelect : false,
+    method: 'GET',
+    show: { toolbar: true, footer: true },
+
+    columns: [
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, attr: "align=right" },
+      { field: 'number', caption: I18n.t("attributes.number"), size: '150px', sortable: true },
+      { field: 'title_de', caption: I18n.t("attributes.title_de"), size: '250px', sortable: true },
+      { field: 'title_en', caption: I18n.t("attributes.title_en"), size: '250px', sortable: true, hidden: true },
+      { field: 'alternative_number', caption: I18n.t("attributes.alternative_number"), size: '150px', sortable: true },
+      { field: 'description_de', caption: I18n.t("attributes.description_de"), size: '250px', sortable: true },
+      { field: 'description_en', caption: I18n.t("attributes.description_en"), size: '250px', hidden: true },
+      { field: 'long_description_de', caption: I18n.t("attributes.long_description_de"), size: '250px', hidden: true },
+      { field: 'long_description_en', caption: I18n.t("attributes.long_description_en"), size: '250px', hidden: true },
+      { field: 'warranty_de', caption: I18n.t("attributes.warranty_de"), size: '100px', hidden: true },
+      { field: 'warranty_en', caption: I18n.t("attributes.warranty_en"), size: '100px', hidden: true },
+      { field: 'not_shippable', caption: I18n.t("attributes.not_shippable"), size: '50px', sortable: true, render: 'toggle' },
+      { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true,
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
+      { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
+    ],
+
+    searches: [
+      { field: 'title_de', caption: I18n.t("attributes.name"), type: 'text' },
+      { field: 'number', caption: I18n.t("attributes.name"), type: 'text' },
+      { field: 'description_de', caption: I18n.t("attributes.name"), type: 'text' }
+    ],
+    sortData: [{ field: 'number', direction: 'asc' }]
+  })
+
+  w2ui[domelement].load(url)
+  w2ui[domelement].refresh()
+}
