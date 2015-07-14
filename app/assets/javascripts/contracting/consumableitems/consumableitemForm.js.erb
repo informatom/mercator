@@ -157,21 +157,6 @@ function consumableitemForm() {
 
 function initialize_consumableitemForm() {
   var form = w2ui.consumableitemForm
-  var default_vendor_number
-  var default_wholesale_price
-
-  $.ajax({
-    url:"consumableitems/" + request_id + "/defaults",
-    method: "GET",
-    data: { authenticity_token: csrf_token },
-    dataType: 'json',
-  }).done(function(response, textStatus, jqXHR) {
-    form.record['product_number'] = response['vendor_number']
-    form.record['wholesale_price'] = response['wholesale_price']
-    form.refresh()
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-    w2alert(jqXHR.responseText)
-  })
 
   form.clear()
   form.record['position'] = 0
@@ -186,4 +171,17 @@ function initialize_consumableitemForm() {
   form.record['consumption6'] = 0
   form.record['contractitem_id'] = request_id
   form.refresh()
+
+  $.ajax({
+    url:"consumableitems/" + request_id + "/defaults",
+    method: "GET",
+    data: { authenticity_token: csrf_token },
+    dataType: 'json',
+  }).done(function(response, textStatus, jqXHR) {
+    form.record['product_number'] = response['vendor_number']
+    form.record['wholesale_price'] = response['wholesale_price']
+    form.refresh()
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    w2alert(jqXHR.responseText)
+  })
 }
