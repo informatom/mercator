@@ -92,9 +92,12 @@ en:
     inventory: Inventory
     Inventory: Inventory
     key: Key
+    last_login_at: last login at
     Lineitem: Order Item
     lineitems: Order Items
     links: Links
+    locale: Locale
+    logged_in: Logged In
     login_count: Login Count
     long_description: Long Description
     long_description_de: Long Description GER

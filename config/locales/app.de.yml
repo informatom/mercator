@@ -1,7 +1,7 @@
 de:
   attributes:
     actions: Aktionen
-    administator: Administrator
+    rator: Administrator
     Address: Lieferadresse
     addresses: Lieferadressen
     alternative_number: alternative Artikelnummer
@@ -96,9 +96,12 @@ de:
     inventory: Bestand
     Inventory: Bestand
     key: Schlüssel
+    last_login_at: zuletzt angemeldet
     Lineitem: Bestellposition
     lineitems: Bestellpositionen
     links: Links
+    locale: Sprache
+    logged_in: angemeldet
     login_count: Anzahl Anmeldungen
     long_description: Lange Beschreibung
     long_description_de: Lange Beschreibung DE

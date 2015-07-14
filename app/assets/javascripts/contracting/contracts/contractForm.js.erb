@@ -1,0 +1,179 @@
+function contractForm() {
+  $('#contractForm').w2form({
+    name: 'contractForm',
+    url: 'contracts/manage',
+
+    formHTML:
+      '<div class="w2ui-page page-0">'+
+      '  <div style="float: left">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.customer") + '</label>'+
+      '      <div><input name="customer" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.consultant") + '</label>'+
+      '      <div><input name="consultant" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.conversation") + '</label>'+
+      '      <div><input name="conversation" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.term") + '</label>'+
+      '      <div><input name="term" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.startdate") + '</label>'+
+      '      <div><input name="startdate" /></div>'+
+      '    </div>'+
+      '  </div>'+
+      '</div>'+
+
+      '<div class="w2ui-buttons">'+
+      '  <button class="w2ui-btn w2ui-btn-orange" name="get_customer">Kunde zuordnen</button>'+
+      '  <button class="w2ui-btn w2ui-btn-orange" name="get_consultant">Berater zuordnen</button>'+
+      '  <button class="w2ui-btn w2ui-btn-orange" name="get_conversation">Konversation zuordnen</button>'+
+      '  </br></br>' +
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
+      w2utils.lang("Save") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-blue" name="new">'+
+      w2utils.lang("Add New") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+
+      w2utils.lang("Delete") + '</button>' +
+      '</div>',
+
+    fields : [
+      { name: 'customer',        type: 'text',  required: true, disabled: true },
+      { name: 'consultant',      type: 'text',  required: true, disabled: true },
+      { name: 'conversation',    type: 'text',  required: true, disabled: true },
+      { name: 'term',            type: 'integer', required: true },
+      { name: 'startdate',       type: 'date', required: true },
+      { name: 'customer_id',     type: 'integer', required: true, disabled: true },
+      { name: 'consultant_id',   type: 'integer', required: true, disabled: true },
+      { name: 'conversation_id', type: 'integer', disabled: true }
+    ],
+
+    actions: {
+      delete: {
+        onClick: function () {
+          w2confirm( I18n.t("js.con.are_you_sure"), function (button) {
+            if (button =='Yes') {
+              $.ajax({
+                url:"/contracting/contract/delete/" + w2ui.contractForm.recid,
+                method: "DELETE",
+                data: { authenticity_token: csrf_token },
+                dataType: 'script',
+              }).done(function(response, textStatus, jqXHR) {
+                w2ui.contractsGrid.reload()
+                initialize_contractForm()
+              }).fail(function(jqXHR, textStatus, errorThrown) {
+                w2alert(jqXHR.responseText)
+              })
+            }
+          })
+        }
+      },
+
+      new: {
+        onClick: function () {
+          initialize_contractForm()
+        }
+      },
+
+      save: {
+        onClick: function () {
+          selected_contract_id = this.recid
+          this.save(
+            function(response) {
+              w2ui.contractsGrid.load('contracts/manage_contracts')
+              w2ui.contractsGrid.refresh()
+            }
+          )
+        }
+      },
+
+      get_customer: {
+        onClick: function () {
+          w2popup.open({
+            title: 'Kunde auswählen',
+            body: '<div id="customersGrid" style="height:100%;"></div>',
+            buttons : '<button class="w2ui-btn w2ui-btn-green" onclick="w2popup.close(\'+\');">OK</button> ' +
+                      '<button class="w2ui-btn w2ui-btn-orange" onclick="w2popup.close(\'-\');">Abbrechen</button> ',
+            width: $(window).width() * 0.9,
+            height: $(window).height() * 0.9,
+            onClose: function (event) {
+              if (event.options[0] == "+") {
+                var selection = w2ui.customersGrid.getSelection()
+                if (selection.length == 1) {
+                  var form = w2ui.contractForm
+                  form.record['customer_id'] = selection[0]
+                  form.record['customer'] = w2ui.customersGrid.get(selection[0]).email_address
+                  form.refresh()
+                }
+              }
+            }
+          })
+          usersGrid('customersGrid', 'users/grid_index')
+        }
+      },
+
+      get_consultant: {
+        onClick: function () {
+          w2popup.open({
+            title: 'Berater auswählen',
+            body: '<div id="consultantsGrid" style="height:100%;"></div>',
+            buttons : '<button class="w2ui-btn w2ui-btn-green" onclick="w2popup.close(\'+\');">OK</button> ' +
+                      '<button class="w2ui-btn w2ui-btn-orange" onclick="w2popup.close(\'-\');">Abbrechen</button> ',
+            width: $(window).width() * 0.9,
+            height: $(window).height() * 0.9,
+            onClose: function (event) {
+              if (event.options[0] == "+") {
+                var selection = w2ui.consultantsGrid.getSelection()
+                if (selection.length == 1) {
+                  var form = w2ui.contractForm
+                  form.record['consultant_id'] = selection[0]
+                  form.record['consultant'] = w2ui.consultantsGrid.get(selection[0]).email_address
+                  form.refresh()
+                }
+              }
+            }
+          })
+          usersGrid('consultantsGrid', 'users/grid_index?only_consultants=true')
+        }
+      },
+
+      get_conversation: {
+        onClick: function () {
+          w2popup.open({
+            title: 'Konversation auswählen',
+            body: '<div id="conversationsGrid" style="height:100%;"></div>',
+            buttons : '<button class="w2ui-btn w2ui-btn-green" onclick="w2popup.close(\'+\');">OK</button> ' +
+                      '<button class="w2ui-btn w2ui-btn-orange" onclick="w2popup.close(\'-\');">Abbrechen</button> ',
+            width: $(window).width() * 0.9,
+            height: $(window).height() * 0.9,
+            onClose: function (event) {
+              if (event.options[0] == "+") {
+                var selection = w2ui.conversationsGrid.getSelection()
+                if (selection.length == 1) {
+                  var form = w2ui.contractForm
+                  form.record['conversation_id'] = selection[0]
+                  form.record['conversation'] = w2ui.conversationsGrid.get(selection[0]).name
+                  form.refresh()
+                }
+              }
+            }
+          })
+          conversationsGrid('conversationsGrid', 'conversations/grid_index')
+        }
+      }
+    }
+  })
+}
+
+function initialize_contractForm() {
+  var form = w2ui.contractForm
+  form.clear()
+  form.record['term'] = 12
+  form.record['startdate'] = '<%= I18n.l Date.today() %>'
+  form.refresh()
+}
