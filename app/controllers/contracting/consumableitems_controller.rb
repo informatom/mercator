@@ -130,4 +130,17 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       render json: @consumableitem.errors.first
     end
   end
+
+
+  show_action :defaults do
+    @contractitem = Contractitem.find(params[:id])
+    @toner = @contractitem.toner
+    if @toner
+      render json: { vendor_number:   @toner.vendor_number,
+                     wholesale_price: @toner.price }
+    else
+      render :text => I18n.t("js.con.no_toner"),
+             :status => 403 and return
+    end
+  end
 end

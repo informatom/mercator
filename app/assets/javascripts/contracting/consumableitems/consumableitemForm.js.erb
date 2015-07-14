@@ -98,11 +98,11 @@ function consumableitemForm() {
 
     fields : [
       { name: 'position',        type: 'int', required: true },
-      { name: 'contract_type',   text: 'int' },
-      { name: 'product_number',  text: 'int', required: true },
-      { name: 'product_line',    text: 'int' },
-      { name: 'description_de',  text: 'int', required: true },
-      { name: 'description_en',  text: 'int' },
+      { name: 'contract_type',   type: 'text' },
+      { name: 'product_number',  type: 'text', required: true },
+      { name: 'product_line',    type: 'text' },
+      { name: 'description_de',  type: 'text', required: true },
+      { name: 'description_en',  type: 'text' },
       { name: 'amount',          type: 'int', required: true },
       { name: 'wholesale_price', type: 'currency', required: true },
       { name: 'term',            type: 'int', required: true },
@@ -157,10 +157,25 @@ function consumableitemForm() {
 
 function initialize_consumableitemForm() {
   var form = w2ui.consumableitemForm
+  var default_vendor_number
+  var default_wholesale_price
+
+  $.ajax({
+    url:"consumableitems/" + request_id + "/defaults",
+    method: "GET",
+    data: { authenticity_token: csrf_token },
+    dataType: 'json',
+  }).done(function(response, textStatus, jqXHR) {
+    form.record['product_number'] = response['vendor_number']
+    form.record['wholesale_price'] = response['wholesale_price']
+    form.refresh()
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    w2alert(jqXHR.responseText)
+  })
+
   form.clear()
   form.record['position'] = 0
   form.record['amount'] = 1
-  form.record['wholesale_price'] = 1
   form.record['term'] = 12
   form.record['balance6'] = 0
   form.record['consumption1'] = 0
