@@ -70,8 +70,8 @@ function consumableitemsGrid() {
 
     onLoad: function(event) {
       event.onComplete = function () {
-        if (selected_contractitem_id) {
-          show_consumableitem_details(selected_contractitem_id)
+        if (selected_consumableitem_id) {
+          show_consumableitem_details(selected_consumableitem_id)
         }
         else {
           initialize_consumableitemForm()
