@@ -15,23 +15,14 @@
     <nav-item with="&User">
       <ht key="user.nav_item" count="100"><model-name-human count="100"/></ht>
     </nav-item>
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t("activerecord.models.contract.other") %> ...
-      <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <nav-item with="&Contract">
-          <ht key="contract.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item with="&Contractitem">
-          <ht key="contractitem.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item with="&Toner">
-          <ht key="toner.nav_item" count="100"><model-name-human count="100"/></ht>
-        </nav-item>
-        <nav-item with="&Toner" action="upload">
-          <ht key="toner.nav_item" count="100"><model-name-human count="100"/> <t key="attributes.upload" /></ht>
-        </nav-item>
-      </ul>
-    </li>
+    <nav-item with="&Contract">
+      <ht key="contract.nav_item" count="100"><model-name-human count="100"/></ht>
+    </nav-item>
+    <nav-item with="&Toner">
+      <ht key="toner.nav_item" count="100"><model-name-human count="100"/></ht>
+    </nav-item>
+    <nav-item with="&Toner" action="upload">
+      <ht key="toner.nav_item" count="100"><model-name-human count="100"/> <t key="attributes.upload" /></ht>
+    </nav-item>
   </navigation>
 </def>
