@@ -73,14 +73,16 @@ class Consumableitem < ActiveRecord::Base
 
   def new_rate(n)
     if n == 2
-      if contractitem.term && (amount * 12 >=  contractitem.term)
+      if term == contractitem.term
+        monthly_rate
+      elsif contractitem.term && (amount * 12 >=  contractitem.term)
         consumption1 * price / 12
       else
         monthly_rate
       end
 
     elsif [3, 4, 5, 6].include? n
-      eval('consumption' + (n-1).to_s) * price / 12
+      consumption(n-1) * price / 12
     end
   end
 
@@ -90,5 +92,9 @@ class Consumableitem < ActiveRecord::Base
     elsif [2, 3, 4, 5].include? n
       (new_rate(n+1) - new_rate(n)) * 12
     end
+  end
+
+  def consumption(n)
+    eval('consumption' + (n-1).to_s)
   end
 end

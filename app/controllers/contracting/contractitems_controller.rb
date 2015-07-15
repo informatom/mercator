@@ -174,12 +174,12 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year5: number_to_currency(@contractitem.new_rate(5)),
           year6: number_to_currency(@contractitem.new_rate(6))
         }, {
-          title: "Folgemonat",
-          year1: @contractitem.next_month(1).round,
-          year2: @contractitem.next_month(2).round,
-          year3: @contractitem.next_month(3).round,
-          year4: @contractitem.next_month(4).round,
-          year5: @contractitem.next_month(5).round,
+          title: "Folgemonat (EUR)",
+          year1: number_to_currency(@contractitem.next_month(1)),
+          year2: number_to_currency(@contractitem.next_month(2)),
+          year3: number_to_currency(@contractitem.next_month(3)),
+          year4: number_to_currency(@contractitem.next_month(4)),
+          year5: number_to_currency(@contractitem.next_month(5)),
           year6: '---'
         }, {
           title: "Folgeraten mit Monitoring (EUR)",

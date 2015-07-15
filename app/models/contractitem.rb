@@ -95,14 +95,22 @@ class Contractitem < ActiveRecord::Base
   end
 
   def new_rate(n)
-    if [2, 3, 4, 5, 6].include? n
+    if [2, 3, 4, 5].include? n
       consumableitems.map{|consumableitem| consumableitem.new_rate(n)}.reduce(:+) || 0
+    elsif n==6
+      if balance(6) < 0
+        (balance(6) / new_rate(1)).floor * -1
+      else
+        0
+      end
     end
   end
 
   def new_rate_with_monitoring(n)
-    if [2, 3, 4, 5, 6].include? n
+    if [2, 3, 4, 5].include? n
       new_rate(n) + monitoring_rate
+    elsif n == 6
+      consumableitems.map{|consumableitem| consumableitem.new_rate(n)}.reduce(:+) || 0
     end
   end
 
@@ -115,7 +123,7 @@ class Contractitem < ActiveRecord::Base
   def months_without_rates(n)
     if [1, 2, 3, 4, 5].include? n
       if balance(n) < 0
-        (balance(n) / new_rate(n)).floor * -1
+        (balance(n) / new_rate(n+1)).floor * -1
       else
         0
       end
