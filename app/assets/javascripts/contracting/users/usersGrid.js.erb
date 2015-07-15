@@ -47,7 +47,14 @@ function usersGrid(domelement, url) {
     ],
 
     searches: [
-      { field: 'email_address', caption: I18n.t("attributes.email_address"), type: 'text' }
+      { field: 'gender', caption: I18n.t("attributes.gender"), type: 'text' },
+      { field: 'title', caption: I18n.t("attributes.title"), type: 'text' },
+      { field: 'first_name', caption: I18n.t("attributes.first_name"), type: 'text' },
+      { field: 'surname', caption: I18n.t("attributes.surname"), type: 'text' },
+      { field: 'email_address', caption: I18n.t("attributes.email_address"), type: 'text' },
+      { field: 'phone', caption: I18n.t("attributes.phone"), type: 'text' },
+      { field: 'erp_account_nr', caption: "ERP Account #", type: 'text' },
+      { field: 'erp_contact_nr', caption: "ERP Contakt #", type: 'text' }
     ],
     sortData: [{ field: 'email_address', direction: 'asc' }]
   })

@@ -29,9 +29,16 @@ function productsGrid(domelement, url) {
     ],
 
     searches: [
-      { field: 'title_de', caption: I18n.t("attributes.name"), type: 'text' },
-      { field: 'number', caption: I18n.t("attributes.name"), type: 'text' },
-      { field: 'description_de', caption: I18n.t("attributes.name"), type: 'text' }
+      { field: 'number', caption: I18n.t("attributes.number"), type: 'text' },
+      { field: 'title_de', caption: I18n.t("attributes.name") + " DE", type: 'text' },
+      { field: 'title_en', caption: I18n.t("attributes.name") + " EN", type: 'text' },
+      { field: 'alternative_number', caption: I18n.t("attributes.alternative_number"), type: 'text' },
+      { field: 'description_de', caption: I18n.t("attributes.description") + " DE", type: 'text' },
+      { field: 'description_en', caption: I18n.t("attributes.description") + " EN", type: 'text' },
+      { field: 'long_description_de', caption: I18n.t("attributes.long_description") + " DE", type: 'text' },
+      { field: 'long_description_en', caption: I18n.t("attributes.long_description") + " EN", type: 'text' },
+      { field: 'warranty_de', caption: I18n.t("attributes.warranty") + " DE", type: 'text' },
+      { field: 'warranty_en', caption: I18n.t("attributes.warranty") + " EN", type: 'text' }
     ],
     sortData: [{ field: 'number', direction: 'asc' }]
   })

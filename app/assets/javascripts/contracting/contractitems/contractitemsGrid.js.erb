@@ -4,11 +4,11 @@ function contractitemsGrid() {
     multiSelect : false,
     method: 'GET',
     show: { toolbar: true, footer: true },
-    url: 'contractitems/?contract_id=' + request_id,
 
     toolbar: {
       items: [
-        { type: 'button', id: 'editConsumableitems', img: 'fa fa-tint', disabled: true }
+        { type: 'button', id: 'editConsumableitems', img: 'fa fa-tint',
+          caption: I18n.t("attributes.consumable_item"), disabled: true }
       ],
       onClick: function (target, data) {
         var selection = w2ui.contractitemsGrid.getSelection()
@@ -50,7 +50,11 @@ function contractitemsGrid() {
     ],
 
     searches: [
-      { field: 'product_number', caption: I18n.t("attributes.product_number"), type: 'date' }
+      { field: 'user', caption: I18n.t("attributes.product_number"), type: 'text' },
+      { field: 'product_number', caption: I18n.t("attributes.product_number"), type: 'text' },
+      { field: 'toner', caption: I18n.t("attributes.product_number"), type: 'text' },
+      { field: 'description_de', caption: I18n.t("attributes.description_de"), type: 'text' },
+      { field: 'description_en', caption: I18n.t("attributes.description_en"), type: 'text' }
     ],
     sortData: [{ field: 'position', direction: 'asc' }],
 
@@ -76,6 +80,7 @@ function contractitemsGrid() {
       }
     }
   })
+  w2ui.contractitemsGrid.load('contractitems/?contract_id=' + request_id)
 }
 
 function show_contractitem_details(contractitem_id) {

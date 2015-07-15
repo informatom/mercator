@@ -141,7 +141,8 @@ function contractitemForm() {
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
               }).done(function(response, textStatus, jqXHR) {
-                w2ui.contractitemsGrid.reload()
+                w2ui.contractitemsGrid.load('contractitems/?contract_id=' + request_id)
+                w2ui.contractitemsGrid.refresh()
                 initialize_contractitemForm()
               }).fail(function(jqXHR, textStatus, errorThrown) {
                 w2alert(jqXHR.responseText)
@@ -162,7 +163,8 @@ function contractitemForm() {
           selected_contractitem_id = this.recid
           this.save(
             function(response) {
-              w2ui.contractitemsGrid.reload()
+              w2ui.contractitemsGrid.load('contractitems/?contract_id=' + request_id)
+              w2ui.contractitemsGrid.refresh()
             }
           )
         }

@@ -64,7 +64,8 @@ function contractForm() {
                 data: { authenticity_token: csrf_token },
                 dataType: 'script',
               }).done(function(response, textStatus, jqXHR) {
-                w2ui.contractsGrid.reload()
+                w2ui.contractsGrid.load('contracts/manage_contracts')
+                w2ui.contractsGrid.retresh()
                 initialize_contractForm()
               }).fail(function(jqXHR, textStatus, errorThrown) {
                 w2alert(jqXHR.responseText)
