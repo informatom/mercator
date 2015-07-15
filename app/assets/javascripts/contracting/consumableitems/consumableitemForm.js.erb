@@ -88,12 +88,10 @@ function consumableitemForm() {
       '</div>'+
 
       '<div class="w2ui-buttons">'+
-      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+
-      w2utils.lang("Save") + '</button>' +
-      '   <button class="w2ui-btn w2ui-btn-blue" name="new">'+
-      w2utils.lang("Add New") + '</button>' +
-      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+
-      w2utils.lang("Delete") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-green" name="save">'+ w2utils.lang("Save") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-blue" name="new">'+ w2utils.lang("Add New") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+ w2utils.lang("Delete") + '</button>' +
+      '   <button class="w2ui-btn w2ui-btn-orange" name="get_toner">Toner zuordnen</button>' +
       '</div>',
 
     fields : [
@@ -136,11 +134,13 @@ function consumableitemForm() {
           })
         }
       },
+
       new: {
         onClick: function () {
           initialize_consumableitemForm()
         }
       },
+
       save: {
         onClick: function () {
           selected_consumableitem_id = this.recid
@@ -149,6 +149,31 @@ function consumableitemForm() {
               w2ui.consumableitemsGrid.reload()
             }
           )
+        }
+      },
+
+      get_toner: {
+        onClick: function () {
+          w2popup.open({
+            title: 'Toner auswählen',
+            body: '<div id="tonersGrid" style="height:100%;"></div>',
+            buttons : '<button class="w2ui-btn w2ui-btn-green" onclick="w2popup.close(\'+\');">OK</button> ' +
+                      '<button class="w2ui-btn w2ui-btn-orange" onclick="w2popup.close(\'-\');">Abbrechen</button> ',
+            width: $(window).width() * 0.9,
+            height: $(window).height() * 0.9,
+            onClose: function (event) {
+              if (event.options[0] == "+") {
+                var selection = w2ui.tonersGrid.getSelection()
+                if (selection.length == 1) {
+                  var form = w2ui.consumableitemForm
+                  form.record['product_number'] = w2ui.tonersGrid.get(selection[0]).vendor_number
+                  form.record['wholesale_price'] = w2ui.tonersGrid.get(selection[0]).price
+                  form.refresh()
+                }
+              }
+            }
+          })
+          tonersGrid('tonersGrid', 'toners/grid_index')
         }
       }
     }
