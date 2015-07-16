@@ -6,7 +6,7 @@ namespace :properties do
     JobLogger.info("=" * 50)
     JobLogger.info("Started Job: properties:dedup")
 
-    Properties.dedup()
+    Property.dedup()
 
     JobLogger.info("Finished Job: properties:dedup")
     JobLogger.info("=" * 50)
