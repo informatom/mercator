@@ -1,0 +1,74 @@
+function disabledInventoriesGrid() {
+  $('#inventoriesGrid').w2grid({
+    name: 'inventoriesGrid',
+    url: '/productmanager/price_manager/show_inventories/' + request_id,
+    method: 'GET',
+    multiSelect : false,
+    show: { toolbar: true, footer: true },
+
+    columns : [
+      { field: 'recid', size: '10', sortable: false, hidden: true, attr: "align=center", caption: I18n.t("attributes.id") },
+      { field: 'name_de', sortable: true, size: '30', caption: I18n.t("attributes.name_de") },
+      { field: 'name_en', sortable: true, hidden: true, size: '30', caption: I18n.t("attributes.name_en") },
+      { field: 'comment_de', sortable: true, hidden: true, size: '50', caption: I18n.t("attributes.comment_de") },
+      { field: 'comment_en', sortable: true, hidden: true, size: '50', caption: I18n.t("attributes.comment_en") },
+      { field: 'number', sortable: true, caption: I18n.t("attributes.number"), size: '20'},
+      { field: 'alternative_number', sortable: true, hidden: true, size: '20', caption: I18n.t("attributes.alternative_number") },
+      { field: 'infinite', sortable: true, size: '10', attr: "align=center", caption: I18n.t("attributes.infinite"),
+        render: function (record) {
+          return record.infinite ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'
+        }
+      },
+      { field: 'amount', sortable: true, caption: I18n.t("attributes.amount"), size: '10'},
+      { field: 'unit', sortable: true, caption: I18n.t("attributes.unit"), size: '10'},
+      { field: 'weight', sortable: true, hidden: true, caption: I18n.t("attributes.weight"), size: '10'},
+      { field: 'size', sortable: true, hidden: true, caption: I18n.t("attributes.size"), size: '10'},
+      { field: 'charge', sortable: true, hidden: true, caption: I18n.t("attributes.charge"), size: '20'},
+      { field: 'storage', sortable: true, hidden: true, caption: I18n.t("attributes.storage"), size: '20'},
+      { field: 'delivery_time', sortable: true, caption: I18n.t("attributes.delivery_time"), size: '20'},
+      { field: 'created_at', sortable: true, hidden: true, caption: I18n.t("attributes.created_at"), size: '20'},
+      { field: 'updated_at', sortable: true, hidden: true, caption: I18n.t("attributes.updated_at"), size: '20'},
+      { field: 'erp_updated_at', sortable: true, hidden: true, caption: 'ERP ' + I18n.t("attributes.updated_at"), size: '20'},
+      { field: 'erp_vatline', sortable: true, hidden: true, caption: 'ERP ' + I18n.t("attributes.vat"), size: '10'},
+      { field: 'erp_article_group', sortable: true, hidden: true, caption: 'ERP ' + I18n.t("attributes.category"), size: '10'},
+      { field: 'erp_provision_code', sortable: true, hidden: true, size: '20', caption: 'ERP ' + <%= I18n.t("attributes.provision_code") },
+      { field: 'erp_characteristic_flag', sortable: true, hidden: true, caption: 'ERP Flag', size: '10'}
+    ],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          show_inventory_details(selection[0])
+        }
+      }
+    },
+    onLoad: function(event) {
+      event.onComplete = function () {
+        if (this.records[0]) {
+          show_inventory_details(this.records[0].recid)
+        }
+      }
+    }
+  })
+}
+
+function show_inventory_details(inventory_id) {
+  w2ui.inventoriesGrid.select(inventory_id)
+
+  w2ui.inventoryForm.recid = inventory_id
+  w2ui.inventoryForm.reload()
+
+  updatePriceGrid(inventory_id)
+}
+
+function updatePriceGrid(inventory_id) {
+  if (w2ui.pricesGrid) {
+    w2ui.pricesGrid.url = '/productmanager/price_manager/show_prices/' + inventory_id
+    w2ui.pricesGrid.reload()
+  } else {
+    setTimeout(function() {
+      updatePriceGrid(inventory_id)
+    },1000)
+  }
+}

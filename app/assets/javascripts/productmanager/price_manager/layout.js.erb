@@ -23,10 +23,11 @@ $(function () {
     onRender: function(event) {
       event.onComplete = function () {
         productForm()
-        inventoriesGrid()
         if (prices_editable == true) {
+          inventoriesGrid()
           inventoryForm()
         } else {
+          disabledInventoriesGrid()
           disabledInventoryForm()
         }
         menu()
@@ -46,10 +47,11 @@ $(function () {
     ],
     onRender: function(event) {
       event.onComplete = function () {
-        pricesGrid()
         if (prices_editable == true) {
+          pricesGrid()
           priceForm()
         } else {
+          disabledPricesGrid()
           disabledPriceForm()
         }
       }

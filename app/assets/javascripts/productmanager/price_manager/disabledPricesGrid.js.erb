@@ -1,0 +1,49 @@
+function disabledPricesGrid() {
+  $('#pricesGrid').w2grid({
+    name: 'pricesGrid',
+    method: 'GET',
+    multiSelect : false,
+    show: { toolbar: true, footer: true },
+
+    columns : [
+      { field: 'recid', sortable: false, size: '10', hidden: true, attr: "align=center", caption: I18n.t("attributes.id") },
+      { field: 'value', sortable: true, size: '10', caption: I18n.t("attributes.value") },
+      { field: 'vat', sortable: true, size: '10', caption: I18n.t("attributes.vat") },
+      { field: 'valid_from', sortable: true,size: '25', caption: I18n.t("attributes.valid_from") },
+      { field: 'valid_to', sortable: true, size: '25', caption: I18n.t("attributes.valid_to") },
+      { field: 'scale_from', sortable: true, size: '15', caption: I18n.t("attributes.scale_from") },
+      { field: 'scale_to', sortable: true, size: '15', caption: I18n.t("attributes.scale_to") },
+      { field: 'promotion', sortable: true, caption: I18n.t("attributes.promotion") , size: '10', attr: "align=center",
+        render: function (record) {
+          return record.promotion ? '<icon class="fa fa-lg fa-check">' : '<icon class="fa fa-close">'
+        }
+      },
+      { field: 'created_at', sortable: true, hidden: true, caption: I18n.t("attributes.created_at"), size: '30'},
+      { field: 'updated_at', sortable: true, caption: I18n.t("attributes.updated_at"), size: '30'}
+    ],
+
+    onClick: function(event) {
+      event.onComplete = function () {
+        var selection = this.getSelection()
+        if (selection.length == 1) {
+          show_price_details(selection[0])
+        }
+      }
+    },
+
+    onLoad: function(event) {
+      event.onComplete = function () {
+        if (this.records[0]) {
+          show_price_details(this.records[0].recid)
+        }
+      }
+    }
+  })
+}
+
+function show_price_details(price_id) {
+  w2ui.pricesGrid.select(price_id)
+
+  w2ui.priceForm.recid = price_id
+  w2ui.priceForm.reload()
+}

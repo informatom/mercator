@@ -1,9 +1,11 @@
 //= require ./layout
 //= require ./productForm
 //= require ./inventoriesGrid
+//= require ./disabledInventoriesGrid
 //= require ./inventoryForm
 //= require ./disabledInventoryForm
 //= require ./pricesGrid
+//= require ./disabledPricesGrid
 //= require ./priceForm
 //= require ./disabledPriceForm
 //= require ./menu
