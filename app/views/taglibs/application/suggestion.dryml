@@ -1,5 +1,8 @@
 <def tag="card" for="Suggestion">
   <li class="list-group-item">
-    <a href="&product_path(this.product)"><view with="&this.product.number" /></a>
+    <a href="&product_path(this.product)" target="_links">
+      <view with="&this.product.number" />:
+      <small><view with="&this.product.title" /></small>
+    </a>
   </li>
 </def>
