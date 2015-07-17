@@ -98,7 +98,7 @@ describe ConsumablesController, :type => :controller do
     end
 
     it "finds the ancestors" do
-      @ancestors = ["InkJet\r", "Druckkopf\r", "Druckkopf schwarz /grau\r"]
+      @ancestors = ["InkJet\r", "Druckkopf\r", "Druckkopf schwarz / grau\r"]
       get :category, id: "145221110"
       expect(assigns(:ancestors).*.DESCRIPTION).to eql @ancestors
     end

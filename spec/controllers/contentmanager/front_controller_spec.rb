@@ -370,7 +370,9 @@ describe Contentmanager::FrontController, :type => :controller do
         @folder = create(:folder)
         @content_element = create(:content_element, folder_id: @folder.id)
         @second_content_element = create(:content_element, folder_id: @folder.id,
-                                                           name_de: "noch ein Baustein")
+                                                           name_de: "noch ein Baustein",
+                                                           photo: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg'),
+                                                           document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'))
         JsonSpec.configure {exclude_keys "created_at", "updated_at", "photo_url", "thumb_url"}
       end
 
@@ -387,11 +389,11 @@ describe Contentmanager::FrontController, :type => :controller do
         get :show_content_elements, id: @folder.id
         expect(response.body).to be_json_eql({ records: [{ content_de: "Ich bin der deutsche Inhalt",
                                                            content_en: "I am the English content",
-                                                           document_file_name: "dummy_document.pdf",
+                                                           document_file_name: nil,
                                                            markup: "html",
                                                            name_de: "Ich bin der deutsche Titel",
                                                            name_en: "I am the english title",
-                                                           photo_file_name: "dummy_image.jpg",
+                                                           photo_file_name: nil,
                                                            recid: @content_element.id },
                                                          { content_de: "Ich bin der deutsche Inhalt",
                                                            content_en: "I am the English content",
@@ -501,7 +503,8 @@ describe Contentmanager::FrontController, :type => :controller do
 
     describe "POST #content_element" do
       before :each do
-        @content_element = create(:content_element)
+        @content_element = create(:content_element, photo: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg'),
+                                                    document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'))
       end
 
       it "reads the content element" do

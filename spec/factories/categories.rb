@@ -17,10 +17,8 @@ FactoryGirl.define do
     erp_identifier      "0815"
     usage               :standard
     squeel_condition    ""
-    photo               { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg',
-                                              'image/jpg') }
-    document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf',
-                                              'application/pdf') }
+    photo               nil
+    document            nil
 
     factory :category_with_active_product do
       name_de "category_with_active_product"

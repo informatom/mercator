@@ -12,8 +12,8 @@ FactoryGirl.define do
     long_description_en "English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!"
     warranty_de         "Ein Jahr mit gewissen Einschränkungen"
     warranty_en         "One year with evereal restrictions"
-    photo               { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
-    document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+    photo               nil
+    document            nil
 
     factory :new_product do
       number "new_product"
@@ -89,8 +89,8 @@ FactoryGirl.define do
     long_description_en "English: Another Text!"
     warranty_de         "Ein Monat mit gewissen Einschränkungen"
     warranty_en         "One month with evereal restrictions"
-    photo               { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
-    document            { fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+    photo               nil
+    document            nil
 
     factory :third_product do
       number   "number 3"

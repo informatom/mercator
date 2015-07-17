@@ -2,8 +2,8 @@ FactoryGirl.define do
 
   factory :download do
     name     "Ich bin ein Download"
-    document { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
-    photo { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
+    document nil
+    photo    nil
     conversation
   end
 end

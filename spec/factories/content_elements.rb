@@ -8,8 +8,8 @@ FactoryGirl.define do
     content_en "I am the English content"
     markup     "html"
     legacy_id  10
-    photo      { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg') }
-    document   { fixture_file_upload(Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf') }
+    photo      nil
+    document   nil
 
     factory :content_element_2 do
       name_de    "2. Titel"

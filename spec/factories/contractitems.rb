@@ -3,6 +3,7 @@ FactoryGirl.define do
   factory :contractitem do
     contract
     user           {contract.customer}
+    startdate      {Date.today()}
     position       123
     product
     product_number "nr123"
@@ -14,6 +15,7 @@ FactoryGirl.define do
     vat            20
     value          45632
     discount_abs   3
+    term           12
     toner
     volume         10000
   end

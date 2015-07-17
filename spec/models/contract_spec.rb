@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Contract do
-  it "is valid with start_date, runtime" do
+  it "is valid with start_date, term" do
     expect(build :contract).to be_valid
   end
 

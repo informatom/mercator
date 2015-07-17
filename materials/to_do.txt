@@ -1,3 +1,2 @@
-currently nothing to do
-
-dummy image und dummy document
+photo: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg'),
+document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf')

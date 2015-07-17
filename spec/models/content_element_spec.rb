@@ -56,7 +56,7 @@ describe ContentElement do
 
   context "thumb_url" do
     it "returns thumb url" do
-      @content_element = create(:content_element)
+      @content_element = create(:content_element, photo: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg'))
       expect(@content_element.thumb_url).to include("/system/content_elements/photos/",
                                                     "/small/dummy_image.jpg?")
     end
@@ -64,7 +64,7 @@ describe ContentElement do
 
   context "photo_url" do
     it "returns photo url" do
-      @content_element = create(:content_element)
+      @content_element = create(:content_element, photo: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg'))
       expect(@content_element.photo_url).to include("/system/content_elements/photos/",
                                                     "/original/dummy_image.jpg?")
     end
