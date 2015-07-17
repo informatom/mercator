@@ -2,7 +2,7 @@
 
   <h3>
     <t key="attributes.billing_method" /> &nbsp;
-    <span class="label label-success">
+    <span class="nobr label label-success">
       <t key="activerecord.attributes.order.lifecycle.transitions.#{this.billing_method}" />
     </span>
   </h3>
