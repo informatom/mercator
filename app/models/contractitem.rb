@@ -83,7 +83,11 @@ class Contractitem < ActiveRecord::Base
   end
 
   def monthly_rate
-    price / term
+    if term > 0
+      price / term
+    else
+      price
+    end
   end
 
   def value

@@ -531,9 +531,11 @@ describe Contentmanager::FrontController, :type => :controller do
       before :each do
         @folder = create(:folder, position: 1)
         @content_element_without_photo = create(:content_element, photo: nil,
+          document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'),
                                                                   folder_id: @folder.id,
                                                                   name_de: "ohne Photo")
         @content_element_with_photo = create(:content_element, folder_id: @folder.id,
+          photo: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_image.jpg', 'image/jpg'),
                                                                name_de: "mit Photo")
       end
 

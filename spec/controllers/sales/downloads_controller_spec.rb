@@ -16,14 +16,16 @@ describe Sales::DownloadsController, :type => :controller do
 
     describe 'POST #create' do
       it "with data it returns success = true" do
-        post :create, download: attributes_for(:download)
+        post :create, download: attributes_for(:download,
+          document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'))
         expect(response.body).to be_json_eql({ :success => "true" }.to_json)
       end
 
       it "publishes to downloads" do
         expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
                                                    type: "downloads")
-        post :create, download: attributes_for(:download, conversation_id: @conversation.id)
+        post :create, download: attributes_for(:download, conversation_id: @conversation.id,
+          document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'))
       end
 
       it "moves to photo if document is a photo" do
@@ -37,6 +39,7 @@ describe Sales::DownloadsController, :type => :controller do
 
       it "stores document" do
         post :create, download: attributes_for(:download, photo: nil,
+          document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'),
                                                           conversation_id: @conversation.id )
         expect(assigns(:download).photo.size).to eql nil # indeed! not 0!
         expect(assigns(:download).name).to eql "Ich bin ein Download"
