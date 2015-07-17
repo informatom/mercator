@@ -147,7 +147,9 @@ class Productmanager::PropertyManagerController < Productmanager::Productmanager
                        created_at:        I18n.l(@value.created_at),
                        updated_at:        I18n.l(@value.updated_at),
                        product_id:        @value.product_id,
+                       property_group:    (@value.property_group.name if @value.property_group),
                        property_group_id: @value.property_group_id,
+                       property:          (@value.property.name if @value.property),
                        property_id:       @value.property_id
                      }
                    }

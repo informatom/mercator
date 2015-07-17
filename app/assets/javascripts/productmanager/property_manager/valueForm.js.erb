@@ -50,11 +50,11 @@ function valueForm() {
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("js.pm.PropertyGroup.one") + '</label>'+
-      '      <div><input name="property_group_id" /></div>'+
+      '      <div><input name="property_group" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("js.pm.Property.one") + '</label>'+
-      '      <div><input name="property_id" /></div>'+
+      '      <div><input name="property" /></div>'+
       '    </div>'+
       '  </div>'+
       '</div>'+
@@ -82,7 +82,9 @@ function valueForm() {
       { name: 'created_at',        type: 'text', disabled: true },
       { name: 'updated_at',        type: 'text', disabled: true },
       { name: 'product_id',        type: 'int',  disabled: true },
+      { name: 'property_group',    type: 'text',  disabled: true },
       { name: 'property_group_id', type: 'int',  disabled: true },
+      { name: 'property',          type: 'text',  disabled: true },
       { name: 'property_id',       type: 'int',  disabled: true }
     ],
     onChange: function(event) {
@@ -143,6 +145,7 @@ function valueForm() {
           var propertyGroupId = w2ui.propertyGroupsGrid.getSelection()[0]
           if (propertyGroupId) {
             w2ui.valueForm.record['property_group_id'] = parseInt(propertyGroupId)
+            w2ui.valueForm.record['property_group'] = w2ui.propertyGroupsGrid.get(propertyGroupId).name
           } else {
             w2alert(I18n.t("js.pm.PropertyGroup.none_selected"))
             return
@@ -151,6 +154,7 @@ function valueForm() {
           var propertyId = w2ui.propertiesGrid.getSelection()[0]
           if (propertyId) {
             w2ui.valueForm.record['property_id'] = parseInt(propertyId)
+            w2ui.valueForm.record['property'] = w2ui.propertiesGrid.get(propertyId).name
             var state = w2ui.propertiesGrid.get(propertyId).datatype
             w2ui.valueForm.record['state'] = state
             updateFieldVisibility(state)
