@@ -58,7 +58,7 @@
           { field: 'erp_billing_number', caption: 'ERP Billing #', size: '50px', sortable: true},
           { field: 'erp_order_number', caption: 'ERP Order #', size: '50px', sortable: true},
           { field: 'lineitems', caption: I18n.t("attributes.lineitems"), size: '50px', sortable: true},
-          { field: 'sum_incl_vat', caption: I18n.t("attributes.sum_incl_vat"), size: '50px', sortable: true,
+          { field: 'sum_incl_vat', caption: I18n.t("attributes.sum_incl_vat"), size: '100px', sortable: true,
             render: 'currency'},
           { field: 'created_at_date', caption: I18n.t("attributes.created_at"), size: '90px', sortable: true,
             render: 'date:dd.mm.yyyy' },
