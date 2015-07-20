@@ -31,8 +31,10 @@ class Admin::OrdersController < Admin::AdminSiteController
               erp_order_number:    order.erp_order_number,
               lineitems:           order.lineitems.count,
               sum_incl_vat:        order.sum_incl_vat,
-              created_at:          order.created_at.utc.to_i*1000,
-              updated_at:          order.updated_at.utc.to_i*1000
+              created_at_date:     order.created_at.to_date(),
+              created_at_time:     order.created_at.to_s(:time),
+              updated_at_date:     order.updated_at.to_date(),
+              updated_at_time:     order.updated_at.to_s(:time)
             }
           }
         }
