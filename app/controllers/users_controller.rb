@@ -21,28 +21,7 @@ class UsersController < ApplicationController
 
     if logged_in?
       current_user.update(logged_in: true)
-
-      @last_user = User.find(session[:last_user]) if session[:last_user]
-
-      if @last_user
-        @last_basket = @last_user.basket
-        Conversation.where(customer_id: @last_user.id)
-                    .update_all(customer_id: current_user.id)
-      end
-
-      @last_basket.try(:delete_if_obsolete)
-
-      if @last_basket && !@last_basket.frozen?
-        # This strange hoop, to not create a useless basket:
-        @parked_basket_id = current_basket.id
-        current_basket.lifecycle.park!(current_user)
-        Order.find(@parked_basket_id).delete_if_obsolete
-
-        @last_basket.update(user_id: current_user.id)
-        Lineitem.where(order_id: @last_basket.id)
-                .update_all(user_id: current_user.id)
-      end
-
+      copy_basket_from_last_user()
       current_user.sync_agb_with_basket
     end
   end
@@ -52,6 +31,13 @@ class UsersController < ApplicationController
     do_transition_action :login_via_email do
       @current_user = self.current_user = User.find(params[:id])
       create_auth_cookie
+
+      if logged_in?
+        current_user.update(logged_in: true)
+        copy_basket_from_last_user()
+        current_user.sync_agb_with_basket
+      end
+
       redirect_to home_page
     end
   end
@@ -159,6 +145,31 @@ class UsersController < ApplicationController
 
     if self.this.email_address.split("@")[1] == "mercator.informatom.com"
       self.this.email_address = nil
+    end
+  end
+
+  private
+
+  def copy_basket_from_last_user
+    @last_user = User.find(session[:last_user]) if session[:last_user]
+
+    if @last_user
+      @last_basket = @last_user.basket
+      Conversation.where(customer_id: @last_user.id)
+                  .update_all(customer_id: current_user.id)
+    end
+
+    @last_basket.try(:delete_if_obsolete)
+
+    if @last_basket && !@last_basket.frozen?
+      # This strange hoop, to not create a useless basket:
+      @parked_basket_id = current_basket.id
+      current_basket.lifecycle.park!(current_user)
+      Order.find(@parked_basket_id).delete_if_obsolete
+
+      @last_basket.update(user_id: current_user.id)
+      Lineitem.where(order_id: @last_basket.id)
+              .update_all(user_id: current_user.id)
     end
   end
 end
