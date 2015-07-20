@@ -16,8 +16,6 @@ class Contracting::ProductsController < ApplicationController
           alternative_number:  product.alternative_number,
           description_de:      product.description_de,
           description_en:      product.description_en,
-          long_description_de: product.long_description_de,
-          long_description_en: product.long_description_en,
           warranty_de:         product.warranty_de,
           warranty_en:         product.warranty_en,
           not_shippable:       product.not_shippable,
