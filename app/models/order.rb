@@ -374,14 +374,16 @@ class Order < ActiveRecord::Base
       inventory_versandspesen = Inventory.where(number: shipping_cost_product_number).first
       product_versandspesen = inventory_versandspesen.product
 
+      @user = acting_user || self.user
+
       # user-specific derivation
-      shipping_cost_value = inventory_versandspesen.mesonic_price(customer_id: acting_user.id)
+      shipping_cost_value = inventory_versandspesen.mesonic_price(customer_id: @user.id)
       # non user-specific derivation
       shipping_cost_value ||= webartikel_versandspesen.Preis
 
-      Lineitem::Lifecycle.insert_shipping(acting_user,
+      Lineitem::Lifecycle.insert_shipping(@user,
                                           order_id:       id,
-                                          user_id:        acting_user.id,
+                                          user_id:        @user.id,
                                           position:       10000,
                                           product_number: shipping_cost_product_number,
                                           description_de: "Versandkostenanteil",
@@ -395,9 +397,9 @@ class Order < ActiveRecord::Base
     else
       shipping_cost = ShippingCost.determine(order: self, shipping_method: "parcel_service_shipment")
 
-      Lineitem::Lifecycle.insert_shipping(acting_user,
+      Lineitem::Lifecycle.insert_shipping(@user,
                                           order_id:       id,
-                                          user_id:        acting_user.id,
+                                          user_id:        @user.id,
                                           position:       10000,
                                           product_number: shipping_cost_product_number,
                                           description_de: "Versandkostenanteil",
