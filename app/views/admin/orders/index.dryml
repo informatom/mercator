@@ -1,21 +1,106 @@
-<index-page>
-  <collection: replace>
-    <table-plus without-page-nav
-                fields="this, billing_method, billing_company, shipping_method,
-                        shipping_company, erp_customer_number, erp_billing_number,
-                        erp_order_number, sum_incl_vat, updated_at, state, actions">
-      <billing-method-view:>
-        <if><t key="activerecord.attributes.order.lifecycle.transitions.#{this}" /></if>
-      </billing-method-view>
-      <shipping-method-view:>
-        <if><t key="activerecord.attributes.order.lifecycle.transitions.#{this}" /></if>
-      </shipping-method-view>
-      <state-view:>
-        <if><t key="activerecord.attributes.order.lifecycle.states.#{this}" /></if>
-      </state-view>
+<page>
+  <content-body: replace>
+    <div id="productsGrid" style="height: 800px;"></div>
+    <%= javascript_include_tag "i18n" %>
+    <%= javascript_include_tag "i18n/pm" %>
 
-      <actions-heading:></actions-heading:>
-      <actions-view:><bootstrap-table-actions/></actions-view:>
-    </table-plus>
-  </collection:>
-</index-page>
+    <script>
+      var csrf_token = "<%= form_authenticity_token %>"
+      I18n.defaultLocale = "de"
+      I18n.locale = "<%= I18n.locale %>"
+
+      if (I18n.locale == "de") {
+        w2utils.locale('<%= asset_path('contentmanager/de-de.json') %>')
+      }
+
+      $('#productsGrid').w2grid({
+        name: 'productsGrid',
+        multiSelect : false,
+        method: 'GET',
+        show: { header: true, toolbar: true, footer: true },
+        header: "<%= Order.model_name.human(count: 100) %>",
+        toolbar: {
+          items: [
+            { type: 'button', id: 'show',
+              caption: "<%= I18n.t('hobo.actions.show', model: Order.model_name.human) %>",
+              img: 'fa fa-lg fa-eye' },
+            { type: 'button',
+              id: 'edit',
+              caption: " <%= I18n.t('hobo.actions.edit', model: Order.model_name.human) %>",
+              img: 'fa fa-lg fa-edit' },
+            { type: 'button',
+              id: 'delete',
+              caption: " <%= I18n.t('hobo.actions.delete', model: Order.model_name.human) %>",
+              img: 'fa fa-lg fa-trash' }
+          ],
+
+          onClick: function (target, data) {
+            var selection = w2ui.productsGrid.getSelection()
+            switch(target) {
+              case "show":
+                if (selection[0]) {
+                  document.location = "orders/" + selection[0]
+                } else {
+                  w2alert('error')
+                }
+                break
+              case "edit":
+                if (selection[0]) {
+                  document.location = "orders/" + selection[0] + "/edit"
+                } else {
+                  w2alert('error')
+                }
+                break
+              case "delete":
+                if (selection[0]) {
+                  w2confirm('<%= I18n.t("hobo.messages.confirm") %>', function (button) {
+                    if (button =='Yes') {
+                      $.ajax({
+                        url: "orders/" + selection[0] + ".json",
+                        type: "DELETE"
+                      }).done( function() {
+                        w2ui.productsGrid.load("orders")
+                        w2ui.productsGrid.refresh()
+                      })
+                    }
+                  })
+                } else {
+                  w2alert('error')
+                }
+                break
+              }
+          }
+        },
+
+        columns: [
+          { field: 'recid', caption: 'ID', size: '50px', sortable: true, attr: "align=center"},
+          { field: 'state', caption: I18n.t("attributes.state"), size: '100px', sortable: true},
+          { field: 'billing_method', caption: I18n.t("attributes.billing_method"), size: '100px', sortable: true},
+          { field: 'billing_company', caption: I18n.t("attributes.billing_company"), size: '200px', sortable: true},
+          { field: 'shipping_method', caption: I18n.t("attributes.shipping_method"), size: '100px', sortable: true},
+          { field: 'shipping_company', caption: I18n.t("attributes.shipping_company"), size: '200px', sortable: true},
+          { field: 'erp_customer_number', caption: 'ERP Customer #', size: '50px', sortable: true},
+          { field: 'erp_billing_number', caption: 'ERP Billing #', size: '50px', sortable: true},
+          { field: 'erp_order_number', caption: 'ERP Order #', size: '50px', sortable: true},
+          { field: 'lineitems', caption: I18n.t("attributes.lineitems"), size: '50px', sortable: true},
+          { field: 'sum_incl_vat', caption: I18n.t("attributes.sum_incl_vat"), size: '50px', sortable: true},
+          { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true,
+            render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
+          { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
+            render: 'datetime:dd.mm.yyyy|hh24:mm:ss' }
+        ],
+
+        searches: [
+          { field: "state", caption: I18n.t("attributes.state"), type: 'text' },
+          { field: "lineitems", caption: I18n.t("attributes.lineitems"), type: 'int' },
+          { field: "created_at", caption: I18n.t("attributes.created_at"), type: 'time' },
+          { field: "updated_at", caption: I18n.t("attributes.updated_at"), type: 'time' }
+        ],
+
+        sortData: [{ field: 'updated_at', direction: "desc" }]
+      })
+
+      w2ui.productsGrid.load("orders")
+    </script>
+  </content-body:>
+</page>

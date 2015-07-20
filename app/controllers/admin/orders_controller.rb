@@ -10,13 +10,33 @@ class Admin::OrdersController < Admin::AdminSiteController
   end
 
   def index
-    # Reverse Lookup for state
-    key = I18n.t("activerecord.attributes.order.lifecycle.states").key(params[:search])
-    params[:search] = key.to_s if key
+    @orders = Order.all
 
-    self.this = @orders = Order.paginate(:page => params[:page])
-                               .search([params[:search], :state])
-                               .order_by(parse_sort_param(:state, :updated_at))
-    hobo_index
+    respond_to do |format|
+      format.html { respond_with [] }
+      format.text {
+        render json: {
+          status: "success",
+          total: @orders.count,
+          records: @orders.collect {
+            |order| {
+              recid:               order.id,
+              state:               order.state,
+              billing_method:      (I18n.t("activerecord.attributes.order.lifecycle.transitions.#{order.billing_method}") if order.billing_method),
+              billing_company:     order.billing_company,
+              shipping_method:     (I18n.t("activerecord.attributes.order.lifecycle.transitions.#{order.shipping_method}") if order.shipping_method),
+              shipping_company:    order.shipping_company,
+              erp_customer_number: order.erp_customer_number,
+              erp_billing_number:  order.erp_billing_number,
+              erp_order_number:    order.erp_order_number,
+              lineitems:           order.lineitems.count,
+              sum_incl_vat:        order.sum_incl_vat,
+              created_at:          order.created_at.utc.to_i*1000,
+              updated_at:          order.updated_at.utc.to_i*1000
+            }
+          }
+        }
+      }
+    end
   end
 end
