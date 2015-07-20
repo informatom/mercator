@@ -96,6 +96,10 @@ class BillingAddressesController < ApplicationController
                        .merge(user_id: current_user.id))
 
         @order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless @order.shipping_method
+        if @order.shipping_method == "parcel_service_shipment"
+          @order.add_shipment_costs
+        end
+
         redirect_to order_path(@order)
       end
     end
@@ -117,6 +121,10 @@ class BillingAddressesController < ApplicationController
       unless @order.shipping_company
         @order.update(this.namely([:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
         @order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless @order.shipping_method
+
+        if @order.shipping_method == "parcel_service_shipment"
+          @order.add_shipment_costs
+        end
       end
 
       redirect_to order_path(@order)
