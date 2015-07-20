@@ -21,6 +21,9 @@ class Product < ActiveRecord::Base
   # can be found in mercator/vendor/engines/mercator_icecat/app/models/product_extensions.rb
   include ProductExtensions if Rails.application.config.try(:icecat) == true
 
+  # can be found in mercator/vendor/engines/mercator_mesonic/app/models/mercator_product_extensions.rb
+  include MercatorProductExtensions if Rails.application.config.try(:erp) == "mesonic"
+
   attr_accessible :title_de, :title_en, :number, :description_de, :description_en,
                   :long_description_de, :long_description_en,
                   :photo, :document, :productrelations, :supplyrelations,
@@ -231,6 +234,14 @@ class Product < ActiveRecord::Base
     products = []
     Product.all.each do |product|
       products << product if product.prices.count >= x
+    end
+    return products
+  end
+
+  def self.with_at_most_x_prices(x)
+    products = []
+    Product.all.each do |product|
+      products << product if product.prices.count <= x
     end
     return products
   end
