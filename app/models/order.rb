@@ -369,6 +369,11 @@ class Order < ActiveRecord::Base
   def add_shipment_costs
     shipping_cost_product_number = Constant.find_by_key("shipping_cost_article").value
 
+    self.lineitems
+        .find_by(product_number: shipping_cost_product_number)
+        .try(:destroy)
+
+
     if Rails.application.config.try(:erp) == "mesonic"
       webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number).first
       inventory_versandspesen = Inventory.where(number: shipping_cost_product_number).first
