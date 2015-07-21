@@ -86,7 +86,8 @@ class User < ActiveRecord::Base
     #   UserMailer.activation(self, lifecycle.key).deliver
     # end
 
-    transition :accept_gtc, {:active => :active}, available_to: :self,
+
+    transition :accept_gtc, {:inactive => :inactive}, available_to: :self,
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
     transition :accept_gtc, {:guest => :guest}, available_to: :self,

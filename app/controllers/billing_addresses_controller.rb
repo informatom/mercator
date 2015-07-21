@@ -60,7 +60,7 @@ class BillingAddressesController < ApplicationController
       self.this.user = current_user
       @order = Order.find(params[:billing_address][:order_id])
 
-      if current_user.state == "guest"
+      if ["guest", "inactive"].include?(current_user.state)
         if this.valid?
           if current_user.update(this.namely [:gender, :title, :first_name, :surname,
                                               :email_address, :phone])
