@@ -126,4 +126,8 @@
       <if test="&this.state == 'invalid'"><p class="text-info"><t key='mercator.messages.offer.invalid'/></p></if>
       <if test="&Date.today > this.valid_until"><p class="text-info"><t key='mercator.messages.offer.expired'/></p></if>
     </field-list:>
+
+    <footer: class="text-center">
+      <container name="Auftrag_Footer" />
+    </footer:>
 </show-page>
