@@ -35,21 +35,29 @@
               <human-collection-name collection="basket" your/>
             </ht>
           </h3>
-          <collection:orders.basket param/>
+          <collection:orders.basket />
+          <collection:orders.parked without-empty-message/>
+          <collection:orders.in_payment without-empty-message />
+          <collection:orders.payment_failed without-empty-message />
 
           <h3 param="collection-heading">
             <t key="mercator.open(pl)" /> <ht key="order.collection.heading" count="&this.orders.accepted_offer.count" >
               <human-collection-name collection="orders" your/>
             </ht>
           </h3>
-          <collection:orders.accepted_offer param/>
+          <collection:orders.accepted_offer />
 
           <h3 param="collection-heading">
             <ht key="order.collection.heading" count="&this.orders.ordered.count" >
               <human-collection-name collection="orders" your/>
             </ht>
           </h3>
-          <collection:orders.ordered param/>
+          <collection:orders.paid />
+          <collection:orders.ordered without-empty-message/>
+          <collection:orders.shipped without-empty-message/>
+
+          <h3> <t key="mercator.archive"/> </h3>
+          <collection:orders.accepted_offer />
         </div>
 
         <div class="col-md-4">
