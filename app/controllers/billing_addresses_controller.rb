@@ -50,6 +50,10 @@ class BillingAddressesController < ApplicationController
       self.this.email_address = nil
     end
 
+    if self.this.surname == "Gast"
+      self.this.surname = nil
+    end
+
     creator_page_action :enter
   end
 
