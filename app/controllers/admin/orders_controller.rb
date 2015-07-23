@@ -22,6 +22,7 @@ class Admin::OrdersController < Admin::AdminSiteController
             |order| {
               recid:               order.id,
               state:               order.state,
+              user:                (order.user.name if order.user),
               billing_method:      (I18n.t("activerecord.attributes.order.lifecycle.transitions.#{order.billing_method}") if order.billing_method),
               billing_company:     order.billing_company,
               shipping_method:     (I18n.t("activerecord.attributes.order.lifecycle.transitions.#{order.shipping_method}") if order.shipping_method),

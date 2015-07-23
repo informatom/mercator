@@ -50,6 +50,7 @@
         columns: [
           { field: 'recid', caption: 'ID', size: '50px', sortable: true, attr: "align=center"},
           { field: 'state', caption: I18n.t("attributes.state"), size: '100px', sortable: true},
+          { field: 'user', caption: I18n.t("attributes.user"), size: '150px', sortable: true},
           { field: 'billing_method', caption: I18n.t("attributes.billing_method"), size: '100px', sortable: true},
           { field: 'billing_company', caption: I18n.t("attributes.billing_company"), size: '200px', sortable: true},
           { field: 'shipping_method', caption: I18n.t("attributes.shipping_method"), size: '100px', sortable: true},
@@ -73,6 +74,12 @@
         searches: [
           { field: "state", caption: I18n.t("attributes.state"), type: 'text' },
           { field: "lineitems", caption: I18n.t("attributes.lineitems"), type: 'int' },
+          { field: "user", caption: I18n.t("attributes.lineitems"), type: 'text' },
+          { field: "billing_company", caption: I18n.t("attributes.billing_company"), type: 'text' },
+          { field: "shipping_company", caption: I18n.t("attributes.shipping_company"), type: 'text' },
+          { field: 'erp_customer_number', caption: 'ERP Customer #', type: 'text' },
+          { field: 'erp_billing_number', caption: 'ERP Billing #', type: 'text' },
+          { field: 'erp_order_number', caption: 'ERP Order #', type: 'text' },
           { field: "created_at_date", caption: I18n.t("attributes.created_at"), type: 'date' },
           { field: "created_at_time", caption: I18n.t("attributes.created_at"), type: 'time' },
           { field: "updated_at_date", caption: I18n.t("attributes.updated_at"), type: 'date' },
