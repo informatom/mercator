@@ -2,7 +2,7 @@
   <old-form merge multipart>
     <field-list: fields="gender, title, first_name, surname, email_address,
                          phone, sales, sales_manager, contentmanager, administrator,
-                         productmanager, logged_in, locale, addresses, billing_addresses, photo" param>
+                         productmanager, logged_in, locale, photo" param>
     </field-list:>
   </old-form>
 </extend>
