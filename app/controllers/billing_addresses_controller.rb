@@ -60,6 +60,8 @@ class BillingAddressesController < ApplicationController
 
   def do_enter
     do_creator_action :enter do
+      current_user.billing_addresses.where.not(id: self.this.id).delete_all
+
       @billing_address = self.this
       self.this.user = current_user
       @order = Order.find(params[:billing_address][:order_id])

@@ -100,30 +100,3 @@
     </actions:>
   </old-form>
 </extend>
-
-<extend tag="enter-page" for="BillingAddress">
-  <old-enter-page merge>
-    <main-content: replace>
-      <div class="row">
-        <div class="col-md-8">
-          <main-content restore/>
-        </div>
-        <div class="col-md-4">
-          <if test="&current_user.billing_addresses">
-            <h3><t key="mercator.stored_billing_addresses"/></h3>
-          </if>
-          <repeat with="&current_user.billing_addresses">
-            <br/>
-            <p><sticker/></p>
-            <p>
-              <my-transition-link transition="use" method="put" class="btn-info" params="&{:order_id => @this.order_id.to_s}"/>
-              <transition-link transition="trash" method="put" class="btn btn-danger" params="&{:order_id => @this.order_id.to_s}">
-                <%= fa_icon "trash-o", class: "fa-lg" %>
-              </transition-link>
-            </p>
-          </repeat>
-        </div>
-      </div>
-    </main-content:>
-  </old-enter-page>
-</extend>
