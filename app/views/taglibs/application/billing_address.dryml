@@ -1,53 +1,21 @@
 <def tag="card" for="BillingAddress">
   <div class="well">
     <header: param>
-      <h4 param="heading"><t key="&this.gender" /> <view:title /> <view:first-name /> <name /></h4>
+      <h4 param="heading"><view:company/></h4>
+      <view:detail/>
     </header:>
     <body: param>
-      <p>
-        <view:company /> <if:detail>, <view/></if> <br />
-        <view:street />, <view:postalcode /> <view:city />, <view:country /> <br/>
-        <view:phone/>
-      </p>
-      <p>
-        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-sm pull-right" params="&{:order_id => params[:order_id]}">
-          <ht key="billing_address.actions.edit">Edit</ht>
-        </a><br/>
-      </p>
+      <t key="&this.gender" /> <view:title/> <view:first-name/> <view:surname /><br/>
+      <view:street/>, <view:postalcode/> <view:city/><br/>
+      <view:country/><br/>
+      <view:phone/><br/>
+      <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-sm pull-right" params="&{:order_id => params[:order_id]}">
+        <ht key="billing_address.actions.edit">Edit</ht>
+      </a><br/>
     </body:>
   </div>
 </def>
 
-<def tag="sticker" for="BillingAddress">
-  <card class="address" param="default" merge>
-    <body: param>
-      (<view:email-address/>)<br/>
-      <p>
-        <if:gender><view/>,</if>
-        <if:title><view/> </if>
-        <if:first-name><view/> </if>
-        <if:surname><view/></if><br />
-
-        <if:detail><view/>,</if>
-        <view:street/>,
-        <view:postalcode/>
-        <view:city/>,
-        <view:country/><br/>
-        <view:phone/>
-
-        <if test="&Valvat.new(this.vat_number).exists?(:detail => true)">
-          <br />
-          <view:vat-number/><br />
-          <small>
-            <t key="mercator.registered_for" />:<br/>
-            <%= Valvat.new(this.vat_number).exists?(:detail => true)[:name] %>,
-            <%= Valvat.new(this.vat_number).exists?(:detail => true)[:address].gsub(/\n/,", ") %>
-          </small>
-        </if>
-      </p>
-    </body:>
-  </card>
-</def>
 
 <extend tag="enter-form" for="BillingAddress">
   <old-enter-form merge>
@@ -85,6 +53,7 @@
     </actions:>
   </old-enter-form>
 </extend>
+
 
 <extend tag="form" for="BillingAddress">
   <old-form merge>

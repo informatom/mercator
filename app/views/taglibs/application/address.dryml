@@ -1,39 +1,38 @@
 <def tag="card" for="Address">
   <div class="well">
     <header: param>
-      <h4 param="heading"><t key="&this.gender" /> <view:title /> <view:first-name/> <view:surname/></h4>
+      <h4 param="heading"><view:company/></h4>
+      <view:detail/>
     </header:>
     <body: param>
-      <p>
-        <view:company/> <if:detail>, <view/></if><br/>
-        <view:street/>, <view:postalcode/> <view:city/>, <view:country/><br />
-        <view:phone/>
-      </p>
-      <p>
-        <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-sm pull-right"
-                         params="&{:order_id => params[:order_id]}">
-          <ht key="address.actions.edit">Edit</ht>
-        </a><br/>
-      </p>
+      <t key="&this.gender" /> <view:title/> <view:first-name/> <view:surname /><br/>
+      <view:street/>, <view:postalcode/> <view:city/><br/>
+      <view:country/><br/>
+      <view:phone/><br/>
+      <a action="edit" if="&can_edit?" param="edit-link" class="btn btn-primary btn-sm pull-right"
+                       params="&{:order_id => params[:order_id]}">
+        <ht key="address.actions.edit">Edit</ht>
+      </a><br/>
     </body:>
   </div>
 </def>
 
-<def tag="sticker" polymorphic/>
+<def tag="sticker" polymorphic />
 <def tag="sticker" for="Address">
-  <card class="address" param="default" merge>
+  <div class="well">
+    <header: param>
+      <h4 param="heading"><view:company/></h4>
+      <view:detail/>
+    </header:>
     <body: param>
-      <p>
-        <if:company><view/><br /></if>
-        <if:detail><view/> <br/></if>
-        <if:gender><view/></if> <if:title><view/></if> <if:first-name><view/> </if> <if:surname><view/></if> <br />
-        <view:street/><br />
-        <view:postalcode/> <view:city/>, <view:country/><br />
-        <view:phone/>
-      </p>
+      <t key="&this.gender" /> <view:title/> <view:first-name/> <view:surname /><br/>
+      <view:street/>, <view:postalcode/> <view:city/><br/>
+      <view:country/><br/>
+      <view:phone/><br/>
     </body:>
-  </card>
+  </div>
 </def>
+
 
 <extend tag="enter-form" for="Address">
   <old-enter-form merge>
@@ -53,6 +52,7 @@
     </actions:>
   </old-enter-form>
 </extend>
+
 
 <extend tag="form" for="Address">
   <old-form merge>

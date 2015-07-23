@@ -111,38 +111,4 @@ class BillingAddressesController < ApplicationController
       end
     end
   end
-
-
-  def do_use
-    do_transition_action :use do
-      @order = Order.find(params[:order_id])
-      @order.update(this.namely([:company, :gender, :title, :first_name, :surname,
-                                :detail, :street, :postalcode, :city, :country, :phone], prefix: "billing_"))
-
-      if (Rails.application.config.try(:erp) == "mesonic" && Rails.env == "production")
-        current_user.update_mesonic(billing_address: self.this)
-      end
-
-      @order.update(billing_method: Order::DEFAULT_BILLING_METHOD) unless @order.billing_method
-
-      unless @order.shipping_company
-        @order.update(this.namely([:company, :gender, :title, :first_name, :surname, :detail, :street, :postalcode, :city, :country, :phone], prefix: "shipping_"))
-        @order.update(shipping_method: Order::DEFAULT_SHIPPING_METHOD) unless @order.shipping_method
-      end
-
-      if @order.shipping_method.to_s == "parcel_service_shipment"
-        @order.add_shipment_costs
-      end
-
-      redirect_to order_path(@order)
-    end
-  end
-
-
-  def do_trash
-    do_transition_action :trash do
-      self.this.destroy
-      redirect_to enter_billing_addresses_path({:order_id => params[:order_id]})
-    end
-  end
 end
