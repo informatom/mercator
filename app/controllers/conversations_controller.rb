@@ -29,7 +29,7 @@ class ConversationsController < ApplicationController
 
 
   def initiate
-    self.this = @conversation = Conversation.new(customer: current_user, name: I18n.t("mercator.salutation.callback"))
+    self.this = @conversation = Conversation.new(customer: current_user)
 
     creator_page_action :initiate
 
@@ -56,7 +56,7 @@ class ConversationsController < ApplicationController
   def do_initiate
     do_creator_action :initiate do
       self.this.update(customer: current_user)
-      self.this.delay.inform_sales(locale: I18n.locale) # we fork into delayed handling
+      self.this.delay.inform_sales(locale: I18n.locale) if self.this.persisted? # we fork into delayed handling
     end
   end
 
