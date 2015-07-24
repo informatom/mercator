@@ -17,13 +17,13 @@ class Conversation < ActiveRecord::Base
 
   validates :customer, :presence => true
 
-  has_many :downloads
-  has_many :messages
-  has_many :links
-  has_many :offers
+  has_many :downloads, dependent: :restrict_with_error
+  has_many :messages, dependent: :restrict_with_error
+  has_many :links, dependent: :restrict_with_error
+  has_many :offers, dependent: :restrict_with_error
   has_many :baskets, -> {where state: "basket"}, :class_name => 'Order'
   has_many :products, :through => :suggestions
-  has_many :suggestions
+  has_many :suggestions, dependent: :restrict_with_error
 
 
   # --- Lifecycles --- #
