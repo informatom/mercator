@@ -18,6 +18,13 @@
               Update Mesonic Webartikel
             </a>
           </p>
+
+          <p>
+            You should update table Aktmandant in Mesonic before clicking this button:<br/>
+            <a href="&mercator_mesonic.update_business_year_path" class="btn btn-warning">
+              Update Businessyear
+            </a>
+          </p>
         </if>
 
         <if test="&Rails.application.config.try(:payment) == 'mpay24'">
