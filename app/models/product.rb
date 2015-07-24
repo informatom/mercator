@@ -268,4 +268,19 @@ class Product < ActiveRecord::Base
   def self.active_and_number_contains(number)
     Product.active.number_contains(number)
   end
+
+  def self.to_csv
+    jobuserid = User::JOBUSER.id
+
+    CSV.generate do |csv|
+      csv << ["price"] + column_names
+      all.each do |product|
+        csv << [ product.determine_price(amount: 1,
+                                         date: Time.now(),
+                                         incl_vat: false,
+                                         customer_id: jobuserid) || "-" ] +
+        product.attributes.values_at(*column_names)
+      end
+    end
+  end
 end
