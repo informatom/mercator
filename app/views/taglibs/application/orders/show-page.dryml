@@ -194,6 +194,14 @@
                 </accept-gtc-form>
                </if>
 
+              <if test="&current_user.lifecycle.find_transition(:resend_email_confirmation, current_user)">
+                <t key='mercator.email_confirmation_missing' />
+                <my-transition-link with="&current_user"
+                                    transition="resend_email_confirmation"
+                                    class="btn-primary"/>
+                <meta http-equiv="refresh" content="5"/>
+               </if>
+
               <my-transition-link transition="check" method="get" class="btn-primary"/>
             </else>
           </div>

@@ -87,8 +87,7 @@ class User < ActiveRecord::Base
     # end
 
 
-    transition :accept_gtc, {:inactive => :inactive}, available_to: :self,
-               params: [:confirmation, :order_id], unless: :gtc_accepted_current?
+    transition :resend_email_confirmation, {[:inactive, :guest] => :inactive}, available_to: :all
 
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?

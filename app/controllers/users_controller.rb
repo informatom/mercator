@@ -62,6 +62,14 @@ class UsersController < ApplicationController
   end
 
 
+  def do_resend_email_confirmation
+    current_user.lifecycle.generate_key
+    current_user.save
+    UserMailer.activation(current_user, current_user.lifecycle.key).deliver
+    redirect_to order_path(current_user.basket)
+  end
+
+
   def request_email_login
     @user = User.find_by_email_address(params[:email_address])
     if @user
@@ -74,10 +82,8 @@ class UsersController < ApplicationController
 
 
   def do_activate
-    do_transition_action :activate do
-      flash[:notice] = I18n.t("mercator.messages.user.activated")
-      redirect_to :root
-    end
+    do_transition_action :activate
+    flash[:notice] = I18n.t("mercator.messages.user.activated")
   end
 
 

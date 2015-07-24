@@ -525,6 +525,7 @@ de:
             accept_gtc: AGBs bestätigen
             deactivate: Deaktivieren
             reactivate: Aktivieren
+            resend_email_confirmation: E-Mail erneut senden
             reset_password: Kennwort festlegen
       user/genders:
         male: Herr
@@ -683,6 +684,7 @@ de:
     deprecate_categories: leere Kategorien deaktivieren
     download_here: Hier downloaden
     drop_here: "Dateien können auch einfach per Drag and Drop in die Seite gezogen werden."
+    email_confirmation_missing: "Bitte bestätigen Sie die Richtigkeit der E-Mail Adresse durch Klick auf den Link im E-Mail."
     email_sent: "Wir haben, falls diese Adresse registriert ist, ein E-Mail mit einem Anmeldelink gesendet. Dieser ist 10 Minuten gültig und kann nur ein Mal verwendet werden."
     excl_vat: excl. Mwst.
     existing_conversation: "Wollen Sie zu Ihrer letzten Konversation zurückkehren?"
@@ -771,7 +773,7 @@ de:
       user:
         accept_gtc:
           error: "Sie müssen den allgemeinen Geschäftsbedingungen zustimmen, um den Bestellvorgang fortzusetzen!"
-        activated: Ihr Account is nun aktiviert.
+        activated: Ihr Account is nun aktiviert. Ihre E-Mail Adresse wurde erfolgreich bestätigt, sie können diesen Tab nun schließen.
         confirm_and_refresh: "Ein E-Mail wurde an Sie versandt. Bitte klicken Sie auf den Bestätigungslink im E-Mail und laden Sie dann die Seite neu."
         update_email:
           error: ist bereits registriert oder fehlt.

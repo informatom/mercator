@@ -70,7 +70,8 @@ class BillingAddressesController < ApplicationController
         if this.valid?
           if current_user.update(this.namely [:gender, :title, :first_name, :surname,
                                               :email_address, :phone])
-            current_user.lifecycle.generate_key unless current_user.lifecycle.key
+            current_user.lifecycle.generate_key
+            current_user.save
             UserMailer.activation(current_user, current_user.lifecycle.key).deliver
           else
             self.this.email_address = nil
