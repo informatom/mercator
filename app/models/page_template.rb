@@ -39,6 +39,14 @@ class PageTemplate < ActiveRecord::Base
   end
 
 
+  # --- Class Methods --- #
+
+
+  def self.save_to_disk
+    all.each {|page_template| page_template.save_to_disk}
+  end
+
+
   # --- Instance Methods --- #
 
   def save_to_disk
