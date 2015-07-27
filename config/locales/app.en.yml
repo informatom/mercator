@@ -671,6 +671,7 @@ en:
     conversation_notifications: On this page audio notifications on new conversations are given. (Is your speaker / headphone on?)
     create_account: Create Account
     customer_number: Customer Number
+    customer_typing: Customer is typing
     customer_view: Customer View
     delete: Delete
     delete_parent_category: Delete Parent Category

@@ -53,9 +53,45 @@
             </div>
 
             <div class="panel-footer">
+              <set conversation-id="&this.id.to_s"/>
               <form with="&@message" update="mymessages" reset-form>
                 <input:content class="input-block-level form-control"
+                               autocomplete="off"
+                               id="watched_message_field"
                                placeholder="#{I18n.translate('mercator.your_message')}" />
+
+                <!-- Following: https://remysharp.com/2010/07/21/throttling-function-calls -->
+                <script>
+                  $('#watched_message_field').on('input', throttle(function() {
+                      jQuery.ajax({
+                        url: "/conversations/<%= conversation_id -%>/typing_customer",
+                        type: "POST",
+                        data: { message: $('#watched_message_field').val()}
+                      });
+                    }, 1000));
+
+                  function throttle(fn, threshhold, scope) {
+                    threshhold || (threshhold = 250);
+                    var last,
+                        deferTimer;
+                    return function () {
+                      var context = scope || this;
+
+                      var now = +new Date,
+                          args = arguments;
+                      <%= "if (last && now < last + threshhold) {".html_safe -%>
+                        clearTimeout(deferTimer);
+                        deferTimer = setTimeout(function () {
+                          last = now;
+                          fn.apply(context, args);
+                        }, threshhold);
+                      } else {
+                        last = now;
+                        fn.apply(context, args);
+                      }
+                    };
+                  }
+                </script>
               </form>
             </div>
           </div>

@@ -24,6 +24,7 @@ class ConversationsController < ApplicationController
       @message = Message.new(reciever_id: reciever_id,
                              conversation_id: this.id,
                              sender_id: sender_id)
+      session[:current_conversation_id] = this.id
     end
   end
 
@@ -92,5 +93,13 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     self.this = @products = @conversation.products.paginate(:page => 1, :per_page => @conversation.products.count)
     hobo_index
+  end
+
+
+  def typing_customer
+    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ params[:id].to_s,
+                          type: "typing_customer",
+                          message: params[:message])
+    render nothing: true if request.xhr?
   end
 end
