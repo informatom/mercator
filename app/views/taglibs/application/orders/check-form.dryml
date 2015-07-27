@@ -61,7 +61,11 @@
     <actions: replace>
       <div param="actions">
         <my-transition-link transition="place" method="put" class="btn-danger"/>
-        <my-transition-link transition="pay" method="put" class="btn-danger"/>
+
+        <if test="&this.lifecycle.find_transition(:pay, current_user)">
+          <container name='elektronische_Zahlung_unwiderruflich'/><br/>
+          <my-transition-link transition="pay" method="put" class="btn-danger"/>
+        </if>
         <t key='hobo.support.or'/> <a with="&this"><t key='mercator.back'/></a>
       </div>
     </actions:>

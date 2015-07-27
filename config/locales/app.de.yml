@@ -497,7 +497,7 @@ de:
             parcel_service_shipment: Paketdienst
             archive_parked_basket: Geparkten Warenkorb archivieren
             pay: Jetzt bezahlen
-            place: Jetzt bestellen
+            place: Jetzt zahlungspflichtig bestellen
             check: Bestellung kontrollieren
             delete_all_positions: alle Positionen löschen
       pageelement/usage_types:
