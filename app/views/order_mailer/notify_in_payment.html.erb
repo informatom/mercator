@@ -20,8 +20,6 @@
       <% end %>
     </ul>
 
-    <%= link_to "Alle Bestellungen im Status 'in Bezahlung.'",
-                admin_orders_url(in_payment: 'true',
-                                 domain: Constant::SHOPDOMAIN) %>
+    <%= link_to "Administration Bestellungen", admin_orders_url(domain: Constant::SHOPDOMAIN) %>
   </body>
 </html>
