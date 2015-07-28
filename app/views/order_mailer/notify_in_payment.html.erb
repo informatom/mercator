@@ -16,11 +16,12 @@
 
     <ul>
       <% @orders.each do |order| %>
-        <li><%= link_to order.name, admin_order_path(order) %></li>
+        <li><%= link_to order.name, admin_order_url(order, domain: Constant::SHOPDOMAIN) %></li>
       <% end %>
     </ul>
 
     <%= link_to "Alle Bestellungen im Status 'in Bezahlung.'",
-                admin_orders_path(sort: 'updated_at', search: 'in Bezahlung') %>
+                admin_orders_url(in_payment: 'true',
+                                 domain: Constant::SHOPDOMAIN) %>
   </body>
 </html>

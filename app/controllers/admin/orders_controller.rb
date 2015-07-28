@@ -10,7 +10,11 @@ class Admin::OrdersController < Admin::AdminSiteController
   end
 
   def index
-    @orders = Order.all
+    if params[:in_payment] == 'true'
+      @orders = Order.where(state: ['in payment', 'payment_failed'])
+    else
+      @orders = Order.all
+    end
 
     respond_to do |format|
       format.html { respond_with [] }
