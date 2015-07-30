@@ -13,7 +13,6 @@ db/schema.rb
 config/hobo_routes.rb
 config/private_pub.yml
 config/delayed_job.sh
-config/mercator.god
 
 log/*
 
