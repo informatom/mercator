@@ -858,7 +858,8 @@ en:
     shop: Webshop
     show: Show
     size: Size
-    start_conversation: Online Advice
+    start_conversation: Personal Online Advice
+    start_conversation_invitation: "Our sales representatives would like to help you:"
     starting_from: starting from
     states:
       active: active

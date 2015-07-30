@@ -1,0 +1,5 @@
+<def tag="pickup-chat-link" attrs="user-id">
+  <a href="/videochat/#{user_id}/pickup" class="btn btn-danger" target="videochat">
+    <%= fa_icon "video-camera", class: "fa-lg" %> Video Chat
+  </a>
+</def>

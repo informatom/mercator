@@ -27,7 +27,7 @@
           if (data.conversation) {
             message = Messenger().post({
               message: "<strong>" + data.sender + "</strong>: " + data.content,
-              hideAfter: 300,
+              hideAfter: 30,
               showCloseButton: true,
               actions: {
                 take: {
@@ -41,7 +41,7 @@
           } else if (data.video_channel_id) {
             message = Messenger().post({
               message: "<strong>" + data.sender + "</strong>: " + data.content,
-              hideAfter: 300,
+              hideAfter: 30,
               showCloseButton: true,
               actions: {
                 take: {
@@ -55,7 +55,7 @@
           } else {
             message = Messenger().post({
               message: "<strong>" + data.sender + "</strong>: " + data.content,
-              hideAfter: 300,
+              hideAfter: 30,
               showCloseButton: true
             });
           }

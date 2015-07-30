@@ -106,6 +106,9 @@
             <t key="mercator.customer_view"/>
           </a>
 
+          <pickup-chat-link user-id="&self.this.customer_id" />
+
+
           <h3><%= t("attributes.suggestions") %> </h3>
           <form with="&@suggestion" update="suggestions" reset-form>
             <div class="form-group form-group-sm">

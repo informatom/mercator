@@ -862,7 +862,8 @@ de:
     shop: Webshop
     show: Zeige
     size: Größe
-    start_conversation: Online Beratung
+    start_conversation: Persönliche Online Beratung
+    start_conversation_invitation: "Ein Mitarbeiter berät Sie auch gerne online:"
     starting_from: von
     states:
       active: aktiv
