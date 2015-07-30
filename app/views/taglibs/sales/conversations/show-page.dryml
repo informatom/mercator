@@ -1,7 +1,11 @@
 <extend tag="show-page" for="Conversation">
   <old-show-page merge>
     <content-header:>
-      <h2><t key="activerecord.models.conversation.one"/> &nbsp; "<view:name />" <t key="mercator.from"/> <view:created-at /></h2>
+      <h2 style="margin: 0px;">
+        <image src="http://www.gravatar.com/avatar/#{this.id}?s=70&d=wavatar&r=PG"/>
+        <t key="activerecord.models.conversation.one"/>
+        "<view:name />" <t key="mercator.from"/> <view:created-at />
+      </h2>
     </content-header:>
 
     <content-body:>

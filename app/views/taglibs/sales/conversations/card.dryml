@@ -1,7 +1,7 @@
 <def tag="card" for="Conversation">
   <card class="conversation" param="default" merge>
     <header: param>
-      <name />
+      <image src="http://www.gravatar.com/avatar/#{this.id}?s=40&d=wavatar&r=PG"/> <name />
     </header:>
     <body:>
       <div class="row">

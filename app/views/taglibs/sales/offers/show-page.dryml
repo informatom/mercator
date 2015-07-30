@@ -1,7 +1,7 @@
 <extend tag="show-page" for="Offer">
   <old-show-page merge>
     <content-header:>
-      <h1><view:name/></h1>
+      <h1 style="margin: 0px;"><image src="http://www.gravatar.com/avatar/#{this.conversation.id}?s=70&d=wavatar&r=PG"/> <view:name/></h1>
     </content-header:>
 
     <field-list: replace >
