@@ -172,12 +172,20 @@
               };
             }
           });
-      </script>
-      <script>
+
         PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
           $("form#" + "summary-form").submit();
         });
       </script>
+
+      <if test="&current_user.id == this.customer.id">
+        <script>
+          window.onbeforeunload = function closingCode(){
+            jQuery.ajax({ url: "/conversations/<%= conversation_id -%>/close", type: "GET" });
+            return null;
+          }
+        </script>
+      </if>
     </content-body:>
   </old-show-page>
 </extend>
