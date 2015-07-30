@@ -114,9 +114,6 @@ class ConversationsController < ApplicationController
     PrivatePub.publish_to("/" + CONFIG[:system_id] + "/conversations/"+ params[:id].to_s,
                           type: "messages")
 
-    PrivatePub.publish_to("/" + CONFIG[:system_id] + "/personal/"+ @conversation.consultant_id.to_s,
-                          sender: User::ROBOT.name,
-                          content: I18n.t('mercator.customer_left_conversation'))
     render nothing: true if request.xhr?
   end
 end
