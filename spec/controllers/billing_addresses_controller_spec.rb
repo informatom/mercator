@@ -148,6 +148,8 @@ describe BillingAddressesController, :type => :controller do
     describe "PUT #do_enter" do
       before :each do
         @order = create(:order, shipping_method: nil)
+        create(:constant_shipping_cost)
+        create(:shipping_cost_article)
       end
 
       it "finds the order" do
@@ -283,111 +285,6 @@ describe BillingAddressesController, :type => :controller do
         put :do_enter, id: @instance.id,
                        billing_address: attributes_for(:second_billing_address, order_id: @order.id)
         expect(response).to redirect_to order_path(@order)
-      end
-    end
-
-
-    describe "PUT #do_use" do
-      before :each do
-        @order = create(:order)
-      end
-
-      it "is available for active" do
-        @instance.state = "active"
-        expect(@instance.lifecycle.can_use? @user).to be
-      end
-
-
-      it "finds the order" do
-        put :do_use, id: @instance.id,
-                     order_id: @order.id
-        expect(assigns(:order)).to eql @order
-      end
-
-      it "updates order parameters" do
-        @billing_address = create(:second_billing_address, user_id: @user.id)
-        put :do_use, id: @billing_address.id,
-                     order_id: @order.id
-        expect(assigns(:order).billing_company).to eql "small corp"
-        expect(assigns(:order).billing_gender).to eql "female"
-        expect(assigns(:order).billing_title).to eql "Mga"
-        expect(assigns(:order).billing_first_name).to eql "Jane"
-        expect(assigns(:order).billing_surname).to eql "Done"
-        expect(assigns(:order).billing_detail).to eql "Department of Hope"
-        expect(assigns(:order).billing_street).to eql "Sesame Street 1"
-        expect(assigns(:order).billing_postalcode).to eql "5678"
-        expect(assigns(:order).billing_city).to eql "Graz"
-        expect(assigns(:order).billing_country).to eql "Österreich"
-        expect(assigns(:order).billing_phone).to eql "+4311111111"
-      end
-
-
-      it "updates mesonic" do
-        allow(Rails).to receive(:env) {"production"}
-        expect_any_instance_of(User).to receive(:update_mesonic)
-        put :do_use, id: @instance.id,
-                     order_id: @order.id
-      end
-
-      it "sets billing method, if billing_method set" do
-        @order.update(billing_method: nil)
-        put :do_use, id: @instance.id,
-                     order_id: @order.id
-        expect(assigns(:order).billing_method).to eql :e_payment
-      end
-
-      it "sets shipping method, if shipping method and shipping company not set" do
-        @order.update(shipping_company: nil, shipping_method: nil)
-        put :do_use, id: @instance.id,
-                     order_id: @order.id
-        expect(assigns(:order).shipping_method).to eql :parcel_service_shipment
-      end
-
-      it "sets shipping attributes, if shipping_company not set" do
-        @order.update(shipping_company: nil)
-        @billing_address = create(:second_billing_address, user_id: @user.id)
-
-        put :do_use, id: @billing_address.id,
-                     order_id: @order.id
-
-        expect(assigns(:order).shipping_company).to eql "small corp"
-        expect(assigns(:order).shipping_gender).to eql "female"
-        expect(assigns(:order).shipping_title).to eql "Mga"
-        expect(assigns(:order).shipping_first_name).to eql "Jane"
-        expect(assigns(:order).shipping_surname).to eql "Done"
-        expect(assigns(:order).shipping_detail).to eql "Department of Hope"
-        expect(assigns(:order).shipping_street).to eql "Sesame Street 1"
-        expect(assigns(:order).shipping_postalcode).to eql "5678"
-        expect(assigns(:order).shipping_city).to eql "Graz"
-        expect(assigns(:order).shipping_country).to eql "Österreich"
-        expect(assigns(:order).shipping_phone).to eql "+4311111111"
-
-      end
-
-      it "redirects to order path" do
-        put :do_use, id: @instance.id,
-                     order_id: @order.id
-        expect(response).to redirect_to order_path(@order)
-      end
-    end
-
-    describe "PUT #do_trash" do
-      it "is available for active" do
-        @instance.state = "active"
-        expect(@instance.lifecycle.can_trash? @user).to be
-      end
-
-      it "deletes the record" do
-        @order = create(:order)
-        put :do_trash, id: @instance.id,
-                       order_id: @order.id
-      end
-
-      it "redirects to enter addresses path" do
-        @order = create(:order)
-        put :do_trash, id: @instance.id,
-                       order_id: @order.id
-        enter_addresses_path(order_id: @order.id)
       end
     end
   end

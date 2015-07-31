@@ -373,13 +373,12 @@ class Order < ActiveRecord::Base
         .find_by(product_number: shipping_cost_product_number)
         .try(:destroy)
 
+    @user = acting_user || self.user
 
     if Rails.application.config.try(:erp) == "mesonic"
       webartikel_versandspesen = MercatorMesonic::Webartikel.where(Artikelnummer: shipping_cost_product_number).first
       inventory_versandspesen = Inventory.where(number: shipping_cost_product_number).first
       product_versandspesen = inventory_versandspesen.product
-
-      @user = acting_user || self.user
 
       # user-specific derivation
       shipping_cost_value = inventory_versandspesen.mesonic_price(customer_id: @user.id)
