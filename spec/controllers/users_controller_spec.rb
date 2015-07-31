@@ -50,7 +50,7 @@ describe UsersController, :type => :controller do
       expect(response.body).to redirect_to "http://test.host"
     end
 
-    it "vogs the user out, if login comes from front" do
+    it "logs the user out, if login comes from front" do
       expect(controller).to receive(:logout)
       post :login, login: "john.doe@informatom.com",
                    password: "secret123",

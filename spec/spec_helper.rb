@@ -25,4 +25,6 @@ RSpec.configure do |config|
 
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+
+  config.example_status_persistence_file_path = Rails.root.join("spec/support/rspec_example_status")
 end
