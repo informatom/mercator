@@ -333,6 +333,7 @@ describe Order do
       end
 
       it "creates shipping cost lineitem" do
+        @order.lineitems.delete_all
         expect{@order.add_shipment_costs}.to change {@order.lineitems.count}.by 1
       end
 
@@ -395,6 +396,7 @@ describe Order do
       end
 
       it "creates shipping cost lineitem" do
+        @order.lineitems.delete_all
         expect{@order.add_shipment_costs}.to change {@order.lineitems.count}.by 1
       end
 

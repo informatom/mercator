@@ -22,13 +22,13 @@ describe Admin::OrdersController, :type => :controller do
 
 
     describe "GET #index" do
-      it "filters baskets" do
-        get :index, search: "basket"
+      it "returns all orders" do
+        get :index
         expect(assigns(:orders)).to match_array([@instance])
       end
 
       it "filters state and returns nil" do
-        get :index, search: "active"
+        get :index, in_payment: "true"
         expect(assigns(:orders)).to match_array([])
       end
     end

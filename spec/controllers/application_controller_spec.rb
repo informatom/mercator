@@ -203,8 +203,7 @@ describe ApplicationController, :type => :controller do
       it "sets current user from session" do
         @user = create(:user)
         session[:last_user] = @user.id
-        act_as_guest
-
+        allow(controller).to receive(:current_user).and_return(Guest.new(), @user)
         expect(controller).to receive_message_chain(:current_user=) { true }
 
         controller.instance_eval{ auto_log_in }
@@ -214,9 +213,9 @@ describe ApplicationController, :type => :controller do
       it "creates a new user, if we are guest" do
         @user = create(:user)
         session[:last_user] = @user.id
-        act_as_guest
-
+        allow(controller).to receive(:current_user).and_return(Guest.new(), @user)
         expect(controller).to receive_message_chain(:current_user=) { true }
+
         controller.instance_eval{ auto_log_in }
         expect(assigns(:current_user)).to be_a User
       end

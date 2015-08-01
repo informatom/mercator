@@ -313,9 +313,9 @@ describe UsersController, :type => :controller do
       expect(flash[:notice]).to eql "Your e-mail address was confirmed successfully and your account has been activated. You can close this tab now."
     end
 
-    it "redirects to root" do
+    it "redirects to show user" do
       put :do_activate, id: @user.id, key: @key
-      expect(response.body).to redirect_to root_path
+      expect(response.body).to redirect_to user_path(@user)
     end
 
     it "is available for inactive user" do

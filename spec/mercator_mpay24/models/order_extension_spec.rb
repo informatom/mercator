@@ -54,6 +54,8 @@ describe Order do
                                             description_en: @supply.description_en)
 
       allow_any_instance_of(Savon::Client).to receive(:call).and_return("some response")
+      Constant.send(:remove_const, :SHOPDOMAIN) # just to avoid warning in the next line
+      Constant::SHOPDOMAIN = create(:shop_domain).value
     end
 
     it "sets client" do

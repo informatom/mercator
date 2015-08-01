@@ -277,7 +277,8 @@ describe MercatorIcecat::Metadatum do
                                       supplier_id: "1",
                                       icecat_product_id: "19886543",
                                       prod_id: "C8S57A" )
-      @metadatum.download(overwrite: true)
+      FileUtils.copy(Rails.root.join("spec", "support", "19886543.xml"),
+                     Rails.root.join("vendor", "xml", "19886543.xml"))
 
       @related_product = create(:product, number: "HP-AJ941A")
       @related_metadatum = create(:metadatum, product_id: @related_product.id,
@@ -287,7 +288,8 @@ describe MercatorIcecat::Metadatum do
                                               supplier_id: "1",
                                               icecat_product_id: "3637150",
                                               prod_id: "AJ941A")
-      @related_metadatum.download(overwrite: true)
+      FileUtils.copy(Rails.root.join("spec", "support", "3637150.xml"),
+                     Rails.root.join("vendor", "xml", "3637150.xml"))
 
       @supply = create(:product, number: "HP-614988-B21")
       @supply_metadatum = create(:metadatum, product_id: @supply.id,
@@ -297,7 +299,8 @@ describe MercatorIcecat::Metadatum do
                                              supplier_id: "1",
                                              icecat_product_id: "5123007",
                                              prod_id: "614988-B21")
-      @supply_metadatum.download(overwrite: true)
+      FileUtils.copy(Rails.root.join("spec", "support", "5123007.xml"),
+                     Rails.root.join("vendor", "xml", "5123007.xml"))
     end
 
     after :each do

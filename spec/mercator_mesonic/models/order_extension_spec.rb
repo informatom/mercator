@@ -7,7 +7,8 @@ describe Order do
     create(:constant_order_confirmation_mail_subject)
 
     # for kontenstamm_fakt => belegart derivation
-    @user = create(:user, erp_account_nr: "691801-2004-1380")
+    @user = create(:user, erp_account_nr: "1I20533-2004-1380",
+                          erp_contact_nr: "8272-2004-1380")
 
     @order = create(:order, user_id: @user.id)
     @product = create(:product_with_inventory_and_lower_price)
@@ -109,8 +110,8 @@ describe Order do
 
     it "updates some attributes" do
       @order.push_to_mesonic
-      expect(@order.erp_customer_number).to eql "1I691801-2004-1380"
-      expect(@order.erp_billing_number).to eql "1I691801"
+      expect(@order.erp_customer_number).to eql "1I20533-2004-1380"
+      expect(@order.erp_billing_number).to eql "09WEB"
       expect(@order.erp_order_number.length > 16).to eql true
     end
 
