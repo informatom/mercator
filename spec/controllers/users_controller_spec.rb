@@ -310,7 +310,7 @@ describe UsersController, :type => :controller do
 
     it "sets the flash notice" do
       put :do_activate, id: @user.id, key: @key
-      expect(flash[:notice]).to eql "Your account has been activated successfully."
+      expect(flash[:notice]).to eql "Your e-mail address was confirmed successfully and your account has been activated. You can close this tab now."
     end
 
     it "redirects to root" do

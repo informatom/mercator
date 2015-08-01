@@ -103,14 +103,14 @@ describe Order do
     it "sets the attributes in the order" do
       @order.push_to_mesonic
       @mesonic_order_item = @order.instance_variable_get(:@mesonic_order_items).first
-      expect(@mesonic_order_item.c004).to eql "Artikel Eins Zwei Drei"
+      expect(@mesonic_order_item.c004).to eql "default product"
       # The other attributes need not to be checked, we just want to see if the order item is transfered
     end
 
     it "updates some attributes" do
       @order.push_to_mesonic
-      expect(@order.erp_customer_number).to eql "691801-2004-1380"
-      expect(@order.erp_billing_number).to eql "691801"
+      expect(@order.erp_customer_number).to eql "1I691801-2004-1380"
+      expect(@order.erp_billing_number).to eql "1I691801"
       expect(@order.erp_order_number.length > 16).to eql true
     end
 

@@ -771,7 +771,7 @@ en:
       user:
         accept_gtc:
           error: "You have to accept the General Terms and Conditions (GTCs), to continue with the order process!"
-        activated: Your e-mail address was confirmed successfully and your account has been activated. You can close this tab now."
+        activated: "Your e-mail address was confirmed successfully and your account has been activated. You can close this tab now."
         confirm_and_refresh: "Please klick an the confirmation link in the e-mail message sent to you and refresh this page afterwards."
         update_email:
           error: is already registered or missing!

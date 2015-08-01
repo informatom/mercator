@@ -54,7 +54,7 @@ describe User do
       expect(Time.now - @mesonic_kontenstamm.c086 < 5.seconds).to eql true # checks timestamp
       expect(@mesonic_kontenstamm.c002.first(2)).to eql "1I"
       expect(@mesonic_kontenstamm.c002[2..10].to_i > 20000).to eql true # checks konto number
-      expect(@mesonic_kontenstamm.c003.last(3)).to eql "Doe" # checks user
+      expect(@mesonic_kontenstamm.c003.last(10)).to eql "Bigcorp" # checks company
     end
 
     it "creates a mesonic kontenstamm_fakt" do
@@ -99,7 +99,7 @@ describe User do
       @user.push_to_mesonic
       expect(@user.erp_account_nr.first(2)).to eql "1I"
       expect(@user.erp_account_nr[2..10].to_i > 20000).to eql true
-      expect(@user.erp_contact_nr > 20000).to eql true
+      expect(@user.erp_contact_nr.to_i > 20000).to eql true
     end
   end
 
@@ -114,12 +114,12 @@ describe User do
 
   describe "mesonic_account_number" do
     it "returns the mesonic_account_number for users" do
-      expect(@user.mesonic_account_number).to eql 691801
+      expect(@user.mesonic_account_number).to eql "691801"
     end
 
     it "returns the mesonic_account_number for potential customers" do
       @user.update(erp_account_nr: "1I12345")
-      expect(@user.mesonic_account_number).to eql 12345
+      expect(@user.mesonic_account_number).to eql "1I12345"
     end
   end
 
