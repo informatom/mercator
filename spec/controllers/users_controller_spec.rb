@@ -179,12 +179,40 @@ describe UsersController, :type => :controller do
         expect(assigns(:current_user).lifecycle.key).to eql @user.lifecycle.key
       end
 
-      it "redirects to hemo page" do
+      it "redirects to home page" do
         get :login_via_email, id: @user.id,
                               key: @key
         expect(response.body).to redirect_to "http://test.host"
       end
+
+      it "copies over an existing basket" do
+        @customer = create(:dummy_customer)
+        @basket = @customer.basket
+        create(:lineitem, order_id: @basket.id, user_id: @customer.id)
+        session[:last_user] = @customer.id
+        create(:constant_shipping_cost)
+
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(assigns(:current_user).basket.id).to eql @basket.id
+      end
+
+      it "syncs agbs" do
+        @newer_gtc = create(:newer_gtc)
+        @customer = create(:dummy_customer)
+        @basket = @customer.basket
+        @basket.update(gtc_version_of: Gtc.current)
+        create(:lineitem, order_id: @basket.id, user_id: @customer.id)
+        session[:last_user] = @customer.id
+        create(:constant_shipping_cost)
+
+        @user_basket = @user.basket
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(assigns(:current_user).gtc_version_of).to eql Gtc.current
+      end
     end
+
 
     context "state: inactive" do
       before :each do
@@ -216,6 +244,33 @@ describe UsersController, :type => :controller do
         get :login_via_email, id: @user.id,
                               key: @key
         expect(response.body).to redirect_to "http://test.host"
+      end
+
+      it "copies over an existing basket" do
+        @customer = create(:dummy_customer)
+        @basket = @customer.basket
+        create(:lineitem, order_id: @basket.id, user_id: @customer.id)
+        session[:last_user] = @customer.id
+        create(:constant_shipping_cost)
+
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(assigns(:current_user).basket.id).to eql @basket.id
+      end
+
+      it "syncs agbs" do
+        @newer_gtc = create(:newer_gtc)
+        @customer = create(:dummy_customer)
+        @basket = @customer.basket
+        @basket.update(gtc_version_of: Gtc.current)
+        create(:lineitem, order_id: @basket.id, user_id: @customer.id)
+        session[:last_user] = @customer.id
+        create(:constant_shipping_cost)
+
+        @user_basket = @user.basket
+        get :login_via_email, id: @user.id,
+                              key: @key
+        expect(assigns(:current_user).gtc_version_of).to eql Gtc.current
       end
     end
   end
