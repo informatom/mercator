@@ -34,6 +34,10 @@ FactoryGirl.define do
     erp_order_number    "o123"
     discount_rel        "2.5"
 
+    factory :second_order do
+      billing_method "pre_payment"
+    end
+
     factory :basket
 
     factory :parked_basket do

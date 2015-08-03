@@ -190,5 +190,44 @@ describe ConversationsController, :type => :controller do
         expect(assigns(:products)).to match_array([@first_product, @second_product])
       end
     end
+
+
+    describe "POST #typing_customer" do
+      it "publishes to conversations" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+                                                        type: "typing_customer",
+                                                        message: "my message")
+        xhr :post, :typing_customer, id: @conversation.id,
+                                     message: "my message"
+      end
+
+      it "renders nothing for xhr request" do
+        xhr :post, :typing_customer, id: @conversation.id,
+                   message: "my message"
+        expect(response.body).to eql(" ")
+      end
+    end
+
+
+    describe "GET #close" do
+      it "creates a message" do
+        xhr :get, :close, id: @conversation.id
+        expect(assigns(:message).sender_id).to eql User::ROBOT.id
+        expect(assigns(:message).reciever_id).to eql @sales.id
+        expect(assigns(:message).conversation_id).to eql @conversation.id
+        expect(assigns(:message).content).to eql "The Customer has left the conversation."
+      end
+
+      it "publishes to conversation" do
+        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+                                                       type: "messages")
+        xhr :get, :close, id: @conversation.id
+      end
+
+      it "renders nothing for xhr request" do
+        xhr :get, :close, id: @conversation.id
+        expect(response.body).to eql(" ")
+      end
+    end
   end
 end
