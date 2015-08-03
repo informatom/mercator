@@ -23,6 +23,13 @@ describe User do
     end
   end
 
+  describe "update_business_year" do
+    it "calls update_business_year for each user that is already connected" do
+      expect_any_instance_of(User).to receive(:update_business_year)
+      User.update_business_year()
+    end
+  end
+
 
   # --- Instance Methods --- #
 
@@ -138,6 +145,18 @@ describe User do
     it "fixes the erp account number" do
       @user.update_erp_account_nr
       expect(@user.erp_account_nr).to eql "112452-2004-1380"
+    end
+  end
+
+
+  describe "update_business_year" do
+    it "updates the business year" do
+      @user.update(erp_contact_nr: "123456-1234-1111",
+                   erp_account_nr: "123456-1234-1111")
+
+      @user.update_business_year()
+      expect(@user.erp_contact_nr).to eql "123456-1234-1380"
+      expect(@user.erp_account_nr).to eql "123456-1234-1380"
     end
   end
 end
