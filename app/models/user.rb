@@ -92,10 +92,6 @@ class User < ActiveRecord::Base
     transition :accept_gtc, {:active => :active}, available_to: :self,
                params: [:confirmation, :order_id], unless: :gtc_accepted_current?
 
-    transition :accept_gtc, {:guest => :guest}, available_to: :self,
-               params: [:confirmation, :order_id], unless: :gtc_accepted_current?
-
-
     transition :activate, {[:inactive, :guest] => :active}, available_to: :key_holder
 
     transition :deactivate, {active: :inactive}, available_to: "User.administrator",

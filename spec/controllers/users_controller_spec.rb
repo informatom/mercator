@@ -427,17 +427,8 @@ describe UsersController, :type => :controller do
 
 
     context "user is guest" do
-      before :each do
+      it "is not available for guest" do
         @guest = create(:guest_user)
-      end
-
-      it "is available for guest if gtc acceted is not current" do
-        @guest.update(gtc_version_of: Gtc.current,
-                     gtc_confirmed_at: Time.now())
-        expect(@guest.lifecycle.can_accept_gtc? @guest).to be false
-      end
-
-      it "is not available for guest if gtc acceted is current" do
         expect(@guest.lifecycle.can_accept_gtc? @guest).to be
       end
     end
@@ -480,7 +471,6 @@ describe UsersController, :type => :controller do
     end
 
     context "confirmation checked" do
-
       it "redirects to order" do
         put :do_accept_gtc, id: @user.id,
                             order_id: @basket.id,
@@ -669,6 +659,41 @@ describe UsersController, :type => :controller do
         @user.lifecycle.provided_key = @user.lifecycle.generate_key + "wrong"
         expect(@user.lifecycle.can_login_via_email?(@user)).to be false
       end
+    end
+  end
+
+
+  describe "PUT #resend_email_confirmation" do
+    before :each do
+      act_as_user
+    end
+
+    it "is available for inactive user" do
+      @user = create(:user, state: "inactive")
+      expect(@user.lifecycle.can_resend_email_confirmation?(@user)).to be
+    end
+
+    it "sends activation email for inactive user" do
+      @user = create(:user, state: "inactive")
+      expect(UserMailer).to receive_message_chain(:activation, :deliver)
+      put :do_resend_email_confirmation, id: @user.id
+    end
+
+    it "is available for guest user" do
+      @user = create(:user, state: "guest")
+      expect(@user.lifecycle.can_request_password_reset?(@user)).to be
+    end
+
+    it "sends activation email for guest user" do
+      @user = create(:user, state: "guest")
+      expect(UserMailer).to receive_message_chain(:activation, :deliver)
+      put :do_resend_email_confirmation, id: @user.id
+    end
+
+    it "redirects to current basket" do
+      @user = create(:user, state: "inactive")
+      put :do_resend_email_confirmation, id: @user.id
+      expect(response.body).to redirect_to order_path(@user.basket)
     end
   end
 end

@@ -473,7 +473,9 @@ example_id                                                                      
 ./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:4]                            | passed  | 0.26944 seconds |
 ./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:5]                            | passed  | 0.27665 seconds |
 ./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:6]                            | passed  | 0.286 seconds   |
-./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:7]                            | passed  | 4.98 seconds    |
+./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:7]                            | passed  | 7.39 seconds    |
+./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:8]                            | passed  | 5.17 seconds    |
+./spec/controllers/billing_addresses_controller_spec.rb[1:2:2:9]                            | unknown |                 |
 ./spec/controllers/blogposts_controller_spec.rb[1:1:1:1:1]                                  | passed  | 0.07929 seconds |
 ./spec/controllers/blogposts_controller_spec.rb[1:1:2]                                      | passed  | 0.09292 seconds |
 ./spec/controllers/blogposts_controller_spec.rb[1:1:3]                                      | passed  | 0.09736 seconds |
@@ -1266,6 +1268,11 @@ example_id                                                                      
 ./spec/controllers/users_controller_spec.rb[1:15:1:2]                                       | passed  | 0.02846 seconds |
 ./spec/controllers/users_controller_spec.rb[1:15:2:1]                                       | passed  | 0.02803 seconds |
 ./spec/controllers/users_controller_spec.rb[1:15:2:2]                                       | passed  | 0.02806 seconds |
+./spec/controllers/users_controller_spec.rb[1:16:1]                                         | passed  | 0.02823 seconds |
+./spec/controllers/users_controller_spec.rb[1:16:2]                                         | passed  | 0.62615 seconds |
+./spec/controllers/users_controller_spec.rb[1:16:3]                                         | passed  | 0.03436 seconds |
+./spec/controllers/users_controller_spec.rb[1:16:4]                                         | passed  | 0.17219 seconds |
+./spec/controllers/users_controller_spec.rb[1:16:5]                                         | passed  | 0.19571 seconds |
 ./spec/controllers/videochat_controller_spec.rb[1:1:1]                                      | passed  | 0.04456 seconds |
 ./spec/controllers/videochat_controller_spec.rb[1:1:2]                                      | passed  | 0.03865 seconds |
 ./spec/controllers/videochat_controller_spec.rb[1:1:3]                                      | passed  | 0.0518 seconds  |

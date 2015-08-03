@@ -281,6 +281,23 @@ describe BillingAddressesController, :type => :controller do
         expect(Address.first.phone).to eql "+4311111111"
       end
 
+      it "adds shipping costs, if parcel_service_shipment" do
+        @instance.user.basket.update(shipping_method: "parcel_service_shipment")
+
+        put :do_enter, id: @instance.id,
+                       billing_address: attributes_for(:second_billing_address, order_id: @order.id)
+        expect(assigns(:order).lineitems.*.product_number).to include(Constant.find_by_key("shipping_cost_article").value)
+      end
+
+      it "keeps the number of shipping costs, if they are already present", focus: true do
+        @instance.user.basket.update(shipping_method: "parcel_service_shipment")
+        @instance.user.basket.add_shipment_costs
+
+        put :do_enter, id: @instance.id,
+                       billing_address: attributes_for(:second_billing_address, order_id: @order.id)
+        expect(assigns(:order).lineitems.where(product_number: Constant.find_by_key("shipping_cost_article").value).count).to eql 1
+      end
+
       it "redirects to order path" do
         put :do_enter, id: @instance.id,
                        billing_address: attributes_for(:second_billing_address, order_id: @order.id)
