@@ -1,4 +1,4 @@
-class Contracting::TonersController < ApplicationController
+class Contracting::TonersController < Contracting::ContractingSiteController
   require 'roo'
 
   hobo_model_controller

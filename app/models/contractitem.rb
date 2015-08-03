@@ -83,7 +83,7 @@ class Contractitem < ActiveRecord::Base
   end
 
   def monthly_rate
-    if term > 0
+    if term && term > 0
       price / term
     else
       price
@@ -91,7 +91,9 @@ class Contractitem < ActiveRecord::Base
   end
 
   def value
-    monthly_rate + monitoring_rate - discount_abs
+    if monthly_rate && monitoring_rate && discount_abs
+      monthly_rate + monitoring_rate - discount_abs
+    end
   end
 
   def value_incl_vat

@@ -33,4 +33,25 @@ describe Contracting::TonersController, :type => :controller do
       expect(Toner.first.price).to eql 0
     end
   end
+
+  describe "grid index" do
+    it "returns the correct json for all users" do
+      create(:toner)
+      create(:second_toner)
+
+      get :grid_index
+      expect(response.body).to be_json_eql({ records: [ { article_number: "TR0815",
+                                                          description: "Toner schwarz",
+                                                          price: "42.15",
+                                                          recid: 1,
+                                                          vendor_number: "HP-TR0815" },
+                                                        { article_number: "TY0816",
+                                                          description: "Toner gelb",
+                                                          price: "12.0",
+                                                          recid: 2,
+                                                          vendor_number: "HP-TR0816" } ],
+                                             status: "success",
+                                             total: 2 }.to_json)
+    end
+  end
 end

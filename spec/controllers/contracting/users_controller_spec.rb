@@ -11,5 +11,89 @@ describe Contracting::UsersController, :type => :controller do
     end
 
     it_behaves_like("crud except destroy")
+
+    describe "grid index" do
+      it "returns the correct json for all users" do
+        get :grid_index
+        expect(response.body).to be_json_eql({ records: [{ administrator: false,
+                                                           call_priority: nil,
+                                                           contentmanager: false,
+                                                           editor: nil,
+                                                           email_address: "another.sales.consultant@informatom.com",
+                                                           erp_account_nr: "a123",
+                                                           erp_contact_nr: "b123",
+                                                           first_name: "Sammy",
+                                                           gender: "male",
+                                                           gtc_confirmed_at: "2014-01-22T15:23:00.000+01:00",
+                                                           gtc_version_of: "2014-01-22",
+                                                           last_login_at: "2014-01-22T15:23:00.000+01:00",
+                                                           locale: "en",
+                                                           logged_in: false,
+                                                           login_count: 0,
+                                                           phone: nil,
+                                                           productmanager: false,
+                                                           recid: 1,
+                                                           sales: true,
+                                                           sales_manager: false,
+                                                           surname: "Sales Representative",
+                                                           title: "Dr",
+                                                           waiting: nil },
+                                                         { administrator: false,
+                                                           call_priority: nil,
+                                                           contentmanager: false,
+                                                           editor: nil,
+                                                           email_address: "john.doe@informatom.com",
+                                                           erp_account_nr: "a123",
+                                                           erp_contact_nr: "b123",
+                                                           first_name: "John",
+                                                           gender: "male",
+                                                           gtc_confirmed_at: "2014-01-22T15:23:00.000+01:00",
+                                                           gtc_version_of: "2014-01-22",
+                                                           last_login_at: "2014-01-22T15:23:00.000+01:00",
+                                                           locale: nil,
+                                                           logged_in: false,
+                                                           login_count: 0,
+                                                           phone: nil,
+                                                           productmanager: false,
+                                                           recid: 2,
+                                                           sales: false,
+                                                           sales_manager: false,
+                                                           surname: "Doe",
+                                                           title: "Dr",
+                                                           waiting: nil } ],
+                                               status: "success",
+                                               total: 2 }.to_json)
+      end
+
+      it "returns the correct json for only consultants" do
+        get :grid_index, only_consultants: "true"
+        expect(response.body).to be_json_eql({ records: [{ administrator: false,
+                                                           call_priority: nil,
+                                                           contentmanager: false,
+                                                           editor: nil,
+                                                           email_address: "another.sales.consultant@informatom.com",
+                                                           erp_account_nr: "a123",
+                                                           erp_contact_nr: "b123",
+                                                           first_name: "Sammy",
+                                                           gender: "male",
+                                                           gtc_confirmed_at: "2014-01-22T15:23:00.000+01:00",
+                                                           gtc_version_of: "2014-01-22",
+                                                           last_login_at: "2014-01-22T15:23:00.000+01:00",
+                                                           locale: "en",
+                                                           logged_in: false,
+                                                           login_count: 0,
+                                                           phone: nil,
+                                                           productmanager: false,
+                                                           recid: 1,
+                                                           sales: true,
+                                                           sales_manager: false,
+                                                           surname: "Sales Representative",
+                                                           title: "Dr",
+                                                           waiting: nil }],
+                                               status: "success",
+                                               total: 1 }.to_json)
+      end
+
+    end
   end
 end

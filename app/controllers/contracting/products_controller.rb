@@ -1,4 +1,4 @@
-class Contracting::ProductsController < ApplicationController
+class Contracting::ProductsController < Contracting::ContractingSiteController
   hobo_model_controller
 
   index_action :grid_index do
@@ -26,4 +26,3 @@ class Contracting::ProductsController < ApplicationController
     }
   end
 end
-
