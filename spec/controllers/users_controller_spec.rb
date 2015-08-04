@@ -429,7 +429,7 @@ describe UsersController, :type => :controller do
     context "user is guest" do
       it "is not available for guest" do
         @guest = create(:guest_user)
-        expect(@guest.lifecycle.can_accept_gtc? @guest).to be
+        expect(@guest.lifecycle.can_accept_gtc? @guest).to be false
       end
     end
   end

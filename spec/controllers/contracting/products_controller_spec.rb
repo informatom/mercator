@@ -4,8 +4,8 @@ describe Contracting::ProductsController, :type => :controller do
 
   describe "grid index" do
     it "returns the correct json for all users" do
-      create(:product_with_inventory)
-      create(:second_product)
+      @first_product = create(:product_with_inventory)
+      @second_product = create(:second_product)
       no_redirects and act_as_sales
 
       get :grid_index
@@ -14,7 +14,7 @@ describe Contracting::ProductsController, :type => :controller do
                                                           description_en: "English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!",
                                                           not_shippable: nil,
                                                           number: "product_with_inventory",
-                                                          recid: 1,
+                                                          recid: @first_product.id,
                                                           title_de: "default product",
                                                           title_en: "Article One Two Three",
                                                           warranty_de: "Ein Jahr mit gewissen Einschränkungen",
@@ -24,7 +24,7 @@ describe Contracting::ProductsController, :type => :controller do
                                                           description_en: "English: Another Text!",
                                                           not_shippable: nil,
                                                           number: "42",
-                                                          recid: 2,
+                                                          recid: @second_product.id,
                                                           title_de: "Artikel Zwei",
                                                           title_en: "Article Two",
                                                           warranty_de: "Ein Monat mit gewissen Einschränkungen",

@@ -40,7 +40,7 @@ describe Consumableitem do
     end
 
     it "returns monthly_rate" do
-      expect(@consumableitem.monthly_rate).to be_within(0.01).of 1.14583
+      expect(@consumableitem.monthly_rate).to be_within(0.01).of 6.875
     end
 
     it "returns value" do

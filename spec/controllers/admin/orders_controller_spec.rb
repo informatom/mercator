@@ -33,7 +33,7 @@ describe Admin::OrdersController, :type => :controller do
       end
 
       it "creates the correct json" do
-        create(:second_order, user_id: @instance.user.id)
+        @second_order = create(:second_order, user_id: @instance.user.id)
 
         get :index, format: :text
         expect(response.body).to be_json_eql({ records: [ { billing_company: "Bigcorp",
@@ -44,7 +44,7 @@ describe Admin::OrdersController, :type => :controller do
                                                             erp_customer_number: "a123",
                                                             erp_order_number: "o123",
                                                             lineitems: 0,
-                                                            recid: 1,
+                                                            recid: @instance.id,
                                                             shipping_company: "Bigcorp",
                                                             shipping_method: "Shipment by Parcel Service",
                                                             state: "basket",
@@ -60,7 +60,7 @@ describe Admin::OrdersController, :type => :controller do
                                                             erp_customer_number: "a123",
                                                             erp_order_number: "o123",
                                                             lineitems: 0,
-                                                            recid: 2,
+                                                            recid: @second_order.id,
                                                             shipping_company: "Bigcorp",
                                                             shipping_method: "Shipment by Parcel Service",
                                                             state: "basket",
