@@ -16,7 +16,7 @@ describe Contracting::ConsumableitemsController, :type => :controller do
 
 
     describe "GET #index" do
-      it "returns the correct json", focus: true do
+      it "returns the correct json" do
         @second_consumableitem = create(:second_consumableitem, contractitem_id: @instance.contractitem_id)
 
         get :index, contractitem_id: @instance.contractitem_id, format: :text
@@ -89,7 +89,7 @@ describe Contracting::ConsumableitemsController, :type => :controller do
     end
 
 
-    describe "POST #manage", focus: true do
+    describe "POST #manage" do
       context "creating a new consumableitem" do
         before :each do
           @second_customer = create(:dummy_customer)
@@ -175,5 +175,48 @@ describe Contracting::ConsumableitemsController, :type => :controller do
     end
 
 
+    describe "DELETE #delete" do
+      before :each do
+        @instance.update(consumption1: 0,
+                         consumption2: 0,
+                         consumption3: 0,
+                         consumption4: 0,
+                         consumption5: 0,
+                         consumption6: 0)
+      end
+
+      it "finds the right consumableitem" do
+        post :delete, id: @instance.id
+        expect(assigns(:consumableitem)).to eql @instance
+      end
+
+      it "deletes the consumableitem" do
+        post :delete, id: @instance.id
+        expect(Consumableitem.where(id: @instance.id)).to be_empty
+      end
+
+      it "renders nothing" do
+        post :delete, id: @instance.id
+        expect(response.body).to eql(" ")
+      end
+
+      it "blocks deletetion, if there are consumableitemitems" do
+        @instance.update(consumption1: 1)
+
+        post :delete, id: @instance.id
+        expect(Consumableitem.find(@instance.id)).to eql @instance
+      end
+    end
+
+
+    describe "GET #defaults" do
+      it "returns the correct json" do
+        create(:consumableitem, contractitem_id: @contractitem.id)
+
+        get :defaults, id: @contractitem.id, format: :text
+        expect(response.body).to be_json_eql( { vendor_number: "HP-TR0815",
+                                                wholesale_price: "42.15" }.to_json)
+      end
+    end
   end
 end
