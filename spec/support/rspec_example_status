@@ -552,6 +552,11 @@ example_id                                                                      
 ./spec/controllers/contentmanager/front_controller_spec.rb[1:2:12:2]                        | passed  | 0.46374 seconds |
 ./spec/controllers/contentmanager/front_controller_spec.rb[1:2:13:1]                        | passed  | 0.03045 seconds |
 ./spec/controllers/contentmanager/front_controller_spec.rb[1:2:13:2]                        | passed  | 0.03082 seconds |
+./spec/controllers/contracting/contracts_controller_spec.rb[1:1:1:1:1]                      | passed  | 0.60301 seconds |
+./spec/controllers/contracting/contracts_controller_spec.rb[1:1:2:1]                        | passed  | 0.56567 seconds |
+./spec/controllers/contracting/contracts_controller_spec.rb[1:1:3:1:1]                      | passed  | 0.10986 seconds |
+./spec/controllers/contracting/contracts_controller_spec.rb[1:1:3:1:2]                      | passed  | 0.10266 seconds |
+./spec/controllers/contracting/contracts_controller_spec.rb[1:1:3:1:3]                      | passed  | 0.64865 seconds |
 ./spec/controllers/contracting/conversations_controller_spec.rb[1:1:1]                      | passed  | 0.33273 seconds |
 ./spec/controllers/contracting/front_controller_spec.rb[1:1:1]                              | passed  | 0.03784 seconds |
 ./spec/controllers/contracting/front_controller_spec.rb[1:1:2]                              | passed  | 0.03759 seconds |
