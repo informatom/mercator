@@ -72,7 +72,7 @@ describe Contracting::ContractitemsController, :type => :controller do
     end
 
 
-    describe "POST #manage", focus: true do
+    describe "POST #manage" do
       context "creating a new contractitem" do
         before :each do
           @second_customer = create(:dummy_customer)
@@ -166,6 +166,31 @@ describe Contracting::ContractitemsController, :type => :controller do
                                                            volume_color: 777 },
                                                  status: "success"} .to_json)
         end
+      end
+    end
+
+
+    describe "DELETE #delete", focus: true do
+      it "finds the right contractitem" do
+        post :delete, id: @instance.id
+        expect(assigns(:contractitem)).to eql @instance
+      end
+
+      it "deletes the contractitem" do
+        post :delete, id: @instance.id
+        expect(Contractitem.where(id: @instance.id)).to be_empty
+      end
+
+      it "renders nothing" do
+        post :delete, id: @instance.id
+        expect(response.body).to eql(" ")
+      end
+
+      it "blocks deletetion, if there are contractitemitems" do
+        create(:consumableitem, contractitem_id: @instance.id)
+
+        post :delete, id: @instance.id
+        expect(Contractitem.find(@instance.id)).to eql @instance
       end
     end
   end
