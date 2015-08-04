@@ -17,10 +17,10 @@ describe Contracting::ContractitemsController, :type => :controller do
 
     describe "GET #index" do
       it "returns the correct json" do
-        create(:second_contractitem, user_id: @instance.user_id,
-                                     contract_id: @instance.contract_id,
-                                     product_id: @instance.product_id,
-                                     toner_id: @instance.toner_id)
+        @second_contractitem = create(:second_contractitem, user_id: @instance.user_id,
+                                                            contract_id: @instance.contract_id,
+                                                            product_id: @instance.product_id,
+                                                            toner_id: @instance.toner_id)
 
         get :index, contract_id: @instance.contract_id, format: :text
         expect(response.body).to be_json_eql( {records: [ { amount: 12,
@@ -33,7 +33,7 @@ describe Contracting::ContractitemsController, :type => :controller do
                                                             position: 12,
                                                             product_number: "123",
                                                             product_price: "12.3",
-                                                            recid: 2,
+                                                            recid: @second_contractitem.id,
                                                             startdate: "2016-01-01",
                                                             term: 24,
                                                             toner: "HP-TR0815",
@@ -54,7 +54,7 @@ describe Contracting::ContractitemsController, :type => :controller do
                                                             position: 124,
                                                             product_number: "123",
                                                             product_price: "123.45",
-                                                            recid: 1,
+                                                            recid: @instance.id,
                                                             startdate: "2015-08-03",
                                                             term: 12,
                                                             toner: "HP-TR0815",
@@ -152,7 +152,7 @@ describe Contracting::ContractitemsController, :type => :controller do
                                                            product_id: @second_product.id,
                                                            product_number: "a product number",
                                                            product_price: "77.7",
-                                                           recid: 4,
+                                                           recid: assigns(:contractitem).id,
                                                            startdate: "2015-03-03",
                                                            term: 17,
                                                            toner: "Toner gelb",

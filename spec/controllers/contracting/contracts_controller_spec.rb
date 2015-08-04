@@ -17,23 +17,23 @@ describe Contracting::ContractsController, :type => :controller do
       it "returns the correct json" do
         @conversation = create(:conversation, customer_id: @instance.customer_id,
                                               consultant_id: @instance.consultant_id)
-        create(:second_contract, customer_id: @instance.customer_id,
-                                 consultant_id: @instance.consultant_id,
-                                 conversation_id: @conversation.id)
+        @second_contract = create(:second_contract, customer_id: @instance.customer_id,
+                                                    consultant_id: @instance.consultant_id,
+                                                    conversation_id: @conversation.id)
 
         get :index, format: :text
         expect(response.body).to be_json_eql( {records: [ { consultant: "Mr. Dr Sammy Sales Representative",
                                                             conversation: nil,
                                                             customer: "Mr. Dr John Doe",
                                                             enddate: "2017-03-05",
-                                                            recid: 1,
+                                                            recid: @instance.id,
                                                             startdate: "2014-03-06",
                                                             term: 36 },
                                                           { consultant: "Mr. Dr Sammy Sales Representative",
                                                             conversation: "Freudliche Beratung",
                                                             customer: "Mr. Dr John Doe",
                                                             enddate: "2016-08-03",
-                                                            recid: 2,
+                                                            recid: @second_contract.id,
                                                             startdate: "2015-08-04",
                                                             term: 12 }
                                                         ],
@@ -90,7 +90,7 @@ describe Contracting::ContractsController, :type => :controller do
                                                            conversation_id: @second_conversation.id,
                                                            customer: "dummy.customer@informatom.com",
                                                            customer_id: @second_customer.id,
-                                                           recid: 2,
+                                                           recid: assigns(:contract).id,
                                                            startdate: "2016-01-01",
                                                            term: 14 },
                                                  status: "success"} .to_json)
