@@ -15,7 +15,7 @@ describe Contracting::ContractitemsController, :type => :controller do
     it_behaves_like("crud index")
 
 
-    describe "GET #index", focus: true do
+    describe "GET #index" do
       it "returns the correct json" do
         create(:second_contractitem, user_id: @instance.user_id,
                                      contract_id: @instance.contract_id,
@@ -170,7 +170,7 @@ describe Contracting::ContractitemsController, :type => :controller do
     end
 
 
-    describe "DELETE #delete", focus: true do
+    describe "DELETE #delete" do
       it "finds the right contractitem" do
         post :delete, id: @instance.id
         expect(assigns(:contractitem)).to eql @instance
@@ -191,6 +191,67 @@ describe Contracting::ContractitemsController, :type => :controller do
 
         post :delete, id: @instance.id
         expect(Contractitem.find(@instance.id)).to eql @instance
+      end
+    end
+
+
+    describe "GET #calendar" do
+      it "returns the correct json" do
+        create(:consumableitem, contractitem_id: @instance.id)
+
+        get :calendar, id: @instance.id, format: :text
+        expect(response.body).to be_json_eql( {records: [{ title: "Jahresbeginn",
+                                                           year1: "2015-08-03",
+                                                           year2: "2016-08-03",
+                                                           year3: "2017-08-03",
+                                                           year4: "2018-08-03",
+                                                           year5: "2019-08-03",
+                                                           year6: "2020-08-03" },
+                                                         { title: "Jahresende",
+                                                           year1: "2016-08-02",
+                                                           year2: "2017-08-02",
+                                                           year3: "2018-08-02",
+                                                           year4: "2019-08-02",
+                                                           year5: "2020-08-02",
+                                                           year6: "2021-08-02" },
+                                                         { title: "Monate ohne Rate",
+                                                           year1: 12,
+                                                           year2: 0,
+                                                           year3: 0,
+                                                           year4: 0,
+                                                           year5: 0,
+                                                           year6: "---" },
+                                                         { title: "Folgeraten (EUR)",
+                                                           year1: "---",
+                                                           year2: "EUR 3,44",
+                                                           year3: "EUR 3,44",
+                                                           year4: "EUR 4,58",
+                                                           year5: "EUR 5,73",
+                                                           year6: "EUR 0,00" },
+                                                         { title: "Folgemonat (EUR)",
+                                                           year1: "-EUR 0,00",
+                                                           year2: "-EUR 0,00",
+                                                           year3: "-EUR 13,75",
+                                                           year4: "-EUR 13,75",
+                                                           year5: "-EUR 13,75",
+                                                           year6: "---" },
+                                                         { title: "Folgeraten mit Monitoring (EUR)",
+                                                           year1: "---",
+                                                           year2: "EUR 8,44",
+                                                           year3: "EUR 8,44",
+                                                           year4: "EUR 9,58",
+                                                           year5: "EUR 10,73",
+                                                           year6: "EUR 6,88" },
+                                                         { title: "Summe Gutschrift/Nachzahlung",
+                                                           year1: "-EUR 41,25",
+                                                           year2: "EUR 0,00",
+                                                           year3: "EUR 13,75",
+                                                           year4: "EUR 13,75",
+                                                           year5: "EUR 13,75",
+                                                           year6: "EUR 0,00" }
+                                                        ],
+                                               status: "success",
+                                               total: 7 }.to_json)
       end
     end
   end
