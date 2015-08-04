@@ -97,5 +97,31 @@ describe Contracting::ContractsController, :type => :controller do
         end
       end
     end
+
+
+    describe "DELETE #delete" do
+      it "finds the right contract" do
+        post :delete, id: @instance.id
+        expect(assigns(:contract)).to eql @instance
+      end
+
+      it "deletes the contract" do
+        post :delete, id: @instance.id
+        expect(Contract.where(id: @instance.id)).to be_empty
+      end
+
+      it "renders nothing" do
+        post :delete, id: @instance.id
+        expect(response.body).to eql(" ")
+      end
+
+      it "blocks deletetion, if there are contractitems" do
+        create(:contractitem, contract_id: @instance.id,
+                              user_id: @instance.customer_id)
+
+        post :delete, id: @instance.id
+        expect(Contract.find(@instance.id)).to eql @instance
+      end
+    end
   end
 end
