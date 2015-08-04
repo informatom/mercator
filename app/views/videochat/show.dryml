@@ -18,7 +18,7 @@
 
     <script type="text/javascript">
       var channel, session;
-      channel = new palava.WebSocketChannel('ws://palava.informatom.com');
+      channel = new palava.WebSocketChannel('ws://palava.bravepi.org');
       session = new palava.Session({ roomId: "mercator-<%= CONFIG[:system_id] -%>-<%= @channel_id -%>",
                                      channel: channel });
 
@@ -51,7 +51,7 @@
 
       session.init({
         identity: new palava.Identity({ userMediaConfig: { audio: true, video: true } }),
-        options: { stun: 'stun:palava.informatom.com', joinTimeout: 500 }
+        options: { stun: 'stun:palava.bravepi.org', joinTimeout: 500 }
       })
     </script>
   </custom-scripts:>
