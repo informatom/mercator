@@ -35,4 +35,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => Constant.find_by_key('service_mail').try(:value) ,
          :subject => "#{app_name} -- Neuer Kommentar")
   end
+
+  def job_failed(jobname)
+    @jobname = jobname
+    mail(:to => Constant.find_by_key('service_mail').try(:value) ,
+         :subject => "Job failed / Job gescheitert: #{jobname}")
+  end
 end
