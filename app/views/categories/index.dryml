@@ -26,13 +26,7 @@
       </div>
 
       <div class="col-lg-8 col-sm-12">
-        <% this.in_groups_of(4) do |group| %>
-          <div class="row">
-            <div class="row-same-height">
-              <mini-card repeat="&group"/>
-            </div>
-          </div>
-        <% end %>
+        <category-grid />
       </div>
     </div>
   </content-body:>
