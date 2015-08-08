@@ -1,0 +1,9 @@
+<def tag="comments-tree">
+ <ul class="media-list list-group">
+    <repeat>
+      <li class="media list-group-item">
+        <card-with-children />
+      </li>
+    </repeat>
+  </ul>
+</def>

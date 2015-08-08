@@ -1,0 +1,9 @@
+<def tag="blog-sidebar">
+  <div class="sidebar nobottommargin col_last clearfix">
+    <div class="sidebar-widgets-wrap">
+      <post-category-widget />
+      <tag-cloud-widget />
+      <archive-widget for="Blogpost"/>
+    </div>
+  </div>
+</def>

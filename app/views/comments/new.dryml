@@ -4,64 +4,56 @@
   </title:>
 
   <content:>
-    <div class="postcontent nobottommargin clearfix">
-      <div class="single-post bottommargin">
+    <div class="row">
+      <div class="col-md-10">
         <if test="&@parent">
-          <ul class="comments clearfix">
-            <div class="commentlist clearfix">
-              <li class="comment">
-                <card with="&@parent"/>
-              </li>
-            </div>
-          </ul>
+          <card with="&@parent"/>
         </if>
         <else>
            <card if="&@blogpost" with="&@blogpost" title/>
            <card if="&@podcast" with="&@podcast"/>
         </else>
-      </div>
 
-      <div id="respond" class="clearfix">
-        <h3><t key="activerecord.models.comment.one"/></h3>
+        <div id="respond" class="clearfix">
+          <h3><t key="activerecord.models.comment.one"/></h3>
 
-        <form with="&@comment">
-          <error-messages/>
-          <field-list fields="content">
-            <content-view:>
-              <input class="form-control" rows="15" />
-            </content-view:>
-          </field-list>
-
-          <submit label="#{ht 'comment.actions.save'}" class="button button-3d nomargin"/>
-        </form>
-
-        <unless test="&current_user.state == 'active'">
-          <p><t key="mercator.avoiding_comment_spam"/><br/><br/></p>
-
-          <form action="/users/upgrade" with="&current_user">
-            <field-list fields="email_address, first_name, surname">
-              <email-address-view:>
-                <input value="" class="form-control"/>
-              </email-address-view:>
-              <first-name-view:>
-                <input value="" class="form-control"/>
-              </first-name-view:>
-              <surname-view:>
-                <input value="" class="form-control"/>
-              </surname-view:>
+          <form with="&@comment">
+            <error-messages/>
+            <field-list fields="content">
+              <content-view:>
+                <input class="form-control" rows="15" />
+              </content-view:>
             </field-list>
-            <submit label="#{ht 'user.actions.save'}"/>
+
+            <submit label="#{ht 'comment.actions.save'}" class="btn btn-default"/>
           </form>
-        </unless>
-      </div>
 
-      <div class="divider divider-short divider-center">
-        <i class="icon-crop"></i>
-      </div>
+          <unless test="&current_user.state == 'active'">
+            <p><t key="mercator.avoiding_comment_spam"/><br/><br/></p>
 
-      <a href="/blogposts" class="more-link">← <t key="mercator.back"/></a>
+            <form action="/users/upgrade" with="&current_user">
+              <field-list fields="email_address, first_name, surname">
+                <email-address-view:>
+                  <input value="" class="form-control"/>
+                </email-address-view:>
+                <first-name-view:>
+                  <input value="" class="form-control"/>
+                </first-name-view:>
+                <surname-view:>
+                  <input value="" class="form-control"/>
+                </surname-view:>
+              </field-list>
+              <submit label="#{ht 'user.actions.save'}" class="btn btn-default"/>
+            </form>
+          </unless>
+        </div>
+
+        <br/><br/>
+        <a href="/blogposts" class="more-link">← <t key="mercator.back"/></a>
+      </div>
+      <div class="col-md-2">
+        <blog-sidebar/>
+      </div>
     </div>
-
-    <blog-sidebar/>
   </content>
 </page>

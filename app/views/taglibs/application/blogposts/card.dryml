@@ -1,0 +1,42 @@
+<def tag="card" for="Blogpost" attrs="title">
+  <if: test="&title">
+    <h3><view:title no-wrapper/></h3>
+  </if>
+
+  <p>
+    <span class="fa fa-calendar"/>
+    <view with="&l(this.publishing_date, format: :long)"/> |
+
+    <span class="fa fa-folder-open"/>
+    <a href="&blogposts_path(post_category_id: this.post_category.id)">
+      <view with="&this.post_category.name"/>
+    </a> |
+
+    <span class="fa fa-tag"/>
+    <repeat with="&this.blogtag_list" join=" - " >
+      <a href="&blogposts_path(tag: this)"><view/></a>
+    </repeat> |
+
+    <a href="&blogpost_path(this) + '#comments'">
+      <span class="fa fa-commenting" />
+      <%= this.comments.count %>
+      <t key="activerecord.models.comment.other" />
+    </a> |
+
+    <a href="#"><span class="fa fa-font" /></a>
+  </p>
+
+    <if test="&this.content_element.photo">
+      <div class="entry-image">
+        <a href="&this.content_element.photo" data-lightbox="image">
+          <img class="image_fade"
+               src="&this.content_element.photo(:medium)"
+               alt="&this.content_element.photo_file_name" />
+        </a>
+      </div>
+    </if>
+
+    <div class="entry-content bottommargin">
+      <view: with="&this.content_element.parse"/>
+    </div>
+</def>

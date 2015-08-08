@@ -1,0 +1,10 @@
+<def tag="comments-widget">
+  <div id="comments" class="clearfix">
+    <h3 id="comments-title">
+      <view with="&this.comments.count" inline/> &nbsp;
+      <t key="activerecord.models.comment.other"/>
+    </h3>
+
+    <comments-tree with="&this.comments.roots"/>
+  </div>
+</def>

@@ -1,0 +1,32 @@
+<def tag="card" for="Comment">
+  <div class="media-left ">
+    <img class='img-circle media-object' src="&this.user.gravatar_url" />
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <view: with="&this.user.name" no-wrapper/>
+    </h4>
+    <i><view:created-at no-wrapper/></i>
+    <p><view:content no-wrapper/></p>
+  </div>
+</def>
+
+
+<def tag="card-with-children">
+  <div class="media-left ">
+    <img class='img-circle media-object' src="&this.user.gravatar_url" />
+  </div>
+  <div class="media-body">
+    <a href="&new_comment_path(parent_id: this.id)" class='btn btn-default pull-right'>
+       <span class="fa fa-reply"/> <t key="mercator.reply"/></a>
+    <strong><view: with="&this.user.name" no-wrapper/></strong>
+    <div class="text-muted"><view:created-at no-wrapper/></div>
+    <p><view:content no-wrapper/></p>
+
+    <repeat with="&this.children">
+      <div class="media">
+        <card-with-children/>
+      </div>
+    </repeat>
+  </div>
+</def>

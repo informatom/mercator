@@ -4,12 +4,12 @@
   </title:>
 
   <content:>
-    <div class="postcontent nobottommargin clearfix">
-      <div class="single-post nobottommargin">
+    <div class="row">
+      <div class="col-md-10">
         <card/>
         <a href="&new_comment_path(blogpost_id: this.id)"
-           class="button button-3d button-rounded button-amber pull-right">
-          <i class="icon-comment"></i><t key="mercator.comment"/>
+           class="btn btn-primary">
+          <span class="fa fa-commenting"/><t key="mercator.comment"/>
         </a>
 
 
@@ -25,8 +25,9 @@
 
         <a href="/blogposts" class="more-link">← <t key="mercator.back"/></a>
       </div>
+      <div class="col-md-2">
+        <blog-sidebar/>
+      </div>
     </div>
-
-    <blog-sidebar/>
   </content>
 </page>

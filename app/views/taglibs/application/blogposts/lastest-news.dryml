@@ -1,0 +1,14 @@
+<def tag="latest-news">
+  <h3>Latest News</h3>
+
+  <ul class="iconlist">
+    <repeat with="&Blogpost.latest">
+      <li>
+        <i class="icon-play"></i>
+        <a href="&blogpost_path(this.id)">
+          <view:title no-wrapper/>
+        </a>
+      </li>
+    </repeat>
+  </ul>
+</def>

@@ -1,4 +1,6 @@
+<include src="taglibs/application/blogposts/*"/>
 <include src="taglibs/application/categories/*"/>
+<include src="taglibs/application/comments/*"/>
 <include src="taglibs/application/conversations/*"/>
 <include src="taglibs/application/navigation/*"/>
 <include src="taglibs/application/offers/*"/>

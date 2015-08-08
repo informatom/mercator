@@ -1,13 +1,13 @@
 <page title="Blog">
   <title:>
-    <h1>Blog</h1>
+    <h1>BLOG</h1>
   </title:>
 
   <content:>
-    <div class="postcontent nobottommargin clearfix">
-      <div id="posts" class="small-thumbs">
+    <div class="row">
+      <div id="posts" class="col-md-9">
         <repeat>
-          <div class="entry clearfix">
+          <div class="extra-margin">
             <if test="&this.content_element.photo">
               <div class="entry-image">
                 <a href="&this.content_element.photo" data-lightbox="image">
@@ -17,38 +17,35 @@
 
             <div class="entry-c">
               <div class="entry-title">
-                  <h2><a href="&blogpost_path(this)"><view:title /></a></h2>
+                  <h1><a href="&blogpost_path(this)"><view:title /></a></h1>
               </div>
 
-              <ul class="entry-meta clearfix">
-                  <li>
-                    <i class="icon-calendar3"></i>
-                    <view with="&l(this.publishing_date, format: :long)"/>
-                  </li>
-                  <li>
-                    <i class="icon-folder-open"></i>
-                    <a href="&blogposts_path(post_category_id: this.post_category.id)">
-                      <view with="&this.post_category.name"/>
-                    </a>
-                  </li>
-                  <li><i class="icon-tag"></i>
-                    <repeat with="&this.blogtag_list" join=" - " >
-                      <a href="&blogposts_path(tag: this)"><view/></a>
-                    </repeat>
-                  </li>
-                  <li>
-                    <a href="&blogpost_path(this) + '#comments'">
-                      <i class="icon-comments"></i>
-                      <%= this.comments.count %>
-                      <t key="activerecord.models.comment.other" />
-                    </a>
-                  </li>
-                  <li><a href="#"><i class="icon-font"></i></a></li>
-              </ul>
+              <p>
+                <span class="fa fa-calendar"/>
+                <view with="&l(this.publishing_date, format: :long)"/> |
+
+                <span class="fa fa-folder-open"/>
+                <a href="&blogposts_path(post_category_id: this.post_category.id)">
+                  <view with="&this.post_category.name"/>
+                </a> |
+
+                <span class="fa fa-tag"/>
+                <repeat with="&this.blogtag_list" join=" - " >
+                  <a href="&blogposts_path(tag: this)"><view/></a>
+                </repeat> |
+
+                <a href="&blogpost_path(this) + '#comments'">
+                  <span class="fa fa-commenting" />
+                  <%= this.comments.count %>
+                  <t key="activerecord.models.comment.other" />
+                </a> |
+
+                <a href="#"><span class="fa fa-font" /></a>
+              </p>
 
               <div class="entry-content">
                 <view: with="&truncate_html(this.content_element.parse, :length => 750)"/>
-                <a href="&blogpost_path(this)" class="more-link"><t key="mercator.read_more" /> →</a>
+                <a href="&blogpost_path(this)" class="btn btn-default"><t key="mercator.read_more" /> →</a>
               </div>
             </div>
           </div>
@@ -56,8 +53,10 @@
 
         <page-nav inner-window="2" outer-window="0" />
       </div>
-    </div>
 
-    <blog-sidebar/>
+      <div class="col-md-3">
+        <blog-sidebar/>
+      </div>
+    </div>
   </content>
 </page>
