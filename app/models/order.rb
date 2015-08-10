@@ -455,7 +455,7 @@ class Order < ActiveRecord::Base
 
     count = 0
     Order.all.each do |basket|
-      if Time.now - basket.created_at > 1.hours && basket.lineitems == 0
+      if Time.now - basket.created_at > 1.hours
         if basket.delete_if_obsolete
           count = count + 1
         else
