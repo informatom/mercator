@@ -434,12 +434,12 @@ class Order < ActiveRecord::Base
   def delete_if_obsolete
     case lineitems.count
     when 0 # empty?
-      destroy ? true : false
+      destroy ? "deleted" : false
     when 1 # only shipping cost?
       if lineitems[0].product_number == Constant.find_by_key("shipping_cost_article").value
         lineitems[0].destroy
         self.reload
-        destroy ? true : false
+        destroy ? "deleted" : false
       else
         true
       end
@@ -458,7 +458,7 @@ class Order < ActiveRecord::Base
     count = 0
     Order.all.each do |basket|
       if Time.now - basket.created_at > 1.hours
-        if basket.delete_if_obsolete
+        if basket.delete_if_obsolete == "deleted"
           count = count + 1
         else
           JobLogger.error("Deleting order " + basket.id.to_s + " failed!")
