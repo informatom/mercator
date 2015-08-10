@@ -290,7 +290,7 @@ class User < ActiveRecord::Base
         if user.destroy
           count = count + 1
         else
-          JobLogger.error("Deleted User " + user.id.to_s + " failed:" + user.errors.first)
+          JobLogger.error("Deleted User " + user.id.to_s + " failed:" + user.errors.first.to_s)
         end
       end
     end
