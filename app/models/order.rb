@@ -440,6 +440,8 @@ class Order < ActiveRecord::Base
         lineitems[0].destroy
         self.reload
         destroy ? true : false
+      else
+        true
       end
     else
       true
