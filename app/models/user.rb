@@ -279,6 +279,7 @@ class User < ActiveRecord::Base
   def self.cleanup_deprecated
     JobLogger.info("=" * 50)
     JobLogger.info("Starting Cronjob runner: User.cleanup_deprecated")
+    count = 0
 
     User.all.each do |user|
       if user.orders.count == 0 &&
@@ -287,13 +288,14 @@ class User < ActiveRecord::Base
          (user.state == "guest" || user.state == "inactive") &&
          user.gtc_confirmed_at == nil
         if user.destroy
-          JobLogger.info("Deleted User " + user.id.to_s + " successfully.")
+          count = count + 1
         else
-          JobLogger.error("Deleted User " + user.id.to_s + " failed!")
+          JobLogger.error("Deleted User " + user.id.to_s + " failed:" + user.errors.first)
         end
       end
     end
 
+    JobLogger.info("Deleted " + count.to_s + " users.")
     JobLogger.info("Finished Cronjob runner: User.cleanup_deprecated")
     JobLogger.info("=" * 50)
   end
