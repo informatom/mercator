@@ -459,9 +459,9 @@ class Order < ActiveRecord::Base
     Order.all.each do |basket|
       if Time.now - basket.created_at > 1.hours
         deletion_count = basket.delete_if_obsolete
-        if deletion_count = 1
+        if deletion_count == 1
           count = count + 1
-        elsif deletion_count = -1
+        elsif deletion_count == -1
           JobLogger.error("Deleting order " + basket.id.to_s + " failed!")
         end
       end
