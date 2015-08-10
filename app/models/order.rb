@@ -66,7 +66,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :conversation
 
-  has_many :lineitems, dependent: :destroy, accessible: true
+  has_many :lineitems, dependent: :restrict_with_error, accessible: true
 
   DEFAULT_BILLING_METHOD =
     Rails.application.config.try(:payment) == "mpay24" ? :e_payment : :pre_payment
@@ -455,7 +455,7 @@ class Order < ActiveRecord::Base
 
     count = 0
     Order.all.each do |basket|
-      if Time.now - basket.created_at > 1.hours
+      if Time.now - basket.created_at > 1.hours && basket.lineitems == 0
         if basket.delete_if_obsolete
           count = count + 1
         else

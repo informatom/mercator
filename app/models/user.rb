@@ -282,11 +282,12 @@ class User < ActiveRecord::Base
     count = 0
 
     User.all.each do |user|
-      if user.orders.count == 0 &&
-         Time.now - user.created_at > 1.hours &&
-         user.surname == "Gast" &&
-         (user.state == "guest" || user.state == "inactive") &&
-         user.gtc_confirmed_at == nil
+      if user.orders.count == 0 && user.addresses.count == 0 && user.billing_addresses.count == 0 &&
+         user.offers.count == 0 && user.comments.count == 0 && user.conversations.count == 0
+        Time.now - user.created_at > 1.hours &&
+        user.surname == "Gast" &&
+        (user.state == "guest" || user.state == "inactive") &&
+        user.gtc_confirmed_at == nil
         if user.destroy
           count = count + 1
         else
