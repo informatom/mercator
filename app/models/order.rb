@@ -434,15 +434,15 @@ class Order < ActiveRecord::Base
   def delete_if_obsolete
     case lineitems.count
     when 0 # empty?
-      destroy
+      destroy ? true : false
     when 1 # only shipping cost?
       if lineitems[0].product_number == Constant.find_by_key("shipping_cost_article").value
         lineitems[0].destroy
         self.reload
-        destroy
+        destroy ? true : false
       end
     else
-      false
+      true
     end
   end
 
