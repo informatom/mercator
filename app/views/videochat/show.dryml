@@ -1,5 +1,7 @@
 <page title="Video Chat">
   <content:>
+    <h2> Video Chat</h2>
+
     <div class="col-sm-3">
       <video id="myvideo" muted autoplay style="height: 180px; width: 100%; display: block;"></video>
     </div>
