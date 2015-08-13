@@ -38,7 +38,7 @@ class UserMailer < ActionMailer::Base
 
   def job_failed(jobname)
     @jobname = jobname
-    mail(:to => Constant.find_by_key('service_mail').try(:value) ,
-         :subject => "Job failed / Job gescheitert: #{jobname}")
+    mail(:to => Constant.find_by_key('technical_support_mail').try(:value) ,
+         :subject => "[MERCATOR - " + CONFIG[:system_name] + "] Job failed / Job gescheitert: #{jobname}")
   end
 end
