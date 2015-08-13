@@ -5,6 +5,7 @@
 <include src="taglibs/application/navigation/*"/>
 <include src="taglibs/application/offers/*"/>
 <include src="taglibs/application/orders/*"/>
+<include src="taglibs/application/podcasts/*"/>
 <include src="taglibs/application/products/*"/>
 <include src="taglibs/application/users/*"/>
 <include src="taglibs/application/webpages/*"/>

@@ -4,11 +4,9 @@
   </title:>
 
   <content:>
-    <javascript name='jquery'/>
-    <javascript name='jquery-migrate'/>
     <javascript name='podlove-web-player-rails'/>
-    <div class="postcontent nobottommargin clearfix">
-      <div id="posts" class="small-thumbs">
+    <div class="row">
+      <div id="posts" class="col-md-9">
         <repeat>
           <div class="entry clearfix">
             <div class="entry-c">
@@ -65,8 +63,10 @@
 
         <page-nav inner-window="2" outer-window="0" />
       </div>
-    </div>
 
-    <podcast-sidebar/>
+      <div class="col-md-3">
+        <podcast-sidebar/>
+      </div>
+    </div>
   </content>
 </page>

@@ -1,0 +1,9 @@
+<def tag="podcast-sidebar">
+  <div class="sidebar nobottommargin col_last clearfix">
+    <div class="sidebar-widgets-wrap">
+      <container name="podcast-about"/>
+      <latest-comments-widget />
+      <archive-widget for="Podcast"/>
+    </div>
+  </div>
+</def>

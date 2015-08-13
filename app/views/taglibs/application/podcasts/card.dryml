@@ -1,0 +1,53 @@
+<def tag="card" for="Podcast" attrs="title">
+  <if: test="&title">
+    <h3><view:title no-wrapper/></h3>
+  </if>
+
+  <div class="entry-c">
+    <div class="entry-title">
+        <h2>Episode <view:number/> - <a href="&podcast_path(this)"><view:title /></a></h2>
+    </div>
+
+    <p>
+      <span class="fa fa-calendar"/>
+      <view with="&l(this.published_at, format: :long)"/> |
+
+      <a href="&podcast_path(this) + '#comments'">
+        <span class="fa fa-commenting"/>
+        <%= this.comments.count %>
+        <t key="activerecord.models.comment.other" />
+      </a> |
+
+      <a href="#"><span class="fa fa-font"/></a>
+    </p>
+
+    <p>
+      <%= podloveaudio(mp3: this.mp3.url,
+                       ogg: this.ogg.url,
+                       title: this.title,
+                       autoplay: "false",
+                       alwaysShowControls: "true",
+                       duration: this.duration,
+                       chapters: this.chapterstring,
+                       chaptersVisible: "true",
+                       chapterlinks: "all",
+                       features: ["current","progress","duration","tracks","fullscreen","volume"] ) %>
+    </p>
+
+    <p>
+      <a href="&this.mp3.url">
+        <span class="fa fa-music"/>
+        Download MP3
+        (<view with="&this.mp3_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
+      </a> -
+      <a href="&this.ogg.url">
+        <span class="fa fa-music"/>
+        Download OGG
+        (<view with="&this.ogg_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
+      </a>
+    </p>
+
+    <view with="&this.shownotes.html_safe"/>
+    <a href="&archive_podcasts_path" class="btn btn-info"><t key="mercator.archive" /> →</a>
+  </div>
+</def>

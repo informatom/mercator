@@ -4,17 +4,16 @@
   </title:>
 
   <content:>
-    <javascript name='jquery'/>
     <javascript name='jquery-migrate'/>
     <javascript name='podlove-web-player-rails/index'/>
-    <div class="postcontent nobottommargin clearfix">
-      <div id="posts" class="small-thumbs">
+    <div class="row">
+      <div id="posts" class="col-md-9">
         <repeat>
 
           <card />
           <a href="&new_comment_path(podcast_id: this.id)"
-             class="button button-3d button-rounded button-amber pull-right">
-            <i class="icon-comment"></i><t key="mercator.comment"/>
+             class="btn btn-success pull-right">
+            <span class="fa fa-comment"/><t key="mercator.comment"/>
           </a>
 
           <comments-widget/>
@@ -23,8 +22,10 @@
 
         <page-nav inner-window="2" outer-window="0" />
       </div>
-    </div>
 
-    <podcast-sidebar/>
+      <div class="col-md-3">
+        <podcast-sidebar/>
+      </div>
+    </div>
   </content>
 </page>
