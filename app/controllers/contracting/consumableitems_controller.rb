@@ -19,9 +19,8 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
               position:        consumableitem.position,
               contract_type:   consumableitem.contract_type,
               product_number:  consumableitem.product_number,
+              product_title:   consumableitem.product_title,
               product_line:    consumableitem.product_line,
-              description_de:  consumableitem.description_de,
-              description_en:  consumableitem.description_en,
               amount:          consumableitem.amount,
               theyield:        consumableitem.theyield,
               wholesale_price: consumableitem.wholesale_price,
@@ -45,7 +44,7 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
               balance3:        consumableitem.balance(3),
               balance4:        consumableitem.balance(4),
               balance5:        consumableitem.balance(5),
-              balance6:        consumableitem.balance6, # ! That's OK!
+              balance6:        consumableitem.balance(6),
               created_at:      consumableitem.created_at,
               updated_at:      consumableitem.updated_at
             }
@@ -69,13 +68,11 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       @consumableitem.position        = attrs[:position]
       @consumableitem.contract_type   = attrs[:contract_type]
       @consumableitem.product_number  = attrs[:product_number]
+      @consumableitem.product_title   = attrs[:product_title]
       @consumableitem.product_line    = attrs[:product_line]
-      @consumableitem.description_de  = attrs[:description_de]
-      @consumableitem.description_en  = attrs[:description_en]
       @consumableitem.amount          = attrs[:amount]
       @consumableitem.wholesale_price = attrs[:wholesale_price]
       @consumableitem.term            = attrs[:term]
-      @consumableitem.balance6        = attrs[:balance6]
       @consumableitem.consumption1    = attrs[:consumption1]
       @consumableitem.consumption2    = attrs[:consumption2]
       @consumableitem.consumption3    = attrs[:consumption3]
@@ -97,13 +94,11 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
           position:        @consumableitem.position,
           contract_type:   @consumableitem.contract_type,
           product_number:  @consumableitem.product_number,
+          product_title:   @consumableitem.product_title,
           product_line:    @consumableitem.product_line,
-          description_de:  @consumableitem.description_de,
-          description_en:  @consumableitem.description_en,
           amount:          @consumableitem.amount,
           wholesale_price: @consumableitem.wholesale_price,
           term:            @consumableitem.term,
-          balance6:        @consumableitem.balance6,
           consumption1:    @consumableitem.consumption1,
           consumption2:    @consumableitem.consumption2,
           consumption3:    @consumableitem.consumption3,
@@ -129,19 +124,6 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       render nothing: true
     else
       render json: @consumableitem.errors.first
-    end
-  end
-
-
-  show_action :defaults do
-    @contractitem = Contractitem.find(params[:id])
-    @toner = @contractitem.toner
-    if @toner
-      render json: { vendor_number:   @toner.vendor_number,
-                     wholesale_price: @toner.price }
-    else
-      render :text => I18n.t("js.con.no_toner"),
-             :status => 403 and return
     end
   end
 end

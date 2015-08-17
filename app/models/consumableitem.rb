@@ -5,10 +5,9 @@ class Consumableitem < ActiveRecord::Base
   fields do
     position        :integer, :required
     product_number  :string
+    product_title   :string
     contract_type   :string
     product_line    :string
-    description_de  :string
-    description_en  :string
     amount          :integer, :required, :default => 0
     theyield        :integer, :required, :default => 0
     wholesale_price :decimal, :required, :precision => 13, :scale => 5, :default => 0
@@ -19,13 +18,12 @@ class Consumableitem < ActiveRecord::Base
     consumption4    :integer, :required, :default => 0
     consumption5    :integer, :required, :default => 0
     consumption6    :integer, :required, :default => 0
-    balance6        :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
 
-  attr_accessible :position, :product_number, :product_line, :description_de, :description_en, :amount,
-                  :theyield, :wholesale_price, :term, :consumption1, :consumption2, :consumption3,
-                  :consumption4, :consumption5, :consumption6, :balance6, :created_at, :updated_at,
+  attr_accessible :position, :product_number, :product_line, :product_title, :amount, :theyield,
+                  :wholesale_price, :term, :consumption1, :consumption2, :consumption3,
+                  :consumption4, :consumption5, :consumption6, :created_at, :updated_at,
                   :contract_type, :contractitem_id
 
   belongs_to :contractitem

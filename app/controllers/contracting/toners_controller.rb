@@ -18,25 +18,4 @@ class Contracting::TonersController < Contracting::ContractingSiteController
       puts @toner.errors.first
     end
   end
-
-
-  index_action :grid_index do
-    @toners = Toner.all
-
-    render json: {
-      status: "success",
-      total: @toners.count,
-      records: @toners.collect {
-        |toner| {
-          recid:          toner.id,
-          article_number: toner.article_number,
-          vendor_number:  toner.vendor_number,
-          description:    toner.description,
-          price:          toner.price,
-          created_at:     toner.created_at.utc.to_i*1000,
-          updated_at:     toner.updated_at.utc.to_i*1000
-        }
-      }
-    }
-  end
 end

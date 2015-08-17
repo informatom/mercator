@@ -5,28 +5,24 @@ class Contractitem < ActiveRecord::Base
   fields do
     position        :integer, :required, :default => 0
     product_number  :string
-    description_de  :string, :required
-    description_en  :string
+    product_title   :string
     amount          :integer, :required, :default => 0
-    unit            :string
     volume          :integer, :required, :default => 0
     product_price   :decimal, :required, :precision => 13, :scale => 5, :default => 0
     vat             :decimal, :required, :precision => 10, :scale => 2, :default => 0
     value           :decimal, :required, :precision => 13, :scale => 5, :default => 0
-    discount_abs    :decimal, :required, :scale => 2, :precision => 10, :default => 0
     term            :integer, :required, :default => 0
     startdate       :date, :required
     volume_bw       :integer, :default => 0
     volume_color    :integer, :default => 0
     marge           :decimal, :required, :precision => 13, :scale => 5, :default => 0
-    monitoring_rate :decimal, :required, :precision => 13, :scale => 5, :default => 0
     timestamps
   end
 
 
-  attr_accessible :position, :product_number, :description_de, :description_en, :amount, :unit, :volume,
-                  :product_price, :vat, :value, :discount_abs, :user, :user_id, :contract_id, :contract,
-                  :product, :product_id, :toner, :toner_id, :term, :startdate, :volume_bw, :volume_color,
+  attr_accessible :position, :product_number, :product_title, :amount, :volume, :product_price,
+                  :vat, :value, :user, :user_id, :contract_id, :contract, :product, :product_id,
+                  :term, :startdate, :volume_bw, :volume_color,
                   :marge, :monitoring_rate, :created_at, :updated_at
 
   translates :description
@@ -45,7 +41,6 @@ class Contractitem < ActiveRecord::Base
   acts_as_list :scope => :contract
 
   belongs_to :product
-  belongs_to :toner
 
   has_many :consumableitems
 
@@ -91,8 +86,8 @@ class Contractitem < ActiveRecord::Base
   end
 
   def value
-    if monthly_rate && monitoring_rate && discount_abs
-      monthly_rate + monitoring_rate - discount_abs
+    if monthly_rate
+      monthly_rate
     end
   end
 
@@ -114,7 +109,7 @@ class Contractitem < ActiveRecord::Base
 
   def new_rate_with_monitoring(n)
     if [2, 3, 4, 5].include? n
-      new_rate(n) + monitoring_rate
+      new_rate(n) + contract.monitoring_rate
     elsif n == 6
       consumableitems.map{|consumableitem| consumableitem.new_rate(n)}.reduce(:+) || 0
     end

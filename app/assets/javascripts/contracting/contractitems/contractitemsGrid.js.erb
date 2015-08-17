@@ -27,19 +27,14 @@ function contractitemsGrid() {
       { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', render: 'date:dd.mm.yyyy'},
       { field: 'enddate', caption: I18n.t("attributes.enddate"), size: '130px', render: 'date:dd.mm.yyyy'},
       { field: 'product_number', caption: I18n.t("attributes.product_number"), size: '100px' },
-      { field: 'toner', caption: I18n.t("attributes.toner"), size: '100px' },
+      { field: 'product_title', caption: I18n.t("attributes.title"), size: '100px' },
       { field: 'product_price', caption: I18n.t("attributes.product_price"), size: '50px', render: 'currency' },
-      { field: 'description_de', caption: I18n.t("attributes.description_de"), size: '200px' },
-      { field: 'description_en', caption: I18n.t("attributes.description_en"), size: '200px', hidden: true },
       { field: 'amount', caption: I18n.t("attributes.amount"), size: '50px' },
-      { field: 'unit', caption: I18n.t("attributes.unit"), size: '50px' },
       { field: 'marge', caption: I18n.t("attributes.marge"), size: '50px', render: 'currency' },
       { field: 'volume_bw', caption: I18n.t("attributes.volume_bw"), size: '50px' },
       { field: 'volume_color', caption: I18n.t("attributes.volume_color"), size: '50px' },
       { field: 'price', caption: I18n.t("attributes.price"), size: '50px', render: 'currency'},
       { field: 'monthly_rate', caption: I18n.t("attributes.monthly_rate"), size: '50px',render: 'currency' },
-      { field: 'monitoring_rate', caption: I18n.t("attributes.monitoring_rate"), size: '50px', render: 'currency' },
-      { field: 'discount_abs', caption: I18n.t("attributes.discount_abs"), size: '50px', render: 'currency' },
       { field: 'value', caption: I18n.t("attributes.value"), size: '50px', render: 'currency' },
       { field: 'vat', caption: I18n.t("attributes.vat"), size: '50px', render: 'percent' },
       { field: 'value_incl_vat', caption: I18n.t("attributes.value_incl_vat"), size: '50px', render: 'currency' },
@@ -52,9 +47,7 @@ function contractitemsGrid() {
     searches: [
       { field: 'user', caption: I18n.t("attributes.product_number"), type: 'text' },
       { field: 'product_number', caption: I18n.t("attributes.product_number"), type: 'text' },
-      { field: 'toner', caption: I18n.t("attributes.product_number"), type: 'text' },
-      { field: 'description_de', caption: I18n.t("attributes.description_de"), type: 'text' },
-      { field: 'description_en', caption: I18n.t("attributes.description_en"), type: 'text' }
+      { field: 'product_title', caption: I18n.t("attributes.title"), type: 'text' }
     ],
     sortData: [{ field: 'position', direction: 'asc' }],
 

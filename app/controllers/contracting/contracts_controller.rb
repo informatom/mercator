@@ -14,15 +14,15 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           total: @contracts.count,
           records: @contracts.collect {
             |contract| {
-              recid: contract.id,
-              customer: (contract.customer.name if contract.customer),
-              consultant: (contract.consultant.name if contract.consultant),
-              conversation: (contract.conversation.name if contract.conversation),
-              term: contract.term,
-              startdate: contract.startdate,
-              enddate: contract.enddate,
-              created_at: contract.created_at.utc.to_i*1000,
-              updated_at: contract.updated_at.utc.to_i*1000
+              recid:           contract.id,
+              customer:        (contract.customer.name if contract.customer),
+              term:            contract.term,
+              contractnumber:  contract.contractnumber,
+              monitoring_rate: contract.monitoring_rate,
+              startdate:       contract.startdate,
+              enddate:         contract.enddate,
+              created_at:      contract.created_at.utc.to_i*1000,
+              updated_at:      contract.updated_at.utc.to_i*1000
             }
           }
         }
@@ -41,8 +41,9 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
     if params[:cmd] == "save-record"
       attrs = params[:record]
       @contract.customer_id     = attrs[:customer_id]
-      @contract.consultant_id   = attrs[:consultant_id]
-      @contract.conversation_id = attrs[:conversation_id]
+
+      @contract.contractnumber  = attrs[:contractnumber]
+      @contract.monitoring_rate = attrs[:monitoring_rate]
       @contract.term            = attrs[:term]
       @contract.startdate       = attrs[:startdate]
 
@@ -59,10 +60,8 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           recid:           @contract.id,
           customer:        (@contract.customer.email_address if @contract.customer),
           customer_id:     @contract.customer_id,
-          consultant:      (@contract.consultant.email_address if @contract.consultant),
-          consultant_id:   @contract.consultant_id,
-          conversation:    (@contract.conversation.name if @contract.conversation),
-          conversation_id: @contract.conversation_id,
+          contractnumber:  @contract.contractnumber,
+          monitoring_rate: @contract.monitoring_rate,
           term:            @contract.term,
           startdate:       I18n.l(@contract.startdate)
         }
