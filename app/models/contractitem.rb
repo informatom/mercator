@@ -1,4 +1,5 @@
 class Contractitem < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
 
   hobo_model # Don't put anything above this
 
@@ -67,73 +68,101 @@ class Contractitem < ActiveRecord::Base
     acting_user.administrator?
   end
 
+
   # --- Instance Methods --- #
 
   def price
-    consumableitems.*.value.reduce(:+) || 0
+    consumableitems.*.value.sum || 0
   end
+
 
   def enddate
     startdate + term.months - 1.days
   end
 
+
   def monthly_rate
     if term && term > 0
-      price / term
+      price.to_f / term
     else
-      price
+      price.to_f
     end
   end
 
+
   def value
-    if monthly_rate
-      monthly_rate
-    end
+    monthly_rate * amount
   end
+
 
   def value_incl_vat
     value * (100 + vat / 100)
   end
 
+
   def new_rate(n)
     if [2, 3, 4, 5].include? n
-      consumableitems.map{|consumableitem| consumableitem.new_rate(n)}.reduce(:+) || 0
-    elsif n==6
-      if balance(6) < 0
-        (balance(6) / new_rate(1)).floor * -1
-      else
-        0
-      end
+      consumableitems.*.new_rate(n).sum || 0
     end
   end
 
-  def new_rate_with_monitoring(n)
-    if [2, 3, 4, 5].include? n
-      new_rate(n) + contract.monitoring_rate
-    elsif n == 6
-      consumableitems.map{|consumableitem| consumableitem.new_rate(n)}.reduce(:+) || 0
-    end
-  end
 
   def balance(n)
-    if [1, 2, 3, 4, 5, 6].include? n
-      consumableitems.map{|consumableitem| consumableitem.balance(n)}.reduce(:+) || 0
+    if [1, 2, 3, 4, 5].include? n
+      consumableitems.*.balance(n).sum || 0
     end
   end
 
+
   def months_without_rates(n)
-    if [1, 2, 3, 4, 5].include? n
+    if [1, 2, 3, 4].include? n
       if balance(n) < 0
-        (balance(n) / new_rate(n+1)).floor * -1
+        (balance(n).to_f / new_rate(n+1)).ceil * -1
       else
         0
       end
     end
   end
 
+
   def next_month(n)
-    if [1, 2, 3, 4, 5].include? n
-      (months_without_rates(n) * new_rate(n+1) + balance(n)) * -1
+    if [1, 2, 3, 4].include? n
+      if balance(n) < 0
+        (months_without_rates(n) * new_rate(n+1) + balance(n)) * -1
+      else
+        new_rate(n+1)
+      end
     end
+  end
+
+
+  def actual_rate(year: year, month: month)
+    if year == 1
+      monthly_rate
+    else
+      if month == months_without_rates(year-1) + 1
+        next_month(year-1)
+      elsif month < months_without_rates(year-1) + 1
+        0
+      else
+        new_rate(year)
+      end
+    end
+  end
+
+
+  def actual_rate_array
+    rate_array = Array.new()
+
+    (1..12).each do |month|
+      rate_array[month] = { title: I18n.t("date.month_names", locale: :de)[month],
+                            year1: number_to_currency(actual_rate(year: 1, month: month)),
+                            year2: number_to_currency(actual_rate(year: 2, month: month)),
+                            year3: number_to_currency(actual_rate(year: 3, month: month)),
+                            year4: number_to_currency(actual_rate(year: 4, month: month)),
+                            year5: number_to_currency(actual_rate(year: 5, month: month)) }
+    end
+
+    return rate_array
   end
 end

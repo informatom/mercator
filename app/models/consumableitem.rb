@@ -58,7 +58,7 @@ class Consumableitem < ActiveRecord::Base
   # --- Instance methods --- #
 
   def price
-    wholesale_price * (100 + contractitem.marge) / 100
+    (wholesale_price * (100 + contractitem.marge) / 100).ceil
   end
 
   def value
@@ -66,33 +66,35 @@ class Consumableitem < ActiveRecord::Base
   end
 
   def monthly_rate
-    value / term
+    value.to_f / term
   end
 
   def new_rate(n)
     if n == 2
-      if term == contractitem.term
+      if term != contractitem.term
         monthly_rate
       elsif contractitem.term && (amount * 12 >=  contractitem.term)
-        consumption1 * price / 12
+        consumption1.to_f * price / 12
       else
         monthly_rate
       end
 
     elsif [3, 4, 5, 6].include? n
-      consumption(n-1) * price / 12
+      consumption(n-1).to_f * price / 12
     end
   end
 
   def balance(n)
     if n == 1
       (new_rate(n+1) - monthly_rate) * 12
-    elsif [2, 3, 4, 5].include? n
+    elsif [2, 3, 4].include? n
       (new_rate(n+1) - new_rate(n)) * 12
+    elsif n == 5
+      consumption5 * price - new_rate(5) * 12
     end
   end
 
   def consumption(n)
-    eval('consumption' + (n-1).to_s)
+    eval('consumption' + n.to_s)
   end
 end

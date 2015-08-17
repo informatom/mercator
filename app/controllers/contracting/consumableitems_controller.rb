@@ -4,7 +4,7 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   respond_to :html, :json
 
   def index
-    @consumableitems = Consumableitem.where(contractitem_id: params[:contractitem_id])
+    @consumableitems = Consumableitem.where(contractitem_id: params[:contractitem_id]).order(:position)
     session[:selected_contract_id] = Contractitem.find(params[:contractitem_id]).contract_id
 
     respond_to do |format|
@@ -33,18 +33,15 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
               consumption3:    consumableitem.consumption3,
               consumption4:    consumableitem.consumption4,
               consumption5:    consumableitem.consumption5,
-              consumption6:    consumableitem.consumption6,
               new_rate2:       consumableitem.new_rate(2),
               new_rate3:       consumableitem.new_rate(3),
               new_rate4:       consumableitem.new_rate(4),
               new_rate5:       consumableitem.new_rate(5),
-              new_rate6:       consumableitem.new_rate(6),
               balance1:        consumableitem.balance(1),
               balance2:        consumableitem.balance(2),
               balance3:        consumableitem.balance(3),
               balance4:        consumableitem.balance(4),
               balance5:        consumableitem.balance(5),
-              balance6:        consumableitem.balance(6),
               created_at:      consumableitem.created_at,
               updated_at:      consumableitem.updated_at
             }
@@ -71,6 +68,7 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       @consumableitem.product_title   = attrs[:product_title]
       @consumableitem.product_line    = attrs[:product_line]
       @consumableitem.amount          = attrs[:amount]
+      @consumableitem.theyield        = attrs[:theyield]
       @consumableitem.wholesale_price = attrs[:wholesale_price]
       @consumableitem.term            = attrs[:term]
       @consumableitem.consumption1    = attrs[:consumption1]
@@ -78,7 +76,6 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       @consumableitem.consumption3    = attrs[:consumption3]
       @consumableitem.consumption4    = attrs[:consumption4]
       @consumableitem.consumption5    = attrs[:consumption5]
-      @consumableitem.consumption6    = attrs[:consumption6]
       @consumableitem.contractitem_id = attrs[:contractitem_id]
 
       success = @consumableitem.save
@@ -97,6 +94,7 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
           product_title:   @consumableitem.product_title,
           product_line:    @consumableitem.product_line,
           amount:          @consumableitem.amount,
+          theyield:        @consumableitem.theyield,
           wholesale_price: @consumableitem.wholesale_price,
           term:            @consumableitem.term,
           consumption1:    @consumableitem.consumption1,
@@ -104,7 +102,6 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
           consumption3:    @consumableitem.consumption3,
           consumption4:    @consumableitem.consumption4,
           consumption5:    @consumableitem.consumption5,
-          consumption6:    @consumableitem.consumption6,
           contractitem_id: @consumableitem.contractitem_id
         }
       }

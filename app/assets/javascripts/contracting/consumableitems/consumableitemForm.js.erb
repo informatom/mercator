@@ -19,6 +19,10 @@ function consumableitemForm() {
       '      <div><input name="product_number" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.title") + '</label>'+
+      '      <div><input name="product_title" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.product_line") + '</label>'+
       '      <div><input name="product_line" /></div>'+
       '    </div>'+
@@ -64,10 +68,6 @@ function consumableitemForm() {
       '      <label>' + I18n.t("attributes.consumption") + ' 5</label>'+
       '      <div><input name="consumption5" /></div>'+
       '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.consumption") + ' 6</label>'+
-      '      <div><input name="consumption6" /></div>'+
-      '    </div>'+
         '</div>'+
       '</div>'+
 
@@ -81,8 +81,10 @@ function consumableitemForm() {
       { name: 'position',        type: 'int', required: true },
       { name: 'contract_type',   type: 'text' },
       { name: 'product_number',  type: 'text', required: true },
+      { name: 'product_title',   type: 'text'},
       { name: 'product_line',    type: 'text' },
       { name: 'amount',          type: 'int', required: true },
+      { name: 'theyield',        type: 'int', required: true },
       { name: 'wholesale_price', type: 'currency', required: true },
       { name: 'term',            type: 'int', required: true },
       { name: 'contractitem_id', type: 'integer', required: true, disabled: true },
@@ -90,8 +92,7 @@ function consumableitemForm() {
       { name: 'consumption2',    type: 'int', required: true },
       { name: 'consumption3',    type: 'int', required: true },
       { name: 'consumption4',    type: 'int', required: true },
-      { name: 'consumption5',    type: 'int', required: true },
-      { name: 'consumption6',    type: 'int', required: true }
+      { name: 'consumption5',    type: 'int', required: true }
     ],
 
     actions: {

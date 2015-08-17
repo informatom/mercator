@@ -57,7 +57,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       @contractitem.startdate       = attrs[:startdate]
       @contractitem.product_number  = attrs[:product_number]
       @contractitem.product_id      = attrs[:product_id]
-      @contractitem.product_title   = atts[:product_title]
+      @contractitem.product_title   = attrs[:product_title]
       @contractitem.amount          = attrs[:amount]
       @contractitem.marge           = attrs[:marge]
       @contractitem.volume_bw       = attrs[:volume_bw]
@@ -123,8 +123,8 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
 
     render json: {
       status: "success",
-      total: 7,
-      records: [
+      total: 19,
+      records: ([
         {
           title: "Jahresbeginn",
           year1: l(@contractitem.startdate),
@@ -132,7 +132,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year3: l(@contractitem.startdate + 2.year),
           year4: l(@contractitem.startdate + 3.year),
           year5: l(@contractitem.startdate + 4.year),
-          year6: l(@contractitem.startdate + 5.year)
         }, {
           title: "Jahresende",
           year1: l(@contractitem.startdate + 1.year - 1.day),
@@ -140,39 +139,27 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year3: l(@contractitem.startdate + 3.year - 1.day),
           year4: l(@contractitem.startdate + 4.year - 1.day),
           year5: l(@contractitem.startdate + 5.year - 1.day),
-          year6: l(@contractitem.startdate + 6.year - 1.day)
+        }, {
+          title: "Rate (EUR)",
+          year1: number_to_currency(@contractitem.monthly_rate),
+          year2: number_to_currency(@contractitem.new_rate(2)),
+          year3: number_to_currency(@contractitem.new_rate(3)),
+          year4: number_to_currency(@contractitem.new_rate(4)),
+          year5: number_to_currency(@contractitem.new_rate(5)),
         }, {
           title: "Monate ohne Rate",
           year1: @contractitem.months_without_rates(1),
           year2: @contractitem.months_without_rates(2),
           year3: @contractitem.months_without_rates(3),
           year4: @contractitem.months_without_rates(4),
-          year5: @contractitem.months_without_rates(5),
-          year6: '---'
+          year5: '---',
         }, {
-          title: "Folgeraten (EUR)",
-          year1: '---',
-          year2: number_to_currency(@contractitem.new_rate(2)),
-          year3: number_to_currency(@contractitem.new_rate(3)),
-          year4: number_to_currency(@contractitem.new_rate(4)),
-          year5: number_to_currency(@contractitem.new_rate(5)),
-          year6: number_to_currency(@contractitem.new_rate(6))
-        }, {
-          title: "Folgemonat (EUR)",
+          title: "Rate im Folgemonat (EUR)",
           year1: number_to_currency(@contractitem.next_month(1)),
           year2: number_to_currency(@contractitem.next_month(2)),
           year3: number_to_currency(@contractitem.next_month(3)),
           year4: number_to_currency(@contractitem.next_month(4)),
-          year5: number_to_currency(@contractitem.next_month(5)),
-          year6: '---'
-        }, {
-          title: "Folgeraten mit Monitoring (EUR)",
-          year1:'---',
-          year2: number_to_currency(@contractitem.new_rate_with_monitoring(2)),
-          year3: number_to_currency(@contractitem.new_rate_with_monitoring(3)),
-          year4: number_to_currency(@contractitem.new_rate_with_monitoring(4)),
-          year5: number_to_currency(@contractitem.new_rate_with_monitoring(5)),
-          year6: number_to_currency(@contractitem.new_rate_with_monitoring(6))
+          year5: '---',
         }, {
           title: "Summe Gutschrift/Nachzahlung",
           year1: number_to_currency(@contractitem.balance(1)),
@@ -180,9 +167,9 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year3: number_to_currency(@contractitem.balance(3)),
           year4: number_to_currency(@contractitem.balance(4)),
           year5: number_to_currency(@contractitem.balance(5)),
-          year6: number_to_currency(@contractitem.balance(6))
-        }
-      ]
+        }, { title: "=== Tatsächliche Raten ===",
+             year1: nil, year2: nil, year3: nil, year4: nil, year5: nil, }
+      ] + @contractitem.actual_rate_array[1..12])
     }
   end
 end
