@@ -172,4 +172,25 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       ] + @contractitem.actual_rate_array[1..12])
     }
   end
+
+  show_action :upload
+
+  show_action :do_upload, method: :post do
+    @contractitem = Contractitem.find(params[:id])
+
+    @sheet = Roo::Spreadsheet.open(params[:xlsx].path, extension: :xlsx)
+
+    @sheet.each_with_index do |row, index|
+      next if index < 2
+      next unless @contract_item.product_number[3..-1] = row[8]
+
+      # row [11]  ... Artikelnummer
+      # row[16] ... Text
+      # row[28]  ... Anzahl
+      # row [30]  ... Reichweite
+    end
+
+    session[:selected_contractitem_id] = params[:id]
+    redirect_to contracting_consumableitems_path
+  end
 end

@@ -8,9 +8,9 @@ class Contracting::TonersController < Contracting::ContractingSiteController
   index_action :do_upload do
     Toner.delete_all
 
-    @liste =  Roo::Spreadsheet.open(params[:xlsx].path, extension: :xlsx)
+    @sheet = Roo::Spreadsheet.open(params[:xlsx].path, extension: :xlsx)
 
-    @liste.each_with_index do |row, index|
+    @sheet.each_with_index do |row, index|
       next if index == 0
       @toner = Toner.find_or_initialize_by(vendor_number: row[1])
       @toner.update(article_number: row[0], description: row[2], price: row[3])

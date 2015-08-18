@@ -8,13 +8,18 @@ function contractitemsGrid() {
     toolbar: {
       items: [
         { type: 'button', id: 'editConsumableitems', img: 'fa fa-tint',
-          caption: I18n.t("attributes.consumable_item"), disabled: true }
+          caption: I18n.t("attributes.consumable_item"), disabled: true },
+        { type: 'button', id: 'uploadConsumableitems', img: 'fa fa-upload',
+          caption: I18n.t("attributes.upload"), disabled: true }
       ],
       onClick: function (target, data) {
         var selection = w2ui.contractitemsGrid.getSelection()
         switch (target) {
         case 'editConsumableitems':
           document.location = "/contracting/consumableitems?contractitem_id=" + selection[0]
+          break
+        case 'uploadConsumableitems':
+          document.location = "/contracting/contractitems/" + selection[0] + "/upload"
         }
       }
     },
@@ -58,6 +63,7 @@ function contractitemsGrid() {
           show_contractitem_details(selection[0])
         } else {
           this.toolbar.disable('editConsumableitems')
+          this.toolbar.disable('uploadConsumableitems')
         }
       }
     },
@@ -78,6 +84,7 @@ function contractitemsGrid() {
 
 function show_contractitem_details(contractitem_id) {
   w2ui.contractitemsGrid.toolbar.enable('editConsumableitems')
+  w2ui.contractitemsGrid.toolbar.enable('uploadConsumableitems')
   w2ui.contractitemsGrid.select(contractitem_id)
 
   w2ui.contractitemForm.recid = contractitem_id
