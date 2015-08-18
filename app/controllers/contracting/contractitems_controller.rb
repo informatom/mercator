@@ -23,9 +23,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               product_title:   contractitem.product_title,
               amount:          contractitem.amount,
               volume:          contractitem.volume,
-              product_price:   contractitem.product_price,
               vat:             contractitem.vat,
-              value:           contractitem.value,
               term:            contractitem.term,
               startdate:       contractitem.startdate,
               enddate:         contractitem.enddate,
@@ -62,8 +60,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       @contractitem.marge           = attrs[:marge]
       @contractitem.volume_bw       = attrs[:volume_bw]
       @contractitem.volume_color    = attrs[:volume_color]
-      @contractitem.product_price   = attrs[:product_price]
-      @contractitem.value           = attrs[:value]
       @contractitem.vat             = attrs[:vat]
       @contractitem.contract_id     = attrs[:contract_id]
 
@@ -90,8 +86,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           marge:           @contractitem.marge,
           volume_bw:       @contractitem.volume_bw,
           volume_color:    @contractitem.volume_color,
-          product_price:   @contractitem.product_price,
-          value:           @contractitem.value,
           vat:             @contractitem.vat,
           created_at:      I18n.l(@contractitem.created_at),
           updated_at:      I18n.l(@contractitem.updated_at),
@@ -182,15 +176,22 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
 
     @sheet.each_with_index do |row, index|
       next if index < 2
-      next unless @contract_item.product_number[3..-1] = row[8]
+      next unless (@contractitem.product_number[3..-1] == row[8])
+      next if (row[8] == row[11])
 
-      # row [11]  ... Artikelnummer
-      # row[16] ... Text
-      # row[28]  ... Anzahl
-      # row [30]  ... Reichweite
+      price = Toner.find_by(article_number: row[11]).try(:price) || 0
+
+      Consumableitem.create(contractitem_id: @contractitem.id,
+                            position: index,
+                            product_number: row[11],
+                            product_title: row[16],
+                            theyield: row[30],
+                            amount: row[28],
+                            term: @contractitem.term,
+                            contract_type: "Haupt",
+                            wholesale_price: price)
     end
 
-    session[:selected_contractitem_id] = params[:id]
-    redirect_to contracting_consumableitems_path
+    redirect_to contracting_consumableitems_path(contractitem_id: params[:id])
   end
 end

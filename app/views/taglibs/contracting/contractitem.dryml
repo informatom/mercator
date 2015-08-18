@@ -6,8 +6,10 @@
 
     <content-body:>
       <form action="/contracting/contractitems/#{self.this.id}/do_upload" multipart>
-        <input type="file" name="xlsx"/>
-        <submit label="#{ht 'consumableitem.actions.do_upload', :default=>['Upload']}"/>
+        <br/>
+        <p><input type="file" name="xlsx"/></p>
+        <br/>
+        <p><submit label="#{ht 'consumableitem.actions.do_upload', :default=>['Upload']}"/></p>
       </form>
     </content-body:>
   </page>

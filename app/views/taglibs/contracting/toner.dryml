@@ -8,8 +8,10 @@
 
     <content-body:>
       <form action="/contracting/toners/do_upload" multipart>
-        <input type="file" name="xlsx"/>
-        <submit label="#{ht 'toner.actions.do_upload', :default=>['Upload']}"/>
+        <br/>
+        <p><input type="file" name="xlsx"/></p>
+        <br/>
+        <p><submit label="#{ht 'toner.actions.do_upload', :default=>['Upload']}"/></p>
       </form>
     </content-body:>
   </page>

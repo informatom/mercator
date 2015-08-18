@@ -9,9 +9,7 @@ class Contractitem < ActiveRecord::Base
     product_title   :string
     amount          :integer, :required, :default => 0
     volume          :integer, :required, :default => 0
-    product_price   :decimal, :required, :precision => 13, :scale => 5, :default => 0
     vat             :decimal, :required, :precision => 10, :scale => 2, :default => 0
-    value           :decimal, :required, :precision => 13, :scale => 5, :default => 0
     term            :integer, :required, :default => 0
     startdate       :date, :required
     volume_bw       :integer, :default => 0
@@ -21,8 +19,8 @@ class Contractitem < ActiveRecord::Base
   end
 
 
-  attr_accessible :position, :product_number, :product_title, :amount, :volume, :product_price,
-                  :vat, :value, :user, :user_id, :contract_id, :contract, :product, :product_id,
+  attr_accessible :position, :product_number, :product_title, :amount, :volume,
+                  :vat, :user, :user_id, :contract_id, :contract, :product, :product_id,
                   :term, :startdate, :volume_bw, :volume_color,
                   :marge, :monitoring_rate, :created_at, :updated_at
 
@@ -32,9 +30,7 @@ class Contractitem < ActiveRecord::Base
 
   validates :position, numericality: { only_integer: true }
   validates :amount, numericality: true
-  validates :product_price, numericality: { allow_nil: true }
   validates :vat, numericality: true
-  validates :value, numericality: { allow_nil: true }
 
   belongs_to :user
   belongs_to :contract
