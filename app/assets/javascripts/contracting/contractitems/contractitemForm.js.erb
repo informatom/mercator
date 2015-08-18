@@ -4,6 +4,9 @@ function contractitemForm() {
     url: 'contractitems/manage',
 
     formHTML:
+      '<input type="hidden" name="user_id">' +
+      '<input type="hidden" name="product_id">' +
+      '<input type="hidden" name="contract_id">' +
       '<div class="w2ui-page page-0">'+
       '  <div style="float: left">'+
       '    <div class="w2ui-field">'+
@@ -25,6 +28,10 @@ function contractitemForm() {
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.product") + '</label>'+
       '      <div><input name="product_number" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.title") + '</label>'+
+      '      <div><input name="product_title" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.amount") + '</label>'+
@@ -71,14 +78,12 @@ function contractitemForm() {
       { name: 'user_id',         type: 'integer', disabled: true },
       { name: 'startdate',       type: 'date', required: true },
       { name: 'product_number',  type: 'text', disabled: true },
+      { name: 'product_title',   type: 'text' },
       { name: 'product_id',      type: 'integer', disabled: true },
       { name: 'amount',          type: 'integer', required: true },
-      { name: 'unit',            type: 'text' },
       { name: 'marge',           type: 'currency', required: true },
       { name: 'volume_bw',       type: 'int', required: true },
       { name: 'volume_color',    type: 'int', required: true },
-      { name: 'product_price',   type: 'currency', required: true },
-      { name: 'value',           type: 'currency', required: true },
       { name: 'vat',             type: 'percent', required: true },
       { name: 'contract_id',     type: 'integer', required: true, disabled: true }
     ],
@@ -164,6 +169,7 @@ function contractitemForm() {
                   var form = w2ui.contractitemForm
                   form.record['product_id'] = selection[0]
                   form.record['product_number'] = w2ui.productsGrid.get(selection[0]).number
+                  form.record['product_title'] = w2ui.productsGrid.get(selection[0]).title_de
                   form.refresh()
                 }
               }
@@ -186,8 +192,6 @@ function initialize_contractitemForm() {
   form.record['marge'] = 0
   form.record['volume_bw'] = 0
   form.record['volume_color'] = 0
-  form.record['product_price'] = 0
-  form.record['value'] = 0
   form.record['vat'] = 20
   form.record['contract_id'] = request_id
   form.refresh()
