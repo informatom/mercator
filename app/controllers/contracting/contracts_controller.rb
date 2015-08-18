@@ -84,4 +84,17 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
       render json: @contract.errors.first
     end
   end
+
+
+  show_action :calendar do
+    @contract = Contract.find(params[:id])
+
+    render json: {
+      status: "success",
+      total: 13,
+      records: ([ { title: "=== Tatsächliche Raten ===",
+                    year1: nil, year2: nil, year3: nil, year4: nil, year5: nil, }
+      ] + @contract.actual_rate_array[1..12])
+    }
+  end
 end

@@ -46,6 +46,7 @@ en:
     content_element: Content Element
     contentmanager: Content Manager
     Contract: Contract
+    contracts: contracts
     Conversation: Conversation
     conversation: conversation
     conversation_id: Conversation ID

@@ -77,4 +77,7 @@ function show_contract_details(contract_id) {
 
   w2ui.contractForm.recid = contract_id
   w2ui.contractForm.reload()
+
+  w2ui.calendarGrid.url = 'contracts/' + contract_id + '/calendar'
+  w2ui.calendarGrid.reload()
 }

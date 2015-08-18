@@ -8,7 +8,7 @@
 
     <content-body:>
         <form action="/contracting/toners/do_upload" multipart>
-          <input type="file" name="xls"/>
+          <input type="file" name="xlsx"/>
           <submit label="#{ht 'toner.actions.do_upload', :default=>['Upload']}"/>
         </form>
     </content-body:>

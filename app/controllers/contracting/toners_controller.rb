@@ -6,16 +6,17 @@ class Contracting::TonersController < Contracting::ContractingSiteController
   index_action :upload
 
   index_action :do_upload do
-    @liste =  Roo::CSV.new(params[:xls].path, csv_options: {
-                                                encoding: Encoding::UTF_16LE,
-                                                col_sep: "\t",
-                                                row_sep: "\r\n"})
+    Toner.delete_all
+
+    @liste =  Roo::Spreadsheet.open(params[:xlsx].path, extension: :xlsx)
 
     @liste.each_with_index do |row, index|
       next if index == 0
-      @toner = Toner.find_or_initialize_by(vendor_number: row[4])
-      @toner.update(article_number: row[2], description: row[3], price: row[8])
+      @toner = Toner.find_or_initialize_by(vendor_number: row[0])
+      @toner.update(article_number: row[1], description: row[2], price: row[3])
       puts @toner.errors.first
     end
+
+    redirect_to contracting_toners_path
   end
 end
