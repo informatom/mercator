@@ -18,7 +18,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
             |contractitem| {
               recid:           contractitem.id,
               position:        contractitem.position,
-              user:            (contractitem.user.email_address if contractitem.user),
               product_number:  (contractitem.product.number if contractitem.product),
               product_title:   contractitem.product_title,
               amount:          contractitem.amount,
@@ -51,7 +50,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       attrs = params[:record]
       @contractitem.position        = attrs[:position]
       @contractitem.term            = attrs[:term]
-      @contractitem.user_id         = attrs[:user_id]
       @contractitem.startdate       = attrs[:startdate]
       @contractitem.product_number  = attrs[:product_number]
       @contractitem.product_id      = attrs[:product_id]
@@ -76,8 +74,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           recid:           @contractitem.id,
           position:        @contractitem.position,
           term:            @contractitem.term,
-          user:            (@contractitem.user.email_address if @contractitem.user),
-          user_id:         @contractitem.user_id,
           startdate:       I18n.l(@contractitem.startdate),
           product_number:  @contractitem.product_number,
           product_title:   @contractitem.product_title,

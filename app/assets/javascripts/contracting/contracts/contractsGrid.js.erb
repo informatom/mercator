@@ -19,6 +19,7 @@ function contractsGrid() {
     columns: [
       { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, attr: "align=right" },
       { field: 'customer', caption: I18n.t("attributes.customer"), size: '200px', sortable: true },
+      { field: 'customer_account', caption: I18n.t("attributes.customer_id"), size: '200px', sortable: true },
       { field: 'contractnumber', caption: I18n.t("attributes.number"), size: '200px', sortable: true },
       { field: 'term', caption: I18n.t("attributes.term"), size: '75px', sortable: true, attr: "align=right" },
       { field: 'monitoring_rate', caption: I18n.t("attributes.monitoring_rate"), size: '50px', render: 'currency' },
@@ -36,6 +37,7 @@ function contractsGrid() {
     searches: [
       { field: 'startdate', caption: I18n.t("attributes.startdate"), type: 'date' },
       { field: 'customer', caption: I18n.t("attributes.customer"), type: 'text' },
+      { field: 'account', caption: I18n.t("attributes.account"), type: 'text' },
       { field: 'contractnumber', caption: I18n.t("attributes.number"), type: 'text' }
     ],
     sortData: [{ field: 'startdate', direction: 'desc' }],

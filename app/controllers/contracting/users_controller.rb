@@ -44,4 +44,20 @@ class Contracting::UsersController < Contracting::ContractingSiteController
       }
     }
   end
+
+
+  index_action :mesonic_grid_index do
+    @users = MercatorMesonic::Kontenstamm.where{ c003 =~ "%ALL.IN.PRINT%" }
+
+    render json: {
+      status: "success",
+      total: @users.count,
+      records: @users.enum_for(:each_with_index).collect { |user, index|
+        { recid:            index,
+          account:          user.c002,
+          name:             user.c003,
+          detail:           user.c084 }
+      }
+    }
+  end
 end

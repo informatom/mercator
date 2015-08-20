@@ -14,15 +14,16 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           total: @contracts.count,
           records: @contracts.collect {
             |contract| {
-              recid:           contract.id,
-              customer:        (contract.customer.name if contract.customer),
-              term:            contract.term,
-              contractnumber:  contract.contractnumber,
-              monitoring_rate: contract.monitoring_rate,
-              startdate:       contract.startdate,
-              enddate:         contract.enddate,
-              created_at:      contract.created_at.utc.to_i*1000,
-              updated_at:      contract.updated_at.utc.to_i*1000
+              recid:            contract.id,
+              customer:         contract.customer,
+              customer_account: contract.customer_account,
+              term:             contract.term,
+              contractnumber:   contract.contractnumber,
+              monitoring_rate:  contract.monitoring_rate,
+              startdate:        contract.startdate,
+              enddate:          contract.enddate,
+              created_at:       contract.created_at.utc.to_i*1000,
+              updated_at:       contract.updated_at.utc.to_i*1000
             }
           }
         }
@@ -40,12 +41,12 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
 
     if params[:cmd] == "save-record"
       attrs = params[:record]
-      @contract.customer_id     = attrs[:customer_id]
-
-      @contract.contractnumber  = attrs[:contractnumber]
-      @contract.monitoring_rate = attrs[:monitoring_rate]
-      @contract.term            = attrs[:term]
-      @contract.startdate       = attrs[:startdate]
+      @contract.customer         = attrs[:customer]
+      @contract.customer_account = attrs[:customer_account]
+      @contract.contractnumber   = attrs[:contractnumber]
+      @contract.monitoring_rate  = attrs[:monitoring_rate]
+      @contract.term             = attrs[:term]
+      @contract.startdate        = attrs[:startdate]
 
       success = @contract.save
     end
@@ -57,13 +58,13 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
       render json: {
         status: "success",
         record: {
-          recid:           @contract.id,
-          customer:        (@contract.customer.email_address if @contract.customer),
-          customer_id:     @contract.customer_id,
-          contractnumber:  @contract.contractnumber,
-          monitoring_rate: @contract.monitoring_rate,
-          term:            @contract.term,
-          startdate:       I18n.l(@contract.startdate)
+          recid:            @contract.id,
+          customer:         @contract.customer,
+          customer_account: @contract.customer_account,
+          contractnumber:   @contract.contractnumber,
+          monitoring_rate:  @contract.monitoring_rate,
+          term:             @contract.term,
+          startdate:        I18n.l(@contract.startdate)
         }
       }
     end

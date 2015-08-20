@@ -1,0 +1,29 @@
+function mesonicUsersGrid(domelement, url) {
+  if (w2ui[domelement] != undefined) {
+    w2ui[domelement].destroy()
+  }
+
+  $('#' + domelement).w2grid({
+    name: domelement,
+    multiSelect : false,
+    method: 'GET',
+    show: { toolbar: true, footer: true },
+
+    columns: [
+      { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, attr: "align=right" },
+      { field: 'account', caption: I18n.t("attributes.customer_id"), size: '100px', sortable: true },
+      { field: 'name', caption: I18n.t("attributes.name"), size: '400px', sortable: true },
+      { field: 'detail', caption: I18n.t("attributes.detail"), size: '400px', sortable: true },
+    ],
+
+    searches: [
+      { field: 'account', caption: I18n.t("attributes.customer_id"), type: 'text' },
+      { field: 'name', caption: I18n.t("attributes.name"), type: 'text' },
+      { field: 'detail', caption: I18n.t("attributes.detail"), type: 'text' },
+    ],
+    sortData: [{ field: 'account', direction: 'asc' }]
+  })
+
+  w2ui[domelement].load(url)
+  w2ui[domelement].refresh()
+}

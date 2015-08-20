@@ -18,10 +18,6 @@ function contractitemForm() {
       '      <div><input name="term" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.customer") + '</label>'+
-      '      <div><input name="user" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.startdate") + '</label>'+
       '      <div><input name="startdate" /></div>'+
       '    </div>'+
@@ -74,8 +70,6 @@ function contractitemForm() {
     fields : [
       { name: 'position',        type: 'int', required: true },
       { name: 'term',            type: 'int', required: true, options: { min: 1 } },
-      { name: 'user',            type: 'text', disabled: true },
-      { name: 'user_id',         type: 'integer', disabled: true },
       { name: 'startdate',       type: 'date', required: true },
       { name: 'product_number',  type: 'text', disabled: true },
       { name: 'product_title',   type: 'text' },
@@ -125,31 +119,6 @@ function contractitemForm() {
               w2ui.contractitemsGrid.refresh()
             }
           )
-        }
-      },
-
-      get_customer: {
-        onClick: function () {
-          w2popup.open({
-            title: 'Kunde auswählen',
-            body: '<div id="customersGrid" style="height:100%;"></div>',
-            buttons : '<button class="w2ui-btn w2ui-btn-green" onclick="w2popup.close(\'+\');">OK</button> ' +
-                      '<button class="w2ui-btn w2ui-btn-orange" onclick="w2popup.close(\'-\');">Abbrechen</button> ',
-            width: $(window).width() * 0.9,
-            height: $(window).height() * 0.9,
-            onClose: function (event) {
-              if (event.options[0] == "+") {
-                var selection = w2ui.customersGrid.getSelection()
-                if (selection.length == 1) {
-                  var form = w2ui.contractitemForm
-                  form.record['user_id'] = selection[0]
-                  form.record['user'] = w2ui.customersGrid.get(selection[0]).email_address
-                  form.refresh()
-                }
-              }
-            }
-          })
-          usersGrid('customersGrid', 'users/grid_index')
         }
       },
 

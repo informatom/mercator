@@ -11,6 +11,10 @@ function contractForm() {
       '      <div><input name="customer" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.customer_id") + '</label>'+
+      '      <div><input name="customer_account" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.number") + '</label>'+
       '      <div><input name="contractnumber" /></div>'+
       '    </div>'+
@@ -41,12 +45,12 @@ function contractForm() {
       '</div>',
 
     fields : [
-      { name: 'customer',        type: 'text',  required: true, disabled: true },
-      { name: 'contractnumber',  type: 'text' },
-      { name: 'term',            type: 'integer', required: true },
-      { name: 'monitoring_rate', type: 'currency', required: true },
-      { name: 'startdate',       type: 'date', required: true },
-      { name: 'customer_id',     type: 'integer', required: true, disabled: true },
+      { name: 'customer',         type: 'text',  required: true, disabled: true },
+      { name: 'customer_account', type: 'text', required: true, disabled: true },
+      { name: 'contractnumber',   type: 'text' },
+      { name: 'term',             type: 'integer', required: true },
+      { name: 'monitoring_rate',  type: 'currency', required: true },
+      { name: 'startdate',        type: 'date', required: true }
     ],
 
     actions: {
@@ -103,14 +107,14 @@ function contractForm() {
                 var selection = w2ui.customersGrid.getSelection()
                 if (selection.length == 1) {
                   var form = w2ui.contractForm
-                  form.record['customer_id'] = selection[0]
-                  form.record['customer'] = w2ui.customersGrid.get(selection[0]).email_address
+                  form.record['customer'] = w2ui.customersGrid.get(selection[0]).name.replace('ALL.IN.PRINT','')
+                  form.record['customer_account'] = w2ui.customersGrid.get(selection[0]).account
                   form.refresh()
                 }
               }
             }
           })
-          usersGrid('customersGrid', 'users/grid_index')
+          mesonicUsersGrid('customersGrid', 'users/mesonic_grid_index')
         }
       }
     }

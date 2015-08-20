@@ -19,9 +19,8 @@ class Contractitem < ActiveRecord::Base
   end
 
 
-  attr_accessible :position, :product_number, :product_title, :amount, :volume,
-                  :vat, :user, :user_id, :contract_id, :contract, :product, :product_id,
-                  :term, :startdate, :volume_bw, :volume_color,
+  attr_accessible :position, :product_number, :product_title, :amount, :volume, :vat, :contract_id,
+                  :contract, :product, :product_id, :term, :startdate, :volume_bw, :volume_color,
                   :marge, :monitoring_rate, :created_at, :updated_at
 
   translates :description
@@ -32,7 +31,6 @@ class Contractitem < ActiveRecord::Base
   validates :amount, numericality: true
   validates :vat, numericality: true
 
-  belongs_to :user
   belongs_to :contract
   validates :contract, :presence => true
   acts_as_list :scope => :contract
