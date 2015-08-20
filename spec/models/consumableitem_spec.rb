@@ -18,7 +18,6 @@ describe Consumableitem do
   it {should validate_presence_of :consumption4}
   it {should validate_presence_of :consumption5}
   it {should validate_presence_of :consumption6}
-  it {should validate_presence_of :balance6}
 
   it {should belong_to :contractitem}
   it {should validate_presence_of :contractitem}
@@ -36,11 +35,11 @@ describe Consumableitem do
     end
 
     it "returns price" do
-      expect(@consumableitem.price).to eql 13.75
+      expect(@consumableitem.price).to eql 14
     end
 
     it "returns monthly_rate" do
-      expect(@consumableitem.monthly_rate).to be_within(0.01).of 6.875
+      expect(@consumableitem.monthly_rate).to be_within(0.01).of 7.0
     end
 
     it "returns value" do
@@ -48,7 +47,7 @@ describe Consumableitem do
     end
 
     it "returns new_rate" do
-      expect(@consumableitem.new_rate(2)).to eql 3.4375
+      expect(@consumableitem.new_rate(2)).to eql 7.0
       expect(@consumableitem.new_rate(3)).to eql 3.4375
       expect(@consumableitem.new_rate(4)).to be_within(0.01).of 4.5833
       expect(@consumableitem.new_rate(5)).to be_within(0.01).of 5.72917
@@ -56,7 +55,7 @@ describe Consumableitem do
     end
 
     it "returns balance" do
-      expect(@consumableitem.balance(1)).to eql -41.25
+      expect(@consumableitem.balance(1)).to eql 0.0
       expect(@consumableitem.balance(2)).to eql 0.0
       expect(@consumableitem.balance(3)).to be_within(0.01).of 13.75
       expect(@consumableitem.balance(4)).to be_within(0.01).of 13.75

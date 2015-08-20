@@ -5,10 +5,8 @@ describe Contracting::ConsumableitemsController, :type => :controller do
     before :each do
       no_redirects and act_as_sales
       @user = create(:user)
-      @contract = create(:contract, consultant_id: @sales.id,
-                                    customer_id: @user.id)
-      @contractitem = create(:contractitem, contract_id: @contract.id,
-                                            user_id: @user.id)
+      @contract = create(:contract)
+      @contractitem = create(:contractitem, contract_id: @contract.id)
       @instance = create(:consumableitem, contractitem_id: @contractitem.id)
     end
 

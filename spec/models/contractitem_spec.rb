@@ -9,7 +9,6 @@ describe Contractitem do
 
   it {should validate_presence_of :position}
 
-  it {should validate_presence_of :description_de}
   it {should validate_numericality_of :amount}
 
   it {should validate_numericality_of :product_price}
@@ -23,14 +22,11 @@ describe Contractitem do
   it {should validate_presence_of :term}
   it {should validate_presence_of :startdate}
   it {should validate_presence_of :marge}
-  it {should validate_presence_of :monitoring_rate}
 
   it {should belong_to :contract}
   it {should validate_presence_of :contract}
 
-  it {should belong_to :user}
   it {should belong_to :product}
-  it {should belong_to :toner}
 
   it {should have_many :consumableitems}
 

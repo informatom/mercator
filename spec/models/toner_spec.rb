@@ -8,8 +8,6 @@ describe Toner do
   it {should validate_presence_of :vendor_number}
   it {should validate_presence_of :price}
 
-  it {should have_many :contractitems}
-
   it "is versioned" do
     is_expected.to respond_to :versions
   end
