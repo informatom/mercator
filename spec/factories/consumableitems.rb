@@ -16,7 +16,6 @@ FactoryGirl.define do
     consumption3    5
     consumption4    6
     consumption5    7
-    consumption6    8
 
     factory :second_consumableitem do
       position        2
@@ -33,7 +32,6 @@ FactoryGirl.define do
       consumption3    3
       consumption4    2
       consumption5    1
-      consumption6    2
     end
   end
 end

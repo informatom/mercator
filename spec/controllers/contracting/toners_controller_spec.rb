@@ -17,21 +17,22 @@ describe Contracting::TonersController, :type => :controller do
   describe "PUT #do_upload" do
     before :each do
       no_redirects and act_as_admin
-      @tonerliste = fixture_file_upload("#{Rails.root}/spec/factories/tonerliste.csv",
-                                        "text/csv")
+      @tonerliste = fixture_file_upload("#{Rails.root}/spec/factories/tonerliste.xlsx",
+                                        "application/vnd.ms-excel")
     end
 
     it "uploads an xls sheet" do
-      put :do_upload, xls: @tonerliste
-      expect(response).to have_http_status(200)
+      put :do_upload, xlsx: @tonerliste
+      expect(response).to redirect_to contracting_toners_path
     end
 
     it "creates a toner record" do
-      put :do_upload, xls: @tonerliste
+      put :do_upload, xlsx: @tonerliste
       expect(Toner.all.count).to eql 1
-      expect(Toner.first.article_number).to eql "1013351"
-      expect(Toner.first.description).to eql "HP Toner schwarz HV LJ4 LJ4M LJ4+ HV"
-      expect(Toner.first.price).to eql 0
+      expect(Toner.first.vendor_number).to eql "Q6002A"
+      expect(Toner.first.article_number).to eql "1076830"
+      expect(Toner.first.description).to eql 'Toner Q6002A / gelb / bis zu 2000 Seiten / Color LaserJet 1600/2600/2605 Serie - "R"'
+      expect(Toner.first.price).to eql 41.81
     end
   end
 end

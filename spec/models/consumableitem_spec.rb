@@ -43,31 +43,31 @@ describe Consumableitem do
     end
 
     it "returns value" do
-      expect(@consumableitem.value).to eql 13.75
+      expect(@consumableitem.value).to eql 14
     end
 
     it "returns new_rate" do
       expect(@consumableitem.new_rate(2)).to eql 7.0
-      expect(@consumableitem.new_rate(3)).to eql 3.4375
-      expect(@consumableitem.new_rate(4)).to be_within(0.01).of 4.5833
-      expect(@consumableitem.new_rate(5)).to be_within(0.01).of 5.72917
-      expect(@consumableitem.new_rate(6)).to eql 6.875
+      expect(@consumableitem.new_rate(3)).to be_within(0.01).of 4.667
+      expect(@consumableitem.new_rate(4)).to be_within(0.01).of 5.833
+      expect(@consumableitem.new_rate(5)).to be_within(0.01).of 7
+      expect(@consumableitem.new_rate(6)).to be_within(0.01).of 8.166
     end
 
     it "returns balance" do
       expect(@consumableitem.balance(1)).to eql 0.0
-      expect(@consumableitem.balance(2)).to eql 0.0
-      expect(@consumableitem.balance(3)).to be_within(0.01).of 13.75
-      expect(@consumableitem.balance(4)).to be_within(0.01).of 13.75
-      expect(@consumableitem.balance(5)).to be_within(0.01).of 13.75
+      expect(@consumableitem.balance(2)).to be_within(0.01).of -28
+      expect(@consumableitem.balance(3)).to be_within(0.01).of 14
+      expect(@consumableitem.balance(4)).to be_within(0.01).of 14
+      expect(@consumableitem.balance(5)).to be_within(0.01).of 14
     end
 
     it "returns consumption" do
-      expect(@consumableitem.consumption(2)).to eql 3
-      expect(@consumableitem.consumption(3)).to eql 4
-      expect(@consumableitem.consumption(4)).to eql 5
-      expect(@consumableitem.consumption(5)).to eql 6
-      expect(@consumableitem.consumption(6)).to eql 7
+      expect(@consumableitem.consumption(1)).to eql 3
+      expect(@consumableitem.consumption(2)).to eql 4
+      expect(@consumableitem.consumption(3)).to eql 5
+      expect(@consumableitem.consumption(4)).to eql 6
+      expect(@consumableitem.consumption(5)).to eql 7
     end
   end
 end

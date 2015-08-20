@@ -39,10 +39,10 @@ describe Admin::ProductsController, :type => :controller do
         expect(assigns(:products)).to match_array([])
       end
 
-      it "can export a CSV file", focus: true do
+      it "can export a CSV file" do
         User.send(:remove_const, :JOBUSER) # just to avoid warning in the next line
         User::JOBUSER = create(:jobuser)
-        create(:product_with_inventory_and_two_prices)
+        @second_product = create(:product_with_inventory_and_two_prices)
 
         get :index, format: :csv
         expect(response.body).to eql("price,id,title_de,number,created_at,updated_at,state," +
@@ -50,15 +50,17 @@ describe Admin::ProductsController, :type => :controller do
         "document_file_name,document_content_type,document_file_size,document_updated_at," +
         "description_de,description_en,title_en,legacy_id,long_description_de,long_description_en," +
         "warranty_de,warranty_en,not_shippable,alternative_number\n" +
-        "-,1,default product,123," + @instance.created_at.to_s + "," + @instance.created_at.to_s + ",active,,,,,,,,,," +
+        "-," + @instance.id.to_s + ",default product,123," + @instance.created_at.to_s + "," +
+        @instance.created_at.to_s + ",active,,,,,,,,,," +
         "\"Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid.\"," +
         "\"English: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!\"" +
         ",Article One Two Three,,\"Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing" +
         " elit. Ullam, aliquid.\",\"English: Lorem ipsum dolor sit amet, consectetur adipisicing" +
         " elit. Similique, repellat!\",Ein Jahr mit gewissen Einschränkungen,One year with " +
         "evereal restrictions,,alternative 123\n" +
-        "42.0,2,default product,product_with_inventory_and_two_prices," + @instance.created_at.to_s +
-        "," + @instance.created_at.to_s + ",active,,,,,,,,,,\"Deutsch: Lorem" +
+        "42.0," + @second_product.id.to_s + ",default product,product_with_inventory_and_two_prices," +
+        @second_product.created_at.to_s +
+        "," + @second_product.created_at.to_s + ",active,,,,,,,,,,\"Deutsch: Lorem" +
         " ipsum dolor sit amet, consectetur adipisicing elit. Ullam, aliquid.\",\"English: Lorem" +
         " ipsum dolor sit amet, consectetur adipisicing elit. Similique, repellat!\",Article One " +
         "Two Three,,\"Deutsch: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam," +

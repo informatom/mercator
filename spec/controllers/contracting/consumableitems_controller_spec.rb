@@ -19,66 +19,58 @@ describe Contracting::ConsumableitemsController, :type => :controller do
 
         get :index, contractitem_id: @instance.contractitem_id, format: :text
         expect(response.body).to be_json_eql( {records: [ { amount: 1,
-                                                            balance1: "-41.25",
-                                                            balance2: "0.0",
-                                                            balance3: "13.749999999999999996",
-                                                            balance4: "13.750000000000000004000000004",
-                                                            balance5: "13.749999999999999999999999996",
-                                                            balance6: "99.99",
+                                                            balance1: 0.0,
+                                                            balance2: -27.999999999999996,
+                                                            balance3: 13.999999999999993,
+                                                            balance4: 14.000000000000004,
+                                                            balance5: 14.0,
                                                             consumption1: 3,
                                                             consumption2: 4,
                                                             consumption3: 5,
                                                             consumption4: 6,
                                                             consumption5: 7,
-                                                            consumption6: 8,
                                                             contract_type: "standard",
-                                                            description_de: "ein Verbrauchsmaterial",
-                                                            description_en: "a consumaeble item",
-                                                            monthly_rate: "6.875",
-                                                            new_rate2: "3.4375",
-                                                            new_rate3: "3.4375",
-                                                            new_rate4: "4.583333333333333333",
-                                                            new_rate5: "5.729166666666666666666666667",
-                                                            new_rate6: "6.875",
+                                                            monthly_rate: 7.0,
+                                                            new_rate2: 7.0,
+                                                            new_rate3: 4.666666666666667,
+                                                            new_rate4: 5.833333333333333,
+                                                            new_rate5: 7.0,
                                                             position: 1,
-                                                            price: "13.75",
+                                                            price: 14,
                                                             product_line: "shiny",
                                                             product_number: "123",
+                                                            product_title: "ein Verbrauchsmaterial",
                                                             recid: @instance.id,
                                                             term: 2,
                                                             theyield: 12000,
-                                                            value: "13.75",
+                                                            value: 14,
                                                             wholesale_price: "12.5" },
                                                           { amount: 2,
-                                                            balance1: "0.0",
-                                                            balance2: "106.92",
-                                                            balance3: "-35.64",
-                                                            balance4: "-35.64",
-                                                            balance5: "-35.64",
-                                                            balance6: "66.55",
+                                                            balance1: 108.0,
+                                                            balance2: -36.0,
+                                                            balance3: -36.0,
+                                                            balance4: -36.0,
+                                                            balance5: -36.0,
                                                             consumption1: 5,
                                                             consumption2: 4,
                                                             consumption3: 3,
                                                             consumption4: 2,
                                                             consumption5: 1,
-                                                            consumption6: 2,
                                                             contract_type: "alternative",
-                                                            description_de: "ein anderes Verbrauchsmaterial",
-                                                            description_en: "a different consumaeble item",
-                                                            monthly_rate: "5.94",
-                                                            new_rate2: "5.94",
-                                                            new_rate3: "14.85",
-                                                            new_rate4: "11.88",
-                                                            new_rate5: "8.91",
-                                                            new_rate6: "5.94",
+                                                            monthly_rate: 6.0,
+                                                            new_rate2: 15.0,
+                                                            new_rate3: 12.0,
+                                                            new_rate4: 9.0,
+                                                            new_rate5: 6.0,
                                                             position: 2,
-                                                            price: "35.64",
+                                                            price: 36,
                                                             product_line: "brass",
                                                             product_number: "another product number",
+                                                            product_title: "ein anderes Verbrauchsmaterial",
                                                             recid: @second_consumableitem.id,
                                                             term: 12,
                                                             theyield: 1200,
-                                                            value: "71.28",
+                                                            value: 72,
                                                             wholesale_price: "32.4" }
                                                         ],
                                                status: "success",
@@ -99,19 +91,17 @@ describe Contracting::ConsumableitemsController, :type => :controller do
                      record: { position: 87,
                                contract_type: "different",
                                product_number: "different product number",
+                               product_title: "a product title",
                                product_line: "cool",
-                               description_de: "schon wieder eine Beschreibung",
-                               description_en: "yet another description",
+                               theyield: 7777,
                                amount: 71,
                                wholesale_price: 43.21,
                                term: 18,
-                               balance6: 98.76,
                                consumption1: 8,
                                consumption2: 7,
                                consumption3: 6,
                                consumption4: 5,
                                consumption5: 4,
-                               consumption6: 3,
                                contractitem_id: @instance.contractitem_id},
                      id: "0"}
 
@@ -132,39 +122,35 @@ describe Contracting::ConsumableitemsController, :type => :controller do
           expect(assigns(:consumableitem).position).to eq 87
           expect(assigns(:consumableitem).contract_type).to eq "different"
           expect(assigns(:consumableitem).product_number).to eq "different product number"
+          expect(assigns(:consumableitem).product_title).to eq "a product title"
           expect(assigns(:consumableitem).product_line).to eq "cool"
-          expect(assigns(:consumableitem).description_de).to eq "schon wieder eine Beschreibung"
-          expect(assigns(:consumableitem).description_en).to eq "yet another description"
+          expect(assigns(:consumableitem).theyield).to eq 7777
           expect(assigns(:consumableitem).amount).to eq 71
           expect(assigns(:consumableitem).wholesale_price).to eq 43.21
           expect(assigns(:consumableitem).term).to eq 18
-          expect(assigns(:consumableitem).balance6).to be_within(0.01).of 98.76
           expect(assigns(:consumableitem).consumption1).to eq 8
           expect(assigns(:consumableitem).consumption2).to eq 7
           expect(assigns(:consumableitem).consumption3).to eq 6
           expect(assigns(:consumableitem).consumption4).to eq 5
           expect(assigns(:consumableitem).consumption5).to eq 4
-          expect(assigns(:consumableitem).consumption6).to eq 3
           expect(assigns(:consumableitem).contractitem_id).to eq @instance.contractitem_id
         end
 
         it "returns the correct json" do
           post :manage, @params
           expect(response.body).to be_json_eql({ record: { amount: 71,
-                                                           balance6: "98.76",
                                                            consumption1: 8,
                                                            consumption2: 7,
                                                            consumption3: 6,
                                                            consumption4: 5,
                                                            consumption5: 4,
-                                                           consumption6: 3,
                                                            contract_type: "different",
                                                            contractitem_id: @instance.contractitem_id,
-                                                           description_de: "schon wieder eine Beschreibung",
-                                                           description_en: "yet another description",
+                                                           theyield: 7777,
                                                            position: 87,
                                                            product_line: "cool",
                                                            product_number: "different product number",
+                                                           product_title: "a product title",
                                                            term: 18,
                                                            wholesale_price: "43.21" },
                                                  status: "success"} .to_json)
@@ -179,8 +165,7 @@ describe Contracting::ConsumableitemsController, :type => :controller do
                          consumption2: 0,
                          consumption3: 0,
                          consumption4: 0,
-                         consumption5: 0,
-                         consumption6: 0)
+                         consumption5: 0)
       end
 
       it "finds the right consumableitem" do
@@ -203,17 +188,6 @@ describe Contracting::ConsumableitemsController, :type => :controller do
 
         post :delete, id: @instance.id
         expect(Consumableitem.find(@instance.id)).to eql @instance
-      end
-    end
-
-
-    describe "GET #defaults" do
-      it "returns the correct json" do
-        create(:consumableitem, contractitem_id: @contractitem.id)
-
-        get :defaults, id: @contractitem.id, format: :text
-        expect(response.body).to be_json_eql( { vendor_number: "HP-TR0815",
-                                                wholesale_price: "42.15" }.to_json)
       end
     end
   end

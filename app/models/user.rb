@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   fields do
-    gender           User::Gender
+    gender           Gender
     title            :string
     first_name       :string
     surname          :string, :required

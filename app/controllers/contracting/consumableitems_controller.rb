@@ -5,7 +5,9 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
 
   def index
     @consumableitems = Consumableitem.where(contractitem_id: params[:contractitem_id]).order(:position)
-    session[:selected_contract_id] = Contractitem.find(params[:contractitem_id]).contract_id
+    if params[:contractitem_id]
+      session[:selected_contract_id] = Contractitem.find(params[:contractitem_id]).contract_id
+    end
 
     respond_to do |format|
       format.html
