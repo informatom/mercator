@@ -55,7 +55,7 @@ describe LineitemsController, :type => :controller do
       end
 
       it "publishes to orders" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @basket.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/orders/"+ @basket.id.to_s,
                                                        type: "basket")
         @instance.lifecycle.add_one!(@user)
       end
@@ -98,7 +98,7 @@ describe LineitemsController, :type => :controller do
 
 
       it "publishes to orders" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @basket.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/orders/"+ @basket.id.to_s,
                                                        type: "basket")
         @instance.lifecycle.remove_one!(@user)
       end

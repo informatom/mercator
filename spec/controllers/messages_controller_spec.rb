@@ -25,9 +25,9 @@ describe MessagesController, :type => :controller do
       end
 
       it "publishes the message" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                         type: "messages")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/"+ @conversation.consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/"+ @conversation.consultant.id.to_s,
                                                         sender: @user.name,
                                                         content: @instance.content)
         post :create, message: @attributes

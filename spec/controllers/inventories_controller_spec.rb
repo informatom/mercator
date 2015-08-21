@@ -28,7 +28,7 @@ describe InventoriesController, :type => :controller do
       end
 
       it "published the offer and the conversation" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @order.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/orders/"+ @order.id.to_s,
                                                         type: "basket")
         get :add_to_basket, id: @instance.id
       end

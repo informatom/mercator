@@ -137,7 +137,7 @@ describe OffersController, :type => :controller do
           end
 
           it "publishes to orders" do
-            expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @basket.id.to_s,
+            expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/orders/"+ @basket.id.to_s,
                                                        type: "basket")
             post :do_copy, id: @offer.id
 
@@ -181,7 +181,7 @@ describe OffersController, :type => :controller do
           end
 
           it "publishes to orders" do
-            expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @basket.id.to_s,
+            expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/orders/"+ @basket.id.to_s,
                                                        type: "basket")
             post :do_copy, id: @offer.id
 

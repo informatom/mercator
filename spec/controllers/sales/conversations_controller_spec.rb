@@ -97,9 +97,9 @@ describe Sales::ConversationsController, :type => :controller do
       end
 
       it "publishes to conversations" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.id.to_s,
                                                         type: "consultant")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.id.to_s,
                                                         type: "messages")
         get :take, id: @instance.id
       end
@@ -113,7 +113,7 @@ describe Sales::ConversationsController, :type => :controller do
 
     describe "POST #typing" do
       it "publishes to conversations" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.id.to_s,
                                                         type: "typing",
                                                         message: "my message")
         xhr :post, :typing, id: @instance.id,

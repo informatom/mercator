@@ -42,7 +42,7 @@ describe Sales::LinksController, :type => :controller do
       end
 
       it "publishes links" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                         type: "links",
                                                         url: "http://www.informatom.com")
         post :create, link: attributes_for(:link, conversation_id: @conversation.id)

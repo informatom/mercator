@@ -180,38 +180,38 @@ describe User do
 
       it "tries five times to get a consultant to respond" do
         @user.update(waiting: true)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @second_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @second_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @third_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @third_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @fourth_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @fourth_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @fifth_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @fifth_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @user.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @user.id.to_s,
                                                         sender: @robot.name,
           content: "Unfortunately, we have no sales representative available for you right now. Please try later or stay at this page.")
         @user.call_for_chat_partner(locale: "en")
       end
 
       it "trues only once if call is picked up (that is @user.waiting: false)" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
-        expect(PrivatePub).not_to receive(:publish_to).with("/0004/personal/" + @second_consultant.id.to_s,
+        expect(PrivatePub).not_to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @second_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new video chat?",
                                                         video_channel_id: @user.id)
