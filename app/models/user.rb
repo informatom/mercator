@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
                   :sales_manager, :contentmanager, :productmanager, :logged_in, :last_login_at,
                   :login_count, :addresses, :billing_addresses, :conversations, :confirmation,
                   :photo, :erp_account_nr, :erp_contact_nr, :order_id, :phone, :locale, :editor,
-                  :waiting
+                  :waiting, :call_priority
 
   attr_accessor :confirmation, :type => :boolean
   attr_accessor :order_id, :type => :integer
