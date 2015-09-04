@@ -8,7 +8,7 @@
       <if:billing-detail>, <view/></if><br/>
 
       <if:billing-gender>
-        <view with="&t this"/>
+         <view with="&t this"/>
       </if>
       <if:billing-title><view/></if>
       <if:billing-first-name><view/></if>
