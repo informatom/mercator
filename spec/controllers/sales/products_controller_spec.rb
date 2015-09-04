@@ -56,9 +56,9 @@ describe Sales::ProductsController, :type => :controller do
       end
 
       it "published the offer and the conversation" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @offer.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @offer.id.to_s,
                                                         type: "all")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @offer.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @offer.conversation.id.to_s,
                                                         type: "offers")
         get :add_to_offer, id: @instance.id
       end

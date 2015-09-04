@@ -4,8 +4,10 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
   respond_to :html, :json
 
   def index
-    @consumableitems = Consumableitem.where(contractitem_id: params[:contractitem_id])
-    session[:selected_contract_id] = Contractitem.find(params[:contractitem_id]).contract_id
+    @consumableitems = Consumableitem.where(contractitem_id: params[:contractitem_id]).order(:position)
+    if params[:contractitem_id]
+      session[:selected_contract_id] = Contractitem.find(params[:contractitem_id]).contract_id
+    end
 
     respond_to do |format|
       format.html
@@ -19,9 +21,8 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
               position:        consumableitem.position,
               contract_type:   consumableitem.contract_type,
               product_number:  consumableitem.product_number,
+              product_title:   consumableitem.product_title,
               product_line:    consumableitem.product_line,
-              description_de:  consumableitem.description_de,
-              description_en:  consumableitem.description_en,
               amount:          consumableitem.amount,
               theyield:        consumableitem.theyield,
               wholesale_price: consumableitem.wholesale_price,
@@ -34,18 +35,15 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
               consumption3:    consumableitem.consumption3,
               consumption4:    consumableitem.consumption4,
               consumption5:    consumableitem.consumption5,
-              consumption6:    consumableitem.consumption6,
               new_rate2:       consumableitem.new_rate(2),
               new_rate3:       consumableitem.new_rate(3),
               new_rate4:       consumableitem.new_rate(4),
               new_rate5:       consumableitem.new_rate(5),
-              new_rate6:       consumableitem.new_rate(6),
               balance1:        consumableitem.balance(1),
               balance2:        consumableitem.balance(2),
               balance3:        consumableitem.balance(3),
               balance4:        consumableitem.balance(4),
               balance5:        consumableitem.balance(5),
-              balance6:        consumableitem.balance6, # ! That's OK!
               created_at:      consumableitem.created_at,
               updated_at:      consumableitem.updated_at
             }
@@ -69,19 +67,17 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       @consumableitem.position        = attrs[:position]
       @consumableitem.contract_type   = attrs[:contract_type]
       @consumableitem.product_number  = attrs[:product_number]
+      @consumableitem.product_title   = attrs[:product_title]
       @consumableitem.product_line    = attrs[:product_line]
-      @consumableitem.description_de  = attrs[:description_de]
-      @consumableitem.description_en  = attrs[:description_en]
       @consumableitem.amount          = attrs[:amount]
+      @consumableitem.theyield        = attrs[:theyield]
       @consumableitem.wholesale_price = attrs[:wholesale_price]
       @consumableitem.term            = attrs[:term]
-      @consumableitem.balance6        = attrs[:balance6]
       @consumableitem.consumption1    = attrs[:consumption1]
       @consumableitem.consumption2    = attrs[:consumption2]
       @consumableitem.consumption3    = attrs[:consumption3]
       @consumableitem.consumption4    = attrs[:consumption4]
       @consumableitem.consumption5    = attrs[:consumption5]
-      @consumableitem.consumption6    = attrs[:consumption6]
       @consumableitem.contractitem_id = attrs[:contractitem_id]
 
       success = @consumableitem.save
@@ -97,19 +93,17 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
           position:        @consumableitem.position,
           contract_type:   @consumableitem.contract_type,
           product_number:  @consumableitem.product_number,
+          product_title:   @consumableitem.product_title,
           product_line:    @consumableitem.product_line,
-          description_de:  @consumableitem.description_de,
-          description_en:  @consumableitem.description_en,
           amount:          @consumableitem.amount,
+          theyield:        @consumableitem.theyield,
           wholesale_price: @consumableitem.wholesale_price,
           term:            @consumableitem.term,
-          balance6:        @consumableitem.balance6,
           consumption1:    @consumableitem.consumption1,
           consumption2:    @consumableitem.consumption2,
           consumption3:    @consumableitem.consumption3,
           consumption4:    @consumableitem.consumption4,
           consumption5:    @consumableitem.consumption5,
-          consumption6:    @consumableitem.consumption6,
           contractitem_id: @consumableitem.contractitem_id
         }
       }
@@ -129,19 +123,6 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       render nothing: true
     else
       render json: @consumableitem.errors.first
-    end
-  end
-
-
-  show_action :defaults do
-    @contractitem = Contractitem.find(params[:id])
-    @toner = @contractitem.toner
-    if @toner
-      render json: { vendor_number:   @toner.vendor_number,
-                     wholesale_price: @toner.price }
-    else
-      render :text => I18n.t("js.con.no_toner"),
-             :status => 403 and return
     end
   end
 end

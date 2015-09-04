@@ -289,7 +289,7 @@ describe BillingAddressesController, :type => :controller do
         expect(assigns(:order).lineitems.*.product_number).to include(Constant.find_by_key("shipping_cost_article").value)
       end
 
-      it "keeps the number of shipping costs, if they are already present", focus: true do
+      it "keeps the number of shipping costs, if they are already present" do
         @instance.user.basket.update(shipping_method: "parcel_service_shipment")
         @instance.user.basket.add_shipment_costs
 

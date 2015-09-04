@@ -6,10 +6,8 @@ describe Contracting::ContractitemsController, :type => :controller do
       no_redirects and act_as_sales
       @user = create(:user)
 
-      @contract = create(:contract, consultant_id: @sales.id,
-                                    customer_id: @user.id)
-      @instance = create(:contractitem, contract_id: @contract.id,
-                                        user_id: @user.id)
+      @contract = create(:contract)
+      @instance = create(:contractitem, contract_id: @contract.id)
     end
 
     it_behaves_like("crud index")
@@ -17,50 +15,32 @@ describe Contracting::ContractitemsController, :type => :controller do
 
     describe "GET #index" do
       it "returns the correct json" do
-        @second_contractitem = create(:second_contractitem, user_id: @instance.user_id,
-                                                            contract_id: @instance.contract_id,
-                                                            product_id: @instance.product_id,
-                                                            toner_id: @instance.toner_id)
+        @second_contractitem = create(:second_contractitem, contract_id: @instance.contract_id,
+                                                            product_id: @instance.product_id)
 
         get :index, contract_id: @instance.contract_id, format: :text
         expect(response.body).to be_json_eql( {records: [ { amount: 12,
-                                                            description_de: "Zweiter Artikel",
-                                                            description_en: "Second Article",
-                                                            discount_abs: "4.0",
                                                             enddate: "2017-12-31",
                                                             marge: "8.0",
-                                                            monitoring_rate: "6.0",
                                                             position: 12,
                                                             product_number: "123",
-                                                            product_price: "12.3",
+                                                            product_title: "Zweiter Artikel",
                                                             recid: @second_contractitem.id,
                                                             startdate: "2016-01-01",
                                                             term: 24,
-                                                            toner: "HP-TR0815",
-                                                            unit: "Liter",
-                                                            user: "john.doe@informatom.com",
-                                                            value: "2.0",
                                                             vat: "10.0",
                                                             volume: 0,
                                                             volume_bw: 7000,
                                                             volume_color: 4000 },
                                                           { amount: 42,
-                                                            description_de: "Artikel Eins Zwei Drei",
-                                                            description_en: "Article One Two Three",
-                                                            discount_abs: "3.0",
                                                             enddate: "2016-08-02",
                                                             marge: "10.0",
-                                                            monitoring_rate: "5.0",
                                                             position: 124,
                                                             product_number: "123",
-                                                            product_price: "123.45",
+                                                            product_title: "Artikel Eins Zwei Drei",
                                                             recid: @instance.id,
                                                             startdate: "2015-08-03",
                                                             term: 12,
-                                                            toner: "HP-TR0815",
-                                                            unit: "Stück",
-                                                            user: "john.doe@informatom.com",
-                                                            value: "2.0",
                                                             vat: "20.0",
                                                             volume: 0,
                                                             volume_bw: 10000,
@@ -75,29 +55,21 @@ describe Contracting::ContractitemsController, :type => :controller do
     describe "POST #manage" do
       context "creating a new contractitem" do
         before :each do
-          @second_customer = create(:dummy_customer)
           @second_product = create(:second_product)
-          @second_toner = create(:second_toner)
 
           @params = {cmd: "save-record",
                      recid: "0",
                      record: { position: 7,
                                term: 17,
-                               user_id: @second_customer.id,
                                startdate: "2015-03-03",
                                product_number: "a product number",
+                               product_title: "a product title",
                                product_id: @second_product.id,
-                               toner_id: @second_toner.id,
-                               description_de: "Eine andere Beschreibung",
-                               description_en: "A different description",
                                amount: 27,
-                               unit: "pieces",
                                marge: 7.5,
                                volume_bw: 7777,
                                volume_color: 777,
                                product_price: 77.7,
-                               monitoring_rate: 7,
-                               discount_abs: 17,
                                value: 777,
                                vat: 19,
                                contract_id: @instance.contract_id},
@@ -119,22 +91,15 @@ describe Contracting::ContractitemsController, :type => :controller do
           post :manage, @params
           expect(assigns(:contractitem).position).to eq 7
           expect(assigns(:contractitem).term).to eq 17
-          expect(assigns(:contractitem).user_id).to eq @second_customer.id
           expect(assigns(:contractitem).startdate).to eq Date.new(2015, 3, 3)
           expect(assigns(:contractitem).product_number).to eq "a product number"
+          expect(assigns(:contractitem).product_title).to eq "a product title"
           expect(assigns(:contractitem).product_id).to eq @second_product.id
-          expect(assigns(:contractitem).toner_id).to eq @second_toner.id
-          expect(assigns(:contractitem).description_de).to eq "Eine andere Beschreibung"
-          expect(assigns(:contractitem).description_en).to eq "A different description"
           expect(assigns(:contractitem).amount).to eq 27
-          expect(assigns(:contractitem).unit).to eq "pieces"
           expect(assigns(:contractitem).marge).to eq 7.5
           expect(assigns(:contractitem).volume_bw).to eq 7777
           expect(assigns(:contractitem).volume_color).to eq 777
-          expect(assigns(:contractitem).product_price).to eq 77.7
-          expect(assigns(:contractitem).monitoring_rate).to eq 7
-          expect(assigns(:contractitem).discount_abs).to eq 17
-          expect(assigns(:contractitem).value).to eq -10
+          expect(assigns(:contractitem).value).to eq 0.0
           expect(assigns(:contractitem).vat).to eq 19
           expect(assigns(:contractitem).contract_id).to eq @instance.contract_id
         end
@@ -143,24 +108,14 @@ describe Contracting::ContractitemsController, :type => :controller do
           post :manage, @params
           expect(response.body).to be_json_eql({ record: { amount: 27,
                                                            contract_id: @instance.contract_id,
-                                                           description_de: "Eine andere Beschreibung",
-                                                           description_en: "A different description",
-                                                           discount_abs: "17.0",
                                                            marge: "7.5",
-                                                           monitoring_rate: "7.0",
                                                            position: 7,
                                                            product_id: @second_product.id,
                                                            product_number: "a product number",
-                                                           product_price: "77.7",
+                                                           product_title: "a product title",
                                                            recid: assigns(:contractitem).id,
                                                            startdate: "2015-03-03",
                                                            term: 17,
-                                                           toner: "Toner gelb",
-                                                           toner_id: @second_toner.id,
-                                                           unit: "pieces",
-                                                           user: "dummy.customer@informatom.com",
-                                                           user_id: @second_customer.id,
-                                                           value: "-10.0",
                                                            vat: "19.0",
                                                            volume_bw: 7777,
                                                            volume_color: 777 },
@@ -205,53 +160,117 @@ describe Contracting::ContractitemsController, :type => :controller do
                                                            year2: "2016-08-03",
                                                            year3: "2017-08-03",
                                                            year4: "2018-08-03",
-                                                           year5: "2019-08-03",
-                                                           year6: "2020-08-03" },
+                                                           year5: "2019-08-03" },
                                                          { title: "Jahresende",
                                                            year1: "2016-08-02",
                                                            year2: "2017-08-02",
                                                            year3: "2018-08-02",
                                                            year4: "2019-08-02",
-                                                           year5: "2020-08-02",
-                                                           year6: "2021-08-02" },
+                                                           year5: "2020-08-02" },
+                                                         { title: "Rate (EUR)",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
                                                          { title: "Monate ohne Rate",
-                                                           year1: 12,
-                                                           year2: 0,
+                                                           year1: 0,
+                                                           year2: 5,
                                                            year3: 0,
                                                            year4: 0,
-                                                           year5: 0,
-                                                           year6: "---" },
-                                                         { title: "Folgeraten (EUR)",
-                                                           year1: "---",
-                                                           year2: "EUR 3,44",
-                                                           year3: "EUR 3,44",
-                                                           year4: "EUR 4,58",
-                                                           year5: "EUR 5,73",
-                                                           year6: "EUR 0,00" },
-                                                         { title: "Folgemonat (EUR)",
-                                                           year1: "-EUR 0,00",
-                                                           year2: "-EUR 0,00",
-                                                           year3: "-EUR 13,75",
-                                                           year4: "-EUR 13,75",
-                                                           year5: "-EUR 13,75",
-                                                           year6: "---" },
-                                                         { title: "Folgeraten mit Monitoring (EUR)",
-                                                           year1: "---",
-                                                           year2: "EUR 8,44",
-                                                           year3: "EUR 8,44",
-                                                           year4: "EUR 9,58",
-                                                           year5: "EUR 10,73",
-                                                           year6: "EUR 6,88" },
+                                                           year5: "---" },
+                                                         { title: "Rate im Folgemonat (EUR)",
+                                                           year1: "EUR 7,00",
+                                                           year2: "EUR 4,67",
+                                                           year3: "EUR 5,83",
+                                                           year4: "EUR 7,00",
+                                                           year5: "---" },
                                                          { title: "Summe Gutschrift/Nachzahlung",
-                                                           year1: "-EUR 41,25",
-                                                           year2: "EUR 0,00",
-                                                           year3: "EUR 13,75",
-                                                           year4: "EUR 13,75",
-                                                           year5: "EUR 13,75",
-                                                           year6: "EUR 0,00" }
-                                                        ],
+                                                           year1: "EUR 0,00",
+                                                           year2: "-EUR 28,00",
+                                                           year3: "EUR 14,00",
+                                                           year4: "EUR 14,00",
+                                                           year5: "EUR 14,00" },
+                                                         { title: "=== Tatsächliche Raten ===",
+                                                           year1: nil,
+                                                           year2: nil,
+                                                           year3: nil,
+                                                           year4: nil,
+                                                           year5: nil },
+                                                         { title: "Januar",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 0,00",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "Februar",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 0,00",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "März",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 0,00",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "April",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 0,00",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "Mai",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 0,00",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "Juni",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "Juli",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "August",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "September",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "Oktober",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "November",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" },
+                                                         { title: "Dezember",
+                                                           year1: "EUR 1,17",
+                                                           year2: "EUR 7,00",
+                                                           year3: "EUR 4,67",
+                                                           year4: "EUR 5,83",
+                                                           year5: "EUR 7,00" }],
                                                status: "success",
-                                               total: 7 }.to_json)
+                                               total: 19 }.to_json)
       end
     end
   end

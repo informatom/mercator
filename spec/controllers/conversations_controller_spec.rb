@@ -194,7 +194,7 @@ describe ConversationsController, :type => :controller do
 
     describe "POST #typing_customer" do
       it "publishes to conversations" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                         type: "typing_customer",
                                                         message: "my message")
         xhr :post, :typing_customer, id: @conversation.id,
@@ -219,7 +219,7 @@ describe ConversationsController, :type => :controller do
       end
 
       it "publishes to conversation" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                        type: "messages")
         xhr :get, :close, id: @conversation.id
       end

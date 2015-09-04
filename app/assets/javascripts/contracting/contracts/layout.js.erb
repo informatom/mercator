@@ -12,12 +12,15 @@ $(function () {
                  "<div id='contractsGrid' style='height:100%;'></div>" },
       { type: 'left', title: I18n.t("attributes.contract"),
         resizable: true, size: 500, content: "<div id='contractForm' style='height:100%;'></div>" },
+      { type: 'main', title: I18n.t("js.con.calendar"),
+        resizable: true, size: 800, content: "<div id='calendarGrid' style='height:100%;'></div>" }
     ],
     onRender: function(event) {
       event.onComplete = function () {
         contractsGrid()
         menu()
         contractForm()
+        calendarGrid()
       }
     }
   })

@@ -6,8 +6,7 @@ FactoryGirl.define do
     product_number  {build(:product).number}
     contract_type   "standard"
     product_line    "shiny"
-    description_de  "ein Verbrauchsmaterial"
-    description_en  "a consumaeble item"
+    product_title   "ein Verbrauchsmaterial"
     amount          1
     theyield        12000
     wholesale_price 12.50
@@ -17,16 +16,13 @@ FactoryGirl.define do
     consumption3    5
     consumption4    6
     consumption5    7
-    consumption6    8
-    balance6        99.99
 
     factory :second_consumableitem do
       position        2
       product_number  "another product number"
       contract_type   "alternative"
       product_line    "brass"
-      description_de  "ein anderes Verbrauchsmaterial"
-      description_en  "a different consumaeble item"
+      product_title   "ein anderes Verbrauchsmaterial"
       amount          2
       theyield        1200
       wholesale_price 32.40
@@ -36,8 +32,6 @@ FactoryGirl.define do
       consumption3    3
       consumption4    2
       consumption5    1
-      consumption6    2
-      balance6        66.55
     end
   end
 end

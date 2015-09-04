@@ -7,7 +7,9 @@
       <strong><view:shipping-company/></strong>
       <if:shipping-detail>, <view/></if> <br/>
 
-      <view with="&t this.shipping_gender"/>
+      <if:shipping-gender>
+        <view with="&t this.shipping_gender"/>
+      </if>
       <if:shipping-title><view/></if>
       <if:shipping-first-name><view/></if>
       <view:shipping-surname/><br/>

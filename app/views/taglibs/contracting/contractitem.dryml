@@ -1,0 +1,16 @@
+<def tag="upload-page" for="Contractitem">
+  <page merge title="&t('mercator.consumableitems_upload')">
+    <content-header:>
+      <h2 param="heading"><t key="mercator.consumableitems_upload" /></h2>
+    </content-header:>
+
+    <content-body:>
+      <form action="/contracting/contractitems/#{self.this.id}/do_upload" multipart>
+        <br/>
+        <p><input type="file" name="xlsx"/></p>
+        <br/>
+        <p><submit label="#{ht 'consumableitem.actions.do_upload', :default=>['Upload']}"/></p>
+      </form>
+    </content-body:>
+  </page>
+</def>

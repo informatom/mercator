@@ -19,10 +19,10 @@ function contractsGrid() {
     columns: [
       { field: 'recid', caption: I18n.t("attributes.id"), size: '50px', sortable: true, attr: "align=right" },
       { field: 'customer', caption: I18n.t("attributes.customer"), size: '200px', sortable: true },
-      { field: 'consultant', caption: I18n.t("attributes.consultant"), size: '200px', sortable: true },
-      { field: 'conversation', caption: I18n.t("attributes.conversation"), size: '200px', sortable: true },
+      { field: 'customer_account', caption: I18n.t("attributes.customer_id"), size: '200px', sortable: true },
+      { field: 'contractnumber', caption: I18n.t("attributes.number"), size: '200px', sortable: true },
       { field: 'term', caption: I18n.t("attributes.term"), size: '75px', sortable: true, attr: "align=right" },
-
+      { field: 'monitoring_rate', caption: I18n.t("attributes.monitoring_rate"), size: '50px', render: 'currency' },
       { field: 'startdate', caption: I18n.t("attributes.startdate"), size: '130px', sortable: true,
         render: 'date:dd.mm.yyyy' },
       { field: 'enddate', caption: I18n.t("attributes.enddate"), size: '130px', sortable: true,
@@ -31,14 +31,14 @@ function contractsGrid() {
       { field: 'created_at', caption: I18n.t("attributes.created_at"), size: '130px', sortable: true,
         render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
       { field: 'updated_at', caption: I18n.t("attributes.updated_at"), size: '130px', sortable: true,
-        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' },
+        render: 'datetime:dd.mm.yyyy|hh24:mm:ss' }
     ],
 
     searches: [
       { field: 'startdate', caption: I18n.t("attributes.startdate"), type: 'date' },
       { field: 'customer', caption: I18n.t("attributes.customer"), type: 'text' },
-      { field: 'consultant', caption: I18n.t("attributes.consultant"), type: 'text' },
-      { field: 'conversation', caption: I18n.t("attributes.conversation"), type: 'text' },
+      { field: 'account', caption: I18n.t("attributes.account"), type: 'text' },
+      { field: 'contractnumber', caption: I18n.t("attributes.number"), type: 'text' }
     ],
     sortData: [{ field: 'startdate', direction: 'desc' }],
 
@@ -79,4 +79,7 @@ function show_contract_details(contract_id) {
 
   w2ui.contractForm.recid = contract_id
   w2ui.contractForm.reload()
+
+  w2ui.calendarGrid.url = 'contracts/' + contract_id + '/calendar'
+  w2ui.calendarGrid.reload()
 }

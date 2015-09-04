@@ -2,5 +2,5 @@
 //= require ./menu
 //= require ./contractsGrid.js.erb
 //= require ./contractForm.js.erb
-//= require ../users/usersGrid.js.erb
-//= require ../conversations/conversationsGrid.js.erb
+//= require ../users/mesonicUsersGrid.js.erb
+//= require ../contractitems/calendarGrid.js.erb

@@ -18,25 +18,17 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
             |contractitem| {
               recid:           contractitem.id,
               position:        contractitem.position,
-              user:            (contractitem.user.email_address if contractitem.user),
               product_number:  (contractitem.product.number if contractitem.product),
-              toner:           (contractitem.toner.vendor_number if contractitem.toner),
-              description_de:  contractitem.description_de,
-              description_en:  contractitem.description_en,
+              product_title:   contractitem.product_title,
               amount:          contractitem.amount,
-              unit:            contractitem.unit,
               volume:          contractitem.volume,
-              product_price:   contractitem.product_price,
               vat:             contractitem.vat,
-              value:           contractitem.value,
-              discount_abs:    contractitem.discount_abs,
               term:            contractitem.term,
               startdate:       contractitem.startdate,
               enddate:         contractitem.enddate,
               volume_bw:       contractitem.volume_bw,
               volume_color:    contractitem.volume_color,
               marge:           contractitem.marge,
-              monitoring_rate: contractitem.monitoring_rate,
               created_at:      contractitem.created_at.utc.to_i*1000,
               updated_at:      contractitem.updated_at.utc.to_i*1000
             }
@@ -58,22 +50,14 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       attrs = params[:record]
       @contractitem.position        = attrs[:position]
       @contractitem.term            = attrs[:term]
-      @contractitem.user_id         = attrs[:user_id]
       @contractitem.startdate       = attrs[:startdate]
       @contractitem.product_number  = attrs[:product_number]
       @contractitem.product_id      = attrs[:product_id]
-      @contractitem.toner_id        = attrs[:toner_id]
-      @contractitem.description_de  = attrs[:description_de]
-      @contractitem.description_en  = attrs[:description_en]
+      @contractitem.product_title   = attrs[:product_title]
       @contractitem.amount          = attrs[:amount]
-      @contractitem.unit            = attrs[:unit]
       @contractitem.marge           = attrs[:marge]
       @contractitem.volume_bw       = attrs[:volume_bw]
       @contractitem.volume_color    = attrs[:volume_color]
-      @contractitem.product_price   = attrs[:product_price]
-      @contractitem.monitoring_rate = attrs[:monitoring_rate]
-      @contractitem.discount_abs    = attrs[:discount_abs]
-      @contractitem.value           = attrs[:value]
       @contractitem.vat             = attrs[:vat]
       @contractitem.contract_id     = attrs[:contract_id]
 
@@ -90,24 +74,14 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           recid:           @contractitem.id,
           position:        @contractitem.position,
           term:            @contractitem.term,
-          user:            (@contractitem.user.email_address if @contractitem.user),
-          user_id:         @contractitem.user_id,
           startdate:       I18n.l(@contractitem.startdate),
           product_number:  @contractitem.product_number,
+          product_title:   @contractitem.product_title,
           product_id:      @contractitem.product_id,
-          toner:           (@contractitem.toner.description if @contractitem.toner),
-          toner_id:        @contractitem.toner_id,
-          description_de:  @contractitem.description_de,
-          description_en:  @contractitem.description_en,
           amount:          @contractitem.amount,
-          unit:            @contractitem.unit,
           marge:           @contractitem.marge,
           volume_bw:       @contractitem.volume_bw,
           volume_color:    @contractitem.volume_color,
-          product_price:   @contractitem.product_price,
-          monitoring_rate: @contractitem.monitoring_rate,
-          discount_abs:    @contractitem.discount_abs,
-          value:           @contractitem.value,
           vat:             @contractitem.vat,
           created_at:      I18n.l(@contractitem.created_at),
           updated_at:      I18n.l(@contractitem.updated_at),
@@ -139,8 +113,8 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
 
     render json: {
       status: "success",
-      total: 7,
-      records: [
+      total: 19,
+      records: ([
         {
           title: "Jahresbeginn",
           year1: l(@contractitem.startdate),
@@ -148,7 +122,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year3: l(@contractitem.startdate + 2.year),
           year4: l(@contractitem.startdate + 3.year),
           year5: l(@contractitem.startdate + 4.year),
-          year6: l(@contractitem.startdate + 5.year)
         }, {
           title: "Jahresende",
           year1: l(@contractitem.startdate + 1.year - 1.day),
@@ -156,39 +129,27 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year3: l(@contractitem.startdate + 3.year - 1.day),
           year4: l(@contractitem.startdate + 4.year - 1.day),
           year5: l(@contractitem.startdate + 5.year - 1.day),
-          year6: l(@contractitem.startdate + 6.year - 1.day)
+        }, {
+          title: "Rate (EUR)",
+          year1: number_to_currency(@contractitem.monthly_rate),
+          year2: number_to_currency(@contractitem.new_rate(2)),
+          year3: number_to_currency(@contractitem.new_rate(3)),
+          year4: number_to_currency(@contractitem.new_rate(4)),
+          year5: number_to_currency(@contractitem.new_rate(5)),
         }, {
           title: "Monate ohne Rate",
           year1: @contractitem.months_without_rates(1),
           year2: @contractitem.months_without_rates(2),
           year3: @contractitem.months_without_rates(3),
           year4: @contractitem.months_without_rates(4),
-          year5: @contractitem.months_without_rates(5),
-          year6: '---'
+          year5: '---',
         }, {
-          title: "Folgeraten (EUR)",
-          year1: '---',
-          year2: number_to_currency(@contractitem.new_rate(2)),
-          year3: number_to_currency(@contractitem.new_rate(3)),
-          year4: number_to_currency(@contractitem.new_rate(4)),
-          year5: number_to_currency(@contractitem.new_rate(5)),
-          year6: number_to_currency(@contractitem.new_rate(6))
-        }, {
-          title: "Folgemonat (EUR)",
+          title: "Rate im Folgemonat (EUR)",
           year1: number_to_currency(@contractitem.next_month(1)),
           year2: number_to_currency(@contractitem.next_month(2)),
           year3: number_to_currency(@contractitem.next_month(3)),
           year4: number_to_currency(@contractitem.next_month(4)),
-          year5: number_to_currency(@contractitem.next_month(5)),
-          year6: '---'
-        }, {
-          title: "Folgeraten mit Monitoring (EUR)",
-          year1:'---',
-          year2: number_to_currency(@contractitem.new_rate_with_monitoring(2)),
-          year3: number_to_currency(@contractitem.new_rate_with_monitoring(3)),
-          year4: number_to_currency(@contractitem.new_rate_with_monitoring(4)),
-          year5: number_to_currency(@contractitem.new_rate_with_monitoring(5)),
-          year6: number_to_currency(@contractitem.new_rate_with_monitoring(6))
+          year5: '---',
         }, {
           title: "Summe Gutschrift/Nachzahlung",
           year1: number_to_currency(@contractitem.balance(1)),
@@ -196,9 +157,37 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year3: number_to_currency(@contractitem.balance(3)),
           year4: number_to_currency(@contractitem.balance(4)),
           year5: number_to_currency(@contractitem.balance(5)),
-          year6: number_to_currency(@contractitem.balance(6))
-        }
-      ]
+        }, { title: "=== Tatsächliche Raten ===",
+             year1: nil, year2: nil, year3: nil, year4: nil, year5: nil, }
+      ] + @contractitem.actual_rate_array[1..12])
     }
+  end
+
+  show_action :upload
+
+  show_action :do_upload, method: :post do
+    @contractitem = Contractitem.find(params[:id])
+
+    @sheet = Roo::Spreadsheet.open(params[:xlsx].path, extension: :xlsx)
+
+    @sheet.each_with_index do |row, index|
+      next if index < 2
+      next unless (@contractitem.product_number[3..-1] == row[8])
+      next if (row[8] == row[11])
+
+      price = Toner.find_by(article_number: row[11]).try(:price) || 0
+
+      Consumableitem.create(contractitem_id: @contractitem.id,
+                            position: index,
+                            product_number: row[11],
+                            product_title: row[16],
+                            theyield: row[30],
+                            amount: row[28],
+                            term: @contractitem.term,
+                            contract_type: "Haupt",
+                            wholesale_price: price)
+    end
+
+    redirect_to contracting_consumableitems_path(contractitem_id: params[:id])
   end
 end

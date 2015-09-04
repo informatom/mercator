@@ -79,29 +79,29 @@ describe Conversation do
       end
 
       it "tries five times to get a consultant to respond" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @second_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @second_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @third_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @third_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @fourth_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @fourth_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @fifth_consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @fifth_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/" + @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/" + @conversation.id.to_s,
                                                         type: "messages")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @user.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @user.id.to_s,
                                                         sender: @robot.name,
           content: "Unfortunately, we have no sales representative available for you right now. Please try later or stay at this page.")
         @conversation.inform_sales(locale: "en")
@@ -109,11 +109,11 @@ describe Conversation do
 
       it "trues only once if call is picked up (that is @conversation.consultant_id is set)" do
         @conversation.update(consultant_id: @consultant.id)
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/" + @consultant.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)
-        expect(PrivatePub).not_to receive(:publish_to).with("/0004/personal/" + @second_consultant.id.to_s,
+        expect(PrivatePub).not_to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/" + @second_consultant.id.to_s,
                                                         sender: @robot.name,
                                                         content: "Can you pick up a new conversation?",
                                                         conversation: @conversation.id)

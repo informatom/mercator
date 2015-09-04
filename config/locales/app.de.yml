@@ -52,6 +52,7 @@ de:
     content_element: Baustein
     contentmanager: Content Manager
     Contract: Vertrag
+    contracts: Verträge
     Conversation: Konversation
     conversation: Konversation
     country: Land
@@ -668,6 +669,7 @@ de:
     cobrowsing_link: Cobrowsing Link
     coming_from: aus
     comment: Kommentieren
+    consumableitems_upload: Upload Verbrauchsmaterialien
     consumeables: Verbrauchsmaterialien
     consumeable_search_help: Hier können Sie nach Verbrauchmaterialien für Ihre Drucker suchen. Wählen Sie eine Druckerserie und / oder geben Sie einige Buchstaben der Bezeichnung Ihres HP-Druckers ein.
     contracting_subsite_name: Vertragswesen

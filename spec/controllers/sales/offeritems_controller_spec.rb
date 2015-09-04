@@ -73,9 +73,9 @@ describe Sales::OfferitemsController, :type => :controller do
       end
 
       it "publishes to offer and conversation" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.offer.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @instance.offer.id.to_s,
                                                         type: "all")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.offer.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.offer.conversation.id.to_s,
                                                         type: "offers")
         patch :update, id: @instance,
                        offeritem: { amount: 13,
@@ -94,9 +94,9 @@ describe Sales::OfferitemsController, :type => :controller do
       end
 
       it "publishes tof offer and conversation" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.offer.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @instance.offer.id.to_s,
                                                         type: "all")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.offer.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.offer.conversation.id.to_s,
                                                         type: "offers")
         put :do_delete_from_offer, id: @instance.id
       end

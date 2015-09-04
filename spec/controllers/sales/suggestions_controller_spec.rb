@@ -14,7 +14,7 @@ describe Sales::SuggestionsController, :type => :controller do
 
     describe 'DELETE #destroy' do
       it "publishes suggestions" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "suggestions")
         delete :destroy, id: @instance
       end
@@ -23,7 +23,7 @@ describe Sales::SuggestionsController, :type => :controller do
 
     describe 'PATCH #update' do
       it "publishes suggestions" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "suggestions")
         patch :update, id: @instance,
                        @instance.class.to_s.underscore => @invalid_attributes
@@ -33,7 +33,7 @@ describe Sales::SuggestionsController, :type => :controller do
 
     describe 'POST #create' do
       it "publishes suggestions" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "suggestions")
         post :create, suggestion: attributes_for(:suggestion, conversation_id: @instance.conversation.id)
       end

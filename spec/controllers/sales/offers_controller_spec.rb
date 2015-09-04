@@ -26,7 +26,7 @@ describe Sales::OffersController, :type => :controller do
 
     describe "GET #show" do
       it "publishes to conversations" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "suggestions")
         get :show, id: @instance.id
       end
@@ -40,9 +40,9 @@ describe Sales::OffersController, :type => :controller do
 
     describe 'PATCH #update' do
       it "publishes to conversations and offers" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "offers")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @instance.id.to_s,
                                                         type: "all")
 
         patch :update, id: @instance, offer: { billing_company: "new compary" }
@@ -149,7 +149,7 @@ describe Sales::OffersController, :type => :controller do
       end
 
       it "publishes_to conversation" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "offers")
         put :do_build, offer: @attributes
       end
@@ -196,7 +196,7 @@ describe Sales::OffersController, :type => :controller do
       end
 
       it "publishes to offers" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @instance.id.to_s,
                                                         type: "all")
         put :do_submit, id: @instance.id
       end
@@ -216,7 +216,7 @@ describe Sales::OffersController, :type => :controller do
         end
 
         it "publishes to offers" do
-          expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @instance.id.to_s,
+          expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @instance.id.to_s,
                                                           type: "all")
           put :do_place, id: @instance.id
         end
@@ -246,7 +246,7 @@ describe Sales::OffersController, :type => :controller do
         end
 
         it "publishes to offers" do
-          expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @pending_offer.id.to_s,
+          expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @pending_offer.id.to_s,
                                                           type: "all")
           put :do_place, id: @pending_offer.id
         end
@@ -275,7 +275,7 @@ describe Sales::OffersController, :type => :controller do
       end
 
       it "publishes to offers" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @not_valid_offer.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @not_valid_offer.id.to_s,
                                                         type: "all")
         @not_valid_offer.lifecycle.devalidate!(@user)
       end
@@ -295,7 +295,7 @@ describe Sales::OffersController, :type => :controller do
       end
 
       it "publishes to offers" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/offers/"+ @invalid_offer.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/offers/"+ @invalid_offer.id.to_s,
                                                         type: "all")
         @invalid_offer.lifecycle.revise!(@sales)
       end

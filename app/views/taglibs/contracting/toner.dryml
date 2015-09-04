@@ -7,24 +7,12 @@
     </content-header:>
 
     <content-body:>
-        <form action="/contracting/toners/do_upload" multipart>
-          <input type="file" name="xls"/>
-          <submit label="#{ht 'toner.actions.do_upload', :default=>['Upload']}"/>
-        </form>
-    </content-body:>
-  </page>
-</def>
-
-<def tag="do-upload-page" polymorphic/>
-
-<def tag="do-upload-page" for="Toner">
-  <page merge title="#{ht 'toner.upload', :default=>[' Upload Tonerfile'] }">
-    <content-header:>
-      <h2 param="heading"><t key="mercator.toner_upload" /></h2>
-    </content-header:>
-
-    <content-body:>
-      Fixme
+      <form action="/contracting/toners/do_upload" multipart>
+        <br/>
+        <p><input type="file" name="xlsx"/></p>
+        <br/>
+        <p><submit label="#{ht 'toner.actions.do_upload', :default=>['Upload']}"/></p>
+      </form>
     </content-body:>
   </page>
 </def>

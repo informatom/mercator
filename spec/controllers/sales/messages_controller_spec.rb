@@ -28,9 +28,9 @@ describe Sales::MessagesController, :type => :controller do
 
     describe 'POST #create' do
       it "publishes message" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @instance.conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @instance.conversation.id.to_s,
                                                         type: "messages")
-        expect(PrivatePub).to receive(:publish_to).with("/0004/personal/"+ @instance.reciever.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/personal/"+ @instance.reciever.id.to_s,
                                                         sender: "Mr. Dr Sammy Sales Representative",
                                                         content: @instance.content)
 

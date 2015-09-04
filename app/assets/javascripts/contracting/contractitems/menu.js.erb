@@ -8,14 +8,16 @@ function menu() {
         caption: I18n.t('js.con.admin_subsite_name'), icon: 'fa fa-external-link' },
       { type: 'button', id: 'sales',
         caption: I18n.t('js.con.sales_subsite_name'), icon: 'fa fa-external-link' },
-      { type: 'button', id: 'contracts',
+      { type: 'button', id: 'contracting',
         caption: I18n.t('js.con.contracting_subsite_name'), icon: 'fa fa-university' },
+      { type: 'button', id: 'contracting/contracts',
+        caption: I18n.t('attributes.contracts'), icon: 'fa fa-mortar-board' },
       { type: 'spacer' },
       { type: 'button', id: 'videochat',
         caption: I18n.t('js.con.video_chat'), icon: 'fa fa-external-link'},
     ],
     onClick: function (event) {
-      document.location = event.target
+      document.location = "/" + event.target
     }
   })
 }

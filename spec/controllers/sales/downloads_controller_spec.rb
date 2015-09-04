@@ -22,7 +22,7 @@ describe Sales::DownloadsController, :type => :controller do
       end
 
       it "publishes to downloads" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                    type: "downloads")
         post :create, download: attributes_for(:download, conversation_id: @conversation.id,
           document: fixture_file_upload( Rails.root.to_s + '/spec/support/dummy_document.pdf', 'application/pdf'))
@@ -49,7 +49,7 @@ describe Sales::DownloadsController, :type => :controller do
 
     describe "DELETE #destroy" do
       it "publishes to downloads" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                    type: "downloads")
         delete :destroy, id: @instance
       end
@@ -58,7 +58,7 @@ describe Sales::DownloadsController, :type => :controller do
 
     describe "PATCH #update" do
       it "publishes to downloads" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/conversations/"+ @conversation.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/conversations/"+ @conversation.id.to_s,
                                                    type: "downloads")
         patch :update, id: @instance,
                        download: attributes_for(:download, conversation_id: @conversation.id)

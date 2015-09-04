@@ -63,7 +63,7 @@ describe ProductsController, :type => :controller do
       end
 
       it "publishes the message" do
-        expect(PrivatePub).to receive(:publish_to).with("/0004/orders/"+ @user.basket.id.to_s,
+        expect(PrivatePub).to receive(:publish_to).with("/" + CONFIG[:system_id] + "/orders/"+ @user.basket.id.to_s,
                                                         type: "basket")
         post :do_add_to_basket, id: @product.id
       end

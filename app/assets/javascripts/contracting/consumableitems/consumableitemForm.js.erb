@@ -19,16 +19,12 @@ function consumableitemForm() {
       '      <div><input name="product_number" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.title") + '</label>'+
+      '      <div><input name="product_title" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.product_line") + '</label>'+
       '      <div><input name="product_line" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.description") + '(DE) </label>'+
-      '      <div><input name="description_de" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.description") + '(EN) </label>'+
-      '      <div><input name="description_en" /></div>'+
       '    </div>'+
       '  </div>'+
 
@@ -48,14 +44,6 @@ function consumableitemForm() {
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.term") + '</label>'+
       '      <div><input name="term" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.balance") + ' 6</label>'+
-      '      <div><input name="balance6" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.contractitem") + '</label>'+
-      '      <div><input name="contractitem_id" /></div>'+
       '    </div>'+
       '  </div>'+
 
@@ -80,10 +68,6 @@ function consumableitemForm() {
       '      <label>' + I18n.t("attributes.consumption") + ' 5</label>'+
       '      <div><input name="consumption5" /></div>'+
       '    </div>'+
-      '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.consumption") + ' 6</label>'+
-      '      <div><input name="consumption6" /></div>'+
-      '    </div>'+
         '</div>'+
       '</div>'+
 
@@ -91,27 +75,24 @@ function consumableitemForm() {
       '   <button class="w2ui-btn w2ui-btn-green" name="save">'+ w2utils.lang("Save") + '</button>' +
       '   <button class="w2ui-btn w2ui-btn-blue" name="new">'+ w2utils.lang("Add New") + '</button>' +
       '   <button class="w2ui-btn w2ui-btn-red" name="delete">'+ w2utils.lang("Delete") + '</button>' +
-      '   <button class="w2ui-btn w2ui-btn-orange" name="get_toner">Toner zuordnen</button>' +
       '</div>',
 
     fields : [
       { name: 'position',        type: 'int', required: true },
       { name: 'contract_type',   type: 'text' },
       { name: 'product_number',  type: 'text', required: true },
+      { name: 'product_title',   type: 'text'},
       { name: 'product_line',    type: 'text' },
-      { name: 'description_de',  type: 'text', required: true },
-      { name: 'description_en',  type: 'text' },
       { name: 'amount',          type: 'int', required: true },
+      { name: 'theyield',        type: 'int', required: true },
       { name: 'wholesale_price', type: 'currency', required: true },
       { name: 'term',            type: 'int', required: true },
-      { name: 'balance6',        type: 'currency', required: true },
       { name: 'contractitem_id', type: 'integer', required: true, disabled: true },
       { name: 'consumption1',    type: 'int', required: true },
       { name: 'consumption2',    type: 'int', required: true },
       { name: 'consumption3',    type: 'int', required: true },
       { name: 'consumption4',    type: 'int', required: true },
-      { name: 'consumption5',    type: 'int', required: true },
-      { name: 'consumption6',    type: 'int', required: true }
+      { name: 'consumption5',    type: 'int', required: true }
     ],
 
     actions: {
@@ -150,31 +131,6 @@ function consumableitemForm() {
             }
           )
         }
-      },
-
-      get_toner: {
-        onClick: function () {
-          w2popup.open({
-            title: 'Toner auswählen',
-            body: '<div id="tonersGrid" style="height:100%;"></div>',
-            buttons : '<button class="w2ui-btn w2ui-btn-green" onclick="w2popup.close(\'+\');">OK</button> ' +
-                      '<button class="w2ui-btn w2ui-btn-orange" onclick="w2popup.close(\'-\');">Abbrechen</button> ',
-            width: $(window).width() * 0.9,
-            height: $(window).height() * 0.9,
-            onClose: function (event) {
-              if (event.options[0] == "+") {
-                var selection = w2ui.tonersGrid.getSelection()
-                if (selection.length == 1) {
-                  var form = w2ui.consumableitemForm
-                  form.record['product_number'] = w2ui.tonersGrid.get(selection[0]).vendor_number
-                  form.record['wholesale_price'] = w2ui.tonersGrid.get(selection[0]).price
-                  form.refresh()
-                }
-              }
-            }
-          })
-          tonersGrid('tonersGrid', 'toners/grid_index')
-        }
       }
     }
   })
@@ -187,7 +143,6 @@ function initialize_consumableitemForm() {
   form.record['position'] = 0
   form.record['amount'] = 1
   form.record['term'] = 12
-  form.record['balance6'] = 0
   form.record['consumption1'] = 0
   form.record['consumption2'] = 0
   form.record['consumption3'] = 0
@@ -196,17 +151,4 @@ function initialize_consumableitemForm() {
   form.record['consumption6'] = 0
   form.record['contractitem_id'] = request_id
   form.refresh()
-
-  $.ajax({
-    url:"consumableitems/" + request_id + "/defaults",
-    method: "GET",
-    data: { authenticity_token: csrf_token },
-    dataType: 'json',
-  }).done(function(response, textStatus, jqXHR) {
-    form.record['product_number'] = response['vendor_number']
-    form.record['wholesale_price'] = response['wholesale_price']
-    form.refresh()
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-    w2alert(jqXHR.responseText)
-  })
 }

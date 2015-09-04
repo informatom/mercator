@@ -1,1 +1,3 @@
-<search-results/>
+<if test="& @search_results">
+  <search-results/>
+</if>

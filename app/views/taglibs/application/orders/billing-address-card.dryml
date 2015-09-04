@@ -7,7 +7,9 @@
       <strong><view:billing-company/></strong>
       <if:billing-detail>, <view/></if><br/>
 
-      <view with="&t this.billing_gender"/>
+      <if:billing-gender>
+        <view with="&t this.billing_gender"/>
+      </if>
       <if:billing-title><view/></if>
       <if:billing-first-name><view/></if>
       <view:billing-surname /><br/>
