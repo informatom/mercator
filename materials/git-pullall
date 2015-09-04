@@ -37,6 +37,10 @@ cd /var/rails/mercator/vendor/gems/hobo_bootstrap_ui
 git remote update
 git pull origin bootstrap3
 
+cd /var/rails/mercator/vendor/gems/hobo_w2ui
+git remote update
+git pull origin master
+
 
 # Customers
 cd /var/rails/mercator/vendor/customers/informatom-dev
