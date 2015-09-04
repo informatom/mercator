@@ -8,7 +8,7 @@
       <if:shipping-detail>, <view/></if> <br/>
 
       <if:shipping-gender>
-        <view with="&t this.shipping_gender"/>
+        <view with="&t this"/>
       </if>
       <if:shipping-title><view/></if>
       <if:shipping-first-name><view/></if>
