@@ -9,17 +9,16 @@
      page = params[:page] ? params[:page].to_i : 1
      tweets = client.user_timeline(twitter_user, :count => 200)
                     .paginate(:page => params[page], :per_page => 15) %>
-  <div class="widget widget-twitter-feed clearfix">
-    <ul id="sidebar-twitter-list-1" class="iconlist">
-      <repeat with="&tweets">
-        <li>
-          <i class="icon-twitter"></i>
-          <span><view with="&auto_link(this.text)" /></span>
-          <small><view with="&l(this.created_at, format: :long)"/></small>
-        </li>
-      </repeat>
-    </ul>
-  </div>
+
+  <ul class="list-group">
+    <repeat with="&tweets">
+      <li class="list-group-item">
+        <p><span class="fa fa-twitter"></span><small><view with="&l(this.created_at, format: :long)"/></small></p>
+        <p><view with="&auto_link(this.text)" /></p>
+
+      </li>
+    </repeat>
+  </ul>
 
   <page-nav with="&tweets" inner-window="2" outer-window="0" />
 </def>

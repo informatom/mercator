@@ -8,56 +8,50 @@
     <div class="row">
       <div id="posts" class="col-md-9">
         <repeat>
-          <div class="entry clearfix">
-            <div class="entry-c">
-              <div class="entry-title">
-                  <h2>Episode <view:number/> - <a href="&podcast_path(this)"><view:title /></a></h2>
-              </div>
+          <h2>Episode <view:number/> - <a href="&podcast_path(this)"><view:title /></a></h2>
 
-              <ul class="entry-meta clearfix">
-                  <li>
-                    <i class="icon-calendar3"></i>
-                    <view with="&l(this.published_at, format: :long)"/>
-                  </li>
-                  <li>
-                    <a href="&podcast_path(this) + '#comments'">
-                      <i class="icon-comments"></i>
-                      <%= this.comments.count %>
-                      <t key="activerecord.models.comment.other" />
-                    </a>
-                  </li>
-                  <li><a href="#"><i class="icon-font"></i></a></li>
-              </ul>
+          <p>
+            <li>
+              <span class="fa fa-calendar"/>
+              <view with="&l(this.published_at, format: :long)"/> |
 
-              <div class="entry-content">
-                <%= podloveaudio(mp3: this.mp3.url,
-                                 ogg: this.ogg.url,
-                                 title: this.title,
-                                 autoplay: "false",
-                                 alwaysShowControls: "true",
-                                 duration: this.duration,
-                                 chapters: this.chapterstring,
-                                 chaptersVisible: "true",
-                                 chapterlinks: "all",
-                                 features: ["current","progress","duration","tracks","fullscreen","volume"] ) %>
+              <a href="&podcast_path(this) + '#comments'">
+                <span class="fa fa-commenting"/>
+                <%= this.comments.count %>
+                <t key="activerecord.models.comment.other" />
+              </a> |
 
-                <p>
-                  <a href="&this.mp3.url">
-                    <i class="icon-music"></i>
-                    Download MP3
-                    (<view with="&this.mp3_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
-                  </a> -
-                  <a href="&this.ogg.url">
-                    <i class="icon-music"></i>
-                    Download OGG
-                    (<view with="&this.ogg_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
-                  </a>
-                </p>
+              <a href="#"><span class="fa fa-font"/></a>
+            </li>
+          </p>
 
-                <view: with="&truncate_html(this.shownotes, :length => 500)"/>
-                <a href="&podcast_path(this)" class="more-link"><t key="mercator.read_more" /> →</a>
-              </div>
-            </div>
+          <div class="entry-content">
+            <%= podloveaudio(mp3: this.mp3.url,
+                             ogg: this.ogg.url,
+                             title: this.title,
+                             autoplay: "false",
+                             alwaysShowControls: "true",
+                             duration: this.duration,
+                             chapters: this.chapterstring,
+                             chaptersVisible: "true",
+                             chapterlinks: "all",
+                             features: ["current","progress","duration","tracks","fullscreen","volume"] ) %>
+
+            <p>
+              <a href="&this.mp3.url">
+                <i class="icon-music"></i>
+                Download MP3
+                (<view with="&this.mp3_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
+              </a> -
+              <a href="&this.ogg.url">
+                <i class="icon-music"></i>
+                Download OGG
+                (<view with="&this.ogg_file_size * 10 / 1024 / 1024 / 10.0" no-wrapper/> MB)
+              </a>
+            </p>
+
+            <view: with="&truncate_html(this.shownotes, :length => 500)"/>
+            <a href="&podcast_path(this)" class="more-link"><t key="mercator.read_more" /> →</a>
           </div>
         </repeat>
 
