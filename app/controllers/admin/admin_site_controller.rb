@@ -17,4 +17,10 @@ class Admin::AdminSiteController < ApplicationController
       redirect_to user_login_path
     end
   end
+
+  def sales_required
+    unless logged_in? && current_user.sales?
+      redirect_to user_login_path
+    end
+  end
 end

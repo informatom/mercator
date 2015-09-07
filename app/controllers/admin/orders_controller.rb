@@ -3,6 +3,9 @@ class Admin::OrdersController < Admin::AdminSiteController
   hobo_model_controller
   auto_actions :all
 
+  skip_before_filter :admin_required
+  before_filter :sales_required
+
   def destroy
     hobo_destroy do
       redirect_to admin_orders_path  # better but still problematic
