@@ -8,7 +8,9 @@ class Contracting::ContractingSiteController < ApplicationController
 
   def sales_required
     unless logged_in? &&
-           (current_user.sales? || current_user.administrator?)
+           (current_user.sales? || current_user.administrator? ||
+                                   current_user.sales_manager? ||
+                                   current_user.productmanager?)
       redirect_to home_page
     end
   end
