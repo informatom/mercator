@@ -53,6 +53,11 @@ class Contract < ActiveRecord::Base
   end
 
 
+  def balance(n)
+    contractitems.*.balance(n).sum
+  end
+
+
   def actual_rate(year: year, month: month)
     contractitems.*.actual_rate(year: year, month: month).sum + monitoring_rate
   end

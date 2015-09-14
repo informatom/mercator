@@ -1,4 +1,6 @@
 class Contracting::ContractsController < Contracting::ContractingSiteController
+  include ActionView::Helpers::NumberHelper
+
   hobo_model_controller
   auto_actions :index
   respond_to :html, :json
@@ -93,8 +95,33 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
     render json: {
       status: "success",
       total: 13,
-      records: ([ { title: "=== Tatsächliche Raten ===",
-                    year1: nil, year2: nil, year3: nil, year4: nil, year5: nil, }
+      records: ([
+        {
+          title: "Jahresbeginn",
+          year1: l(@contract.startdate),
+          year2: l(@contract.startdate + 1.year),
+          year3: l(@contract.startdate + 2.year),
+          year4: l(@contract.startdate + 3.year),
+          year5: l(@contract.startdate + 4.year),
+        }, {
+          title: "Jahresende",
+          year1: l(@contract.startdate + 1.year - 1.day),
+          year2: l(@contract.startdate + 2.year - 1.day),
+          year3: l(@contract.startdate + 3.year - 1.day),
+          year4: l(@contract.startdate + 4.year - 1.day),
+          year5: l(@contract.startdate + 5.year - 1.day),
+        }, {
+          title: "Summe Gutschrift/Nachzahlung",
+          year1: '---',
+          year2: number_to_currency(@contract.balance(1)),
+          year3: number_to_currency(@contract.balance(2)),
+          year4: number_to_currency(@contract.balance(3)),
+          year5: number_to_currency(@contract.balance(4)),
+          payoff: number_to_currency(@contract.balance(5)),
+        }, {
+          title: "=== Tatsächliche Raten ===",
+          year1: nil, year2: nil, year3: nil, year4: nil, year5: nil,
+        }
       ] + @contract.actual_rate_array[1..12])
     }
   end

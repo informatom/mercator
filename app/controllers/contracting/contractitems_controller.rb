@@ -117,18 +117,18 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       records: ([
         {
           title: "Jahresbeginn",
-          year1: l(@contractitem.startdate),
-          year2: l(@contractitem.startdate + 1.year),
-          year3: l(@contractitem.startdate + 2.year),
-          year4: l(@contractitem.startdate + 3.year),
-          year5: l(@contractitem.startdate + 4.year),
+          year1: l(@contractitem.contract.startdate),
+          year2: l(@contractitem.contract.startdate + 1.year),
+          year3: l(@contractitem.contract.startdate + 2.year),
+          year4: l(@contractitem.contract.startdate + 3.year),
+          year5: l(@contractitem.contract.startdate + 4.year),
         }, {
           title: "Jahresende",
-          year1: l(@contractitem.startdate + 1.year - 1.day),
-          year2: l(@contractitem.startdate + 2.year - 1.day),
-          year3: l(@contractitem.startdate + 3.year - 1.day),
-          year4: l(@contractitem.startdate + 4.year - 1.day),
-          year5: l(@contractitem.startdate + 5.year - 1.day),
+          year1: l(@contractitem.contract.startdate + 1.year - 1.day),
+          year2: l(@contractitem.contract.startdate + 2.year - 1.day),
+          year3: l(@contractitem.contract.startdate + 3.year - 1.day),
+          year4: l(@contractitem.contract.startdate + 4.year - 1.day),
+          year5: l(@contractitem.contract.startdate + 5.year - 1.day),
         }, {
           title: "Rate (EUR)",
           year1: number_to_currency(@contractitem.monthly_rate),
