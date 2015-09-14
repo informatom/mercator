@@ -65,8 +65,8 @@ class Contractitem < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
-  def price
-    consumableitems.*.value.sum || 0
+  def price(n)
+    consumableitems.*.value(n).sum || 0
   end
 
 
@@ -75,17 +75,17 @@ class Contractitem < ActiveRecord::Base
   end
 
 
-  def monthly_rate
+  def monthly_rate(n)
     if term && term > 0
-      price.to_f / term
+      price(n).to_f / term
     else
-      price.to_f
+      price(n).to_f
     end
   end
 
 
   def value
-    monthly_rate * amount
+    monthly_rate(1) * amount
   end
 
 
@@ -111,7 +111,11 @@ class Contractitem < ActiveRecord::Base
   def months_without_rates(n)
     if [1, 2, 3, 4].include? n
       if balance(n) < 0
-        (balance(n).to_f / new_rate(n+1)).ceil * -1
+        if new_rate(n+1) == 0
+          12
+        else
+          (balance(n).to_f / new_rate(n+1)).ceil * -1
+        end
       else
         0
       end
@@ -132,7 +136,7 @@ class Contractitem < ActiveRecord::Base
 
   def actual_rate(year: year, month: month)
     if year == 1
-      monthly_rate
+      monthly_rate(1)
     else
       if month == months_without_rates(year-1) + 1
         next_month(year-1)

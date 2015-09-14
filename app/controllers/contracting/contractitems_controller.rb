@@ -131,7 +131,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year5: l(@contractitem.contract.startdate + 5.year - 1.day),
         }, {
           title: "Rate (EUR)",
-          year1: number_to_currency(@contractitem.monthly_rate),
+          year1: number_to_currency(@contractitem.monthly_rate(1)),
           year2: number_to_currency(@contractitem.new_rate(2)),
           year3: number_to_currency(@contractitem.new_rate(3)),
           year4: number_to_currency(@contractitem.new_rate(4)),
@@ -186,7 +186,11 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
                             amount: row[28],
                             term: @contractitem.term,
                             contract_type: "Haupt",
-                            wholesale_price: price)
+                            wholesale_price1: price,
+                            wholesale_price2: 0,
+                            wholesale_price3: 0,
+                            wholesale_price4: 0,
+                            wholesale_price5: 0)
     end
 
     redirect_to contracting_consumableitems_path(contractitem_id: params[:id])

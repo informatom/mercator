@@ -26,28 +26,44 @@ function consumableitemForm() {
       '      <label>' + I18n.t("attributes.product_line") + '</label>'+
       '      <div><input name="product_line" /></div>'+
       '    </div>'+
-      '  </div>'+
-
-      '  <div style="float: left; width: 340px">'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t('attributes.amount') + '</label>'+
       '      <div><input name="amount" /></div>'+
       '    </div>'+
+      '  </div>'+
+
+      '  <div style="float: left; width: 340px">'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.theyield") + '</label>'+
       '      <div><input name="theyield" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.wholesale_price") + '</label>'+
-      '      <div><input name="wholesale_price" /></div>'+
+      '      <label>' + I18n.t("attributes.wholesale_price") + ' 1</label>'+
+      '      <div><input name="wholesale_price1" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.term") + '</label>'+
-      '      <div><input name="term" /></div>'+
+      '      <label>' + I18n.t("attributes.wholesale_price") + ' 2</label>'+
+      '      <div><input name="wholesale_price2" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.wholesale_price") + ' 3</label>'+
+      '      <div><input name="wholesale_price3" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.wholesale_price") + ' 4</label>'+
+      '      <div><input name="wholesale_price4" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.wholesale_price") + ' 5</label>'+
+      '      <div><input name="wholesale_price5" /></div>'+
       '    </div>'+
       '  </div>'+
 
       '  <div style="float: left; width: 340px">'+
+      '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.term") + '</label>'+
+      '      <div><input name="term" /></div>'+
+      '    </div>'+
       '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.consumption") + ' 1</label>'+
       '      <div><input name="consumption1" /></div>'+
@@ -78,21 +94,25 @@ function consumableitemForm() {
       '</div>',
 
     fields : [
-      { name: 'position',        type: 'int', required: true },
-      { name: 'contract_type',   type: 'text' },
-      { name: 'product_number',  type: 'text', required: true },
-      { name: 'product_title',   type: 'text'},
-      { name: 'product_line',    type: 'text' },
-      { name: 'amount',          type: 'int', required: true },
-      { name: 'theyield',        type: 'int', required: true },
-      { name: 'wholesale_price', type: 'currency', required: true },
-      { name: 'term',            type: 'int', required: true },
-      { name: 'contractitem_id', type: 'integer', required: true, disabled: true },
-      { name: 'consumption1',    type: 'int', required: true },
-      { name: 'consumption2',    type: 'int', required: true },
-      { name: 'consumption3',    type: 'int', required: true },
-      { name: 'consumption4',    type: 'int', required: true },
-      { name: 'consumption5',    type: 'int', required: true }
+      { name: 'position',         type: 'int', required: true },
+      { name: 'contract_type',    type: 'text' },
+      { name: 'product_number',   type: 'text', required: true },
+      { name: 'product_title',    type: 'text'},
+      { name: 'product_line',     type: 'text' },
+      { name: 'amount',           type: 'int', required: true },
+      { name: 'theyield',         type: 'int', required: true },
+      { name: 'wholesale_price1', type: 'currency', required: true },
+      { name: 'wholesale_price2', type: 'currency', required: true },
+      { name: 'wholesale_price3', type: 'currency', required: true },
+      { name: 'wholesale_price4', type: 'currency', required: true },
+      { name: 'wholesale_price5', type: 'currency', required: true },
+      { name: 'term',             type: 'int', required: true },
+      { name: 'contractitem_id',  type: 'integer', required: true, disabled: true },
+      { name: 'consumption1',     type: 'int', required: true },
+      { name: 'consumption2',     type: 'int', required: true },
+      { name: 'consumption3',     type: 'int', required: true },
+      { name: 'consumption4',     type: 'int', required: true },
+      { name: 'consumption5',     type: 'int', required: true }
     ],
 
     actions: {
