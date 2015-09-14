@@ -147,9 +147,8 @@ class Contractitem < ActiveRecord::Base
 
   def actual_rate_array
     rate_array = Array.new()
-
     (1..12).each do |month|
-      rate_array[month] = { title: I18n.t("date.month_names", locale: :de)[month],
+      rate_array[month] = { title: I18n.t("date.month_names", locale: :de)[(month + contract.startdate.month - 1)%12],
                             year1: number_to_currency(actual_rate(year: 1, month: month)),
                             year2: number_to_currency(actual_rate(year: 2, month: month)),
                             year3: number_to_currency(actual_rate(year: 3, month: month)),

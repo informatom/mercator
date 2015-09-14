@@ -5,11 +5,6 @@ class User < ActiveRecord::Base
   Gender = HoboFields::Types::EnumString.for(:male, :female, :no_info)
   EditorType = HoboFields::Types::EnumString.for("wysiwyg", "html")
 
-  if User.table_exists? # enable initial schema loading
-    JOBUSER = self.find_by(surname: "Job User")
-    ROBOT   = self.find_by(surname: "Robot")
-  end
-
   fields do
     gender           Gender
     title            :string
@@ -35,6 +30,11 @@ class User < ActiveRecord::Base
     waiting          :boolean
     editor           EditorType
     timestamps
+  end
+
+  if User.table_exists? # enable initial schema loading
+    JOBUSER = self.find_by(surname: "Job User")
+    ROBOT   = self.find_by(surname: "Robot")
   end
 
   # can be found in mercator/vendor/engines/mercator_mesonic/app/models/user_extensions.rb
