@@ -47,7 +47,7 @@ class Contracting::UsersController < Contracting::ContractingSiteController
 
 
   index_action :mesonic_grid_index do
-    @users = MercatorMesonic::Kontenstamm.where{ c003 =~ "%ALL.IN.PRINT%" }
+    @users = MercatorMesonic::Kontenstamm.where{ (c003 =~ "%ALL.IN.PRINT%") | (c084 =~ "%ALL.IN.PRINT%") }
 
     render json: {
       status: "success",
