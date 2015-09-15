@@ -37,6 +37,10 @@ function contractitemForm() {
       '      <div><input name="marge" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
+      '      <label>' + I18n.t("attributes.monitoring_rate") + '</label>'+
+      '      <div><input name="monitoring_rate" /></div>'+
+      '    </div>'+
+      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.volume_bw") + '</label>'+
       '      <div><input name="volume_bw" /></div>'+
       '    </div>'+
@@ -71,6 +75,7 @@ function contractitemForm() {
       { name: 'product_id',      type: 'integer', disabled: true },
       { name: 'amount',          type: 'integer', required: true },
       { name: 'marge',           type: 'percent', required: true },
+      { name: 'monitoring_rate',  type: 'currency', required: true },
       { name: 'volume_bw',       type: 'int', required: true },
       { name: 'volume_color',    type: 'int', required: true },
       { name: 'vat',             type: 'percent', required: true },
@@ -157,5 +162,6 @@ function initialize_contractitemForm() {
   form.record['volume_color'] = 0
   form.record['vat'] = 20
   form.record['contract_id'] = request_id
+  form.record['monitoring_rate'] = 0
   form.refresh()
 }

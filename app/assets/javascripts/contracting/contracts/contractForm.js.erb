@@ -19,10 +19,6 @@ function contractForm() {
       '      <div><input name="contractnumber" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.monitoring_rate") + '</label>'+
-      '      <div><input name="monitoring_rate" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.startdate") + '</label>'+
       '      <div><input name="startdate" /></div>'+
       '    </div>'+
@@ -44,7 +40,6 @@ function contractForm() {
       { name: 'customer',         type: 'text',  required: true, disabled: true },
       { name: 'customer_account', type: 'text', required: true, disabled: true },
       { name: 'contractnumber',   type: 'text' },
-      { name: 'monitoring_rate',  type: 'currency', required: true },
       { name: 'startdate',        type: 'date', required: true }
     ],
 
@@ -120,6 +115,5 @@ function initialize_contractForm() {
   var form = w2ui.contractForm
   form.clear()
   form.record['startdate'] = '<%= I18n.l Date.today() %>'
-  form.record['monitoring_rate'] = 0
   form.refresh()
 }

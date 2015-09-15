@@ -20,7 +20,6 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
               customer:         contract.customer,
               customer_account: contract.customer_account,
               contractnumber:   contract.contractnumber,
-              monitoring_rate:  contract.monitoring_rate,
               startdate:        contract.startdate,
               enddate:          contract.enddate,
               created_at:       contract.created_at.utc.to_i*1000,
@@ -45,7 +44,6 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
       @contract.customer         = attrs[:customer]
       @contract.customer_account = attrs[:customer_account]
       @contract.contractnumber   = attrs[:contractnumber]
-      @contract.monitoring_rate  = attrs[:monitoring_rate]
       @contract.startdate        = attrs[:startdate].to_date.change(day: 1)
 
       success = @contract.save
@@ -62,7 +60,6 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           customer:         @contract.customer,
           customer_account: @contract.customer_account,
           contractnumber:   @contract.contractnumber,
-          monitoring_rate:  @contract.monitoring_rate,
           startdate:        I18n.l(@contract.startdate)
         }
       }
@@ -91,7 +88,7 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
 
     render json: {
       status: "success",
-      total: 13,
+      total: 18,
       records: ([
         {
           title: "Jahresbeginn",
@@ -116,6 +113,20 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           year5: number_to_currency(@contract.balance(4)),
           payoff: number_to_currency(@contract.balance(5)),
         }, {
+          title: "Ausgaben",
+          year1: number_to_currency(@contract.expenses(1)),
+          year2: number_to_currency(@contract.expenses(2)),
+          year3: number_to_currency(@contract.expenses(3)),
+          year4: number_to_currency(@contract.expenses(4)),
+          year5: number_to_currency(@contract.expenses(5)),
+        }, {
+          title: "Deckungsbeitrag",
+          year1: number_to_currency(@contract.profit(1)),
+          year2: number_to_currency(@contract.profit(2)),
+          year3: number_to_currency(@contract.profit(3)),
+          year4: number_to_currency(@contract.profit(4)),
+          year5: number_to_currency(@contract.profit(5)),
+        },{
           title: "=== Tatsächliche Raten ===",
           year1: nil, year2: nil, year3: nil, year4: nil, year5: nil,
         }

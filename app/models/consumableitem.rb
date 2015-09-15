@@ -100,6 +100,11 @@ class Consumableitem < ActiveRecord::Base
   end
 
 
+  def expenses(year)
+    consumption(year).to_f * wholesale_price(year)
+  end
+
+
   def consumption(year)
     eval('consumption' + year.to_s)
   end

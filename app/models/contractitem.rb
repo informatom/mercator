@@ -11,6 +11,7 @@ class Contractitem < ActiveRecord::Base
     volume          :integer, :required, :default => 0
     vat             :decimal, :required, :precision => 10, :scale => 2, :default => 0
     startdate       :date, :required
+    monitoring_rate  :decimal, :required, :precision => 13, :scale => 5, :default => 0
     volume_bw       :integer, :default => 0
     volume_color    :integer, :default => 0
     marge           :decimal, :required, :precision => 13, :scale => 5, :default => 0
@@ -104,7 +105,7 @@ class Contractitem < ActiveRecord::Base
 
   def next_month(year)
     if balance(year) < 0
-      ((months_without_rates(year) + 1) * monthly_rate(year + 1) + balance(year)) * -1
+      ((months_without_rates(year) + 1) * monthly_rate(year + 1) + balance(year))
     else
       monthly_rate(year + 1)
     end
@@ -113,14 +114,14 @@ class Contractitem < ActiveRecord::Base
 
   def actual_rate(year: nil, month: nil)
     if year == 1
-      monthly_rate(1)
+      monthly_rate(1) + monitoring_rate
     else
       if month == months_without_rates(year - 1) + 1
-        next_month(year-1)
+        next_month(year-1) + monitoring_rate
       elsif month < months_without_rates(year - 1) + 1
-        0
+        monitoring_rate
       else
-        monthly_rate(year)
+        monthly_rate(year) + monitoring_rate
       end
     end
   end
@@ -138,5 +139,15 @@ class Contractitem < ActiveRecord::Base
     end
 
     return rate_array
+  end
+
+
+  def expenses(year)
+    consumableitems.*.expenses(year).sum
+  end
+
+
+  def profit(year)
+    (1..12).to_a.map!{|month| self.actual_rate(year: year, month: month)}.sum - expenses(year)
   end
 end

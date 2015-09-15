@@ -6,13 +6,12 @@ class Contract < ActiveRecord::Base
   fields do
     contractnumber   :string
     startdate        :date
-    monitoring_rate  :decimal, :required, :precision => 13, :scale => 5, :default => 0
     customer_account :text
     customer         :text
     timestamps
   end
   attr_accessible :runtime, :startdate, :user_id, :user_id, :created_at, :updated_at,
-                  :customer, :customer_account, :contractnumber, :monitoring_rate
+                  :customer, :customer_account, :contractnumber
   has_paper_trail
 
   has_many :contractitems, dependent: :destroy, accessible: true
@@ -54,7 +53,7 @@ class Contract < ActiveRecord::Base
 
 
   def actual_rate(year: year, month: month)
-    contractitems.*.actual_rate(year: year, month: month).sum + monitoring_rate
+    contractitems.*.actual_rate(year: year, month: month).sum
   end
 
 
@@ -71,5 +70,15 @@ class Contract < ActiveRecord::Base
     end
 
     return rate_array
+  end
+
+
+  def expenses(year)
+    contractitems.*.expenses(year).sum
+  end
+
+
+  def profit(year)
+    contractitems.*.profit(year).sum
   end
 end

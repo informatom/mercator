@@ -27,6 +27,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               volume_bw:       contractitem.volume_bw,
               volume_color:    contractitem.volume_color,
               marge:           contractitem.marge,
+              monitoring_rate: contractitem.monitoring_rate,
               created_at:      contractitem.created_at.utc.to_i*1000,
               updated_at:      contractitem.updated_at.utc.to_i*1000
             }
@@ -53,6 +54,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       @contractitem.product_title   = attrs[:product_title]
       @contractitem.amount          = attrs[:amount]
       @contractitem.marge           = attrs[:marge]
+      @contractitem.monitoring_rate     = attrs[:monitoring_rate]
       @contractitem.volume_bw       = attrs[:volume_bw]
       @contractitem.volume_color    = attrs[:volume_color]
       @contractitem.vat             = attrs[:vat]
@@ -79,6 +81,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           volume_bw:       @contractitem.volume_bw,
           volume_color:    @contractitem.volume_color,
           vat:             @contractitem.vat,
+          monitoring_rate: @contractitem.monitoring_rate,
           created_at:      I18n.l(@contractitem.created_at),
           updated_at:      I18n.l(@contractitem.updated_at),
           contract_id:     @contractitem.contract_id
@@ -109,7 +112,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
 
     render json: {
       status: "success",
-      total: 19,
+      total: 21,
       records: ([
         {
           title: "Jahresbeginn",
@@ -154,6 +157,20 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
           year4: number_to_currency(@contractitem.balance(3)),
           year5: number_to_currency(@contractitem.balance(4)),
           payoff: number_to_currency(@contractitem.balance(5)),
+        }, {
+          title: "Ausgaben",
+          year1: number_to_currency(@contractitem.expenses(1)),
+          year2: number_to_currency(@contractitem.expenses(2)),
+          year3: number_to_currency(@contractitem.expenses(3)),
+          year4: number_to_currency(@contractitem.expenses(4)),
+          year5: number_to_currency(@contractitem.expenses(5)),
+        }, {
+          title: "Deckungsbeitrag",
+          year1: number_to_currency(@contractitem.profit(1)),
+          year2: number_to_currency(@contractitem.profit(2)),
+          year3: number_to_currency(@contractitem.profit(3)),
+          year4: number_to_currency(@contractitem.profit(4)),
+          year5: number_to_currency(@contractitem.profit(5)),
         }, { title: "=== Tatsächliche Raten ===",
              year1: nil, year2: nil, year3: nil, year4: nil, year5: nil, }
       ] + @contractitem.actual_rate_array[1..12])
