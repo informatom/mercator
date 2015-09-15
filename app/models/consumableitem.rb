@@ -82,7 +82,7 @@ class Consumableitem < ActiveRecord::Base
 
   def monthly_rate(year)
     if contractitem.contract.startdate + (year-1).years - contractitem.startdate > 0
-      consumption(year - 1).to_f * price(year - 1) / relevant_months(year - 1)
+      consumption(year - 1).to_f * price(year) / relevant_months(year - 1)
     elsif contractitem.contract.startdate + year.years - contractitem.startdate > 0
       value(year).to_f / relevant_months(year)
     else
@@ -93,7 +93,7 @@ class Consumableitem < ActiveRecord::Base
 
   def balance(year)
     if contractitem.contract.startdate + year.years - contractitem.startdate > 0
-      (monthly_rate(year + 1) - monthly_rate(year)) * relevant_months(year)
+      (consumption(year).to_f * price(year) / relevant_months(year) - monthly_rate(year)) * relevant_months(year)
     else
       0
     end
