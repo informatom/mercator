@@ -23,7 +23,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               amount:          contractitem.amount,
               volume:          contractitem.volume,
               vat:             contractitem.vat,
-              term:            contractitem.term,
               startdate:       contractitem.startdate,
               volume_bw:       contractitem.volume_bw,
               volume_color:    contractitem.volume_color,
@@ -48,7 +47,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
     if params[:cmd] == "save-record"
       attrs = params[:record]
       @contractitem.position        = attrs[:position]
-      @contractitem.term            = attrs[:term]
       @contractitem.startdate       = attrs[:startdate].to_date.change(day: 1)
       @contractitem.product_number  = attrs[:product_number]
       @contractitem.product_id      = attrs[:product_id]
@@ -72,7 +70,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
         record: {
           recid:           @contractitem.id,
           position:        @contractitem.position,
-          term:            @contractitem.term,
           startdate:       I18n.l(@contractitem.startdate),
           product_number:  @contractitem.product_number,
           product_title:   @contractitem.product_title,
@@ -131,10 +128,10 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
         }, {
           title: "Rate (EUR)",
           year1: number_to_currency(@contractitem.monthly_rate(1)),
-          year2: number_to_currency(@contractitem.new_rate(2)),
-          year3: number_to_currency(@contractitem.new_rate(3)),
-          year4: number_to_currency(@contractitem.new_rate(4)),
-          year5: number_to_currency(@contractitem.new_rate(5)),
+          year2: number_to_currency(@contractitem.monthly_rate(2)),
+          year3: number_to_currency(@contractitem.monthly_rate(3)),
+          year4: number_to_currency(@contractitem.monthly_rate(4)),
+          year5: number_to_currency(@contractitem.monthly_rate(5)),
         }, {
           title: "Monate ohne Rate",
           year1: '---',
@@ -183,7 +180,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
                             product_title: row[16],
                             theyield: row[30],
                             amount: row[28],
-                            term: @contractitem.term,
                             contract_type: "Haupt",
                             wholesale_price1: price,
                             wholesale_price2: 0,

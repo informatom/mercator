@@ -19,7 +19,6 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
               recid:            contract.id,
               customer:         contract.customer,
               customer_account: contract.customer_account,
-              term:             contract.term,
               contractnumber:   contract.contractnumber,
               monitoring_rate:  contract.monitoring_rate,
               startdate:        contract.startdate,
@@ -47,7 +46,6 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
       @contract.customer_account = attrs[:customer_account]
       @contract.contractnumber   = attrs[:contractnumber]
       @contract.monitoring_rate  = attrs[:monitoring_rate]
-      @contract.term             = attrs[:term]
       @contract.startdate        = attrs[:startdate].to_date.change(day: 1)
 
       success = @contract.save
@@ -65,7 +63,6 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           customer_account: @contract.customer_account,
           contractnumber:   @contract.contractnumber,
           monitoring_rate:  @contract.monitoring_rate,
-          term:             @contract.term,
           startdate:        I18n.l(@contract.startdate)
         }
       }

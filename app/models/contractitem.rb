@@ -10,7 +10,6 @@ class Contractitem < ActiveRecord::Base
     amount          :integer, :required, :default => 0
     volume          :integer, :required, :default => 0
     vat             :decimal, :required, :precision => 10, :scale => 2, :default => 0
-    term            :integer, :required, :default => 0
     startdate       :date, :required
     volume_bw       :integer, :default => 0
     volume_color    :integer, :default => 0
@@ -20,7 +19,7 @@ class Contractitem < ActiveRecord::Base
 
 
   attr_accessible :position, :product_number, :product_title, :amount, :volume, :vat, :contract_id,
-                  :contract, :product, :product_id, :term, :startdate, :volume_bw, :volume_color,
+                  :contract, :product, :product_id, :startdate, :volume_bw, :volume_color,
                   :marge, :monitoring_rate, :created_at, :updated_at
 
   translates :description
@@ -65,80 +64,63 @@ class Contractitem < ActiveRecord::Base
 
   # --- Instance Methods --- #
 
-  def price(n)
-    consumableitems.*.value(n).sum || 0
+  def price(year)
+    consumableitems.*.value(year).sum || 0
   end
 
 
-  def monthly_rate(n)
-    if term && term > 0
-      price(n).to_f / term
+  def value(year)
+    monthly_rate(year) * amount
+  end
+
+
+  def value_incl_vat(year)
+    value(year) * (100 + vat / 100)
+  end
+
+
+  def monthly_rate(year)
+    consumableitems.*.monthly_rate(year).sum || 0
+  end
+
+
+  def balance(year)
+    consumableitems.*.balance(year).sum || 0
+  end
+
+
+  def months_without_rates(year)
+    if balance(year) < 0
+      if monthly_rate(year + 1) == 0
+        12
+      else
+        (balance(year) / monthly_rate(year + 1)).ceil * -1
+      end
     else
-      price(n).to_f
+      0
     end
   end
 
 
-  def value
-    monthly_rate(1) * amount
-  end
-
-
-  def value_incl_vat
-    value * (100 + vat / 100)
-  end
-
-
-  def new_rate(n)
-    if [2, 3, 4, 5].include? n
-      consumableitems.*.new_rate(n).sum || 0
+  def next_month(year)
+    if balance(year) < 0
+      ((months_without_rates(year) + 1) * monthly_rate(year + 1) + balance(year)) * -1
+    else
+      monthly_rate(year + 1)
     end
   end
 
 
-  def balance(n)
-    if [1, 2, 3, 4, 5].include? n
-      consumableitems.*.balance(n).sum || 0
-    end
-  end
-
-
-  def months_without_rates(n)
-    if [1, 2, 3, 4].include? n
-      if balance(n) < 0
-        if new_rate(n+1) == 0
-          12
-        else
-          (balance(n).to_f / new_rate(n+1)).ceil * -1
-        end
-      else
-        0
-      end
-    end
-  end
-
-
-  def next_month(n)
-    if [1, 2, 3, 4].include? n
-      if balance(n) < 0
-        (months_without_rates(n) * new_rate(n+1) + balance(n)) * -1
-      else
-        new_rate(n+1)
-      end
-    end
-  end
-
-
-  def actual_rate(year: year, month: month)
+  def actual_rate(year: nil, month: nil)
     if year == 1
       monthly_rate(1)
     else
-      if month == months_without_rates(year-1) + 1
+      if month == months_without_rates(year - 1) + 1
         next_month(year-1)
-      elsif month < months_without_rates(year-1) + 1
+      elsif month < months_without_rates(year - 1) + 1
         0
       else
-        new_rate(year)
+        monthly_rate(year)
       end
     end
   end

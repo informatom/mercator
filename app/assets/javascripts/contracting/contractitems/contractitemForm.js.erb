@@ -14,10 +14,6 @@ function contractitemForm() {
       '      <div><input name="position" /></div>'+
       '    </div>'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.term") + '</label>'+
-      '      <div><input name="term" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.startdate") + '</label>'+
       '      <div><input name="startdate" /></div>'+
       '    </div>'+
@@ -69,7 +65,6 @@ function contractitemForm() {
 
     fields : [
       { name: 'position',        type: 'int', required: true },
-      { name: 'term',            type: 'int', required: true, options: { min: 1 } },
       { name: 'startdate',       type: 'date', required: true },
       { name: 'product_number',  type: 'text', disabled: true },
       { name: 'product_title',   type: 'text' },
@@ -156,7 +151,6 @@ function initialize_contractitemForm() {
   form.clear()
   form.record['position'] = 0
   form.record['startdate'] = '<%= I18n.l Date.today() %>'
-  form.record['term'] = 0
   form.record['amount'] = 1
   form.record['marge'] = 0
   form.record['volume_bw'] = 0

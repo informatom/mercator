@@ -61,10 +61,6 @@ function consumableitemForm() {
 
       '  <div style="float: left; width: 340px">'+
       '    <div class="w2ui-field">'+
-      '      <label>' + I18n.t("attributes.term") + '</label>'+
-      '      <div><input name="term" /></div>'+
-      '    </div>'+
-      '    <div class="w2ui-field">'+
       '      <label>' + I18n.t("attributes.consumption") + ' 1</label>'+
       '      <div><input name="consumption1" /></div>'+
       '    </div>'+
@@ -106,7 +102,6 @@ function consumableitemForm() {
       { name: 'wholesale_price3', type: 'currency', required: true },
       { name: 'wholesale_price4', type: 'currency', required: true },
       { name: 'wholesale_price5', type: 'currency', required: true },
-      { name: 'term',             type: 'int', required: true },
       { name: 'contractitem_id',  type: 'integer', required: true, disabled: true },
       { name: 'consumption1',     type: 'int', required: true },
       { name: 'consumption2',     type: 'int', required: true },
@@ -162,7 +157,6 @@ function initialize_consumableitemForm() {
   form.clear()
   form.record['position'] = 0
   form.record['amount'] = 1
-  form.record['term'] = 12
   form.record['consumption1'] = 0
   form.record['consumption2'] = 0
   form.record['consumption3'] = 0

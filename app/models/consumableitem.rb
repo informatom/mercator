@@ -15,7 +15,6 @@ class Consumableitem < ActiveRecord::Base
     wholesale_price3 :decimal, :required, :precision => 13, :scale => 5, :default => 0
     wholesale_price4 :decimal, :required, :precision => 13, :scale => 5, :default => 0
     wholesale_price5 :decimal, :required, :precision => 13, :scale => 5, :default => 0
-    term             :integer, :required, :default => 0
     consumption1     :integer, :required, :default => 0
     consumption2     :integer, :required, :default => 0
     consumption3     :integer, :required, :default => 0
@@ -27,7 +26,7 @@ class Consumableitem < ActiveRecord::Base
 
   attr_accessible :position, :product_number, :product_line, :product_title, :amount, :theyield,
                   :wholesale_price1, :wholesale_price2, :wholesale_price3, :wholesale_price4,
-                  :wholesale_price5, :term, :consumption1, :consumption2, :consumption3,
+                  :wholesale_price5, :consumption1, :consumption2, :consumption3,
                   :consumption4, :consumption5, :consumption6, :created_at, :updated_at,
                   :contract_type, :contractitem_id
 
@@ -62,54 +61,51 @@ class Consumableitem < ActiveRecord::Base
 
   # --- Instance methods --- #
 
-  def price(n)
-    (wholesale_price(n) * (100 + contractitem.marge) / 100).ceil
+  def price(year)
+    (wholesale_price(year) * (100 + contractitem.marge) / 100).ceil
   end
 
 
-  def value(n)
-    price(n) * amount
+  def value(year)
+    price(year) * amount
   end
 
 
-  def monthly_rate(n)
-    value(n).to_f / term
-  end
-
-
-  def new_rate(n)
-    if n == 2
-      if term != contractitem.term
-        monthly_rate(1)
-      elsif contractitem.term && (amount * 12 >=  contractitem.term)
-        consumption1.to_f * price(n-1) / 12
-      else
-        monthly_rate(1)
-      end
-
-    elsif [3, 4, 5, 6].include? n
-      consumption(n-1).to_f * price(n-1) / 12
+  def relevant_months(year)
+    if contractitem.contract.startdate + (year-1).years - contractitem.startdate > 0
+      12
+    else
+      12 + contractitem.contract.startdate.month - contractitem.startdate.month
     end
   end
 
 
-  def balance(n)
-    if n == 1
-      (new_rate(n+1) - monthly_rate(n)) * 12
-    elsif [2, 3, 4].include? n
-      (new_rate(n+1) - new_rate(n)) * 12
-    elsif n == 5
-      consumption5 * price(5) - new_rate(5) * 12
+  def monthly_rate(year)
+    if contractitem.contract.startdate + (year-1).years - contractitem.startdate > 0
+      consumption(year - 1).to_f * price(year - 1) / relevant_months(year - 1)
+    elsif contractitem.contract.startdate + year.years - contractitem.startdate > 0
+      value(year).to_f / relevant_months(year)
+    else
+      0
     end
   end
 
 
-  def consumption(n)
-    eval('consumption' + n.to_s)
+  def balance(year)
+    if contractitem.contract.startdate + year.years - contractitem.startdate > 0
+      (monthly_rate(year + 1) - monthly_rate(year)) * relevant_months(year)
+    else
+      0
+    end
   end
 
 
-  def wholesale_price(n)
-    eval('wholesale_price' + n.to_s)
+  def consumption(year)
+    eval('consumption' + year.to_s)
+  end
+
+
+  def wholesale_price(year)
+    eval('wholesale_price' + year.to_s)
   end
 end

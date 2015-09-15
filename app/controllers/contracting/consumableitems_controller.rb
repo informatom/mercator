@@ -32,17 +32,16 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
               wholesale_price5: consumableitem.wholesale_price5,
               price:            consumableitem.price(1),
               value:            consumableitem.value(1),
-              monthly_rate:     consumableitem.monthly_rate(1),
-              term:             consumableitem.term,
               consumption1:     consumableitem.consumption1,
               consumption2:     consumableitem.consumption2,
               consumption3:     consumableitem.consumption3,
               consumption4:     consumableitem.consumption4,
               consumption5:     consumableitem.consumption5,
-              new_rate2:        consumableitem.new_rate(2),
-              new_rate3:        consumableitem.new_rate(3),
-              new_rate4:        consumableitem.new_rate(4),
-              new_rate5:        consumableitem.new_rate(5),
+              monthly_rate1:    consumableitem.monthly_rate(1),
+              monthly_rate2:    consumableitem.monthly_rate(2),
+              monthly_rate3:    consumableitem.monthly_rate(3),
+              monthly_rate4:    consumableitem.monthly_rate(4),
+              monthly_rate5:    consumableitem.monthly_rate(5),
               balance1:         consumableitem.balance(1),
               balance2:         consumableitem.balance(2),
               balance3:         consumableitem.balance(3),
@@ -80,7 +79,6 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
       @consumableitem.wholesale_price3 = attrs[:wholesale_price3]
       @consumableitem.wholesale_price4 = attrs[:wholesale_price4]
       @consumableitem.wholesale_price5 = attrs[:wholesale_price5]
-      @consumableitem.term             = attrs[:term]
       @consumableitem.consumption1     = attrs[:consumption1]
       @consumableitem.consumption2     = attrs[:consumption2]
       @consumableitem.consumption3     = attrs[:consumption3]
@@ -110,7 +108,6 @@ class Contracting::ConsumableitemsController < Contracting::ContractingSiteContr
           wholesale_price3: @consumableitem.wholesale_price3,
           wholesale_price4: @consumableitem.wholesale_price4,
           wholesale_price5: @consumableitem.wholesale_price5,
-          term:             @consumableitem.term,
           consumption1:     @consumableitem.consumption1,
           consumption2:     @consumableitem.consumption2,
           consumption3:     @consumableitem.consumption3,

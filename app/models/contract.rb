@@ -4,7 +4,6 @@ class Contract < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    term             :integer, :required, :default => 0
     contractnumber   :string
     startdate        :date
     monitoring_rate  :decimal, :required, :precision => 13, :scale => 5, :default => 0
@@ -12,7 +11,7 @@ class Contract < ActiveRecord::Base
     customer         :text
     timestamps
   end
-  attr_accessible :runtime, :startdate, :user_id, :user_id, :term, :created_at, :updated_at,
+  attr_accessible :runtime, :startdate, :user_id, :user_id, :created_at, :updated_at,
                   :customer, :customer_account, :contractnumber, :monitoring_rate
   has_paper_trail
 
@@ -45,11 +44,7 @@ class Contract < ActiveRecord::Base
   # --- Instance Methods --- #
 
   def enddate
-    if term
-      startdate + term.months - 1.day
-    else
-      startdate
-    end
+    startdate + 60.months - 1.day
   end
 
 
