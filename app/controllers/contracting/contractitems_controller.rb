@@ -25,7 +25,6 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
               vat:             contractitem.vat,
               term:            contractitem.term,
               startdate:       contractitem.startdate,
-              enddate:         contractitem.enddate,
               volume_bw:       contractitem.volume_bw,
               volume_color:    contractitem.volume_color,
               marge:           contractitem.marge,
@@ -50,7 +49,7 @@ class Contracting::ContractitemsController < Contracting::ContractingSiteControl
       attrs = params[:record]
       @contractitem.position        = attrs[:position]
       @contractitem.term            = attrs[:term]
-      @contractitem.startdate       = attrs[:startdate]
+      @contractitem.startdate       = attrs[:startdate].to_date.change(day: 1)
       @contractitem.product_number  = attrs[:product_number]
       @contractitem.product_id      = attrs[:product_id]
       @contractitem.product_title   = attrs[:product_title]

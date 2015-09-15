@@ -48,7 +48,7 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
       @contract.contractnumber   = attrs[:contractnumber]
       @contract.monitoring_rate  = attrs[:monitoring_rate]
       @contract.term             = attrs[:term]
-      @contract.startdate        = attrs[:startdate]
+      @contract.startdate        = attrs[:startdate].to_date.change(day: 1)
 
       success = @contract.save
     end

@@ -70,11 +70,6 @@ class Contractitem < ActiveRecord::Base
   end
 
 
-  def enddate
-    startdate + term.months - 1.days
-  end
-
-
   def monthly_rate(n)
     if term && term > 0
       price(n).to_f / term
