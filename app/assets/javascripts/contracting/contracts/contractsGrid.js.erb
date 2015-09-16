@@ -17,7 +17,7 @@ function contractsGrid() {
           document.location = "/contracting/contractitems?contract_id=" + selection[0]
           break
         case 'export':
-          document.location = "/contracting/contracts/export/" +  selection[0]
+          document.location = "/contracting/contracts/" +  selection[0] + ".csv"
         }
       }
     },

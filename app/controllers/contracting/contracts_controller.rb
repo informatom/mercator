@@ -3,7 +3,7 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
 
   hobo_model_controller
   auto_actions :index
-  respond_to :html, :json
+  respond_to :html, :json, :csv
 
   def index
     @contracts = Contract.all
@@ -28,6 +28,13 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
           }
         }
       }
+    end
+  end
+
+
+  def show
+    respond_to do |format|
+      format.csv { render text: Contract.find(params[:id]).to_csv }
     end
   end
 
@@ -132,11 +139,5 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
         }
       ] + @contract.actual_rate_array[1..12])
     }
-  end
-
-
-  show_action :export do
-    debugger
-    @contract = Contract.find(params[:id])
   end
 end
