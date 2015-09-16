@@ -1,3 +1,5 @@
+require 'memoist'
+
 class Consumableitem < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
@@ -34,6 +36,7 @@ class Consumableitem < ActiveRecord::Base
   has_paper_trail
 
   validates :contractitem, :presence => true
+  extend Memoist
 
 
   # --- Permissions --- #
@@ -78,6 +81,7 @@ class Consumableitem < ActiveRecord::Base
       12 + contractitem.contract.startdate.month - contractitem.startdate.month
     end
   end
+  memoize :relevant_months
 
 
   def monthly_rate(year)
@@ -89,6 +93,7 @@ class Consumableitem < ActiveRecord::Base
       0
     end
   end
+  memoize :monthly_rate
 
 
   def balance(year)
@@ -98,7 +103,7 @@ class Consumableitem < ActiveRecord::Base
       0
     end
   end
-
+  memoize :balance
 
   def expenses(year)
     consumption(year).to_f * wholesale_price(year)

@@ -6,12 +6,18 @@ function contractsGrid() {
     show: { toolbar: true, footer: true },
 
     toolbar: {
-      items: [{ type: 'button', id: 'editContractitems', img: 'fa fa-print', disabled: true }],
+      items: [
+        { type: 'button', id: 'editContractitems', img: 'fa fa-print', caption: 'Drucker', disabled: true },
+        { type: 'button', id: 'export', img: 'fa fa-file-excel-o', caption: 'Export', disabled: true }
+      ],
       onClick: function (target, data) {
         var selection = w2ui.contractsGrid.getSelection()
         switch (target) {
         case 'editContractitems':
           document.location = "/contracting/contractitems?contract_id=" + selection[0]
+          break
+        case 'export':
+          document.location = "/contracting/contracts/export/" +  selection[0]
         }
       }
     },
@@ -47,6 +53,7 @@ function contractsGrid() {
           show_contract_details(selection[0])
         } else {
           this.toolbar.disable('editContractitems')
+          this.toolbar.disable('export')
         }
       }
     },
@@ -73,6 +80,7 @@ function contractsGrid() {
 
 function show_contract_details(contract_id) {
   w2ui.contractsGrid.toolbar.enable('editContractitems')
+  w2ui.contractsGrid.toolbar.enable('export')
   w2ui.contractsGrid.select(contract_id)
 
   w2ui.contractForm.recid = contract_id

@@ -133,4 +133,10 @@ class Contracting::ContractsController < Contracting::ContractingSiteController
       ] + @contract.actual_rate_array[1..12])
     }
   end
+
+
+  show_action :export do
+    debugger
+    @contract = Contract.find(params[:id])
+  end
 end
