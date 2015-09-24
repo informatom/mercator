@@ -45,7 +45,7 @@ class CategoriesController < ApplicationController
       end
       # Ordering:
       @products = Product.where(id: @products.collect(&:id)).includes(:categorizations)
-                                                            .where('categorzations.category_id = ?', category_id)
+                                                            .where('categorizations.category_id = ?', category_id)
                                                             .order("categorizations.position")
     end
   end
