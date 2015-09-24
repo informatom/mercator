@@ -8,6 +8,7 @@ class PostCategory < ActiveRecord::Base
     ancestry :string, :index => true
     timestamps
   end
+
   attr_accessible :name_de, :name_en, :parent_id, :parent
   translates :name
   has_ancestry orphan_strategy: :adopt
