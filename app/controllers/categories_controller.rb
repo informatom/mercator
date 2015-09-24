@@ -44,7 +44,9 @@ class CategoriesController < ApplicationController
         @maxslider = @max
       end
       # Ordering:
-      @products = Product.where(id: @products.collect(&:id)).includes(:categorizations).order("categorizations.position")
+      @products = Product.where(id: @products.collect(&:id)).includes(:categorizations)
+                                                            .where('categorzations.category_id = ?', category_id)
+                                                            .order("categorizations.position")
     end
   end
 
