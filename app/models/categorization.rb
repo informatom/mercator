@@ -41,7 +41,9 @@ class Categorization < ActiveRecord::Base
 
   def self.complement(product: nil, category: nil)
     Categorization.find_or_create_by(product_id: product.id, category_id: category.id) do |category|
-      category.position = try_to(1) { category.categorizations.maximum(:position).next }
+      unless category.position
+        category.position = try_to(1) { category.categorizations.maximum(:position).next }
+      end
     end
   end
 end
