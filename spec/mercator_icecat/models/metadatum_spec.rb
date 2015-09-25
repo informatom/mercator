@@ -151,7 +151,7 @@ describe MercatorIcecat::Metadatum do
     end
 
     it "updates attributes" do
-      @metadatum.update_product
+      @metadatum.update_product(initial_import: true)
       @product.reload
 
       expect(@product.description_de).to eql "Intel Core i3-5010U Processor (3M Cache, 2.10 GHz)," +
@@ -179,7 +179,7 @@ describe MercatorIcecat::Metadatum do
       expect(@product.property_groups.*.icecat_id.uniq).to eql [32, 33, 36, 35, 108, 109, 106, 110,
         762, 1403, 1711, 2686, 2687, 2933, 3024, 4124, 6416, 7946, 8602, 10385, 10674]
 
-      expect(@product.property_groups.*.name_de.uniq).to eql ["optisches Laufwerk", "Bildschirm",
+      expect(@product.property_groups.*.name_de.uniq).to eql ["Optisches Laufwerk", "Bildschirm",
         "Anschlüsse und Schnittstellen", "Prozessor", "Gewicht & Abmessungen", "Energie", "Speicher",
         "Audio", "Tastatur", "Betriebsbedingungen", "Netzwerk", "Sicherheit", "Zertifikate",
         "Software", "Kamera", "Speichermedien", "Verpackungsinformation", "Batterie", "Grafik",
@@ -219,10 +219,10 @@ describe MercatorIcecat::Metadatum do
 
       expect(@product.properties.*.name_de.uniq[0..19]).to eql ["Festplattenkapazität", "Seitenverhältnis",
         "Prozessor", "Gewicht", "Interner Speichertyp", "Festplatten-Drehzahl", "WLAN-Standards",
-        "Batterietechnologie", "Eingabegerät", "Audio Chip", "Höhe bei Betrieb", "Speichersteckplätze",
+        "Batterietechnologie", "Eingabegerät", "Audio-System", "Höhe bei Betrieb", "Speichersteckplätze",
         "Luftfeuchtigkeit in Betrieb", "Kompatible Speicherkarten", "Temperaturbereich bei Lagerung",
-        "Formfaktor", "Energy Star-zertifiziert", "Netzteil Eingansgsspannung", "Netzteil Ausgangsspannung",
-        "Netzteilfrequenz"]
+        "Formfaktor", "Energy Star-zertifiziert", "Netzteil Eingansgsspannung",
+        "Netzteil Ausgangsspannung", "Netzteilfrequenz"]
 
       expect(@product.properties.*.name_en.uniq[0..15]).to eql ["Hard drive capacity", "Aspect ratio",
         "Processor model", "Weight", "Internal memory type", "Hard drive speed", "Wi-Fi standards",
@@ -234,26 +234,26 @@ describe MercatorIcecat::Metadatum do
 
     it "creates values" do
       @metadatum.update_product
-      expect(@product.values.*.title_de.uniq).to eql ["Notebook", "Black, Silver", "Clamshell",
+      expect(@product.values.*.title_de.uniq).to eql ["Notebook", "Black,Silver", "Clamshell",
         nil, "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM",
-        "SO-DIMM", "HDD", "Serial ATA", "SD, SDHC, SDXC", "1366 x 768", "Matt", "16:9",
-        "Intel HD Graphics 5500", "DTS Sound+", "802.11a, 802.11ac, 802.11b, 802.11g, 802.11n",
-        "10, 100, 1000", "Touchpad", "Windows 7 Professional", "64-bit", "Windows 8.1 Pro",
-        "Intel Clear Video HD, Intel Insider, Intel InTru 3D, Intel Quick Sync Video", "VT-d, VT-x",
+        "SO-DIMM", "HDD", "Serial ATA", "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9",
+        "Intel HD Graphics 5500", "DTS Sound+", "802.11a,802.11ac,802.11b,802.11g,802.11n",
+        "10,100,1000", "Touchpad", "Windows 7 Professional", "64-bit", "Windows 8.1 Pro",
+        "Intel Clear Video HD,Intel Insider,Intel InTru 3D,Intel Quick Sync Video", "VT-d,VT-x",
         "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60", "10 - 90", "5 - 95",
         "-15.24 - 3048", "-15.24 - 12192"]
 
-      expect(@product.values.*.title_en.uniq).to eql ["Notebook", "Black, Silver", "Clamshell",
+      expect(@product.values.*.title_en.uniq).to eql ["Notebook", "Black,Silver", "Clamshell",
         nil, "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM",
-        "SO-DIMM", "HDD", "Serial ATA", "SD, SDHC, SDXC", "1366 x 768", "Matt", "16:9",
-        "Intel HD Graphics 5500", "DTS Sound+", "802.11a, 802.11ac, 802.11b, 802.11g, 802.11n",
-        "10, 100, 1000", "Touchpad", "Windows 7 Professional", "64-bit", "Windows 8.1 Pro",
-        "Intel Clear Video HD, Intel Insider, Intel InTru 3D, Intel Quick Sync Video", "VT-d, VT-x",
+        "SO-DIMM", "HDD", "Serial ATA", "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9",
+        "Intel HD Graphics 5500", "DTS Sound+", "802.11a,802.11ac,802.11b,802.11g,802.11n",
+        "10,100,1000", "Touchpad", "Windows 7 Professional", "64-bit", "Windows 8.1 Pro",
+        "Intel Clear Video HD,Intel Insider,Intel InTru 3D,Intel Quick Sync Video", "VT-d,VT-x",
         "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60", "10 - 90", "5 - 95",
         "-15.24 - 3048", "-15.24 - 12192"]
 
       expect(@product.values.*.unit_de.uniq).to eql [nil, "GHz", "GT/s", "MB", "GB", "MHz", "RPM",
-        "\"", "pixels", "Mbit/s", "Wh", "h", "W", "Hz", "V", "g", "mm", "°C", "%", "m", "G"]
+        "\"", "Pixel", "Mbit/Sek", "Wh", "h", "W", "Hz", "V", "g", "mm", "°C", "%", "m", "G"]
 
       expect(@product.values.*.unit_en.uniq).to eql [nil, "GHz", "GT/s", "MB", "GB", "MHz", "RPM",
         "\"", "pixels", "Mbit/s", "Wh", "h", "W", "Hz", "V", "g", "mm", "°C", "%", "m", "G"]

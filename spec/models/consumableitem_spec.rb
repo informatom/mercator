@@ -2,16 +2,20 @@ require 'spec_helper'
 
 describe Consumableitem do
   it "is valid with contractitem, position, product_number, contract_type, product_line, description_de, " +
-     "description_en, amount, theyield, wholesale_price, term, consumption1, consumption2," +
-     "consumption3, consumption4, consumption5, consumption6, balance6" do
+     "description_en, amount, theyield, wholesale_price1, wholesale_price2, wholesale_price3, " +
+     "wholesale_price4, wholesale_price5, term, consumption1, consumption2," +
+     "consumption3, consumption4, consumption5" do
     expect(build :consumableitem).to be_valid
   end
 
   it {should validate_presence_of :position}
   it {should validate_presence_of :amount}
   it {should validate_presence_of :theyield}
-  it {should validate_presence_of :wholesale_price}
-  it {should validate_presence_of :term}
+  it {should validate_presence_of :wholesale_price1}
+  it {should validate_presence_of :wholesale_price2}
+  it {should validate_presence_of :wholesale_price3}
+  it {should validate_presence_of :wholesale_price4}
+  it {should validate_presence_of :wholesale_price5}
   it {should validate_presence_of :consumption1}
   it {should validate_presence_of :consumption2}
   it {should validate_presence_of :consumption3}

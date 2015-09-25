@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe Contract do
-  it "is valid with start_date, term" do
+  it "is valid with start_date, contractnumber, customer, customer_account" do
     expect(build :contract).to be_valid
   end
-
-  it {should validate_presence_of :monitoring_rate}
 
   it {should have_many :contractitems}
 

@@ -19,19 +19,15 @@ describe Contracting::ContractsController, :type => :controller do
         expect(response.body).to be_json_eql( {records: [ { contractnumber:   "first contract number",
                                                             customer:         "Max Mustermann",
                                                             customer_account: "an account number",
-                                                            monitoring_rate:  "5.0",
-                                                            enddate:          "2017-03-05",
+                                                            enddate:          "2019-03-05",
                                                             recid:            @instance.id,
-                                                            startdate:        "2014-03-06",
-                                                            term: 36 },
+                                                            startdate:        "2014-03-06" },
                                                           { contractnumber:   "second contract number",
                                                             customer:         "John Doe",
                                                             customer_account: "another account number",
-                                                            monitoring_rate:  "6.0",
-                                                            enddate:          "2016-08-03",
+                                                            enddate:          "2020-08-03",
                                                             recid:            @second_contract.id,
-                                                            startdate:        "2015-08-04",
-                                                            term: 12 }
+                                                            startdate:        "2015-08-04" }
                                                         ],
                                                status: "success",
                                                total: 2 }.to_json)
@@ -47,9 +43,7 @@ describe Contracting::ContractsController, :type => :controller do
                      record: { contractnumber:   "another contract number",
                                customer:         "Jane Doe",
                                customer_account: "Janes account number",
-                               startdate:        "2016-01-01",
-                               term:             14,
-                               monitoring_rate:  7 },
+                               startdate:        "2016-01-01" },
                      id: "0"}
 
           JsonSpec.configure {exclude_keys "created_at", "updated_at"}
@@ -68,10 +62,8 @@ describe Contracting::ContractsController, :type => :controller do
           post :manage, @params
           expect(assigns(:contract).contractnumber).to eq "another contract number"
           expect(assigns(:contract).customer).to eq "Jane Doe"
-          expect(assigns(:contract).monitoring_rate).to eq 7
           expect(assigns(:contract).customer_account).to eq "Janes account number"
           expect(assigns(:contract).startdate).to eq Date.new(2016, 1, 1)
-          expect(assigns(:contract).term).to eq 14
         end
 
 
@@ -80,10 +72,8 @@ describe Contracting::ContractsController, :type => :controller do
           expect(response.body).to be_json_eql({ record: { contractnumber:   "another contract number",
                                                            customer:         "Jane Doe",
                                                            customer_account: "Janes account number",
-                                                           monitoring_rate:  "7.0",
                                                            recid:            assigns(:contract).id,
-                                                           startdate:        "2016-01-01",
-                                                           term:             14 },
+                                                           startdate:        "2016-01-01"},
                                                  status: "success"} .to_json)
         end
       end

@@ -9,8 +9,11 @@ FactoryGirl.define do
     product_title   "ein Verbrauchsmaterial"
     amount          1
     theyield        12000
-    wholesale_price 12.50
-    term            2
+    wholesale_price1 12.50
+    wholesale_price2 12.50
+    wholesale_price3 12.50
+    wholesale_price4 12.50
+    wholesale_price5 12.50
     consumption1    3
     consumption2    4
     consumption3    5
@@ -25,8 +28,11 @@ FactoryGirl.define do
       product_title   "ein anderes Verbrauchsmaterial"
       amount          2
       theyield        1200
-      wholesale_price 32.40
-      term            12
+      wholesale_price1 8
+      wholesale_price2 9
+      wholesale_price3 10
+      wholesale_price4 11
+      wholesale_price5 12
       consumption1    5
       consumption2    4
       consumption3    3
