@@ -16,6 +16,6 @@ describe Contract do
 
   it "returns enddate" do
     @contract = create(:contract)
-    expect(@contract.enddate).to eql Date.new(2017, 03, 05)
+    expect(@contract.enddate).to eql Date.new(2019, 03, 05)
   end
 end

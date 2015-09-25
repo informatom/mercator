@@ -39,29 +39,41 @@ describe Consumableitem do
     end
 
     it "returns price" do
-      expect(@consumableitem.price).to eql 14
+      expect(@consumableitem.price(1)).to eql 14
+      expect(@consumableitem.price(2)).to eql 14
+      expect(@consumableitem.price(3)).to eql 14
+      expect(@consumableitem.price(4)).to eql 14
+      expect(@consumableitem.price(5)).to eql 14
     end
 
     it "returns monthly_rate" do
-      expect(@consumableitem.monthly_rate).to be_within(0.01).of 7.0
+      expect(@consumableitem.monthly_rate(1)).to be_within(0.01).of 0
+      expect(@consumableitem.monthly_rate(2)).to be_within(0.01).of 2.0
+      expect(@consumableitem.monthly_rate(3)).to be_within(0.01).of 8.0
+      expect(@consumableitem.monthly_rate(4)).to be_within(0.01).of 5.8333
+      expect(@consumableitem.monthly_rate(5)).to be_within(0.01).of 7.0
     end
 
     it "returns value" do
-      expect(@consumableitem.value).to eql 14
+      expect(@consumableitem.value(1)).to eql 14
+      expect(@consumableitem.value(2)).to eql 14
+      expect(@consumableitem.value(3)).to eql 14
+      expect(@consumableitem.value(4)).to eql 14
+      expect(@consumableitem.value(5)).to eql 14
     end
 
-    it "returns new_rate" do
-      expect(@consumableitem.new_rate(2)).to eql 7.0
-      expect(@consumableitem.new_rate(3)).to be_within(0.01).of 4.667
-      expect(@consumableitem.new_rate(4)).to be_within(0.01).of 5.833
-      expect(@consumableitem.new_rate(5)).to be_within(0.01).of 7
-      expect(@consumableitem.new_rate(6)).to be_within(0.01).of 8.166
+    it "returns expenses" do
+      expect(@consumableitem.expenses(1)).to eql 37.5
+      expect(@consumableitem.expenses(2)).to be_within(0.01).of 50.0
+      expect(@consumableitem.expenses(3)).to be_within(0.01).of 62.5
+      expect(@consumableitem.expenses(4)).to be_within(0.01).of 75.0
+      expect(@consumableitem.expenses(5)).to be_within(0.01).of 87.5
     end
 
     it "returns balance" do
-      expect(@consumableitem.balance(1)).to eql 0.0
-      expect(@consumableitem.balance(2)).to be_within(0.01).of -28
-      expect(@consumableitem.balance(3)).to be_within(0.01).of 14
+      expect(@consumableitem.balance(1)).to eql 0
+      expect(@consumableitem.balance(2)).to be_within(0.01).of 42
+      expect(@consumableitem.balance(3)).to be_within(0.01).of -26
       expect(@consumableitem.balance(4)).to be_within(0.01).of 14
       expect(@consumableitem.balance(5)).to be_within(0.01).of 14
     end
