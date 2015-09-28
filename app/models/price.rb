@@ -56,6 +56,6 @@ class Price < ActiveRecord::Base
   # --- Instance methods --- #
 
   def product_validations
-    Constant.find_by_key('erp_product_variations').try(:value) == true
+    Constant.find_by_key('erp_product_variations').try(:value) == "true"
   end
 end
