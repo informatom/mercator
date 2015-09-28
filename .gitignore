@@ -33,3 +33,5 @@ vendor/customer
 
 Gemfile.lock
 coverage
+
+spec/support/rspec_example_status
