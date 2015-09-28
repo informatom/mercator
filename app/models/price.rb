@@ -10,7 +10,7 @@ class Price < ActiveRecord::Base
     scale_from     :decimal, :required, :precision => 10, :scale => 2
     scale_to       :decimal, :required, :precision => 10, :scale => 2
     promotion      :boolean
-    erp_identifier :integer, :unique
+    erp_identifier :integer
     timestamps
   end
 
@@ -25,6 +25,8 @@ class Price < ActiveRecord::Base
   validates :vat, numericality: true, allow_nil: true
   validates :scale_from, numericality: true, allow_nil: true
   validates :scale_to, numericality: true, allow_nil: true
+
+  validates :erp_identifier, uniqueness: true, unless: :product_validations
 
   belongs_to :inventory
   validates :inventory, :presence => true
@@ -48,5 +50,12 @@ class Price < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+
+  # --- Instance methods --- #
+
+  def product_validations
+    Constant.find_by_key('erp_product_variations').try(:value) == true
   end
 end
