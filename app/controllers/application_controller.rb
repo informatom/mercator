@@ -120,6 +120,10 @@ private
 
 
   def set_locale
+    if params[:locale].present? && !I18n.available_locales.*.to_s.include?(params[:locale])
+      params[:locale] = "de"
+    end
+
     session[:locale] = I18n.locale = params[:locale] ||
                                      session[:locale] ||
                                      current_user.locale ||
