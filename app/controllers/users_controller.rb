@@ -12,6 +12,10 @@ class UsersController < ApplicationController
 
 
   def login
+    unless session[:last_user]
+      redirect_to "/switch" and return
+    end
+
     if params[:fromfront] == "true"
       last_user_id = current_user.id
       logout()
