@@ -7,6 +7,11 @@ class Categorization < ActiveRecord::Base
     timestamps
   end
 
+  # can be found in mercator/vendor/engines/mercator_mesonic/app/models/order_extensions.rb
+  if Constant.table_exists? && Rails.application.config.try(:erp) == "mesonic"
+    include CategorizationExtensions
+  end
+
   attr_accessible :product, :product_id, :category, :category_id
   has_paper_trail
   default_scope { order('categorizations.position ASC') }
