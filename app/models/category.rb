@@ -368,6 +368,8 @@ class Category < ActiveRecord::Base
                         filtermax: 1000)
       end
     end
+
+    return true
   end
 
 
