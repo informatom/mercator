@@ -3,11 +3,13 @@
     <if test="&this.sender_id == current_user.id">
       <div class="alert alert-success">
         <b><view:sender.first_name/> <view:sender.surname/>:</b> <view:content/>
+        <div class="pull-right"><view with="&this.created_at.to_s(:time)" /></div>
       </div>
     </if>
     <else>
       <div class="alert alert-info">
         <b><view:sender.first_name/> <view:sender.surname/>:</b> <view:content/>
+        <div class="pull-right"><view with="&this.created_at.to_s(:time)" /></div>
       </div>
     </else>
   </div>
