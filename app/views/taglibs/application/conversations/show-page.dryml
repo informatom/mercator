@@ -176,6 +176,12 @@
         PrivatePub.subscribe("/<%= CONFIG[:system_id] -%>/orders/<%= current_user.basket.id.to_s -%>", function(data, channel) {
           $("form#" + "summary-form").submit();
         });
+
+        // Disable back button
+        history.pushState({ page: 1 }, "title 1", "#nbb");
+        window.onhashchange = function (event) {
+          window.location.hash = "nbb";
+        };
       </script>
 
       <if test="&current_user.id == this.customer.id">
