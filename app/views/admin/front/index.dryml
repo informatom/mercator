@@ -23,7 +23,8 @@
             You should update table Aktmandant in Mesonic before clicking this button:<br/>
             <a href="&mercator_mesonic.update_business_year_path" class="btn btn-warning">
               Update Businessyear
-            </a>
+            </a><br/>
+            Updates takes depending on network latency several hours, during these Products are inactive.
           </p>
         </if>
 
