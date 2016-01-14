@@ -1,16 +1,17 @@
 Change versions for
 ===================
 
-'rails', '4.2.5'
-'activerecord-sqlserver-adapter', '~> 4.2'
-"hobo", "= 2.2.4"
-"hobo_jquery_ui", "2.2.4"
-"hobo_clean_admin", "2.2.4"
+gem "rails", "4.2.5"
+gem "activerecord-sqlserver-adapter", "~> 4.2"
+gem "hobo", "= 2.2.4"
+gem "hobo_jquery_ui", "2.2.4"
+gem "hobo_clean_admin", "2.2.4"
 
-new gem
-=======
+new gem and fixing sprocket-rails
+=================================
 
-"responders"
+gem "responders"
+gem "sprockets-rails", "2.3.3"
 
 Change dependency in w2ui
 =========================
