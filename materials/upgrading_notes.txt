@@ -21,4 +21,4 @@ s.add_dependency "rails", "~> 4.0"
 Update
 ======
 
-bundle update rails hobo hobo_jquery_ui hobo_clean_admin less_rails i18n_js
+bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails
