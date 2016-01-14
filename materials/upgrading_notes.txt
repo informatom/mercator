@@ -1,0 +1,18 @@
+Change versions for
+===================
+
+'rails', '4.2.5'
+'activerecord-sqlserver-adapter', '~> 4.2'
+"hobo", "= 2.2.4"
+"hobo_jquery_ui", "2.2.4"
+"hobo_clean_admin", "2.2.4"
+
+Change dependency in w2ui
+=========================
+
+s.add_dependency "rails", "~> 4.0"
+
+Update
+======
+
+bundle update rails hobo hobo_jquery_ui hobo_clean_admin
