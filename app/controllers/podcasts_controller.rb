@@ -10,15 +10,15 @@ class PodcastsController < ApplicationController
     page = params[:page] ? params[:page].to_i : 1
 
     self.this = Podcast.where.not(published_at: nil)
-                       .paginate(page: params[page], :per_page => 1)
+                       .paginate(page: page, :per_page => 1)
                        .order(published_at: :desc)
-    @podcasts= self.this
 
     if params[:month]
       in_month = params[:month].to_datetime..(params[:month].to_datetime + 1.month)
       self.this = self.this.where(published_at: in_month)
     end
 
+    @podcasts = self.this
     hobo_index
   end
 
