@@ -7,6 +7,11 @@ Change versions for
 "hobo_jquery_ui", "2.2.4"
 "hobo_clean_admin", "2.2.4"
 
+new gem
+=======
+
+"responders"
+
 Change dependency in w2ui
 =========================
 
@@ -15,4 +20,4 @@ s.add_dependency "rails", "~> 4.0"
 Update
 ======
 
-bundle update rails hobo hobo_jquery_ui hobo_clean_admin
+bundle update rails hobo hobo_jquery_ui hobo_clean_admin less_rails i18n_js
