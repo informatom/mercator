@@ -10,8 +10,8 @@ gem "hobo_clean_admin", "2.2.4"
 new gem and fixing sprocket-rails
 =================================
 
-gem "responders"
 gem "sprockets-rails", "2.3.3"
+gem 'responders', '2.1.0'
 
 Change dependency in w2ui
 =========================
@@ -21,4 +21,4 @@ s.add_dependency "rails", "~> 4.0"
 Update
 ======
 
-bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails
+bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails activerecord-sqlserver-adapter
