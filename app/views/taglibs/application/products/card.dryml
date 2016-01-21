@@ -79,7 +79,7 @@
         </form>
       </if>
 
-      <if test="&this.features">
+      <if test="&this.features.any?">
         <hr/>
         <h4 class="hidden-xs"><t key="activerecord.models.feature.other" />:</h4>
 
