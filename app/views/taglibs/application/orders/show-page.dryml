@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <if test="&this.lineitems">
+        <if test="&this.lineitems.any?">
           <table class="table well">
             <thead>
               <tr class="order-darkgrey">

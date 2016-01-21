@@ -22,3 +22,23 @@ Update
 ======
 
 bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails activerecord-sqlserver-adapter
+
+
+Errors
+======
+
+ActionView::Template::Error (undefined method `map!' for #<ActiveRecord::Associations::CollectionProxy []>):
+  app/views/taglibs/application/orders/show-page.dryml:59:in `block in basket_part'
+  app/views/taglibs/application/orders/show-page.dryml:22:in `basket_part'
+  app/views/taglibs/application/orders/show-page.dryml:25:in `block (4 levels) in show_page__for_order_with_a34881921684'
+  app/views/taglibs/application/orders/show-page.dryml:25:in `block (3 levels) in show_page__for_order_with_a34881921684'
+  app/views/taglibs/application/orders/show-page.dryml:7:in `block (2 levels) in show_page__for_order_with_a34881921684'
+  app/views/taglibs/auto/rapid/pages.dryml:2287:in `block (4 levels) in show_page__for_order'
+  app/views/taglibs/auto/rapid/pages.dryml:2286:in `block (3 levels) in show_page__for_order'
+  app/views/taglibs/application.dryml:2:in `block in page_with_a1ec76710ef2'
+  app/views/taglibs/application.dryml:1:in `page_with_a1ec76710ef2'
+  app/views/taglibs/auto/rapid/pages.dryml:2269:in `block in show_page__for_order'
+  app/views/taglibs/auto/rapid/pages.dryml:2268:in `show_page__for_order'
+  app/views/taglibs/application/orders/show-page.dryml:2:in `block in show_page__for_order_with_a34881921684'
+  app/views/taglibs/application/orders/show-page.dryml:1:in `show_page__for_order_with_a34881921684'
+  app/controllers/orders_controller.rb:19:in `show'
