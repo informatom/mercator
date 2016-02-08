@@ -87,8 +87,7 @@ module MercatorSharedContexts
   shared_context 'crud update' do
     describe 'PATCH #update' do
       it "with_incorrect data it redirects to #edit" do
-        patch :update, id: @instance,
-                       @instance.class.to_s.underscore => @invalid_attributes
+        patch(:update, id: @instance, @instance.class.to_s.underscore => @invalid_attributes)
         expect(response).to render_template :edit
       end
     end

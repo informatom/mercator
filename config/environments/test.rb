@@ -19,4 +19,8 @@ Mercator::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.i18n.default_locale = :en
+
+  # alongside update to Rails 4.2.5
+  config.active_record.raise_in_transactional_callbacks = true
+
 end

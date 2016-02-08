@@ -103,10 +103,10 @@ describe User do
       @parked_basket = create(:order, user: @user,
                                       state: "parked")
       @lineitem = create(:lineitem, order: @parked_basket)
-      @absolete_parked_basket = create(:order, user: @user,
+      @obsolete_parked_basket = create(:order, user: @user,
                                                state: "parked")
       @admin = create(:admin)
-      allow(@absolete_parked_basket).to receive(:acting_user) { @admin }
+      allow(@obsolete_parked_basket).to receive(:acting_user) { @admin }
 
       create(:constant_shipping_cost)
       create(:shipping_cost_article)
@@ -118,7 +118,7 @@ describe User do
 
     it "cleans up parked baskets" do
       @user.parked_basket
-      expect(Order.exists?(@absolete_parked_basket)).to eql false
+      expect(Order.exists?(@obsolete_parked_basket.id)).to eql false
     end
   end
 

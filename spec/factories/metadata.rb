@@ -11,7 +11,7 @@ FactoryGirl.define do
     product_number    nil
     cat_id            "156"
     on_market         "1"
-    model_name        "netserver lh 6000 pIII-x/700 MHz 256M pedestal 1m cache"
+    icecat_model_name "netserver lh 6000 pIII-x/700 MHz 256M pedestal 1m cache"
     product_view      "11867"
   end
 
@@ -25,7 +25,7 @@ FactoryGirl.define do
     product_number    nil
     cat_id            "151"
     on_market         "1"
-    model_name        "430 G2"
+    icecat_model_name "430 G2"
     product_view      "6915"
   end
 end

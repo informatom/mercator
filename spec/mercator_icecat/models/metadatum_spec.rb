@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe MercatorIcecat::Metadatum do
   it "is valid with product, path, icecat_updated_at, quality, supplier_id, icecat_product_id," +
-     "prod_id, product_number, cat_id, on_market, model_name and product_view" do
+     "prod_id, product_number, cat_id, on_market, icecat_model_name and product_view" do
     expect(build :metadatum).to be_valid
   end
 
@@ -27,7 +27,7 @@ describe MercatorIcecat::Metadatum do
       expect(@metadatum.product_number).to eql nil
       expect(@metadatum.cat_id).to eql "222"
       expect(@metadatum.on_market).to eql "1"
-      expect(@metadatum.model_name).to eql "24uh"
+      expect(@metadatum.icecat_model_name).to eql "24uh"
       expect(@metadatum.product_view).to eql "485"
 
       File.delete(Rails.root.join("vendor","catalogs","files.index.xml"))
@@ -48,7 +48,7 @@ describe MercatorIcecat::Metadatum do
       expect(@metadatum.product_number).to eql nil
       expect(@metadatum.cat_id).to eql "222"
       expect(@metadatum.on_market).to eql "1"
-      expect(@metadatum.model_name).to eql "24uh"
+      expect(@metadatum.icecat_model_name).to eql "24uh"
       expect(@metadatum.product_view).to eql "485"
 
       File.delete(Rails.root.join("vendor","catalogs", Date.today.to_s + "-index.xml"))
@@ -273,7 +273,7 @@ describe MercatorIcecat::Metadatum do
       @metadatum = create(:metadatum, product_id: @product.id,
                                       path: "export/freexml.int/INT/19886543.xml",
                                       cat_id: "210",
-                                      model_name: "MSA 2040 SAS Dual Controller Bundle",
+                                      icecat_model_name: "MSA 2040 SAS Dual Controller Bundle",
                                       supplier_id: "1",
                                       icecat_product_id: "19886543",
                                       prod_id: "C8S57A" )
@@ -284,7 +284,7 @@ describe MercatorIcecat::Metadatum do
       @related_metadatum = create(:metadatum, product_id: @related_product.id,
                                               path: "export/freexml.int/INT/3637150.xml",
                                               cat_id: "210",
-                                              model_name: "AJ941A",
+                                              icecat_model_name: "AJ941A",
                                               supplier_id: "1",
                                               icecat_product_id: "3637150",
                                               prod_id: "AJ941A")
@@ -295,7 +295,7 @@ describe MercatorIcecat::Metadatum do
       @supply_metadatum = create(:metadatum, product_id: @supply.id,
                                              path: "export/freexml.int/INT/5123007.xml",
                                              cat_id: "182",
-                                             model_name: "Modular Smart Array SC08e 2-ports Ext PCIe x8 SAS Host Bus Adapter",
+                                             icecat_model_name: "Modular Smart Array SC08e 2-ports Ext PCIe x8 SAS Host Bus Adapter",
                                              supplier_id: "1",
                                              icecat_product_id: "5123007",
                                              prod_id: "614988-B21")

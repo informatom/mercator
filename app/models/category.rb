@@ -303,7 +303,7 @@ class Category < ActiveRecord::Base
                        description_en: "Orphans",
                        long_description_de: "verwaiste Artikel",
                        long_description_en: "Orphans",
-                       parent_id: Category.mercator,
+                       parent_id: Category.mercator.id,
                        state: "deprecated",
                        position: 2,
                        filtermin: 1,
