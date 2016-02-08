@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   def do_resend_email_confirmation
     current_user.lifecycle.generate_key
     current_user.save
-    UserMailer.activation(current_user, current_user.lifecycle.key).deliver
+    UserMailer.activation(current_user, current_user.lifecycle.key).deliver_now
     redirect_to order_path(current_user.basket)
   end
 
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
       @user.lifecycle.generate_key
       @user.save # Otherwise key_timstamp gets not persisted
       UserMailer.login_link(@user, @user.lifecycle.key)
-                .deliver
+                .deliver_now
     end
   end
 
@@ -123,7 +123,7 @@ class UsersController < ApplicationController
       current_user.lifecycle.generate_key
       current_user.save
 
-      UserMailer.activation(current_user, current_user.lifecycle.key).deliver
+      UserMailer.activation(current_user, current_user.lifecycle.key).deliver_now
       flash[:notice] = I18n.t("mercator.messages.user.confirm_and_refresh")
     else
       flash[:error] = I18n.t("mercator.messages.user.upgrade.error")

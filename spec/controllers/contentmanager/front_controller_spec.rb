@@ -103,7 +103,7 @@ describe Contentmanager::FrontController, :type => :controller do
 
       it "renders nothing" do
         post :update_webpages, webpages: @webpage_param
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
 
       it "calls reorder webpages intrinsically" do
@@ -355,7 +355,7 @@ describe Contentmanager::FrontController, :type => :controller do
 
       it "renders nothing" do
         post :update_folders, folders: @folders_param
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
 
       it "calls reorder folders intrinsically" do

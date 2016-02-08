@@ -255,14 +255,14 @@ describe BillingAddressesController, :type => :controller do
         expect(assigns(:order).billing_city).to eql "Graz"
         expect(assigns(:order).billing_country).to eql "Österreich"
         expect(assigns(:order).billing_phone).to eql "+4311111111"
-        expect(assigns(:order).billing_method).to eql :e_payment
+        expect(assigns(:order).billing_method).to eql "e_payment"
       end
 
       it "sets shipping method, if not set" do
         @order.update(shipping_method: nil)
         put :do_enter, id: @instance.id,
                        billing_address: attributes_for(:second_billing_address, order_id: @order.id)
-        expect(assigns(:order).shipping_method).to eql :parcel_service_shipment
+        expect(assigns(:order).shipping_method).to eql "parcel_service_shipment"
       end
 
       it "creates an address" do

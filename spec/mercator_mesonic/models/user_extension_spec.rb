@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before :each do
-    @user = create(:user, erp_account_nr: "691801-2004-1380")
+    @user = create(:user, erp_account_nr: "691801-2004-1392")
     create(:country)
     create(:billing_address, user_id: @user.id)
   end
@@ -133,7 +133,7 @@ describe User do
 
   describe "update_erp_account_nr" do
     before :each do
-      @user.update(erp_contact_nr: "10000-2004-1380",
+      @user.update(erp_contact_nr: "10000-2004-1392",
                    erp_account_nr: nil)
     end
 
@@ -144,7 +144,7 @@ describe User do
 
     it "fixes the erp account number" do
       @user.update_erp_account_nr
-      expect(@user.erp_account_nr).to eql "112452-2004-1380"
+      expect(@user.erp_account_nr).to eql "112452-2004-1392"
     end
   end
 
@@ -155,8 +155,8 @@ describe User do
                    erp_account_nr: "123456-1234-1111")
 
       @user.update_business_year()
-      expect(@user.erp_contact_nr).to eql "123456-1234-1380"
-      expect(@user.erp_account_nr).to eql "123456-1234-1380"
+      expect(@user.erp_contact_nr).to eql "123456-1234-1392"
+      expect(@user.erp_account_nr).to eql "123456-1234-1392"
     end
   end
 end

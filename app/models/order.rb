@@ -475,6 +475,6 @@ class Order < ActiveRecord::Base
 
   def self.notify_in_payment
     @orders = Order.where(state: :in_payment, updated_at: (Time.now - 1.day)..Time.now)
-    OrderMailer.notify_in_payment(@orders).deliver if @orders.any?
+    OrderMailer.notify_in_payment(@orders).deliver_now if @orders.any?
   end
 end

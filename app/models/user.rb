@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
     # create :signup, :available_to => "Guest",
     #   params: [:gender, :title, :first_name, :surname, :email_address, :phone, :password, :password_confirmation],
     #   become: :inactive, new_key: true  do
-    #   UserMailer.activation(self, lifecycle.key).deliver
+    #   UserMailer.activation(self, lifecycle.key).deliver_now
     # end
 
 
@@ -102,11 +102,11 @@ class User < ActiveRecord::Base
 
 
     transition :request_password_reset, {:inactive => :inactive}, new_key: true do
-      UserMailer.forgot_password(self, lifecycle.key).deliver
+      UserMailer.forgot_password(self, lifecycle.key).deliver_now
     end
 
     transition :request_password_reset, {[:active, :guest] => :active}, new_key: true do
-      UserMailer.forgot_password(self, lifecycle.key).deliver
+      UserMailer.forgot_password(self, lifecycle.key).deliver_now
     end
 
     transition :reset_password, {:active => :active}, available_to: :key_holder,
@@ -304,7 +304,7 @@ class User < ActiveRecord::Base
 
   def self.no_sales_logged_in
     unless User.assign_consultant
-      UserMailer.consultant_missing.deliver
+      UserMailer.consultant_missing.deliver_now
     end
   end
 end

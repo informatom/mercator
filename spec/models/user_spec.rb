@@ -262,7 +262,7 @@ describe User do
 
   context "mesoprim" do
     it "returns mesoprim" do
-      expect(User.mesoprim(number: "test")).to eql "test-2004-1380"
+      expect(User.mesoprim(number: "test")).to eql "test-2004-1392"
     end
   end
 

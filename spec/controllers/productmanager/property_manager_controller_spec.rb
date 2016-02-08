@@ -588,7 +588,7 @@ describe Productmanager::PropertyManagerController, :type => :controller do
 
       it "renders nothing" do
         post :delete_value, id: @value.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -610,7 +610,7 @@ describe Productmanager::PropertyManagerController, :type => :controller do
 
       it "renders nothing" do
         post :update_property_groups_order, value_original: 777, value_new:778
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -632,7 +632,7 @@ describe Productmanager::PropertyManagerController, :type => :controller do
 
       it "renders nothing" do
         post :update_properties_order, value_original: 777, value_new:778
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -757,7 +757,7 @@ describe Productmanager::PropertyManagerController, :type => :controller do
 
       it "renders nothing" do
         post :delete_feature, id: @feature.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
   end

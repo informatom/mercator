@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  sequence :erp_identifier do |n|
+    n.to_s
+  end
 
   factory :price do
     inventory
@@ -9,6 +12,7 @@ FactoryGirl.define do
     scale_from 1
     scale_to   6
     promotion  true
+    erp_identifier
 
     factory :reduced_price do
       inventory nil
@@ -16,6 +20,7 @@ FactoryGirl.define do
       scale_from 7
       scale_to 100
       vat 10
+      erp_identifier
     end
 
     factory :lower_price do
@@ -23,6 +28,7 @@ FactoryGirl.define do
       value 38
       scale_from 1
       scale_to 100
+      erp_identifier
     end
   end
 end

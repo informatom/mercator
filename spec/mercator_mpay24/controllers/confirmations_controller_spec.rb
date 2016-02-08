@@ -71,7 +71,7 @@ describe ConfirmationsController, :type => :controller do
     it "renders nothing when called from a whitelisted ip" do
       allow_any_instance_of(ActionDispatch::Request).to receive(:ip).and_return('213.164.23.169')
       get :create, @request_params
-      expect(response.body).to eql(" ")
+      expect(response.body).to eql("")
     end
   end
 

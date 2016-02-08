@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
     hobo_create(redirect: @redirect_path) do
       if self.this.valid?
-        UserMailer.new_comment(self.this).deliver
+        UserMailer.new_comment(self.this).deliver_now
       end
     end
   end

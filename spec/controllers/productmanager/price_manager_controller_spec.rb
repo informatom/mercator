@@ -590,7 +590,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
 
       it "renders nothing" do
         post :delete_price, id: @price.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -613,7 +613,7 @@ describe Productmanager::PriceManagerController, :type => :controller do
 
         it "renders nothing, if there are no prices" do
           post :delete_inventory, id: @inventory.id
-          expect(response.body).to eql(" ")
+          expect(response.body).to eql("")
         end
       end
 

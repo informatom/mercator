@@ -96,7 +96,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
       it "renders nothing" do
         post :create_productrelation, product_id: @product,
                                       related_product_id: @second_product
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -121,7 +121,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
 
       it "renders nothing" do
         delete :delete_productrelation, id: @product_relation.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -177,7 +177,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
       it "renders nothing" do
         post :create_supplyrelation, product_id: @product,
                                      supply_id: @second_product
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -202,7 +202,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
 
       it "renders nothing" do
         delete :delete_supplyrelation, id: @supply_relation.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -349,7 +349,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
 
       it "renders nothing" do
         delete :delete_recommendation, id: @recommendation.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -423,7 +423,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
 
       it "renders success" do
         post :add_categorization, category_id: @category.id, product_id: @product.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -449,7 +449,7 @@ describe Productmanager::RelationManagerController, :type => :controller do
 
       it "renders nothing" do
         delete :delete_categorization, id: @categorization.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 

@@ -82,7 +82,7 @@ describe Admin::ContentElementsController, :type => :controller  do
     describe 'DELETE #destroy' do
       it "renders nothing for xhr request" do
         xhr :delete, :destroy, id: @instance
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
   end

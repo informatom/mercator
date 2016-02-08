@@ -159,7 +159,7 @@ describe AddressesController, :type => :controller do
         @order.update(shipping_method: nil)
         put :do_enter, id: @instance.id,
                        address: attributes_for(:second_address, order_id: @order.id)
-        expect(assigns(:order).shipping_method).to eql :parcel_service_shipment
+        expect(assigns(:order).shipping_method).to eql "parcel_service_shipment"
       end
 
       it "redirects to order path"  do
@@ -207,7 +207,7 @@ describe AddressesController, :type => :controller do
         @order.update(shipping_method: nil)
         put :do_use, id: @instance.id,
                      order_id: @order.id
-        expect(assigns(:order).shipping_method).to eql :parcel_service_shipment
+        expect(assigns(:order).shipping_method).to eql "parcel_service_shipment"
       end
 
       it "redirects to order path" do

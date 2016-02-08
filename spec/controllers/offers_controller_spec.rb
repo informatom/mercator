@@ -79,7 +79,7 @@ describe OffersController, :type => :controller do
           it "sets the order attributes" do
             post :do_copy, id: @offer.id
             expect(assigns(:order).user_id).to eql @user.id
-            expect(assigns(:order).billing_method).to eql :e_payment
+            expect(assigns(:order).billing_method).to eql "e_payment"
 
             expect(assigns(:order).billing_company).to eql @offer.billing_company
             expect(assigns(:order).billing_gender).to eql @offer.billing_gender

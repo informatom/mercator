@@ -72,7 +72,7 @@ class BillingAddressesController < ApplicationController
                                               :email_address, :phone])
             current_user.lifecycle.generate_key
             current_user.save
-            UserMailer.activation(current_user, current_user.lifecycle.key).deliver
+            UserMailer.activation(current_user, current_user.lifecycle.key).deliver_now
           else
             self.this.email_address = nil
             self.this.errors.clear

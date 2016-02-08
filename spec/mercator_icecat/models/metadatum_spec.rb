@@ -177,7 +177,7 @@ describe MercatorIcecat::Metadatum do
     it "creates property groups" do
       @metadatum.update_product
       expect(@product.property_groups.*.icecat_id.uniq).to eql [32, 33, 36, 35, 108, 109, 106, 110,
-        762, 1403, 1711, 2686, 2687, 2933, 3024, 4124, 6416, 7946, 8602, 10385, 10674]
+        762, 1403, 1711, 2686, 2687, 2933, 3024, 4124, 6417, 6416, 7946, 8602, 10385, 10674]
 
       expect(@product.property_groups.*.name_de.uniq).to eql ["Optisches Laufwerk", "Bildschirm",
         "Anschlüsse und Schnittstellen", "Prozessor", "Gewicht & Abmessungen", "Energie", "Speicher",

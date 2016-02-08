@@ -123,7 +123,7 @@ describe Sales::ConversationsController, :type => :controller do
       it "renders nothing for xhr request" do
         xhr :post, :typing, id: @instance.id,
                    message: "my message"
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 

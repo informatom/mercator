@@ -1229,7 +1229,7 @@ describe OrdersController, :type => :controller do
                                   shipping_method: "pickup_shipment",
                                   billing_method: "atm_payment")
           @order.lifecycle.parcel_service_shipment!(@user)
-          expect(@order.billing_method).to be :e_payment
+          expect(@order.billing_method).to be "e_payment"
         end
 
         it "updates the billing_method, if it was cash_payment" do
@@ -1238,7 +1238,7 @@ describe OrdersController, :type => :controller do
                                   shipping_method: "pickup_shipment",
                                   billing_method: "cash_payment")
           @order.lifecycle.parcel_service_shipment!(@user)
-          expect(@order.billing_method).to be :e_payment
+          expect(@order.billing_method).to be "e_payment"
         end
       end
 
@@ -1300,7 +1300,7 @@ describe OrdersController, :type => :controller do
                                   shipping_method: "pickup_shipment",
                                   billing_method: "cash_payment")
           @order.lifecycle.parcel_service_shipment!(@user)
-          expect(@order.billing_method).to be :e_payment
+          expect(@order.billing_method).to be "e_payment"
         end
       end
     end

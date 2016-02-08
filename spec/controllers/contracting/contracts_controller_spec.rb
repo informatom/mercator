@@ -93,7 +93,7 @@ describe Contracting::ContractsController, :type => :controller do
 
       it "renders nothing" do
         post :delete, id: @instance.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
 
       it "blocks deletetion, if there are contractitems" do

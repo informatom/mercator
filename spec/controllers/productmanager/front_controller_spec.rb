@@ -419,7 +419,7 @@ describe Productmanager::FrontController, :type => :controller do
 
       it "renders nothing" do
         post :update_categories, categories: @categories_param
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
 
       it "calls reorder categories intrinsically" do
@@ -455,7 +455,7 @@ describe Productmanager::FrontController, :type => :controller do
 
       it "renders nothing after successfull deletion" do
         delete :delete_category, id: @category.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 

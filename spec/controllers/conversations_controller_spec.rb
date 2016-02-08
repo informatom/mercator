@@ -204,7 +204,7 @@ describe ConversationsController, :type => :controller do
       it "renders nothing for xhr request" do
         xhr :post, :typing_customer, id: @conversation.id,
                    message: "my message"
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
 
@@ -226,7 +226,7 @@ describe ConversationsController, :type => :controller do
 
       it "renders nothing for xhr request" do
         xhr :get, :close, id: @conversation.id
-        expect(response.body).to eql(" ")
+        expect(response.body).to eql("")
       end
     end
   end
