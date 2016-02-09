@@ -144,7 +144,7 @@ describe CategoriesController, :type => :controller do
     describe "GET #index" do
       it "assigns root categories" do
 
-        @subcategory = create(:category, parent_id: @category)
+        @subcategory = create(:category, parent_id: @category.id)
         get :index
         expect(assigns(:categories)).to match_array [@category]
       end
