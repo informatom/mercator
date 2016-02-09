@@ -148,6 +148,8 @@ describe UsersController, :type => :controller do
       end
 
       it "tries to sync agb with basket" do
+        session[:last_user] = 1
+
         expect_any_instance_of(User).to receive(:sync_agb_with_basket)
         post :login, login: "john.doe@informatom.com",
                      password: "secret123"
