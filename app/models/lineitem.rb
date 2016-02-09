@@ -156,7 +156,7 @@ class Lineitem < ActiveRecord::Base
 
   def new_pricing
     price =
-      if self.inventory_id
+      if self.inventory_id.present?
         Inventory.find(inventory_id)
                  .determine_price(amount: amount,
                                   customer_id: user_id)

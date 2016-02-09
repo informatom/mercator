@@ -159,9 +159,9 @@ class Product < ActiveRecord::Base
 
   def determine_inventory(amount: 1)
     if Constant.find_by_key("fifo").try(:value) == "true"
-      inventories.order(created_at: :asc).where("amount >= ? OR infinite = false", amount).first # FIFO
+      inventories.order(created_at: :asc).where("amount >= ? OR infinite = true", amount).first # FIFO
     else
-      inventories.order(created_at: :desc).where("amount >= ? OR infinite = false", amount).first # FIFO
+      inventories.order(created_at: :desc).where("amount >= ? OR infinite = true", amount).first # FIFO
     end
   end
 

@@ -48,8 +48,8 @@ describe MercatorMesonic::Price do
       expect(MercatorMesonic::Price.by_group_through_customer("011903").count > 0).to eql true
     end
 
-    it "has a scope group" do
-      expect(MercatorMesonic::Price.group("011903").count > 0).to eql true
+    it "has a scope by_payment_type_through_customer" do
+      expect(MercatorMesonic::Price.by_payment_type_through_customer("011903").count > 0).to eql true
     end
 
     it "has a scope by_group" do
