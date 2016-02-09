@@ -182,7 +182,7 @@ describe BillingAddressesController, :type => :controller do
         end
 
         it "mails the user the activation link" do
-          expect(UserMailer).to receive_message_chain(:activation, :deliver)
+          expect(UserMailer).to receive_message_chain(:activation, :deliver_now)
           put :do_enter, id: @instance.id,
                          billing_address: attributes_for(:second_billing_address, order_id: @order.id)
         end

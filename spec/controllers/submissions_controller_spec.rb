@@ -21,7 +21,7 @@ describe SubmissionsController, :type => :controller do
       end
 
       it "sends mail" do
-        expect(UserMailer).to receive(:new_submission).and_return( double("UserMailer", :deliver => true))
+        expect(UserMailer).to receive(:new_submission).and_return( double("UserMailer", :deliver_now => true))
         post :create, submission: attributes_for(:submission)
       end
     end

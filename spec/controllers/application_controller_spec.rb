@@ -270,7 +270,7 @@ describe ApplicationController, :type => :controller do
 
     it "fills locale in session if nothing set" do
       controller.instance_eval{ set_locale }
-      expect(session[:locale]).to eql "en"
+      expect(session[:locale]).to eql :en
     end
 
     it "fills locale in session from user locale" do
@@ -282,13 +282,13 @@ describe ApplicationController, :type => :controller do
     it "fills locale in session from session locale" do
       session[:locale] = :de
       controller.instance_eval{ set_locale }
-      expect(session[:locale]).to eql "de"
+      expect(session[:locale]).to eql :de
     end
 
     it "fills locale in session from session locale" do
       allow(controller).to receive(:params) { { locale: :de} }
       controller.instance_eval{ set_locale }
-      expect(session[:locale]).to eql "de"
+      expect(session[:locale]).to eql :de
     end
 
     it "updates the current_user locale" do

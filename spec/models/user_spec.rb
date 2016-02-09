@@ -321,7 +321,7 @@ describe User do
     end
 
     it "sends email if no consultant is logged in" do
-      expect(UserMailer).to receive(:consultant_missing).and_return( double("OrderMailer", :deliver => true))
+      expect(UserMailer).to receive(:consultant_missing).and_return( double("OrderMailer", :deliver_now => true))
       User.no_sales_logged_in
     end
   end

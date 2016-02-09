@@ -50,25 +50,6 @@ describe UsersController, :type => :controller do
       expect(response.body).to redirect_to "http://test.host/switch"
     end
 
-    it "logs the user out, if login comes from front" do
-      session[:last_user] = 1
-
-      expect(controller).to receive(:logout)
-      post :login, login: "john.doe@informatom.com",
-                   password: "secret123",
-                   fromfront: "true"
-    end
-
-    it "logs the user in" do
-      session[:last_user] = 1
-
-      post :login, login: "john.doe@informatom.com",
-                   password: "secret123"
-      @user.reload
-      expect(@user.logged_in).to be true
-    end
-
-
     context "there was a last user with session, basket and conversation" do
       before :each do
         @guest = create(:guest_user)
@@ -79,6 +60,20 @@ describe UsersController, :type => :controller do
         @last_conversation = create(:conversation, customer_id: @guest.id,
                                                    consultant_id: @sales.id)
         session[:last_user] = @guest.id
+      end
+
+      it "logs the user out, if login comes from front" do
+        expect(controller).to receive(:logout)
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123",
+                     fromfront: "true"
+      end
+
+      it "logs the user in" do
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+        @user.reload
+        expect(@user.logged_in).to be true
       end
 
       it "derives the last user from the session" do
@@ -135,6 +130,12 @@ describe UsersController, :type => :controller do
         @last_basket_item.reload
         expect(@last_basket_item.user_id).to eql @user.id
       end
+
+      it "tries to sync agb with basket" do
+        expect_any_instance_of(User).to receive(:sync_agb_with_basket)
+        post :login, login: "john.doe@informatom.com",
+                     password: "secret123"
+      end
     end
 
 
@@ -145,14 +146,6 @@ describe UsersController, :type => :controller do
                      password: "secret123"
         @user.basket.reload
         expect(@user.basket.id).to eql @basket_id
-      end
-
-      it "tries to sync agb with basket" do
-        session[:last_user] = 1
-
-        expect_any_instance_of(User).to receive(:sync_agb_with_basket)
-        post :login, login: "john.doe@informatom.com",
-                     password: "secret123"
       end
     end
   end
@@ -355,7 +348,7 @@ describe UsersController, :type => :controller do
     end
 
     it "sends an email to the user" do
-      expect(UserMailer).to receive_message_chain(:login_link, :deliver)
+      expect(UserMailer).to receive_message_chain(:login_link, :deliver_now)
       post :request_email_login, email_address: "john.doe@informatom.com"
     end
   end
@@ -521,7 +514,7 @@ describe UsersController, :type => :controller do
 
 
     it "sends the activation email" do
-      expect(UserMailer).to receive_message_chain(:activation, :deliver)
+      expect(UserMailer).to receive_message_chain(:activation, :deliver_now)
       post :upgrade, id: @user.id,
                      user: { email_address: "another.email@mercator.informatom.com" },
                      page_path: order_path(id: @basket.id)
@@ -571,7 +564,7 @@ describe UsersController, :type => :controller do
 
     it "sends activation email for inactive user" do
       @user = create(:user, state: "inactive")
-      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver)
+      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver_now)
       @user.lifecycle.request_password_reset!(@user)
     end
 
@@ -582,7 +575,7 @@ describe UsersController, :type => :controller do
 
     it "sends activation email for active user" do
       @user = create(:user, state: "active")
-      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver)
+      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver_now)
       @user.lifecycle.request_password_reset!(@user)
     end
 
@@ -593,7 +586,7 @@ describe UsersController, :type => :controller do
 
     it "sends activation email for guest user" do
       @user = create(:user, state: "guest")
-      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver)
+      expect(UserMailer).to receive_message_chain(:forgot_password, :deliver_now)
       @user.lifecycle.request_password_reset!(@user)
     end
   end
@@ -681,7 +674,7 @@ describe UsersController, :type => :controller do
 
     it "sends activation email for inactive user" do
       @user = create(:user, state: "inactive")
-      expect(UserMailer).to receive_message_chain(:activation, :deliver)
+      expect(UserMailer).to receive_message_chain(:activation, :deliver_now)
       put :do_resend_email_confirmation, id: @user.id
     end
 
@@ -692,7 +685,7 @@ describe UsersController, :type => :controller do
 
     it "sends activation email for guest user" do
       @user = create(:user, state: "guest")
-      expect(UserMailer).to receive_message_chain(:activation, :deliver)
+      expect(UserMailer).to receive_message_chain(:activation, :deliver_now)
       put :do_resend_email_confirmation, id: @user.id
     end
 

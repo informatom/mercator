@@ -521,7 +521,7 @@ describe Order do
       create(:constant_service_mail)
       create(:mail_subject)
       @order = create(:order, state: "in_payment", updated_at: Time.now - 2.hours)
-      expect(OrderMailer).to receive(:notify_in_payment).and_return( double("OrderMailer", :deliver => true))
+      expect(OrderMailer).to receive(:notify_in_payment).and_return( double("OrderMailer", :deliver_now => true))
       Order.notify_in_payment
     end
   end
