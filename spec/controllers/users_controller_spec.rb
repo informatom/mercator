@@ -41,16 +41,18 @@ describe UsersController, :type => :controller do
 
     it "is available as get" do
       get :login
-      expect(response.body).to render_template :login
+      expect(response.body).to redirect_to "http://test.host/switch"
     end
 
     it "is available as post" do
       post :login, login: "john.doe@informatom.com",
                    password: "secret123"
-      expect(response.body).to redirect_to "http://test.host"
+      expect(response.body).to redirect_to "http://test.host/switch"
     end
 
     it "logs the user out, if login comes from front" do
+      session[:last_user] = 1
+
       expect(controller).to receive(:logout)
       post :login, login: "john.doe@informatom.com",
                    password: "secret123",
@@ -58,6 +60,8 @@ describe UsersController, :type => :controller do
     end
 
     it "logs the user in" do
+      session[:last_user] = 1
+
       post :login, login: "john.doe@informatom.com",
                    password: "secret123"
       @user.reload

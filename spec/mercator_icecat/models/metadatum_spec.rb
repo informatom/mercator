@@ -182,40 +182,38 @@ describe MercatorIcecat::Metadatum do
       expect(@product.property_groups.*.name_de.uniq).to eql ["Optisches Laufwerk", "Bildschirm",
         "Anschlüsse und Schnittstellen", "Prozessor", "Gewicht & Abmessungen", "Energie", "Speicher",
         "Audio", "Tastatur", "Betriebsbedingungen", "Netzwerk", "Sicherheit", "Zertifikate",
-        "Software", "Kamera", "Speichermedien", "Verpackungsinformation", "Batterie", "Grafik",
-        "Prozessor Besonderheiten", "Design"]
+        "Software", "Kamera", "Speichermedien", "Weitere Spezifikationen", "Verpackungsinformation",
+        "Batterie", "Grafik", "Prozessor Besonderheiten", "Design"]
 
       expect(@product.property_groups.*.name_en.uniq).to eql ["Optical drive", "Display",
         "Ports & interfaces", "Processor", "Weight & dimensions", "Power", "Memory", "Audio",
         "Keyboard", "Operational conditions", "Networking", "Security", "Certificates", "Software",
-        "Camera", "Storage", "Packaging data", "Battery", "Graphics", "Processor special features",
-        "Design"]
+        "Camera", "Storage", "Other features", "Packaging data", "Battery", "Graphics",
+        "Processor special features", "Design"]
 
       expect(@product.property_groups.*.position.uniq).to eql [32, 33, 36, 38, 108, 109, 111, 113,
-        762, 1404, 1711, 2686, 2687, 2933, 3024, 4128, 6421, 7947, 8602, 10385, 10677]
+        762, 1404, 1711, 2686, 2687, 2933, 3024, 4128, 6417, 6421, 7947, 8602, 10385, 10677]
     end
 
     it "creates properties" do
       @metadatum.update_product
       expect(@product.properties.*.icecat_id.uniq).to eql [7, 39, 47, 94, 427, 430, 432, 434, 440,
         442, 667, 672, 703, 730, 757, 771, 838, 902, 904, 903, 906, 944, 982, 997, 1006, 1025, 1112,
-        1120, 1208, 1230, 1226, 1352, 1347, 1383, 1449, 1452, 1535, 1585, 1637, 1649, 1650, 1766,
-        1851, 1926, 2183, 2196, 2262, 2308, 2312, 2314, 2315, 2316, 2321, 2322, 2319, 2323, 2325,
-        2905, 2900, 2965, 3233, 3239, 3335, 3336, 3318, 3319, 3374, 3548, 3574, 3566, 3768, 3965,
-        3981, 4007, 4023, 4143, 4963, 5702, 5703, 6089, 6220, 6644, 6768, 6784, 6975, 7337, 7563,
-        7599, 7617, 7696, 7772, 8421, 8519, 9016, 9018, 9665, 9668, 9670, 9671, 9672, 9733, 9858,
-        10041, 10111, 10195, 10198, 11185, 11380, 11381, 11379, 11441, 11779, 12436, 13992, 13995,
-        13996, 14052, 14445, 14447, 16921, 17029]
+        1120, 1208, 1230, 1226, 1352, 1347, 1383, 1449, 1452, 1535, 1585, 1637, 1649, 1650, 1623,
+        1766, 1851, 1926, 2183, 2196, 2262, 2308, 2312, 2314, 2315, 2316, 2321, 2322, 2319, 2323,
+        2325, 2905, 2900, 2965, 3233, 3239, 3260, 3254, 3335, 3336, 3318, 3319, 3374, 3548, 3574,
+        3566, 3768, 3965, 3981, 4007, 4023, 4143, 4963, 5702, 5703, 6090, 6089, 6220, 6644, 6784,
+        6975, 7337, 7563, 7599, 7617, 7696, 7772, 7825, 7975, 8421, 8519, 9016, 9018, 9671, 9664,
+        9665, 9666, 9668, 9670, 9672, 9733, 9858, 10108, 10112, 10109, 10041, 10117, 10113, 10111,
+        10198, 10188, 10187, 10189, 10194, 10196, 10199, 10200, 10195, 10201, 10202, 10275, 10276,
+        10277, 10283, 10282, 10285, 10298, 10326, 10280, 10281, 10286, 10351, 11185, 11380, 11381,
+        11379, 11441, 11779, 11778, 12436, 13992, 13995, 13996, 14052, 14445, 14447, 14804, 15741,
+        16921, 17029, 17742, 18653, 18767, 20409, 20625, 20905, 21539, 21709, 21711, 21713, 21715,
+        21759, 21770, 21719, 21835, 21716, 21744, 22011, 22001, 22004, 21987, 21994, 21995, 21996,
+        21997, 21998, 22268, 22701]
 
-      expect(@product.properties.*.position.uniq).to eql [7, 39, 49, 94, 430, 432, 433, 435, 442,
-        446, 667, 681, 704, 738, 759, 786, 838, 907, 909, 910, 914, 958, 999, 1007, 1017, 1039,
-        1116, 1137, 1222, 1235, 1237, 1359, 1365, 1385, 1450, 1483, 1549, 1612, 1638, 1658, 1659,
-        1807, 1878, 1960, 2209, 2239, 2292, 2331, 2335, 2337, 2338, 2339, 2344, 2345, 2348, 2353,
-        2377, 2947, 2952, 2966, 3254, 3276, 3336, 3338, 3373, 3374, 3425, 3577, 3589, 3602, 3808,
-        3977, 3993, 4018, 4035, 4179, 5020, 5718, 5719, 6164, 6250, 6696, 6814, 6846, 7054, 7417,
-        7594, 7661, 7693, 7772, 7806, 8454, 8547, 9080, 9082, 9696, 9700, 9701, 9702, 9703, 9764,
-        9908, 10136, 10148, 10226, 10230, 11226, 11476, 11480, 11486, 11532, 11812, 12507, 14008,
-        14012, 14014, 14168, 14498, 14500, 16995, 17115]
+      expect(@product.properties.*.position.uniq[0..19]).to eql [7, 39, 49, 94, 430, 432, 433, 435, 442,
+        446, 667, 681, 704, 738, 759, 786, 838, 907, 909, 910]
 
       expect(@product.properties.*.name_de.uniq[0..19]).to eql ["Festplattenkapazität", "Seitenverhältnis",
         "Prozessor", "Gewicht", "Interner Speichertyp", "Festplatten-Drehzahl", "WLAN-Standards",
@@ -234,35 +232,44 @@ describe MercatorIcecat::Metadatum do
 
     it "creates values" do
       @metadatum.update_product
-      expect(@product.values.*.title_de.uniq).to eql ["Notebook", "Black,Silver", "Clamshell",
-        nil, "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM",
-        "SO-DIMM", "HDD", "Serial ATA", "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9",
-        "Intel HD Graphics 5500", "DTS Sound+", "802.11a,802.11ac,802.11b,802.11g,802.11n",
-        "10,100,1000", "Touchpad", "Windows 7 Professional", "64-bit", "Windows 8.1 Pro",
-        "Intel Clear Video HD,Intel Insider,Intel InTru 3D,Intel Quick Sync Video", "VT-d,VT-x",
-        "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60", "10 - 90", "5 - 95",
-        "-15.24 - 3048", "-15.24 - 12192"]
+      expect(@product.values.*.title_de.uniq).to eql ["Notebook", "Black,Silver", "Clamshell", nil,
+        "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "L3", "32-bit,64-bit", "F0", "DMI2",
+        "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM,LPDDR3-SDRAM",
+        "1333,1600", "Dual", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA",
+        "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9", "Intel HD Graphics 5500",
+        "DisplayPort,Embedded DisplayPort (eDP),HDMI", "0x1616", "DTS Sound+",
+        "802.11a,802.11ac,802.11b,802.11g,802.11n", "10,100,1000", "Touchpad",
+        "Windows 7 Professional", "64-bit", "Windows 8.1 Pro", "AVX 2.0,SSE4.1,SSE4.2", "SR23Z",
+        "1.00", "0.00", "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60",
+        "10 - 90", "5 - 95", "-15.24 - 3048", "-15.24 - 12192",
+        "Intel Clear Video HD,Intel Insider,Intel InTru 3D,Intel Quick Sync Video", "VT-d,VT-x"]
 
-      expect(@product.values.*.title_en.uniq).to eql ["Notebook", "Black,Silver", "Clamshell",
-        nil, "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM",
-        "SO-DIMM", "HDD", "Serial ATA", "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9",
-        "Intel HD Graphics 5500", "DTS Sound+", "802.11a,802.11ac,802.11b,802.11g,802.11n",
-        "10,100,1000", "Touchpad", "Windows 7 Professional", "64-bit", "Windows 8.1 Pro",
-        "Intel Clear Video HD,Intel Insider,Intel InTru 3D,Intel Quick Sync Video", "VT-d,VT-x",
-        "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60", "10 - 90", "5 - 95",
-        "-15.24 - 3048", "-15.24 - 12192"]
+      expect(@product.values.*.title_en.uniq).to eql ["Notebook", "Black,Silver", "Clamshell", nil,
+        "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "L3", "32-bit,64-bit", "F0", "DMI2",
+        "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM,LPDDR3-SDRAM",
+        "1333,1600", "Dual", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA",
+        "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9", "Intel HD Graphics 5500",
+        "DisplayPort,Embedded DisplayPort (eDP),HDMI", "0x1616", "DTS Sound+",
+        "802.11a,802.11ac,802.11b,802.11g,802.11n", "10,100,1000", "Touchpad",
+        "Windows 7 Professional", "64-bit", "Windows 8.1 Pro", "AVX 2.0,SSE4.1,SSE4.2", "SR23Z",
+        "1.00", "0.00", "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60",
+        "10 - 90", "5 - 95", "-15.24 - 3048", "-15.24 - 12192",
+        "Intel Clear Video HD,Intel Insider,Intel InTru 3D,Intel Quick Sync Video", "VT-d,VT-x"]
 
-      expect(@product.values.*.unit_de.uniq).to eql [nil, "GHz", "GT/s", "MB", "GB", "MHz", "RPM",
-        "\"", "Pixel", "Mbit/Sek", "Wh", "h", "W", "Hz", "V", "g", "mm", "°C", "%", "m", "G"]
+      expect(@product.values.*.unit_de.uniq).to eql ["Teks", "GHz", "GT/s", "MB", "nm", "W", nil,
+        "°C", "MHz", "GB", "GB/s", "RPM", "\"", "Pixel", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g",
+        "%", "m", "G"]
 
-      expect(@product.values.*.unit_en.uniq).to eql [nil, "GHz", "GT/s", "MB", "GB", "MHz", "RPM",
-        "\"", "pixels", "Mbit/s", "Wh", "h", "W", "Hz", "V", "g", "mm", "°C", "%", "m", "G"]
+      expect(@product.values.*.unit_en.uniq).to eql [nil, "GHz", "GT/s", "MB", "nm", "W", "°C",
+        "MHz", "GB", "GB/s", "RPM", "\"", "pixels", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g", "%",
+        "m", "G"]
 
       expect(@product.values.*.amount.*.to_s.uniq).to eql ["", "2.1", "2.0", "4.0", "5.0", "3.0",
-        "1600.0", "16.0", "500.0", "1.0", "5400.0", "2.5", "13.3", "40.0", "45.0", "19.5",
-        "1500.0", "326.0", "233.5", "20.0", "21.0", "95.0", "26.5", "200.0", "0.75", "1.5"]
+        "14.0", "15.0", "12.0", "105.0", "600.0", "16.0", "25.6", "1600.0", "500.0", "1.0",
+        "5400.0", "2.5", "13.3", "300.0", "900.0", "11.2", "40.0", "45.0", "19.5", "1500.0",
+        "326.0", "233.5", "20.0", "21.0", "95.0", "26.5", "200.0", "0.75", "1.5"]
 
-      expect(@product.values.*.flag.uniq).to eql [nil, true, false]
+      expect(@product.values.*.flag.uniq).to eql [nil, false, true]
     end
   end
 
