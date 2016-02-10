@@ -8,7 +8,7 @@
         </a> - <view with="&User.find(self.this.whodunnit).try(:name)" no-wrapper/>
     </li>
   </ul>
-  <unless test="&self.this.versions">
+  <unless test="&self.this.versions.any?">
     <p><t key="mercator.older_versions_dont_exist"/></p>
   </unless>
 </def>

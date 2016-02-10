@@ -13,7 +13,7 @@
     <nav-item href="#{category_path(this)}"><name/></nav-item>
   </repeat>
 
-  <if test="&this.active_siblings">
+  <if test="&this.active_siblings.any?">
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
         <b class="caret"></b>
@@ -26,11 +26,11 @@
     </li>
     <nav-item class="active" href="#{category_path(this)}"><name/></nav-item>
   </if>
-  <unless test="active_siblings">
+  <unless test="&this.active_siblings.any?">
     <li class="active"><a><name/></a></li>
   </unless>
 
-  <if test="&this.active_children">
+  <if test="&this.active_children.any?">
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#{category_path(this)}">
         <b class="caret"></b>

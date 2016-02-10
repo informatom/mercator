@@ -76,7 +76,7 @@
           <main-content restore/>
         </div>
         <div class="col-md-4">
-          <if test="&current_user.addresses">
+          <if test="&current_user.addresses.any?">
             <h3><t key="mercator.stored_delivery_addresses"/></h3>
           </if>
           <repeat with="&current_user.addresses">
