@@ -9,3 +9,12 @@ Category.find(3444).products.active.includes(:inventories).where(inventories: {p
 
 # Test url helpers in console:
 include Rails.application.routes.url_helpers
+
+# Delete old logentries
+Logentry.where("created_at<?", 2.month.ago).count
+Logentry.where("created_at<?", 2.month.ago).delete_all
+
+
+# Delete old versions
+PaperTrail::Version.where("created_at<?", 2.month.ago).count
+PaperTrail::Version.where("created_at<?", 2.month.ago).delete_all

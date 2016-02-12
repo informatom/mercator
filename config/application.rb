@@ -58,5 +58,8 @@ module Mercator
     config.assets.paths << Rails.root.join("vendor", "customer", "assets", "javascripts").to_s
     config.assets.paths << Rails.root.join("vendor", "customer", "assets", "stylesheets").to_s
     config.assets.paths << Rails.root.join("vendor", "customer", "assets", "fonts").to_s
+
+# Config for Rails 4.2
+    config.active_job.queue_adapter = :delayed_job
   end
 end
