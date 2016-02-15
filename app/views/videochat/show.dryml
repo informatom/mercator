@@ -20,7 +20,7 @@
 
     <script type="text/javascript">
       var channel, session;
-      channel = new palava.WebSocketChannel('ws://palava.bravepi.org');
+      channel = new palava.WebSocketChannel('wss://palava.bravepi.org');
       session = new palava.Session({ roomId: "mercator-<%= CONFIG[:system_id] -%>-<%= @channel_id -%>",
                                      channel: channel });
 
