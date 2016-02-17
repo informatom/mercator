@@ -13,11 +13,12 @@
 
   <script>
     var pricefilter = function() {
-      var lower = priceslider.getValue()[0];
-      var higher = priceslider.getValue()[1];
+      var lower = priceslider.bootstrapSlider('getValue')[0];
+      var higher = priceslider.bootstrapSlider('getValue')[1];
       window.location.href = "<%= category_path(category.id, filter: @filter) -%>&amp;pricelow=" + lower + "&amp;pricehigh=" + higher
     };
-    var priceslider = $("input.slider").slider().on('slideStop', pricefilter).data('slider');
+    var priceslider = $("input.slider").bootstrapSlider();
+    priceslider.on('slideStop', pricefilter).data('slider');
   </script>
 
   <if test="&@facets">
