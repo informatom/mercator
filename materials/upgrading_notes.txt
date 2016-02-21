@@ -24,7 +24,7 @@ Update
 # for app, all engines in use, gems, customer repo
 git pull github master
 
-bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails activerecord-sqlserver-adapter
+bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails activerecord-sqlserver-adapter bootstrap-slider-rails
 rake db:migrate RAILS_ENV=environment
 rake assets:precompile RAILS_ENV=environment
 reboot
