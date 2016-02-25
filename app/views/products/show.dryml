@@ -44,7 +44,7 @@
         </li>
       </if>
       <if test="&this.number.split('-')[0] == 'HP'">
-        <li>
+        <li class="#{this.values.any? ? 'passive' : 'active'}">
           <a href="#syndication" data-toggle="tab" name="syndication">
             <t key="attributes.syndication"/>
           </a>
