@@ -21,6 +21,8 @@ s.add_dependency "rails", "~> 4.0"
 Update
 ======
 
+Apache stoppen
+
 # for app, all engines in use, gems, customer repo
 git pull github master
 
@@ -29,8 +31,8 @@ rake db:migrate RAILS_ENV=environment
 rake assets:precompile RAILS_ENV=environment
 reboot
 
-Errors
-======
+knows Errors
+============
 
 ActionView::Template::Error (undefined method `map!' for #<ActiveRecord::Associations::CollectionProxy []>):
   app/views/taglibs/application/orders/show-page.dryml:59:in `block in basket_part'
@@ -47,3 +49,8 @@ ActionView::Template::Error (undefined method `map!' for #<ActiveRecord::Associa
   app/views/taglibs/application/orders/show-page.dryml:2:in `block in show_page__for_order_with_a34881921684'
   app/views/taglibs/application/orders/show-page.dryml:1:in `show_page__for_order_with_a34881921684'
   app/controllers/orders_controller.rb:19:in `show'
+
+
+in dryml: repclace an relations
+<if test="&@instances"> with
+<if test="&@instances.any?">
