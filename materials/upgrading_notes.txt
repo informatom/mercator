@@ -8,6 +8,7 @@ remove sprockets-rails
 
 ___Update___
 * bundle update rails hobo sprockets-rails
+* rake assets:precompile RAILS_ENV=production
 * restart
 
 
