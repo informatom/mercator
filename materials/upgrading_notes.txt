@@ -1,56 +1,41 @@
-Change versions for
-===================
+Upgrade 4.2.5 => 4.2.5.1
+========================
+
+___ Gems ___
+gem "rails", "4.2.5"
+gem 'hobo', github: 'hobo/hobo', ref: '602797ac99fbb64221de4bda1c52dc8563867db8'
+remove sprockets-rails
+
+___Update___
+* bundle update rails hobo sprockets-rails
+* restart
+
+
+Upgrade 4.0.13 => 4.2.5
+=======================
+
+___Gems___
 
 gem "rails", "4.2.5"
 gem "activerecord-sqlserver-adapter", "~> 4.2"
 gem "hobo", "= 2.2.4"
 gem "hobo_jquery_ui", "2.2.4"
 gem "hobo_clean_admin", "2.2.4"
-
-new gem and fixing sprocket-rails
-=================================
-
 gem "sprockets-rails", "2.3.3"
 gem 'responders', '2.1.0'
 
-Change dependency in w2ui
-=========================
-
+___Change dependency in w2ui___
 s.add_dependency "rails", "~> 4.0"
 
-Update
-======
+___Update___
+* Apache stoppen
+* # for app, all engines in use, gems, customer repo
+* git pull github master
+* bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails activerecord-sqlserver-adapter bootstrap-slider-rails
+* rake db:migrate RAILS_ENV=environment
+* rake assets:precompile RAILS_ENV=environment
+* reboot
 
-Apache stoppen
-
-# for app, all engines in use, gems, customer repo
-git pull github master
-
-bundle update rails hobo hobo_jquery_ui hobo_clean_admin less-rails i18n-js sprockets-rails activerecord-sqlserver-adapter bootstrap-slider-rails
-rake db:migrate RAILS_ENV=environment
-rake assets:precompile RAILS_ENV=environment
-reboot
-
-knows Errors
-============
-
+___ knows Errors ___
 ActionView::Template::Error (undefined method `map!' for #<ActiveRecord::Associations::CollectionProxy []>):
-  app/views/taglibs/application/orders/show-page.dryml:59:in `block in basket_part'
-  app/views/taglibs/application/orders/show-page.dryml:22:in `basket_part'
-  app/views/taglibs/application/orders/show-page.dryml:25:in `block (4 levels) in show_page__for_order_with_a34881921684'
-  app/views/taglibs/application/orders/show-page.dryml:25:in `block (3 levels) in show_page__for_order_with_a34881921684'
-  app/views/taglibs/application/orders/show-page.dryml:7:in `block (2 levels) in show_page__for_order_with_a34881921684'
-  app/views/taglibs/auto/rapid/pages.dryml:2287:in `block (4 levels) in show_page__for_order'
-  app/views/taglibs/auto/rapid/pages.dryml:2286:in `block (3 levels) in show_page__for_order'
-  app/views/taglibs/application.dryml:2:in `block in page_with_a1ec76710ef2'
-  app/views/taglibs/application.dryml:1:in `page_with_a1ec76710ef2'
-  app/views/taglibs/auto/rapid/pages.dryml:2269:in `block in show_page__for_order'
-  app/views/taglibs/auto/rapid/pages.dryml:2268:in `show_page__for_order'
-  app/views/taglibs/application/orders/show-page.dryml:2:in `block in show_page__for_order_with_a34881921684'
-  app/views/taglibs/application/orders/show-page.dryml:1:in `show_page__for_order_with_a34881921684'
-  app/controllers/orders_controller.rb:19:in `show'
-
-
-in dryml: repclace an relations
-<if test="&@instances"> with
-<if test="&@instances.any?">
+in dryml: repclace an relations <if test="&@instances"> with <if test="&@instances.any?">
