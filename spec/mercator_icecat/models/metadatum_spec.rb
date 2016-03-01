@@ -242,8 +242,8 @@ describe MercatorIcecat::Metadatum do
         "1.00", "0.00", "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60",
         "10 - 90", "5 - 95", "-15.24 - 3048", "-15.24 - 12192", "VT-d,VT-x"]
 
-      expect(@product.values.*.unit_de.uniq).to eql ["văn bản", "GHz", "GT/s", "MB", "nm", "W", nil,
-        "°C", "MHz", "GB", "GB/s", "RPM", "\"", "Pixel", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g",
+      expect(@product.values.*.unit_de.uniq).to eql ["Teks", "GHz", "GT/s", "MB", "nm", "W", nil,
+        "°C", "MHz", "GB", "GB/s", "RPM", "\"", "pixels", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g",
         "%", "m", "G"]
 
       expect(@product.values.*.unit_en.uniq).to eql [nil, "GHz", "GT/s", "MB", "nm", "W", "°C",
