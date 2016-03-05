@@ -1,7 +1,7 @@
-module ActiveRecord
-  module ConnectionAdapters
-    module Sqlserver
-      module DatabaseStatements
+#module ActiveRecord
+#  module ConnectionAdapters
+#    module Sqlserver
+#      module DatabaseStatements
 
 #        def sql_for_insert(sql, pk, id_value, sequence_name, binds)
 #          ["#{sql}; SELECT CAST(SCOPE_IDENTITY() AS bigint) AS Ident", binds]
@@ -13,7 +13,7 @@ module ActiveRecord
 #          ActiveRecord::ConnectionAdapters::SQLServerAdapter.use_output_inserted = false
 #        end
 
-      end
-    end
-  end
-end
+#      end
+#    end
+#  end
+#end
