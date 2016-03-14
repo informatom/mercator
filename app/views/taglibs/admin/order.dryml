@@ -3,9 +3,13 @@
     <content-body:>
       <div class="row">
         <div class="col-md-3">
-          <strong> <t key="activerecord.models.billing_address.one"/>: </strong>
-          (<t key="activerecord.attributes.order.lifecycle.transitions.#{self.this.billing_method}" />) <br/>
-          <t key="activerecord.attributes.address/genders.#{self.this.billing_gender}" />&nbsp;
+         <strong> <t key="activerecord.models.billing_address.one"/>: </strong>
+          <if test="&self.this.billing_method">
+            (<t key="activerecord.attributes.order.lifecycle.transitions.#{self.this.billing_method}" />) <br/>
+          </if>
+          <if test="&self.this.billing_gender">
+            <t key="activerecord.attributes.address/genders.#{self.this.billing_gender}" />&nbsp;
+          </if>
           <view:billing-title/> <view:billing_first_name/> <view:billing_surname/> (<view:billing_phone/>)<br/>
           <view:billing-company/>,
           <view:billing-detail/> <br/>
@@ -15,8 +19,13 @@
         <div class="col-md-3">
           <strong>
             <t key="activerecord.models.address.one"/>:
-          </strong> (<t key="activerecord.attributes.order.lifecycle.transitions.#{self.this.shipping_method}" />) <br/>
-          <t key="activerecord.attributes.address/genders.#{self.this.shipping_gender}" />&nbsp;
+          </strong>
+          <if test="&self.this.shipping_method">
+            (<t key="activerecord.attributes.order.lifecycle.transitions.#{self.this.shipping_method}" />) <br/>
+          </if>
+          <if test="&self.this.shipping_gender">
+            <t key="activerecord.attributes.address/genders.#{self.this.shipping_gender}" />&nbsp;
+          </if>
           <view:shipping-title/> <view:shipping_first_name/> <view:shipping_surname/> (<view:shipping_phone/>)<br/>
           <view:shipping-company/>,
           <view:shipping-detail/> <br/>
