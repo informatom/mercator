@@ -640,6 +640,8 @@ de:
       heading: Kennwort festlegen
     show:
       heading: Benutzerübersicht
+    accept_gtc:
+      heading: AGBs bestätigen
 
   male: Herr
   female: Frau
