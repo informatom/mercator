@@ -1,0 +1,4 @@
+<def tag="current-gtc">
+  <h1><%= raw Gtc.order(version_of: :desc).first.title %></h1>
+  <%= raw Gtc.order(version_of: :desc).first.content %>
+</def>
