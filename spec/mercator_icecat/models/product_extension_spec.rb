@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Product do
   before :each do
-    @product = create(:product, alternative_number: "D9190B")
+    @product = create(:product, alternative_number: "H2872E")
     @metadatum = create(:metadatum, product_id: @product.id)
   end
 
@@ -39,7 +39,7 @@ describe Product do
     end
 
     it "returns alternative number, if present" do
-      expect(@product.icecat_article_number).to eql "D9190B"
+      expect(@product.icecat_article_number).to eql "H2872E"
     end
 
     it "leaves non HP-numbers untouched" do
