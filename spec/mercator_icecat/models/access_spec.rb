@@ -40,7 +40,7 @@ describe MercatorIcecat::Access do
 
     it "returns the product url for path" do
       @metadatum = create(:metadatum)
-      expect(MercatorIcecat::Access.product(path: "/xml_s3/xml_server3.cgi?prod_id=D9190B;vendor=HP;lang=int;output=productxml")
+      expect(MercatorIcecat::Access.product(path: "/xml_s3/xml_server3.cgi?prod_id=H2872E;vendor=HP;lang=int;output=productxml")
                                    .length > 50000).to eql true
     end
   end
@@ -49,7 +49,7 @@ describe MercatorIcecat::Access do
   describe "product_url" do
     it "returns the product url" do
       @metadatum = create(:metadatum)
-      expect(MercatorIcecat::Access.product_url(product_id: @metadatum.prod_id)).to eql "http://data.icecat.biz/xml_s3/xml_server3.cgi?prod_id=D9190B;vendor=HP;lang=int;output=productxml"
+      expect(MercatorIcecat::Access.product_url(product_id: @metadatum.prod_id)).to eql "http://data.icecat.biz/xml_s3/xml_server3.cgi?prod_id=H2872E;vendor=HP;lang=int;output=productxml"
     end
   end
 end

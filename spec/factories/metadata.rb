@@ -2,12 +2,12 @@ FactoryGirl.define do
 
   factory :metadatum, :class => 'MercatorIcecat::Metadatum' do
     product
-    path              "export/freexml.int/INT/1286.xml"
+    path              "export/freexml.int/INT/31543323.xml"
     icecat_updated_at { Time.now - 1.month }
     quality           "SUPPLIER"
     supplier_id       "1"
     icecat_product_id "1286"
-    prod_id           "D9190B"
+    prod_id           "H2872E"
     product_number    nil
     cat_id            "156"
     on_market         "1"

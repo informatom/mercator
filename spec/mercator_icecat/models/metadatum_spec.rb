@@ -58,7 +58,7 @@ describe MercatorIcecat::Metadatum do
 
   describe "assign_products" do
     before :each do
-      @product = create(:product, alternative_number: "D9190B")
+      @product = create(:product, alternative_number: "H2872E")
       @metadatum = create(:metadatum, product_id: nil)
     end
 
@@ -224,7 +224,7 @@ describe MercatorIcecat::Metadatum do
         "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "L3", "32-bit,64-bit", "F0", "DMI2",
         "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM,LPDDR3-SDRAM",
         "1333,1600", "Dual", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA",
-        "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9", "Intel HD Graphics 5500",
+        "SD,SDHC,SDXC", "1366 x 768", "Not supported", "Matt", "16:9", "Intel HD Graphics 5500",
         "DisplayPort,Embedded DisplayPort (eDP),HDMI", "0x1616", "DTS Sound+",
         "802.11a,802.11ac,802.11b,802.11g,802.11n", "10,100,1000", "Touchpad",
         "Windows 7 Professional", "64-bit", "Windows 8.1 Pro", "AVX 2.0,SSE4.1,SSE4.2", "SR23Z",
@@ -235,14 +235,14 @@ describe MercatorIcecat::Metadatum do
         "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "L3", "32-bit,64-bit", "F0", "DMI2",
         "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM,LPDDR3-SDRAM",
         "1333,1600", "Dual", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA",
-        "SD,SDHC,SDXC", "1366 x 768", "Matt", "16:9", "Intel HD Graphics 5500",
+        "SD,SDHC,SDXC", "1366 x 768", "Not supported", "Matt", "16:9", "Intel HD Graphics 5500",
         "DisplayPort,Embedded DisplayPort (eDP),HDMI", "0x1616", "DTS Sound+",
         "802.11a,802.11ac,802.11b,802.11g,802.11n", "10,100,1000", "Touchpad",
         "Windows 7 Professional", "64-bit", "Windows 8.1 Pro", "AVX 2.0,SSE4.1,SSE4.2", "SR23Z",
         "1.00", "0.00", "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60",
         "10 - 90", "5 - 95", "-15.24 - 3048", "-15.24 - 12192", "VT-d,VT-x"]
 
-      expect(@product.values.*.unit_de.uniq).to eql ["Teks", "GHz", "GT/s", "MB", "nm", "W", nil,
+      expect(@product.values.*.unit_de.uniq).to eql [nil, "GHz", "GT/s", "MB", "nm", "W",
         "°C", "MHz", "GB", "GB/s", "RPM", "\"", "pixels", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g",
         "%", "m", "G"]
 
@@ -335,9 +335,9 @@ describe MercatorIcecat::Metadatum do
     it "loads a missing image" do
       @metadatum.import_missing_image
       @product.reload
-      expect(@product.photo_file_name).to eql "1286.jpg"
+      expect(@product.photo_file_name).to eql "31543323_2356.jpg"
       expect(@product.photo_content_type).to eql "image/jpeg"
-      expect(@product.photo_file_size).to eql 4121
+      expect(@product.photo_file_size).to eql 30887
       expect(Time.now - @product.photo_updated_at < 5.seconds).to eql true
     end
   end
