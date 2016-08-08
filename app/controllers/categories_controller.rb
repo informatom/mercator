@@ -24,21 +24,25 @@ class CategoriesController < ApplicationController
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                           { match: { state: 'active' } } ,
                                                           { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } },
-                                 facets: this.filters.values.flatten) if (this.filters && this.filters.any?)
+                                 facets: this.filters.values.flatten,
+                                 limit: 1000) if (this.filters && this.filters.any?)
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                             { match: { state: 'active' } },
-                                                            { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } } ).results
+                                                            { range: { price: { gte: params[:pricelow], lte: params[:pricehigh] } } } ] + matcharray } },
+                                   limit: 1000 ).results
 
         @minslider = params[:pricelow].to_i
         @maxslider = params[:pricelow] == params[:pricehigh] ? params[:pricehigh].to_i : params[:pricehigh].to_i + 1
       else
         @facets = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
                                                 { match: { state: 'active' } } ] + matcharray } },
-                                 facets: this.filters.values.flatten) if (this.filters && this.filters.any?)
+                                 facets: this.filters.values.flatten,
+                                 limit: 1000) if (this.filters && this.filters.any?)
 
         @products = Product.search(query: { bool: { must: [ { match: { category_ids: category_id } },
-                                                            { match: { state: 'active' } } ] + matcharray } } ).results
+                                                            { match: { state: 'active' } } ] + matcharray } },
+                                   limit: 1000 ).results
 
         @minslider = @min
         @maxslider = @max

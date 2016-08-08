@@ -32,7 +32,8 @@ class Category < ActiveRecord::Base
   has_ancestry orphan_strategy: :adopt
   has_paper_trail
 
-  searchkick language: "German"
+  searchkick(language: "German",
+             settings: {index: {max_result_window: 1000}})
 
   never_show :ancestry, :filters
   default_scope { order('categories.position ASC') }
