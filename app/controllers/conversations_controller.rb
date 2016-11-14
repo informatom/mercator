@@ -56,7 +56,7 @@ class ConversationsController < ApplicationController
 
   def do_initiate
     do_creator_action :initiate do
-      self.this.update(customer: current_user)
+      self.this.update(customer: current_user, name: params[:conversation][:name][0...254])
       self.this.delay.inform_sales(locale: I18n.locale) if self.this.persisted? # we fork into delayed handling
     end
   end
