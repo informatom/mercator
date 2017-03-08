@@ -21,7 +21,10 @@
             <div class="form-group form-group-sm">
               <label class="col-sm-1 control-label"><t key="mercator.new_message" /></label>
               <div class="col-sm-10">
-                <input:content class="form-control" autocomplete="off" id="watched_message_field" />
+                <input:content class="form-control"
+                               autocomplete="off"
+                               id="watched_message_field"
+                               maxlength="200" />
 
                 <!-- Following: https://remysharp.com/2010/07/21/throttling-function-calls -->
                 <script>
@@ -34,7 +37,7 @@
                     }, 1000));
 
                   function throttle(fn, threshhold, scope) {
-                    threshhold || (threshhold = 250);
+                    threshhold || (threshhold = 3000);
                     var last,
                         deferTimer;
                     return function () {

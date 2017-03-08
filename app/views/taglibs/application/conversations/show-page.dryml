@@ -58,6 +58,7 @@
                 <input:content class="input-block-level form-control"
                                autocomplete="off"
                                id="watched_message_field"
+                               maxlength="200"
                                placeholder="#{I18n.translate('mercator.your_message')}" />
 
                 <!-- Following: https://remysharp.com/2010/07/21/throttling-function-calls -->
@@ -71,7 +72,7 @@
                     }, 1000));
 
                   function throttle(fn, threshhold, scope) {
-                    threshhold || (threshhold = 250);
+                    threshhold || (threshhold = 3000);
                     var last,
                         deferTimer;
                     return function () {

@@ -1,5 +1,11 @@
 <extend tag="initiate-form" for="Conversation">
   <old-initiate-form merge>
+    <field-list: fields="name" param>
+      <name-view:>
+         <input maxlength="200" class="form-control name-tag string conversation-name" />
+      </name-view:>
+    </field-list:>
+
     <actions: replace>
       <div class="row">
         <div class="col-md-8">
