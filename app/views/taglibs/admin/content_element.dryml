@@ -52,7 +52,7 @@
   </if>
 
   <if test="&this.path">
-    <%= this.path.split("/").last %>
+    <%= this.url %>
   </if>
   <else>
     <t key="mercator.no_file"/>
