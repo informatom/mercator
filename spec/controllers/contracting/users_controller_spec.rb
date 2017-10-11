@@ -100,9 +100,9 @@ describe Contracting::UsersController, :type => :controller do
       it "returns the correct json" do
         get :mesonic_grid_index
         expect(response.body).to be_json_eql( "success".to_json).at_path("status")
-        expect(response.body).to be_json_eql({ account: "010104",
-                                               detail: "Androsch International Management Consulting GmbH",
-                                               name: "AIC - ALL.IN.PRINT",
+        expect(response.body).to be_json_eql({ account: "030401",
+                                               detail: "research & business development GmbH",
+                                               name: "CONNEXIO - ALL.IN.PRINT",
                                                recid: 0 }.to_json).at_path("records/0")
       end
     end

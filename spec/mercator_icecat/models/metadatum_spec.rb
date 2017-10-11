@@ -192,7 +192,7 @@ describe MercatorIcecat::Metadatum do
         "Processor special features", "Design"]
 
       expect(@product.property_groups.*.position.uniq).to eql [32, 33, 36, 38, 108, 109, 111, 113,
-        762, 1404, 1711, 2686, 2687, 2933, 3024, 4128, 6417, 6421, 7947, 8602, 10385, 10677]
+        762, 1405, 1711, 2686, 2687, 2933, 3024, 4128, 6417, 6421, 7947, 8602, 10385, 10677]
     end
 
     it "creates properties" do
@@ -200,8 +200,8 @@ describe MercatorIcecat::Metadatum do
       expect(@product.properties.*.icecat_id.uniq[0..19]).to eql  [7, 39, 47, 94, 427, 430, 432, 434,
         440, 442, 667, 672, 703, 730, 757, 771, 838, 902, 904, 903]
 
-      expect(@product.properties.*.position.uniq[0..19]).to eql [7, 39, 49, 94, 430, 432, 433, 435, 442,
-        446, 667, 681, 704, 738, 759, 786, 838, 907, 909, 910]
+      expect(@product.properties.*.position.uniq[0..19]).to eql [7, 40, 48, 94, 429, 431, 433, 435,
+        442, 446, 667, 680, 704, 737, 759, 786, 838, 907, 909, 910]
 
       expect(@product.properties.*.name_de.uniq[0..19]).to eql ["Festplattenkapazität", "Seitenverhältnis",
         "Prozessor", "Gewicht", "Interner Speichertyp", "Festplatten-Drehzahl", "WLAN-Standards",
@@ -220,31 +220,31 @@ describe MercatorIcecat::Metadatum do
 
     it "creates values" do
       @metadatum.update_product
-      expect(@product.values.*.title_de.uniq).to eql ["Notebook", "Black,Silver", "Clamshell", nil,
-        "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "L3", "32-bit,64-bit", "F0", "DMI2",
-        "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM,LPDDR3-SDRAM",
-        "1333,1600", "Dual", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA",
-        "SD,SDHC,SDXC", "1366 x 768", "Not supported", "Matt", "16:9", "Intel HD Graphics 5500",
-        "DisplayPort,Embedded DisplayPort (eDP),HDMI", "0x1616", "DTS Sound+",
+      expect(@product.values.*.title_de.uniq).to eql ["Black,Silver", "Notebook", "Clamshell",
+        "Enterprise,Professional", nil, "1366 x 768", "Not supported", "Matt", "16:9",
+        "Intel Core i3-5xxx", "i3-5010U", "BGA 1168", "L3", "32-bit,64-bit", "F0", "DMI2",
+        "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM", "1 x 4",
+        "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA", "SD,SDHC,SDXC", "Intel HD Graphics 5500",
+        "Not available", "Intel HD Graphics", "0x1616", "DTS Sound+",
         "802.11a,802.11ac,802.11b,802.11g,802.11n", "10,100,1000", "Touchpad",
         "Windows 7 Professional", "64-bit", "Windows 8.1 Pro", "AVX 2.0,SSE4.1,SSE4.2", "SR23Z",
         "1.00", "0.00", "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60",
         "10 - 90", "5 - 95", "-15.24 - 3048", "-15.24 - 12192", "VT-d,VT-x"]
 
-      expect(@product.values.*.title_en.uniq).to eql ["Notebook", "Black,Silver", "Clamshell", nil,
-        "Intel Core i3-5xxx", "i3-5010U", "BGA1168", "L3", "32-bit,64-bit", "F0", "DMI2",
-        "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM,LPDDR3-SDRAM",
-        "1333,1600", "Dual", "DDR3L-SDRAM", "1 x 4", "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA",
-        "SD,SDHC,SDXC", "1366 x 768", "Not supported", "Matt", "16:9", "Intel HD Graphics 5500",
-        "DisplayPort,Embedded DisplayPort (eDP),HDMI", "0x1616", "DTS Sound+",
+      expect(@product.values.*.title_en.uniq).to eql ["Black,Silver", "Notebook", "Clamshell",
+        "Enterprise,Professional", nil, "1366 x 768", "Not supported", "Matt", "16:9",
+        "Intel Core i3-5xxx", "i3-5010U", "BGA 1168", "L3", "32-bit,64-bit", "F0", "DMI2",
+        "Broadwell", "Intel Core i3-5000 Mobile series", "2x4,4x1", "DDR3L-SDRAM", "1 x 4",
+        "2x SO-DIMM", "SO-DIMM", "HDD", "Serial ATA", "SD,SDHC,SDXC", "Intel HD Graphics 5500",
+        "Not available", "Intel HD Graphics", "0x1616", "DTS Sound+",
         "802.11a,802.11ac,802.11b,802.11g,802.11n", "10,100,1000", "Touchpad",
         "Windows 7 Professional", "64-bit", "Windows 8.1 Pro", "AVX 2.0,SSE4.1,SSE4.2", "SR23Z",
         "1.00", "0.00", "Lithium-Ion (Li-Ion)", "50/60", "100 - 240", "0 - 35", "-20 - 60",
         "10 - 90", "5 - 95", "-15.24 - 3048", "-15.24 - 12192", "VT-d,VT-x"]
 
-      expect(@product.values.*.unit_de.uniq).to eql [nil, "GHz", "GT/s", "MB", "nm", "W",
-        "°C", "MHz", "GB", "GB/s", "RPM", "\"", "pixels", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g",
-        "%", "m", "G"]
+      expect(@product.values.*.unit_de.uniq).to eql [nil, "Zoll", "Pixel","GHz", "GT/s", "MB", "nm",
+        "W", "°C", "MHz", "GB", "RPM", "Mbit/s", "mm", "Wh", "h", "Hz", "V",
+        "g", "%", "m", "G"]
 
       expect(@product.values.*.unit_en.uniq).to eql [nil, "GHz", "GT/s", "MB", "nm", "W", "°C",
         "MHz", "GB", "GB/s", "RPM", "\"", "pixels", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g", "%",
@@ -335,9 +335,9 @@ describe MercatorIcecat::Metadatum do
     it "loads a missing image" do
       @metadatum.import_missing_image
       @product.reload
-      expect(@product.photo_file_name).to eql "31543323_2356.jpg"
+      expect(@product.photo_file_name).to eql "img_31543323_high_1493137510_9163_21065.jpg"
       expect(@product.photo_content_type).to eql "image/jpeg"
-      expect(@product.photo_file_size).to eql 30887
+      expect(@product.photo_file_size).to eql 2365535
       expect(Time.now - @product.photo_updated_at < 5.seconds).to eql true
     end
   end

@@ -52,7 +52,7 @@ class Contract < ActiveRecord::Base
   end
 
 
-  def actual_rate(year: year, month: month)
+  def actual_rate(year:, month:)
     contractitems.*.actual_rate(year: year, month: month).sum
   end
 
