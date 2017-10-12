@@ -246,15 +246,14 @@ describe MercatorIcecat::Metadatum do
         "W", "°C", "MHz", "GB", "RPM", "Mbit/s", "mm", "Wh", "h", "Hz", "V",
         "g", "%", "m", "G"]
 
-      expect(@product.values.*.unit_en.uniq).to eql [nil, "GHz", "GT/s", "MB", "nm", "W", "°C",
-        "MHz", "GB", "GB/s", "RPM", "\"", "pixels", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g", "%",
-        "m", "G"]
+      expect(@product.values.*.unit_en.uniq).to eql [nil, "\"", "pixels", "GHz", "GT/s", "MB", "nm", 
+        "W", "°C", "MHz", "GB", "RPM", "Mbit/s", "mm", "Wh", "h", "Hz", "V", "g", "%", "m", "G"]
 
-      expect(@product.values.*.amount.*.to_s.uniq).to eql ["", "2.1", "2.0", "4.0", "5.0", "3.0",
-        "14.0", "15.0", "12.0", "105.0", "600.0", "16.0", "25.6", "1600.0", "500.0", "1.0",
-        "5400.0", "2.5", "13.3", "300.0", "900.0", "11.2", "40.0", "45.0", "19.5", "1500.0",
+      expect(@product.values.*.amount.*.to_s.uniq).to eql ["", "13.3", "2.1", "2.0", "4.0", "5.0", 
+        "3.0", "14.0", "15.0", "12.0", "105.0", "600.0", "16.0", "1600.0", "500.0", "1.0", 
+        "5400.0", "2.5", "300.0", "900.0", "11.2", "40.0", "84697.0", "45.0", "19.5", "1500.0", 
         "326.0", "233.5", "20.0", "21.0", "95.0", "26.5", "200.0", "0.75", "1.5"]
-
+      
       expect(@product.values.*.flag.uniq).to eql [nil, false, true]
     end
   end
@@ -338,7 +337,7 @@ describe MercatorIcecat::Metadatum do
       expect(@product.photo_file_name).to eql "img_31543323_high_1493137510_9163_21065.jpg"
       expect(@product.photo_content_type).to eql "image/jpeg"
       expect(@product.photo_file_size).to eql 2365535
-      expect(Time.now - @product.photo_updated_at < 5.seconds).to eql true
+      expect(Time.now - @product.photo_updated_at < 10.seconds).to eql true
     end
   end
 end
